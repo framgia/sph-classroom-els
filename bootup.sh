@@ -1,5 +1,5 @@
 # Install Dependencies
-yarn install
+yarn install 
 
 # Start the react app
 if [ "$1" == "true" ]
