@@ -1,0 +1,43 @@
+.navbar {
+    background-color: #002037;
+    color: #E2DEC0;
+}
+
+#title {
+    background-image: linear-gradient(90deg, #c4b230, #375218);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    font-weight: bold;
+    font-size: 54px;
+}
+
+#Nav {
+    font-size: 26px;
+    color: #E2DEC0;
+    padding: 8px;
+}
+
+#navbarScrollingDropdown {
+
+    font-size: 26px;
+    color: #E2DEC0;
+}
+
+.p-icon {
+    width: 50px;
+    border-radius: 100px;
+    background-color: #E2DEC0;
+    padding: 8px;
+  }
+
+  .dropdown-menu {
+    background-color: #002037;
+  }
+  
+  .dropdown-item {
+      font-size: 26px;
+    color: #E2DEC0;
+  }
