@@ -15,6 +15,8 @@
 }
 
 #Nav {
+    margin-top: 20px;
+    margin-right: 25px;
     font-size: 26px;
     color: #E2DEC0;
     padding: 8px;
@@ -27,17 +29,19 @@
 }
 
 .p-icon {
-    width: 50px;
+    width: 80px;
     border-radius: 100px;
     background-color: #E2DEC0;
     padding: 8px;
   }
 
-  .dropdown-menu {
+  .dropdown-menu {  
     background-color: #002037;
+    padding: 0.5rem;
+    align-content: center;
   }
   
   .dropdown-item {
-      font-size: 26px;
+    font-size: 26px;
     color: #E2DEC0;
   }
