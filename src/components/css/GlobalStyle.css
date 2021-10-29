@@ -23,7 +23,7 @@
 }
 
 #navbarScrollingDropdown {
-
+    margin-left: .5rem;
     font-size: 26px;
     color: #E2DEC0;
 }
@@ -35,10 +35,12 @@
     padding: 8px;
   }
 
-  .dropdown-menu {  
+  .dropdown-menu { 
     background-color: #002037;
     padding: 0.5rem;
-    align-content: center;
+    left: 34% !important;
+    transform: translateX(-50%) !important;
+    top: 105% !important;
   }
   
   .dropdown-item {
