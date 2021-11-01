@@ -17,14 +17,14 @@
 }
 
 #dropdownMenu {
+  background-color: #002037 !important;
   color: #e2dec0 !important;
   margin: 0px 10px;
 }
 
-#dropdownMenu .open {
-  color: red !important;
+#dropdownMenu + div {
+  background-color: #002037 !important;
 }
-
 
 #dropdownMenu::after {
   display: none;
@@ -33,6 +33,10 @@
 .dropdownItem {
   font-size: 21px;
   color: #e2dec0 !important;
+}
+
+.dropdownItem:hover {
+  color: #002037 !important;
 }
 
 .dropdownTitleIcon {
