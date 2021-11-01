@@ -1,0 +1,54 @@
+.navbar {
+  background-color: #002037;
+  color: #e2dec0;
+}
+
+.navbarLink {
+  font-size: 21px;
+  color: #e2dec0 !important;
+  margin: 0px 10px;
+}
+
+.navbarCollapse {
+  background-color: #002037 !important;
+  margin-left: 0.5rem;
+  font-size: 26px;
+  color: #e2dec0;
+}
+
+#dropdownMenu {
+  color: #e2dec0 !important;
+  margin: 0px 10px;
+}
+
+#dropdownMenu .open {
+  color: red !important;
+}
+
+
+#dropdownMenu::after {
+  display: none;
+}
+
+.dropdownItem {
+  font-size: 21px;
+  color: #e2dec0 !important;
+}
+
+.dropdownTitleIcon {
+  width: 35px;
+  border-radius: 15000px;
+  background-color: #e2dec0;
+  padding: 5px;
+}
+
+.title {
+  background-image: linear-gradient(90deg, #c4b230, #375218);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 40px;
+}
