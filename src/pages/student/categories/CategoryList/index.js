@@ -4,8 +4,13 @@ import style from "./index.module.css"
 
 function CategoryList() {
     return (
-        <div className={style.cardList}>
+        <div>
+         <p className={style.title} >
+               Categories
+           </p>
            
+        <div className={style.cardList}>
+          
             <Card className={style.card}>
             <Card.Header className={style.cardHeader}></Card.Header >
             <Card.Body>
@@ -99,7 +104,7 @@ function CategoryList() {
             </Card.Body>
             </Card>
         </div>
-        
+        </div>
     );
 }
 

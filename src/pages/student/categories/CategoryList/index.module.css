@@ -51,11 +51,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    padding-top: 60px;
+    padding-top: ;
 
   }
   .cardHeader {
-    background-color: #4B847B;
+    background:linear-gradient(0deg, rgba(75, 132, 123, 0.63), rgba(75, 132, 123, 0.63));
     color: white;
     height: 40px;
 
@@ -66,6 +66,7 @@
     margin: 20px;
     height: 300px;
     width: 400px;
+    border-radius: 10px;
     
   }
 
@@ -77,6 +78,12 @@
   margin-left: 10px;
   margin-right: 10px;
   
+}
+
+.title {
+
+padding: 20px; 
+font-size: 30px;
 }
 
 
