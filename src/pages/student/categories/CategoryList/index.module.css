@@ -51,12 +51,14 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    padding-top: 60px;
 
   }
   .cardHeader {
     background-color: #4B847B;
     color: white;
     height: 40px;
+
   
 }
   
@@ -76,4 +78,5 @@
   margin-right: 10px;
   
 }
+
 
