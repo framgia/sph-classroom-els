@@ -51,8 +51,8 @@ const Registration = () => {
                       </Form.Group>
                       
                       <center style={{marginTop:'65px'}}>
-                          <Button style={{backgroundColor:'green',padding:'10px 30px'}} type="submit">
-                          Sign Up
+                          <Button className={style.Btncolor} type="submit">
+                          <h5>Sign Up</h5>
                           </Button>
                       </center>
                       
