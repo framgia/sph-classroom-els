@@ -44,7 +44,7 @@ const Registration = () => {
                       </Form.Group>
 
                       <Form.Group className="mb-3" controlId="NewPassword">
-                          <Form.Label><h5>Password</h5></Form.Label>
+                          <Form.Label><h5>Confirm Password</h5></Form.Label>
                           <Form.Control  className="cntrs" type="password" placeholder="************" />
                           <Form.Text className="text-muted">
                           </Form.Text>
