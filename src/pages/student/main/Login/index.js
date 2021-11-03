@@ -36,13 +36,13 @@ const Login = () => {
                           </Form.Text>
                       </Form.Group>
 
-                      <h5 className={style.sign}>
+                      <p className={style.sign}>
                           <a style={{textDecoration:'none'}} href="">Forgot password?</a>
-                      </h5>
+                      </p>
                       
                       <center>
-                          <Button style={{backgroundColor:'green',padding:'10px 30px', borderColor:'green'}} type="submit">
-                          Sign In
+                          <Button className={style.Btncolor} type="submit">
+                          <h5>Sign In</h5>
                           </Button>
                       </center>
                       
