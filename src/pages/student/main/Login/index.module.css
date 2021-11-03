@@ -1,0 +1,25 @@
+#log01{
+    background-color: #4b847c4b;
+    padding: 88px 30px;
+    border-radius: 10px;
+    height: 500px;
+}
+.sign{
+    display: inline-block;
+    padding-right: 20px;
+    margin-top: 10px;
+}
+#navbar {
+    background-color: #002037;
+    color: #E2DEC0;
+}
+#title {
+    background-image: linear-gradient(90deg, #c4b230, #375218);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    font-weight: bold;
+    font-size: 54px;
+}
