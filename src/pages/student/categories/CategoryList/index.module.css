@@ -69,6 +69,7 @@
     height: 300px;
     width: 400px;
     border-radius: 10px;
+    font-family:  nunito ;
     
   }
 
@@ -83,9 +84,10 @@
 }
 
 .title {
-
+font-family: nunito;
 padding: 20px; 
 font-size: 30px;
+margin-left: 50px;
 }
 
 
