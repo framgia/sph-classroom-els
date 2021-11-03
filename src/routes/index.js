@@ -16,6 +16,7 @@ import QuestionList from '../pages/student/quizzes/QuestionList';
 import QuizResult from '../pages/student/quizzes/QuizResult';
 import LearningList from '../pages/student/learnings/LearningList';
 import StudentList from '../pages/student/students/StudentList';
+import QuizAnswerResult from '../pages/student/quizzes/QuizResult/QuizAnswerResult';
 
 const Routes = () => {
   return (
@@ -34,6 +35,7 @@ const Routes = () => {
       <StudentRoute path="/categories/:id/quizzes" exact component={QuizList}></StudentRoute>
       <StudentRoute path="/categories/:id/quizzes/:id/questions" exact component={QuestionList}></StudentRoute>
       <StudentRoute path="/categories/:id/quizzes/:id/results" exact component={QuizResult}></StudentRoute>
+      <StudentRoute path="/categories/:id/quizzes/:id/results/:id/answer-result" exact component={QuizAnswerResult}></StudentRoute>
 
       {/* ERROR ROUTES */}
     </Switch>
