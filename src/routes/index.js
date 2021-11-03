@@ -7,7 +7,7 @@ import StudentRoute from './middleware/StudentRoute';
 // Student Components
 import Login from '../pages/student/main/Login';
 import Registration from '../pages/student/main/Registration';
-import ForgotPassword from '../pages/student/main/ForgotPassword';
+import PasswordReset from '../pages/student/main/PasswordReset';
 import NewPassword from '../pages/student/main/NewPassword';
 import ProfileDetail from '../pages/student/profile/ProfileDetail';
 import Home from '../pages/student/main/Home';
@@ -30,8 +30,8 @@ const Routes = () => {
       {/* STUDENT ROUTES */}
       <Route path="/login" exact component={Login}></Route>
       <Route path="/registration" exact component={Registration}></Route>
-      <Route path="/ForgotPassword" exact component={ForgotPassword}></Route>
-      <Route path="/NewPassword" exact component={NewPassword}></Route>
+      <Route path="/reset-password" exact component={PasswordReset}></Route>
+      <Route path="/new-password" exact component={NewPassword}></Route>
       <StudentRoute path="/" exact component={Home}></StudentRoute>
       <StudentRoute path="/profile" exact component={ProfileDetail}></StudentRoute>
       <StudentRoute path="/dashboard" exact component={Dashboard}></StudentRoute>

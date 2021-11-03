@@ -9,7 +9,7 @@ const NewPassword = () => (<center>
     <Container>
         <Stack gap={2} className="col-md-5 mx-auto">
 
-            <Form className={style.cont}>
+            <Form className={style.contentstyle}>
                 <div align="start" className={style.suggestion}>
                     Create a new password that is at least 6 characters long. A strong password is a combination of letters, numbers, and symbols.
                 </div>
@@ -29,8 +29,8 @@ const NewPassword = () => (<center>
                     </Form.Group>
 
                     <center>
-                        <Button variant="primary" type="submit" id={style.btp}>
-                            <a href="Login" className={style.textbtp}>Continue</a>
+                        <Button variant="primary" type="submit" id={style.button}>
+                            <a href="login" className={style.textbutton}>Continue</a>
                         </Button>
                     </center>
                 </div>

@@ -2,7 +2,7 @@ body{
     background-color: #E8E8E8;
 }
 
-.contps {
+.contentstyle {
     margin-top: 150px;
     margin-left: 100px;
     flex-direction: column;
@@ -14,7 +14,7 @@ body{
     width: 380px;
     }
 
-.cent {
+.center {
     font-size: 18px;;
     width: 300px;
     margin-top: 20px;
@@ -27,7 +27,7 @@ body{
     margin-top: 20px;
 }
 
-#btp{
+#button{
     background-color: #719C96;
     border : none;
     margin-top : 2.5rem;
@@ -42,15 +42,15 @@ a {
     color: black;
 }
 
-.textbtp {
+.textbutton {
     color:white;
 }
 
-.textbtp:hover {
+.textbutton:hover {
     color: black;
 }
 
-.cnb{
+.cancel{
     margin-top: 15px;
 }
 
@@ -58,7 +58,7 @@ a {
     font-size: 18px;
 }
 
-.cont {
+.content {
     margin-top: 150px;
     margin-left: 100px;
     flex-direction: column;

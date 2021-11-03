@@ -9,9 +9,9 @@ const PasswordReset = () => (<center>
     <Container>
         <Stack gap={2} className="col-md-5 mx-auto">
 
-            <Form className={style.contps}>
+            <Form className={style.contentstyle}>
 
-                <div className={style.cent} align="start">
+                <div className={style.center} align="start">
                     <Form.Group className="mb - 3" controlId="Email">
                         <Form.Label>Reset Password</Form.Label>
                         <Form.Control type="text" placeholder="Enter you Email" />
@@ -20,14 +20,14 @@ const PasswordReset = () => (<center>
                     </Form.Group>
 
                     <center>
-                        <Button variant="primary" type="submit" id={style.btp}>
-                            <a href="NewPassword" className={style.textbtp}>Send the recovery link</a>
+                        <Button variant="primary" type="submit" id={style.button}>
+                            <a href="new-password" className={style.textbutton}>Send the recovery link</a>
                         </Button>
                     </center>
 
                     <center>
-                        <div className={style.cnb}>
-                            <a href="Login">Cancel</a>
+                        <div className={style.cancel}>
+                            <a href="login">Cancel</a>
                         </div>
                     </center>
                 </div>

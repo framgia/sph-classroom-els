@@ -2,7 +2,7 @@ body{
     background-color: #E8E8E8;
 }
 
-.contps {
+.contentstyle {
     margin-top: 150px;
     margin-left: 100px;
     flex-direction: column;
@@ -10,11 +10,11 @@ body{
     background-color: #C9D4D3;
     padding: 40px;
     border-radius: 10px;
-    height: 300px;
+    height: 420px;
     width: 380px;
     }
 
-.cent {
+.center {
     font-size: 18px;;
     width: 300px;
     margin-top: 20px;
@@ -27,7 +27,7 @@ body{
     margin-top: 20px;
 }
 
-#btp{
+#button{
     background-color: #719C96;
     border : none;
     margin-top : 1rem;
@@ -37,11 +37,11 @@ body{
     color: white;
 }
 
-.textbtp {
+.textbutton {
     color:white;
 }
 
-.textbtp:hover {
+.textbutton:hover {
     color: black;
 }
 
@@ -50,7 +50,7 @@ a {
     color: black;
 }
 
-.cnb{
+.cancel{
     margin-top: 15px;
 }
 
@@ -58,7 +58,7 @@ a {
     font-size: 18px;
 }
 
-.cont {
+.content {
     margin-top: 150px;
     margin-left: 100px;
     flex-direction: column;
