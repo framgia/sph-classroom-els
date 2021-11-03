@@ -1,0 +1,57 @@
+.detail-container {
+    background-color: rgba(75, 132, 123, 0.2);
+    border-radius: 15px;
+    position: absolute;
+    padding-top: 35px;
+    width: 611px;
+    height: 418px;
+    left: 414px;
+    top: 170px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.detail-input {
+    margin: 10px;
+}
+
+.form-label {
+    font-size: 30px;
+}
+
+.form-control {
+    width: 447px;
+    height: 48px;
+    font-size: 25px;
+}
+
+.edit-button-one {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    left: 491px;
+    top: 108px;
+}
+
+.edit-button-two {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    left: 491px;
+    top: 230px;
+}
+
+.btn-primary {
+    background-color: rgba(75, 132, 123, 0.7);
+    border: none;
+    margin-top: 20px;
+    position: absolute;
+    width: 236px;
+    height: 51px;
+    left: 290px;
+    font-size: 25px;
+    line-height: 34px;
+}

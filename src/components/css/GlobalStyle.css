@@ -50,3 +50,38 @@ body{
     font-size: 26px;
     color: #E2DEC0;
   }
+.card-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+  }
+  .card-header {
+    background-color: #4B847B;
+    color: white;
+    height: 40px;
+  
+}
+  
+  .card {
+    margin: 20px;
+    height: 300px;
+    width: 400px;
+    
+  }
+
+  .card-content {
+    background-color: rgba(34, 60, 119, 0.2);
+    border-radius: 10px;
+    padding:85px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  
+}
+
+
+
+
+
+
