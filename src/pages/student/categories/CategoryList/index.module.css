@@ -51,13 +51,15 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    padding-top: ;
+    
 
   }
-  .cardHeader {
-    background:linear-gradient(0deg, rgba(75, 132, 123, 0.63), rgba(75, 132, 123, 0.63));
+  #cardHeader {
+    background:#4b847c9f;
+   border-radius: 10px 10px 0px 0px;
     color: white;
     height: 40px;
+
 
   
 }

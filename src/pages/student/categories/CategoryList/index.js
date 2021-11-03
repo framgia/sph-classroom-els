@@ -12,7 +12,7 @@ function CategoryList() {
         <div className={style.cardList}>
           
             <Card className={style.card}>
-            <Card.Header className={style.cardHeader}></Card.Header >
+            <Card.Header id={style.cardHeader}></Card.Header >
             <Card.Body>
                 <div className={style.cardContent}>
                    <center> <Card.Title>Web Development</Card.Title> </center>
@@ -22,7 +22,7 @@ function CategoryList() {
 
 
             <Card className={style.card}>
-            <Card.Header className={style.cardHeader}></Card.Header >
+            <Card.Header id={style.cardHeader}></Card.Header >
             <Card.Body>
                 <div className={style.cardContent}>
                    <center> <Card.Title>Math</Card.Title> </center>
@@ -32,7 +32,7 @@ function CategoryList() {
 
          
             <Card className={style.card}>
-            <Card.Header className={style.cardHeader}></Card.Header >
+            <Card.Header id={style.cardHeader}></Card.Header >
             <Card.Body>
                 <div className={style.cardContent}>
                    <center> <Card.Title></Card.Title> </center>
@@ -42,7 +42,7 @@ function CategoryList() {
 
          
             <Card className={style.card}>
-            <Card.Header className={style.cardHeader}></Card.Header >
+            <Card.Header id={style.cardHeader}></Card.Header >
             <Card.Body>
                 <div className={style.cardContent}>
                    <center> <Card.Title></Card.Title> </center>
@@ -52,7 +52,7 @@ function CategoryList() {
 
          
             <Card className={style.card}>
-            <Card.Header className={style.cardHeader}></Card.Header >
+            <Card.Header id={style.cardHeader}></Card.Header >
             <Card.Body>
                 <div className={style.cardContent}>
                    <center> <Card.Title></Card.Title> </center>
@@ -62,7 +62,7 @@ function CategoryList() {
 
          
             <Card className={style.card}>
-            <Card.Header className={style.cardHeader}></Card.Header >
+            <Card.Header id={style.cardHeader}></Card.Header >
             <Card.Body>
                 <div className={style.cardContent}>
                    <center> <Card.Title></Card.Title> </center>
@@ -73,7 +73,7 @@ function CategoryList() {
 
             
             <Card className={style.card}>
-            <Card.Header className={style.cardHeader}></Card.Header >
+            <Card.Header id={style.cardHeader}></Card.Header >
             <Card.Body>
                 <div className={style.cardContent}>
                    <center> <Card.Title></Card.Title> </center>
@@ -85,7 +85,7 @@ function CategoryList() {
 
 
             <Card className={style.card}>
-            <Card.Header className={style.cardHeader}></Card.Header >
+            <Card.Header id={style.cardHeader}></Card.Header >
             <Card.Body>
                 <div className={style.cardContent}>
                    <center> <Card.Title></Card.Title> </center>
@@ -96,7 +96,7 @@ function CategoryList() {
                   
 
             <Card className={style.card}>
-            <Card.Header className={style.cardHeader}></Card.Header >
+            <Card.Header id={style.cardHeader}></Card.Header >
             <Card.Body>
                 <div className={style.cardContent}>
                    <center> <Card.Title></Card.Title> </center>
