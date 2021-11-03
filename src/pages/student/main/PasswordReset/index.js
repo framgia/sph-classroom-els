@@ -4,8 +4,10 @@ import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
 import Form from 'react-bootstrap/Form';
 import style from './index.module.css';
+import Modal from './Modal';
 
 const PasswordReset = () => (<center>
+
     <Container>
         <Stack gap={2} className="col-md-5 mx-auto">
 
@@ -21,13 +23,15 @@ const PasswordReset = () => (<center>
 
                     <center>
                         <Button variant="primary" type="submit" id={style.button}>
-                            <a href="new-password" className={style.textbutton}>Send the recovery link</a>
+                            Send the recovery link
+                            <Modal />
                         </Button>
+
                     </center>
 
                     <center>
-                        <div className={style.cancel}>
-                            <a href="login">Cancel</a>
+                        <div>
+                            <a href="login" className={style.cancel}>Cancel</a>
                         </div>
                     </center>
                 </div>

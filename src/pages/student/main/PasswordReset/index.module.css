@@ -31,15 +31,11 @@ body{
     background-color: #719C96;
     border : none;
     margin-top : 2.5rem;
+    margin-bottom: 1rem;
     padding: .5rem;
     padding-left: 2rem;
     padding-right: 2rem;
     color: white;
-}
-
-a {
-    text-decoration: none;
-    color: black;
 }
 
 .textbutton {
@@ -51,7 +47,13 @@ a {
 }
 
 .cancel{
-    margin-top: 15px;
+    text-decoration: none;
+    color: black;
+}
+
+.cancel:hover{
+    text-decoration: none;
+    color: white;
 }
 
 .suggestion {
