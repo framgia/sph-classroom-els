@@ -7,6 +7,8 @@ import StudentRoute from './middleware/StudentRoute';
 // Student Components
 import Login from '../pages/student/main/Login';
 import Registration from '../pages/student/main/Registration';
+import PasswordReset from '../pages/student/main/PasswordReset';
+import NewPassword from '../pages/student/main/NewPassword';
 import ProfileDetail from '../pages/student/profile/ProfileDetail';
 import Home from '../pages/student/main/Home';
 import Dashboard from '../pages/student/main/Dashboard';
@@ -19,6 +21,7 @@ import StudentList from '../pages/student/students/StudentList';
 import QuizAnswerResult from '../pages/student/quizzes/QuizResult/QuizAnswerResult';
 import ChangePassword from '../pages/student/profile/ChangePassword';
 
+
 const Routes = () => {
   return (
     <Switch>
@@ -27,6 +30,8 @@ const Routes = () => {
       {/* STUDENT ROUTES */}
       <Route path="/login" exact component={Login}></Route>
       <Route path="/registration" exact component={Registration}></Route>
+      <Route path="/reset-password" exact component={PasswordReset}></Route>
+      <Route path="/new-password" exact component={NewPassword}></Route>
       <StudentRoute path="/" exact component={Home}></StudentRoute>
       <StudentRoute path="/profile" exact component={ProfileDetail}></StudentRoute>
       <StudentRoute path="/dashboard" exact component={Dashboard}></StudentRoute>
