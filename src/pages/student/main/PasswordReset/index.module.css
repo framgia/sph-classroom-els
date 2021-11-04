@@ -1,10 +1,7 @@
-body{
-    background-color: #E8E8E8;
-}
 
 .contentstyle {
     margin-top: 150px;
-    margin-left: 100px;
+    margin-left: 80px;
     flex-direction: column;
     justify-content: center;
     background-color: #C9D4D3;
@@ -70,4 +67,12 @@ body{
     border-radius: 10px;
     height: 430px;
     width: 380px;
+    }
+
+    .textmodal {
+        font-size: 18px;
+    }
+
+    .modalcenter {
+        margin-top: 10rem;
     }
