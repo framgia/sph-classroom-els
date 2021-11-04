@@ -28,7 +28,7 @@ const PasswordReset = () => {
 
                         <center>
                             <Button onClick={() => { setShow(true); }} variant="primary" id={style.button}>
-                                <span>Send the recovery link</span>
+                                <span className={style.textbutton}>Send the recovery link</span>
                             </Button>
                         </center>
 
