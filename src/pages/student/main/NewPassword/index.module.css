@@ -1,10 +1,7 @@
-body{
-    background-color: #E8E8E8;
-}
 
 .contentstyle {
-    margin-top: 150px;
-    margin-left: 100px;
+    margin-top: 130px;
+    margin-left: 80px;
     flex-direction: column;
     justify-content: center;
     background-color: #C9D4D3;
