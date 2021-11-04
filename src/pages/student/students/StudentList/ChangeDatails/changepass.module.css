@@ -1,4 +1,4 @@
-.containers {
+.containeredit {
     background-color: rgba(75, 132, 123, 0.2);
     border-radius: 15px;
     position: absolute;
@@ -7,46 +7,59 @@
     height: 418px;
     left: 414px;
     top: 170px;
+    
+    
 
 }
-
-.inputdetail {
-    margin: 10px;
-}
-.inputcontainer{
+.inputscontainer{
     display: flex;
     flex-direction: column;
    align-items: center;
+
 }
 
-.label1 {
+.inputs {
+    margin-top: 20px;
+   
+}
+.Button {
+    
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;  
+    margin-top: 40px;
+    margin-right: 35px;
+
+    
+
+}
+.ChangepassButton{
+
+   background-color:#4B847B;
+   height: 59px;
+   width: 177px;
+   font-size: 30px;
+    margin-left: 20px;
+}
+.cancel{
+
+    text-decoration: none;
+    display: inline-block;
+    color: black   ;
+    font-size: 30px;
+}
+.Label {
     font-size: 30px;
 }
 
-.control1 {
+.Control {
     width: 447px;
     height: 48px;
     font-size: 25px;
 }
 
-.editbuttonone {
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    left: 490px;
-    top: 95px;
-    color: black;
-}
 
-.editbuttontwo {
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    left: 490px;
-    top: 215px;
-}
-
-.changepassbutton {
+.btn-primary {
     background-color: rgba(75, 132, 123, 0.7);
     border: none;
     margin-top: 20px;

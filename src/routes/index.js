@@ -20,8 +20,7 @@ import LearningList from '../pages/student/learnings/LearningList';
 import StudentList from '../pages/student/students/StudentList';
 import QuizAnswerResult from '../pages/student/quizzes/QuizResult/QuizAnswerResult';
 import ChangePassword from '../pages/student/profile/ChangePassword';
-
-
+import ChangeDatails from '../pages/student/students/StudentList/ChangeDatails'; 
 const Routes = () => {
   return (
     <Switch>
@@ -44,6 +43,7 @@ const Routes = () => {
       <StudentRoute path="/categories/:id/quizzes/:id/results/:id/answer-result" exact component={QuizAnswerResult}></StudentRoute>
       <StudentRoute path="/student/profile/change-password" exact component={ChangePassword}></StudentRoute>
 
+      <StudentRoute path="/Studentlist/ChangePassword" exact component = {ChangeDatails}></StudentRoute>
 
       {/* ERROR ROUTES */}
     </Switch>
