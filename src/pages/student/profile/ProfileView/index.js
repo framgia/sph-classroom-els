@@ -9,7 +9,7 @@ import { HiOutlinePencil } from "react-icons/hi";
 const ProfileView = () => {
   return (
 
-    <div>
+    <div className= {style.centercard}>
             <div className={style.containers}>  
                <div className= {style.inputcontainer}>
                 <div className={style.inputdetail}>

@@ -9,7 +9,7 @@ import style from './index.module.css';
 const EditProfile = () => {
   return (
 
-    <div>
+    <div className={style.center}>
             <div className={style.containeredit}>  
             <div className={style.inputscontainer}>
                 <div className={style.inputs}>

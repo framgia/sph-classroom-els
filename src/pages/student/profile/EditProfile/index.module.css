@@ -1,12 +1,17 @@
+.center{
+    display: flex;
+    justify-content: center;
+     
+}
 .containeredit {
+    
     background-color: rgba(75, 132, 123, 0.2);
     border-radius: 15px;
     position: absolute;
     padding: 20px 50px; 
     width: 611px;
     height: 418px;
-    left: 414px;
-    top: 170px;
+   margin-top: 100px; 
     
     
 
@@ -40,6 +45,8 @@
    width: 177px;
    font-size: 30px;
     margin-left: 20px;
+    border: rgba(75, 132, 123, 0.7);
+
 }
 .cancel{
 
