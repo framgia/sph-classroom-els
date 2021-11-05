@@ -20,7 +20,9 @@ import LearningList from '../pages/student/learnings/LearningList';
 import StudentList from '../pages/student/students/StudentList';
 import QuizAnswerResult from '../pages/student/quizzes/QuizResult/QuizAnswerResult';
 import ChangePassword from '../pages/student/profile/ChangePassword';
-
+ 
+import ProfileView from '../pages/student/profile/ProfileView';
+import ProfileEdit from '../pages/student/profile/EditProfile';
 
 const Routes = () => {
   return (
@@ -44,6 +46,9 @@ const Routes = () => {
       <StudentRoute path="/categories/:id/quizzes/:id/results/:id/answer-result" exact component={QuizAnswerResult}></StudentRoute>
       <StudentRoute path="/student/profile/change-password" exact component={ChangePassword}></StudentRoute>
 
+      <StudentRoute path="/profile/view" exact component={ProfileView}></StudentRoute>
+      <StudentRoute path="/profile/edit" exact component={ProfileEdit}></StudentRoute>
+      
 
       {/* ERROR ROUTES */}
     </Switch>

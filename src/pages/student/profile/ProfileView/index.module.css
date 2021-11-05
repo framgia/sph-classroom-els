@@ -1,50 +1,57 @@
-.detail-container {
+.centercard{
+    display: flex;
+    justify-content: center;
+
+}
+.containers {
     background-color: rgba(75, 132, 123, 0.2);
     border-radius: 15px;
     position: absolute;
-    padding-top: 35px;
+    padding: 20px 50px; 
     width: 611px;
     height: 418px;
-    left: 450px;
-    top: 170px;
+    margin-top: 100px;
+    
 
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
 }
 
-.detail-input {
+.inputdetail {
     margin: 10px;
 }
+.inputcontainer{
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+}
 
-.form-label {
+.label1 {
     font-size: 30px;
 }
 
-.form-control {
+.control1 {
     width: 447px;
     height: 48px;
     font-size: 25px;
 }
 
-.edit-button-one {
+.editbuttonone {
     position: absolute;
     width: 28px;
     height: 28px;
-    left: 491px;
-    top: 108px;
+    left: 490px;
+    top: 95px;
+    color: black;
 }
 
-.edit-button-two {
+.editbuttontwo {
     position: absolute;
     width: 28px;
     height: 28px;
-    left: 491px;
-    top: 230px;
+    left: 490px;
+    top: 215px;
 }
 
-.btn-primary {
+.changepassbutton {
     background-color: rgba(75, 132, 123, 0.7);
     border: none;
     margin-top: 20px;
@@ -55,4 +62,3 @@
     font-size: 25px;
     line-height: 34px;
 }
-

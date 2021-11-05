@@ -4,12 +4,12 @@ import Form from 'react-bootstrap/Form'
 import { BiPencil } from 'react-icons/bi'
 
 import { HiOutlinePencil } from "react-icons/hi";
-import style from './index.module.css';
+import style from './changepass.module.css';
 
-const EditProfile = () => {
+const ChangePassword = () => {
   return (
 
-    <div className={style.center}>
+    <div>
             <div className={style.containeredit}>  
             <div className={style.inputscontainer}>
                 <div className={style.inputs}>
@@ -43,5 +43,5 @@ const EditProfile = () => {
   )
 };
 
-export default EditProfile;
+export default ChangePassword;
 
