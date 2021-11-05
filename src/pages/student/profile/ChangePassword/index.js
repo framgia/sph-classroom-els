@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Stack from 'react-bootstrap/Stack';
 import Form from 'react-bootstrap/Form';
 import style from './index.module.css';
 
@@ -39,7 +38,7 @@ const UsersEdit = () => {
       
       <center>
         <div className={style.cnb}>
-        <a href="">Cancel</a>
+        <a href="" className={style.cnb} >Cancel</a>
         </div>
       </center>
     </div>
