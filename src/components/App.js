@@ -1,24 +1,12 @@
-import React from 'react'
+import React from 'react';
 import Navbar from './Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-<<<<<<< HEAD
-=======
-import './css/GlobalStyle.css'
->>>>>>> 50d8549 (resolved conflicts)
+import './css/GlobalStyle.css';
 import Login from './users/Login';
-import './stylecss/GlobalStyle.css'
+import './stylecss/GlobalStyle.css';
 
 function App() {
-
-  return (
-    <Navbar />,
-<<<<<<< HEAD
-    <Login/>
- );
-=======
-    <Login />
-  );
->>>>>>> 50d8549 (resolved conflicts)
+  return <Navbar />;
 }
 
 export default App;
