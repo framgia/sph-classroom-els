@@ -44,7 +44,7 @@ const Routes = () => {
       <StudentRoute path="/categories/:id/quizzes/:id/questions" exact component={QuestionList}></StudentRoute>
       <StudentRoute path="/categories/:id/quizzes/:id/results" exact component={QuizResult}></StudentRoute>
       <StudentRoute path="/categories/:id/quizzes/:id/results/:id/answer-result" exact component={QuizAnswerResult}></StudentRoute>
-      <StudentRoute path="/student/profile/change-password" exact component={ChangePassword}></StudentRoute>
+      <StudentRoute path="/profile/change-password" exact component={ChangePassword}></StudentRoute>
 
       <StudentRoute path="/profile/view" exact component={ProfileView}></StudentRoute>
       <StudentRoute path="/profile/edit" exact component={ProfileEdit}></StudentRoute>
