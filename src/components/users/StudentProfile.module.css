@@ -1,0 +1,34 @@
+.profile{
+    display: flex;
+    justify-content: space-between;
+}
+.profile_01{
+    border: black 2px solid;
+    padding: 50px;
+    border-radius: 50%;
+    background-color: orange;
+}
+.userEdit{
+    border: #4b847c9f 4px solid;
+    border-radius: 5px;
+}
+.follow{
+    margin-right: 50px;
+    font-size: 24px;
+    margin-top: 0px;
+    display: inline-block;
+}
+.bg{
+    padding: 0px 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 100px 10% 0px 10%;
+}
+.bg2{
+    padding: 0px 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 10% 0px 10%;
+}
