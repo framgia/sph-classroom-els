@@ -48,7 +48,7 @@ body{
     font-size: 26px;
     color: #E2DEC0;
   }
-<<<<<<< HEAD
+
 .card-list {
     display: flex;
     flex-wrap: wrap;
@@ -131,7 +131,6 @@ a {
     width: 447px;
     height: 48px;
 }
-=======
 
 .cont {
     margin-top: 150px;
@@ -194,4 +193,95 @@ a {
     .suggestion {
         font-size: 18px;
     }
->>>>>>> 3520e0d (Resolved merged conflicts)
+
+body{
+    background-color: lightgrey;
+}
+.bg{
+    padding: 0px 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.bg2{
+    padding: 0px 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.cal{
+    background-color:#4b847c9f;
+    width: 30em;
+    height: 59px;
+    border-radius: 10px 10px 0px 0px;
+    color: white;
+}
+.cal_01{
+    background-color:rgba(255, 255, 255, 0.767);
+    width: 30em;
+    height: 290px;
+    padding-top: 50px;
+    border-radius: 0px 0px 10px 10px;
+    text-align: center;
+}
+.cal1{
+    background-color:#4b847c9f;
+    width: 50em;
+    height: 50px;
+    border-radius: 10px 10px 0px 0px;
+    color: white;
+}
+.cal_02{
+    background-color:rgba(255, 255, 255, 0.774);
+    width: 50em;
+    height: 20em;
+    border-radius: 0px 0px 10px 10px;
+    padding: 20px;
+}
+h6{
+    display: inline-block;
+    padding: 15px 8px 0px 10px;
+}
+.par_1{
+    display: inline-block;
+    padding: 15px 8px 0px 10px;
+}
+button{
+    margin-left: 501px;
+    border: none;
+    border-radius: 5px;
+    background-color: #218376b4;
+    color: white;
+    padding: 6px 30px 6px 30px;
+
+}
+.box_1{
+    background-color: #1b326650;
+    border-radius: 10px;
+    width: 26em;
+    height: 10em;
+    margin: auto;
+    padding: 10px;
+}
+.par_2{
+    padding-top: 30px;
+    font-size: 30px;
+}
+.cal_3{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+.partb{
+    padding: 10px;
+    text-align: right;
+}
+.s_h2{
+    padding: 30px 0px 10px 30px;
+    margin-top: 100px;
+}
+
