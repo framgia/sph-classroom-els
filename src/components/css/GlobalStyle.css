@@ -222,6 +222,14 @@ body{
     width: 30em;
     height: 290px;
     padding-top: 50px;
+    height: 50px;
+    border-radius: 10px 10px 0px 0px;
+}
+.cal_01{
+    background-color:white;
+    width: 30em;
+    height: 20em;
+    padding-top: 70px;
     border-radius: 0px 0px 10px 10px;
     text-align: center;
 }
