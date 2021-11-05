@@ -37,6 +37,7 @@ const QuizAnswerResult = () => {
         { description: 'How To Make Lumpia', is_correct: false },
       ],
     },
+
   ];
 
   const handleBackButtonClick = () => {
@@ -98,7 +99,7 @@ const QuizAnswerResult = () => {
                 className={style.nextBtn}
                 onClick={handleNextButtonClick}
               >
-                <a href="#answer3">Next</a>
+                <a href="#answer">Next</a>
               </Button>
             </div>
           </Card.Body>
