@@ -239,6 +239,22 @@ body{
     border-radius: 0px 0px 10px 10px;
     padding: 20px;
 }
+body{
+    background-color: rgb(65, 54, 54);
+}
+.cal1{
+    background-color:#4b847c9f;
+    width: 570px;
+    height: 57px;
+    border-radius: 10px 10px 0px 0px;
+}
+.cal_02{
+    background-color:white;
+    width: 550px;
+    height: 340px;
+    border-radius: 0px 0px 10px 10px;
+    padding: 10px;
+}
 h6{
     display: inline-block;
     padding: 15px 8px 0px 10px;
@@ -285,3 +301,12 @@ table {
     margin-top: 100px;
 }
 
+.s_par{
+    display: inline-block;
+    margin: 0px 0px 16px 33px;
+}
+.s_h3{
+    display: inline-block;
+    margin-bottom: 0px;
+    margin-right: 5px;
+}

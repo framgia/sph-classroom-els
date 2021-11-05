@@ -7,52 +7,90 @@
     height: 418px;
     left: 450px;
     top: 170px;
-
+}
+.profile{
     display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
+    justify-content: space-between;
 }
-
-.detail-input {
-    margin: 10px;
+.profile_01{
+    border: black 2px solid;
+    padding: 6px;
+    width: 327px;
+    height: 327px;
+    border-radius: 50%;
+    background-color: orange;
 }
-
-.form-label {
+.userEdit{
+    border: #4b847c9f 4px solid;
+    border-radius: 5px;
+}
+.follow{
+    margin-right: 50px;
+    font-size: 24px;
+    margin-top: 0px;
+    display: inline-block;
+}
+.bg{
+    padding: 0px 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 50px 10% 0px 10%;
+}
+.bg2{
+    padding: 0px 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 4px 10% 0px 10%;
+}
+.cal1{
+    background-color:#4b847c9f;
+    width: 570px;
+    height: 57px;
+    border-radius: 10px 10px 0px 0px;
+}
+.cal_02{
+    background-color:white;
+    height: 340px;
+    border-radius: 0px 0px 10px 10px;
+    padding: 10px;
+}
+.par_1{
+    display: inline-block;
+    padding: 15px 8px 0px 10px;
+}
+.box_1{
+    background-color: #1b326650;
+    border-radius: 10px;
+    width: 26em;
+    height: 10em;
+    margin: auto;
+    padding: 10px;
+}
+.par_2{
+    padding-top: 30px;
     font-size: 30px;
 }
-
-.form-control {
-    width: 447px;
-    height: 48px;
-    font-size: 25px;
+.cal_3{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.partb{
+    padding: 10px;
+    text-align: right;
+}
+.s_h2{
+    padding: 30px 0px 10px 30px;
+    margin-top: 100px;
+}
+.s_par{
+    display: inline-block;
+    margin: 18px 0px 16px 33px;
 }
 
-.edit-button-one {
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    left: 491px;
-    top: 108px;
+.s_h3{
+    display: inline-block;
+    margin-bottom: 0px;
+    margin-right: 5px;
 }
-
-.edit-button-two {
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    left: 491px;
-    top: 230px;
-}
-
-.btn-primary {
-    background-color: rgba(75, 132, 123, 0.7);
-    border: none;
-    margin-top: 20px;
-    position: absolute;
-    width: 236px;
-    height: 51px;
-    left: 290px;
-    font-size: 25px;
-    line-height: 34px;
-}
-
