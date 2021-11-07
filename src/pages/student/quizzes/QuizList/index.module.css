@@ -1,0 +1,22 @@
+.title {
+  font-size: 36px;
+  margin: 25px 0px;
+}
+
+.container {
+  padding: 10px 0px;
+}
+
+.backButton {
+  width: 171px;
+  height: 59px;
+  background-color: #789e98;
+  border-color: #789e98;
+  font-size: 30px;
+  border-radius: 7px;
+}
+
+.backButton:hover {
+  background-color: #002037;
+  color: white;
+}
