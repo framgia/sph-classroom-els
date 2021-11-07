@@ -38,7 +38,7 @@ const UsersEdit = () => {
       
       <center>
         <div className={style.cnb}>
-        <a href="" className={style.cnb} >Cancel</a>
+        <a href="/profile" className={style.cnb} >Cancel</a>
         </div>
       </center>
     </div>

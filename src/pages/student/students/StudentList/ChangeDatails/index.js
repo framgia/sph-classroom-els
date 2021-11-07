@@ -27,7 +27,7 @@ const ChangePassword = () => {
                 <div className={style.Button}>
                 
                 <div>
-                <a className={style.cancel} href="">Cancel</a>
+                <a className={style.cancel} href="/">Cancel</a>
                 </div>
 
                

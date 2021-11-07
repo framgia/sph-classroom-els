@@ -54,7 +54,6 @@ const QuestionAnswer = () => {
 
     useEffect(() => {
         setQuestion(questions[page - 1]);
-        console.log(page);
     }, [page]);
 
     return (
@@ -89,7 +88,7 @@ const QuestionAnswer = () => {
                                 {page} out of {questions?.length}
                             </p>
 
-                            {page == 1 ? '' : (<Button
+                            {page === 1 ? '' : (<Button
                                 id={style.prevBtn}
                                 onClick={handlePrevButtonClick}
                             >

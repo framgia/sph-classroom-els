@@ -60,7 +60,7 @@ const Registration = () => {
                           <div className="cnb">
                           <p className={style.sign}>Already have an Account?</p>
                           <h5 className={style.sign}>
-                              <a style={{textDecoration:'none'}} href="">Sign In</a>
+                              <a style={{textDecoration:'none'}} href="/login">Sign In</a>
                           </h5>
                           </div>
                       </center>

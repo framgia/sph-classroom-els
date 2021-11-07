@@ -37,7 +37,6 @@ const QuizAnswerResult = () => {
         { description: 'How To Make Lumpia', is_correct: false },
       ],
     },
-
   ];
 
   const handleBackButtonClick = () => {
@@ -54,7 +53,6 @@ const QuizAnswerResult = () => {
 
   useEffect(() => {
     setQuestion(questions[page - 1]);
-    console.log(page);
   }, [page]);
 
   return (

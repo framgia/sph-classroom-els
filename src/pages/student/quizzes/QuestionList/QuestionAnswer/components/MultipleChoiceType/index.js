@@ -16,7 +16,7 @@ const MultipleChoiceType = ({ question }) => {
               <input
                 type="radio"
                 value="option1"
-                checked={choice.description == question.answer}
+                checked={choice.description === question.answer}
               />
               <span className={style.spanForAnswer}>{choice.description}</span>
             </label>

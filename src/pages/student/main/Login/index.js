@@ -37,7 +37,7 @@ const Login = () => {
                       </Form.Group>
 
                       <p className={style.sign}>
-                          <a style={{textDecoration:'none'}} href="">Forgot password?</a>
+                          <a style={{textDecoration:'none'}} href="/reset-password">Forgot password?</a>
                       </p>
                       
                       <center>
@@ -50,7 +50,7 @@ const Login = () => {
                           <div className="cnb">
                           <p className={style.sign}>No Account Yet?</p>
                           <h5 className={style.sign}>
-                              <a style={{textDecoration:'none'}} href="">Sign Up</a>
+                              <a style={{textDecoration:'none'}} href="/registration">Sign Up</a>
                           </h5>
                           </div>
                       </center>

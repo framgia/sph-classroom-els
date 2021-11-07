@@ -4,7 +4,7 @@ import style from '../../indexAnswer.module.css';
 
 const MultipleChoiceType = ({ question }) => {
   const correctAnswer = (item) => {
-    if (item.description == question.answer) {
+    if (item.description === question.answer) {
       if (item.is_correct) {
         return (
           <img
@@ -50,7 +50,7 @@ const MultipleChoiceType = ({ question }) => {
               <input
                 type="radio"
                 value="option1"
-                checked={choice.description == question.answer}
+                checked={choice.description === question.answer}
               />
               <span className={style.spanForAnswer}>{choice.description}</span>
               {correctAnswer(choice)}
