@@ -32,13 +32,6 @@ const QuestionGrid = ({ quiz }) => {
       <div
         className={`${style.cardTitle} d-flex align-items-center justify-content-center`}
       >
-        <div className={style.image}>
-          <img
-            src="https://www.freeiconspng.com/thumbs/profile-icon-png/account-profile-user-icon--icon-search-engine-10.png"
-            className={style.imageSize}
-            alt="Quiz Icon"
-          />
-        </div>
         {quiz?.title}
       </div>
       {quiz.answerCount === 0 ? (
