@@ -31,7 +31,7 @@ const QuizResult = () => {
                                     <Card.Title className={style.ResultquizPraise}>Great Job!</Card.Title>
                                     <Card.Text className={style.Resultscore}> <span><b>10</b></span><b>/10</b> </Card.Text>
                                 </div>
-                                <a href="results/:id/answer-result"><Button variant="success" className={style.ResultviewResultBtn}>View Result</Button></a>
+                                <a href="/results/:id/answer-result"><Button variant="success" className={style.ResultviewResultBtn}>View Result</Button></a>
                             </div>
                             <Card className={style.Resultcard2}>
                                 <Card.Img variant="top" />
@@ -41,17 +41,17 @@ const QuizResult = () => {
                                     </center>
                                     <Card.Text className={style.ResultfscoreCardText}>
                                         <div className={style.ResultfriendScore}>
-                                            <a href="" className={style.Resultavatar}><img className={style.ResultsizeOfAvatar} alt="avatar" src={faker.image.avatar()} /></a>
+                                            <a href="/" className={style.Resultavatar}><img className={style.ResultsizeOfAvatar} alt="avatar" src={faker.image.avatar()} /></a>
                                             <p className={style.Resultparagraph}>Therese</p>
                                             <p className={style.Resultparagraph}>10/10</p>
                                         </div>
                                         <div className={style.ResultfriendScore}>
-                                            <a href="" className={style.Resultavatar}><img className={style.ResultsizeOfAvatar} alt="avatar" src={faker.image.avatar()} /></a>
+                                            <a href="/" className={style.Resultavatar}><img className={style.ResultsizeOfAvatar} alt="avatar" src={faker.image.avatar()} /></a>
                                             <p className={style.Resultparagraph}>Harvey</p>
                                             <p className={style.Resultparagraph}>10/10</p>
                                         </div>
                                         <div className={style.ResultfriendScore}>
-                                            <a href="" className={style.Resultavatar}><img className={style.ResultsizeOfAvatar} alt="avatar" src={faker.image.avatar()} /></a>
+                                            <a href="/" className={style.Resultavatar}><img className={style.ResultsizeOfAvatar} alt="avatar" src={faker.image.avatar()} /></a>
                                             <p className={style.Resultparagraph}>Erick</p>
                                             <p className={style.Resultparagraph}>10/10</p>
                                         </div>

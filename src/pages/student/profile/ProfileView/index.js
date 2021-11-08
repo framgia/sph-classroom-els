@@ -3,8 +3,6 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { BiPencil } from 'react-icons/bi'
 import style from './index.module.css'
-import { HiOutlinePencil } from "react-icons/hi";
-
 
 const ProfileView = () => {
   return (

@@ -1,0 +1,58 @@
+.card {
+  border-radius: 10px;
+  margin: 7px 0px;
+  height: 166px;
+}
+
+.card:hover {
+  background-color: #789e98;
+  color: white;
+}
+
+.cardTitle {
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.card.pass {
+  background-color: #c6f3bf;
+}
+
+.card.pass:hover {
+  background-color: #789e98;
+  color: white;
+}
+
+.card.fail {
+  background-color: #fad3d3;
+}
+
+.card.fail:hover {
+  background-color: #789e98;
+  color: white;
+}
+
+.cardScore {
+  font-size: 36px;
+  font-weight: 300;
+}
+
+.iconClockwise {
+  font-size: 25px;
+}
+
+.image {
+  margin-right: 10px;
+}
+
+.imageSize {
+  width: 35px;
+  height: 35px;
+  background-color: black;
+}
+
+.repeatDiv {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+}

@@ -1,9 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import { BiPencil } from 'react-icons/bi'
 
-import { HiOutlinePencil } from "react-icons/hi";
 import style from './index.module.css';
 
 const EditProfile = () => {
@@ -27,7 +25,7 @@ const EditProfile = () => {
                 <div className={style.Button}>
                 
                 <div>
-                <a className={style.cancel} href="">Cancel</a>
+                <a className={style.cancel} href="/profile">Cancel</a>
                 </div>
 
                

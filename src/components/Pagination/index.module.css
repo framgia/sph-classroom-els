@@ -1,0 +1,25 @@
+.pageLink {
+  margin: 0px 2px;
+  border-radius: 10%;
+  color: black;
+}
+
+.pageLink:hover {
+  color: black;
+  background-color: #dbd9d9;
+}
+
+.pageLink:focus {
+  color: black;
+  background-color: #dbd9d9;
+}
+
+.activeLink .pageLink {
+  background-color: #dbd9d9;
+  border: 1px solid #999898;
+}
+
+.pageDescription {
+  font-size: 14px;
+  margin-right: 30px;
+}
