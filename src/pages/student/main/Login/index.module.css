@@ -3,6 +3,7 @@
   padding: 88px 30px;
   border-radius: 10px;
   height: 500px;
+  width: 611px;
 }
 
 .sign {
@@ -38,4 +39,10 @@
   border-color: #4b847ca8;
   margin-bottom: 50px;
   width: 150px;
+}
+
+.alert {
+  position: fixed;
+  top: 100px;
+  width: 611px;
 }
