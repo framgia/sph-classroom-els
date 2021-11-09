@@ -2,26 +2,26 @@ import React, { Fragment } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 import AuthService from '../../../services/AuthService';
-import Navbar from '../../../components/NavigationBar';
+import AuthNavigationBar from '../../../components/AuthNavigationBar';
 
-const StudentRoute = ({ component: Component, name, ...rest }) => {
+const AuthRoute = ({ component: Component, name, ...rest }) => {
   return (
     <Fragment>
       {/* Navigation Bar */}
-      <Navbar />
+      <AuthNavigationBar />
 
       {/* Main Component */}
       <Route
         {...rest}
         render={(props) => {
-          if (AuthService.authenticated()) {
+          if (!AuthService.authenticated()) {
             return <Component {...props} />;
           }
 
           return (
             <Redirect
               to={{
-                pathname: '/login',
+                pathname: '/',
                 state: {
                   from: props.location,
                 },
@@ -34,4 +34,4 @@ const StudentRoute = ({ component: Component, name, ...rest }) => {
   );
 };
 
-export default StudentRoute;
+export default AuthRoute;

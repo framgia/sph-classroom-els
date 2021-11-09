@@ -5,10 +5,23 @@ import { Container, Nav, NavDropdown } from 'react-bootstrap';
 import { IoLibraryOutline } from 'react-icons/io5';
 import { CgProfile } from 'react-icons/cg';
 import { BiLogOutCircle } from 'react-icons/bi';
+import Cookies from 'js-cookie';
 
 import style from './index.module.css';
+import AuthApi from '../../api/Auth';
 
 const NavigationBar = () => {
+  const onLogout = async () => {
+    try {
+      const response = await AuthApi.logout();
+      console.log(response.data);
+      Cookies.remove('access_token');
+      window.location = '/login';
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
   return (
     <Navbar expand="lg" className={style.navbar}>
       <Container fluid>
@@ -20,7 +33,7 @@ const NavigationBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end">
           <Nav className="ml-auto">
-            <LinkContainer to="/dashboard">
+            <LinkContainer to="/">
               <Nav.Link href="#" className={style.navbarLink}>
                 Dashboard
               </Nav.Link>
@@ -56,11 +69,13 @@ const NavigationBar = () => {
                   <CgProfile /> Profile
                 </NavDropdown.Item>
               </LinkContainer>
-              <LinkContainer to="/logout">
-                <NavDropdown.Item href="#" className={style.dropdownItem}>
-                  <BiLogOutCircle /> Logout
-                </NavDropdown.Item>
-              </LinkContainer>
+              <NavDropdown.Item
+                href="#"
+                className={style.dropdownItem}
+                onClick={onLogout}
+              >
+                <BiLogOutCircle /> Logout
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
