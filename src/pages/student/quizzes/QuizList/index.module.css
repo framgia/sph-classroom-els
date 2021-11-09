@@ -20,3 +20,17 @@
   background-color: #002037;
   color: white;
 }
+
+
+.loading {
+  margin: 220px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingWord {
+  margin-left: 20px;
+  color: black;
+  font-size: 36px;
+}

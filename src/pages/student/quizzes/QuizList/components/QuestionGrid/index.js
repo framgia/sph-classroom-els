@@ -23,9 +23,8 @@ const QuestionGrid = ({ quiz }) => {
 
   return (
     <Card
-      className={`${
-        style.card
-      } ${passOrFailStyle()} d-flex justify-content-center`}
+      className={`${style.card
+        } ${passOrFailStyle()} d-flex justify-content-center`}
       onClick={handleCardClick}
       style={{ cursor: 'pointer' }}
     >
@@ -34,7 +33,7 @@ const QuestionGrid = ({ quiz }) => {
       >
         {quiz?.title}
       </div>
-      {quiz.answerCount === 0 ? (
+      {/* {quiz.answerCount === 0 ? (
         ''
       ) : (
         <Card.Text
@@ -42,13 +41,13 @@ const QuestionGrid = ({ quiz }) => {
         >
           {`${quiz.correctAnswers}/${quiz.totalQuestions}`}
         </Card.Text>
-      )}
+      )} */}
 
-      {quiz.answerCount === 0 || (
+      {/* {quiz.answerCount === 0 || (
         <div className={style.repeatDiv}>
           <BsArrowClockwise className={style.iconClockwise} />
         </div>
-      )}
+      )} */}
     </Card>
   );
 };
