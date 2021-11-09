@@ -14,8 +14,9 @@ const AuthApi = {
   register: ({ name, email, password, password_confirmation }) => {
     const options = {
       method: 'POST',
-      url: '/registration',
+      url: '/register',
       data: {
+        user_type_id: 2,
         name: name,
         email: email,
         password: password,
