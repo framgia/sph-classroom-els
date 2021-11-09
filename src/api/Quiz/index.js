@@ -1,13 +1,13 @@
 import API from '../Base';
 
 const QuizApi = {
-  getAll: ({ id, ...params }) => {
+  getAll: (id) => {
     const options = {
       method: 'GET',
       url: `/categories/${id}/quizzes`,
-      params: {
-        ...params,
-      },
+      //   params: {
+      //   ...params,
+      // },
     };
 
     return API.request(options);
@@ -25,13 +25,13 @@ const QuizApi = {
     return API.request(options);
   },
 
-  store: () => {},
+  store: () => { },
 
-  update: () => {},
+  update: () => { },
 
-  delete: () => {},
+  delete: () => { },
 
-  restore: () => {},
+  restore: () => { },
 };
 
 export default QuizApi;
