@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner'
 import style from "./index.module.css"
@@ -21,9 +22,11 @@ function CategoryList() {
                 <Card className={style.card} key={ idx }>
                 <Card.Header id={style.cardHeader}></Card.Header >
                 <Card.Body>
+                <Link to={`/categories/${category.id}/quizzes`}>
                     <div className={style.cardContent}>
-                    <center> <Card.Title>{ category.name }</Card.Title> </center>
+                    <center> <Card.Title className={style.cardTitle}>{ category.name }</Card.Title> </center>
                     </div>
+                </Link>   
                 </Card.Body>
                 </Card>
             )
