@@ -1,7 +1,7 @@
 import API from '../Base';
 
 const CategoryApi = {
-  getAll: ({ ...params }) => {
+  getAll: ({ ...params } = {}) => {
     const options = {
       method: 'GET',
       url: '/categories',
