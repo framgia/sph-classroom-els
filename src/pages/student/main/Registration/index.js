@@ -172,7 +172,7 @@ const Registration = () => {
                           <div className="cnb">
                             <p className={style.sign}>Already have an Account?</p>
                             <h5 className={style.sign}>
-                              <LinkContainer to="/registration">
+                              <LinkContainer to="/login">
                                 <a style={{ textDecoration: 'none' }} href="/#">
                                   Sign In
                                 </a>
