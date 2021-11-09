@@ -71,7 +71,7 @@ const Registration = () => {
                                 ref={ref}
                                 className="cntrs"
                                 type="text"
-                                placeholder="Input Name"
+                                placeholder="e.g. jhondoe"
                                 isInvalid={errors?.name}
                                 required
                               />
@@ -97,7 +97,7 @@ const Registration = () => {
                                 ref={ref}
                                 className="cntrs"
                                 type="email"
-                                placeholder="Input Email Address"
+                                placeholder="e.g. jhondoe@gmail.com"
                                 isInvalid={errors?.email}
                                 required
                               />
@@ -124,7 +124,7 @@ const Registration = () => {
                                 className="cntrs"
                                 type="password"
                                 name="password"
-                                placeholder="************"
+                                placeholder="min of 6 characters"
                                 isInvalid={errors?.password}
                                 required
                               />
@@ -174,7 +174,7 @@ const Registration = () => {
                             <h5 className={style.sign}>
                               <LinkContainer to="/registration">
                                 <a style={{ textDecoration: 'none' }} href="/#">
-                                  Sign Up
+                                  Sign In
                                 </a>
                               </LinkContainer>
                             </h5>
