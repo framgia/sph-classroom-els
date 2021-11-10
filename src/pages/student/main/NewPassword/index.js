@@ -33,8 +33,6 @@ const NewPassword = () => {
       console.log(error.response);
       if (error?.response?.data?.errors) {
         setErrors(error?.response?.data?.errors);
-      } else if (error?.response?.data?.error) {
-        showAlertDialog(true, error?.response?.data?.error?.message);
       } else {
         showAlertDialog(true, "An error has occurred.");
       }
