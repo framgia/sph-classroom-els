@@ -13,7 +13,7 @@ const NewPassword = () => {
   const { control, handleSubmit, data } = useForm();
   const [errors, setErrors] = useState({});
   const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
+  const [alertMessage, setAlertMessage] = useState('');
 
   const queryParams = new URLSearchParams(window.location.search); 
   const token = queryParams.get('token');
@@ -44,6 +44,16 @@ const NewPassword = () => {
   return (
     <center>
       <Container>
+      {showAlert && (
+        <Alert
+          className={`${style.alertNewPassword}`}
+          variant="danger"
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
+          {alertMessage}
+        </Alert>
+      )}
         <Stack gap={2} className="col-md-5 mx-auto">
           <Form
             onSubmit={handleSubmit(handleOnSubmit)}
