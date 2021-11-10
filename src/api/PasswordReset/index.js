@@ -1,7 +1,7 @@
 import API from '../Base';
 
 const PasswordResetApi = {
-  forgotPassword: (email) => {
+  forgotPassword: ({ email }) => {
     const options = {
       method: 'POST',
       url: '/forgot-password',
