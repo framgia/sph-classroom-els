@@ -6,7 +6,6 @@ import Form from "react-bootstrap/Form";
 import style from "./index.module.css";
 import PasswordResetApi from "../../../../api/PasswordReset";
 import { useForm, Controller } from "react-hook-form";
-import Cookies from "js-cookie";
 import { Alert } from "react-bootstrap";
 
 const NewPassword = () => {
@@ -27,14 +26,13 @@ const NewPassword = () => {
     try {      
       const values = { email: email, password: password, password_confirmation: password_confirmation, token: token };
       const response = await PasswordResetApi.resetPassword( values );
-      Cookies.set("access_token", response.data.token);
-      window.location = "/";
+      window.location = "/login";
     } catch (error) {
       console.log(error.response);
       if (error?.response?.data?.errors) {
         setErrors(error?.response?.data?.errors);
       } else {
-        showAlertDialog(true, "An error has occurred.");
+        showAlertDialog(true, "Incorrect Email.");
       }
     }
   };
