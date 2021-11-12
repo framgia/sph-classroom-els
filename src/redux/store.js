@@ -4,7 +4,7 @@ import rootReducer from './rootReducer';
 
 const store = configureStore({
   reducer: rootReducer,
-  devTools: process.env.NODE_ENV !== 'production',
+  // devTools: process.env.NODE_ENV !== 'production',
   preloadedState: {},
 });
 

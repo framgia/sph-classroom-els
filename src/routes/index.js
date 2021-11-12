@@ -1,5 +1,9 @@
 import React from 'react';
-import { Switch, withRouter, Route } from 'react-router-dom';
+import {
+  Switch,
+  withRouter,
+  // Route
+} from 'react-router-dom';
 
 // Middleware Route Components
 import StudentRoute from './middleware/StudentRoute';
