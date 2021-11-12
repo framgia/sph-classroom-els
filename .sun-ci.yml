@@ -1,0 +1,56 @@
+workspace: true
+
+checkout:
+  depth: 10
+
+stages:
+- build
+- test
+
+jobs:
+- name: Build React
+  stage: build
+  image: node:12.20.0-alpine3.10
+  workspace: shared
+  cache:
+  - key: node_modules_$CI_BRANCH
+    paths:
+    - node_modules
+  before_script:
+  - yarn install --ignore-engines
+  script:
+  - yarn build
+  after_script:
+  - echo "Finish job"
+  only:
+    branches:
+    - develop
+    events:
+    - pull_request
+
+- name: Linter
+  stage: test
+  image: node:12.20.0-alpine3.10
+  workspace: shared
+  script:
+  - yarn install --ignore-engines
+  - yarn run lint
+  after_script:
+  - echo "Test Done"
+# coverage:
+#   type: clover
+#   path: ./coverage/clover.xml
+# - name: release staging
+#   stage: deploy
+#   image: bash:latest
+#   script:
+#   - pm2 deploy production update --force
+#   release:
+#     environment: Staging
+#     url: http://13.251.232.62
+#   only:
+#     branches:
+#     - develop
+#   except:
+#     events:
+#     - pull_request
