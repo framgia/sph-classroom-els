@@ -23,6 +23,8 @@ jobs:
   after_script:
   - echo "Finish job"
   only:
+    branches:
+    - develop
     events:
     - pull_request
 
