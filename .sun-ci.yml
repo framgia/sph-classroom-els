@@ -28,12 +28,13 @@ jobs:
     events:
     - pull_request
 
-- name: Unit Test
+- name: Linter
   stage: test
   image: node:12.20.0-alpine3.10
   workspace: shared
   script:
   - yarn install --ignore-engines
+  - yarn run lint
   after_script:
   - echo "Test Done"
 # coverage:
