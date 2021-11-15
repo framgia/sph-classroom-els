@@ -4,7 +4,9 @@ import { Route, Redirect } from 'react-router-dom';
 import AuthService from '../../../services/AuthService';
 import AuthNavigationBar from '../../../components/AuthNavigationBar';
 
-const AuthRoute = ({ component: Component, name, ...rest }) => {
+import { PropTypes } from 'prop-types';
+
+const AuthRoute = ({ component: Component, ...rest }) => {
   return (
     <Fragment>
       {/* Navigation Bar */}
@@ -33,5 +35,12 @@ const AuthRoute = ({ component: Component, name, ...rest }) => {
     </Fragment>
   );
 };
+
+AuthRoute.propTypes = {
+  component: PropTypes.any,
+  name: PropTypes.string,
+  location: PropTypes.any,
+};
+
 
 export default AuthRoute;

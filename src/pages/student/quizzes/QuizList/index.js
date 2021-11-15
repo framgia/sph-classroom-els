@@ -6,32 +6,33 @@ import Pagination from '../../../../components/Pagination';
 import QuestionGrid from './components/QuestionGrid';
 import style from './index.module.css';
 
-import QuizApi from '../../../../api/Quiz'
+import QuizApi from '../../../../api/Quiz';
 
 const QuizList = () => {
   const categoryId = useParams().id;
-  console.log(categoryId)
+  console.log(categoryId);
   const category = {
     title: 'Encapsulation'
   };
 
   const perPage = 9;
-  const [page, setPage] = useState(1)
-  const [quizzes, setQuizzes] = useState(null)
-  let params = useParams()
+  const [page] = useState(1);
+  const [quizzes, setQuizzes] = useState(null);
+  // let params = useParams();
+  useParams();
 
   useEffect(() => {
     QuizApi.getAll(categoryId)
       .then(({ data }) => {
-        setQuizzes(data.data)
-        console.log(data)
+        setQuizzes(data.data);
+        console.log(data);
       }).catch(error => {
         console.log(error);
       });
 
 
 
-  }, [])
+  }, []);
 
   return (
     <Container className={style.container}>
@@ -57,13 +58,13 @@ const QuizList = () => {
       </Row>
       <div className="pt-4">
         <Pagination
-          props={{
-            page,
-            perPage,
-            totalItems: quizzes ? quizzes.length : 0,
-            pageCount: 2,
-            onPageChange: () => { },
-          }}
+       
+          page={page}
+          perPage={perPage}
+          totalItems= {quizzes ? quizzes.length : 0}
+          pageCount= {2}
+          onPageChange= {() => { }}
+       
         ></Pagination>
       </div>
     </Container>

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import Card from 'react-bootstrap/Card';
 import style from '../../indexAnswer.module.css';
+import { PropTypes } from 'prop-types';
 
 const FillInTheBlankType = ({ question }) => {
   return (
@@ -30,6 +31,11 @@ const FillInTheBlankType = ({ question }) => {
       </div>
     </Fragment>
   );
+};
+
+FillInTheBlankType.propTypes={
+
+  question: PropTypes.object
 };
 
 export default FillInTheBlankType;

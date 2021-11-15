@@ -1,21 +1,19 @@
-import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Stack from "react-bootstrap/Stack";
-import Form from "react-bootstrap/Form";
-import style from "./index.module.css";
-import Modal from "react-bootstrap/Modal";
-import PasswordResetApi from "../../../../api/PasswordReset";
-import { useForm, Controller } from "react-hook-form";
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Stack from 'react-bootstrap/Stack';
+import Form from 'react-bootstrap/Form';
+import style from './index.module.css';
+import Modal from 'react-bootstrap/Modal';
+import PasswordResetApi from '../../../../api/PasswordReset';
+import { useForm, Controller } from 'react-hook-form';
 
 const PasswordReset = () => {
   const [show, setShow] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
 
-  const { control, handleSubmit, data } = useForm();
+  const { control, handleSubmit } = useForm();
   const [errors, setErrors] = useState({});
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
 
   const showAlertDialog = (isShow, message) => {
     setShow(isShow);
@@ -24,14 +22,14 @@ const PasswordReset = () => {
 
   const handleOnSubmit = async ({ email }) => {
     try {
-      const response = await PasswordResetApi.forgotPassword({ email });
+      await PasswordResetApi.forgotPassword({ email });
       showAlertDialog(true,'An email has been sent. Please click the link when you get it.');
     } catch (error) {
       console.log(error.response);
       if (error?.response?.data?.errors) {
         setErrors(error?.response?.data?.errors);
       } else {
-        showAlertDialog(true, "An error has occurred.");
+        showAlertDialog(true, 'An error has occurred.');
       }
     }
   };

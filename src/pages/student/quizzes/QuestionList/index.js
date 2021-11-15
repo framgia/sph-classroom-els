@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import { SiHtml5 } from 'react-icons/si'
+import { SiHtml5 } from 'react-icons/si';
 import style from './index.module.css';
 
 const QuestionList = () => {

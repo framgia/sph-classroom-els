@@ -10,7 +10,7 @@ import Cookies from 'js-cookie';
 import AuthApi from '../../../../api/Auth';
 
 const Login = () => {
-  const { register, control, handleSubmit, data } = useForm();
+  const { control, handleSubmit,} = useForm();
   const [errors, setErrors] = useState({});
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
