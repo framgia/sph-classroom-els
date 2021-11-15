@@ -3,7 +3,7 @@ import Spinner from 'react-bootstrap/Spinner'
 import style from "./index.module.css"
 
 import CategoryApi from '../../../../api/Category';
-import SubcategoryCard from './components/directory';
+import SubcategoryCard from './components/SubcategoryCard';
 
 function Subcategories() {
     const [categories, setCategories] = useState(null)
