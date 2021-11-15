@@ -42,7 +42,7 @@ const Routes = () => {
       <StudentRoute path="/students" exact component={StudentList}></StudentRoute>
       <StudentRoute path="/learnings" exact component={LearningList}></StudentRoute>
       <StudentRoute path="/categories" exact component={CategoryList}></StudentRoute>
-      <StudentRoute path="/categories/:id/categorydetail" exact component={CategoryDetail}></StudentRoute>
+      <StudentRoute path="/categories/:id/sub" exact component={CategoryDetail}></StudentRoute>
       <StudentRoute path="/categories/:id/quizzes" exact component={QuizList}></StudentRoute>
       <StudentRoute path="/categories/:id/quizzes/:id/questions" exact component={QuestionList}></StudentRoute>
       <StudentRoute path="/categories/:id/quizzes/:id/questions/:id/answer" exact component={QuestionAnswer}></StudentRoute>

@@ -1,9 +1,4 @@
-  .cardList{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-  }
-  .subTile{
+.subTile{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -12,49 +7,25 @@
     padding: 28px;
     margin-right: 50px;
 }
+.title {
+  font-family: nunito;
+  padding: 20px; 
+  font-weight: bold;
+  font-size: 30px;
+  margin-left: 50px;
+}
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 250px;
+}
+.loadingWord {
+  margin-left: 10px;
+}
+.cardList{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
   
-  #cardHeader {
-    background:#4b847c9f;
-    border-radius: 10px 10px 0px 0px;
-    font-size: 20px;
-    height: 40px;
-    font-weight: 600;
-  }
-  
-  .card {
-    margin: 20px;
-    height: 300px;
-    width: 400px;
-    border-radius: 10px;
-    font-family:  nunito ;
-  }
-  
-  .cardContent {
-    border-radius: 10px;
-    padding: 12px;
-    margin-top: 18px;
-    color: black;
-  }
-  
-  .title {
-    font-family: nunito;
-    padding: 20px; 
-    font-weight: bold;
-    font-size: 30px;
-    margin-left: 50px;
-  }
-  
-  .loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 250px;
-  }
-  
-  .loadingWord {
-    margin-left: 10px;
-  }
-  
-  .cardTitle {
-    color: black;
-  }

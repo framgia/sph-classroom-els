@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
-import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner'
 import style from "./index.module.css"
 
 import CategoryApi from '../../../../api/Category';
-import Listdescript from './components';
+import SubcategoryCard from './components/directory';
 
 function Subcategories() {
     const [categories, setCategories] = useState(null)
@@ -83,16 +81,7 @@ function Subcategories() {
     const renderCatList = () => {
         return Subcategories.map((subcategory) => {
             return (
-                <Card className={style.card}>
-                <Card.Header id={style.cardHeader}>{subcategory.title}</Card.Header >
-                <Card.Body >
-                <Link >
-                    <div className={style.cardContent}>
-                        <Listdescript firstRow={subcategory.firstRow} secRow={subcategory.secRow} thirRow={subcategory.thirRow}/>
-                    </div>
-                </Link>   
-                </Card.Body>
-                </Card>
+                <SubcategoryCard title={subcategory.title} firstRow={subcategory.firstRow} secRow={subcategory.secRow} thirRow={subcategory.thirRow}/>
             )
         })     
         
