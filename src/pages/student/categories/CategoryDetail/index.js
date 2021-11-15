@@ -19,21 +19,21 @@ function Subcategories() {
             title: 'Basic',
             firstRow: 'Beginner',
             secRow: '10 Quizzes',
-            thirRow: '5 Quizzes',
+            thirRow: '6 Quizzes',
         },
         {
             id: 2,
             title: 'Arrays',
             firstRow: 'Intermediate',
             secRow: '10 Quizzes',
-            thirRow: '5 Quizzes',
+            thirRow: '1 Quizzes',
         },
         {
             id: 3,
             title: 'DOM',
             firstRow: 'Hard',
             secRow: '10 Quizzes',
-            thirRow: '5 Quizzes',
+            thirRow: '8 Quizzes',
         },
         {
             id: 4,
@@ -47,7 +47,7 @@ function Subcategories() {
             title: 'ECMAScript – ES6',
             firstRow: 'Hard',
             secRow: '10 Quizzes',
-            thirRow: '5 Quizzes',
+            thirRow: '3 Quizzes',
         },
         {
             id: 6,
@@ -61,14 +61,14 @@ function Subcategories() {
             title: 'HTML',
             firstRow: 'Intermediate',
             secRow: '10 Quizzes',
-            thirRow: '5 Quizzes',
+            thirRow: '3 Quizzes',
         },
         {
             id: 8,
             title: 'DOM',
             firstRow: 'Beginner',
             secRow: '10 Quizzes',
-            thirRow: '5 Quizzes',
+            thirRow: '1 Quizzes',
         },
        
     ]
@@ -105,7 +105,7 @@ function Subcategories() {
                 <p className={style.title}>Web Development</p>
                 </div>
                 <div id={style.quizlink}>
-                    <a style={{color:'black', fontSize:'20px'}} href='/quizzes' >Check Available Quizzes >></a>
+                    <a style={{color:'black', fontSize:'20px'}} href='categories/:id/quizzes' >Check Available Quizzes >></a>
                 </div>
             </div>
             
