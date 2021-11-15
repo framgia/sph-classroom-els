@@ -5,6 +5,7 @@ import { Button, Alert } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
 import Form from 'react-bootstrap/Form';
+import { Navbar } from 'react-bootstrap';
 
 
 import AuthApi from '../../../../api/Auth';
@@ -40,15 +41,6 @@ const Registration = () => {
 
   return (
     <div>
-      <div>
-        <div>
-          <Navbar id={style.navbar} expand="lg">
-            <Container fluid>
-              <Navbar.Brand id={style.title}>E-Learning</Navbar.Brand>
-            </Container>
-          </Navbar>
-        </div>
-      </div>
       {showAlert && (
         <Alert
           className="mx-4 my-4"
