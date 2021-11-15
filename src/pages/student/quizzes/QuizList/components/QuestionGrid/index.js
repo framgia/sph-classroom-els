@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import { BsArrowClockwise } from 'react-icons/bs';
+import { PropTypes } from 'prop-types';
+
 
 import style from './index.module.css';
 
@@ -24,7 +25,7 @@ const QuestionGrid = ({ quiz }) => {
   return (
     <Card
       className={`${style.card
-        } ${passOrFailStyle()} d-flex justify-content-center`}
+      } ${passOrFailStyle()} d-flex justify-content-center`}
       onClick={handleCardClick}
       style={{ cursor: 'pointer' }}
     >
@@ -50,6 +51,11 @@ const QuestionGrid = ({ quiz }) => {
       )} */}
     </Card>
   );
+};
+
+QuestionGrid.propTypes = {
+
+  quiz: PropTypes.object
 };
 
 export default QuestionGrid;

@@ -54,7 +54,7 @@ const QuizResult = () => {
               <Card.Img variant="top" />
               <Card.Body>
                 <center>
-                  <Card.Title>Friend's Scores</Card.Title>{' '}
+                  <Card.Title>Friend&apos;s Scores</Card.Title>{' '}
                   <hr className={style.ResulthrBreak} />
                 </center>
                 <Card.Text className={style.ResultfscoreCardText}>

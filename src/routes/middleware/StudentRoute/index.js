@@ -3,8 +3,9 @@ import { Route, Redirect } from 'react-router-dom';
 
 import AuthService from '../../../services/AuthService';
 import Navbar from '../../../components/NavigationBar';
+import { PropTypes } from 'prop-types';
 
-const StudentRoute = ({ component: Component, name, ...rest }) => {
+const StudentRoute = ({ component: Component, ...rest }) => {
   return (
     <Fragment>
       {/* Navigation Bar */}
@@ -33,5 +34,12 @@ const StudentRoute = ({ component: Component, name, ...rest }) => {
     </Fragment>
   );
 };
+
+StudentRoute.propTypes = {
+  component: PropTypes.any,
+  name: PropTypes.string,
+  location: PropTypes.any,
+};
+
 
 export default StudentRoute;
