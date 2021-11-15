@@ -105,7 +105,7 @@ function Subcategories() {
                 <p className={style.title}>Web Development</p>
                 </div>
                 <div id={style.quizlink}>
-                    <a style={{color:'black', fontSize:'20px'}} href='categories/:id/quizzes' >Check Available Quizzes >></a>
+                    <a style={{color:'black', fontSize:'24px'}} href='categories/:id/quizzes' >Check Available Quizzes >></a>
                 </div>
             </div>
             
