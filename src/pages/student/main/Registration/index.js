@@ -5,7 +5,6 @@ import { Button, Alert } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
 import Form from 'react-bootstrap/Form';
-import { Navbar } from 'react-bootstrap';
 
 
 import AuthApi from '../../../../api/Auth';
