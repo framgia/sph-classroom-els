@@ -18,6 +18,7 @@ import ProfileDetail from '../pages/student/profile/ProfileDetail';
 // import Home from '../pages/student/main/Home';
 import Dashboard from '../pages/student/main/Dashboard';
 import CategoryList from '../pages/student/categories/CategoryList';
+import CategoryDetail from '../pages/student/categories/CategoryDetail';
 import QuizList from '../pages/student/quizzes/QuizList';
 import QuestionList from '../pages/student/quizzes/QuestionList';
 import QuestionAnswer from '../pages/student/quizzes/QuestionList/QuestionAnswer';
@@ -45,6 +46,7 @@ const Routes = () => {
       <StudentRoute path="/students" exact component={StudentList}></StudentRoute>
       <StudentRoute path="/learnings" exact component={LearningList}></StudentRoute>
       <StudentRoute path="/categories" exact component={CategoryList}></StudentRoute>
+      <StudentRoute path="/categories/:id/sub" exact component={CategoryDetail}></StudentRoute>
       <StudentRoute path="/categories/:id/quizzes" exact component={QuizList}></StudentRoute>
       <StudentRoute path="/categories/:id/quizzes/:id/questions" exact component={QuestionList}></StudentRoute>
       <StudentRoute path="/categories/:id/quizzes/:id/questions/:id/answer" exact component={QuestionAnswer}></StudentRoute>

@@ -1,0 +1,31 @@
+.subTile{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#quizlink{
+    padding: 28px;
+    margin-right: 50px;
+}
+.title {
+  font-family: nunito;
+  padding: 20px; 
+  font-weight: bold;
+  font-size: 30px;
+  margin-left: 50px;
+}
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 250px;
+}
+.loadingWord {
+  margin-left: 10px;
+}
+.cardList{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+  
