@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Badge from 'react-bootstrap/Badge';
@@ -6,45 +7,21 @@ import Card from 'react-bootstrap/Card';
 import style from './indexQuestion.module.css';
 import MultipleChoiceType from './components/MultipleChoiceType';
 import FillInTheBlankType from './components/FillInTheBlankType';
+import { QuestionsContext } from '..';
 
 const QuestionAnswer = () => {
   const [page, setPage] = useState(1);
-  const [question, setQuestion] = useState({});
-  const quiz = { title: 'Web Development' };
-  const questions = [
-    {
-      id: 1,
-      question: 'What does HTML stand for?',
-      question_type: 'multiple choice',
-      answer: 'Hyper Text Mark Lauron',
-      choices: [
-        { description: 'Hypertext Markup Language', is_correct: true },
-        { description: 'Hyper Text Mark Lauron', is_correct: false },
-        { description: 'Hypertext Mixed Language', is_correct: false },
-        { description: 'How To Make Lumpia', is_correct: false },
-      ],
-    },
-    {
-      id: 2,
-      question:
-                'The __________________ is the standard markup language for documents designed to be displayed in a web browser.',
-      question_type: 'fill in the blanks',
-      answer: 'Hypertext Markup Language',
-      choices: [
-        { description: 'Hypertext Markup Language', is_correct: true },
-        { description: 'Hyper Text Mark Lauron', is_correct: false },
-        { description: 'Hypertext Mixed Language', is_correct: false },
-        { description: 'How To Make Lumpia', is_correct: false },
-      ],
-    },
-  ];
+  const { categoryId, quizId } = useParams(); 
+  const { questions, title } = useContext(QuestionsContext);
+  const [time, setTime] = useState(questions[page - 1].time_limit);
+  const [question, setQuestion] = useState(questions[page - 1]);
+  const [timeOutId, setTimeOutId] = useState(null);
 
   const handlePrevButtonClick = () => {
     if (page <= 1) return;
 
     setPage(page - 1);
   };
-
 
   const handleNextButtonClick = () => {
     if (page >= questions.length) return;
@@ -53,34 +30,59 @@ const QuestionAnswer = () => {
   };
 
   useEffect(() => {
-    setQuestion(questions[page - 1]);
+    console.log(question);
+
+    if(questions != null){
+      setQuestion(questions[page - 1]);
+    }
+
+    window.clearTimeout(timeOutId);
+    setTime(questions[page - 1].time_limit);
   }, [page]);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setTime(time - 1);
+    }, 1000);
+
+    setTimeOutId(timer);
+
+    if(time === 0){
+      window.clearTimeout(timeOutId);
+
+      if(page != questions?.length){
+        setTime(questions[page - 1].time_limit);
+        setPage(page + 1);
+      }else{
+        window.location = `/categories/${categoryId}/quizzes/${quizId}/results`;
+      }
+    }
+  }, [time]);
 
   return (
     <div>
       <div>
         <Container>
           <Button
-            href="/categories/:id/quizzes/:id/questions"
+            href={`/categories/${categoryId}/quizzes/${quizId}/questions`}
             id={style.backBtn}>
                         BACK
           </Button>
-
           <div className={style.Answertopic}>
             <p className={style.paragraph}>
-              <b>Topic:</b> {quiz?.title}
+              <b>Topic:</b> {title}
             </p>
             <Badge bg="light" className={style.tml}>
               <Card.Text className={style.time}>
-                                Time Left:  <b className={style.timer}> 00:30</b>
+                                Time Left:  <b className={style.timer}> {time} </b>
               </Card.Text>
             </Badge>
           </div>
           <Card.Body className={style.wholeBodyCard}>
-            {question && question.question_type === 'multiple choice' ? (
-              <MultipleChoiceType question={question}></MultipleChoiceType>
+            {question && question.question_type.question_type === 'Multiple Choice' ? (
+              <MultipleChoiceType question={question} page={page}></MultipleChoiceType>
             ) : (
-              <FillInTheBlankType question={question}></FillInTheBlankType>
+              <FillInTheBlankType question={question} page={page}></FillInTheBlankType>
             )}
             <hr className={style.spacing} />
             <div className={style.bottomBodyCard}>
@@ -95,9 +97,9 @@ const QuestionAnswer = () => {
                 <a href="#" className={style.buttontext}>Prev</a>
               </Button>)}
 
-              {page === questions.length ? (<Button
+              {page === questions?.length ? (<Button
                 id={style.nextBtn}
-                href="/categories/:id/quizzes/:id/results" > <span className={style.buttontext}>Submit</span>
+                href={`/categories/${categoryId}/quizzes/${quizId}/results`} > <span className={style.buttontext}>Submit</span>
               </Button>) :
                 (<Button
                   id={style.nextBtn}
@@ -105,7 +107,6 @@ const QuestionAnswer = () => {
                 >
                   <a href="#answer" className={style.buttontext}>Next</a>
                 </Button>)}
-
             </div>
           </Card.Body>
         </Container>

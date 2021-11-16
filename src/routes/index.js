@@ -48,8 +48,8 @@ const Routes = () => {
       <StudentRoute path="/categories" exact component={CategoryList}></StudentRoute>
       <StudentRoute path="/categories/:id/sub" exact component={CategoryDetail}></StudentRoute>
       <StudentRoute path="/categories/:id/quizzes" exact component={QuizList}></StudentRoute>
-      <StudentRoute path="/categories/:id/quizzes/:id/questions" exact component={QuestionList}></StudentRoute>
-      <StudentRoute path="/categories/:id/quizzes/:id/questions/:id/answer" exact component={QuestionAnswer}></StudentRoute>
+      <StudentRoute path="/categories/:categoryId/quizzes/:quizId/questions" exact component={QuestionList}></StudentRoute>
+      <StudentRoute path="/categories/:categoryId/quizzes/:quizId/questions/:questionId/answer" exact component={QuestionAnswer}></StudentRoute>
       <StudentRoute path="/categories/:id/quizzes/:id/results" exact component={QuizResult}></StudentRoute>
       <StudentRoute path="/categories/:id/quizzes/:id/results/:id/answer-result" exact component={QuizAnswerResult}></StudentRoute>
       <StudentRoute path="/profile/change-password" exact component={ChangePassword}></StudentRoute>

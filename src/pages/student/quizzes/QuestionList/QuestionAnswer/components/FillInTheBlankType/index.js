@@ -3,12 +3,12 @@ import Card from 'react-bootstrap/Card';
 import style from '../../indexQuestion.module.css';
 import { PropTypes } from 'prop-types';
 
-const FillInTheBlankType = ({ question }) => {
+const FillInTheBlankType = ({ question, page }) => {
   return (
     <Fragment>
       <div className={style.question}>
         <p className={style.paragraph}>
-          {`${question.id}. ${question.question}`}
+          {`${page}. ${question.question}`}
         </p>
         <p className={style.paragraph}>Note: Do not use acronyms</p>
         <img
@@ -28,7 +28,8 @@ const FillInTheBlankType = ({ question }) => {
 
 FillInTheBlankType.propTypes = {
 
-  question: PropTypes.object
+  question: PropTypes.object,
+  page: PropTypes.number
 };
 
 export default FillInTheBlankType;
