@@ -1,13 +1,13 @@
 import API from '../Base';
 
 const QuestionApi = {
-  getAll: ({ ...params }) => {
+  getAll: (quizId) => {
     const options = {
       method: 'GET',
-      url: '/categories',
-      params: {
-        ...params,
-      },
+      url: `/quizzes/${quizId}/questions`,
+      // params: {
+      //   ...params,
+      // },
     };
 
     return API.request(options);

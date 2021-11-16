@@ -11,7 +11,7 @@ import QuizApi from '../../../../api/Quiz';
 const QuizList = () => {
   const categoryId = useParams().id;
   console.log(categoryId);
-  const category = {
+  const category = {  
     title: 'Encapsulation'
   };
 
