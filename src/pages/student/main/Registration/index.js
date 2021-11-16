@@ -40,15 +40,6 @@ const Registration = () => {
 
   return (
     <div>
-      <div>
-        <div>
-          <Navbar id={style.navbar} expand="lg">
-            <Container fluid>
-              <Navbar.Brand id={style.title}>E-Learning</Navbar.Brand>
-            </Container>
-          </Navbar>
-        </div>
-      </div>
       {showAlert && (
         <Alert
           className="mx-4 my-4"
