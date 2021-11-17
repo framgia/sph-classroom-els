@@ -34,3 +34,15 @@
   color: black;
   font-size: 36px;
 }
+
+.noResultsMessage {
+  margin: 220px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.message {
+  margin-left: 20px;
+  font-size: 24px;
+}

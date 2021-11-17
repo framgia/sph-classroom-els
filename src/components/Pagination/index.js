@@ -13,17 +13,17 @@ const Pagination = ({ page, perPage, totalItems, pageCount, onPageChange }) => {
 
   return (
     <div className="d-flex align-items-center">
-      <p className={style.pageDescription}>{amountPerPage()}</p>
+      <p className={style.pageDescription}>{totalItems > 0 ? amountPerPage() : ''}</p>
       <ReactPaginate
         containerClassName={'pagination'}
         pageLinkClassName={`page-link ${style.pageLink}`}
         breakLinkClassName={`page-link ${style.pageLink}`}
-        previousClassName={`page-link ${style.pageLink}`}
-        nextClassName={'active', `page-link ${style.pageLink}`}
-        activeClassName={`active ${style.activeLink}`}
+        previousClassName={page != 1 ? `page-link ${style.pageLink}` : `${style.hideButton}`}
+        nextClassName={page != pageCount ? `page-link ${style.pageLink} active` : `${style.hideButton}`}
+        activeClassName={ `active ${style.activeLink}`}
         breakLabel="..."
         nextLabel="Next"
-        onPageChange={onPageChange}
+        onPageChange={({selected}) => onPageChange(selected)}
         pageRangeDisplayed={3}
         pageCount={pageCount}
         previousLabel="Prev"
