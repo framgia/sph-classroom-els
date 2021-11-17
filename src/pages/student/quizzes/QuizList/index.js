@@ -71,17 +71,16 @@ const QuizList = () => {
       {quizzes?.length <= 0 ? 
         <div className={style.noResultsMessage}>
           <p className={style.message}>NO RESULTS FOUND</p>
-        </div> : ''}
- 
-      <div className="pt-4">
-        <Pagination
-          page = {page}
-          perPage = {perPage}
-          totalItems = {totalItems}
-          pageCount = {lastPage}
-          onPageChange = {onPageChange}
-        ></Pagination>
-      </div>
+        </div> : 
+        <div className="pt-4">
+          <Pagination
+            page = {page}
+            perPage = {perPage}
+            totalItems = {totalItems}
+            pageCount = {lastPage}
+            onPageChange = {onPageChange}
+          ></Pagination>
+        </div>}
     </Container>
   );
 };
