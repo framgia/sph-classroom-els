@@ -13,10 +13,10 @@ const CategoryApi = {
     return API.request(options);
   },
 
-  show: ({ id, ...params }) => {
+  show: ({ categoryId, ...params }) => {
     const options = {
       method: 'GET',
-      url: `/categories/${id}`,
+      url: `/categories/${categoryId}`,
       params: {
         ...params,
       },

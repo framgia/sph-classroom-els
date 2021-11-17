@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { Container, Row, Col, Button, Spinner } from 'react-bootstrap';
 import Pagination from '../../../../components/Pagination';
 
@@ -7,20 +7,20 @@ import QuestionGrid from './components/QuestionGrid';
 import style from './index.module.css';
 
 import QuizApi from '../../../../api/Quiz';
+import CategoryApi from '../../../../api/Category';
 
 const QuizList = () => {
   const categoryId = useParams().id;
   const queryParams = new URLSearchParams(window.location.search); 
   const pageNum = queryParams.get('page');
-
-  const category = {
-    title: 'Encapsulation'
-  };
-
+  const history = useHistory();
+  
   const [page, setPage] = useState(pageNum ? pageNum : 1);
   const [quizzes, setQuizzes] = useState(null);
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
+  const [lastPage, setLastPage] = useState(0);
+  const [category, setCategory] = useState(null);
 
   useEffect(() => {
     QuizApi.getAll(categoryId, page)
@@ -29,23 +29,26 @@ const QuizList = () => {
         setQuizzes(data.data);
         setPerPage(data.per_page);
         setTotalItems(data.total);
+        setLastPage(data.last_page);
       }).catch(error => {
         console.log(error);
       });
+
+    CategoryApi.show({categoryId}).then(({data}) => {
+      setCategory(data.data);
+    });
   }, [page]);
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
   
-    window.location = `/categories/${categoryId}/quizzes?page=${selected + 1}`;
+    history.push(`/categories/${categoryId}/quizzes?page=${selected + 1}`);
   };
-
-  console.log(Math.ceil(totalItems / perPage));
 
   return (
     <Container className={style.container}>
-      <Button className={style.backButton}>Back</Button>
-      <p className={style.title}>{category?.title}</p>
+      <Button className={style.backButton} href='/categories'>Back</Button>
+      <p className={style.title}>{category?.name}</p>
       {quizzes === null ? <div className={style.loading}>
         <Spinner animation="border" role="status"></Spinner>
         <span className={style.loadingWord}>Loading</span>
@@ -75,7 +78,7 @@ const QuizList = () => {
           page = {page}
           perPage = {perPage}
           totalItems = {totalItems}
-          pageCount = {totalItems ? Math.ceil(totalItems / perPage) : 0}
+          pageCount = {lastPage}
           onPageChange = {onPageChange}
         ></Pagination>
       </div>
