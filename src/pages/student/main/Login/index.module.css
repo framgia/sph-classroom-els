@@ -1,48 +1,78 @@
 #log01 {
-  background-color: #4b847c4b;
-  padding: 88px 30px;
-  border-radius: 10px;
-  height: 500px;
-  width: 611px;
+  background-color: #E0EAEC;
+  padding-left:48px;
+  padding-right: 48px;
+  border-radius: 2px;
+  height: 396px;
+  width: 430px;
+  color : #48535B;
+  margin-left: 17px;
 }
 
 .sign {
   display: inline-block;
-  padding-right: 20px;
-  font-size: 20px;
-  font-weight: 400px;
-}
-
-#navbar {
-  background-color: #002037;
-  color: #e2dec0;
-}
-
-#title {
-  background-image: linear-gradient(90deg, #c4b230, #375218);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-  font-weight: bold;
-  font-size: 54px;
+  padding-right: 10px;
+  font-size: 14px;
+  font-weight: 300px;
+  color : #48535B
 }
 
 .signup {
   margin-top: 30px;
+  color : #48535B
 }
 
-.Btncolor {
-  background-color: #4b847c9d;
-  padding: 10px 30px;
-  border-color: #4b847ca8;
-  margin-bottom: 50px;
-  width: 150px;
+#Btncolor {
+  background-color: #C0D5D8;
+  border-color: #C0D5D8;
+  margin-bottom: 20px;
+  width: 85px;
+  height: 32px;
+  font-size: 14px;
+  color : #48535B;
+  margin-top: 10px;
 }
 
 .alert {
   position: fixed;
   top: 100px;
   width: 611px;
+  color : #48535B
 }
+
+input {
+  width: 334px;
+  height: 38px;
+  color : #48535B;
+}
+
+.signintext{
+  margin: 15px;
+  margin-top: 38px;
+  margin-left: 137px;
+  font-weight: 400px;
+  color : #48535B
+}
+
+.fotgotPswrd{
+  font-size: 14px;
+  color : #3F98A5;
+  font-weight: 400px;
+}
+
+#Btncolor:hover{
+  background-color: #9ABEC1;
+  border-color: #9ABEC1;
+  color: white;
+}
+
+.ContainerMT{
+  margin-top: -900px;
+}
+
+.fotgotPswrdsize{
+  font-size: 12px;
+  color : #3F98A5;
+  font-weight: 400px;
+}
+

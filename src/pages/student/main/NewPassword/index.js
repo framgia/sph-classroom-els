@@ -55,6 +55,7 @@ const NewPassword = () => {
             onSubmit={handleSubmit(handleOnSubmit)}
             className={style.contentstyle}
           >
+            <div> <h4> Change Password </h4> </div>
             <div align="start" className={style.suggestion}>
               Create a new password that is at least 6 characters long. A strong
               password is a combination of letters, numbers, and symbols.
@@ -73,7 +74,7 @@ const NewPassword = () => {
                       ref={ref}
                       className="cntrs"
                       type="email"
-                      placeholder="Input Email Address"
+                      placeholder="e.g. johndoe@gmail.com"
                       isInvalid={errors?.email}
                       required
                     />
@@ -85,7 +86,7 @@ const NewPassword = () => {
               </Form.Group>
             </div>
 
-            <div className={style.left} align="start">
+            <div className={style.right} align="start">
               <Form.Group className="mb-3" controlId="NewPassword">
                 <Form.Label>New Password</Form.Label>
                 <Controller
@@ -99,7 +100,7 @@ const NewPassword = () => {
                       ref={ref}
                       className="cntrs"
                       type="password"
-                      placeholder="***********"
+                      placeholder="min of 6 characters"
                       isInvalid={errors?.password}
                       required
                     />
@@ -124,7 +125,7 @@ const NewPassword = () => {
                       className="cntrs"
                       type="password"
                       name="password_confirmation"
-                      placeholder="************"
+                      placeholder="match passwords"  
                       isInvalid={errors?.password_confirmation}
                       required
                     />
