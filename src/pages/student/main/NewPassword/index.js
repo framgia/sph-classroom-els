@@ -62,7 +62,9 @@ const NewPassword = () => {
             </div>
             <div className={style.left} align="start">
               <Form.Group className="mb-3" controlId="NewPassword">
-                <Form.Label>Email</Form.Label>
+                <Form.Label>
+                  <h6 style={{marginBottom:'0px'}} >Email</h6>
+                </Form.Label>
                 <Controller
                   control={control}
                   name="email"
@@ -88,7 +90,9 @@ const NewPassword = () => {
 
             <div className={style.right} align="start">
               <Form.Group className="mb-3" controlId="NewPassword">
-                <Form.Label>New Password</Form.Label>
+                <Form.Label>
+                  <h6 style={{marginBottom:'0px', marginTop:'10px'}} >New Password</h6>
+                </Form.Label>
                 <Controller
                   control={control}
                   name="password"
@@ -112,7 +116,9 @@ const NewPassword = () => {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="ConfirmPassword">
-                <Form.Label>Confirm Password</Form.Label>
+                <Form.Label>
+                  <h6 style={{marginBottom:'0px', marginTop:'10px'}} >Confirm Password</h6>
+                </Form.Label>
                 <Controller
                   control={control}
                   name="password_confirmation"

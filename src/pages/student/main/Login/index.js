@@ -57,7 +57,7 @@ const Login = () => {
               <div className={style.contanair}>
                 <Form.Group className='mb-3' controlId='email'>
                   <Form.Label>
-                    <h6>Email Address</h6>
+                    <h6 style={{marginBottom:'0px'}} >Email Address</h6>
                   </Form.Label>
                   <Controller
                     control={control}
@@ -70,7 +70,7 @@ const Login = () => {
                         ref={ref}
                         className='cntrs'
                         type='email'
-                        placeholder='Input Email Address'
+                        placeholder='Enter here'
                         isInvalid={errors?.email}
                         required
                       />
@@ -83,7 +83,7 @@ const Login = () => {
 
                 <Form.Group className='mb-3' controlId='password'>
                   <Form.Label>
-                    <h6>Password</h6>
+                    <h6 style={{marginBottom:'0px', marginTop:'10px'}} >Password</h6>
                   </Form.Label>
                   <Controller
                     control={control}
@@ -97,7 +97,7 @@ const Login = () => {
                         className='cntrs'
                         type='password'
                         name='password'
-                        placeholder='************'
+                        placeholder='Enter here'
                         isInvalid={errors?.password}
                         required
                       />

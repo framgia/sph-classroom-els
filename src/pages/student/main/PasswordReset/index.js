@@ -48,7 +48,7 @@ const PasswordReset = () => {
               </center>
               <Form.Group id={style.Containercentermargin} className="mb - 3" controlId="Email">
                 <Form.Label>
-                  <h6>Email</h6>
+                  <h6 style={{marginBottom:'0px'}} >Email</h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -80,7 +80,7 @@ const PasswordReset = () => {
                   id={style.button}
                 >
                   <span className={style.textbutton}>
-                    Send recovery link
+                    Send Recovery Link
                   </span>
                 </Button>
               </center>
