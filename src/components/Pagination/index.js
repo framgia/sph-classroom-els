@@ -18,8 +18,8 @@ const Pagination = ({ page, perPage, totalItems, pageCount, onPageChange }) => {
         containerClassName={'pagination'}
         pageLinkClassName={`page-link ${style.pageLink}`}
         breakLinkClassName={`page-link ${style.pageLink}`}
-        previousClassName={page === 1 ? `${style.hideButton}` : `page-link ${style.pageLink}`}
-        nextClassName={page === pageCount ? `${style.hideButton}` : `page-link ${style.pageLink} active`}
+        previousClassName={page != 1 ? `page-link ${style.pageLink}` : `${style.hideButton}`}
+        nextClassName={page != pageCount ? `page-link ${style.pageLink} active` : `${style.hideButton}`}
         activeClassName={ `active ${style.activeLink}`}
         breakLabel="..."
         nextLabel="Next"
