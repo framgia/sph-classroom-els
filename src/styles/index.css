@@ -1,3 +1,9 @@
 body {
   background-color: #f5f5f5;
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.form-control::placeholder{
+  font-weight: 300px;
+  color: #48535B;
+  opacity: 50% ;
 }

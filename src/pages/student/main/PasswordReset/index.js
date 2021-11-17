@@ -23,7 +23,7 @@ const PasswordReset = () => {
   const handleOnSubmit = async ({ email }) => {
     try {
       await PasswordResetApi.forgotPassword({ email });
-      showAlertDialog(true,'An email has been sent. Please click the link when you get it.');
+      showAlertDialog(true,'An email has been sent. Please click the link provided to proceed with the password reset.');
     } catch (error) {
       console.log(error.response);
       if (error?.response?.data?.errors) {
@@ -43,9 +43,13 @@ const PasswordReset = () => {
             className={style.contentstyle}
           >
             <div className={style.center} align="start">
-              <Form.Group className="mb - 3" controlId="Email">
-                <Form.Label>Reset Password</Form.Label>
-
+              <center>
+                <Form.Label> <h4> Password Reset </h4></Form.Label>
+              </center>
+              <Form.Group id={style.Containercentermargin} className="mb - 3" controlId="Email">
+                <Form.Label>
+                  <h6 style={{marginBottom:'0px'}} >Email</h6>
+                </Form.Label>
                 <Controller
                   control={control}
                   name="email"
@@ -57,7 +61,6 @@ const PasswordReset = () => {
                       ref={ref}
                       className="cntrs"
                       type="email"
-                      placeholder="Input Email Address"
                       isInvalid={errors?.email}
                       required
                     />
@@ -77,7 +80,7 @@ const PasswordReset = () => {
                   id={style.button}
                 >
                   <span className={style.textbutton}>
-                    Send the recovery link
+                    Send Recovery Link
                   </span>
                 </Button>
               </center>
@@ -94,14 +97,14 @@ const PasswordReset = () => {
         </Stack>
       </Container>
       <Modal
+        centered
         show={show}
         onHide={() => {
           setShow(false);
         }}
-        className={style.modalcenter}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>Password Reset</Modal.Title>
+        <Modal.Header id={style.modalcenter} closeButton>
+          <Modal.Title> <p style={{fontWeight: 'Bold', fontSize:'16px'}}> Password Reset </p> </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className={style.textmodal}>
@@ -110,6 +113,11 @@ const PasswordReset = () => {
             }
           </div>
         </Modal.Body>
+        <Modal.Footer>
+          <Button id={style.Btncolor} onClick={() => {
+            setShow(false);
+          }}>Close</Button>
+        </Modal.Footer>
       </Modal>
       
     </center>

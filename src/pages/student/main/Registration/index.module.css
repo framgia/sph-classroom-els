@@ -1,30 +1,51 @@
 #log01{
-    background-color: #4b847c4b;
-    padding: 70px 47px;
-    border-radius: 10px;
-    height: 649px;
+    background-color: #E0EAEC;
+    padding: 46px;
+    border-radius: 2px;
+    height: 539px;
+    width: 430px;
+    color : #48535B;
 }
-.sign{
+
+.signintxts{
+    margin-left: 137px;
+    font-weight: 400px;
+    color : #48535B;
+    margin-bottom: 15px;
+  }
+
+  #Btncolor {
+    background-color: #C0D5D8;
+    border-color: #C0D5D8;
+    /* margin-bottom: 10px; */
+    width: 85px;
+    height: 32px;
+    font-size: 14px;
+    color : #48535B;
+    margin-top: 15px;
+  }
+
+  #Btncolor:hover{
+    background-color: #9ABEC1;
+    border-color: #9ABEC1;
+    color: white;
+  }
+
+  .sign {
     display: inline-block;
-    padding-right: 20px;
-    margin-top: 10px;
-}
-#navbar {
-    background-color: #002037;
-    color: #E2DEC0;
-}
-#title {
-    background-image: linear-gradient(90deg, #c4b230, #375218);
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
-    font-weight: bold;
-    font-size: 54px;
-}
-.Btncolor{
-    background-color: #4b847c8e;
-    padding: 10px 30px;
-    border-color: #4b847c96;
-} 
+    padding-right: 10px;
+    font-size: 14px;
+    font-weight: 300px;
+    color : #48535B;
+    margin-top: 25px
+  }
+
+  .fotgotPswrd{
+    font-size: 14px;
+    color : #3F98A5;
+    font-weight: 400px;
+  }
+
+input::placeholder{
+    color: red;
+  }

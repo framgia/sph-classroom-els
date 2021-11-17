@@ -52,11 +52,12 @@ const Registration = () => {
       )}
       <Container style={{marginTop:'132px'}}>
         <Stack gap={2} className="col-md-5 mx-auto" id={style.log01}>
+          <div className={style.signintxts}> <h4> Sign Up </h4> </div>
           <Form onSubmit={handleSubmit(handleOnSubmit)}>
             <div>
-              <Form.Group className="mb-3" controlId="Name">
+              <Form.Group className="mb-4" controlId="Name">
                 <Form.Label>
-                  <h5>Name</h5>
+                  <h6 style={{marginBottom:'0px'}} >Name</h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -80,9 +81,9 @@ const Registration = () => {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="Email">
+              <Form.Group className="mb-4" controlId="Email">
                 <Form.Label>
-                  <h5>Email</h5>
+                  <h6 style={{marginBottom:'0px'}} >Email</h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -106,9 +107,9 @@ const Registration = () => {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="Password">
+              <Form.Group className="mb-4" controlId="Password">
                 <Form.Label>
-                  <h5>Password</h5>
+                  <h6 style={{marginBottom:'0px'}} >Password</h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -133,9 +134,9 @@ const Registration = () => {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="PasswordConfirmation">
+              <Form.Group className="mb-4" controlId="PasswordConfirmation">
                 <Form.Label>
-                  <h5>Confirm Password</h5>
+                  <h6 style={{marginBottom:'0px'}} >Confirm Password</h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -149,7 +150,7 @@ const Registration = () => {
                       className="cntrs"
                       type="password"
                       name="password_confirmation"
-                      placeholder="************"
+                      placeholder="match passwords"
                       isInvalid={errors?.password_confirmation}
                       required
                     />
@@ -160,22 +161,22 @@ const Registration = () => {
                 </Form.Control.Feedback>
               </Form.Group>
                       
-              <center style={{marginTop:'65px'}}>
-                <Button className={style.Btncolor} type="submit">
-                  <h5>Sign Up</h5>
+              <center>
+                <Button id={style.Btncolor} type="submit">
+                  <p style={{ fontSize: '14px' }}>Sign Up</p>
                 </Button>
               </center>
                       
               <center>
                 <div className="cnb">
                   <p className={style.sign}>Already have an Account?</p>
-                  <h5 className={style.sign}>
+                  <h6 className={style.sign}>
                     <LinkContainer to="/login">
-                      <a style={{ textDecoration: 'none' }} href="/#">
-                                  Sign In
+                      <a className={style.fotgotPswrd} style={{ textDecoration: 'none' }} href='/#'>
+                          Sign In
                       </a>
                     </LinkContainer>
-                  </h5>
+                  </h6>
                 </div>
               </center>
             </div>
