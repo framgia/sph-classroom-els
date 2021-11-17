@@ -1,10 +1,10 @@
 import API from '../Base';
 
 const QuizApi = {
-  getAll: (id) => {
+  getAll: (id, pageNum) => {
     const options = {
       method: 'GET',
-      url: `/categories/${id}/quizzes`,
+      url: `/categories/${id}/quizzes?page=${pageNum}`,
       //   params: {
       //   ...params,
       // },

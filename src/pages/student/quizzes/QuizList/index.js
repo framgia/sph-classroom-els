@@ -10,29 +10,37 @@ import QuizApi from '../../../../api/Quiz';
 
 const QuizList = () => {
   const categoryId = useParams().id;
-  console.log(categoryId);
-  const category = {  
+  const queryParams = new URLSearchParams(window.location.search); 
+  const pageNum = queryParams.get('page');
+
+  const category = {
     title: 'Encapsulation'
   };
 
-  const perPage = 9;
-  const [page] = useState(1);
+  const [page, setPage] = useState(pageNum ? pageNum : 1);
   const [quizzes, setQuizzes] = useState(null);
-  // let params = useParams();
-  useParams();
+  const [perPage, setPerPage] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
 
   useEffect(() => {
-    QuizApi.getAll(categoryId)
+    QuizApi.getAll(categoryId, page)
       .then(({ data }) => {
-        setQuizzes(data.data);
         console.log(data);
+        setQuizzes(data.data);
+        setPerPage(data.per_page);
+        setTotalItems(data.total);
       }).catch(error => {
         console.log(error);
       });
+  }, [page]);
 
+  const onPageChange = (selected) => {
+    setPage(selected + 1);
+  
+    window.location = `/categories/${categoryId}/quizzes?page=${selected + 1}`;
+  };
 
-
-  }, []);
+  console.log(Math.ceil(totalItems / perPage));
 
   return (
     <Container className={style.container}>
@@ -56,15 +64,19 @@ const QuizList = () => {
           }
         })}
       </Row>
+
+      {quizzes?.length <= 0 ? 
+        <div className={style.noResultsMessage}>
+          <p className={style.message}>NO RESULTS FOUND</p>
+        </div> : ''}
+ 
       <div className="pt-4">
         <Pagination
-       
-          page={page}
-          perPage={perPage}
-          totalItems= {quizzes ? quizzes.length : 0}
-          pageCount= {2}
-          onPageChange= {() => { }}
-       
+          page = {page}
+          perPage = {perPage}
+          totalItems = {totalItems}
+          pageCount = {totalItems ? Math.ceil(totalItems / perPage) : 0}
+          onPageChange = {onPageChange}
         ></Pagination>
       </div>
     </Container>
