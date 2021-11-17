@@ -11,6 +11,7 @@
     margin-left: 137px;
     font-weight: 400px;
     color : #48535B;
+    margin-bottom: 15px;
   }
 
   #Btncolor {
@@ -21,7 +22,7 @@
     height: 32px;
     font-size: 14px;
     color : #48535B;
-    margin-top: 25px;
+    margin-top: 15px;
   }
 
   #Btncolor:hover{
@@ -43,4 +44,8 @@
     font-size: 14px;
     color : #3F98A5;
     font-weight: 400px;
+  }
+
+input::placeholder{
+    color: red;
   }

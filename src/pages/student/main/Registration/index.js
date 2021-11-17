@@ -55,9 +55,9 @@ const Registration = () => {
           <div className={style.signintxts}> <h4> Sign Up </h4> </div>
           <Form onSubmit={handleSubmit(handleOnSubmit)}>
             <div>
-              <Form.Group className="mb-3" controlId="Name">
+              <Form.Group className="mb-4" controlId="Name">
                 <Form.Label>
-                  <h6>Name</h6>
+                  <h6 style={{marginBottom:'0px'}} >Name</h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -81,9 +81,9 @@ const Registration = () => {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="Email">
+              <Form.Group className="mb-4" controlId="Email">
                 <Form.Label>
-                  <h6>Email</h6>
+                  <h6 style={{marginBottom:'0px'}} >Email</h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -107,9 +107,9 @@ const Registration = () => {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="Password">
+              <Form.Group className="mb-4" controlId="Password">
                 <Form.Label>
-                  <h6>Password</h6>
+                  <h6 style={{marginBottom:'0px'}} >Password</h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -134,9 +134,9 @@ const Registration = () => {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="PasswordConfirmation">
+              <Form.Group className="mb-4" controlId="PasswordConfirmation">
                 <Form.Label>
-                  <h6>Confirm Password</h6>
+                  <h6 style={{marginBottom:'0px'}} >Confirm Password</h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -150,7 +150,7 @@ const Registration = () => {
                       className="cntrs"
                       type="password"
                       name="password_confirmation"
-                      placeholder="************"
+                      placeholder="match passwords"
                       isInvalid={errors?.password_confirmation}
                       required
                     />

@@ -80,7 +80,7 @@ const PasswordReset = () => {
                   id={style.button}
                 >
                   <span className={style.textbutton}>
-                    Send the recovery link
+                    Send recovery link
                   </span>
                 </Button>
               </center>
