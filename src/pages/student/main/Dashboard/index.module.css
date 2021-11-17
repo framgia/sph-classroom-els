@@ -16,6 +16,8 @@
     color: #48535B;
 }
 .forContainerBar2{
+    position: relative;
+    z-index: 1;
     background-color: #E0EAEC;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 2px 2px 0px 0px;
@@ -36,7 +38,6 @@
     z-index: -1;
 }
 .forContent_box{
-    position: relative;
     height: 400px;
     width: 732.5px;
     padding: 20px;
@@ -44,7 +45,6 @@
     border: 1px solid #E4E4E4;
     box-sizing: border-box;
     border-radius: 0px 0px 2px 5px;
-    z-index: -1;
 }
 .retake{
     font-size: 16px;
@@ -56,7 +56,7 @@
     display: inline-block;
     font-weight: 500;
     font-size: 18px;
-    padding: 9px 2px 0px 15px;
+    padding: 8px 2px 0px 15px;
 }
 .btnVeiw{
     margin-left: 456px;
