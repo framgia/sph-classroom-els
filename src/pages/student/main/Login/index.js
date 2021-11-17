@@ -81,7 +81,7 @@ const Login = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group className='mb-3' controlId='password'>
+                <Form.Group className='mb-1' controlId='password'>
                   <Form.Label>
                     <h6 style={{marginBottom:'0px', marginTop:'10px'}} >Password</h6>
                   </Form.Label>
@@ -110,7 +110,7 @@ const Login = () => {
 
                 <p>
                   <LinkContainer to='/reset-password'>
-                    <a className={style.fotgotPswrdsize} style={{ textDecoration: 'none' }} href='/#'>
+                    <a className={style.fotgotPswrdsize} style={{ textDecoration: 'none', marginTop:'0px'}} href='/#'>
                       Forgot password?
                     </a>
                   </LinkContainer>
