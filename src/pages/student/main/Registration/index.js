@@ -50,7 +50,7 @@ const Registration = () => {
           {alertMessage}
         </Alert>
       )}
-      <Container style={{marginTop:'132px', marginLeft: '117px'}}>
+      <Container style={{marginTop:'132px'}}>
         <Stack gap={2} className="col-md-5 mx-auto" id={style.log01}>
           <div className={style.signintxts}> <h4> Sign Up </h4> </div>
           <Form onSubmit={handleSubmit(handleOnSubmit)}>
