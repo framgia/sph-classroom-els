@@ -9,14 +9,6 @@ const AuthNavigationBar = () => {
     <Navbar id={style.navbar} expand="lg">
       <Container fluid>
         <Navbar.Brand id={style.title}>E-LEARNING</Navbar.Brand>
-        <div>
-          <LinkContainer to="/login">
-            <Navbar.Brand id={style.Subtitle}>Login</Navbar.Brand>
-          </LinkContainer>
-          <LinkContainer to="/registration">
-            <Navbar.Brand id={style.Subtitle}>Register</Navbar.Brand>
-          </LinkContainer >
-        </div>
       </Container>
     </Navbar>
   );

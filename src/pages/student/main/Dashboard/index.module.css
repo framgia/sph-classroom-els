@@ -5,7 +5,7 @@
 .bg2{
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 33px;
 }
 .forContainerBar{
     background-color: #E0EAEC;
@@ -40,7 +40,7 @@
 .forContent_box{
     height: 400px;
     width: 732.5px;
-    padding: 20px;
+    padding: 17px;
     background-color: #FFFFFF;
     border: 1px solid #E4E4E4;
     box-sizing: border-box;
@@ -85,6 +85,10 @@
 }
 .h2_style{
     padding: 33px 0px 33px 0px;
+    margin-bottom: 0px;
+    color: #48535B;
+    font-weight: 600;
+    font-size: 25px;
 }
 .forSeccolum2{
     padding: 10px 0px;
@@ -92,7 +96,6 @@
     margin-top: 30px;
     font-weight: 600;
     font-size: 16px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .listTable{
     text-align: left;
@@ -105,4 +108,9 @@
     font-weight: 600;
     font-size: 16px;
     text-align: left;
+}
+.tableIcon{
+    margin: 0px 17px 5px 0px;
+    width: 20px;
+    height: 20px;
 }
