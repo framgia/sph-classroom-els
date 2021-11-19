@@ -1,45 +1,40 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-
+import { Card } from 'react-bootstrap';
 import style from './index.module.css';
 
 const EditProfile = () => {
   return (
+    <div className='d-flex justify-content-center align-items-center text-align-center' style={{marginTop:'150px'}} >
+      <Card style={{ width: '430px', padding:'50px', paddingTop:'20px', backgroundColor:'#E0EAEC' }}>
+        <div className={style.HeadingText}>Edit Account Info</div>
+        <Form style={{marginTop:'20px'}}>
+          <Form.Group className='mb-3' controlId='formBasicEmail'>
+            <Form.Label style={{ marginBottom: '0px', color: '#48535B', fontSize:'16px' }}>Name</Form.Label>
+            <Form.Control style={{fontSize:'14px' }} type='text' name='name' value='Jane Doe' />
+          </Form.Group>
 
-    <div className={style.center}>
-      <div className={style.containeredit}>  
-        <div className={style.inputscontainer}>
-          <div className={style.inputs}>
-            <Form.Label className={style.Label}>Name</Form.Label>
-            <Form.Control className={style.Control} type="text" name="name" value="Doe Jane"/>
-            {/* <BiPencil className={style.editbuttonone}/> */}
-                    
-          </div>
-          <div className={style.inputs}>
-            <Form.Label className={style.Label}>Email</Form.Label>
-            <Form.Control className={style.Control}type="email" name="email" value="doejane1@gmail.com"/>
-            {/* <BiPencil className={style.editbuttontwo}/> */}
-          </div>
-        </div>
-        <div className={style.Button}>
-                
+          <Form.Group className='mb-4' controlId='formBasicPassword'>
+            <Form.Label style={{ marginBottom: '0px', color: '#48535B' }}>Email</Form.Label>
+            <Form.Control style={{fontSize:'14px' }} type='email' name='email' value='janedoe@gmail.com' />
+          </Form.Group>
+          <Button
+            className={style.changepassbutton}
+            variant='primary'
+            type='submit'
+          >
+            Change
+          </Button>
           <div>
-            <a className={style.cancel} href="/profile">Cancel</a>
+            <a className={style.cancel} href='/profile'>
+              Cancel
+            </a>
           </div>
-
-               
-          <div>
-                
-            <Button className={style.ChangepassButton} > Change </Button> 
-                
-          </div>
-                
-        </div>
-      </div>
+        </Form>
+      </Card>
     </div>
   );
 };
 
 export default EditProfile;
-

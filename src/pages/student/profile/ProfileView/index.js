@@ -3,30 +3,34 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { BiPencil } from 'react-icons/bi';
 import style from './index.module.css';
+import { Card } from 'react-bootstrap';
 
 const ProfileView = () => {
   return (
+    <div className='d-flex justify-content-center align-items-center text-align-center' style={{marginTop:'150px'}} >
+      <Card style={{ width: '430px', padding:'50px', paddingTop:'20px', backgroundColor:'#E0EAEC' }}>
+        <div className={style.HeadingText}>Account Info</div>
+        <Form style={{marginTop:'20px'}}>
+          <Form.Group className='mb-3' controlId='formBasicEmail'>
+            <Form.Label style={{marginBottom: '0px', color: '#48535B', fontSize: '16px' }}>Name</Form.Label>
+            <a href='/profile/edit '>
+              <BiPencil className={style.editbuttonone} />
+            </a>
+            <Form.Control style={{fontSize:'14px' }} type='text' name='name' value='Jane Doe' />
+          </Form.Group>
 
-    <div className= {style.centercard}>
-      <div className={style.containers}>  
-        <div className= {style.inputcontainer}>
-          <div className={style.inputdetail}>
-            <Form.Label className= {style.label1}>Name</Form.Label>
-            <Form.Control className={style.control1} type="text" name="name" value="Jane Doe"/>
-            <a href="/Studentlist/ChangePassword "><BiPencil className={style.editbuttonone}/></a>
-                    
-                    
-          </div>
-          <div className={style.inputdetail}>
-            <Form.Label className={style.label1}>Email</Form.Label>
-            <Form.Control className={style.control1}type="email" name="email" value="janedoe@gmail.com"/>
-            <BiPencil className={style.editbuttontwo}/>
-          </div>
-        </div>
-        <div style={{marginLeft: '350px', paddingTop: '40px'} } className={`${style.detailinput} `}>
-          <Button  className= {style.changepassbutton} > Change Password</Button>
-        </div>
-      </div>
+          <Form.Group className='mb-4' controlId='formBasicPassword'>
+            <Form.Label style={{marginBottom: '0px', color: '#48535B', fontSize: '16px' }}>Email</Form.Label>
+            <a href='/profile/edit '>
+              <BiPencil className={style.editbuttonTwo} />
+            </a>
+            <Form.Control style={{fontSize:'14px' }} type='email' name='email' value='janedoe@gmail.com' />
+          </Form.Group>
+          <Button  className= {style.changepassbutton} variant='primary' type='submit'>
+            Change Password
+          </Button>
+        </Form>
+      </Card>
     </div>
   );
 };

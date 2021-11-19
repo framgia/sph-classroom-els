@@ -1,96 +1,91 @@
-.detail-container {
-    background-color: rgba(75, 132, 123, 0.2);
-    border-radius: 15px;
-    position: absolute;
-    padding-top: 35px;
-    width: 611px;
-    height: 418px;
-    left: 450px;
-    top: 170px;
-}
-.profile{
-    display: flex;
-    justify-content: space-between;
-}
 .profile_01{
-    border: black 2px solid;
+    border: black 1px solid;
     padding: 6px;
-    width: 327px;
-    height: 327px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     background-color: orange;
 }
-.userEdit{
-    border: #4b847c9f 4px solid;
-    border-radius: 5px;
-}
-.follow{
+
+.userEditText{
+    display: inline-flex;
     margin-right: 50px;
-    font-size: 24px;
+    color: #152536;
+}
+
+.userEdit{
+    border: #E0EAEC 3px solid;
+    border-radius: 2px;
+    margin-left: 20px;
+    padding: 5px;
+    margin-bottom: 20px;
+    color:black
+
+}
+
+.follow{
+    margin-left: 20px;
+    font-size: 20px;
     margin-top: 0px;
     display: inline-block;
+    font-weight: 300px;
+    color: #48535B;
 }
-.bg{
-    padding: 0px 100px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 50px 10% 0px 10%;
+.followone{
+    font-size: 20px;
+    margin-top: 0px;
+    display: inline-block;
+    font-weight: 300px;
+    color: #48535B;
 }
+
 .bg2{
-    padding: 0px 100px;
+    padding: 0px 150px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 4px 10% 0px 10%;
+    color: #48535B;
 }
 .cal1{
-    background-color:#4b847c9f;
-    width: 570px;
-    height: 57px;
-    border-radius: 10px 10px 0px 0px;
+    background-color:#E0EAEC;
+    width: 548px;
+    height: 40px;
+    border-radius: 2px 2px 0px 0px;
+    font-size: 18px;
+    filter: drop-shadow(0 1mm 1mm #48535b8c);
 }
 .cal_02{
     background-color:white;
-    height: 340px;
+    width: 548px;
+    height: 300px;
     border-radius: 0px 0px 10px 10px;
-    padding: 10px;
-}
-.par_1{
-    display: inline-block;
-    padding: 15px 8px 0px 10px;
-}
-.box_1{
-    background-color: #1b326650;
-    border-radius: 10px;
-    width: 26em;
-    height: 10em;
-    margin: auto;
-    padding: 10px;
-}
-.par_2{
-    padding-top: 30px;
-    font-size: 30px;
 }
 .cal_3{
     overflow-y: scroll;
     overflow-x: hidden;
 }
-.partb{
-    padding: 10px;
-    text-align: right;
-}
-.s_h2{
-    padding: 30px 0px 10px 30px;
-    margin-top: 100px;
-}
-.s_par{
-    display: inline-block;
-    margin: 18px 0px 16px 33px;
+.s_h3{
+    margin-right: 110px;
+    float: left;
+    margin-top: 20px;
+    margin-left: 17px;
 }
 
-.s_h3{
-    display: inline-block;
-    margin-bottom: 0px;
-    margin-right: 5px;
+.biuserposition{
+    width: 200px;
+    height: 160px;
+    padding-right: 10px;
+}
+
+#floatrighttext{
+    float: right;
+    margin-top: 20px;
+    margin-right: 17px;
+    font-size: 14px;
+}
+
+.margineforspan{
+    color: #48535B;
+    margin-left: 10px;
+    font-size: 16px;
 }
