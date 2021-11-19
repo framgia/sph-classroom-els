@@ -1,79 +1,26 @@
-.center{
-    display: flex;
-    justify-content: center;
-     
+.HeadingText{
+    margin-left: 85px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #48535B;
 }
-.containeredit {
-    
-    background-color: rgba(75, 132, 123, 0.2);
-    border-radius: 15px;
-    position: absolute;
-    padding: 20px 50px; 
-    width: 611px;
-    height: 418px;
-   margin-top: 100px; 
-    
-    
-
+.changepassbutton{
+    margin-left: 128px;
+    background-color: #C0D5D8;
+    border-color: #C0D5D8;
+    color: #48535B;
 }
-.inputscontainer{
-    display: flex;
-    flex-direction: column;
-   align-items: center;
-
+.changepassbutton:hover{
+    background-color: #9ABEC1;
+    border-color: #9ABEC1;
+    color:white
 }
 
-.inputs {
-    margin-top: 20px;
-   
-}
-.Button {
-    
-    display:flex;
-    justify-content: flex-end;
-    align-items: center;  
-    margin-top: 40px;
-    margin-right: 35px;
-
-    
-
-}
-.ChangepassButton{
-
-   background-color:rgba(75, 132, 123, 0.7);
-   height: 59px;
-   width: 177px;
-   font-size: 30px;
-    margin-left: 20px;
-    border: rgba(75, 132, 123, 0.7);
-
-}
 .cancel{
-
+    margin-top: 20px;
+    margin-left: 143px;
     text-decoration: none;
     display: inline-block;
-    color: black   ;
-    font-size: 30px;
-}
-.Label {
-    font-size: 30px;
-}
-
-.Control {
-    width: 447px;
-    height: 48px;
-    font-size: 25px;
-}
-
-
-.btn-primary {
-    background-color: rgba(75, 132, 123, 0.7);
-    border: none;
-    margin-top: 20px;
-    position: absolute;
-    width: 236px;
-    height: 51px;
-    left: 290px;
-    font-size: 25px;
-    line-height: 34px;
+    color: #48535B  ;
+    font-size: 14px;
 }

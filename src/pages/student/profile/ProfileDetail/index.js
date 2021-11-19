@@ -8,96 +8,146 @@ import { BiUser } from 'react-icons/bi';
 
 const ProfileDetail = () => {
   return (
-    <div>
-      <div className={style.bg}>
-        <div className={style.profile}>
-          <div className={style.profile_01}><BiUser size='310px'/></div>
-          <div><TiEdit size='60px' style={{marginTop:'288px'}} /></div>
-        </div>
-        <div>
-          <div style={{marginRight:'400px',marginTop:'53px'}} >
-            <h1 style={{fontSize:'70px', marginBottom:'0px'}}>Jane Doe</h1>
-            <h2 style={{fontSize:'40px', marginBottom:'0px'}}>20 Total Quizzes Taken</h2>
-            <div>
-              <p className={style.follow}>10 Followers</p>
+    <center>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          marginTop: '50px',
+          paddingLeft: '7%',
+        }}
+      >
+        <div style={{ display: 'flex' }}>
+          <div className={style.profile_01}>
+            <BiUser className={style.biuserposition} />
+            <TiEdit size='30px' style={{ marginLeft: '165px' }} />
+          </div>
+
+          <div style={{ marginLeft: '53px' }}>
+            <div style={{ marginTop: '33px' }}>
+              <div className={style.userEditText}>
+                <h2 style={{ fontSize: '32px', fontWeight: 'Bold' }}>
+                  Jane Doe
+                </h2>
+                <FaUserEdit size='40px' className={style.userEdit} />
+              </div>
+              <h4 style={{ fontSize: '24px', marginBottom: '20px',  color: '#48535B'}}>
+                20 Total Quizzes Taken
+              </h4>
+              <p className={style.followone}>10 Followers</p>
               <p className={style.follow}>10 Following</p>
             </div>
           </div>
         </div>
-        <div style={{marginTop:'43px'}}>
-          <div className={style.userEdit}><FaUserEdit size='60px' style={{padding:'10px'}} /></div>
-        </div>
       </div>
-      <div className={style.bg2}>
+      <div className={style.bg2} style={{ marginTop: '40px' }}>
         <div>
-          <h2 className={style.par_1}>Recent Activities</h2>
           <div className={style.cal1}>
-          </div>
-          <div className={style.cal_02}>
-            <div style={{marginLeft: '38px'}} >
-              <HiOutlineUserAdd size="30px" s/><p className={style.s_par}><h5 className={style.s_h3}>You</h5>Followed Jhon Doe<br/>1 min ago</p>
-            </div>
-            <div style={{marginLeft: '38px'}} >
-              <HiOutlineClipboardList size="30px"/><p className={style.s_par}>Javascript Programming Quiz Retake<br/>2 min ago</p>
-            </div>
-            <div style={{marginLeft: '38px'}} >
-              <HiOutlineUserAdd size="30px" s/><p className={style.s_par}><h5 className={style.s_h3}>Jhon</h5>Followed Jhon Doe<br/>5 min ago</p>
-            </div>
-            <div style={{marginLeft: '38px'}} >
-              <HiOutlineClipboardList size="30px"/><p className={style.s_par}>Answered Science Quiz<br/>9 min ago</p>
-            </div>
-            <div style={{marginLeft: '38px'}} >
-              <HiOutlineClipboardList size="30px"/><p className={style.s_par}>Laravel Quiz Retake<br/>12 min ago</p>
-            </div>
-          </div>
-        </div> 
-        <div>
-          <h2 className={style.par_1}>Friend&apos;s Activities</h2>
-          <div className={style.cal1}>
+            <p style={{ float: 'left', marginLeft: '12px', marginTop: '10px' }}>
+              Recent Activities
+            </p>
           </div>
           <div className={`${style.cal_02} ${style.cal_3}`}>
-            <div style={{marginLeft: '38px'}} >
-              <HiOutlineUserAdd size="30px" s/><p className={style.s_par}><h5 className={style.s_h3}>Paul</h5>Followed Jhon Doe<br/>1 min ago</p>
+            <div>
+              <h6 className={style.s_h3}><HiOutlineUserAdd size='20px' />
+                <span className={style.margineforspan}> You Followed Jhon Doe </span> </h6>
+              <div id={style.floatrighttext}>1 min ago </div>
             </div>
-            <div style={{marginLeft: '38px'}} >
-              <HiOutlineClipboardList size="30px"/><p className={style.s_par}><h5 className={style.s_h3}>Einstein</h5>Answered History Quiz<br/>1 min ago</p>
+            <div>
+              <h6 className={style.s_h3}><HiOutlineClipboardList size='20px' />
+                <span className={style.margineforspan}> Javascript Programming Quiz Retake </span> </h6>
+              <div id={style.floatrighttext}>2 min ago </div>
             </div>
-            <div style={{marginLeft: '38px'}} >
-              <HiOutlineUserAdd size="30px" s/><p className={style.s_par}><h5 className={style.s_h3}>Einstein</h5>Followed Charsles Babbage<br/>15 min ago</p>
+            <div>
+              <h6 className={style.s_h3}><HiOutlineUserAdd size='20px' s />
+                <span className={style.margineforspan}> Jhon Followed Jhon Doe </span> </h6>
+              <div id={style.floatrighttext}>5 min ago </div>
             </div>
-            <div style={{marginLeft: '38px'}} >
-              <HiOutlineClipboardList size="30px"/><p className={style.s_par}><h5 className={style.s_h3}>Erick</h5>Answered Sceince Quiz<br/>15 min ago</p>
+            <div>
+              <h6 className={style.s_h3}><HiOutlineClipboardList size='20px' />
+                <span className={style.margineforspan}> Answered Science Quiz </span></h6>
+              <div id={style.floatrighttext}>9 min ago </div>
             </div>
-            <div style={{marginLeft: '38px'}} >
-              <HiOutlineClipboardList size="30px"/><p className={style.s_par}><h5 className={style.s_h3}>Aristotle</h5>Unfollowed Charles Darwin<br/>16 min ago</p>
+            <div>
+              <h6 className={style.s_h3}><HiOutlineClipboardList size='20px' />
+                <span className={style.margineforspan}>Laravel Quiz Retake </span></h6>
+              <div id={style.floatrighttext}> 12 min ago </div>
             </div>
-            <div style={{marginLeft: '38px'}} >
-              <HiOutlineClipboardList size="30px"/><p className={style.s_par}><h5 className={style.s_h3}>Paul</h5>Answered Programming Quiz<br/>17 min ago</p>
+          </div>
+        </div>
+        <div>
+          <div className={style.cal1}>
+            <p style={{ float: 'left', marginLeft: '12px', marginTop: '10px' }}>
+              Friend&apos;s Activities
+            </p>
+          </div>
+          <div className={`${style.cal_02} ${style.cal_3}`}>
+            <div>
+              <h6 className={style.s_h3}><HiOutlineUserAdd size='20px' s />
+                <span className={style.margineforspan}>Paul Followed Jhon Doe </span></h6>
+              <div id={style.floatrighttext}>1 min ago </div>
             </div>
-            <div style={{marginLeft: '38px'}} >
-              <HiOutlineUserAdd size="30px" s/><p className={style.s_par}><h5 className={style.s_h3}>Paul</h5>Followed Charles Darwin<br/>18 min ago</p>
+            <div>
+              <h6 className={style.s_h3}><HiOutlineClipboardList size='20px' />
+                <span className={style.margineforspan}>Einstein Answered History Quiz </span> </h6>
+              <div id={style.floatrighttext}>1 min ago </div>
             </div>
-            <div style={{marginLeft: '38px'}} >
-              <HiOutlineUserAdd size="30px" s/><p className={style.s_par}><h5 className={style.s_h3}>Therese</h5>Followed Joash Canete<br/>19 min ago</p>
+            <div>
+              <h6 className={style.s_h3}><HiOutlineUserAdd size='20px' s />
+                <span className={style.margineforspan}>Einstein Followed Charsles Babbage </span> </h6>
+              <div id={style.floatrighttext}>15 min ago</div>
             </div>
-            <div style={{marginLeft: '38px'}} >
-              <HiOutlineUserAdd size="30px" s/><p className={style.s_par}><h5 className={style.s_h3}>Therese</h5>Unfollowed Jhon Darwin<br/>19 min ago</p>
+            <div>
+              <h6 className={style.s_h3}><HiOutlineClipboardList size='20px' />
+                <span className={style.margineforspan}>Erick Answered Sceince Quiz </span></h6>
+              <div id={style.floatrighttext}>15 min ago</div>
             </div>
-            <div style={{marginLeft: '38px'}} >
-              <HiOutlineUserAdd size="30px" s/><p className={style.s_par}><h5 className={style.s_h3}>Jhon</h5>Followed Therese<br/>20 min ago</p>
+            <div>
+              <h6 className={style.s_h3}> <HiOutlineClipboardList size='20px' />
+                <span className={style.margineforspan}>Aristotle Unfollowed Charles Darwin </span> </h6>
+              <div id={style.floatrighttext}>16 min ago </div>
             </div>
-            <div style={{marginLeft: '38px'}} >
-              <HiOutlineClipboardList size="30px"/><p className={style.s_par}><h5 className={style.s_h3}>Jhon</h5>Answered Programmong Quiz<br/>21 min ago</p>
+            <div>
+              <h6 className={style.s_h3}><HiOutlineClipboardList size='20px' />
+                <span className={style.margineforspan}>Paul Answered Programming Quiz </span> </h6>
+              <div id={style.floatrighttext}>17 min ago </div>
             </div>
-            <div style={{marginLeft: '38px'}} >
-              <HiOutlineUserAdd size="30px" s/><p className={style.s_par}><h5 className={style.s_h3}>Erick</h5>Unfollowed Jhon Darwin<br/>23 min ago</p>
+            <div>
+              <h6 className={style.s_h3}><HiOutlineUserAdd size='20px' s />
+                <span className={style.margineforspan}>Paul Followed Charles Darwin  </span></h6>
+              <div id={style.floatrighttext}>18 min ago</div>
+            </div>
+            <div>
+              <h6 className={style.s_h3}><HiOutlineUserAdd size='20px' s />
+                <span className={style.margineforspan}>Therese Followed Joash Canete </span> </h6>
+              <div id={style.floatrighttext}>19 min ago </div>
+            </div>
+            <div>
+              <h6 className={style.s_h3}><HiOutlineUserAdd size='20px' s />
+                <span className={style.margineforspan}>Therese Unfollowed Jhon Darwin </span></h6>
+              <div id={style.floatrighttext}>19 min ago </div>
+            </div>
+            <div>
+              <h6 className={style.s_h3}><HiOutlineUserAdd size='20px' s />
+                <span className={style.margineforspan}>Jhon Followed Therese </span></h6>
+              <div id={style.floatrighttext}>20 min ago </div>
+            </div>
+            <div>
+              <h6 className={style.s_h3}><HiOutlineClipboardList size='20px' />
+                <span className={style.margineforspan}>Jhon Answered Programmong Quiz </span></h6>
+              <div id={style.floatrighttext}>21 min ago </div>
+            </div>
+            <div>
+              <h6 className={style.s_h3}><HiOutlineUserAdd size='20px' s />
+                <span className={style.margineforspan}>Erick Unfollowed Jhon Darwin </span> </h6>
+              <div id={style.floatrighttext}>23 min ago </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </center>
   );
-
 };
 
 export default ProfileDetail;
