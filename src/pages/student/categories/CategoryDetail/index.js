@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Spinner from "react-bootstrap/Spinner";
-import style from "./index.module.css";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import Spinner from 'react-bootstrap/Spinner';
+import style from './index.module.css';
 
-import CategoryApi from "../../../../api/Category";
-import SubcategoryCard from "./components/SubcategoryCard";
+import CategoryApi from '../../../../api/Category';
+import SubcategoryCard from './components/SubcategoryCard';
 
 function Subcategories() {
   const [categories, setCategories] = useState(null);
@@ -35,13 +35,13 @@ function Subcategories() {
         <div id={style.quizlink}>
           {category?.quizzes_count ? (
             <a
-              style={{ color: "black", fontSize: "24px" }}
+              style={{ color: 'black', fontSize: '24px' }}
               href={`/categories/${category?.id}/quizzes`}
             >
               Check Available Quizzes &gt;&gt;
             </a>
           ) : (
-            ""
+            ''
           )}
         </div>
       </div>

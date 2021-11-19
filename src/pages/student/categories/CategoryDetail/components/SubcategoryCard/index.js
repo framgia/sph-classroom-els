@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Card from "react-bootstrap/Card";
-import { PropTypes } from "prop-types";
-import style from "./index.module.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import { PropTypes } from 'prop-types';
+import style from './index.module.css';
 
 const SubcategoryCard = ({ category }) => {
   return (
@@ -17,7 +17,7 @@ const SubcategoryCard = ({ category }) => {
           }
         >
           <div className={style.cardContent}>
-            <table style={{ width: "100%" }}>
+            <table style={{ width: '100%' }}>
               <tbody>
                 <tr>
                   <td className={style.forSeccolum}>{category?.description}</td>
@@ -25,7 +25,7 @@ const SubcategoryCard = ({ category }) => {
                 <tr>
                   <td id={style.listTable}>Available Quizzes:</td>
                   <td className={style.forSeccolum}>
-                    {category?.total_quizzes ?? "0"}
+                    {category?.total_quizzes ?? '0'}
                   </td>
                 </tr>
               </tbody>
