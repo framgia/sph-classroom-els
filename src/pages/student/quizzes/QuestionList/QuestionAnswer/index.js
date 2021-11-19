@@ -7,111 +7,182 @@ import Card from 'react-bootstrap/Card';
 import style from './indexQuestion.module.css';
 import MultipleChoiceType from './components/MultipleChoiceType';
 import FillInTheBlankType from './components/FillInTheBlankType';
+import QuizResult from '../../QuizResult';
 import { QuestionsContext } from '..';
+
+import AnswerApi from '../../../../../api/Answer';
+import QuizTaken from '../../../../../api/QuizTaken';
 
 const QuestionAnswer = () => {
   const [page, setPage] = useState(1);
-  const { categoryId, quizId } = useParams(); 
-  const { questions, title } = useContext(QuestionsContext);
-  const [time, setTime] = useState(questions[page - 1].time_limit);
+  const { categoryId, quizId } = useParams();
+  const { questions, title, quizTakenId } = useContext(QuestionsContext);
+  const [time, setTime] = useState(questions[page - 1]?.time_limit);
   const [question, setQuestion] = useState(questions[page - 1]);
   const [timeOutId, setTimeOutId] = useState(null);
-
-  const handlePrevButtonClick = () => {
-    if (page <= 1) return;
-
-    setPage(page - 1);
-  };
+  const [choice, setChoice] = useState(null);
+  const [textAnswer, setTextAnswer] = useState(null);
+  const [remainingTime, setRemainingTime] = useState(null);
+  const [prevPage, setPrevPage] = useState(1);
+  const [score, setScore] = useState(0);
+  const [point, setPoint] = useState(0);
+  const [showResult, setShowResult] = useState(false);
 
   const handleNextButtonClick = () => {
+    setPrevPage(page);
+
     if (page >= questions.length) return;
 
     setPage(page + 1);
   };
 
   useEffect(() => {
-    console.log(question);
-
-    if(questions != null){
+    if (questions != null) {
       setQuestion(questions[page - 1]);
     }
 
+    if (page != prevPage) {
+      setScore(score + point);
+
+      AnswerApi.store({
+        quizTakenId: quizTakenId,
+        choiceId: choice,
+        question_id: question.id,
+        text_answer: textAnswer,
+        text_correct: null,
+        time_left: remainingTime
+      });
+    }
+
     window.clearTimeout(timeOutId);
-    setTime(questions[page - 1].time_limit);
+    setTime(questions[page - 1]?.time_limit);
   }, [page]);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => {
-      setTime(time - 1);
-    }, 1000);
+    QuizTaken.update(quizTakenId, score);
+  }, [score]);
 
-    setTimeOutId(timer);
+  const storeLastAnswerAndGetTotalScore = () => {
+    window.clearTimeout(timeOutId);
+    setScore(score + point);
 
-    if(time === 0){
+    AnswerApi.store({
+      quizTakenId: quizTakenId,
+      choiceId: choice,
+      question_id: question.id,
+      text_answer: textAnswer,
+      text_correct: null,
+      time_left: remainingTime
+    }).then(() => {
+      setShowResult(!showResult);
+    });
+  };
+
+  useEffect(() => {
+    if (time != 0) {
+      const timer = window.setTimeout(() => {
+        setTime(time - 1);
+      }, 1000);
+
+      setTimeOutId(timer);
+    }
+
+    setRemainingTime(time);
+
+    if (time === 0) {
       window.clearTimeout(timeOutId);
 
-      if(page != questions?.length){
-        setTime(questions[page - 1].time_limit);
+      if (page < questions?.length) {
+        setTime(questions[page - 1]?.time_limit);
         setPage(page + 1);
-      }else{
-        window.location = `/categories/${categoryId}/quizzes/${quizId}/results`;
+      } else {
+        storeLastAnswerAndGetTotalScore();
       }
     }
   }, [time]);
 
+  const getAnswer = (answer) => {
+    if (question.question_type.question_type === 'Multiple Choice') {
+      setChoice(answer);
+    } else {
+      setTextAnswer(answer);
+    }
+  };
+
+  const getPoint = (point) => {
+    setPoint(point);
+  };
+
   return (
     <div>
-      <div>
-        <Container>
-          <Button
-            href={`/categories/${categoryId}/quizzes/${quizId}/questions`}
-            id={style.backBtn}>
-                        BACK
-          </Button>
-          <div className={style.Answertopic}>
-            <p className={style.paragraph}>
-              <b>Topic:</b> {title}
-            </p>
-            <Badge bg="light" className={style.tml}>
-              <Card.Text className={style.time}>
-                                Time Left:  <b className={style.timer}> {time} </b>
-              </Card.Text>
-            </Badge>
-          </div>
-          <Card.Body className={style.wholeBodyCard}>
-            {question && question.question_type.question_type === 'Multiple Choice' ? (
-              <MultipleChoiceType question={question} page={page}></MultipleChoiceType>
-            ) : (
-              <FillInTheBlankType question={question} page={page}></FillInTheBlankType>
-            )}
-            <hr className={style.spacing} />
-            <div className={style.bottomBodyCard}>
-              <p className={style.numItems}>
-                {page} out of {questions?.length}
+      {showResult === false ? (
+        <div>
+          <Container>
+            <Button
+              href={`/categories/${categoryId}/quizzes/${quizId}/questions`}
+              id={style.backBtn}
+            >
+              BACK
+            </Button>
+            <div className={style.Answertopic}>
+              <p className={style.paragraph}>
+                <b>Topic:</b> {title}
               </p>
-
-              {page === 1 ? '' : (<Button
-                id={style.prevBtn}
-                onClick={handlePrevButtonClick}
-              >
-                <a href="#" className={style.buttontext}>Prev</a>
-              </Button>)}
-
-              {page === questions?.length ? (<Button
-                id={style.nextBtn}
-                href={`/categories/${categoryId}/quizzes/${quizId}/results`} > <span className={style.buttontext}>Submit</span>
-              </Button>) :
-                (<Button
-                  id={style.nextBtn}
-                  onClick={handleNextButtonClick}
-                >
-                  <a href="#answer" className={style.buttontext}>Next</a>
-                </Button>)}
+              <Badge bg='light' className={style.tml}>
+                <Card.Text className={style.time}>
+                  Time Left: <b className={style.timer}> {time} </b>
+                </Card.Text>
+              </Badge>
             </div>
-          </Card.Body>
-        </Container>
-        <br />
-      </div>
+            <Card.Body className={style.wholeBodyCard}>
+              {question &&
+              question.question_type.question_type === 'Multiple Choice' ? (
+                  <MultipleChoiceType
+                    question={question}
+                    page={page}
+                    time={time}
+                    getAnswer={getAnswer}
+                    getPoint={getPoint}
+                  ></MultipleChoiceType>
+                ) : (
+                  <FillInTheBlankType
+                    question={question}
+                    page={page}
+                    time={time}
+                    getAnswer={getAnswer}
+                    getPoint={getPoint}
+                  ></FillInTheBlankType>
+                )}
+              <hr className={style.spacing} />
+              <div className={style.bottomBodyCard}>
+                <p className={style.numItems}>
+                  {page} out of {questions?.length}
+                </p>
+                {page === questions?.length ? (
+                  <Button
+                    id={style.nextBtn}
+                    onClick={() => {
+                      storeLastAnswerAndGetTotalScore();
+                    }}
+                  >
+                    {' '}
+                    <span className={style.buttontext}>Submit</span>
+                  </Button>
+                ) : (
+                  <Button id={style.nextBtn} onClick={handleNextButtonClick}>
+                    <a href='#answer' className={style.buttontext}>
+                      Next
+                    </a>
+                  </Button>
+                )}
+              </div>
+            </Card.Body>
+          </Container>
+          <br />
+        </div>
+      ) : (
+        <QuizResult score={score} total={questions.length} />
+      )}
     </div>
   );
 };
