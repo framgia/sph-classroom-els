@@ -38,7 +38,7 @@ const SubcategoryCard = ({ category }) => {
 };
 
 SubcategoryCard.propTypes = {
-  category: PropTypes.object,
+  category: PropTypes.object
 };
 
 export default SubcategoryCard;

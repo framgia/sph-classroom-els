@@ -55,7 +55,7 @@ function CategoryList() {
       <p className={style.title}>Categories</p>
       {categories === null ? (
         <div className={style.loading}>
-          <Spinner animation="border" role="status"></Spinner>
+          <Spinner animation='border' role='status'></Spinner>
           <span className={style.loadingWord}>Loading</span>
         </div>
       ) : (
