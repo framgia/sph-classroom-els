@@ -24,6 +24,7 @@ const Login = () => {
     try {
       const response = await AuthApi.login({ email, password });
       Cookies.set('access_token', response.data.token);
+      Cookies.set('user_id', response.data.user.id);
       window.location = '/';
     } catch (error) {
       console.log(error.response);
@@ -52,12 +53,15 @@ const Login = () => {
       <div>
         <Container style={{ marginTop: '205px' }}>
           <Stack gap={2} id={style.log01}>
-            <div className={style.signintext}> <h4> Sign In </h4> </div>
+            <div className={style.signintext}>
+              {' '}
+              <h4> Sign In </h4>{' '}
+            </div>
             <Form onSubmit={handleSubmit(handleOnSubmit)}>
               <div className={style.contanair}>
                 <Form.Group className='mb-3' controlId='email'>
                   <Form.Label>
-                    <h6 style={{marginBottom:'0px'}} >Email Address</h6>
+                    <h6 style={{ marginBottom: '0px' }}>Email Address</h6>
                   </Form.Label>
                   <Controller
                     control={control}
@@ -83,7 +87,9 @@ const Login = () => {
 
                 <Form.Group className='mb-1' controlId='password'>
                   <Form.Label>
-                    <h6 style={{marginBottom:'0px', marginTop:'10px'}} >Password</h6>
+                    <h6 style={{ marginBottom: '0px', marginTop: '10px' }}>
+                      Password
+                    </h6>
                   </Form.Label>
                   <Controller
                     control={control}
@@ -110,7 +116,11 @@ const Login = () => {
 
                 <p>
                   <LinkContainer to='/reset-password'>
-                    <a className={style.fotgotPswrdsize} style={{ textDecoration: 'none', marginTop:'0px'}} href='/#'>
+                    <a
+                      className={style.fotgotPswrdsize}
+                      style={{ textDecoration: 'none', marginTop: '0px' }}
+                      href='/#'
+                    >
                       Forgot password?
                     </a>
                   </LinkContainer>
@@ -127,7 +137,11 @@ const Login = () => {
                     <p className={style.sign}>No Account Yet?</p>
                     <h5 className={style.sign}>
                       <LinkContainer to='/registration'>
-                        <a className={style.fotgotPswrd} style={{ textDecoration: 'none' }} href='/#'>
+                        <a
+                          className={style.fotgotPswrd}
+                          style={{ textDecoration: 'none' }}
+                          href='/#'
+                        >
                           Sign Up
                         </a>
                       </LinkContainer>
