@@ -24,6 +24,7 @@ const QuestionList = () => {
 
     QuestionApi.getAll(quizId).then(({data}) => {
       setQuestions(data.data);
+      console.log(data);
     });
   }, []);
 

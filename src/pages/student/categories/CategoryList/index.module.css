@@ -1,13 +1,11 @@
 .navbar {
   background-color: #002037;
-  color: #E2DEC0;
+  color: #e2dec0;
 }
 
 #title {
   background-image: linear-gradient(90deg, #c4b230, #375218);
   background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
   font-weight: bold;
@@ -18,24 +16,24 @@
   margin-top: 20px;
   margin-right: 25px;
   font-size: 26px;
-  color: #E2DEC0;
+  color: #e2dec0;
   padding: 8px;
 }
 
 #navbarScrollingDropdown {
-  margin-left: .5rem;
+  margin-left: 0.5rem;
   font-size: 26px;
-  color: #E2DEC0;
+  color: #e2dec0;
 }
 
 .p-icon {
   width: 80px;
   border-radius: 100px;
-  background-color: #E2DEC0;
+  background-color: #e2dec0;
   padding: 8px;
 }
 
-.dropdown-menu { 
+.dropdown-menu {
   background-color: #002037;
   padding: 0.5rem;
   left: 34% !important;
@@ -45,17 +43,17 @@
 
 .dropdown-item {
   font-size: 26px;
-  color: #E2DEC0;
+  color: #e2dec0;
 }
 
-.cardList{
+.cardList {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
 
 #cardHeader {
-  background:#4b847c9f;
+  background: #4b847c9f;
   border-radius: 10px 10px 0px 0px;
   color: white;
   height: 40px;
@@ -66,13 +64,13 @@
   height: 300px;
   width: 400px;
   border-radius: 10px;
-  font-family:  nunito ;
+  font-family: nunito;
 }
 
 .cardContent {
   background-color: rgba(34, 60, 119, 0.2);
   border-radius: 10px;
-  padding:85px;
+  padding: 85px;
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
@@ -80,7 +78,7 @@
 
 .title {
   font-family: nunito;
-  padding: 20px; 
+  padding: 20px;
   font-size: 30px;
   margin-left: 50px;
 }
