@@ -6,8 +6,8 @@ const CategoryApi = {
       method: 'GET',
       url: `/categories?page=${page}`,
       params: {
-        ...params
-      }
+        ...params,
+      },
     };
 
     return API.request(options);
@@ -18,8 +18,8 @@ const CategoryApi = {
       method: 'GET',
       url: `/categories/${categoryId}`,
       params: {
-        ...params
-      }
+        ...params,
+      },
     };
 
     return API.request(options);
@@ -31,7 +31,7 @@ const CategoryApi = {
 
   delete: () => {},
 
-  restore: () => {}
+  restore: () => {},
 };
 
 export default CategoryApi;
