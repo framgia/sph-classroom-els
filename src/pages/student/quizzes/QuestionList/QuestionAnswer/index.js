@@ -74,18 +74,20 @@ const QuestionAnswer = () => {
       text_correct: null,
       time_left: remainingTime
     }).then(() => {
-      // window.location = `/categories/${categoryId}/quizzes/${quizId}/results`;
       setShowResult(!showResult);
     });
   };
 
   useEffect(() => {
-    const timer = window.setTimeout(() => {
-      setTime(time - 1);
-    }, 1000);
+    if (time != 0) {
+      const timer = window.setTimeout(() => {
+        setTime(time - 1);
+      }, 1000);
+
+      setTimeOutId(timer);
+    }
 
     setRemainingTime(time);
-    setTimeOutId(timer);
 
     if (time === 0) {
       window.clearTimeout(timeOutId);
