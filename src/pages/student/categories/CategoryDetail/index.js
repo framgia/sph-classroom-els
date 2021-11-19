@@ -14,7 +14,7 @@ function Subcategories() {
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
   const history = useHistory();
-
+  console.log(pageNum);
   const [page, setPage] = useState(pageNum ? pageNum : 1);
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
@@ -67,7 +67,7 @@ function Subcategories() {
 
       {categories === null ? (
         <div className={style.loading}>
-          <Spinner animation='border' role='status'></Spinner>
+          <Spinner animation="border" role="status"></Spinner>
           <span className={style.loadingWord}>Loading</span>
         </div>
       ) : (
@@ -79,7 +79,7 @@ function Subcategories() {
           <p className={style.message}>NO RESULTS FOUND</p>
         </div>
       ) : (
-        <div className='pt-4'>
+        <div className="pt-4">
           <Pagination
             page={page}
             perPage={perPage}
