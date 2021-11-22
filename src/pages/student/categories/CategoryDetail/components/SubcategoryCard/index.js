@@ -22,8 +22,8 @@ const SubcategoryCard = ({ category }) => {
         >
           <div id={style.Subtitle}>
             {category?.subcategories_count
-                ? `View Available SubCategories: ${category?.subcategories_count}`
-                : 'Check Available Quizzes'}
+              ? `View Available SubCategories: ${category?.subcategories_count}`
+              : 'Check Available Quizzes'}
           </div>
         </Link>
       </Card.Body>
