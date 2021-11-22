@@ -181,7 +181,12 @@ const QuestionAnswer = () => {
           <br />
         </div>
       ) : (
-        <QuizResult score={score} total={questions.length} />
+        <QuizResult
+          score={score}
+          total={questions.length}
+          categoryId={categoryId}
+          quizId={quizId}
+        />
       )}
     </div>
   );

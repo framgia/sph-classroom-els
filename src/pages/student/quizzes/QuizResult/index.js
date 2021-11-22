@@ -11,7 +11,7 @@ import QuizAnswerResult from './QuizAnswerResult';
 import { QuestionsContext } from '../QuestionList';
 import AnswerApi from '../../../../api/Answer';
 
-const QuizResult = ({ score, total }) => {
+const QuizResult = ({ score, total, quizId, categoryId }) => {
   const [viewResults, setViewResults] = useState(false);
   const { quizTakenId } = useContext(QuestionsContext);
   const [answers, setAnswers] = useState(null);
@@ -116,9 +116,11 @@ const QuizResult = ({ score, total }) => {
               <p className={style.ResultnumItems}>
                 {total} out of {total}
               </p>
-              <Button variant='success' className={style.ResultretakeBtn}>
-                Retake Quiz
-              </Button>
+              <a href={`/categories/${categoryId}/quizzes/${quizId}/questions`}>
+                <Button variant='success' className={style.ResultretakeBtn}>
+                  Retake Quiz
+                </Button>
+              </a>
             </div>
           </Card.Body>
 
@@ -187,6 +189,8 @@ const QuizResult = ({ score, total }) => {
 
 QuizResult.propTypes = {
   score: PropTypes.number,
-  total: PropTypes.number
+  total: PropTypes.number,
+  quizId: PropTypes.number,
+  categoryId: PropTypes.number
 };
 export default QuizResult;
