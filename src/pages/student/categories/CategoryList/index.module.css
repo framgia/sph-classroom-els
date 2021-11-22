@@ -1,39 +1,4 @@
-.navbar {
-  background-color: #002037;
-  color: #e2dec0;
-}
-
-#title {
-  background-image: linear-gradient(90deg, #c4b230, #375218);
-  background-size: 100%;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-  font-weight: bold;
-  font-size: 54px;
-}
-
-#Nav {
-  margin-top: 20px;
-  margin-right: 25px;
-  font-size: 26px;
-  color: #e2dec0;
-  padding: 8px;
-}
-
-#navbarScrollingDropdown {
-  margin-left: 0.5rem;
-  font-size: 26px;
-  color: #e2dec0;
-}
-
-.p-icon {
-  width: 80px;
-  border-radius: 100px;
-  background-color: #e2dec0;
-  padding: 8px;
-}
-
-.dropdown-menu {
+.dropdown-menu { 
   background-color: #002037;
   padding: 0.5rem;
   left: 34% !important;
@@ -49,22 +14,25 @@
 .cardList {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 #cardHeader {
-  background: #4b847c9f;
-  border-radius: 10px 10px 0px 0px;
-  color: white;
-  height: 40px;
+  background-color: #E0EAEC;
+  border-radius: 2px;
+  width: 340.5px;
+  height: 167px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 1;
+  padding: 15px;
+  font-size: 18px;
 }
 
 .card {
-  margin: 20px;
-  height: 300px;
-  width: 400px;
-  border-radius: 10px;
-  font-family: nunito;
+  margin-bottom: 33px;
+  height: 217px;
+  width: 343px;
 }
 
 .cardContent {
@@ -77,10 +45,10 @@
 }
 
 .title {
-  font-family: nunito;
-  padding: 20px;
-  font-size: 30px;
-  margin-left: 50px;
+  padding: 33px 0px; 
+  font-weight: 500;
+  font-size: 24px;
+  margin: 0px;
 }
 
 .loading {
@@ -107,4 +75,56 @@
 .message {
   margin-left: 20px;
   font-size: 24px;
+}
+
+#TitleIcon{
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+.cardTitle{
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.cardSubtitle {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 16px;
+}
+
+#Subtitle{
+  font-size: 12px;
+  font-weight: 500;
+  color: #5D9098;
+}
+
+#btcolor{
+  color: #48535B;
+}
+
+#paginaPrevNext{
+  margin-right: 5px;
+  width: 80px;
+  height: 32px;
+  text-align: center;
+  color: #48535B;
+}
+
+#paginateNum{
+  width: 40px;
+  height: 34px;
+  text-align: center;
+  margin-right: 5px;
+  border-radius: 2px;
+  color: #48535B;
+}
+
+#Subtitle{
+  font-size: 12px;
+  font-weight: 500;
+  margin: 14px 60px 13px 15px;
+  color: #5D9098;
 }

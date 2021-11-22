@@ -3,6 +3,8 @@ import { useParams, useHistory } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
 import style from './index.module.css';
 import Pagination from '../../../../components/Pagination';
+import { LinkContainer } from 'react-router-bootstrap';
+import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 
 import CategoryApi from '../../../../api/Category';
 import SubcategoryCard from './components/SubcategoryCard';
@@ -46,10 +48,15 @@ function Subcategories() {
   };
 
   return (
-    <div>
+    <div style={{padding: '0px 196px', color:'#48535B'}}>
       <div className={style.subTile}>
         <div>
-          <p className={style.title}>{category?.name}</p>
+         <p className={style.title}>
+            <LinkContainer to="/categories" >
+              <BsFillArrowLeftSquareFill size='50' id={style.BckIcon}/>
+            </LinkContainer>
+            Web Development
+          </p>
         </div>
         <div id={style.quizlink}>
           {category?.quizzes_count ? (
@@ -71,7 +78,9 @@ function Subcategories() {
           <span className={style.loadingWord}>Loading</span>
         </div>
       ) : (
-        <div className={style.cardList}>{renderCatList()}</div>
+          <div className={style.cardList}>
+            {renderCatList()}
+          </div>
       )}
 
       {categories?.length <= 0 ? (
