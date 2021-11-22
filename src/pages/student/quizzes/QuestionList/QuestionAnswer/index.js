@@ -109,8 +109,6 @@ const QuestionAnswer = () => {
     }
   };
 
-  console.log(textAnswer);
-
   const getPoint = (point) => {
     setPoint(point);
   };

@@ -10,7 +10,13 @@ import { PropTypes } from 'prop-types';
 
 import { QuestionsContext } from '../../QuestionList';
 
-const QuizAnswerResult = ({ viewResultsPage, answers, score, total }) => {
+const QuizAnswerResult = ({
+  viewResultsPage,
+  answers,
+  score,
+  total,
+  categoryId
+}) => {
   const [page, setPage] = useState(1);
   const { questions, title } = useContext(QuestionsContext);
   const [question, setQuestion] = useState(questions[page - 1]);
@@ -83,13 +89,21 @@ const QuizAnswerResult = ({ viewResultsPage, answers, score, total }) => {
                 ) : (
                   ''
                 )}
-                <Button
-                  variant='success'
-                  className={style.nextBtn}
-                  onClick={handleNextButtonClick}
-                >
-                  Next
-                </Button>
+                {page === questions?.length ? (
+                  <a href={`/categories/${categoryId}/quizzes`}>
+                    <Button variant='success' className={style.backButton}>
+                      Back to Quizzes
+                    </Button>
+                  </a>
+                ) : (
+                  <Button
+                    variant='success'
+                    className={style.nextBtn}
+                    onClick={handleNextButtonClick}
+                  >
+                    Next
+                  </Button>
+                )}
               </div>
             </div>
           </Card.Body>
@@ -104,7 +118,8 @@ QuizAnswerResult.propTypes = {
   viewResultsPage: PropTypes.any,
   answers: PropTypes.object,
   score: PropTypes.number,
-  total: PropTypes.number
+  total: PropTypes.number,
+  categoryId: PropTypes.number
 };
 
 export default QuizAnswerResult;

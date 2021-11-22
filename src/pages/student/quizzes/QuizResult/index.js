@@ -179,6 +179,8 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
           answers={answers}
           score={score}
           total={total}
+          quizId={quizId}
+          categoryId={categoryId}
         />
       ) : (
         ''
