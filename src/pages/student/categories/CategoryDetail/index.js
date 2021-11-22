@@ -51,7 +51,7 @@ function Subcategories() {
     <div style={{padding: '0px 196px', color:'#48535B'}}>
       <div className={style.subTile}>
         <div>
-         <p className={style.title}>
+          <p className={style.title}>
             <LinkContainer to="/categories" >
               <BsFillArrowLeftSquareFill size='50' id={style.BckIcon}/>
             </LinkContainer>
@@ -78,9 +78,9 @@ function Subcategories() {
           <span className={style.loadingWord}>Loading</span>
         </div>
       ) : (
-          <div className={style.cardList}>
-            {renderCatList()}
-          </div>
+        <div className={style.cardList}>
+          {renderCatList()}
+        </div>
       )}
 
       {categories?.length <= 0 ? (

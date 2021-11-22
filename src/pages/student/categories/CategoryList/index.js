@@ -38,30 +38,30 @@ function CategoryList() {
       return (
         <Card className={style.card} key={idx}>
           <Card.Header id={style.cardHeader}>
-          <p className={style.cardTitle}>{category.name}</p>
+            <p className={style.cardTitle}>{category.name}</p>
             <p className={style.cardSubtitle}>{category.description}</p>
           </Card.Header>
           <Card.Body>
             {category.subcategories_count ? (
               <Link to={`/categories/${category.id}/sub`}>
                 <div>
-                    {' '}
-                    <Card.Title >
-                      <a id={style.Subtitle}>
+                  {' '}
+                  <Card.Title >
+                    <a id={style.Subtitle}>
                         View Available Subcategories: 5
-                      </a>
-                    </Card.Title>{' '}
+                    </a>
+                  </Card.Title>{' '}
                 </div>
               </Link>
             ) : (
               <Link to={`/categories/${category.id}/quizzes`}>
                 <div>
-                    {' '}
-                    <Card.Title>
-                     <a id={style.Subtitle}>
+                  {' '}
+                  <Card.Title>
+                    <a id={style.Subtitle}>
                         View Available Subcategories: 6
-                      </a>
-                    </Card.Title>{' '}
+                    </a>
+                  </Card.Title>{' '}
                 </div>
               </Link>
             )}
