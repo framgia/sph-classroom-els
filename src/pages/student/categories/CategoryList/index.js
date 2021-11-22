@@ -37,28 +37,31 @@ function CategoryList() {
     return categories.map((category, idx) => {
       return (
         <Card className={style.card} key={idx}>
-          <Card.Header id={style.cardHeader}></Card.Header>
+          <Card.Header id={style.cardHeader}>
+            <p className={style.cardTitle}>{category.name}</p>
+            <p className={style.cardSubtitle}>{category.description}</p>
+          </Card.Header>
           <Card.Body>
             {category.subcategories_count ? (
               <Link to={`/categories/${category.id}/sub`}>
-                <div className={style.cardContent}>
-                  <center>
-                    {' '}
-                    <Card.Title className={style.cardTitle}>
-                      {category.name}
-                    </Card.Title>{' '}
-                  </center>
+                <div>
+                  {' '}
+                  <Card.Title >
+                    <p id={style.Subtitle}>
+                      View Available SubCategories: {category.subcategories_count}
+                    </p>
+                  </Card.Title>{' '}
                 </div>
               </Link>
             ) : (
               <Link to={`/categories/${category.id}/quizzes`}>
-                <div className={style.cardContent}>
-                  <center>
-                    {' '}
-                    <Card.Title className={style.cardTitle}>
-                      {category.name}
-                    </Card.Title>{' '}
-                  </center>
+                <div>
+                  {' '}
+                  <Card.Title>
+                    <p id={style.Subtitle}>
+                        Check Available Quizzes
+                    </p>
+                  </Card.Title>{' '}
                 </div>
               </Link>
             )}
@@ -67,9 +70,9 @@ function CategoryList() {
       );
     });
   };
-
+  
   return (
-    <div>
+    <div style={{padding: '0px 196px', color:'#48535B'}}>
       <p className={style.title}>Categories</p>
       {categories === null ? (
         <div className={style.loading}>
@@ -77,7 +80,9 @@ function CategoryList() {
           <span className={style.loadingWord}>Loading</span>
         </div>
       ) : (
-        <div className={style.cardList}>{renderCatList()}</div>
+        <div className={style.cardList}>
+          {renderCatList()}
+        </div>
       )}
 
       {categories?.length <= 0 ? (

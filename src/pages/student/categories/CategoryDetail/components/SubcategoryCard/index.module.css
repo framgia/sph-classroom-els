@@ -1,34 +1,35 @@
-.forSeccolum {
-  padding: 10px 0px;
-  text-align: right;
-  margin-top: 30px;
-  font-size: 24px;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-#listTable {
-  margin-top: 30px;
-  font-size: 24px;
-}
 #cardHeader {
-  background: #4b847c9f;
-  border-radius: 10px 10px 0px 0px;
-  font-size: 20px;
-  height: 40px;
-  font-weight: 600;
+    background-color: #E0EAEC;
+    width: 340.5px;
+    height: 167px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    position: relative;
+    z-index: 1;
+    padding: 15px;
+    font-size: 18px;
 }
+
 .card {
-  margin: 20px;
-  height: 300px;
-  width: 400px;
-  border-radius: 10px;
-  font-family: nunito;
+    margin-bottom: 33px;
+    height: 217px;
+    width: 343px;
 }
-.cardContent {
-  border-radius: 10px;
-  padding: 12px;
-  margin-top: 18px;
-  color: black;
+
+.cardTitle{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21px;
 }
-.cardTitle {
-  color: black;
+
+.cardSubtitle{
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 16px;
+    text-align: justify;
+}
+
+#Subtitle{
+    font-size: 12px;
+    font-weight: 500;
+    color: #5D9098;
 }
