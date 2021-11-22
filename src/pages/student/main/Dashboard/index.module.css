@@ -1,116 +1,13 @@
 .bg{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 33px;
 }
 .bg2{
     display: flex;
     justify-content: space-between;
-    margin-top: 33px;
 }
-.forContainerBar{
-    background-color: #E0EAEC;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 2px 2px 0px 0px;
-    width: 340.5px;
-    height: 40px;
-    color: #48535B;
-}
-.forContainerBar2{
-    position: relative;
-    z-index: 1;
-    background-color: #E0EAEC;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 2px 2px 0px 0px;
-    width: 732.5px;
-    height: 40px;
-    color: #48535B;
-}
-.forContent_boxs{
-    position: relative;
-    background-color: #FFFFFF;
-    border: 1px solid #E4E4E4;
-    box-sizing: border-box;
-    border-radius: 0px 0px 2px 5px;
-    width: 340.5px;
-    height: 179px;
-    padding: 17px 25px 25px 17px;
-    text-align: center;
-    z-index: -1;
-}
-.forContent_box{
-    height: 400px;
-    width: 732.5px;
-    padding: 17px;
-    background-color: #FFFFFF;
-    border: 1px solid #E4E4E4;
-    box-sizing: border-box;
-    border-radius: 0px 0px 2px 5px;
-}
-.retake{
-    font-size: 16px;
-    font-weight: 600;
-    margin-left: 201px;
-    color: #5D9098;
-}
-.titleText{
-    display: inline-block;
-    font-weight: 500;
-    font-size: 18px;
-    padding: 8px 2px 0px 15px;
-}
-.btnVeiw{
-    margin-left: 456px;
-    border: none;
-    width: 80px;
-    height: 32px;
-    border-radius: 2px;
-    background-color: #C0D5D8;
-    font-size: 14px;
-    line-height: 16px;
-}
-.forTexts{
-    padding-top: 30px;
-    font-size: 30px;
-}
-.forScroll{
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-.forSeccolum{
-    padding: 10px;
-    color: #48535B;
-    font-weight: 300;
-    font-size: 16px;
-    text-align: right;
-}
+
 .h2_style{
     padding: 33px 0px 33px 0px;
-    margin-bottom: 0px;
-    color: #48535B;
-    font-weight: 600;
-    font-size: 25px;
-}
-.forSeccolum2{
-    padding: 10px 0px;
-    text-align: right;
-    margin-top: 30px;
-    font-weight: 600;
-    font-size: 16px;
-}
-.listTable{
-    text-align: left;
-    color: #48535B;
-    font-weight: 300;
-    font-size: 16px;
-}
-#listTable{
-    color: #48535B;
-    font-weight: 600;
-    font-size: 16px;
-    text-align: left;
-}
-.tableIcon{
-    margin: 0px 17px 5px 0px;
-    width: 20px;
-    height: 20px;
 }

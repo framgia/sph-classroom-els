@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import { Container } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
 import style from './index.module.css';
 
 const AuthNavigationBar = () => {
