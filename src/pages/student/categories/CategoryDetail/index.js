@@ -16,7 +16,6 @@ function Subcategories() {
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
   const history = useHistory();
-  console.log(pageNum);
   const [page, setPage] = useState(pageNum ? pageNum : 1);
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
@@ -30,7 +29,6 @@ function Subcategories() {
         setPerPage(data.per_page);
         setTotalItems(data.total);
         setLastPage(data.last_page);
-        console.log(data);
       });
     });
   }, [categoryId, page]);

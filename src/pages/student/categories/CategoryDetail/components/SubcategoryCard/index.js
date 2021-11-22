@@ -20,10 +20,10 @@ const SubcategoryCard = ({ category }) => {
               : `/categories/${category.id}/quizzes`
           }
         >
-          <div>
-            <a id={style.Subtitle}>
-              View Available Subcategories: 8
-            </a>
+          <div id={style.Subtitle}>
+            {category?.subcategories_count
+                ? `View Available SubCategories: ${category?.subcategories_count}`
+                : 'Check Available Quizzes'}
           </div>
         </Link>
       </Card.Body>

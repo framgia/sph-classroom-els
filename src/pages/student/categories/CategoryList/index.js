@@ -47,9 +47,9 @@ function CategoryList() {
                 <div>
                   {' '}
                   <Card.Title >
-                    <a id={style.Subtitle}>
-                        View Available Subcategories: 5
-                    </a>
+                    <p id={style.Subtitle}>
+                        Check Available Quizzes: {category.subcategories_count}
+                    </p>
                   </Card.Title>{' '}
                 </div>
               </Link>
@@ -58,9 +58,9 @@ function CategoryList() {
                 <div>
                   {' '}
                   <Card.Title>
-                    <a id={style.Subtitle}>
-                        View Available Subcategories: 6
-                    </a>
+                    <p id={style.Subtitle}>
+                        Check Available Quizzes: {category.subcategories_count}
+                    </p>
                   </Card.Title>{' '}
                 </div>
               </Link>
