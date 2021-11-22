@@ -139,22 +139,22 @@ const QuestionAnswer = () => {
             <Card.Body className={style.wholeBodyCard}>
               {question &&
               question.question_type.question_type === 'Multiple Choice' ? (
-                <MultipleChoiceType
-                  question={question}
-                  page={page}
-                  time={time}
-                  getAnswer={getAnswer}
-                  getPoint={getPoint}
-                ></MultipleChoiceType>
-              ) : (
-                <FillInTheBlankType
-                  question={question}
-                  page={page}
-                  time={time}
-                  getAnswer={getAnswer}
-                  getPoint={getPoint}
-                ></FillInTheBlankType>
-              )}
+                  <MultipleChoiceType
+                    question={question}
+                    page={page}
+                    time={time}
+                    getAnswer={getAnswer}
+                    getPoint={getPoint}
+                  ></MultipleChoiceType>
+                ) : (
+                  <FillInTheBlankType
+                    question={question}
+                    page={page}
+                    time={time}
+                    getAnswer={getAnswer}
+                    getPoint={getPoint}
+                  ></FillInTheBlankType>
+                )}
               <hr className={style.spacing} />
               <div className={style.bottomBodyCard}>
                 <p className={style.numItems}>
