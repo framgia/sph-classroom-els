@@ -170,9 +170,7 @@ const QuestionAnswer = () => {
                   </Button>
                 ) : (
                   <Button id={style.nextBtn} onClick={handleNextButtonClick}>
-                    <a href='#answer' className={style.buttontext}>
-                      Next
-                    </a>
+                    <a className={style.buttontext}>Next</a>
                   </Button>
                 )}
               </div>
@@ -181,7 +179,12 @@ const QuestionAnswer = () => {
           <br />
         </div>
       ) : (
-        <QuizResult score={score} total={questions.length} />
+        <QuizResult
+          score={score}
+          total={questions.length}
+          categoryId={categoryId}
+          quizId={quizId}
+        />
       )}
     </div>
   );

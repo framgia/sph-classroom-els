@@ -11,10 +11,10 @@ import CategoryApi from '../../../../api/Category';
 
 const QuizList = () => {
   const categoryId = useParams().id;
-  const queryParams = new URLSearchParams(window.location.search); 
+  const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
   const history = useHistory();
-  
+
   const [page, setPage] = useState(pageNum ? pageNum : 1);
   const [quizzes, setQuizzes] = useState(null);
   const [perPage, setPerPage] = useState(0);
@@ -30,57 +30,70 @@ const QuizList = () => {
         setPerPage(data.per_page);
         setTotalItems(data.total);
         setLastPage(data.last_page);
-      }).catch(error => {
+      })
+      .catch((error) => {
         console.log(error);
       });
 
-    CategoryApi.show({categoryId}).then(({data}) => {
+    CategoryApi.show({ categoryId }).then(({ data }) => {
       setCategory(data.data);
     });
   }, [page]);
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
-  
+
     history.push(`/categories/${categoryId}/quizzes?page=${selected + 1}`);
   };
 
   return (
     <Container className={style.container}>
-      <Button className={style.backButton} href='/categories'>Back</Button>
+      <Button className={style.backButton} href='/categories'>
+        Back
+      </Button>
       <p className={style.title}>{category?.name}</p>
-      {quizzes === null ? <div className={style.loading}>
-        <Spinner animation="border" role="status"></Spinner>
-        <span className={style.loadingWord}>Loading</span>
-      </div>
-        : ''}
+      {quizzes === null ? (
+        <div className={style.loading}>
+          <Spinner animation='border' role='status'></Spinner>
+          <span className={style.loadingWord}>Loading</span>
+        </div>
+      ) : (
+        ''
+      )}
       <Row xs={1} sm={2} md={3} lg={3}>
-        {quizzes && quizzes.map((quiz, index) => {
-          if (index + 1 > perPage) {
-            return;
-          } else {
-            return (
-              <Col key={index}>
-                <QuestionGrid quiz={quiz}></QuestionGrid>
-              </Col>
-            );
-          }
-        })}
+        {quizzes &&
+          quizzes.map((quiz, index) => {
+            if (index + 1 > perPage) {
+              return;
+            } else {
+              return (
+                <Col key={index}>
+                  <a
+                    href={`/categories/${categoryId}/quizzes/${quiz.id}/questions`}
+                  >
+                    <QuestionGrid quiz={quiz}></QuestionGrid>
+                  </a>
+                </Col>
+              );
+            }
+          })}
       </Row>
 
-      {quizzes?.length <= 0 ? 
+      {quizzes?.length <= 0 ? (
         <div className={style.noResultsMessage}>
           <p className={style.message}>NO RESULTS FOUND</p>
-        </div> : 
-        <div className="pt-4">
+        </div>
+      ) : (
+        <div className='pt-4'>
           <Pagination
-            page = {page}
-            perPage = {perPage}
-            totalItems = {totalItems}
-            pageCount = {lastPage}
-            onPageChange = {onPageChange}
+            page={page}
+            perPage={perPage}
+            totalItems={totalItems}
+            pageCount={lastPage}
+            onPageChange={onPageChange}
           ></Pagination>
-        </div>}
+        </div>
+      )}
     </Container>
   );
 };

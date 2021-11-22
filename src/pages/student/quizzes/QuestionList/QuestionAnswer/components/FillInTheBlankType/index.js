@@ -24,13 +24,15 @@ const FillInTheBlankType = ({ question, page, getAnswer, getPoint }) => {
           type='text'
           name='answer'
           onChange={(e) => {
-            if (e.target.value === question.text_answer) {
-              setPoint(1);
-            } else {
-              setPoint(0);
+            if (e.nativeEvent.data != ' ') {
+              if (e.target.value === question.text_answer) {
+                setPoint(1);
+              } else {
+                setPoint(0);
+              }
             }
 
-            getAnswer(e.target.value, point);
+            getAnswer(e.target.value);
           }}
         />
       </div>

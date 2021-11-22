@@ -2,7 +2,6 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import { PropTypes } from 'prop-types';
 
-
 import style from './index.module.css';
 
 const QuestionGrid = ({ quiz }) => {
@@ -24,7 +23,8 @@ const QuestionGrid = ({ quiz }) => {
 
   return (
     <Card
-      className={`${style.card
+      className={`${
+        style.card
       } ${passOrFailStyle()} d-flex justify-content-center`}
       onClick={handleCardClick}
       style={{ cursor: 'pointer' }}
@@ -54,7 +54,6 @@ const QuestionGrid = ({ quiz }) => {
 };
 
 QuestionGrid.propTypes = {
-
   quiz: PropTypes.object
 };
 
