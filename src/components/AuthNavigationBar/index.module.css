@@ -1,15 +1,21 @@
 #navbar {
   background-color: #002037;
-  color: #e2dec0;
+  height: 80px;
 }
 
 #title {
-  background-image: linear-gradient(90deg, #c4b230, #375218);
+  background: linear-gradient(184.52deg, #FFFFFF 3.66%,
+rgba(198, 236, 234, 0.552072) 84.58%, 
+rgba(128, 214, 208, 0) 170.68%, 
+rgba(70, 206, 198, 0.266022) 170.7%);
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
-  font-weight: bold;
+  padding: 0px;
+  margin: 17px 0px 18px 50px;
+  font-weight: 600;
   font-size: 40px;
+  line-height: 47px;
 }

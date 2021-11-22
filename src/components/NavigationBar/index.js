@@ -27,7 +27,7 @@ const NavigationBar = () => {
       <Container fluid>
         <LinkContainer to="/">
           <Navbar.Brand href="#" className={style.title}>
-            E-Learning
+            E-LEARNING
           </Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

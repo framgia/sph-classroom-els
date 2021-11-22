@@ -7,7 +7,7 @@ const AuthNavigationBar = () => {
   return (
     <Navbar id={style.navbar} expand="lg">
       <Container fluid>
-        <Navbar.Brand id={style.title}>E-Learning</Navbar.Brand>
+        <Navbar.Brand id={style.title}>E-LEARNING</Navbar.Brand>
       </Container>
     </Navbar>
   );

@@ -1,79 +1,13 @@
 .bg{
-    padding: 0px 100px;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 33px;
 }
 .bg2{
-    padding: 0px 100px;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    margin-top: 30px;
 }
-.forContainerBar{
-    background-color:#4b847c9f;
-    width: 30em;
-    height: 59px;
-    border-radius: 10px 10px 0px 0px;
-    color: white;
-}
-.forContainerBar2{
-    background-color:#4b847c9f;
-    width: 50em;
-    height: 59px;
-    border-radius: 10px 10px 0px 0px;
-    color: white;
-}
-.forContent_boxs{
-    background-color:rgba(255, 255, 255, 0.767);
-    width: 30em;
-    height: 290px;
-    padding-top: 50px;
-    border-radius: 0px 0px 10px 10px;
-    text-align: center;
-}
-.forContent_box{
-    background-color:rgba(255, 255, 255, 0.774);
-    width: 50em;
-    height: 23em;
-    border-radius: 0px 0px 10px 10px;
-    padding: 20px;
-}
-.titleText{
-    display: inline-block;
-    padding: 15px 8px 0px 10px;
-}
-.btnVeiw{
-    margin-left: 442px;
-    margin-top: 13px;
-    border: none;
-    border-radius: 5px;
-    background-color: #218376b4;
-    color: white;
-    padding: 6px 30px 6px 30px;
 
-}
-.box_small{
-    background-color: #1b326650;
-    border-radius: 10px;
-    width: 26em;
-    height: 10em;
-    margin: auto;
-    padding: 10px;
-}
-.forTexts{
-    padding-top: 30px;
-    font-size: 30px;
-}
-.forScroll{
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-.forSeccolum{
-    padding: 10px;
-    text-align: right;
-}
 .h2_style{
-    padding: 30px 0px 10px 30px;
+    padding: 33px 0px 33px 0px;
 }
