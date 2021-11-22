@@ -19,14 +19,18 @@ const FillInTheBlankType = ({ question, answer }) => {
         {answer.text_answer != question.text_answer ? (
           <p>
             Correct Answer:
-            <span> {question.text_answer}</span>
+            <span>{question.text_answer}</span>
           </p>
         ) : (
           ''
         )}
         <Card className={style.cardbody1}>
           <label>
-            <span className={style.spanForAnswer}>{answer.text_answer}</span>
+            <span className={style.spanForAnswer}>
+              {answer.text_answer
+                ? answer.text_answer
+                : 'You did not provide an answer.'}
+            </span>
             {answer.text_answer === question.text_answer ? (
               <img
                 className={style.sizeOfAvatarInResult}

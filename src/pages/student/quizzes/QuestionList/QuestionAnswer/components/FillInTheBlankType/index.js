@@ -30,7 +30,7 @@ const FillInTheBlankType = ({ question, page, getAnswer, getPoint }) => {
               setPoint(0);
             }
 
-            getAnswer(e.target.value, point);
+            getAnswer(e.target.value);
           }}
         />
       </div>

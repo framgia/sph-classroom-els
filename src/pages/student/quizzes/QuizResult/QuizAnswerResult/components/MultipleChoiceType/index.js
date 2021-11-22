@@ -5,8 +5,8 @@ import { PropTypes } from 'prop-types';
 
 const MultipleChoiceType = ({ question, answer }) => {
   const correctAnswer = (item) => {
-    if (item.choice === answer.choice.choice) {
-      if (item.is_correct) {
+    if (item?.choice === answer?.choice?.choice) {
+      if (item?.is_correct) {
         return (
           <img
             className={style.sizeOfAvatarInResult}
@@ -25,7 +25,7 @@ const MultipleChoiceType = ({ question, answer }) => {
       );
     }
 
-    if (item.is_correct) {
+    if (item?.is_correct) {
       return (
         <img
           className={style.sizeOfAvatarInResult}
@@ -51,14 +51,16 @@ const MultipleChoiceType = ({ question, answer }) => {
               <input
                 type='radio'
                 name='option1'
-                checked={choice.choice === answer.choice.choice}
+                checked={choice?.choice === answer?.choice?.choice}
                 disabled
               />
-              <span className={style.spanForAnswer}>{choice.choice}</span>
+              <span className={style.spanForAnswer}>{choice?.choice}</span>
               {correctAnswer(choice)}
             </label>
           </Card>
         ))}
+        <br />
+        {answer?.choice?.choice ? '' : 'You did not choose an answer'}
       </div>
     </Fragment>
   );
