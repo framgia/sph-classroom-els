@@ -70,21 +70,7 @@ function CategoryList() {
       );
     });
   };
-  const renderPaginate = () => {
-    return (
-      <nav aria-label="Page navigation example" style={{alignItems:'center'}}>
-        <div style={{display:'inline-block',marginRight:'10px'}}>1 - 12 of 24</div>
-        <ul className="pagination" style={{display:'inline-flex'}}>
-          <li className="page-item" id={style.paginaPrevNext}><a className="page-link" id={style.btcolor} href="#">Prev</a></li>
-          <li className="page-item" id={style.paginateNum}><a className="page-link" id={style.btcolor} href="#">1</a></li>
-          <li className="page-item" id={style.paginateNum}><a className="page-link" id={style.btcolor} href="#">2</a></li>
-          <li className="page-item" id={style.paginateNum}><a className="page-link" id={style.btcolor} href="#">3</a></li>
-          <li className="page-item" id={style.paginaPrevNext}><a className="page-link" id={style.btcolor} href="#">Next</a></li>
-        </ul>
-      </nav>
-    );
-  };
-
+  
   return (
     <div style={{padding: '0px 196px', color:'#48535B'}}>
       <p className={style.title}>Categories</p>
@@ -94,13 +80,8 @@ function CategoryList() {
           <span className={style.loadingWord}>Loading</span>
         </div>
       ) : (
-        <div>
-          <div className={style.cardList}>
-            {renderCatList()}
-          </div>
-          <div>
-            {renderPaginate()}
-          </div> 
+        <div className={style.cardList}>
+          {renderCatList()}
         </div>
       )}
 
