@@ -1,11 +1,10 @@
 import API from '../Base/index';
 
 const AnswerApi = {
-  getAll: ({ ...params }) => {
+  getAll: (quizTakenId) => {
     const options = {
       method: 'GET',
-      url: '/user',
-      params: { ...params }
+      url: `/quizzes-taken/${quizTakenId}/answers`
     };
 
     return API.request(options);
