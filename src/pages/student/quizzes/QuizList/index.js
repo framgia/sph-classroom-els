@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { Container, Row, Col, Button, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import Pagination from '../../../../components/Pagination';
+import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 
 import QuestionGrid from './components/QuestionGrid';
 import style from './index.module.css';
@@ -48,10 +49,10 @@ const QuizList = () => {
 
   return (
     <Container className={style.container}>
-      <Button className={style.backButton} href='/categories'>
-        Back
-      </Button>
-      <p className={style.title}>{category?.name}</p>
+      <a href='/categories'>
+        <BsFillArrowLeftSquareFill className={style.backarrow} />
+        <p className={style.title}>{category?.name}</p>
+      </a>
       {quizzes === null ? (
         <div className={style.loading}>
           <Spinner animation='border' role='status'></Spinner>

@@ -13,7 +13,7 @@ import AnswerApi from '../../../../api/Answer';
 
 const QuizResult = ({ score, total, quizId, categoryId }) => {
   const [viewResults, setViewResults] = useState(false);
-  const { quizTakenId } = useContext(QuestionsContext);
+  const { quizTakenId,title } = useContext(QuestionsContext);
   const [answers, setAnswers] = useState(null);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
         <Container>
           <div className={style.Resulttopic}>
             <p className={style.Resultparagraph}>
-              <b>Topic:</b> Web Development
+              <b>Topic:</b> {title}
             </p>
             <Badge bg='light' className={style.Resulttml}>
               <div>

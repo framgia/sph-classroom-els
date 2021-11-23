@@ -1,28 +1,35 @@
 .card {
-  border-radius: 10px;
-  margin: 7px 0px;
-  height: 166px;
+  color: #48535B;
+  background-color:#E0EAEC;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  filter: drop-shadow(0 1mm 1mm #48535b8c);
+  margin-bottom: 4px;
+  padding: 10px 25px;
 }
+.card02 {
+  /* width: 385px; */
+  color: #48535B;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  height: 140px;
+  padding-bottom: 0px;
 
-.card:hover {
-  background-color: #789e98;
-  color: white;
 }
 
 .cardTitle {
-  font-size: 30px;
-  font-weight: 300;
-  color: black;
+  display: flex;
+  justify-content: space-between;
 }
 
-.card.pass {
+/* .card.pass {
   background-color: #c6f3bf;
 }
 
 .card.pass:hover {
   background-color: #789e98;
   color: white;
-}
+} */
 
 .card.fail {
   background-color: #fad3d3;
@@ -33,16 +40,12 @@
   color: white;
 }
 
-.cardScore {
-  font-size: 36px;
+/* .cardScore {
+  font-size: 16px;
   font-weight: 300;
-}
+} */
 
-.iconClockwise {
-  font-size: 25px;
-}
-
-.image {
+/* .image {
   margin-right: 10px;
 }
 
@@ -50,10 +53,47 @@
   width: 35px;
   height: 35px;
   background-color: black;
-}
+} */
 
 .repeatDiv {
   display: flex;
   justify-content: flex-end;
-  padding-right: 10px;
+  padding-right: 25px;
+  color: #5D9098;
+  margin-bottom: 9px;
+  font-weight: bold;
+  width: 385px;
+  margin-top: 0px;
+  font-size: 16px;
+}
+
+
+
+.ResultscoreCardText {
+  padding: 10px 10px 0px 10px;
+  margin-bottom: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  width: 385px;
+}
+
+.ResultScore {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0px;
+  font-size: 16px;
+  font-weight: 300;
+  /* width: 255px; */
+}
+
+/* 
+// <Card.Text
+//   className={`${style.cardScore} d-flex justify-content-center`}
+// >
+  {{`${quiz.correctAnswers}/${quiz.totalQuestions}`}}
+{</Card.Text>} */
+
+
+.carddiv{
+  width: 385px;
 }
