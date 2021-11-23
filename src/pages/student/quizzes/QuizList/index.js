@@ -67,7 +67,7 @@ const QuizList = () => {
               return;
             } else {
               return (
-                <Col key={index}>
+                <Col id={style.GridCard} key={index}>
                   <a
                     href={`/categories/${categoryId}/quizzes/${quiz.id}/questions`}
                   >
