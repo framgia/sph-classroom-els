@@ -53,7 +53,7 @@ function Subcategories() {
             <LinkContainer to="/categories" >
               <BsFillArrowLeftSquareFill size='50' id={style.BckIcon}/>
             </LinkContainer>
-            Web Development
+            {category?.name}
           </p>
         </div>
         <div id={style.quizlink}>

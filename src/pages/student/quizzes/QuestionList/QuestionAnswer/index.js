@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 import Badge from 'react-bootstrap/Badge';
 import Card from 'react-bootstrap/Card';
 import style from './indexQuestion.module.css';
@@ -9,6 +8,7 @@ import MultipleChoiceType from './components/MultipleChoiceType';
 import FillInTheBlankType from './components/FillInTheBlankType';
 import QuizResult from '../../QuizResult';
 import { QuestionsContext } from '..';
+import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 
 import AnswerApi from '../../../../../api/Answer';
 import QuizTaken from '../../../../../api/QuizTaken';
@@ -50,7 +50,7 @@ const QuestionAnswer = () => {
         question_id: question.id,
         text_answer: textAnswer,
         text_correct: null,
-        time_left: remainingTime
+        time_left: remainingTime,
       });
     }
 
@@ -72,7 +72,7 @@ const QuestionAnswer = () => {
       question_id: question.id,
       text_answer: textAnswer,
       text_correct: null,
-      time_left: remainingTime
+      time_left: remainingTime,
     }).then(() => {
       setShowResult(!showResult);
     });
@@ -117,29 +117,24 @@ const QuestionAnswer = () => {
     <div>
       {showResult === false ? (
         <div>
-          <Container>
-            <Button
-              href={`/categories/${categoryId}/quizzes/${quizId}/questions`}
-              id={style.backBtn}
-            >
-              BACK
-            </Button>
-            <div className={style.Answertopic}>
-              <p className={style.paragraph}>
-                <b>Topic:</b> {title}
-              </p>
+          <Card className={style.cardstyle}>
+            <Card.Header id={style.topicbg}>
+              <a href={`/categories/${categoryId}/quizzes/${quizId}/questions`}>
+                <BsFillArrowLeftSquareFill className={style.backarrow} />
+              </a>{' '}
+              <div className={style.topic}> <center className={style.topicspan}> {title} </center></div>
+            </Card.Header>
+            <Card.Body className={style.wholeBodyCard}>
               <Badge bg='light' className={style.tml}>
                 <Card.Text className={style.time}>
-                  Time Left: <b className={style.timer}> {time} </b>
+                  <span className={style.timeleftspace}>Time Left: </span><b className={style.timer}> {time} </b>
                 </Card.Text>
               </Badge>
-            </div>
-            <Card.Body className={style.wholeBodyCard}>
               {question &&
               question.question_type.question_type === 'Multiple Choice' ? (
                   <MultipleChoiceType
                     question={question}
-                    page={page}
+                    // page={page}
                     time={time}
                     getAnswer={getAnswer}
                     getPoint={getPoint}
@@ -147,7 +142,7 @@ const QuestionAnswer = () => {
                 ) : (
                   <FillInTheBlankType
                     question={question}
-                    page={page}
+                    // page={page}
                     time={time}
                     getAnswer={getAnswer}
                     getPoint={getPoint}
@@ -175,7 +170,7 @@ const QuestionAnswer = () => {
                 )}
               </div>
             </Card.Body>
-          </Container>
+          </Card>
           <br />
         </div>
       ) : (
