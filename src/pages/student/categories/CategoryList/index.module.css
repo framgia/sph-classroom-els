@@ -1,20 +1,11 @@
-.dropdown-menu { 
-  background-color: #002037;
-  padding: 0.5rem;
-  left: 34% !important;
-  transform: translateX(-50%) !important;
-  top: 105% !important;
-}
-
-.dropdown-item {
-  font-size: 26px;
-  color: #e2dec0;
-}
-
 .cardList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-column-gap: 48px;
+  grid-row-gap: 48px;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: 216px 216px 216px;
+  height: 747px;
+  width: 1518px;
 }
 
 #cardHeader {
@@ -30,7 +21,6 @@
 }
 
 .card {
-  margin-bottom: 33px;
   height: 217px;
   width: 343px;
 }
@@ -122,9 +112,3 @@
   color: #48535B;
 }
 
-#Subtitle{
-  font-size: 12px;
-  font-weight: 500;
-  margin: 14px 60px 13px 15px;
-  color: #5D9098;
-}
