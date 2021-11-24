@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { Container, Row, Col, Spinner } from 'react-bootstrap';
+import { Row, Col, Spinner } from 'react-bootstrap';
 import Pagination from '../../../../components/Pagination';
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 
