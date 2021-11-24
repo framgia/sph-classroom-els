@@ -48,7 +48,7 @@ const QuizList = () => {
   };
 
   return (
-    <Container className={style.container}>
+    <div className={style.container}>
       <a href='/categories'>
         <BsFillArrowLeftSquareFill className={style.backarrow} />
         <p className={style.title}>{category?.name}</p>
@@ -95,7 +95,7 @@ const QuizList = () => {
           ></Pagination>
         </div>
       )}
-    </Container>
+    </div>
   );
 };
 
