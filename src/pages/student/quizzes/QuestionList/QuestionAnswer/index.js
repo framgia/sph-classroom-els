@@ -122,12 +122,16 @@ const QuestionAnswer = () => {
               <a href={`/categories/${categoryId}/quizzes/${quizId}/questions`}>
                 <BsFillArrowLeftSquareFill className={style.backarrow} />
               </a>{' '}
-              <div className={style.topic}> <center className={style.topicspan}> {title} </center></div>
+              <div className={style.topic}>
+                {' '}
+                <center className={style.topicspan}> {title} </center>
+              </div>
             </Card.Header>
             <Card.Body className={style.wholeBodyCard}>
-              <Badge bg='light' className={style.tml}>
+              <Badge bg="light" className={style.tml}>
                 <Card.Text className={style.time}>
-                  <span className={style.timeleftspace}>Time Left: </span><b className={style.timer}> {time} </b>
+                  <span className={style.timeleftspace}>Time Left: </span>
+                  <b className={style.timer}> {time} </b>
                 </Card.Text>
               </Badge>
               {question &&

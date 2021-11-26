@@ -1,22 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 import Badge from 'react-bootstrap/Badge';
 import Card from 'react-bootstrap/Card';
 import style from './indexAnswer.module.css';
 import MultipleChoiceType from './components/MultipleChoiceType';
 import FillInTheBlankType from './components/FillInTheBlankType';
 import { PropTypes } from 'prop-types';
+import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 
 import { QuestionsContext } from '../../QuestionList';
 
-const QuizAnswerResult = ({
-  viewResultsPage,
-  answers,
-  score,
-  total,
-  categoryId
-}) => {
+const QuizAnswerResult = ({ answers, score, total, categoryId }) => {
   const [page, setPage] = useState(1);
   const { questions, title } = useContext(QuestionsContext);
   const [question, setQuestion] = useState(questions[page - 1]);
@@ -42,29 +36,34 @@ const QuizAnswerResult = ({
   return (
     <div>
       <div>
-        <Container>
-          <Button
-            variant='success'
-            className={style.backBtn}
-            onClick={viewResultsPage}
-          >
-            BACK
-          </Button>
-
-          <div className={style.Answertopic}>
-            <p className={style.paragraph}>
-              <b>Topic:</b> {title}
-            </p>
-            <Badge bg='light' className={style.tml}>
-              <Card.Text className={style.score}>
+        <Card className={style.cardstyle}>
+          <Card.Header id={style.topicbg}>
+            {' '}
+            <div className={style.topic}>
+              {' '}
+              <center className={style.topicspan}>
                 {' '}
-                <span>
-                  <b>{score}</b>
+                <a href={'#'}>
+                  <BsFillArrowLeftSquareFill className={style.backarrow} />
+                </a>
+                {title}{' '}
+              </center>
+            </div>
+          </Card.Header>
+          <Badge bg="light" className={style.tml}>
+            <div>
+              <p className={style.scorebg}>Score </p>
+            </div>
+            <Card.Text className={style.score}>
+              {' '}
+              <div>
+                <span className={style.timeleftspace}>
+                  <b className={style.timer}>{score}</b>
                 </span>
                 <b>/{total}</b>{' '}
-              </Card.Text>
-            </Badge>
-          </div>
+              </div>
+            </Card.Text>
+          </Badge>
           <Card.Body className={style.wholeBodyCard}>
             {question &&
             question.question_type.question_type === 'Multiple Choice' ? (
@@ -80,8 +79,7 @@ const QuizAnswerResult = ({
               <div>
                 {page > 1 ? (
                   <Button
-                    variant='success'
-                    className={style.prevBtn}
+                    className={style.button}
                     onClick={handlePrevButtonClick}
                   >
                     Prev
@@ -91,14 +89,13 @@ const QuizAnswerResult = ({
                 )}
                 {page === questions?.length ? (
                   <a href={`/categories/${categoryId}/quizzes`}>
-                    <Button variant='success' className={style.backButton}>
-                      Back to Quizzes
+                    <Button className={style.button}>
+                      <b className={style.btnSize}>Back to Quizzes</b>
                     </Button>
                   </a>
                 ) : (
                   <Button
-                    variant='success'
-                    className={style.nextBtn}
+                    className={style.button}
                     onClick={handleNextButtonClick}
                   >
                     Next
@@ -107,7 +104,7 @@ const QuizAnswerResult = ({
               </div>
             </div>
           </Card.Body>
-        </Container>
+        </Card>
         <br />
       </div>
     </div>
@@ -119,7 +116,7 @@ QuizAnswerResult.propTypes = {
   answers: PropTypes.object,
   score: PropTypes.number,
   total: PropTypes.number,
-  categoryId: PropTypes.number
+  categoryId: PropTypes.number,
 };
 
 export default QuizAnswerResult;

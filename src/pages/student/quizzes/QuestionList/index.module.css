@@ -1,13 +1,13 @@
 .minutes {
-  color:#469457;
-  background-color: #C4C4C4;
+  color: #469457;
+  background-color: #c4c4c4;
   padding-left: 8px;
   padding-right: 8px;
 }
 
 .hbreakbottom {
-    margin-top: 6.5rem;
-    color: black;
+  margin-top: 6.5rem;
+  color: black;
 }
 
 .headerquiz {
@@ -16,27 +16,26 @@
 }
 
 .button {
-  background-color: #C0D5D8;
+  background-color: #c0d5d8;
   font-size: 14px;
-  border-color: #C0D5D8;
-  color: #48535B;
+  border-color: #c0d5d8;
+  color: #48535b;
   margin-top: 50px;
   float: right;
   margin-right: 50px;
   border-radius: 2px;
-
 }
 
 .button:hover {
   color: white;
-  background-color: #9ABEC1;
-  border-color: #9ABEC1;
+  background-color: #9abec1;
+  border-color: #9abec1;
 }
 
 .cardbody {
   margin-top: 1rem;
-  margin-left: .5rem;
-  margin-right: .5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .card {
@@ -65,7 +64,7 @@
   color: black;
   align-content: center;
   justify-content: center;
-  margin-top: .2rem;
+  margin-top: 0.2rem;
   font-weight: normal;
 }
 
@@ -75,7 +74,7 @@
   width: 171px;
   height: 59px;
   font-size: 28px;
-  border-color:rgba(75, 132, 123, 0.7);
+  border-color: rgba(75, 132, 123, 0.7);
 }
 
 .nextbutton {
@@ -83,7 +82,7 @@
   width: 171px;
   height: 59px;
   font-size: 28px;
-  border-color:rgba(75, 132, 123, 0.7);
+  border-color: rgba(75, 132, 123, 0.7);
 }
 
 .numberofitems {
@@ -92,7 +91,7 @@
 }
 
 .topic {
-  color: #48535B;
+  color: #48535b;
   justify-content: space-between;
   font-size: 24px;
   width: 548px;
@@ -101,7 +100,7 @@
 }
 
 #topicbg {
-  background-color: #E0EAEC;
+  background-color: #e0eaec;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -120,7 +119,7 @@
   font-size: 30px;
 }
 
-input[type=radio] {
+input[type='radio'] {
   width: 90px;
   height: 30px;
 }
@@ -138,13 +137,11 @@ input[type=radio] {
   margin-top: 60px;
 }
 
-
 .avatarresult {
   height: 30px;
   width: 2rem;
   float: right;
 }
-
 
 #answer2 {
   margin-top: 200px;
@@ -155,25 +152,24 @@ input[type=radio] {
   height: 220px;
   margin-left: 370px;
 }
-.answercard{
+.answercard {
   width: 1312px;
   height: 780px;
   margin: 0px;
 }
 
-.trueanswer{
+.trueanswer {
   margin-left: 50px;
 }
 
-.answercardnext{
+.answercardnext {
   width: 1312px;
-  height:870px;
+  height: 870px;
   margin: 0px;
 }
 
-
-.backarrow{
-  color: #48535B;
+.backarrow {
+  color: #48535b;
   width: 40px;
   height: 40px;
   margin-top: 23px;
@@ -182,13 +178,13 @@ input[type=radio] {
   margin-left: 20px;
 }
 
-.topicspan{
-  color: #48535B;
+.topicspan {
+  color: #48535b;
   /* margin-left: 30px; */
   font-weight: bold;
 }
 
-.carsize{
+.carsize {
   width: 548px;
   height: 350px;
 }

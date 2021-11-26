@@ -1,18 +1,9 @@
-.backBtn {
-  margin-top: 40px;
-  width: 171px;
-  height: 59px;
-  font-size: 30px;
-  margin-bottom: 25px;
-  border-radius: 10px;
-  background-color: rgba(75, 132, 123, 0.7);
-}
 .center {
   margin-left: 20px;
   margin-top: 50px;
 }
+
 .paragraph {
-  margin: 0;
   padding: 10px;
 }
 
@@ -22,55 +13,90 @@
 
 .wholeBodyCard {
   padding: 20px 50px;
-  width: 1312px;
-  height: 429px;
+  width: 500px;
+  background-color: white;
 }
 .question {
-  font-size: 30px;
+  font-size: 16px;
 }
 
 .tml {
-  width: 188px;
-  height: 69px;
+  width: 130px;
+  height: 32px;
   color: black;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  float: right;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  font-size: 14px;
+  margin-top: 20px;
+  margin-left: 320px;
+}
+
+.timeleftspace {
+  margin-right: 5px;
+  color: #48535b;
+}
+
+.time {
+  font-size: 14px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.068);
+  background-color: white;
+  border-radius: 2px;
 }
 
 .timer {
-  padding: 13px;
-  color: #c30101;
-  opacity: 50%;
-  background-color: #c4c4c4;
+  color: #72a085;
+  background-color: #f5f5f5;
+
+  border: 1px solid rgba(0, 0, 0, 0.068);
+  border-radius: 2px;
 }
 
 .cardbody1 {
-  height: 73px;
-  width: 1209px;
-  margin-top: 21px;
-  padding: 15px;
+  height: 40px;
+  width: 400px;
+  margin-top: 20px;
+  padding: 5px 15px;
 }
 
 input[type='radio'] {
-  width: 90px;
+  width: 20px;
   height: 20px;
+  margin-top: 3px;
 }
 
-.spanForAnswer {
+.radio[disabled] {
+  background-color: #2b2525;
+}
+
+.spanAnswer {
   color: black;
-  padding-left: 50px;
+  margin-left: 20px;
+  padding: 0px;
+  margin-bottom: 0px;
 }
 
-.sizeOfAvatarInQuestion {
-  width: 419px;
-  height: 205px;
-  margin-left: 370px;
+.spanAnswer2 {
+  color: black;
+  margin-left: 20px;
+  padding: 0px;
 }
 
 .sizeOfAvatarInResult {
-  height: 50px;
-  float: right;
+  height: 20px;
+  margin-left: 50px;
+}
+
+#inputResult {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
 }
 
 .upperBodyCard {
@@ -80,87 +106,71 @@ input[type='radio'] {
 }
 
 .bottomBodyCard {
-  height: 85px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .numItems {
-  font-size: 30px;
-}
-
-.nextBtn {
-  margin-left: 20px;
-  width: 171px;
-  height: 59px;
-  border-radius: 10px;
-  font-size: 30px;
-  background-color: rgba(75, 132, 123, 0.7);
-}
-
-.prevBtn {
-  width: 171px;
-  height: 59px;
-  border-radius: 10px;
-  font-size: 30px;
-  background-color: rgba(75, 132, 123, 0.7);
-}
-
-#answer2 {
-  margin-top: 200px;
-}
-
-#answer3 {
-  margin-top: 300px;
+  font-size: 16px;
 }
 
 .score {
-  font-size: 40px;
+  font-size: 14px;
+  background-color: #f5f5f5;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: 70px;
+  height: 22px;
+  border-radius: 2px;
 }
 
-.numItems {
-  font-size: 30px;
+.scorebg {
+  margin-right: 10px;
+  margin-bottom: 0px;
 }
 
-.Answertopic {
-  color: white;
-  background-color: #f5f5f5f5;
-  margin-top: 30px;
-  background-color: rgb(121, 163, 156);
-  font-size: 35px;
-  height: 108px;
-  display: flex;
+.backarrow {
+  color: #48535b;
+  width: 40px;
+  height: 40px;
+  display: inline;
+  margin-right: 50px;
+}
+
+.topicspan {
+  color: #48535b;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.topic {
+  color: #48535b;
   justify-content: space-between;
+  font-size: 24px;
+  width: 500px;
+  padding-left: 0px;
+}
+
+#topicbg {
+  background-color: #e0eaec;
   align-items: center;
-  padding: 50px;
-  width: 1312px;
-}
-
-span {
-  color: green;
-}
-
-.paragraph:nth-child(2) {
-  font-size: 25px;
   padding: 0px;
-  margin: 30px;
+  filter: drop-shadow(0 1mm 1mm #48535b8c);
 }
 
-a {
-  text-decoration: none;
-  color: white;
+.button {
+  width: 80px;
+  height: 32px;
+  font-size: 14px;
+  background-color: #c0d5d8;
+  border-color: #c0d5d8;
+  margin-right: 1rem;
 }
 
-a:hover {
-  color: white;
-}
-
-.backButton {
-  width: 250px;
-  height: 59px;
-  font-size: 30px;
-  margin-left: 20px;
-  border-radius: 10px;
-  background-color: rgba(75, 132, 123, 0.7);
+.button:hover {
+  width: 80px;
+  height: 32px;
+  font-size: 14px;
+  background-color: #9abec1;
+  border-color: #9abec1;
 }

@@ -1,0 +1,58 @@
+.bg {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 33px;
+  margin-right: 2rem;
+  margin-left: 2rem;
+}
+
+.forContainerBar {
+  background-color: #e0eaec;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 340.5px;
+  height: 40px;
+  color: #48535b;
+}
+
+.titleText {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.listTable {
+  text-align: left;
+  color: #48535b;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.forSeccolum {
+  padding: 10px;
+  color: #48535b;
+  font-weight: 300;
+  font-size: 14px;
+  text-align: right;
+}
+
+.forSeccolum2 {
+  padding: 10px 0px;
+  text-align: right;
+  margin-top: 30px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.retake {
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 201px;
+  color: #5d9098;
+}
+
+#listTable {
+  color: #48535b;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: left;
+}
