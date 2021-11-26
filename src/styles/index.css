@@ -7,3 +7,6 @@ body {
   color: #48535B;
   opacity: 50% ;
 }
+.dropdown-menu{
+  min-width: 0px;
+}
