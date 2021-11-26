@@ -1,3 +1,9 @@
+.listofstudenttext{
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 28px;
+}
+
 .CardHeaderstyle{
     background-color:#E0EAEC; 
     filter: drop-shadow(0 1mm 1mm #48535b8c);
@@ -25,7 +31,7 @@
 }
 
 .Dropdownitemstyle{
-    padding: 5px 0px 2px 8px;
+    padding: 5px 0px 2px 11px;
     width: 80px;
     background-color: white;
 }
@@ -68,7 +74,7 @@
 
 .cal_02{
     background-color:white;
-    width: 540px;
+    /* width: 540px; */
     height: 300px;
     margin-top: 10px;
 }

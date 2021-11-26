@@ -11,44 +11,45 @@ const StudentList = () => {
   return (
     <div
       className='d-flex justify-content-center'
-      style={{ marginTop: '120px' }}
+      style={{ marginTop: '120px', display: 'block' }}
     >
-      <Card>
-        <Card.Header className={style.CardHeaderstyle}>
-          <input
-            className={style.inputstyle}
-            type='text'
-            name='answer'
-            placeholder='Search'
-          />
-          <BiSearch className={style.iconsearchstyle} />
-          <Dropdown>
-            <Dropdown.Toggle
-              className={style.Dropdownstyle}
-              variant='link'
-              bsPrefix='none'
-            >
-              <span className={style.Textfordropdownstyle}> Filter </span>
-              <BiFilterAlt size='20px' />
-            </Dropdown.Toggle>
-            <Dropdown.Menu className={style.Dropdownmenustyle}>
-              <Dropdown.Item
-                className={style.Dropdownitemstyle}
-                href='#/following'
+      <div>
+        <div className={style.listofstudenttext}>List of Students</div>
+        <Card>
+          <Card.Header className={style.CardHeaderstyle}>
+            <input
+              className={style.inputstyle}
+              type='text'
+              name='answer'
+              placeholder='Search'
+            />
+            <BiSearch className={style.iconsearchstyle} />
+            <Dropdown>
+              <Dropdown.Toggle
+                className={style.Dropdownstyle}
+                variant='link'
+                bsPrefix='none'
               >
-                Following
-              </Dropdown.Item>
-              <Dropdown.Item
-                className={style.Dropdownitemstyle}
-                href='#/followers'
-              >
-                Followers
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Card.Header>
-        <Card.Body className={style.CardBodystyle}>
-          <div className={`${style.cal_02} ${style.cal_3}`}>
+                <span className={style.Textfordropdownstyle}> Filter </span>
+                <BiFilterAlt size='20px' />
+              </Dropdown.Toggle>
+              <Dropdown.Menu className={style.Dropdownmenustyle}>
+                <Dropdown.Item
+                  className={style.Dropdownitemstyle}
+                  href='#/following'
+                >
+                  Following
+                </Dropdown.Item>
+                <Dropdown.Item
+                  className={style.Dropdownitemstyle}
+                  href='#/followers'
+                >
+                  Followers
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Card.Header>
+          <Card.Body className={`${style.cal_02} ${style.cal_3}`}>
             <div className={style.s_h3}>
               <img
                 src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/261163455_453166156175670_160593561815661759_n.png?_nc_cat=104&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeEr9QWUzJUU_Fl3Cwa6Og1hItwF4oLi_9si3AXiguL_24VoQld8u4528RHx5ywaOWtTql7cudY0IPOlFkj5UjIC&_nc_ohc=GddmaT-WdZAAX96Nv-S&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=7de756e93af262f36949cfcad9d768af&oe=61C67DE3'
@@ -113,9 +114,9 @@ const StudentList = () => {
               <div> 8 Following </div>
               <div className={style.followerstextindentstyle}>8 Following</div>
             </div>
-          </div>
-        </Card.Body>
-      </Card>
+          </Card.Body>
+        </Card>
+      </div>
     </div>
   );
 };
