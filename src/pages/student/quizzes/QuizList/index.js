@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { Row, Col, Spinner } from 'react-bootstrap';
+import { Col, Spinner } from 'react-bootstrap';
 import Pagination from '../../../../components/Pagination';
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 
@@ -61,14 +61,13 @@ const QuizList = () => {
       ) : (
         ''
       )}
-      <Row xs={1} sm={2} md={3} lg={3}>
-        {quizzes &&
-          quizzes.map((quiz, index) => {
-            if (index + 1 > perPage) {
-              return;
-            } else {
+      <div>
+        {quizzes && (
+          <div id={style.GridCard}>
+            {/* <Row xs={1} sm={2} md={3} lg={3}> */}
+            {quizzes.map((quiz, index) => {
               return (
-                <Col id={style.GridCard} key={index}>
+                <Col key={index}>
                   <a
                     href={`/categories/${categoryId}/quizzes/${quiz.id}/questions`}
                   >
@@ -76,9 +75,11 @@ const QuizList = () => {
                   </a>
                 </Col>
               );
-            }
-          })}
-      </Row>
+            })}
+            {/* </Row> */}
+          </div>
+        )}
+      </div>
 
       {quizzes?.length <= 0 ? (
         <div className={style.noResultsMessage}>
