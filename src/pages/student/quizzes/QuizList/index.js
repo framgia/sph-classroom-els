@@ -26,7 +26,6 @@ const QuizList = () => {
   useEffect(() => {
     QuizApi.getAll(categoryId, page)
       .then(({ data }) => {
-        console.log(data);
         setQuizzes(data.data);
         setPerPage(data.per_page);
         setTotalItems(data.total);
