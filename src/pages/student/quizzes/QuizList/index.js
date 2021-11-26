@@ -61,7 +61,7 @@ const QuizList = () => {
         ''
       )}
       <div>
-        {quizzes && (
+        {quizzes && (quizzes.length > 0) && (
           <div id={style.GridCard}>
             {/* <Row xs={1} sm={2} md={3} lg={3}> */}
             {quizzes.map((quiz, index) => {
