@@ -217,8 +217,3 @@ input::placeholder {
   width: 2px;
   height: 2px;
 }
-
-input [type='radio'] {
-  width: 20px;
-  height: 20px;
-}

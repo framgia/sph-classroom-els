@@ -36,35 +36,35 @@ const QuizAnswerResult = ({ answers, score, total, categoryId }) => {
   return (
     <div>
       <div>
-        <Card className={style.cardstyle}>
-          <Card.Header id={style.topicbg}>
+        <Card className={style.cardstyle1}>
+          <Card.Header id={style.topicbg1}>
             {' '}
-            <div className={style.topic}>
+            <div className={style.topic1}>
               {' '}
-              <center className={style.topicspan}>
+              <center className={style.topicspan1}>
                 {' '}
                 <a href={'#'}>
-                  <BsFillArrowLeftSquareFill className={style.backarrow} />
+                  <BsFillArrowLeftSquareFill className={style.backarrow1} />
                 </a>
                 {title}{' '}
               </center>
             </div>
           </Card.Header>
-          <Badge bg="light" className={style.tml}>
+          <Badge bg="light" className={style.tml1}>
             <div>
-              <p className={style.scorebg}>Score </p>
+              <p className={style.scorebg1}>Score </p>
             </div>
-            <Card.Text className={style.score}>
+            <Card.Text className={style.score1}>
               {' '}
               <div>
-                <span className={style.timeleftspace}>
-                  <b className={style.timer}>{score}</b>
+                <span className={style.timeleftspace1}>
+                  <b className={style.timer1}>{score}</b>
                 </span>
                 <b>/{total}</b>{' '}
               </div>
             </Card.Text>
           </Badge>
-          <Card.Body className={style.wholeBodyCard}>
+          <Card.Body className={style.wholeBodyCard1}>
             {question &&
             question.question_type.question_type === 'Multiple Choice' ? (
                 <MultipleChoiceType question={question} answer={answer} />
@@ -72,8 +72,8 @@ const QuizAnswerResult = ({ answers, score, total, categoryId }) => {
                 <FillInTheBlankType question={question} answer={answer} />
               )}
             <hr />
-            <div className={style.bottomBodyCard}>
-              <p className={style.numItems}>
+            <div className={style.bottomBodyCard1}>
+              <p className={style.numItems1}>
                 {page} out of {questions?.length}
               </p>
               <div>
@@ -89,8 +89,8 @@ const QuizAnswerResult = ({ answers, score, total, categoryId }) => {
                 )}
                 {page === questions?.length ? (
                   <a href={`/categories/${categoryId}/quizzes`}>
-                    <Button className={style.button}>
-                      <b className={style.btnSize}>Back to Quizzes</b>
+                    <Button className={style.button1}>
+                      <b>Back to Quizzes</b>
                     </Button>
                   </a>
                 ) : (
