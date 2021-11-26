@@ -58,6 +58,8 @@
   width: 400px;
   margin-top: 20px;
   padding: 5px 15px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .theAnswer1 {
@@ -71,7 +73,7 @@ input[type='radio'] {
   margin-top: 3px;
 }
 
-input [disabled] {
+.radio [disabled] {
   background-color: #2b2525;
 }
 
@@ -90,13 +92,16 @@ input [disabled] {
 
 .sizeOfAvatarInResult1 {
   height: 20px;
-  display: flex;
-  margin-left: 50px;
+  padding-left: 70px;
 }
 
 .sizeOfAvatarInResult2 {
   height: 20px;
-  margin-left: 100px;
+  padding-left: 60px;
+}
+
+.sizeOfAvatarInResult3 {
+  height: 20px;
 }
 
 .inputResult {
@@ -144,10 +149,22 @@ input [disabled] {
   margin-right: 50px;
 }
 
+.correct {
+  border-color: green;
+}
+
+.error {
+  border-color: red;
+}
+
 .topicspan1 {
   color: #48535b;
   font-weight: bold;
   padding: 5px;
+}
+
+.wrongAnswer {
+  color: red;
 }
 
 .topic1 {

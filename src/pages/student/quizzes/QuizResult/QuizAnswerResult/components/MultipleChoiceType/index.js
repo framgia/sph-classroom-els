@@ -4,6 +4,17 @@ import style from '../../indexAnswer.module.css';
 import { PropTypes } from 'prop-types';
 
 const MultipleChoiceType = ({ question, answer }) => {
+  const correctAnswerStyling = (choice) => {
+    if (choice?.choice === answer?.choice?.choice) {
+      if (choice?.is_correct) {
+        return `${style.cardbody} ${style.correct}`;
+      }
+
+      return `${style.cardbody} ${style.error}`;
+    }
+
+    return style.cardbody;
+  };
   const correctAnswer = (item) => {
     if (item?.choice === answer?.choice?.choice) {
       if (item?.is_correct) {
@@ -28,7 +39,7 @@ const MultipleChoiceType = ({ question, answer }) => {
     if (item?.is_correct) {
       return (
         <img
-          className={style.sizeOfAvatarInResult1}
+          className={style.sizeOfAvatarInResult2}
           alt="avatar"
           src="https://scontent.xx.fbcdn.net/v/t1.15752-9/p206x206/251347130_582599706404834_9085463285954281492_n.png?_nc_cat=105&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeGdEfFbt_a9JU9YlVGy319qPl8e_g7kxlI-Xx7-DuTGUteNnKoktzgpf_FL9lP9ZUi3Ls6_hLGwgD0n2_d-LtP6&_nc_ohc=y6Rd3mokSCcAX8YL7o2&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=332dd5a97e4b210c3d4cb253e189098e&oe=61A4947A"
         />
@@ -46,31 +57,28 @@ const MultipleChoiceType = ({ question, answer }) => {
           {question.id}. {question.question}{' '}
         </p>
         {question?.choices.map((choice, idx) => (
-          <Card key={idx} className={style.cardbody}>
-            <table>
-              <tr>
-                <td>
-                  <label className={style.inputResult}>
-                    <input
-                      type="radio"
-                      name="option1"
-                      checked={choice?.choice === answer?.choice?.choice}
-                      disabled
-                      className={style.radio}
-                    />
-                    <td>
-                      {' '}
-                      <span className={style.spanAnswer}>{choice?.choice}</span>
-                    </td>
-                    {correctAnswer(choice)}
-                  </label>
-                </td>
-              </tr>
-            </table>
+          <Card key={idx} className={correctAnswerStyling(choice)}>
+            <label className={style.inputResult}>
+              <div>
+                <input
+                  type="radio"
+                  name="option1"
+                  checked={choice?.choice === answer?.choice?.choice}
+                  disabled
+                  className={style.radio}
+                />{' '}
+              </div>
+              <div>
+                <span className={style.spanAnswer}>{choice?.choice}</span>
+              </div>
+              <div>{correctAnswer(choice)}</div>
+            </label>
           </Card>
         ))}
         <br />
-        {answer?.choice?.choice ? '' : 'You did not choose an answer'}
+        <span className={style.wrongAnswer}>
+          {answer?.choice?.choice ? '' : 'You did not choose an answer'}
+        </span>
       </div>
     </Fragment>
   );
