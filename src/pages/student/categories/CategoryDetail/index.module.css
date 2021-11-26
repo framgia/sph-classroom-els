@@ -22,7 +22,7 @@
   display: grid;
   grid-column-gap: 48px;
   grid-row-gap: 48px;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 342px 342px 342px 342px;
   grid-template-rows: 216px 216px 216px;
   height: 747px;
   width: 1518px;

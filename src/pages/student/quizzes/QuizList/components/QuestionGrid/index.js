@@ -60,7 +60,7 @@ const QuestionGrid = ({ quiz }) => {
         {quiz.answerCount === 0 ? (
           ''
         ) : (
-          <Card.Text className={style.ResultscoreCardText}>
+          <div className={style.ResultscoreCardText}>
             <div className={style.ResultScore}>
               <p>Attempts</p>
               <p>N/A</p>
@@ -74,7 +74,7 @@ const QuestionGrid = ({ quiz }) => {
               <p>N/A</p>
             </div>
             {/* {`${quiz.correctAnswers}/${quiz.totalQuestions}`} */}
-          </Card.Text>
+          </div>
         )}
       </Card.Body>
       {quiz.answerCount === 0 || (
