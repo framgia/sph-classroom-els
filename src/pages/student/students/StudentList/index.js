@@ -17,39 +17,45 @@ const StudentList = () => {
   const [filter, setFilter] = useState(null);
 
   useEffect(() => {
-    StudentApi.getAll({ page: page, filter: filter }).then(({ data }) => setStudents(data.data));
-  
+    StudentApi.getAll({ page: page, filter: filter }).then(({ data }) =>
+      setStudents(data.data)
+    );
   }, [status]);
 
   const onSearchSubmit = (e) => {
     e.preventDefault();
 
-    StudentApi.getAll({ page: page, search: search }).then(({ data }) => setStudents(data.data));
+    StudentApi.getAll({ page: page, search: search }).then(({ data }) =>
+      setStudents(data.data)
+    );
   };
 
   const onFilterClick = (filter) => {
-    StudentApi.getAll({ page: page, filter: filter }).then(({ data }) => setStudents(data.data));
+    StudentApi.getAll({ page: page, filter: filter }).then(({ data }) => {
+      setStudents(data.data);
+    });
   };
 
   const onFollowClick = (userid) => {
-    StudentApi.follow( userid ).then(() => {
+    StudentApi.follow(userid).then(() => {
       setStatus(!status);
       setFilter(null);
     });
-  }; 
+  };
 
   const onUnfollowClick = (userid) => {
-    StudentApi.unfollow( userid ).then(() => {
+    StudentApi.unfollow(userid).then(() => {
       setStatus(!status);
       setFilter(null);
     });
-  }; 
+  };
 
   const followButton = (status, userid) => {
     if (status === true) {
       return (
-        <Button 
-          className={style.button} variant='primary'
+        <Button
+          className={style.button}
+          variant='primary'
           onClick={() => {
             onUnfollowClick(userid);
           }}
@@ -59,8 +65,9 @@ const StudentList = () => {
       );
     } else {
       return (
-        <Button 
-          className={style.button} variant='primary'
+        <Button
+          className={style.button}
+          variant='primary'
           onClick={() => {
             onFollowClick(userid);
           }}
@@ -72,7 +79,7 @@ const StudentList = () => {
   };
 
   const renderStudList = () => {
-    return students?.map((student, idx) => {  
+    return students?.map((student, idx) => {
       return (
         <div key={idx}>
           <div className={style.s_h3}>
@@ -131,6 +138,7 @@ const StudentList = () => {
                 <Dropdown.Item
                   className={style.Dropdownitemstyle}
                   onClick={() => {
+                    setFilter(null);
                     setStatus(!status);
                   }}
                 >
