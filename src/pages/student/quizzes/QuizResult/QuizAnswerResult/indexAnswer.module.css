@@ -3,8 +3,8 @@
   margin-top: 50px;
 }
 
-.paragraph1 {
-  padding: 10px;
+.questionstyleresult {
+  padding-bottom: 86px;
 }
 
 .hrBreak1 {
@@ -58,8 +58,6 @@
   width: 400px;
   margin-top: 20px;
   padding: 5px 15px;
-  display: flex;
-  justify-content: space-between;
 }
 
 .theAnswer1 {
@@ -73,14 +71,14 @@ input[type='radio'] {
   margin-top: 3px;
 }
 
-.radio [disabled] {
+input [type='radio']:disabled {
   background-color: #2b2525;
+  color: #2b2525;
 }
 
 .spanAnswer {
   color: black;
-  margin-left: 10px;
-  padding: 0px;
+  margin-left: 20px;
   margin-bottom: 0px;
 }
 
@@ -90,25 +88,33 @@ input[type='radio'] {
   padding: 10px;
 }
 
+.foranswericon{
+  float: right;
+}
+
 .sizeOfAvatarInResult1 {
   height: 20px;
-  padding-left: 70px;
+  display: flex;
+  float: right;
+  justify-content: none;
+  margin-left: 2px;
 }
 
 .sizeOfAvatarInResult2 {
   height: 20px;
-  padding-left: 60px;
+  display: flex;
+  float: right;
 }
 
 .sizeOfAvatarInResult3 {
   height: 20px;
+  display: flex;
+  float: right;
 }
 
 .inputResult {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  gap: 15px;
 }
 
 .upperBodyCard1 {
@@ -132,18 +138,18 @@ input[type='radio'] {
   background-color: #f5f5f5;
   border: 1px solid rgba(0, 0, 0, 0.2);
   width: 70px;
-  height: 22px;
+  height: 21px;
   border-radius: 2px;
 }
 
 .scorebg1 {
   margin-right: 10px;
-  margin-bottom: 0px;
+  padding: 4px;
 }
 
 .backarrow1 {
   color: #48535b;
-  width: 40px;
+  width: 70px;
   height: 40px;
   display: inline;
   margin-right: 50px;
@@ -157,12 +163,6 @@ input[type='radio'] {
   border-color: red;
 }
 
-.topicspan1 {
-  color: #48535b;
-  font-weight: bold;
-  padding: 5px;
-}
-
 .wrongAnswer {
   color: red;
 }
@@ -172,7 +172,9 @@ input[type='radio'] {
   justify-content: space-between;
   font-size: 24px;
   width: 500px;
-  padding-left: 0px;
+  font-weight: bold;
+  padding: 5px;
+  margin-left: 5px;
 }
 
 #topicbg1 {
@@ -216,4 +218,10 @@ input[type='radio'] {
   background-color: #9abec1;
   border-color: #9abec1;
   color: white;
+}
+
+.iconalignmentstyle{
+  position:absolute;
+  margin-left: 340px;
+  margin-top: 3px;
 }

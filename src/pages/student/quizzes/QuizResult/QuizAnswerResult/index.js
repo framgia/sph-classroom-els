@@ -38,30 +38,22 @@ const QuizAnswerResult = ({ answers, score, total, categoryId }) => {
       <div>
         <Card className={style.cardstyle1}>
           <Card.Header id={style.topicbg1}>
-            {' '}
             <div className={style.topic1}>
-              {' '}
-              <center className={style.topicspan1}>
-                {' '}
-                <a href={'#'}>
-                  <BsFillArrowLeftSquareFill className={style.backarrow1} />
-                </a>
-                {title}{' '}
-              </center>
+              <a href={'#'}>
+                <BsFillArrowLeftSquareFill className={style.backarrow1} />
+              </a>
+              {title}
             </div>
           </Card.Header>
           <Badge bg="light" className={style.tml1}>
-            <div>
-              <p className={style.scorebg1}>Score </p>
+            <div className={style.scorebg1}>
+              Score
             </div>
             <Card.Text className={style.score1}>
-              {' '}
-              <div>
-                <span className={style.timeleftspace1}>
-                  <b className={style.timer1}>{score}</b>
-                </span>
-                <b>/{total}</b>{' '}
-              </div>
+              <span className={style.timeleftspace1}>
+                <b className={style.timer1}>{score}</b>
+              </span>
+              <b>/ {total}</b>
             </Card.Text>
           </Badge>
           <Card.Body className={style.wholeBodyCard1}>

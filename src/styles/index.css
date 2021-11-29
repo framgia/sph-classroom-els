@@ -10,3 +10,6 @@ body {
 .dropdown-menu{
   min-width: 0px;
 }
+a{
+  text-decoration: none;
+}

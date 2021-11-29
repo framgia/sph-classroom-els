@@ -7,14 +7,14 @@ const FillInTheBlankType = ({ question, answer }) => {
   return (
     <Fragment style={{ height: '1000px' }}>
       <div className={style.question1}>
-        <p className={style.paragraph1}>
+        <p className={style.questionstyleresult}>
           {`${question.id}. ${question.question}`}
         </p>
         {answer.text_answer != question.text_answer ? (
-          <p>
+          <div className={style.correctanswermargin}>
             Correct Answer:
-            <span className={style.spanText1}> {question.text_answer}</span>
-          </p>
+            <span> {question.text_answer}</span>
+          </div>
         ) : (
           ''
         )}

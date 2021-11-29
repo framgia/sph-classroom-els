@@ -53,6 +53,51 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                   </div>
                 </div>
                 <Card className={style.Resultcard2}>
+                  <b className={style.friendsTitle}>Friend&apos;s Score</b>
+                  <hr />
+                  <table style={{ width: '100%' }}>
+                    <tr>
+                      <td>
+                        <a href="/#">
+                          <img
+                            className={style.ResultsizeOfAvatar}
+                            alt="avatar"
+                            src={faker.image.avatar()}
+                          />
+                        </a>
+                      </td>
+                      <td className={style.friendsName}>Therese</td>
+                      <td className={style.friendsScore}>10/10</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="/#">
+                          <img
+                            className={style.ResultsizeOfAvatar}
+                            alt="avatar"
+                            src={faker.image.avatar()}
+                          />
+                        </a>
+                      </td>
+                      <td className={style.friendsName}>Harvey</td>
+                      <td className={style.friendsScore}>10/10</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a href="/#">
+                          <img
+                            className={style.ResultsizeOfAvatar}
+                            alt="avatar"
+                            src={faker.image.avatar()}
+                          />
+                        </a>
+                      </td>
+                      <td className={style.friendsName}>Erick</td>
+                      <td className={style.friendsScore}>10/10</td>
+                    </tr>
+                  </table>
+                </Card>
+                {/* <Card className={style.Resultcard2}>
                   <Card.Img variant="top" />
                   <Card.Body width="100px" style={{ margin: '5px' }}>
                     <center>
@@ -94,7 +139,7 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                       </div>
                     </Card.Text>
                   </Card.Body>
-                </Card>
+                </Card> */}
               </div>
               <hr className={style.ResulthrBreakButtom} />
               <div className={style.ResultbottomBodyCard}>
