@@ -7,7 +7,6 @@ import { PropTypes } from 'prop-types';
 import style from './index.module.css';
 
 const Recent = (props) => {
-  console.log(props);
   return (
     <Card className={style.bg}>
       <Card.Header className={style.forContainerBar}>

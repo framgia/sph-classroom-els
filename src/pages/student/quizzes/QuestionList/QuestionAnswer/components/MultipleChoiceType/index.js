@@ -23,9 +23,9 @@ const MultipleChoiceType = ({ question, getAnswer, getPoint }) => {
           <Card key={idx} className={style.cardbody1}>
             <div className="d-flex align-items-center">
               <input
-                type='radio'
+                type="radio"
                 value={choice.id}
-                name='choice'
+                name="choice"
                 onClick={(e) => {
                   if (choice.is_correct) {
                     setPoint(1);
@@ -51,7 +51,7 @@ MultipleChoiceType.propTypes = {
   page: PropTypes.number,
   time: PropTypes.number,
   getAnswer: PropTypes.any,
-  getPoint: PropTypes.any
+  getPoint: PropTypes.any,
 };
- 
+
 export default MultipleChoiceType;
