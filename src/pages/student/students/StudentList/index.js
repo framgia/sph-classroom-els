@@ -22,6 +22,14 @@ const StudentList = () => {
     );
   }, [status]);
 
+  useEffect(() => {
+    if (search === '') {
+      StudentApi.getAll({ page: page }).then(({ data }) =>
+        setStudents(data.data)
+      );
+    }
+  }, [search]);
+
   const onSearchSubmit = (e) => {
     e.preventDefault();
 
