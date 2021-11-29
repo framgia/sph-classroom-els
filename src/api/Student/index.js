@@ -13,7 +13,7 @@ const StudentsApi = {
     return API.request(options);
   },
 
-  follow: ( userid ) => {
+  follow: (userid) => {
     const options = {
       method: 'POST',
       url: '/follow',
@@ -24,8 +24,8 @@ const StudentsApi = {
 
     return API.request(options);
   },
-   
-  unfollow: ( userid ) => {
+
+  unfollow: (userid) => {
     const options = {
       method: 'POST',
       url: '/unfollow',
@@ -35,7 +35,7 @@ const StudentsApi = {
     };
 
     return API.request(options);
-  },
+  }
 };
 
 export default StudentsApi;

@@ -88,7 +88,11 @@ const StudentList = () => {
               height='30px'
             />
             <span className={style.margineforspan}>{student.name}</span>
+<<<<<<< HEAD
             {followButton(student.has_followed, student.id)}
+=======
+            {followButton(student.has_followed)}
+>>>>>>> ef58c52 (E_CLASSROOM-195 [FE] [Integration] Student-List-Page-Search-Functionality)
           </div>
           <div id={style.floatrighttext}>
             <div> {student.followers_count} Followers </div>
@@ -135,6 +139,7 @@ const StudentList = () => {
               <Dropdown.Menu className={style.Dropdownmenustyle}>
                 <Dropdown.Item
                   className={style.Dropdownitemstyle}
+<<<<<<< HEAD
                   onClick={() => {
                     setFilter(null);
                     setStatus(!status);
@@ -148,15 +153,22 @@ const StudentList = () => {
                     onFilterClick('followed');
                     setFilter('followed');
                   }}
+=======
+                  href='/following'
+>>>>>>> ef58c52 (E_CLASSROOM-195 [FE] [Integration] Student-List-Page-Search-Functionality)
                 >
                   Following
                 </Dropdown.Item>
                 <Dropdown.Item
                   className={style.Dropdownitemstyle}
+<<<<<<< HEAD
                   onClick={() => {
                     onFilterClick('followers');
                     setFilter('followers');
                   }}
+=======
+                  href='/followers'
+>>>>>>> ef58c52 (E_CLASSROOM-195 [FE] [Integration] Student-List-Page-Search-Functionality)
                 >
                   Followers
                 </Dropdown.Item>
