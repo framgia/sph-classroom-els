@@ -39,14 +39,12 @@ const StudentList = () => {
   const onFollowClick = (userid) => {
     StudentApi.follow(userid).then(() => {
       setStatus(!status);
-      setFilter(null);
     });
   };
 
   const onUnfollowClick = (userid) => {
     StudentApi.unfollow(userid).then(() => {
       setStatus(!status);
-      setFilter(null);
     });
   };
 
