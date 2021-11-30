@@ -27,10 +27,10 @@ const StudentList = () => {
     filterVal === 'followed'
       ? 'Followed Students'
       : filterVal === 'followers'
-      ? 'Followers'
-      : filterVal === null
-      ? 'All Students'
-      : ''
+        ? 'Followers'
+        : filterVal === null
+          ? 'All Students'
+          : ''
   );
 
   useEffect(() => {
@@ -41,14 +41,6 @@ const StudentList = () => {
       }
     );
   }, [status]);
-
-  useEffect(() => {
-    if (search === '') {
-      StudentApi.getAll({ page: page }).then(({ data }) =>
-        setStudents(data.data)
-      );
-    }
-  }, [search]);
 
   const onSearchSubmit = (e) => {
     e.preventDefault();
