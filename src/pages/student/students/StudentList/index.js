@@ -10,7 +10,7 @@ import style from './index.module.css';
 import StudentApi from '../../../../api/Student';
 
 const StudentList = () => {
-  const page = 0; //This is a temporary variable, will change this when I am about to implement the pagination for this page
+  const page = 0; //This is a temporary variable, will change this when I am about to implement the pagination for this page in another task
   const [students, setStudents] = useState(null);
   const [search, setSearch] = useState('');
   const [status, setStatus] = useState(false);
@@ -88,11 +88,7 @@ const StudentList = () => {
               height='30px'
             />
             <span className={style.margineforspan}>{student.name}</span>
-<<<<<<< HEAD
             {followButton(student.has_followed, student.id)}
-=======
-            {followButton(student.has_followed)}
->>>>>>> ef58c52 (E_CLASSROOM-195 [FE] [Integration] Student-List-Page-Search-Functionality)
           </div>
           <div id={style.floatrighttext}>
             <div> {student.followers_count} Followers </div>

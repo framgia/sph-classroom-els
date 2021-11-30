@@ -66,7 +66,6 @@
 }
 
 .iconsearchstyle {
-  /* position: absolute; */
   width: 20px;
   height: 20px;
   /* left: 385px;
@@ -78,14 +77,12 @@
   background-color: rgba(255, 255, 255, 0);
   display: hidden;
   position: absolute;
-
   left: 380px;
   top: 12px;
 }
 
 .cal_02 {
   background-color: white;
-  /* width: 540px; */
   height: 300px;
   margin-top: 10px;
 }
@@ -101,6 +98,7 @@
   font-size: 16px;
   font-weight: bold;
 }
+
 #floatrighttext {
   font-size: 14px;
   display: flex;
