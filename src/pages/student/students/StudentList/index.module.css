@@ -83,7 +83,6 @@
 
 .cal_02 {
   background-color: white;
-  /* width: 540px; */
   height: 300px;
   margin-top: 10px;
 }
@@ -99,6 +98,7 @@
   font-size: 16px;
   font-weight: bold;
 }
+
 #floatrighttext {
   font-size: 14px;
   display: flex;
