@@ -56,7 +56,7 @@ const Routes = () => {
       <StudentRoute path="/profile/change-password" exact component={ChangePassword}></StudentRoute>
       <StudentRoute path="/profile/view" exact component={ProfileView}></StudentRoute>
       <StudentRoute path="/profile/edit" exact component={ProfileEdit}></StudentRoute>
-      <StudentRoute path="/students/details" exact component={StudentDetails}></StudentRoute>
+      <StudentRoute path="/students/:id" exact component={StudentDetails}></StudentRoute>
 
       {/* ERROR ROUTES */}
     </Switch>
