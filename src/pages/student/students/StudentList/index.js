@@ -33,9 +33,7 @@ const StudentList = () => {
       ? 'Followed Students'
       : filterVal === 'followers'
         ? 'Followers'
-        : filterVal === null
-          ? 'All Students'
-          : ''
+        : 'All Students'
   );
 
   useEffect(() => {
