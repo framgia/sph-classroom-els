@@ -19,7 +19,7 @@ const StudentList = () => {
   const searchVal = queryParams.get('search');
   const history = useHistory();
 
-  const [page, setPage] = useState(pageNum ? pageNum : 1);
+  const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
@@ -115,7 +115,9 @@ const StudentList = () => {
               width='30px'
               height='30px'
             />
+            {/* <a href={`/students/${student.id}`}> */}
             <span className={style.margineforspan}>{student.name}</span>
+            {/* </a> */}
             {followButton(student.has_followed, student.id)}
           </div>
           <div id={style.floatrighttext}>
