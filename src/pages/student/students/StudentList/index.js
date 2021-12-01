@@ -6,6 +6,7 @@ import { BiFilterAlt } from 'react-icons/bi';
 import { BiSearch } from 'react-icons/bi';
 import Button from '@restart/ui/esm/Button';
 import Spinner from 'react-bootstrap/Spinner';
+import Pagination from '../../../../components/Pagination';
 
 import style from './index.module.css';
 
@@ -13,12 +14,16 @@ import StudentApi from '../../../../api/Student';
 
 const StudentList = () => {
   const queryParams = new URLSearchParams(window.location.search);
-  // const pageNum = queryParams.get('page'); Will use this in pagination functionality
+  const pageNum = queryParams.get('page');
   const filterVal = queryParams.get('filter');
   const searchVal = queryParams.get('search');
   const history = useHistory();
 
-  const page = 0; //This is a temporary variable, will change this when I am about to implement the pagination for this page in another task
+  const [page, setPage] = useState(pageNum ? pageNum : 1);
+  const [perPage, setPerPage] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
+  const [lastPage, setLastPage] = useState(0);
+
   const [students, setStudents] = useState(null);
   const [search, setSearch] = useState(searchVal ? searchVal : '');
   const [status, setStatus] = useState(false);
@@ -35,31 +40,28 @@ const StudentList = () => {
 
   useEffect(() => {
     history.push(`?page=${page}&filter=${filter}&search=${search}`);
+
     StudentApi.getAll({ page: page, filter: filter, search: search }).then(
       ({ data }) => {
         setStudents(data.data);
+        setPerPage(data.per_page);
+        setTotalItems(data.total);
+        setLastPage(data.last_page);
       }
     );
-  }, [status]);
+  }, [status, page, filter]);
+
+  const onPageChange = (selected) => {
+    setPage(selected + 1);
+
+    history.push(`?page=${selected + 1}&filter=${filter}&search=${search}`);
+  };
 
   const onSearchSubmit = (e) => {
     e.preventDefault();
 
-    history.push(`?page=${page}&filter=${filter}&search=${search}`);
-
-    StudentApi.getAll({ page: page, filter: filter, search: search }).then(
-      ({ data }) => setStudents(data.data)
-    );
-  };
-
-  const onFilterClick = (filter) => {
-    history.push(`?page=${page}&filter=${filter}&search=${search}`);
-
-    StudentApi.getAll({ page: page, filter: filter, search: search }).then(
-      ({ data }) => {
-        setStudents(data.data);
-      }
-    );
+    setStatus(!status);
+    setPage(1);
   };
 
   const onFollowClick = (userid) => {
@@ -130,7 +132,7 @@ const StudentList = () => {
   return (
     <div
       className='d-flex justify-content-center'
-      style={{ marginTop: '120px', display: 'block' }}
+      style={{ marginTop: '33px', display: 'block' }}
     >
       <div>
         <div className={style.listofstudenttext}>List of {listInfo}</div>
@@ -145,6 +147,7 @@ const StudentList = () => {
                   setSearch(e.target.value);
 
                   if (e.target.value.length === 0) {
+                    setPage(1);
                     setStatus(!status);
                   }
                 }}
@@ -178,9 +181,9 @@ const StudentList = () => {
                 <Dropdown.Item
                   className={style.Dropdownitemstyle}
                   onClick={() => {
-                    onFilterClick('followed');
                     setFilter('followed');
                     setListInfo('Followed Students');
+                    setPage(1);
                   }}
                 >
                   Following
@@ -188,9 +191,9 @@ const StudentList = () => {
                 <Dropdown.Item
                   className={style.Dropdownitemstyle}
                   onClick={() => {
-                    onFilterClick('followers');
                     setFilter('followers');
                     setListInfo('Followers');
+                    setPage(1);
                   }}
                 >
                   Followers
@@ -199,14 +202,6 @@ const StudentList = () => {
             </Dropdown>
           </Card.Header>
           <Card.Body className={`${style.cal_02} ${style.cal_3}`}>
-            {students?.length <= 0 ? (
-              <div className={style.noResults}>
-                {' '}
-                <p>No Student Found</p>{' '}
-              </div>
-            ) : (
-              ''
-            )}
             {students === null ? (
               <div className={style.loading}>
                 <Spinner animation='border' role='status'></Spinner>
@@ -214,6 +209,22 @@ const StudentList = () => {
               </div>
             ) : (
               renderStudList()
+            )}
+            {students?.length <= 0 ? (
+              <div className={style.noResults}>
+                {' '}
+                <p>No Student Found</p>{' '}
+              </div>
+            ) : (
+              <div className={style.pagination}>
+                <Pagination
+                  page={page}
+                  perPage={perPage}
+                  totalItems={totalItems}
+                  pageCount={lastPage}
+                  onPageChange={onPageChange}
+                ></Pagination>
+              </div>
             )}
           </Card.Body>
         </Card>
