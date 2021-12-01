@@ -1,0 +1,116 @@
+.profile_01 {
+  border: black 1px solid;
+  padding: 6px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: orange;
+}
+
+.userEditText {
+  float: left;
+  color: #152536;
+  font-size: 32px;
+  font-weight: bold;
+  margin-left: 3px;
+}
+
+.totalquizzestakenstyle {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #48535b;
+  margin-top: 55px;
+}
+
+.studentdetailsposition {
+  margin-top: 40px;
+  display: inline-block;
+}
+
+.follow {
+  margin-left: 20px;
+  margin-right: 5px;
+  font-size: 20px;
+  margin-top: 0px;
+  display: inline-block;
+  font-weight: 300px;
+  color: #48535b;
+}
+.followone {
+  font-size: 20px;
+  margin-top: 0px;
+  display: inline-block;
+  font-weight: 300px;
+  color: #48535b;
+}
+
+.bg2 {
+  padding: 0px 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #48535b;
+}
+.cal1 {
+  background-color: #e0eaec;
+  width: 548px;
+  height: 40px;
+  border-radius: 2px 2px 0px 0px;
+  font-size: 18px;
+  filter: drop-shadow(0 1mm 1mm #48535b8c);
+}
+.cal_02 {
+  background-color: white;
+  width: 548px;
+  height: 300px;
+  border-radius: 0px 0px 10px 10px;
+}
+.cal_3 {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.s_h3 {
+  margin-right: 110px;
+  float: left;
+  margin-top: 20px;
+  margin-left: 17px;
+}
+
+.biuserposition {
+  width: 200px;
+  height: 160px;
+  padding-right: 10px;
+}
+
+#floatrighttext {
+  float: right;
+  margin-top: 20px;
+  margin-right: 17px;
+  font-size: 14px;
+}
+
+.margineforspan {
+  color: #48535b;
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+.Buttonstyle {
+  width: 92px;
+  height: 37px;
+  margin-top: 90px;
+  float: left;
+  background-color: #C0D5D8;
+  border: none;
+  color: white;
+  border-radius: 4px;
+}
+
+.Buttonstyle:hover{
+    color: #48535b;
+    background-color: #9ABEC1;
+}
+
+.buttonDivstyle{
+    width: 250px;
+}
