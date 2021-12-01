@@ -104,6 +104,10 @@ const StudentList = () => {
     }
   };
 
+  const redirectToStudDetail = (id) => {
+    window.location = `/students/${id}`;
+  };
+
   const renderStudList = () => {
     return students?.map((student, idx) => {
       return (
@@ -115,9 +119,14 @@ const StudentList = () => {
               width='30px'
               height='30px'
             />
-            {/* <a href={`/students/${student.id}`}> */}
-            <span className={style.margineforspan}>{student.name}</span>
-            {/* </a> */}
+            <a>
+              <span
+                className={style.margineforspan}
+                onClick={() => redirectToStudDetail(student.id)}
+              >
+                {student.name}
+              </span>
+            </a>
             {followButton(student.has_followed, student.id)}
           </div>
           <div id={style.floatrighttext}>
