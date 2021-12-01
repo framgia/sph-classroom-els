@@ -1,39 +1,65 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import { Dropdown } from 'react-bootstrap';
 import { BiFilterAlt } from 'react-icons/bi';
 import { BiSearch } from 'react-icons/bi';
 import Button from '@restart/ui/esm/Button';
+import Spinner from 'react-bootstrap/Spinner';
 
 import style from './index.module.css';
 
 import StudentApi from '../../../../api/Student';
 
 const StudentList = () => {
-  const page = 0; //This is a temporary variable, will change this when I am about to implement the pagination for this page
+  const queryParams = new URLSearchParams(window.location.search);
+  // const pageNum = queryParams.get('page'); Will use this in pagination functionality
+  const filterVal = queryParams.get('filter');
+  const searchVal = queryParams.get('search');
+  const history = useHistory();
+
+  const page = 0; //This is a temporary variable, will change this when I am about to implement the pagination for this page in another task
   const [students, setStudents] = useState(null);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(searchVal ? searchVal : '');
   const [status, setStatus] = useState(false);
-  const [filter, setFilter] = useState(null);
+  const [filter, setFilter] = useState(filterVal ? filterVal : '');
+  const [listInfo, setListInfo] = useState(
+    filterVal === 'followed'
+      ? 'Followed Students'
+      : filterVal === 'followers'
+        ? 'Followers'
+        : filterVal === null
+          ? 'All Students'
+          : ''
+  );
 
   useEffect(() => {
-    StudentApi.getAll({ page: page, filter: filter }).then(({ data }) =>
-      setStudents(data.data)
+    history.push(`?page=${page}&filter=${filter}&search=${search}`);
+    StudentApi.getAll({ page: page, filter: filter, search: search }).then(
+      ({ data }) => {
+        setStudents(data.data);
+      }
     );
   }, [status]);
 
   const onSearchSubmit = (e) => {
     e.preventDefault();
 
-    StudentApi.getAll({ page: page, search: search }).then(({ data }) =>
-      setStudents(data.data)
+    history.push(`?page=${page}&filter=${filter}&search=${search}`);
+
+    StudentApi.getAll({ page: page, filter: filter, search: search }).then(
+      ({ data }) => setStudents(data.data)
     );
   };
 
   const onFilterClick = (filter) => {
-    StudentApi.getAll({ page: page, filter: filter }).then(({ data }) => {
-      setStudents(data.data);
-    });
+    history.push(`?page=${page}&filter=${filter}&search=${search}`);
+
+    StudentApi.getAll({ page: page, filter: filter, search: search }).then(
+      ({ data }) => {
+        setStudents(data.data);
+      }
+    );
   };
 
   const onFollowClick = (userid) => {
@@ -49,7 +75,7 @@ const StudentList = () => {
   };
 
   const followButton = (status, userid) => {
-    if (status === true) {
+    if (status) {
       return (
         <Button
           className={style.button}
@@ -107,7 +133,7 @@ const StudentList = () => {
       style={{ marginTop: '120px', display: 'block' }}
     >
       <div>
-        <div className={style.listofstudenttext}>List of Students</div>
+        <div className={style.listofstudenttext}>List of {listInfo}</div>
         <Card>
           <Card.Header className={style.CardHeaderstyle}>
             <form onSubmit={onSearchSubmit}>
@@ -115,7 +141,13 @@ const StudentList = () => {
                 className={style.inputstyle}
                 type='search'
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+
+                  if (e.target.value.length === 0) {
+                    setStatus(!status);
+                  }
+                }}
                 name='search'
                 placeholder='Search'
               />
@@ -136,8 +168,9 @@ const StudentList = () => {
                 <Dropdown.Item
                   className={style.Dropdownitemstyle}
                   onClick={() => {
-                    setFilter(null);
+                    setFilter('');
                     setStatus(!status);
+                    setListInfo('All Students');
                   }}
                 >
                   All
@@ -147,6 +180,7 @@ const StudentList = () => {
                   onClick={() => {
                     onFilterClick('followed');
                     setFilter('followed');
+                    setListInfo('Followed Students');
                   }}
                 >
                   Following
@@ -156,6 +190,7 @@ const StudentList = () => {
                   onClick={() => {
                     onFilterClick('followers');
                     setFilter('followers');
+                    setListInfo('Followers');
                   }}
                 >
                   Followers
@@ -164,7 +199,22 @@ const StudentList = () => {
             </Dropdown>
           </Card.Header>
           <Card.Body className={`${style.cal_02} ${style.cal_3}`}>
-            {renderStudList()}
+            {students?.length <= 0 ? (
+              <div className={style.noResults}>
+                {' '}
+                <p>No Student Found</p>{' '}
+              </div>
+            ) : (
+              ''
+            )}
+            {students === null ? (
+              <div className={style.loading}>
+                <Spinner animation='border' role='status'></Spinner>
+                <span className={style.loadingWord}>Loading</span>
+              </div>
+            ) : (
+              renderStudList()
+            )}
           </Card.Body>
         </Card>
       </div>
