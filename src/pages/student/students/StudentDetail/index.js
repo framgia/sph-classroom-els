@@ -22,9 +22,7 @@ const StudentDetail = () => {
 
           <div style={{ marginLeft: '40px' }}>
             <div className={style.studentdetailsposition}>
-              <div className={style.userEditText}>
-                  Jane Doe
-              </div>
+              <div className={style.userEditText}>Jane Doe</div>
               <div className={style.totalquizzestakenstyle}>
                 20 Total Quizzes Taken
               </div>
@@ -34,7 +32,9 @@ const StudentDetail = () => {
           </div>
         </div>
         <div className={style.buttonDivstyle}>
-          <Button className={style.Buttonstyle} variant="success">Unfollow</Button>
+          <Button className={style.Buttonstyle} variant='success'>
+            Unfollow
+          </Button>
         </div>
       </div>
       <div className={style.bg2} style={{ marginTop: '40px' }}>
@@ -83,10 +83,7 @@ const StudentDetail = () => {
                   width='20px'
                   height='20px'
                 />
-                <span className={style.margineforspan}>
-                  {' '}
-                  Answered Science{' '}
-                </span>{' '}
+                <span className={style.margineforspan}> Answered Science </span>{' '}
               </h6>
               <div id={style.floatrighttext}>10 minutes ago </div>
             </div>
@@ -98,10 +95,7 @@ const StudentDetail = () => {
                   width='20px'
                   height='20px'
                 />
-                <span className={style.margineforspan}>
-                  {' '}
-                  Answered History{' '}
-                </span>{' '}
+                <span className={style.margineforspan}> Answered History </span>{' '}
               </h6>
               <div id={style.floatrighttext}>30 minutes ago </div>
             </div>
@@ -155,7 +149,7 @@ const StudentDetail = () => {
         <div>
           <div className={style.cal1}>
             <p style={{ float: 'left', marginLeft: '12px', marginTop: '10px' }}>
-                Activities
+              Activities
             </p>
           </div>
           <div className={`${style.cal_02} ${style.cal_3}`}>
@@ -168,10 +162,11 @@ const StudentDetail = () => {
                   height='20px'
                 />
                 <span className={style.margineforspan}>
-                  Followed Jhon Doe{' '}
-                </span>
+                  {' '}
+                  Followed John Doe{' '}
+                </span>{' '}
               </h6>
-              <div id={style.floatrighttext}>1 minute ago </div>
+              <div id={style.floatrighttext}>1 minutes ago </div>
             </div>
             <div>
               <h6 className={style.s_h3}>
@@ -182,6 +177,7 @@ const StudentDetail = () => {
                   height='20px'
                 />
                 <span className={style.margineforspan}>
+                  {' '}
                   Einstein answered Physics Quiz{' '}
                 </span>{' '}
               </h6>
@@ -195,11 +191,9 @@ const StudentDetail = () => {
                   width='20px'
                   height='20px'
                 />
-                <span className={style.margineforspan}>
-                  Followed Joash{' '}
-                </span>{' '}
+                <span className={style.margineforspan}> Followed Joash </span>{' '}
               </h6>
-              <div id={style.floatrighttext}>10 minutes ago</div>
+              <div id={style.floatrighttext}>10 minutes ago </div>
             </div>
             <div>
               <h6 className={style.s_h3}>
@@ -209,15 +203,12 @@ const StudentDetail = () => {
                   width='20px'
                   height='20px'
                 />
-                <span className={style.margineforspan}>
-                  Followed Gen{' '}
-                </span>
+                <span className={style.margineforspan}> Followed Gen </span>{' '}
               </h6>
-              <div id={style.floatrighttext}>30 minute ago</div>
+              <div id={style.floatrighttext}>30 minutes ago </div>
             </div>
             <div>
               <h6 className={style.s_h3}>
-                {' '}
                 <img
                   src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258753595_1042531349877078_5285897742986927636_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeG6ET7IUKZQ5FgOtWNcOnr0viTzQX3Fx---JPNBfcXH70y4ar8c4Wkjc7RYv6FaFSWU8dG7Ohov_UfvPthlxxln&_nc_ohc=Pv4nXOm1yrgAX_rTLc4&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=f3ca0a1461f5a71ef4638df807e84a88&oe=61BE3C6F'
                   alt='add user'
@@ -225,6 +216,7 @@ const StudentDetail = () => {
                   height='20px'
                 />
                 <span className={style.margineforspan}>
+                  {' '}
                   Answered HTML Quiz{' '}
                 </span>{' '}
               </h6>
@@ -239,6 +231,7 @@ const StudentDetail = () => {
                   height='20px'
                 />
                 <span className={style.margineforspan}>
+                  {' '}
                   Answered Programming Quiz{' '}
                 </span>{' '}
               </h6>
@@ -253,10 +246,11 @@ const StudentDetail = () => {
                   height='20px'
                 />
                 <span className={style.margineforspan}>
+                  {' '}
                   Answered History Quiz{' '}
-                </span>
+                </span>{' '}
               </h6>
-              <div id={style.floatrighttext}>55 minutes ago</div>
+              <div id={style.floatrighttext}>55 minutes ago </div>
             </div>
           </div>
         </div>
@@ -264,5 +258,5 @@ const StudentDetail = () => {
     </center>
   );
 };
- 
+
 export default StudentDetail;
