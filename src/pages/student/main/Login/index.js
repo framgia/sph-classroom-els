@@ -11,7 +11,7 @@ import AuthApi from '../../../../api/Auth';
 
 const Login = () => {
   const { control, handleSubmit } = useForm();
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
 
@@ -27,11 +27,9 @@ const Login = () => {
       Cookies.set('user_id', response.data.user.id);
       window.location = '/';
     } catch (error) {
-      console.log(error.response);
-      if (error?.response?.data?.errors) {
-        setErrors(error?.response?.data?.errors);
-      } else if (error?.response?.data?.error) {
-        showAlertDialog(true, error?.response?.data?.error?.message);
+      if (error?.response?.data?.error?.error) {
+        setErrors(error?.response?.data?.error?.error);
+        showAlertDialog(true, 'Incorrect Credentials');
       } else {
         showAlertDialog(true, 'An error has occurred.');
       }
@@ -74,14 +72,18 @@ const Login = () => {
                         ref={ref}
                         type="email"
                         placeholder="Enter here"
-                        isInvalid={errors?.email}
+                        isInvalid={
+                          errors === 'The password you’ve entered is incorrect.'
+                            ? ''
+                            : errors
+                        }
                         required
                         maxLength={50}
                       />
                     )}
                   />
                   <Form.Control.Feedback type="invalid">
-                    {errors?.email}
+                    {errors}
                   </Form.Control.Feedback>
                 </Form.Group>
 
@@ -100,25 +102,28 @@ const Login = () => {
                         onChange={onChange}
                         value={value}
                         ref={ref}
-                        className="cntrs"
                         type="password"
                         name="password"
                         placeholder="Enter here"
-                        isInvalid={errors?.password}
+                        isInvalid={
+                          errors === 'The email you’ve entered is incorrect.'
+                            ? ''
+                            : errors
+                        }
                         required
                         maxLength={20}
                       />
                     )}
                   />
                   <Form.Control.Feedback type="invalid">
-                    {errors?.password}
+                    {errors}
                   </Form.Control.Feedback>
                 </Form.Group>
 
                 <p>
                   <LinkContainer to="/reset-password">
                     <a
-                      className={style.fotgotPswrdsize}
+                      className={style.forgotPswrdsize}
                       style={{ textDecoration: 'none', marginTop: '0px' }}
                       href="/#"
                     >
@@ -139,7 +144,7 @@ const Login = () => {
                     <h5 className={style.sign}>
                       <LinkContainer to="/registration">
                         <a
-                          className={style.fotgotPswrd}
+                          className={style.forgotPswrd}
                           style={{ textDecoration: 'none' }}
                           href="/#"
                         >
