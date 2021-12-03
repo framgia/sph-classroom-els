@@ -14,7 +14,7 @@ const NewPassword = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
 
-  const queryParams = new URLSearchParams(window.location.search); 
+  const queryParams = new URLSearchParams(window.location.search);
   const token = queryParams.get('token');
 
   const showAlertDialog = (isShow, message) => {
@@ -23,9 +23,14 @@ const NewPassword = () => {
   };
 
   const handleOnSubmit = async ({ email, password, password_confirmation }) => {
-    try {      
-      const values = { email: email, password: password, password_confirmation: password_confirmation, token: token };
-      await PasswordResetApi.resetPassword( values );
+    try {
+      const values = {
+        email: email,
+        password: password,
+        password_confirmation: password_confirmation,
+        token: token,
+      };
+      await PasswordResetApi.resetPassword(values);
       window.location = '/login';
     } catch (error) {
       console.log(error.response);
@@ -55,7 +60,10 @@ const NewPassword = () => {
             onSubmit={handleSubmit(handleOnSubmit)}
             className={style.contentstyle}
           >
-            <div> <h4> Change Password </h4> </div>
+            <div>
+              {' '}
+              <h4> Change Password </h4>{' '}
+            </div>
             <div align="start" className={style.suggestion}>
               Create a new password that is at least 6 characters long. A strong
               password is a combination of letters, numbers, and symbols.
@@ -63,7 +71,7 @@ const NewPassword = () => {
             <div className={style.left} align="start">
               <Form.Group className="mb-3" controlId="NewPassword">
                 <Form.Label>
-                  <h6 style={{marginBottom:'0px'}} >Email</h6>
+                  <h6 style={{ marginBottom: '0px' }}>Email</h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -77,8 +85,9 @@ const NewPassword = () => {
                       className="cntrs"
                       type="email"
                       placeholder="e.g. johndoe@gmail.com"
-                      isInvalid={errors?.email}
+                      isInvalid={!!errors?.email}
                       required
+                      maxLength={50}
                     />
                   )}
                 />
@@ -91,7 +100,9 @@ const NewPassword = () => {
             <div className={style.right} align="start">
               <Form.Group className="mb-3" controlId="NewPassword">
                 <Form.Label>
-                  <h6 style={{marginBottom:'0px', marginTop:'10px'}} >New Password</h6>
+                  <h6 style={{ marginBottom: '0px', marginTop: '10px' }}>
+                    New Password
+                  </h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -105,8 +116,9 @@ const NewPassword = () => {
                       className="cntrs"
                       type="password"
                       placeholder="min of 6 characters"
-                      isInvalid={errors?.password}
+                      isInvalid={!!errors?.password}
                       required
+                      maxLength={20}
                     />
                   )}
                 />
@@ -117,7 +129,9 @@ const NewPassword = () => {
 
               <Form.Group className="mb-3" controlId="ConfirmPassword">
                 <Form.Label>
-                  <h6 style={{marginBottom:'0px', marginTop:'10px'}} >Confirm Password</h6>
+                  <h6 style={{ marginBottom: '0px', marginTop: '10px' }}>
+                    Confirm Password
+                  </h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -131,9 +145,10 @@ const NewPassword = () => {
                       className="cntrs"
                       type="password"
                       name="password_confirmation"
-                      placeholder="match passwords"  
-                      isInvalid={errors?.password_confirmation}
+                      placeholder="match passwords"
+                      isInvalid={!!errors?.password_confirmation}
                       required
+                      maxLength={20}
                     />
                   )}
                 />

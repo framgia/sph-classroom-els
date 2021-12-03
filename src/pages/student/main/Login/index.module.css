@@ -1,11 +1,19 @@
 #log01 {
-  background-color: #E0EAEC;
-  padding-left:48px;
+  background-color: #e0eaec;
+  padding-left: 48px;
   padding-right: 48px;
   border-radius: 2px;
   height: 396px;
   width: 430px;
-  color : #48535B;
+  color: #48535b;
+}
+
+.error {
+  border: 2px solid #e74c3c;
+}
+
+.valid {
+  border: 1px solid #c0d5d8;
 }
 
 .sign {
@@ -13,22 +21,22 @@
   padding-right: 10px;
   font-size: 14px;
   font-weight: 300px;
-  color : #48535B
+  color: #48535b;
 }
 
 .signup {
   margin-top: 30px;
-  color : #48535B
+  color: #48535b;
 }
 
 #Btncolor {
-  background-color: #C0D5D8;
-  border-color: #C0D5D8;
+  background-color: #c0d5d8;
+  border-color: #c0d5d8;
   margin-bottom: 20px;
   width: 85px;
   height: 32px;
   font-size: 14px;
-  color : #48535B;
+  color: #48535b;
   margin-top: 10px;
 }
 
@@ -36,42 +44,41 @@
   position: fixed;
   top: 100px;
   width: 611px;
-  color : #48535B
+  color: #48535b;
 }
 
 input {
   width: 334px;
   height: 38px;
-  color : #48535B;
+  color: #48535b;
 }
 
-.signintext{
+.signintext {
   margin: 15px;
   margin-top: 38px;
   margin-left: 137px;
   font-weight: 400px;
-  color : #48535B
+  color: #48535b;
 }
 
-.fotgotPswrd{
+.forgotPswrd {
   font-size: 14px;
-  color : #3F98A5;
+  color: #3f98a5;
   font-weight: 400px;
 }
 
-#Btncolor:hover{
-  background-color: #9ABEC1;
-  border-color: #9ABEC1;
+#Btncolor:hover {
+  background-color: #9abec1;
+  border-color: #9abec1;
   color: white;
 }
 
-.ContainerMT{
+.ContainerMT {
   margin-top: -900px;
 }
 
-.fotgotPswrdsize{
+.forgotPswrdsize {
   font-size: 12px;
-  color : #3F98A5;
+  color: #3f98a5;
   font-weight: 400px;
 }
-

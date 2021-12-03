@@ -1,51 +1,50 @@
-#log01{
-    background-color: #E0EAEC;
-    padding: 46px;
-    border-radius: 2px;
-    height: 539px;
-    width: 430px;
-    color : #48535B;
+#log01 {
+  background-color: #e0eaec;
+  padding: 46px;
+  border-radius: 2px;
+  width: 430px;
+  color: #48535b;
 }
 
-.signintxts{
-    margin-left: 137px;
-    font-weight: 400px;
-    color : #48535B;
-    margin-bottom: 15px;
-  }
+.signintxts {
+  margin-left: 137px;
+  font-weight: 400px;
+  color: #48535b;
+  margin-bottom: 15px;
+}
 
-  #Btncolor {
-    background-color: #C0D5D8;
-    border-color: #C0D5D8;
-    /* margin-bottom: 10px; */
-    width: 85px;
-    height: 32px;
-    font-size: 14px;
-    color : #48535B;
-    margin-top: 15px;
-  }
+#Btncolor {
+  background-color: #c0d5d8;
+  border-color: #c0d5d8;
+  /* margin-bottom: 10px; */
+  width: 85px;
+  height: 32px;
+  font-size: 14px;
+  color: #48535b;
+  margin-top: 15px;
+}
 
-  #Btncolor:hover{
-    background-color: #9ABEC1;
-    border-color: #9ABEC1;
-    color: white;
-  }
+#Btncolor:hover {
+  background-color: #9abec1;
+  border-color: #9abec1;
+  color: white;
+}
 
-  .sign {
-    display: inline-block;
-    padding-right: 10px;
-    font-size: 14px;
-    font-weight: 300px;
-    color : #48535B;
-    margin-top: 25px
-  }
+.sign {
+  display: inline-block;
+  padding-right: 10px;
+  font-size: 14px;
+  font-weight: 300px;
+  color: #48535b;
+  margin-top: 25px;
+}
 
-  .fotgotPswrd{
-    font-size: 14px;
-    color : #3F98A5;
-    font-weight: 400px;
-  }
+.fotgotPswrd {
+  font-size: 14px;
+  color: #3f98a5;
+  font-weight: 400px;
+}
 
-input::placeholder{
-    color: red;
-  }
+input::placeholder {
+  color: red;
+}

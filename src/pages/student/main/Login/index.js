@@ -11,7 +11,7 @@ import AuthApi from '../../../../api/Auth';
 
 const Login = () => {
   const { control, handleSubmit } = useForm();
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
 
@@ -27,11 +27,9 @@ const Login = () => {
       Cookies.set('user_id', response.data.user.id);
       window.location = '/';
     } catch (error) {
-      console.log(error.response);
-      if (error?.response?.data?.errors) {
-        setErrors(error?.response?.data?.errors);
-      } else if (error?.response?.data?.error) {
-        showAlertDialog(true, error?.response?.data?.error?.message);
+      if (error?.response?.data?.error?.error) {
+        setErrors(error?.response?.data?.error?.error);
+        showAlertDialog(true, 'Incorrect Credentials');
       } else {
         showAlertDialog(true, 'An error has occurred.');
       }
@@ -39,11 +37,11 @@ const Login = () => {
   };
 
   return (
-    <div className='d-flex justify-content-center align-items-center'>
+    <div className="d-flex justify-content-center align-items-center">
       {showAlert && (
         <Alert
           className={`${style.alert}`}
-          variant='danger'
+          variant="danger"
           onClose={() => setShowAlert(false)}
           dismissible
         >
@@ -59,33 +57,37 @@ const Login = () => {
             </div>
             <Form onSubmit={handleSubmit(handleOnSubmit)}>
               <div className={style.contanair}>
-                <Form.Group className='mb-3' controlId='email'>
+                <Form.Group className="mb-3" controlId="email">
                   <Form.Label>
                     <h6 style={{ marginBottom: '0px' }}>Email Address</h6>
                   </Form.Label>
                   <Controller
                     control={control}
-                    name='email'
-                    defaultValue=''
+                    name="email"
+                    defaultValue=""
                     render={({ field: { onChange, value, ref } }) => (
                       <Form.Control
                         onChange={onChange}
                         value={value}
                         ref={ref}
-                        className='cntrs'
-                        type='email'
-                        placeholder='Enter here'
-                        isInvalid={errors?.email}
+                        type="email"
+                        placeholder="Enter here"
+                        isInvalid={
+                          errors === 'The password you’ve entered is incorrect.'
+                            ? ''
+                            : errors
+                        }
                         required
+                        maxLength={50}
                       />
                     )}
                   />
-                  <Form.Control.Feedback type='invalid'>
-                    {errors?.email}
+                  <Form.Control.Feedback type="invalid">
+                    {errors}
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group className='mb-1' controlId='password'>
+                <Form.Group className="mb-1" controlId="password">
                   <Form.Label>
                     <h6 style={{ marginBottom: '0px', marginTop: '10px' }}>
                       Password
@@ -93,33 +95,37 @@ const Login = () => {
                   </Form.Label>
                   <Controller
                     control={control}
-                    name='password'
-                    defaultValue=''
+                    name="password"
+                    defaultValue=""
                     render={({ field: { onChange, value, ref } }) => (
                       <Form.Control
                         onChange={onChange}
                         value={value}
                         ref={ref}
-                        className='cntrs'
-                        type='password'
-                        name='password'
-                        placeholder='Enter here'
-                        isInvalid={errors?.password}
+                        type="password"
+                        name="password"
+                        placeholder="Enter here"
+                        isInvalid={
+                          errors === 'The email you’ve entered is incorrect.'
+                            ? ''
+                            : errors
+                        }
                         required
+                        maxLength={20}
                       />
                     )}
                   />
-                  <Form.Control.Feedback type='invalid'>
-                    {errors?.password}
+                  <Form.Control.Feedback type="invalid">
+                    {errors}
                   </Form.Control.Feedback>
                 </Form.Group>
 
                 <p>
-                  <LinkContainer to='/reset-password'>
+                  <LinkContainer to="/reset-password">
                     <a
-                      className={style.fotgotPswrdsize}
+                      className={style.forgotPswrdsize}
                       style={{ textDecoration: 'none', marginTop: '0px' }}
-                      href='/#'
+                      href="/#"
                     >
                       Forgot password?
                     </a>
@@ -127,20 +133,20 @@ const Login = () => {
                 </p>
 
                 <center>
-                  <Button id={style.Btncolor} type='submit'>
+                  <Button id={style.Btncolor} type="submit">
                     <p style={{ fontSize: '14px' }}>Sign In</p>
                   </Button>
                 </center>
 
                 <center>
-                  <div className='cnb'>
+                  <div className="cnb">
                     <p className={style.sign}>No Account Yet?</p>
                     <h5 className={style.sign}>
-                      <LinkContainer to='/registration'>
+                      <LinkContainer to="/registration">
                         <a
-                          className={style.fotgotPswrd}
+                          className={style.forgotPswrd}
                           style={{ textDecoration: 'none' }}
-                          href='/#'
+                          href="/#"
                         >
                           Sign Up
                         </a>
