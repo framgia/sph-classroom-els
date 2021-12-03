@@ -23,7 +23,10 @@ const PasswordReset = () => {
   const handleOnSubmit = async ({ email }) => {
     try {
       await PasswordResetApi.forgotPassword({ email });
-      showAlertDialog(true,'An email has been sent. Please click the link provided to proceed with the password reset.');
+      showAlertDialog(
+        true,
+        'An email has been sent. Please click the link provided to proceed with the password reset.'
+      );
     } catch (error) {
       console.log(error.response);
       if (error?.response?.data?.errors) {
@@ -44,11 +47,18 @@ const PasswordReset = () => {
           >
             <div className={style.center} align="start">
               <center>
-                <Form.Label> <h4> Password Reset </h4></Form.Label>
-              </center>
-              <Form.Group id={style.Containercentermargin} className="mb - 3" controlId="Email">
                 <Form.Label>
-                  <h6 style={{marginBottom:'0px'}} >Email</h6>
+                  {' '}
+                  <h4> Password Reset </h4>
+                </Form.Label>
+              </center>
+              <Form.Group
+                id={style.Containercentermargin}
+                className="mb - 3"
+                controlId="Email"
+              >
+                <Form.Label>
+                  <h6 style={{ marginBottom: '0px' }}>Email</h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -61,8 +71,9 @@ const PasswordReset = () => {
                       ref={ref}
                       className="cntrs"
                       type="email"
-                      isInvalid={errors?.email}
+                      isInvalid={!!errors?.email}
                       required
+                      maxLength={50}
                     />
                   )}
                 />
@@ -79,9 +90,7 @@ const PasswordReset = () => {
                   }}
                   id={style.button}
                 >
-                  <span className={style.textbutton}>
-                    Send Recovery Link
-                  </span>
+                  <span className={style.textbutton}>Send Recovery Link</span>
                 </Button>
               </center>
 
@@ -104,22 +113,28 @@ const PasswordReset = () => {
         }}
       >
         <Modal.Header id={style.modalcenter} closeButton>
-          <Modal.Title> <p style={{fontWeight: 'Bold', fontSize:'16px'}}> Password Reset </p> </Modal.Title>
+          <Modal.Title>
+            {' '}
+            <p style={{ fontWeight: 'Bold', fontSize: '16px' }}>
+              {' '}
+              Password Reset{' '}
+            </p>{' '}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className={style.textmodal}>
-            {
-              modalMessage
-            }
-          </div>
+          <div className={style.textmodal}>{modalMessage}</div>
         </Modal.Body>
         <Modal.Footer>
-          <Button id={style.Btncolor} onClick={() => {
-            setShow(false);
-          }}>Close</Button>
+          <Button
+            id={style.Btncolor}
+            onClick={() => {
+              setShow(false);
+            }}
+          >
+            Close
+          </Button>
         </Modal.Footer>
       </Modal>
-      
     </center>
   );
 };

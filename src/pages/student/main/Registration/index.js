@@ -6,12 +6,10 @@ import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
 import Form from 'react-bootstrap/Form';
 
-
 import AuthApi from '../../../../api/Auth';
 import style from './index.module.css';
 
 const Registration = () => {
-
   const { control, handleSubmit } = useForm();
   const [errors, setErrors] = useState({});
   const [showAlert, setShowAlert] = useState(false);
@@ -22,7 +20,12 @@ const Registration = () => {
     setAlertMessage(message);
   };
 
-  const handleOnSubmit = async ({ name, email, password, password_confirmation }) => {
+  const handleOnSubmit = async ({
+    name,
+    email,
+    password,
+    password_confirmation,
+  }) => {
     try {
       await AuthApi.register({ name, email, password, password_confirmation });
       window.location = '/login';
@@ -50,14 +53,17 @@ const Registration = () => {
           {alertMessage}
         </Alert>
       )}
-      <Container style={{marginTop:'132px'}}>
+      <Container style={{ marginTop: '132px' }}>
         <Stack gap={2} className="col-md-5 mx-auto" id={style.log01}>
-          <div className={style.signintxts}> <h4> Sign Up </h4> </div>
+          <div className={style.signintxts}>
+            {' '}
+            <h4> Sign Up </h4>{' '}
+          </div>
           <Form onSubmit={handleSubmit(handleOnSubmit)}>
             <div>
               <Form.Group className="mb-4" controlId="Name">
                 <Form.Label>
-                  <h6 style={{marginBottom:'0px'}} >Name</h6>
+                  <h6 style={{ marginBottom: '0px' }}>Name</h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -71,8 +77,9 @@ const Registration = () => {
                       className="cntrs"
                       type="text"
                       placeholder="e.g. jhondoe"
-                      isInvalid={errors?.name}
+                      isInvalid={!!errors?.name}
                       required
+                      maxLength={50}
                     />
                   )}
                 />
@@ -83,7 +90,7 @@ const Registration = () => {
 
               <Form.Group className="mb-4" controlId="Email">
                 <Form.Label>
-                  <h6 style={{marginBottom:'0px'}} >Email</h6>
+                  <h6 style={{ marginBottom: '0px' }}>Email</h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -97,8 +104,9 @@ const Registration = () => {
                       className="cntrs"
                       type="email"
                       placeholder="e.g. jhondoe@gmail.com"
-                      isInvalid={errors?.email}
+                      isInvalid={!!errors?.email}
                       required
+                      maxLength={50}
                     />
                   )}
                 />
@@ -109,7 +117,7 @@ const Registration = () => {
 
               <Form.Group className="mb-4" controlId="Password">
                 <Form.Label>
-                  <h6 style={{marginBottom:'0px'}} >Password</h6>
+                  <h6 style={{ marginBottom: '0px' }}>Password</h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -124,8 +132,9 @@ const Registration = () => {
                       type="password"
                       name="password"
                       placeholder="min of 6 characters"
-                      isInvalid={errors?.password}
+                      isInvalid={!!errors?.password}
                       required
+                      maxLength={20}
                     />
                   )}
                 />
@@ -136,7 +145,7 @@ const Registration = () => {
 
               <Form.Group className="mb-4" controlId="PasswordConfirmation">
                 <Form.Label>
-                  <h6 style={{marginBottom:'0px'}} >Confirm Password</h6>
+                  <h6 style={{ marginBottom: '0px' }}>Confirm Password</h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -151,8 +160,9 @@ const Registration = () => {
                       type="password"
                       name="password_confirmation"
                       placeholder="match passwords"
-                      isInvalid={errors?.password_confirmation}
+                      isInvalid={!!errors?.password_confirmation}
                       required
+                      maxLength={20}
                     />
                   )}
                 />
@@ -160,20 +170,24 @@ const Registration = () => {
                   {errors?.password_confirmation}
                 </Form.Control.Feedback>
               </Form.Group>
-                      
+
               <center>
                 <Button id={style.Btncolor} type="submit">
                   <p style={{ fontSize: '14px' }}>Sign Up</p>
                 </Button>
               </center>
-                      
+
               <center>
                 <div className="cnb">
                   <p className={style.sign}>Already have an Account?</p>
                   <h6 className={style.sign}>
                     <LinkContainer to="/login">
-                      <a className={style.fotgotPswrd} style={{ textDecoration: 'none' }} href='/#'>
-                          Sign In
+                      <a
+                        className={style.fotgotPswrd}
+                        style={{ textDecoration: 'none' }}
+                        href="/#"
+                      >
+                        Sign In
                       </a>
                     </LinkContainer>
                   </h6>
@@ -182,7 +196,7 @@ const Registration = () => {
             </div>
           </Form>
         </Stack>
-      </Container >
+      </Container>
     </div>
   );
 };
