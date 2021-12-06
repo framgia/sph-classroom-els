@@ -34,8 +34,8 @@ function Dashboard() {
             { categorieslearned?.map((categorylearned, idx) => {
               return(
                 <CategoryLearned key={idx} categorylearned={categorylearned}/>
-                  );
-              })}
+              );
+            })}
           </div> 
         </Card.Body>
       </Card>
@@ -58,6 +58,6 @@ function Dashboard() {
     </div>
   );
 
-};
+}
 
 export default Dashboard;

@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
 import { BiBookAlt } from 'react-icons/bi';
 import { PropTypes } from 'prop-types';
 
