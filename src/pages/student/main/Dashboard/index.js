@@ -16,7 +16,6 @@ function Dashboard() {
   useEffect(() => {
     DashboardApi.getAll(userId).then(({ data }) => {
       setCategoriesLearned(data.data);
-      console.log(data.data);
     });
   });
 
