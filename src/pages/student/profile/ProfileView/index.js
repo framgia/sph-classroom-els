@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { BiPencil } from 'react-icons/bi';
+import { MdEdit } from 'react-icons/md';
 import style from './index.module.css';
 import { Card } from 'react-bootstrap';
 
@@ -14,7 +14,7 @@ const ProfileView = () => {
           <Form.Group className='mb-3' controlId='formBasicEmail'>
             <Form.Label style={{marginBottom: '0px', color: '#48535B', fontSize: '16px' }}>Name</Form.Label>
             <a href='/profile/edit '>
-              <BiPencil className={style.editbuttonone} />
+              <MdEdit className={style.editbuttonone} />
             </a>
             <Form.Control style={{fontSize:'14px' }} type='text' name='name' value='Jane Doe' />
           </Form.Group>
@@ -22,7 +22,7 @@ const ProfileView = () => {
           <Form.Group className='mb-4' controlId='formBasicPassword'>
             <Form.Label style={{marginBottom: '0px', color: '#48535B', fontSize: '16px' }}>Email</Form.Label>
             <a href='/profile/edit '>
-              <BiPencil className={style.editbuttonTwo} />
+              <MdEdit className={style.editbuttonTwo} />
             </a>
             <Form.Control style={{fontSize:'14px' }} type='email' name='email' value='janedoe@gmail.com' />
           </Form.Group>

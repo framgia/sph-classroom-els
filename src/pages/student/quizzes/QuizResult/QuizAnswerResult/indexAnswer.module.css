@@ -97,7 +97,7 @@ input [type='radio']:disabled {
   display: flex;
   float: right;
   justify-content: none;
-  margin-left: 2px;
+  margin-left: 20px;
 }
 
 .sizeOfAvatarInResult2 {
@@ -110,6 +110,7 @@ input [type='radio']:disabled {
   height: 20px;
   display: flex;
   float: right;
+  margin-left: 19px;
 }
 
 .inputResult {
