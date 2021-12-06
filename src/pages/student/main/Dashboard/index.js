@@ -17,7 +17,7 @@ function Dashboard() {
     DashboardApi.getAll(userId).then(({ data }) => {
       setCategoriesLearned(data.data);
     });
-  });
+  }, []);
 
   const renderDashList = () => {
     return (
