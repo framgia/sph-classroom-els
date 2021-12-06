@@ -38,10 +38,10 @@
 }
 
 .listTable{
-    text-align: left;
     color: #48535B;
     font-weight: 400;
     font-size: 16px;
+    padding: 0px;
 }
 
 .tableIcon{

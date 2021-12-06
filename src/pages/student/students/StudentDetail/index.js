@@ -2,6 +2,8 @@ import React from 'react';
 import style from './index.module.css';
 import { BiUser } from 'react-icons/bi';
 import Button from '@restart/ui/esm/Button';
+import { BsCardChecklist } from 'react-icons/bs';
+import { RiUserAddLine } from 'react-icons/ri';
 
 const StudentDetail = () => {
   return (
@@ -47,12 +49,7 @@ const StudentDetail = () => {
           <div className={`${style.cal_02} ${style.cal_3}`}>
             <div>
               <h6 className={style.s_h3}>
-                <img
-                  src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258753595_1042531349877078_5285897742986927636_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeG6ET7IUKZQ5FgOtWNcOnr0viTzQX3Fx---JPNBfcXH70y4ar8c4Wkjc7RYv6FaFSWU8dG7Ohov_UfvPthlxxln&_nc_ohc=Pv4nXOm1yrgAX_rTLc4&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=f3ca0a1461f5a71ef4638df807e84a88&oe=61BE3C6F'
-                  alt='add user'
-                  width='20px'
-                  height='20px'
-                />
+                <BsCardChecklist size='20px' />
                 <span className={style.margineforspan}>
                   {' '}
                   Answerd Web Development{' '}
@@ -62,12 +59,7 @@ const StudentDetail = () => {
             </div>
             <div>
               <h6 className={style.s_h3}>
-                <img
-                  src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258753595_1042531349877078_5285897742986927636_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeG6ET7IUKZQ5FgOtWNcOnr0viTzQX3Fx---JPNBfcXH70y4ar8c4Wkjc7RYv6FaFSWU8dG7Ohov_UfvPthlxxln&_nc_ohc=Pv4nXOm1yrgAX_rTLc4&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=f3ca0a1461f5a71ef4638df807e84a88&oe=61BE3C6F'
-                  alt='add user'
-                  width='20px'
-                  height='20px'
-                />
+                <BsCardChecklist size='20px' />
                 <span className={style.margineforspan}>
                   {' '}
                   Answered C Programming Quiz{' '}
@@ -77,36 +69,21 @@ const StudentDetail = () => {
             </div>
             <div>
               <h6 className={style.s_h3}>
-                <img
-                  src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258753595_1042531349877078_5285897742986927636_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeG6ET7IUKZQ5FgOtWNcOnr0viTzQX3Fx---JPNBfcXH70y4ar8c4Wkjc7RYv6FaFSWU8dG7Ohov_UfvPthlxxln&_nc_ohc=Pv4nXOm1yrgAX_rTLc4&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=f3ca0a1461f5a71ef4638df807e84a88&oe=61BE3C6F'
-                  alt='add user'
-                  width='20px'
-                  height='20px'
-                />
+                <BsCardChecklist size='20px' />
                 <span className={style.margineforspan}> Answered Science </span>{' '}
               </h6>
               <div id={style.floatrighttext}>10 minutes ago </div>
             </div>
             <div>
               <h6 className={style.s_h3}>
-                <img
-                  src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258753595_1042531349877078_5285897742986927636_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeG6ET7IUKZQ5FgOtWNcOnr0viTzQX3Fx---JPNBfcXH70y4ar8c4Wkjc7RYv6FaFSWU8dG7Ohov_UfvPthlxxln&_nc_ohc=Pv4nXOm1yrgAX_rTLc4&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=f3ca0a1461f5a71ef4638df807e84a88&oe=61BE3C6F'
-                  alt='add user'
-                  width='20px'
-                  height='20px'
-                />
+                <BsCardChecklist size='20px' />
                 <span className={style.margineforspan}> Answered History </span>{' '}
               </h6>
               <div id={style.floatrighttext}>30 minutes ago </div>
             </div>
             <div>
               <h6 className={style.s_h3}>
-                <img
-                  src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258753595_1042531349877078_5285897742986927636_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeG6ET7IUKZQ5FgOtWNcOnr0viTzQX3Fx---JPNBfcXH70y4ar8c4Wkjc7RYv6FaFSWU8dG7Ohov_UfvPthlxxln&_nc_ohc=Pv4nXOm1yrgAX_rTLc4&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=f3ca0a1461f5a71ef4638df807e84a88&oe=61BE3C6F'
-                  alt='add user'
-                  width='20px'
-                  height='20px'
-                />
+                <BsCardChecklist size='20px' />
                 <span className={style.margineforspan}>
                   {' '}
                   Answered Mathematics{' '}
@@ -116,12 +93,7 @@ const StudentDetail = () => {
             </div>
             <div>
               <h6 className={style.s_h3}>
-                <img
-                  src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258753595_1042531349877078_5285897742986927636_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeG6ET7IUKZQ5FgOtWNcOnr0viTzQX3Fx---JPNBfcXH70y4ar8c4Wkjc7RYv6FaFSWU8dG7Ohov_UfvPthlxxln&_nc_ohc=Pv4nXOm1yrgAX_rTLc4&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=f3ca0a1461f5a71ef4638df807e84a88&oe=61BE3C6F'
-                  alt='add user'
-                  width='20px'
-                  height='20px'
-                />
+                <BsCardChecklist size='20px' />
                 <span className={style.margineforspan}>
                   {' '}
                   Answered Geometry Quiz{' '}
@@ -131,12 +103,7 @@ const StudentDetail = () => {
             </div>
             <div>
               <h6 className={style.s_h3}>
-                <img
-                  src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258753595_1042531349877078_5285897742986927636_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeG6ET7IUKZQ5FgOtWNcOnr0viTzQX3Fx---JPNBfcXH70y4ar8c4Wkjc7RYv6FaFSWU8dG7Ohov_UfvPthlxxln&_nc_ohc=Pv4nXOm1yrgAX_rTLc4&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=f3ca0a1461f5a71ef4638df807e84a88&oe=61BE3C6F'
-                  alt='add user'
-                  width='20px'
-                  height='20px'
-                />
+                <BsCardChecklist size='20px' />
                 <span className={style.margineforspan}>
                   {' '}
                   Encapsulation Quiz Retake{' '}
@@ -155,12 +122,7 @@ const StudentDetail = () => {
           <div className={`${style.cal_02} ${style.cal_3}`}>
             <div>
               <h6 className={style.s_h3}>
-                <img
-                  src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258875851_297713058742510_5589738744787657544_n.png?_nc_cat=109&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeHv_9CW90DeFp14_vAalunNcCS_Y5vavKBwJL9jm9q8oEX6JrJoiU0VrlqjF_5PgnvnQjROfpU3q45qissgUoIe&_nc_ohc=I6yGb7JUAyQAX-UKAvr&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=67b97aa28bfeb931f04b0a6033dc5598&oe=61BDEB36'
-                  alt='add user'
-                  width='20px'
-                  height='20px'
-                />
+                <RiUserAddLine size='20px' />
                 <span className={style.margineforspan}>
                   {' '}
                   Followed John Doe{' '}
@@ -170,12 +132,7 @@ const StudentDetail = () => {
             </div>
             <div>
               <h6 className={style.s_h3}>
-                <img
-                  src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258753595_1042531349877078_5285897742986927636_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeG6ET7IUKZQ5FgOtWNcOnr0viTzQX3Fx---JPNBfcXH70y4ar8c4Wkjc7RYv6FaFSWU8dG7Ohov_UfvPthlxxln&_nc_ohc=Pv4nXOm1yrgAX_rTLc4&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=f3ca0a1461f5a71ef4638df807e84a88&oe=61BE3C6F'
-                  alt='add user'
-                  width='20px'
-                  height='20px'
-                />
+                <BsCardChecklist size='20px' />
                 <span className={style.margineforspan}>
                   {' '}
                   Einstein answered Physics Quiz{' '}
@@ -185,36 +142,21 @@ const StudentDetail = () => {
             </div>
             <div>
               <h6 className={style.s_h3}>
-                <img
-                  src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258875851_297713058742510_5589738744787657544_n.png?_nc_cat=109&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeHv_9CW90DeFp14_vAalunNcCS_Y5vavKBwJL9jm9q8oEX6JrJoiU0VrlqjF_5PgnvnQjROfpU3q45qissgUoIe&_nc_ohc=I6yGb7JUAyQAX-UKAvr&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=67b97aa28bfeb931f04b0a6033dc5598&oe=61BDEB36'
-                  alt='add user'
-                  width='20px'
-                  height='20px'
-                />
+                <RiUserAddLine size='20px' />
                 <span className={style.margineforspan}> Followed Joash </span>{' '}
               </h6>
               <div id={style.floatrighttext}>10 minutes ago </div>
             </div>
             <div>
               <h6 className={style.s_h3}>
-                <img
-                  src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258875851_297713058742510_5589738744787657544_n.png?_nc_cat=109&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeHv_9CW90DeFp14_vAalunNcCS_Y5vavKBwJL9jm9q8oEX6JrJoiU0VrlqjF_5PgnvnQjROfpU3q45qissgUoIe&_nc_ohc=I6yGb7JUAyQAX-UKAvr&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=67b97aa28bfeb931f04b0a6033dc5598&oe=61BDEB36'
-                  alt='add user'
-                  width='20px'
-                  height='20px'
-                />
+                <RiUserAddLine size='20px' />
                 <span className={style.margineforspan}> Followed Gen </span>{' '}
               </h6>
               <div id={style.floatrighttext}>30 minutes ago </div>
             </div>
             <div>
               <h6 className={style.s_h3}>
-                <img
-                  src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258753595_1042531349877078_5285897742986927636_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeG6ET7IUKZQ5FgOtWNcOnr0viTzQX3Fx---JPNBfcXH70y4ar8c4Wkjc7RYv6FaFSWU8dG7Ohov_UfvPthlxxln&_nc_ohc=Pv4nXOm1yrgAX_rTLc4&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=f3ca0a1461f5a71ef4638df807e84a88&oe=61BE3C6F'
-                  alt='add user'
-                  width='20px'
-                  height='20px'
-                />
+                <BsCardChecklist size='20px' />
                 <span className={style.margineforspan}>
                   {' '}
                   Answered HTML Quiz{' '}
@@ -224,12 +166,7 @@ const StudentDetail = () => {
             </div>
             <div>
               <h6 className={style.s_h3}>
-                <img
-                  src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258753595_1042531349877078_5285897742986927636_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeG6ET7IUKZQ5FgOtWNcOnr0viTzQX3Fx---JPNBfcXH70y4ar8c4Wkjc7RYv6FaFSWU8dG7Ohov_UfvPthlxxln&_nc_ohc=Pv4nXOm1yrgAX_rTLc4&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=f3ca0a1461f5a71ef4638df807e84a88&oe=61BE3C6F'
-                  alt='add user'
-                  width='20px'
-                  height='20px'
-                />
+                <BsCardChecklist size='20px' />
                 <span className={style.margineforspan}>
                   {' '}
                   Answered Programming Quiz{' '}
@@ -239,12 +176,7 @@ const StudentDetail = () => {
             </div>
             <div>
               <h6 className={style.s_h3}>
-                <img
-                  src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258753595_1042531349877078_5285897742986927636_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeG6ET7IUKZQ5FgOtWNcOnr0viTzQX3Fx---JPNBfcXH70y4ar8c4Wkjc7RYv6FaFSWU8dG7Ohov_UfvPthlxxln&_nc_ohc=Pv4nXOm1yrgAX_rTLc4&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=f3ca0a1461f5a71ef4638df807e84a88&oe=61BE3C6F'
-                  alt='add user'
-                  width='20px'
-                  height='20px'
-                />
+                <BsCardChecklist size='20px' />
                 <span className={style.margineforspan}>
                   {' '}
                   Answered History Quiz{' '}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import { Dropdown } from 'react-bootstrap';
-import { BiFilterAlt } from 'react-icons/bi';
+import { VscFilter } from 'react-icons/vsc';
 import { BiSearch } from 'react-icons/bi';
 import Button from '@restart/ui/esm/Button';
 import Spinner from 'react-bootstrap/Spinner';
@@ -174,7 +174,7 @@ const StudentList = () => {
                 bsPrefix='none'
               >
                 <span className={style.Textfordropdownstyle}> Filter </span>
-                <BiFilterAlt size='20px' />
+                <VscFilter size='20px' />
               </Dropdown.Toggle>
               <Dropdown.Menu className={style.Dropdownmenustyle}>
                 <Dropdown.Item
