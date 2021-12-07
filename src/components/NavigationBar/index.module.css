@@ -1,6 +1,5 @@
 .navbar {
   background-color: #002037;
-  height: 80px;
 }
 
 .navbarLink {
@@ -39,8 +38,25 @@
   color: #FFFFFF !important;
 }
 
-.dropdownItem:hover {
-  color: #002037 !important;
+.colorActive{
+  background-color: #ffffff9f !important;
+}
+
+.dropdownItem:active {
+  background-color: #ffffff9f;
+}
+
+.dropdownItem:hover{
+  color: #000 !important;
+}
+
+.colorActive:active{
+  background-color: #ffffff9f !important;
+}
+
+
+#ItemColor{
+  background-color: #ffffff;
 }
 
 .dropdownTitleIcon {
