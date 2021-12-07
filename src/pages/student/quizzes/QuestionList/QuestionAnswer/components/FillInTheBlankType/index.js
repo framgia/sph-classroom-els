@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import style from '../../indexQuestion.module.css';
 import { PropTypes } from 'prop-types';
 
-const FillInTheBlankType = ({ question, getAnswer, getPoint }) => {
+const FillInTheBlankType = ({ question, getAnswer, answer, getPoint }) => {
   const [point, setPoint] = useState(0);
 
   useEffect(() => {
@@ -10,7 +10,7 @@ const FillInTheBlankType = ({ question, getAnswer, getPoint }) => {
   }, [point]);
 
   return (
-    <Fragment style={{hieght:'1000px'}}>
+    <Fragment>
       <div className={style.question}>
         <p className={style.paragraph}>{`${question.question}`}</p>
         {/* <p className={style.paragraph}>Note: Do not use acronyms</p> */}
@@ -23,7 +23,8 @@ const FillInTheBlankType = ({ question, getAnswer, getPoint }) => {
           className={style.cardbody2}
           type='text'
           name='answer'
-          placeholder= 'Type your answer here'
+          value={answer}
+          placeholder='Type your answer here'
           onChange={(e) => {
             if (e.nativeEvent.data != ' ') {
               if (e.target.value === question.text_answer) {
@@ -45,6 +46,7 @@ FillInTheBlankType.propTypes = {
   question: PropTypes.object,
   page: PropTypes.number,
   getAnswer: PropTypes.any,
+  answer: PropTypes.string,
   getPoint: PropTypes.any
 };
 

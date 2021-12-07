@@ -37,8 +37,23 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
               <div className={style.ResultupperBodyCard}>
                 <div className={style.ResultcardLeft}>
                   <div className={style.ResultscoreDisplay}>
-                    <div className={style.ResultquizPraise}>Great Job!</div>
-                    <div className={style.ResultquizRemarks}>You Passed</div>
+                    {score < passing ? (
+                      <>
+                        <div className={style.ResultquizPraise}>
+                          Better Luck Next Time!
+                        </div>
+                        <div className={style.ResultquizRemarks}>
+                          You Failed
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className={style.ResultquizPraise}>Great Job!</div>
+                        <div className={style.ResultquizRemarks}>
+                          You Passed
+                        </div>
+                      </>
+                    )}
                     <Card.Text className={style.Resultscore}>
                       {' '}
                       <span
@@ -56,45 +71,47 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                   <b className={style.friendsTitle}>Friend&apos;s Score</b>
                   <hr />
                   <table style={{ width: '100%' }}>
-                    <tr>
-                      <td>
-                        <a href="/#">
-                          <img
-                            className={style.ResultsizeOfAvatar}
-                            alt="avatar"
-                            src={faker.image.avatar()}
-                          />
-                        </a>
-                      </td>
-                      <td className={style.friendsName}>Therese</td>
-                      <td className={style.friendsScore}>10/10</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="/#">
-                          <img
-                            className={style.ResultsizeOfAvatar}
-                            alt="avatar"
-                            src={faker.image.avatar()}
-                          />
-                        </a>
-                      </td>
-                      <td className={style.friendsName}>Harvey</td>
-                      <td className={style.friendsScore}>10/10</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <a href="/#">
-                          <img
-                            className={style.ResultsizeOfAvatar}
-                            alt="avatar"
-                            src={faker.image.avatar()}
-                          />
-                        </a>
-                      </td>
-                      <td className={style.friendsName}>Erick</td>
-                      <td className={style.friendsScore}>10/10</td>
-                    </tr>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <a href='/#'>
+                            <img
+                              className={style.ResultsizeOfAvatar}
+                              alt='avatar'
+                              src={faker.image.avatar()}
+                            />
+                          </a>
+                        </td>
+                        <td className={style.friendsName}>Therese</td>
+                        <td className={style.friendsScore}>10/10</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <a href='/#'>
+                            <img
+                              className={style.ResultsizeOfAvatar}
+                              alt='avatar'
+                              src={faker.image.avatar()}
+                            />
+                          </a>
+                        </td>
+                        <td className={style.friendsName}>Harvey</td>
+                        <td className={style.friendsScore}>10/10</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <a href='/#'>
+                            <img
+                              className={style.ResultsizeOfAvatar}
+                              alt='avatar'
+                              src={faker.image.avatar()}
+                            />
+                          </a>
+                        </td>
+                        <td className={style.friendsName}>Erick</td>
+                        <td className={style.friendsScore}>10/10</td>
+                      </tr>
+                    </tbody>
                   </table>
                 </Card>
                 {/* <Card className={style.Resultcard2}>
@@ -162,10 +179,10 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
               <div>
                 <h2 className={style.h2_style}>Related Quizzes</h2>
                 <div className={style.bg}>
-                  <Recent title="HTML" />
-                  <Recent title="Linked List" />
-                  <Recent title="Encapsulation" />
-                  <Recent title="CSS" />
+                  <Recent title='HTML' />
+                  <Recent title='Linked List' />
+                  <Recent title='Encapsulation' />
+                  <Recent title='CSS' />
                 </div>
               </div>
             </footer>
@@ -191,6 +208,6 @@ QuizResult.propTypes = {
   score: PropTypes.number,
   total: PropTypes.number,
   quizId: PropTypes.number,
-  categoryId: PropTypes.number,
+  categoryId: PropTypes.number
 };
 export default QuizResult;

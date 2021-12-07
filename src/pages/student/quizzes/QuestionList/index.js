@@ -52,10 +52,7 @@ const QuestionList = () => {
   };
 
   return (
-    <div
-      className='d-flex justify-content-center align-items-center'
-      style={{ marginTop: '150px' }}
-    >
+    <div className='d-flex justify-content-center align-items-center'>
       <QuestionsContext.Provider
         value={{ questions, title: quizInfo?.title, quizTakenId }}
       >

@@ -183,6 +183,7 @@ const StudentList = () => {
                     setFilter('');
                     setStatus(!status);
                     setListInfo('All Students');
+                    setPage(1);
                   }}
                 >
                   All
