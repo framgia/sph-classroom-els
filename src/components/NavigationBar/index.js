@@ -39,7 +39,8 @@ const NavigationBar = () => {
               </Nav.Link>
             </LinkContainer>
             <LinkContainer to="/categories">
-              <Nav.Link href="#" className={style.navbarLink}>
+              <Nav.Link href="#" className={style.navbarLink}
+              >
                 Categories
               </Nav.Link>
             </LinkContainer>
@@ -50,22 +51,34 @@ const NavigationBar = () => {
             </LinkContainer>
             <NavDropdown
               title={
-                <img
+                <center><img
                   src="https://www.freeiconspng.com/thumbs/profile-icon-png/account-profile-user-icon--icon-search-engine-10.png"
                   className={style.dropdownTitleIcon}
                   alt="Profile Icon"
-                />
+                /></center>
               }
               id={style.dropdownMenu}
               align="end"
             >
-              <LinkContainer to="/learnings">
-                <NavDropdown.Item href="#" className={style.dropdownItem}>
+              <LinkContainer 
+                exact to="/learnings" 
+                activeClassName={style.colorActive}
+              >
+                <NavDropdown.Item 
+                  href="#" 
+                  className={style.dropdownItem}
+                >
                   <IoLibraryOutline /> Learnings
                 </NavDropdown.Item>
               </LinkContainer>
-              <LinkContainer to="/profile">
-                <NavDropdown.Item href="#" className={style.dropdownItem}>
+              <LinkContainer 
+                exact to="/profile"
+                activeClassName={style.colorActive}
+              >
+                <NavDropdown.Item 
+                  href="#" 
+                  className={style.dropdownItem}
+                >
                   <CgProfile /> Profile
                 </NavDropdown.Item>
               </LinkContainer>
