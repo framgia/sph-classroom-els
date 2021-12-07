@@ -39,11 +39,12 @@
 }
 
 .colorActive{
-  background-color: #ffffff9f !important;
+  background-color: #ffffff !important;
+  color: black !important;
 }
 
 .dropdownItem:active {
-  background-color: #ffffff9f;
+  background-color: #ffffff;
 }
 
 .dropdownItem:hover{
