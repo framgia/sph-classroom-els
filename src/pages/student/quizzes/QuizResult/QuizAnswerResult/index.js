@@ -10,7 +10,13 @@ import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 
 import { QuestionsContext } from '../../QuestionList';
 
-const QuizAnswerResult = ({ answers, score, total, categoryId }) => {
+const QuizAnswerResult = ({
+  answers,
+  score,
+  total,
+  categoryId,
+  viewResultsPage
+}) => {
   const [page, setPage] = useState(1);
   const { questions, title } = useContext(QuestionsContext);
   const [question, setQuestion] = useState(questions[page - 1]);
@@ -39,16 +45,19 @@ const QuizAnswerResult = ({ answers, score, total, categoryId }) => {
         <Card className={style.cardstyle1}>
           <Card.Header id={style.topicbg1}>
             <div className={style.topic1}>
-              <a href={'#'}>
-                <BsFillArrowLeftSquareFill className={style.backarrow1} />
-              </a>
-              {title}
+              <BsFillArrowLeftSquareFill
+                onClick={viewResultsPage}
+                className={style.backarrow1}
+              />
+              <div className={style.title}>
+                <center className={style.topicspan}>
+                  <span>{title}</span>
+                </center>
+              </div>
             </div>
           </Card.Header>
-          <Badge bg="light" className={style.tml1}>
-            <div className={style.scorebg1}>
-              Score
-            </div>
+          <Badge bg='light' className={style.tml1}>
+            <div className={style.scorebg1}>Score</div>
             <Card.Text className={style.score1}>
               <span className={style.timeleftspace1}>
                 <b className={style.timer1}>{score}</b>
@@ -87,7 +96,7 @@ const QuizAnswerResult = ({ answers, score, total, categoryId }) => {
                   </a>
                 ) : (
                   <Button
-                    className={style.button}
+                    className={style.nextbutton}
                     onClick={handleNextButtonClick}
                   >
                     Next
@@ -105,10 +114,10 @@ const QuizAnswerResult = ({ answers, score, total, categoryId }) => {
 
 QuizAnswerResult.propTypes = {
   viewResultsPage: PropTypes.any,
-  answers: PropTypes.object,
+  answers: PropTypes.array,
   score: PropTypes.number,
   total: PropTypes.number,
-  categoryId: PropTypes.number,
+  categoryId: PropTypes.number
 };
 
 export default QuizAnswerResult;

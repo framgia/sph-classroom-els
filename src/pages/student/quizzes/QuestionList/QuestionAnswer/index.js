@@ -21,7 +21,7 @@ const QuestionAnswer = () => {
   const [question, setQuestion] = useState(questions[page - 1]);
   const [timeOutId, setTimeOutId] = useState(null);
   const [choice, setChoice] = useState(null);
-  const [textAnswer, setTextAnswer] = useState(null);
+  const [textAnswer, setTextAnswer] = useState('');
   const [remainingTime, setRemainingTime] = useState(null);
   const [prevPage, setPrevPage] = useState(1);
   const [score, setScore] = useState(0);
@@ -50,8 +50,11 @@ const QuestionAnswer = () => {
         question_id: question.id,
         text_answer: textAnswer,
         text_correct: null,
-        time_left: remainingTime,
+        time_left: remainingTime
       });
+
+      setTextAnswer('');
+      setChoice(null);
     }
 
     window.clearTimeout(timeOutId);
@@ -72,7 +75,7 @@ const QuestionAnswer = () => {
       question_id: question.id,
       text_answer: textAnswer,
       text_correct: null,
-      time_left: remainingTime,
+      time_left: remainingTime
     }).then(() => {
       setShowResult(!showResult);
     });
@@ -128,7 +131,7 @@ const QuestionAnswer = () => {
               </div>
             </Card.Header>
             <Card.Body className={style.wholeBodyCard}>
-              <Badge bg="light" className={style.tml}>
+              <Badge bg='light' className={style.tml}>
                 <Card.Text className={style.time}>
                   <span className={style.timeleftspace}>Time Left: </span>
                   <b className={style.timer}> {time} </b>
@@ -148,6 +151,7 @@ const QuestionAnswer = () => {
                     question={question}
                     // page={page}
                     time={time}
+                    answer={textAnswer}
                     getAnswer={getAnswer}
                     getPoint={getPoint}
                   ></FillInTheBlankType>
@@ -181,8 +185,8 @@ const QuestionAnswer = () => {
         <QuizResult
           score={score}
           total={questions.length}
-          categoryId={categoryId}
-          quizId={quizId}
+          categoryId={parseInt(categoryId)}
+          quizId={parseInt(quizId)}
         />
       )}
     </div>

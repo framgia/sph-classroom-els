@@ -35,6 +35,15 @@ const StudentsApi = {
     };
 
     return API.request(options);
+  },
+
+  getDetails: (id) => {
+    const options = {
+      method: 'GET',
+      url: `/students/${id}`
+    };
+
+    return API.request(options);
   }
 };
 

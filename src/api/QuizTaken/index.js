@@ -39,9 +39,14 @@ const QuizTaken = {
     return API.request(options);
   },
 
-  delete: () => {},
+  getRecent: (id) => {
+    const options = {
+      method: 'GET',
+      url: `/recent-quizzes/${id}`
+    };
 
-  restore: () => {}
+    return API.request(options);
+  }
 };
 
 export default QuizTaken;

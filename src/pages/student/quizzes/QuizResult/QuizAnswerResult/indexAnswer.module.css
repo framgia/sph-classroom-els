@@ -3,6 +3,10 @@
   margin-top: 50px;
 }
 
+.cardstyle1 {
+  margin-top: 150px;
+}
+
 .questionstyleresult {
   padding-bottom: 86px;
 }
@@ -88,7 +92,7 @@ input [type='radio']:disabled {
   padding: 10px;
 }
 
-.foranswericon{
+.foranswericon {
   float: right;
 }
 
@@ -153,7 +157,7 @@ input [type='radio']:disabled {
   width: 70px;
   height: 40px;
   display: inline;
-  margin-right: 50px;
+  cursor: pointer;
 }
 
 .correct {
@@ -168,11 +172,18 @@ input [type='radio']:disabled {
   color: red;
 }
 
-.topic1 {
+.title {
   color: #48535b;
-  justify-content: space-between;
   font-size: 24px;
-  width: 500px;
+  width: 420px;
+  padding-right: 60px;
+}
+
+.topic1 {
+  display: flex;
+  align-items: center;
+  color: #48535b;
+  font-size: 24px;
   font-weight: bold;
   padding: 5px;
   margin-left: 5px;
@@ -180,7 +191,6 @@ input [type='radio']:disabled {
 
 #topicbg1 {
   background-color: #e0eaec;
-  align-items: center;
   padding: 0px;
   filter: drop-shadow(0 1mm 1mm #48535b8c);
 }
@@ -213,6 +223,15 @@ input [type='radio']:disabled {
   color: #48535b;
 }
 
+.nextbutton {
+  width: 80px;
+  height: 32px;
+  font-size: 14px;
+  background-color: #c0d5d8;
+  border-color: #c0d5d8;
+  color: #48535b;
+}
+
 .button:hover {
   width: 80px;
   height: 32px;
@@ -221,8 +240,13 @@ input [type='radio']:disabled {
   color: white;
 }
 
-.iconalignmentstyle{
-  position:absolute;
+.iconalignmentstyle {
+  position: absolute;
   margin-left: 340px;
   margin-top: 3px;
+}
+
+.correctanswermargin {
+  color: green;
+  margin-bottom: 25px;
 }
