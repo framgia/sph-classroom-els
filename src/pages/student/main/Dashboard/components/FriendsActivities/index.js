@@ -1,9 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
+import Moment from 'react-moment';
+import DashboardApi from '../../../../../../api/Dashboard';
 
 import style from './index.module.css';
 
 const FriendsActivities = () => {
+  const [friendsActivities, setFriendsActivites] = useState(null);
+
+  useEffect(() => {
+    DashboardApi.getFriendsActivities().then(({ data }) => {
+      setFriendsActivites(data.data);
+      console.log(data.data);
+    });
+  }, []);
+
+  const iconDisplay = (activityDetail) => {
+    if (activityDetail === 'App\\Models\\Quiz') {
+      return (
+        <img
+          className={style.tableIcon}
+          src='https://pxl02-scueduau.terminalfour.net/fit-in/800x10000/filters:quality(95)/prod01/channel_1/media/campaigns/evaluation2x.png'
+          alt='file'
+        />
+      );
+    }
+
+    return (
+      <img
+        className={style.tableIcon}
+        src='https://www.toprecursoshumanos.com.br/images/svg-colado-124643x123.svg?crc=3915734253'
+        alt='add'
+      />
+    );
+  };
+
   return (
     <Card className={style.bg}>
       <Card.Header className={style.forContainerBar2}>
@@ -13,149 +44,20 @@ const FriendsActivities = () => {
         <div className={`${style.forContent_box} ${style.forScroll}`}>
           <table style={{ width: '100%' }}>
             <tbody>
-              <tr>
-                <td className={style.listTable}>
-                  <img
-                    className={style.tableIcon}
-                    src='https://www.toprecursoshumanos.com.br/images/svg-colado-124643x123.svg?crc=3915734253'
-                    alt='add'
-                  />
-                  Paul Followed Jhon Doe
-                </td>
-                <td className={style.forSeccolum}>1 minute ago</td>
-              </tr>
-              <tr>
-                <td className={style.listTable}>
-                  <img
-                    className={style.tableIcon}
-                    src='https://www.toprecursoshumanos.com.br/images/svg-colado-124643x123.svg?crc=3915734253'
-                    alt='add'
-                  />
-                  Ramon Followed Jhon Doe
-                </td>
-                <td className={style.forSeccolum}>1 minute ago</td>
-              </tr>
-              <tr>
-                <td className={style.listTable}>
-                  <img
-                    className={style.tableIcon}
-                    src='https://www.toprecursoshumanos.com.br/images/svg-colado-124643x123.svg?crc=3915734253'
-                    alt='add'
-                  />
-                  Paul Followed Jhon Doe
-                </td>
-                <td className={style.forSeccolum}>16 minute ago</td>
-              </tr>
-              <tr>
-                <td className={style.listTable}>
-                  <img
-                    className={style.tableIcon}
-                    src='https://pxl02-scueduau.terminalfour.net/fit-in/800x10000/filters:quality(95)/prod01/channel_1/media/campaigns/evaluation2x.png'
-                    alt='file'
-                  />
-                  Einstein answered Physics Quiz
-                </td>
-                <td className={style.forSeccolum}>18 minute ago</td>
-              </tr>
-              <tr>
-                <td className={style.listTable}>
-                  <img
-                    className={style.tableIcon}
-                    src='https://www.toprecursoshumanos.com.br/images/svg-colado-124643x123.svg?crc=3915734253'
-                    alt='add'
-                  />
-                  Harvey followed Gen
-                </td>
-                <td className={style.forSeccolum}>24 minute ago</td>
-              </tr>
-              <tr>
-                <td className={style.listTable}>
-                  <img
-                    className={style.tableIcon}
-                    src='https://www.toprecursoshumanos.com.br/images/svg-colado-124643x123.svg?crc=3915734253'
-                    alt='add'
-                  />
-                  John answered Programming Quiz
-                </td>
-                <td className={style.forSeccolum}>30 minute ago</td>
-              </tr>
-              <tr>
-                <td className={style.listTable}>
-                  <img
-                    className={style.tableIcon}
-                    src='https://pxl02-scueduau.terminalfour.net/fit-in/800x10000/filters:quality(95)/prod01/channel_1/media/campaigns/evaluation2x.png'
-                    alt='file'
-                  />
-                  Cinderella answered History Quiz
-                </td>
-                <td className={style.forSeccolum}>35 minute ago</td>
-              </tr>
-              <tr>
-                <td className={style.listTable}>
-                  <img
-                    className={style.tableIcon}
-                    src='https://pxl02-scueduau.terminalfour.net/fit-in/800x10000/filters:quality(95)/prod01/channel_1/media/campaigns/evaluation2x.png'
-                    alt='file'
-                  />
-                  Cruz answered History Quiz
-                </td>
-                <td className={style.forSeccolum}>35 minute ago</td>
-              </tr>
-              <tr>
-                <td className={style.listTable}>
-                  <img
-                    className={style.tableIcon}
-                    src='https://pxl02-scueduau.terminalfour.net/fit-in/800x10000/filters:quality(95)/prod01/channel_1/media/campaigns/evaluation2x.png'
-                    alt='file'
-                  />
-                  Dela Juan answered History Quiz
-                </td>
-                <td className={style.forSeccolum}>35 minute ago</td>
-              </tr>
-              <tr>
-                <td className={style.listTable}>
-                  <img
-                    className={style.tableIcon}
-                    src='https://pxl02-scueduau.terminalfour.net/fit-in/800x10000/filters:quality(95)/prod01/channel_1/media/campaigns/evaluation2x.png'
-                    alt='file'
-                  />
-                  Ramon answered History Quiz
-                </td>
-                <td className={style.forSeccolum}>35 minute ago</td>
-              </tr>
-              <tr>
-                <td className={style.listTable}>
-                  <img
-                    className={style.tableIcon}
-                    src='https://www.toprecursoshumanos.com.br/images/svg-colado-124643x123.svg?crc=3915734253'
-                    alt='add'
-                  />
-                  Kian Followed Jhon Doe
-                </td>
-                <td className={style.forSeccolum}>42 minute ago</td>
-              </tr>
-              <tr>
-                <td className={style.listTable}>
-                  <img
-                    className={style.tableIcon}
-                    src='https://www.toprecursoshumanos.com.br/images/svg-colado-124643x123.svg?crc=3915734253'
-                    alt='add'
-                  />
-                  Juan Ramon Followed Jhon Doe
-                </td>
-                <td className={style.forSeccolum}>44 minute ago</td>
-              </tr>
-              <tr>
-                <td className={style.listTable}>
-                  <img
-                    className={style.tableIcon}
-                    src='https://www.toprecursoshumanos.com.br/images/svg-colado-124643x123.svg?crc=3915734253'
-                    alt='add'
-                  />
-                  Justine Followed Jhon Doe
-                </td>
-                <td className={style.forSeccolum}>55 minute ago</td>
-              </tr>
+              {friendsActivities &&
+                friendsActivities.map((friendActivity, idx) => {
+                  return (
+                    <tr key={idx}>
+                      <td className={style.listTable}>
+                        {iconDisplay(friendActivity.subject_type)}
+                        {friendActivity.description}
+                      </td>
+                      <td className={style.forSeccolum}>
+                        <Moment fromNow>{friendActivity.created_at}</Moment>
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
         </div>
