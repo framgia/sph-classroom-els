@@ -1,51 +1,55 @@
-.bg2{
-    display: flex;
-    justify-content: space-between; 
+.bg2 {
+  display: flex;
+  justify-content: space-between;
 }
 
-.forContainerBar2{
-    position: relative;
-    z-index: 1;
-    background-color: #E0EAEC;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    width: 730px;
-    height: 47px;
-    color: #48535B;
+.forContainerBar2 {
+  position: relative;
+  z-index: 1;
+  background-color: #e0eaec;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 730px;
+  height: 47px;
+  color: #48535b;
 }
 
-.forContent_box{
-    height: 366px;
-    width: 700.5px;
-    background-color: #FFFFFF;
+.forContent_box {
+  height: 366px;
+  width: 700.5px;
+  background-color: #ffffff;
 }
 
-.titleText{
-    display: inline-block;
-    font-weight: 500;
-    font-size: 18px;
+.titleText {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 18px;
 }
 
-.forScroll{
-    overflow: auto;
+.forScroll {
+  overflow: auto;
 }
 
-.forSeccolum{
-    padding: 10px;
-    color: #48535B;
-    font-weight: 300;
-    font-size: 14px;
-    text-align: right;
+.forSeccolum {
+  padding: 10px;
+  color: #48535b;
+  font-weight: 300;
+  font-size: 14px;
+  text-align: right;
 }
 
-.listTable{
-    color: #48535B;
-    font-weight: 400;
-    font-size: 16px;
-    padding: 0px;
+.listTable {
+  color: #48535b;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 0px;
 }
 
-.tableIcon{
-    margin: 0px 17px 5px 0px;
-    width: 20px;
-    height: 20px;
+.tableIcon {
+  margin: 0px 17px 5px 0px;
+  width: 20px;
+  height: 20px;
+}
+
+.noFriendActivitesMessage {
+  margin-top: 165px;
 }

@@ -44,7 +44,7 @@ const FriendsActivities = () => {
         <div className={`${style.forContent_box} ${style.forScroll}`}>
           <table style={{ width: '100%' }}>
             <tbody>
-              {friendsActivities &&
+              {friendsActivities?.length > 0 ? (
                 friendsActivities.map((friendActivity, idx) => {
                   return (
                     <tr key={idx}>
@@ -57,7 +57,14 @@ const FriendsActivities = () => {
                       </td>
                     </tr>
                   );
-                })}
+                })
+              ) : (
+                <div className={style.noFriendActivitesMessage}>
+                  <span>
+                    <center>No Friend Activities</center>
+                  </span>
+                </div>
+              )}
             </tbody>
           </table>
         </div>
