@@ -5,7 +5,7 @@ const QuizTaken = {
     const options = {
       method: 'GET',
       url: '/user',
-      params: { ...params }
+      params: { ...params },
     };
 
     return API.request(options);
@@ -20,8 +20,8 @@ const QuizTaken = {
       data: {
         quiz_id: quizId,
         user_id: userId,
-        score: score
-      }
+        score: score,
+      },
     };
 
     return API.request(options);
@@ -32,8 +32,8 @@ const QuizTaken = {
       method: 'PATCH',
       url: `/quizzes-taken/${quizTakenId}`,
       data: {
-        score: score
-      }
+        score: score,
+      },
     };
 
     return API.request(options);
@@ -42,11 +42,20 @@ const QuizTaken = {
   getRecent: (id) => {
     const options = {
       method: 'GET',
-      url: `/recent-quizzes/${id}`
+      url: `/recent-quizzes/${id}`,
     };
 
     return API.request(options);
-  }
+  },
+
+  getRecentQuizzes: () => {
+    const options = {
+      method: 'GET',
+      url: '/recentQuizzes',
+    };
+
+    return API.request(options);
+  },
 };
 
 export default QuizTaken;

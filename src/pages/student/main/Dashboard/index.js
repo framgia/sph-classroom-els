@@ -7,16 +7,30 @@ import Recent from './components/Recent';
 import CategoryLearned from './components/CategoryLearned';
 import FriendsActivities from './components/FriendsActivities';
 import DashboardApi from '../../../../api/Dashboard';
+import QuizTaken from '../../../../api/QuizTaken';
 
 function Dashboard() {
   const [categorieslearned, setCategoriesLearned] = useState(null);
   const userId = Cookies.get('user_id');
+  const [recentQuizzes, setRecentQuizzes] = useState(null);
+  const [quizzes, setQuizzes] = useState(null);
 
   useEffect(() => {
     DashboardApi.getAll(userId).then(({ data }) => {
       setCategoriesLearned(data.data);
     });
+
+    QuizTaken.getRecentQuizzes().then(({ data }) => {
+      setRecentQuizzes(data.recentQuizzesTaken);
+      setQuizzes(data.attempts);
+    });
   }, []);
+
+  const getAllQuizzesTakenForEveryRecentQuiz = (quiz_id) => {
+    const quizzesList = quizzes?.filter((quiz) => quiz.quiz_id === quiz_id);
+
+    return quizzesList;
+  };
 
   const renderDashList = () => {
     return (
@@ -42,10 +56,18 @@ function Dashboard() {
     <div style={{ padding: '0px 196px' }}>
       <h2 className={style.h2_style}>Recent</h2>
       <div className={style.bg}>
-        <Recent title='HTML' />
-        <Recent title='Linked List' />
-        <Recent title='Encapsulation' />
-        <Recent title='CSS' />
+        {quizzes &&
+          recentQuizzes?.map((recentQuizzes, idx) => {
+            return (
+              <Recent
+                recentQuizzes={recentQuizzes}
+                quizzes={getAllQuizzesTakenForEveryRecentQuiz(
+                  recentQuizzes.quiz_id
+                )}
+                key={idx}
+              />
+            );
+          })}
       </div>
       <div className={style.bg2}>
         {renderDashList()}
