@@ -13,12 +13,17 @@ const StudentDetail = () => {
   const [studentDetails, setStudentDetails] = useState(null);
   const [overallQuizTaken, setOverallQuizTaken] = useState(0);
   const [quizzesTaken, setQuizzesTaken] = useState(null);
+  const [recentActivities, setRecentActivities] = useState(null);
   const [status, setStatus] = useState(false);
 
   useEffect(() => {
     StudentApi.getDetails(id).then(({ data }) => {
       setStudentDetails(data.details);
       setOverallQuizTaken(data.quizzesTaken);
+    });
+
+    StudentApi.getRecentActivities(id).then(({ data }) => {
+      setRecentActivities(data.data);
     });
 
     QuizTaken.getRecent(id).then(({ data }) => {
@@ -64,6 +69,30 @@ const StudentDetail = () => {
         </Button>
       );
     }
+  };
+
+  const iconDisplay = (activityDetail) => {
+    if (activityDetail === 'App\\Models\\Quiz') {
+      return (
+        <img
+          className={style.tableIcon}
+          src='https://pxl02-scueduau.terminalfour.net/fit-in/800x10000/filters:quality(95)/prod01/channel_1/media/campaigns/evaluation2x.png'
+          alt='file'
+          height='20px'
+          width='20px'
+        />
+      );
+    }
+
+    return (
+      <img
+        className={style.tableIcon}
+        src='https://www.toprecursoshumanos.com.br/images/svg-colado-124643x123.svg?crc=3915734253'
+        alt='add'
+        height='20px'
+        width='20px'
+      />
+    );
   };
 
   return (
@@ -116,8 +145,8 @@ const StudentDetail = () => {
             {quizzesTaken?.length > 0 ? (
               quizzesTaken?.map((quizTaken, idx) => {
                 return (
-                  <div key={idx} className={style.quizContainer}>
-                    <h6 className={style.quizInfo}>
+                  <div key={idx} className={style.tableContainer}>
+                    <h6 className={style.info}>
                       <img
                         src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258753595_1042531349877078_5285897742986927636_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeG6ET7IUKZQ5FgOtWNcOnr0viTzQX3Fx---JPNBfcXH70y4ar8c4Wkjc7RYv6FaFSWU8dG7Ohov_UfvPthlxxln&_nc_ohc=Pv4nXOm1yrgAX_rTLc4&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=f3ca0a1461f5a71ef4638df807e84a88&oe=61BE3C6F'
                         alt='add user'
@@ -149,16 +178,28 @@ const StudentDetail = () => {
             </p>
           </div>
           <div className={`${style.cal_02} ${style.cal_3}`}>
-            {/* <div>
-              <h6 className={style.s_h3}>
-                <RiUserAddLine size='20px' />
-                <span className={style.margineforspan}>
-                  {' '}
-                  Followed John Doe{' '}
-                </span>{' '}
-              </h6>
-              <div id={style.floatrighttext}>1 minutes ago </div>
-            </div> */}
+            {recentActivities?.length > 0 ? (
+              recentActivities?.map((recentActivity, idx) => {
+                return (
+                  <div className={style.tableContainer} key={idx}>
+                    <h6 className={style.info}>
+                      {iconDisplay(recentActivity.subject_type)}
+                      <span className={style.margineforspan}>
+                        {' '}
+                        {recentActivity.description}{' '}
+                      </span>{' '}
+                    </h6>
+                    <div id={style.floatrighttext}>
+                      <Moment fromNow>{recentActivity.created_at}</Moment>{' '}
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <div className={style.noQuizzesTakenMessage}>
+                <span>No Recent Activities</span>
+              </div>
+            )}
           </div>
         </div>
       </div>

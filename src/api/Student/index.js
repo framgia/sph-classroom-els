@@ -44,6 +44,15 @@ const StudentsApi = {
     };
 
     return API.request(options);
+  },
+
+  getRecentActivities: (id) => {
+    const options = {
+      method: 'GET',
+      url: `/studentslog/${id}`
+    };
+
+    return API.request(options);
   }
 };
 

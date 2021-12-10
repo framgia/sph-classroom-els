@@ -55,7 +55,7 @@
 
 .cal1 {
   background-color: #e0eaec;
-  width: 548px;
+  width: 650px;
   height: 40px;
   border-radius: 2px 2px 0px 0px;
   font-size: 18px;
@@ -64,8 +64,8 @@
 
 .cal_02 {
   background-color: white;
-  width: 548px;
-  height: 300px;
+  width: 650px;
+  height: 330px;
   border-radius: 0px 0px 10px 10px;
 }
 
@@ -74,7 +74,7 @@
   overflow-x: hidden;
 }
 
-.quizInfo {
+.info {
   margin-top: 20px;
   margin-left: 17px;
 }
@@ -124,9 +124,9 @@
 }
 
 .studentDetailContainer {
-  margin: 20px 235px;
+  margin: 20px 130px;
 }
 
-.quizContainer {
+.tableContainer {
   display: flex;
 }
