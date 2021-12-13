@@ -26,7 +26,6 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
 
     FriendsScoreApi.getAll(quizId).then(({ data }) => {
       setFriendsScore(data.data);
-
       console.log(data.data);
     });
   }, []);
@@ -108,49 +107,6 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                     })}
                   </Card.Body>
                 </Card>
-                {/* <Card className={style.Resultcard2}>
-                  <Card.Img variant='top' />
-                  <Card.Body width='100px' style={{ margin: '5px' }}>
-                    <center>
-                      <Card.Title>Friend&apos;s Scores</Card.Title> <hr />
-                    </center>
-                    <Card.Text className={style.ResultfscoreCardText}>
-                      <div className={style.ResultfriendScore}>
-                        <a href='/#'>
-                          <img
-                            className={style.ResultsizeOfAvatar}
-                            alt='avatar'
-                            src={faker.image.avatar()}
-                          />
-                        </a>
-                        <p className={style.Resultparagraph}>Therese</p>
-                        <p className={style.Resultparagraph}>10/10</p>
-                      </div>
-                      <div className={style.ResultfriendScore}>
-                        <a href='/#'>
-                          <img
-                            className={style.ResultsizeOfAvatar}
-                            alt='avatar'
-                            src={faker.image.avatar()}
-                          />
-                        </a>
-                        <p className={style.Resultparagraph}>Harvey</p>
-                        <p className={style.Resultparagraph}>10/10</p>
-                      </div>
-                      <div className={style.ResultfriendScore}>
-                        <a href='/#'>
-                          <img
-                            className={style.ResultsizeOfAvatar}
-                            alt='avatar'
-                            src={faker.image.avatar()}
-                          />
-                        </a>
-                        <p className={style.Resultparagraph}>Erick</p>
-                        <p className={style.Resultparagraph}>10/10</p>
-                      </div>
-                    </Card.Text>
-                  </Card.Body>
-                </Card> */}
               </div>
               <hr className={style.ResulthrBreakButtom} />
               <div className={style.ResultbottomBodyCard}>
