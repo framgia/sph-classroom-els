@@ -55,15 +55,15 @@ function Dashboard() {
             <div className={`${style.forContent_box} ${style.forScroll}`}>
               {categorieslearned?.length > 0 ?
                 categorieslearned?.map((categorylearned, idx) => {
-                return (
-                  <CategoryLearned key={idx} categorylearned={categorylearned} />
-                );
-              }) : 
-              <div>
-              <center>
-                <span>No Categories Learned</span>
-              </center>
-            </div>
+                  return (
+                    <CategoryLearned key={idx} categorylearned={categorylearned} />
+                  );
+                }) : 
+                <div>
+                  <center>
+                    <span>No Categories Learned</span>
+                  </center>
+                </div>
               }
 
             </div>
