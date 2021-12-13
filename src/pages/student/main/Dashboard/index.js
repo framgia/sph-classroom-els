@@ -40,15 +40,10 @@ function Dashboard() {
           <button className={style.btnView}>View all</button>
         </Card.Header>
         <Card.Body>
-          <div
-            className={`${style.forContent_box} ${style.forScroll}`}
-          >
+          <div className={`${style.forContent_box} ${style.forScroll}`}>
             {categorieslearned?.map((categorylearned, idx) => {
               return (
-                <CategoryLearned
-                  key={idx}
-                  categorylearned={categorylearned}
-                />
+                <CategoryLearned key={idx} categorylearned={categorylearned} />
               );
             })}
           </div>
@@ -62,17 +57,17 @@ function Dashboard() {
       <h2 className={style.h2_style}>Recent</h2>
       <div className={style.bg}>
         {quizzes &&
-                    recentQuizzes?.map((recentQuizzes, idx) => {
-                      return (
-                        <Recent
-                          recentQuizzes={recentQuizzes}
-                          quizzes={getAllQuizzesTakenForEveryRecentQuiz(
-                            recentQuizzes.quiz_id
-                          )}
-                          key={idx}
-                        />
-                      );
-                    })}
+          recentQuizzes?.map((recentQuizzes, idx) => {
+            return (
+              <Recent
+                recentQuizzes={recentQuizzes}
+                quizzes={getAllQuizzesTakenForEveryRecentQuiz(
+                  recentQuizzes.quiz_id
+                )}
+                key={idx}
+              />
+            );
+          })}
       </div>
       {recentQuizzes?.length === 0 ? (
         <div className={style.noQuizzesTakenMessageContainer}>
