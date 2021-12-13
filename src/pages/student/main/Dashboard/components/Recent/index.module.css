@@ -6,8 +6,7 @@
 .forContainerBar {
     background-color: #e0eaec;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    height: 40px;
-    color: #48535b;
+    color: #48535B;
 }
 
 .titleText {
@@ -56,3 +55,6 @@
 .timerIcon {
     margin-right: 5px;
 }
+Col.Card:nth-child(3){
+    display:none;
+ }

@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
+import { Row, Col } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import style from './index.module.css';
 import Recent from './components/Recent';
@@ -34,21 +35,41 @@ function Dashboard() {
 
   const renderDashList = () => {
     return (
-      <Card>
-        <Card.Header className={style.forContainerBar2}>
-          <p className={style.titleText}>Categories Learned</p>
-          <button className={style.btnView}>View all</button>
-        </Card.Header>
-        <Card.Body>
-          <div className={`${style.forContent_box} ${style.forScroll}`}>
-            {categorieslearned?.map((categorylearned, idx) => {
-              return (
-                <CategoryLearned key={idx} categorylearned={categorylearned} />
-              );
-            })}
-          </div>
-        </Card.Body>
-      </Card>
+      <Col>
+        <Card>
+          <Card.Header className={style.forContainerBar2}>
+            <table style={{ width: '100%' }}>
+              <tbody>
+                <tr>
+                  <td>
+                    <p className={style.titleText}>Categories Learned</p>
+                  </td>
+                  <td className={style.headText}>
+                    <button className={style.btnView}>View all</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </Card.Header>
+          <Card.Body>
+            <div className={`${style.forContent_box} ${style.forScroll}`}>
+              {categorieslearned?.length > 0 ?
+                categorieslearned?.map((categorylearned, idx) => {
+                return (
+                  <CategoryLearned key={idx} categorylearned={categorylearned} />
+                );
+              }) : 
+              <div>
+              <center>
+                <span>No Categories Learned</span>
+              </center>
+            </div>
+              }
+
+            </div>
+          </Card.Body>
+        </Card>
+      </Col>
     );
   };
 
@@ -79,10 +100,10 @@ function Dashboard() {
       ) : (
         ''
       )}
-      <div className={style.bg2}>
+      <Row className={style.bg2}>
         {renderDashList()}
         <FriendsActivities />
-      </div>
+      </Row>
     </div>
   );
 }
