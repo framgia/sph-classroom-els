@@ -110,29 +110,39 @@
 }
 
 .friendsTitle {
-  margin-top: 13px;
   display: flex;
   justify-content: center;
   font-size: 18px;
+  background-color: white;
+  border-bottom: none;
+  font-size: 18px;
+  display: inline-block;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .friendsScore {
-  padding: 20px;
-  float: right;
+  padding: 0px 0px 0px 0px;
   font-size: 16px;
+  margin-left: 180px;
+  position: absolute;
+  margin-top: 10px;
 }
 
 .friendsName {
   align-self: center;
-  padding: 20px;
+  padding: 10px 10px 10px 5px;
   font-size: 16px;
 }
 
 .Resultcard2 {
-  min-width: 240px;
-  border: 1px solid rgba(0, 0, 0, 0.336);
+  border: 1px solid rgba(0, 0, 0, 0.164);
   width: 225px;
   height: 272px;
+  border-radius: 5px;
 }
 
 .ResultbottomBodyCard {
@@ -226,4 +236,23 @@
   color: black;
   font-weight: 400;
   margin-top: 15px;
+}
+
+.cardbodystyle{
+  padding-top: 0px;
+  padding-right: 0px;
+}
+
+.hrstyle{
+    width: 200px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+.texttittlestyle{
+  margin-left: 45px;
+}
+
+.divstylecard{
+  display: flex;
 }

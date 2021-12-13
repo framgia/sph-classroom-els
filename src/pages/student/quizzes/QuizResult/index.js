@@ -10,16 +10,23 @@ import Recent from '../QuizResult/Recent/index';
 
 import { QuestionsContext } from '../QuestionList';
 import AnswerApi from '../../../../api/Answer';
+import FriendsScoreApi from '../../../../api/FriendsScore';
 
 const QuizResult = ({ score, total, quizId, categoryId }) => {
   const [viewResults, setViewResults] = useState(false);
   const { quizTakenId, title } = useContext(QuestionsContext);
   const [answers, setAnswers] = useState(null);
+  const [friendsScore, setFriendsScore] = useState(null);
   const passing = total / 2;
 
   useEffect(() => {
     AnswerApi.getAll(quizTakenId).then(({ data }) => {
       setAnswers(data.data);
+    });
+
+    FriendsScoreApi.getAll(quizId).then(({ data }) => {
+      setFriendsScore(data.data);
+      console.log(data.data);
     });
   }, []);
 
@@ -68,95 +75,38 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                   </div>
                 </div>
                 <Card className={style.Resultcard2}>
-                  <b className={style.friendsTitle}>Friend&apos;s Score</b>
-                  <hr />
-                  <table style={{ width: '100%' }}>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <a href='/#'>
-                            <img
-                              className={style.ResultsizeOfAvatar}
-                              alt='avatar'
-                              src={faker.image.avatar()}
-                            />
-                          </a>
-                        </td>
-                        <td className={style.friendsName}>Therese</td>
-                        <td className={style.friendsScore}>10/10</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <a href='/#'>
-                            <img
-                              className={style.ResultsizeOfAvatar}
-                              alt='avatar'
-                              src={faker.image.avatar()}
-                            />
-                          </a>
-                        </td>
-                        <td className={style.friendsName}>Harvey</td>
-                        <td className={style.friendsScore}>10/10</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <a href='/#'>
-                            <img
-                              className={style.ResultsizeOfAvatar}
-                              alt='avatar'
-                              src={faker.image.avatar()}
-                            />
-                          </a>
-                        </td>
-                        <td className={style.friendsName}>Erick</td>
-                        <td className={style.friendsScore}>10/10</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </Card>
-                {/* <Card className={style.Resultcard2}>
-                  <Card.Img variant="top" />
-                  <Card.Body width="100px" style={{ margin: '5px' }}>
-                    <center>
-                      <Card.Title>Friend&apos;s Scores</Card.Title> <hr />
-                    </center>
-                    <Card.Text className={style.ResultfscoreCardText}>
-                      <div className={style.ResultfriendScore}>
-                        <a href="/#">
-                          <img
-                            className={style.ResultsizeOfAvatar}
-                            alt="avatar"
-                            src={faker.image.avatar()}
-                          />
-                        </a>
-                        <p className={style.Resultparagraph}>Therese</p>
-                        <p className={style.Resultparagraph}>10/10</p>
-                      </div>
-                      <div className={style.ResultfriendScore}>
-                        <a href="/#">
-                          <img
-                            className={style.ResultsizeOfAvatar}
-                            alt="avatar"
-                            src={faker.image.avatar()}
-                          />
-                        </a>
-                        <p className={style.Resultparagraph}>Harvey</p>
-                        <p className={style.Resultparagraph}>10/10</p>
-                      </div>
-                      <div className={style.ResultfriendScore}>
-                        <a href="/#">
-                          <img
-                            className={style.ResultsizeOfAvatar}
-                            alt="avatar"
-                            src={faker.image.avatar()}
-                          />
-                        </a>
-                        <p className={style.Resultparagraph}>Erick</p>
-                        <p className={style.Resultparagraph}>10/10</p>
-                      </div>
-                    </Card.Text>
+                  <Card.Header className={style.friendsTitle}>
+                    <div className={style.texttittlestyle}>
+                      Friend&apos;s Score
+                    </div>
+                    <hr className={style.hrstyle} />
+                  </Card.Header>
+                  <Card.Body className={style.cardbodystyle}>
+                    {friendsScore?.map((friendScore, idx) => {
+                      return (
+                        <div key={idx}>
+                          <div className={style.friendsScore}>
+                            {friendScore.score}/{total}
+                          </div>
+                          <tr>
+                            <td>
+                              <a href='/#'>
+                                <img
+                                  className={style.ResultsizeOfAvatar}
+                                  alt='avatar'
+                                  src={faker.image.avatar()}
+                                />
+                              </a>
+                            </td>
+                            <td className={style.friendsName}>
+                              {friendScore.name}
+                            </td>
+                          </tr>
+                        </div>
+                      );
+                    })}
                   </Card.Body>
-                </Card> */}
+                </Card>
               </div>
               <hr className={style.ResulthrBreakButtom} />
               <div className={style.ResultbottomBodyCard}>
@@ -208,6 +158,6 @@ QuizResult.propTypes = {
   score: PropTypes.number,
   total: PropTypes.number,
   quizId: PropTypes.number,
-  categoryId: PropTypes.number
+  categoryId: PropTypes.number,
 };
 export default QuizResult;
