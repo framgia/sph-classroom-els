@@ -69,6 +69,15 @@ function Dashboard() {
             );
           })}
       </div>
+      {recentQuizzes?.length === 0 ? (
+        <div className={style.noQuizzesTakenMessageContainer}>
+          <center>
+            <span>No Quizzes Taken Yet</span>
+          </center>
+        </div>
+      ) : (
+        ''
+      )}
       <div className={style.bg2}>
         {renderDashList()}
         <FriendsActivities />

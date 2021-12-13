@@ -2,6 +2,7 @@
   display: flex;
   column-gap: 75px;
 }
+
 .bg2 {
   display: flex;
   justify-content: space-between;
@@ -9,6 +10,7 @@
 
 .h2_style {
   padding: 33px 0px 33px 0px;
+  margin: 0px;
 }
 
 .forContainerBar2 {
@@ -46,4 +48,12 @@
 
 .forScroll {
   overflow: auto;
+}
+
+.noQuizzesTakenMessageContainer {
+  background-color: white;
+  border: 1px rgba(0, 0, 0, 0.185) solid;
+  border-radius: 5px;
+  margin: 20px 0px 70px 0px;
+  padding: 50px;
 }
