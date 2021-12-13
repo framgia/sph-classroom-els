@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
+import { Col } from 'react-bootstrap';
 import { CgTimer } from 'react-icons/cg';
 import { PropTypes } from 'prop-types';
 
@@ -38,50 +39,52 @@ const Recent = ({ recentQuizzes, quizzes }) => {
   };
 
   return (
-    <Card className={style.bg}>
-      <Card.Header className={style.forContainerBar}>
-        <table style={{ width: '100%' }}>
-          <tbody>
-            <tr>
-              <td className={style.titleText}>{recentQuizzes.title}</td>
-              <td style={{ textAlign: 'right' }}>
-                <CgTimer size='15px' className={style.timerIcon} />
-                {getTotalTimeLimit()} secs
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </Card.Header>
-      <Card.Body>
-        <div>
+    <Col>
+      <Card className={style.bg}>
+        <Card.Header className={style.forContainerBar}>
           <table style={{ width: '100%' }}>
             <tbody>
               <tr>
-                <td className={style.listTable}>Attempts</td>
-                <td className={style.forSeccolum}>{quizzes?.length}</td>
-              </tr>
-              <tr>
-                <td className={style.listTable}>Highest Score</td>
-                <td className={style.forSeccolum}>
-                  {getHighestScore()}/{questions?.length}
-                </td>
-              </tr>
-              <tr>
-                <td id={style.listTable}>Latest Score</td>
-                <td className={style.forSeccolum2}>
-                  {recentQuizzes.score}/{questions?.length}
+                <td className={style.titleText}>{recentQuizzes.title}</td>
+                <td style={{ textAlign: 'right' }}>
+                  <CgTimer size='15px' className={style.timerIcon} />
+                  {getTotalTimeLimit()} secs
                 </td>
               </tr>
             </tbody>
           </table>
-          <Link
-            to={`/categories/${recentQuizzes.category_id}/quizzes/${recentQuizzes.quiz_id}/questions`}
-          >
-            <p className={style.retake}>Retake Quiz</p>
-          </Link>
-        </div>
-      </Card.Body>
-    </Card>
+        </Card.Header>
+        <Card.Body>
+          <div>
+            <table style={{ width: '100%' }}>
+              <tbody>
+                <tr>
+                  <td className={style.listTable}>Attempts</td>
+                  <td className={style.forSeccolum}>{quizzes?.length}</td>
+                </tr>
+                <tr>
+                  <td className={style.listTable}>Highest Score</td>
+                  <td className={style.forSeccolum}>
+                    {getHighestScore()}/{questions?.length}
+                  </td>
+                </tr>
+                <tr>
+                  <td id={style.listTable}>Latest Score</td>
+                  <td className={style.forSeccolum2}>
+                    {recentQuizzes.score}/{questions?.length}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <Link
+              to={`/categories/${recentQuizzes.category_id}/quizzes/${recentQuizzes.quiz_id}/questions`}
+            >
+              <p className={style.retake}>Retake Quiz</p>
+            </Link>
+          </div>
+        </Card.Body>
+      </Card>
+    </Col>
   );
 };
 
