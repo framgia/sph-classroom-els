@@ -87,7 +87,7 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                       return (
                         <div key={idx}>
                           <div className={style.friendsScore}>
-                            {friendScore.score}
+                            {friendScore.score}/{total}
                           </div>
                           <tr>
                             <td>
