@@ -67,7 +67,8 @@ function Dashboard() {
                 key={idx}
               />
             );
-          })}
+          })
+        }
       </div>
       {recentQuizzes?.length === 0 ? (
         <div className={style.noQuizzesTakenMessageContainer}>
