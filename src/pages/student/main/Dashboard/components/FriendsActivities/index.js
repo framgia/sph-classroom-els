@@ -11,7 +11,6 @@ const FriendsActivities = () => {
   useEffect(() => {
     DashboardApi.getFriendsActivities().then(({ data }) => {
       setFriendsActivites(data.data);
-      console.log(data.data);
     });
   }, []);
 
@@ -59,11 +58,11 @@ const FriendsActivities = () => {
                   );
                 })
               ) : (
-                <div className={style.noFriendActivitesMessage}>
-                  <span>
+                <tr className={style.noFriendActivitesMessage}>
+                  <td>
                     <center>No Friend Activities</center>
-                  </span>
-                </div>
+                  </td>
+                </tr>
               )}
             </tbody>
           </table>

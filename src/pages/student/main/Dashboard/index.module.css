@@ -1,50 +1,59 @@
-.bg{
+.bg {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 33px;
+    column-gap: 75px;
 }
-.bg2{
+
+.bg2 {
     display: flex;
     justify-content: space-between;
 }
 
-.h2_style{
+.h2_style {
     padding: 33px 0px 33px 0px;
+    margin: 0px;
 }
 
-.forContainerBar2{
+.forContainerBar2 {
     position: relative;
     z-index: 1;
-    background-color: #E0EAEC;
+    background-color: #e0eaec;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     width: 730px;
     height: 47px;
-    color: #48535B;
+    color: #48535b;
 }
 
-.titleText{
+.titleText {
     display: inline-block;
     font-weight: 500;
     font-size: 18px;
 }
 
-.btnVeiw{
+.btnView {
     margin-left: 456px;
     border: none;
     width: 80px;
     height: 32px;
     border-radius: 2px;
-    background-color: #C0D5D8;
+    background-color: #c0d5d8;
     font-size: 14px;
     line-height: 16px;
 }
 
-.forContent_box{
+.forContent_box {
     height: 366px;
     width: 700.5px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 }
 
-.forScroll{
+.forScroll {
     overflow: auto;
+}
+
+.noQuizzesTakenMessageContainer {
+    background-color: white;
+    border: 1px rgba(0, 0, 0, 0.185) solid;
+    border-radius: 5px;
+    margin: 20px 0px 70px 0px;
+    padding: 50px;
 }
