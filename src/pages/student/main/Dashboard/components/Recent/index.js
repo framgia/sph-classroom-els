@@ -39,7 +39,7 @@ const Recent = ({ recentQuizzes, quizzes }) => {
   };
 
   return (
-    <Col>
+    <Col className={style.ConCard}>
       <Card className={style.bg}>
         <Card.Header className={style.forContainerBar}>
           <table style={{ width: '100%' }}>

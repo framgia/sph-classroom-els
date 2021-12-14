@@ -1,9 +1,3 @@
-.bg {
-    display: grid;
-    grid-template-columns: 351px 351px 351px 351px;
-    column-gap: 48px;
-}
-
 .bg2 {
     column-gap: 48px;
 }
