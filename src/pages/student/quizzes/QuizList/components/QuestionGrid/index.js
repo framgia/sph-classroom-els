@@ -1,34 +1,66 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import { PropTypes } from 'prop-types';
 import { BsClockHistory } from 'react-icons/bs';
 
 import style from './index.module.css';
+import QuizzesTakenReviewApi from '../../../../../../api/QuizTakenReview';
+import QuestionApi from '../../../../../../api/Question';
 
 const QuestionGrid = ({ quiz }) => {
-  const handleCardClick = () => {
-    console.log(`${quiz?.title} is clicked`);
+  const [QuizzesRecentReview, setQuizzesRecentReview] = useState(null);
+  const [questions, setQuestions] = useState(null);
+
+  useEffect(() => {
+    QuizzesTakenReviewApi.getAll(quiz.id).then(({ data }) => {
+      setQuizzesRecentReview(data.recentQuizzesTaken);
+    });
+
+    QuestionApi.getAll(quiz.id).then(({ data }) => {
+      setQuestions(data.data);
+    });
+  }, []);
+
+  const getHighestScore = () => {
+    if (QuizzesRecentReview?.length > 0) {
+      const highestScore = QuizzesRecentReview.reduce((prev, current) => {
+        return prev.score > current.score ? prev : current;
+      });
+
+      return highestScore.score;
+    }
+
+    return 0;
   };
 
-  const passOrFailStyle = () => {
-    if (quiz.answerCount > 0 && quiz.correctAnswers > 7) {
-      return style.pass;
-    }
+  const getLatestScore = () => {
+    let score = -1;
+    if (QuizzesRecentReview?.length > 0) {
+      QuizzesRecentReview?.forEach((QuizRecent) => {
+        if (quiz.id === QuizRecent.quiz_id && score === -1) {
+          score = QuizRecent.score;
+        }
+      });
 
-    if (quiz.answerCount > 0 && quiz.correctAnswers <= 7) {
-      return style.fail;
+      return score;
     }
+  };
 
-    return;
+  const getTotalTimeLimit = () => {
+    if (questions != null) {
+      let total = 0;
+
+      for (let x = 0; x < questions.length; x++) {
+        total += questions[x].time_limit;
+      }
+
+      return total;
+    }
   };
 
   return (
     <Card className={style.carddiv}>
-      <Card.Header
-        className={`${style.card} ${passOrFailStyle()}`}
-        onClick={handleCardClick}
-        style={{ cursor: 'pointer' }}
-      >
+      <Card.Header className={style.card} style={{ cursor: 'pointer' }}>
         <div className={style.cardTitle}>
           <span
             style={{ fontWeight: 'bold', fontSize: '18px', color: '#48535B' }}
@@ -46,41 +78,33 @@ const QuestionGrid = ({ quiz }) => {
                 paddingBottom: '3px',
               }}
             />
-            5 mins
+            {getTotalTimeLimit()} secs
           </span>
         </div>
       </Card.Header>
-      <Card.Body
-        className={`${
-          style.card02
-        } ${passOrFailStyle()} d-flex justify-content-center`}
-        onClick={handleCardClick}
-        style={{ cursor: 'pointer' }}
-      >
-        {quiz.answerCount === 0 ? (
-          ''
-        ) : (
-          <div className={style.ResultscoreCardText}>
-            <div className={style.ResultScore}>
-              <p>Attempts</p>
-              <p>N/A</p>
-            </div>
-            <div className={style.ResultScore}>
-              <p>Highest Score</p>
-              <p>N/A</p>
-            </div>
-            <div className={style.ResultScore} style={{ fontWeight: 'bold' }}>
-              <p>Latest Score</p>
-              <p>N/A</p>
-            </div>
-            {/* {`${quiz.correctAnswers}/${quiz.totalQuestions}`} */}
+      <Card.Body className={style.card02} style={{ cursor: 'pointer' }}>
+        <div className={style.ResultscoreCardText}>
+          <div className={style.ResultScore}>
+            <p>Attempts</p>
+            <p>{QuizzesRecentReview?.length}</p>
           </div>
-        )}
+          <div className={style.ResultScore}>
+            <p>Highest Score</p>
+            <p>
+              {getHighestScore()}/{questions?.length}
+            </p>
+          </div>
+          <div className={style.ResultScore} style={{ fontWeight: 'bold' }}>
+            <p>Latest Score</p>
+            <p>
+              {getLatestScore() >= 0 ? getLatestScore() : 0}/{questions?.length}
+            </p>
+          </div>
+          {/* {`${quiz.correctAnswers}/${quiz.totalQuestions}`} */}
+        </div>
       </Card.Body>
       {quiz.answerCount === 0 || (
-        <div className={style.repeatDiv}>
-          Take Quiz
-        </div>
+        <div className={style.repeatDiv}>Take Quiz</div>
       )}
     </Card>
   );
