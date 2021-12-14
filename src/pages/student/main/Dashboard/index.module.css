@@ -1,6 +1,6 @@
 .bg {
     display: grid;
-    grid-template-columns: 347px 347px 347px 347px;
+    grid-template-columns: 351px 351px 351px 351px;
     column-gap: 48px;
 }
 
