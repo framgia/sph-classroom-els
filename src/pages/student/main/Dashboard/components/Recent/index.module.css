@@ -4,8 +4,7 @@
 
 .ConCard{
     display: grid;
-    grid-template-columns: 361px;
-    grid-column-gap: 48px;
+    grid-template-columns: 345px;
 }
 
 .forContainerBar {

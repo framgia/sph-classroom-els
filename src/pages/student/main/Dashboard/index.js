@@ -75,7 +75,7 @@ function Dashboard() {
   return (
     <div style={{ padding: '0px 196px' }}>
       <h2 className={style.h2_style}>Recent</h2>
-      <Row>
+      <Row className={style.bg}>
         {quizzes &&
           recentQuizzes?.map((recentQuizzes, idx) => {
             return (

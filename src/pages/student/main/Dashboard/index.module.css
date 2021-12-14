@@ -1,3 +1,7 @@
+.bg{
+    display: inline-flex;
+    grid-column-gap: 22px;
+}
 .bg2 {
     column-gap: 48px;
 }
