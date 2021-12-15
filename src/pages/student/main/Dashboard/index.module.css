@@ -1,11 +1,8 @@
-.bg {
-    display: flex;
-    column-gap: 48px;
-    margin-bottom: 33px;
+.bg{
+    display: inline-flex;
+    grid-column-gap: 22px;
 }
-
 .bg2 {
-    display: flex;
     column-gap: 48px;
 }
 

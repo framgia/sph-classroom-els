@@ -1,7 +1,10 @@
 .bg {
-    display: flex;
-    width: 325px;
     margin-bottom: 40px;
+}
+
+.ConCard{
+    display: grid;
+    grid-template-columns: 345px;
 }
 
 .forContainerBar {
@@ -42,7 +45,6 @@
 .retake {
     font-size: 16px;
     font-weight: 600;
-    margin-left: 201px;
     color: #5d9098;
 }
 

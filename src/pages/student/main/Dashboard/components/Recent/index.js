@@ -39,7 +39,7 @@ const Recent = ({ recentQuizzes, quizzes }) => {
   };
 
   return (
-    <Col>
+    <Col className={style.ConCard}>
       <Card className={style.bg}>
         <Card.Header className={style.forContainerBar}>
           <table style={{ width: '100%' }}>
@@ -74,13 +74,18 @@ const Recent = ({ recentQuizzes, quizzes }) => {
                     {recentQuizzes.score}/{questions?.length}
                   </td>
                 </tr>
+                <tr>
+                  <td id={style.listTable}></td>
+                  <td>
+                    <Link
+                      to={`/categories/${recentQuizzes.category_id}/quizzes/${recentQuizzes.quiz_id}/questions`}
+                    >
+                      <p className={style.retake}>Retake Quiz</p>
+                    </Link>
+                  </td>
+                </tr>
               </tbody>
             </table>
-            <Link
-              to={`/categories/${recentQuizzes.category_id}/quizzes/${recentQuizzes.quiz_id}/questions`}
-            >
-              <p className={style.retake}>Retake Quiz</p>
-            </Link>
           </div>
         </Card.Body>
       </Card>

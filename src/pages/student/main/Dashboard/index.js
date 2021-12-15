@@ -65,7 +65,6 @@ function Dashboard() {
                   </center>
                 </div>
               }
-
             </div>
           </Card.Body>
         </Card>
