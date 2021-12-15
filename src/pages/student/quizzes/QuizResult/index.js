@@ -105,6 +105,15 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                         </div>
                       );
                     })}
+                    {friendsScore?.length === 0 ? (
+                        <div>
+                          <center>
+                            <span>No Followed User</span>
+                          </center>
+                        </div>
+                      ) : (
+                        ''
+                      )}
                   </Card.Body>
                 </Card>
               </div>
