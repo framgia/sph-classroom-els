@@ -127,12 +127,12 @@
   border: 1px solid rgba(0, 0, 0, 0.158);
   background-color: #c0d5d8;
   border-radius: 2px;
-  color: white;
+  color: #48535b;
 }
 
 .button:hover {
   background-color: #9abec1;
-  color: #48535b;
+  color: white;
 }
 
 .noResults,

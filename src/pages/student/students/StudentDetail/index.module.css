@@ -106,12 +106,12 @@
   float: left;
   background-color: #c0d5d8;
   border: none;
-  color: white;
+  color: #48535b;
   border-radius: 4px;
 }
 
 .Buttonstyle:hover {
-  color: #48535b;
+  color: white;
   background-color: #9abec1;
 }
 
