@@ -1,13 +1,13 @@
 import API from '../Base';
 
 const CategoryApi = {
-  getAll: ({ ...params } = {}, page) => {
+  getAll: ({ ...params }) => {
     const options = {
       method: 'GET',
-      url: `/categories?page=${page}`,
+      url: '/categories',
       params: {
-        ...params,
-      },
+        ...params
+      }
     };
 
     return API.request(options);
@@ -18,8 +18,8 @@ const CategoryApi = {
       method: 'GET',
       url: `/categories/${categoryId}`,
       params: {
-        ...params,
-      },
+        ...params
+      }
     };
 
     return API.request(options);
@@ -31,7 +31,7 @@ const CategoryApi = {
 
   delete: () => {},
 
-  restore: () => {},
+  restore: () => {}
 };
 
 export default CategoryApi;
