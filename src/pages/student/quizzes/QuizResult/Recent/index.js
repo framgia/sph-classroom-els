@@ -43,14 +43,11 @@ const Recent = ({ relatedQuiz, quizzes }) => {
 
   const getLatestScore = (quizId) => {
     if (quizzes?.length > 0) {
-      let score = 0;
-
-      quizzes.forEach((quiz) => {
-        if (quiz.id === quizId) {
-          score = quiz.score;
-        }
+      const latestQuiz = quizzes.find((quiz) => {
+        return quiz.id === quizId;
       });
-      return score;
+
+      return latestQuiz.score;
     }
 
     return 0;
