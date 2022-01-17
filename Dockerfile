@@ -1,5 +1,5 @@
 # pull official base image
-FROM node:12.20.0-alpine3.10
+FROM node:14.18.3-alpine3.15
 
 WORKDIR /var/www
 
