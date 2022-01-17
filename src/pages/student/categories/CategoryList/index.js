@@ -18,7 +18,7 @@ function CategoryList() {
   const searchVal = queryParams.get('search');
   const history = useHistory();
 
-  const [page, setPage] = useState(pageNum ? pageNum : 1);
+  const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
@@ -115,8 +115,10 @@ function CategoryList() {
           <Spinner animation='border' role='status'></Spinner>
           <span className={style.loadingWord}>Loading</span>
         </div>
-      ) : (
+      ) : categories?.length > 0 ? (
         <div className={style.cardList}>{renderCatList()}</div>
+      ) : (
+        ''
       )}
 
       {categories?.length <= 0 ? (
