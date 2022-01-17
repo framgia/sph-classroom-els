@@ -20,6 +20,7 @@ function CategoryList() {
   const pageNum = queryParams.get('page');
   const sortVal = queryParams.get('sortBy');
   const filterVal = queryParams.get('filter');
+  const searchVal = queryParams.get('search');
 
   const history = useHistory();
 
@@ -30,22 +31,40 @@ function CategoryList() {
 
   const [sortBy, setSortBy] = useState(sortVal ? sortVal : 'asc');
   const [filter, setFilter] = useState(filterVal ? filterVal : '');
+  const [search, setSearch] = useState(searchVal ? searchVal : '');
+  const [searchStatus, setSearchStatus] = useState(false);
 
   useEffect(() => {
-    history.push(`?page=${page}&sortBy=${sortBy}&filter=${filter}`);
+    history.push(
+      `?page=${page}&sortBy=${sortBy}&filter=${filter}&search=${search}`
+    );
 
-    CategoryApi.getAll({ page: page, sortBy: sortBy, filter: filter}).then(({ data }) => {
+    CategoryApi.getAll({
+      page: page,
+      sortBy: sortBy,
+      filter: filter,
+      search: search
+    }).then(({ data }) => {
       setCategories(data.data);
       setPerPage(data.per_page);
       setTotalItems(data.total);
       setLastPage(data.last_page);
     });
-  }, [page, sortBy, filter]);
+  }, [page, sortBy, filter, searchStatus]);
+
+  const onSearchSubmit = (e) => {
+    e.preventDefault();
+
+    setPage(1);
+    setSearchStatus(!searchStatus);
+  };
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
 
-    history.push(`?page=${selected + 1}&sortBy=${sortBy}&filter=${filter}`);
+    history.push(
+      `?page=${selected + 1}&sortBy=${sortBy}&filter=${filter}&search=${search}`
+    );
   };
 
   const renderCatList = () => {
@@ -95,6 +114,15 @@ function CategoryList() {
             placeholder='Search'
             className={style.searchBar}
             aria-label='Search'
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+
+              if (e.target.value.length === 0) {
+                setPage(1);
+                setSearchStatus(!searchStatus);
+              }
+            }}
           />
           <Button type='submit' className={style.searchButton}>
             <BiSearch className={style.searchIcon} />
@@ -142,7 +170,7 @@ function CategoryList() {
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-        
+
         <Dropdown>
           <Dropdown.Toggle
             className={style.dropdownStyle}
@@ -164,7 +192,7 @@ function CategoryList() {
                 setPage(1);
               }}
             >
-            All
+              All
             </Dropdown.Item>
             <Dropdown.Item
               className={
@@ -177,7 +205,7 @@ function CategoryList() {
                 setPage(1);
               }}
             >
-            Taken
+              Taken
             </Dropdown.Item>
             <Dropdown.Item
               className={
@@ -190,12 +218,12 @@ function CategoryList() {
                 setPage(1);
               }}
             >
-            Not Taken
+              Not Taken
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
-        
+
       {categories === null ? (
         <div className={style.loading}>
           <Spinner animation='border' role='status'></Spinner>
