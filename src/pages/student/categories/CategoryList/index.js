@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import { Dropdown } from 'react-bootstrap';
 import { VscFilter } from 'react-icons/vsc';
 import Spinner from 'react-bootstrap/Spinner';
 import Form from 'react-bootstrap/Form';
@@ -20,6 +19,8 @@ function CategoryList() {
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
   const sortVal = queryParams.get('sortBy');
+  const filterVal = queryParams.get('filter');
+
   const history = useHistory();
 
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
@@ -28,22 +29,23 @@ function CategoryList() {
   const [lastPage, setLastPage] = useState(0);
 
   const [sortBy, setSortBy] = useState(sortVal ? sortVal : 'asc');
+  const [filter, setFilter] = useState(filterVal ? filterVal : '');
 
   useEffect(() => {
-    history.push(`?page=${page}&sortBy=${sortBy}`);
+    history.push(`?page=${page}&sortBy=${sortBy}&filter=${filter}`);
 
-    CategoryApi.getAll({ page: page, sortBy: sortBy }).then(({ data }) => {
+    CategoryApi.getAll({ page: page, sortBy: sortBy, filter: filter}).then(({ data }) => {
       setCategories(data.data);
       setPerPage(data.per_page);
       setTotalItems(data.total);
       setLastPage(data.last_page);
     });
-  }, [page, sortBy]);
+  }, [page, sortBy, filter]);
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
 
-    history.push(`?page=${selected + 1}&sortBy=${sortBy}`);
+    history.push(`?page=${selected + 1}&sortBy=${sortBy}&filter=${filter}`);
   };
 
   const renderCatList = () => {
@@ -140,7 +142,60 @@ function CategoryList() {
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
+        
+        <Dropdown>
+          <Dropdown.Toggle
+            className={style.dropdownStyle}
+            variant='link'
+            bsPrefix='none'
+          >
+            <span className={style.dropdownText}> Filter </span>
+            <VscFilter size='20px' />
+          </Dropdown.Toggle>
+          <Dropdown.Menu className={style.Dropdownmenustyle}>
+            <Dropdown.Item
+              className={
+                filter === ''
+                  ? `${style.dropdownItemStyle} ${style.dropdownFocus}`
+                  : style.dropdownItemStyle
+              }
+              onClick={() => {
+                setFilter('');
+                setPage(1);
+              }}
+            >
+            All
+            </Dropdown.Item>
+            <Dropdown.Item
+              className={
+                filter === 'Taken'
+                  ? `${style.dropdownItemStyle} ${style.dropdownFocus}`
+                  : style.dropdownItemStyle
+              }
+              onClick={() => {
+                setFilter('Taken');
+                setPage(1);
+              }}
+            >
+            Taken
+            </Dropdown.Item>
+            <Dropdown.Item
+              className={
+                filter === 'Not Taken'
+                  ? `${style.dropdownItemStyle} ${style.dropdownFocus}`
+                  : style.dropdownItemStyle
+              }
+              onClick={() => {
+                setFilter('Not Taken');
+                setPage(1);
+              }}
+            >
+            Not Taken
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
+        
       {categories === null ? (
         <div className={style.loading}>
           <Spinner animation='border' role='status'></Spinner>
