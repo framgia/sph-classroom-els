@@ -103,7 +103,10 @@ function CategoryList() {
             variant='link'
             bsPrefix='none'
           >
-            <span className={style.dropdownText}> Sort by </span>
+            <span className={style.dropdownText}>
+              {' '}
+              {sortBy === 'asc' ? 'Ascending' : 'Descending'}{' '}
+            </span>
             <RiArrowDropDownLine size='20px' />
           </Dropdown.Toggle>
           <Dropdown.Menu className={style.Dropdownmenustyle}>
