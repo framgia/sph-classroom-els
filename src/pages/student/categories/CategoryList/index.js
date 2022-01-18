@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
+import { Dropdown } from 'react-bootstrap';
+import { VscFilter } from 'react-icons/vsc';
 import Spinner from 'react-bootstrap/Spinner';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
@@ -139,7 +141,6 @@ function CategoryList() {
           </Dropdown.Menu>
         </Dropdown>
       </div>
-
       {categories === null ? (
         <div className={style.loading}>
           <Spinner animation='border' role='status'></Spinner>
