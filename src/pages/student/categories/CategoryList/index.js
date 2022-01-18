@@ -111,7 +111,11 @@ function CategoryList() {
           </Dropdown.Toggle>
           <Dropdown.Menu className={style.Dropdownmenustyle}>
             <Dropdown.Item
-              className={style.dropdownItemStyle}
+              className={
+                sortBy === 'asc'
+                  ? `${style.dropdownItemStyle} ${style.dropdownFocus}`
+                  : style.dropdownItemStyle
+              }
               onClick={() => {
                 setPage(1);
                 setSortBy('asc');
@@ -120,7 +124,11 @@ function CategoryList() {
               Ascending
             </Dropdown.Item>
             <Dropdown.Item
-              className={style.dropdownItemStyle}
+              className={
+                sortBy === 'desc'
+                  ? `${style.dropdownItemStyle} ${style.dropdownFocus}`
+                  : style.dropdownItemStyle
+              }
               onClick={() => {
                 setPage(1);
                 setSortBy('desc');

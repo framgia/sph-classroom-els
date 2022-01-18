@@ -160,3 +160,7 @@
 .dropdownItemStyle {
   width: 120px;
 }
+
+.dropdownFocus {
+  background-color: rgba(224, 234, 236, 0.6);
+}
