@@ -50,9 +50,9 @@ const QuestionGrid = ({ quiz }) => {
     if (questions != null) {
       let total = 0;
 
-      for (let x = 0; x < questions.length; x++) {
-        total += questions[x].time_limit;
-      }
+      questions.forEach(function(questions){
+        total += questions.time_limit;
+      });
 
       return total;
     }
