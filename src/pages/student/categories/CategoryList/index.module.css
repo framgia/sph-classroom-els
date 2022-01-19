@@ -140,7 +140,7 @@
 
 .dropdownStyle {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   background-color: #ffffff;
   border: 1px #ced4da solid;
   color: #48535b;
@@ -153,14 +153,14 @@
   color: #48535b;
 }
 
-.dropdownStyle:active {
-  color: rgba(224, 234, 236, 0.6);
-}
-
 .dropdownItemStyle {
   width: 120px;
 }
 
 .dropdownFocus {
   background-color: rgba(224, 234, 236, 0.6);
+}
+
+.Dropdownmenustyle {
+  width: 120px;
 }
