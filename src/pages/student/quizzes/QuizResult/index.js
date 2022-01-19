@@ -93,7 +93,7 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                                 <img
                                   className={style.ResultsizeOfAvatar}
                                   alt='avatar'
-                                  src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/265084007_3017499151830196_5548700819143964530_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeFhYUFZ_M3OjxyHYxh3GZc8daedD_rQFUB1p50P-tAVQMTn1NBlK9EWBmYt7gofEO_LHZpNpuHZTU-yrd7VClBO&_nc_ohc=gzF_EL0ur_kAX_0vVid&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVL4F5s2Pd2NNZdkJKSSuBVu2AGJDvUXoaNLfP0EQouCkg&oe=61E0DA5C'
+                                  src='https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png'
                                 />
                               </a>
                             </td>
