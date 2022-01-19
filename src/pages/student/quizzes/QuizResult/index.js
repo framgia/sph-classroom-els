@@ -6,33 +6,30 @@ import style from './index.module.css';
 import { PropTypes } from 'prop-types';
 import QuizAnswerResult from './QuizAnswerResult';
 import Recent from '../QuizResult/Recent/index';
-
 import { QuestionsContext } from '../QuestionList';
 import AnswerApi from '../../../../api/Answer';
 import FriendsScoreApi from '../../../../api/FriendsScore';
-
 const QuizResult = ({ score, total, quizId, categoryId }) => {
   const [viewResults, setViewResults] = useState(false);
   const { quizTakenId, title } = useContext(QuestionsContext);
   const [answers, setAnswers] = useState(null);
   const [friendsScore, setFriendsScore] = useState(null);
   const passing = total / 2;
-
   useEffect(() => {
     AnswerApi.getAll(quizTakenId).then(({ data }) => {
       setAnswers(data.data);
     });
-
     FriendsScoreApi.getAll(quizId).then(({ data }) => {
       setFriendsScore(data.data);
       console.log(data.data);
     });
   }, []);
-
   const viewResultsPage = () => {
     setViewResults(!viewResults);
   };
-
+  const redirectToStudDetail = (id) => {
+    window.location = `/students/${id}`;
+  };
   return (
     <div>
       {viewResults == false ? (
@@ -89,12 +86,26 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                           </div>
                           <tr>
                             <td>
-                              <a href="/#">
-                                <img
-                                  className={style.ResultsizeOfAvatar}
-                                  alt='avatar'
-                                  src='https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png'
-                                />
+                              <a>
+                                <span
+                                  onClick={() =>
+                                    redirectToStudDetail(friendScore.id)
+                                  }
+                                >
+                                  {friendScore.avatar === null ? (
+                                    <img
+                                      className={style.ResultsizeOfAvatar}
+                                      alt='avatar'
+                                      src='https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png'
+                                    />
+                                  ) : (
+                                    <img
+                                      className={style.ResultsizeOfAvatar}
+                                      alt='avatar'
+                                      src={friendScore.avatar}
+                                    />
+                                  )}
+                                </span>
                               </a>
                             </td>
                             <td className={style.friendsName}>
@@ -104,15 +115,6 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                         </div>
                       );
                     })}
-                    {friendsScore?.length === 0 ? (
-                      <div className={style.centerWord}>
-                        <center>
-                          <span>No Followed User</span>
-                        </center>
-                      </div>
-                    ) : (
-                      ''
-                    )}
                   </Card.Body>
                 </Card>
               </div>
@@ -137,10 +139,10 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
               <div>
                 <h2 className={style.h2_style}>Related Quizzes</h2>
                 <div className={style.bg}>
-                  <Recent title="HTML" />
-                  <Recent title="Linked List" />
-                  <Recent title="Encapsulation" />
-                  <Recent title="CSS" />
+                  <Recent title='HTML' />
+                  <Recent title='Linked List' />
+                  <Recent title='Encapsulation' />
+                  <Recent title='CSS' />
                 </div>
               </div>
             </footer>
@@ -161,7 +163,6 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
     </div>
   );
 };
-
 QuizResult.propTypes = {
   score: PropTypes.number,
   total: PropTypes.number,
