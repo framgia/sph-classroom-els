@@ -108,7 +108,7 @@ function CategoryList() {
     <div style={{ padding: '0px 196px', color: '#48535B' }}>
       <p className={style.title}>Categories</p>
       <div className={style.categoryConditionsStyle}>
-        <Form className='d-flex'>
+        <Form className='d-flex' onSubmit={onSearchSubmit}>
           <FormControl
             type='search'
             placeholder='Search'
@@ -177,7 +177,10 @@ function CategoryList() {
             variant='link'
             bsPrefix='none'
           >
-            <span className={style.dropdownText}> Filter </span>
+            <span className={style.dropdownText}>
+              {' '}
+              {filter === '' ? 'Filter' : filter}{' '}
+            </span>
             <VscFilter size='20px' />
           </Dropdown.Toggle>
           <Dropdown.Menu className={style.Dropdownmenustyle}>
