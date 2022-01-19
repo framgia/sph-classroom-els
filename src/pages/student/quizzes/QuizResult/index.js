@@ -90,10 +90,10 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                           </div>
                           <tr>
                             <td>
-                              <a href='/#'>
+                              <a href="/#">
                                 <img
                                   className={style.ResultsizeOfAvatar}
-                                  alt='avatar'
+                                  alt="avatar"
                                   src={faker.image.avatar()}
                                 />
                               </a>
@@ -105,6 +105,15 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                         </div>
                       );
                     })}
+                    {friendsScore?.length === 0 ? (
+                      <div className={style.centerWord}>
+                        <center>
+                          <span>No Followed User</span>
+                        </center>
+                      </div>
+                    ) : (
+                      ''
+                    )}
                   </Card.Body>
                 </Card>
               </div>
@@ -129,10 +138,10 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
               <div>
                 <h2 className={style.h2_style}>Related Quizzes</h2>
                 <div className={style.bg}>
-                  <Recent title='HTML' />
-                  <Recent title='Linked List' />
-                  <Recent title='Encapsulation' />
-                  <Recent title='CSS' />
+                  <Recent title="HTML" />
+                  <Recent title="Linked List" />
+                  <Recent title="Encapsulation" />
+                  <Recent title="CSS" />
                 </div>
               </div>
             </footer>
