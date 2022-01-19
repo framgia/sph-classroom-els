@@ -27,6 +27,7 @@ const QuestionAnswer = () => {
   const [score, setScore] = useState(0);
   const [point, setPoint] = useState(0);
   const [showResult, setShowResult] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(false);
 
   const handleNextButtonClick = () => {
     setPrevPage(page);
@@ -165,7 +166,11 @@ const QuestionAnswer = () => {
                   <Button
                     id={style.nextBtn}
                     onClick={() => {
-                      storeLastAnswerAndGetTotalScore();
+                      submitStatus === false
+                        ? storeLastAnswerAndGetTotalScore()
+                        : '';
+
+                      setSubmitStatus(true);
                     }}
                   >
                     {' '}
