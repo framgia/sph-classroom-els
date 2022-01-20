@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
@@ -29,10 +30,6 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
 
   const viewResultsPage = () => {
     setViewResults(!viewResults);
-  };
-
-  const redirectToStudDetail = (id) => {
-    window.location = `/students/${id}`;
   };
 
   return (
@@ -89,34 +86,32 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                           <div className={style.friendsScore}>
                             {friendScore.score}/{total}
                           </div>
-                          <tr>
-                            <td>
-                              <a>
-                                <span
-                                  onClick={() =>
-                                    redirectToStudDetail(friendScore.id)
-                                  }
-                                >
-                                  {friendScore.avatar === null ? (
+                          <Link to={`/students/${friendScore.id}`}>
+                            <tr>
+                              <td>
+                                {friendScore.avatar === null ? (
+                                  <div>
                                     <img
                                       className={style.ResultsizeOfAvatar}
                                       alt='avatar'
                                       src='https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png'
                                     />
-                                  ) : (
+                                  </div>
+                                ) : (
+                                  <div>
                                     <img
                                       className={style.ResultsizeOfAvatar}
                                       alt='avatar'
                                       src={friendScore.avatar}
                                     />
-                                  )}
-                                </span>
-                              </a>
-                            </td>
-                            <td className={style.friendsName}>
-                              {friendScore.name}
-                            </td>
-                          </tr>
+                                  </div>
+                                )}
+                              </td>
+                              <td className={style.friendsName}>
+                                {friendScore.name}
+                              </td>
+                            </tr>
+                          </Link>
                         </div>
                       );
                     })}
