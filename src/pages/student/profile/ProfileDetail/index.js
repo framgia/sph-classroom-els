@@ -17,12 +17,14 @@ const ProfileDetail = () => {
   const ACTIVITY_TYPE = 'App\\Models\\Quiz';
 
   const [studentDetails, setStudentDetails] = useState(null);
+  const [overallQuizTaken, setOverallQuizTaken] = useState(0);
   const [friendsActivities, setFriendsActivities] = useState(null);
   const [recentActivities, setRecentActivities] = useState(null);
 
   useEffect(() => {
     StudentApi.getDetails(loggedInUserId).then(({ data }) => {
       setStudentDetails(data.details);
+      setOverallQuizTaken(data.quizzesTaken);
     });
 
     StudentApi.getRecentActivities(loggedInUserId).then(({ data }) => {
@@ -31,7 +33,6 @@ const ProfileDetail = () => {
 
     DashboardApi.getFriendsActivities().then(({ data }) => {
       setFriendsActivities(data.data);
-      console.log(data.data);
     });
   }, []);
 
@@ -69,10 +70,10 @@ const ProfileDetail = () => {
           </div>
 
           <div style={{ marginLeft: '40px' }}>
-            <div style={{ marginTop: '33px' }}>
+            <div style={{ marginTop: '33px' }} className={style.userInfo}>
               <div className={style.userEditText}>
                 <h2 style={{ fontSize: '32px', fontWeight: 'Bold' }}>
-                  Jane Doe
+                  {studentDetails?.name}
                 </h2>
                 <FaUserEdit size='40px' className={style.userEdit} />
               </div>
@@ -83,10 +84,16 @@ const ProfileDetail = () => {
                   color: '#48535B'
                 }}
               >
-                20 Total Quizzes Taken
+                {overallQuizTaken} Total Quizzes Taken
               </h4>
-              <p className={style.followersText}>10 Followers</p>
-              <p className={style.followingText}>10 Following</p>
+              <div>
+                <p className={style.followersText}>
+                  {studentDetails?.followers_count} Followers
+                </p>
+                <p className={style.followingText}>
+                  {studentDetails?.followings_count} Following
+                </p>
+              </div>
             </div>
           </div>
         </div>

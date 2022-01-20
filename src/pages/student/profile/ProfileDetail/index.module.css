@@ -98,3 +98,9 @@
   margin-top: 20px;
   margin-left: 17px;
 }
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
