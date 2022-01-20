@@ -9,12 +9,14 @@ import Recent from '../QuizResult/Recent/index';
 import { QuestionsContext } from '../QuestionList';
 import AnswerApi from '../../../../api/Answer';
 import FriendsScoreApi from '../../../../api/FriendsScore';
+
 const QuizResult = ({ score, total, quizId, categoryId }) => {
   const [viewResults, setViewResults] = useState(false);
   const { quizTakenId, title } = useContext(QuestionsContext);
   const [answers, setAnswers] = useState(null);
   const [friendsScore, setFriendsScore] = useState(null);
   const passing = total / 2;
+
   useEffect(() => {
     AnswerApi.getAll(quizTakenId).then(({ data }) => {
       setAnswers(data.data);
@@ -24,12 +26,15 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
       console.log(data.data);
     });
   }, []);
+
   const viewResultsPage = () => {
     setViewResults(!viewResults);
   };
+
   const redirectToStudDetail = (id) => {
     window.location = `/students/${id}`;
   };
+
   return (
     <div>
       {viewResults == false ? (
@@ -163,10 +168,12 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
     </div>
   );
 };
+
 QuizResult.propTypes = {
   score: PropTypes.number,
   total: PropTypes.number,
   quizId: PropTypes.number,
-  categoryId: PropTypes.number,
+  categoryId: PropTypes.number
 };
+
 export default QuizResult;
