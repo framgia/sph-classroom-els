@@ -28,6 +28,7 @@ const PasswordReset = () => {
       setStatus(true);
     } catch (error) {
       setError(error.response.data.error);
+      setSubmitStatus(false);
     }
   };
 
