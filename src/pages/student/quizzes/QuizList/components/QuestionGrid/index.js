@@ -48,13 +48,12 @@ const QuestionGrid = ({ quiz }) => {
 
   const getTotalTimeLimit = () => {
     if (questions != null) {
-      let total = 0;
 
-      questions.forEach(function(questions){
-        total += questions.time_limit;
-      });
-
-      return total;
+      const totalTimeLimit = questions.reduce((total, questions) => {
+        return (total += questions.time_limit);
+      }, 0);
+      return totalTimeLimit;
+      
     }
   };
 
