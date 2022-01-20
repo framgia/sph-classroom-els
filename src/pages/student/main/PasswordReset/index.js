@@ -13,7 +13,7 @@ const PasswordReset = () => {
   const [modalMessage, setModalMessage] = useState('');
 
   const { control, handleSubmit } = useForm();
-  const [errors, setErrors] = useState({});
+  const [error, setError] = useState('');
 
   const showAlertDialog = (isShow, message) => {
     setShow(isShow);
@@ -21,6 +21,8 @@ const PasswordReset = () => {
   };
 
   const handleOnSubmit = async ({ email }) => {
+    setError('');
+
     try {
       await PasswordResetApi.forgotPassword({ email });
       showAlertDialog(
@@ -28,24 +30,19 @@ const PasswordReset = () => {
         'An email has been sent. Please click the link provided to proceed with the password reset.'
       );
     } catch (error) {
-      console.log(error.response);
-      if (error?.response?.data?.errors) {
-        setErrors(error?.response?.data?.errors);
-      } else {
-        showAlertDialog(true, 'An error has occurred.');
-      }
+      setError(error.response.data.error);
     }
   };
 
   return (
     <center>
       <Container>
-        <Stack gap={2} className="col-md-5 mx-auto">
+        <Stack gap={2} className='col-md-5 mx-auto'>
           <Form
             onSubmit={handleSubmit(handleOnSubmit)}
             className={style.contentstyle}
           >
-            <div className={style.center} align="start">
+            <div className={style.center} align='start'>
               <center>
                 <Form.Label>
                   {' '}
@@ -54,37 +51,37 @@ const PasswordReset = () => {
               </center>
               <Form.Group
                 id={style.Containercentermargin}
-                className="mb - 3"
-                controlId="Email"
+                className='mb - 3'
+                controlId='Email'
               >
                 <Form.Label>
                   <h6 style={{ marginBottom: '0px' }}>Email</h6>
                 </Form.Label>
                 <Controller
                   control={control}
-                  name="email"
-                  defaultValue=""
+                  name='email'
+                  defaultValue=''
                   render={({ field: { onChange, value, ref } }) => (
                     <Form.Control
                       onChange={onChange}
                       value={value}
                       ref={ref}
-                      className="cntrs"
-                      type="email"
-                      isInvalid={!!errors?.email}
+                      className='cntrs'
+                      type='email'
+                      isInvalid={error}
                       required
                       maxLength={50}
                     />
                   )}
                 />
-                <Form.Control.Feedback type="invalid">
-                  {errors?.email}
+                <Form.Control.Feedback type='invalid'>
+                  {error}
                 </Form.Control.Feedback>
               </Form.Group>
 
               <center>
                 <Button
-                  type="submit"
+                  type='submit'
                   onClick={() => {
                     setShow(false);
                   }}
@@ -96,7 +93,7 @@ const PasswordReset = () => {
 
               <center>
                 <div>
-                  <a href="login" className={style.cancel}>
+                  <a href='login' className={style.cancel}>
                     Cancel
                   </a>
                 </div>
