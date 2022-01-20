@@ -4,31 +4,28 @@ import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
 import Form from 'react-bootstrap/Form';
 import style from './index.module.css';
-import Modal from 'react-bootstrap/Modal';
 import PasswordResetApi from '../../../../api/PasswordReset';
 import { useForm, Controller } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 const PasswordReset = () => {
-  const [show, setShow] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [status, setStatus] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(false);
 
   const { control, handleSubmit } = useForm();
   const [error, setError] = useState('');
 
-  const showAlertDialog = (isShow, message) => {
-    setShow(isShow);
-    setModalMessage(message);
-  };
-
   const handleOnSubmit = async ({ email }) => {
+    setSubmitStatus(true);
     setError('');
 
     try {
       await PasswordResetApi.forgotPassword({ email });
-      showAlertDialog(
-        true,
-        'An email has been sent. Please click the link provided to proceed with the password reset.'
+      setSuccessMessage(
+        'An email has been sent. Please click the link provided in the email sent to proceed with the password reset.'
       );
+      setStatus(true);
     } catch (error) {
       setError(error.response.data.error);
     }
@@ -42,96 +39,82 @@ const PasswordReset = () => {
             onSubmit={handleSubmit(handleOnSubmit)}
             className={style.contentstyle}
           >
-            <div className={style.center} align='start'>
-              <center>
-                <Form.Label>
-                  {' '}
-                  <h4> Password Reset </h4>
-                </Form.Label>
-              </center>
-              <Form.Group
-                id={style.Containercentermargin}
-                className='mb - 3'
-                controlId='Email'
-              >
-                <Form.Label>
-                  <h6 style={{ marginBottom: '0px' }}>Email</h6>
-                </Form.Label>
-                <Controller
-                  control={control}
-                  name='email'
-                  defaultValue=''
-                  render={({ field: { onChange, value, ref } }) => (
-                    <Form.Control
-                      onChange={onChange}
-                      value={value}
-                      ref={ref}
-                      className='cntrs'
-                      type='email'
-                      isInvalid={error}
-                      required
-                      maxLength={50}
-                    />
-                  )}
-                />
-                <Form.Control.Feedback type='invalid'>
-                  {error}
-                </Form.Control.Feedback>
-              </Form.Group>
-
-              <center>
-                <Button
-                  type='submit'
-                  onClick={() => {
-                    setShow(false);
-                  }}
-                  id={style.button}
+            {status === false ? (
+              <div className={style.center} align='start'>
+                <center>
+                  <Form.Label>
+                    {' '}
+                    <h4> Password Reset </h4>
+                  </Form.Label>
+                </center>
+                <Form.Group
+                  id={style.Containercentermargin}
+                  className='mb - 3'
+                  controlId='Email'
                 >
-                  <span className={style.textbutton}>Send Recovery Link</span>
-                </Button>
-              </center>
+                  <Form.Label>
+                    <h6 style={{ marginBottom: '0px' }}>Email</h6>
+                  </Form.Label>
+                  <Controller
+                    control={control}
+                    name='email'
+                    defaultValue=''
+                    render={({ field: { onChange, value, ref } }) => (
+                      <Form.Control
+                        onChange={onChange}
+                        value={value}
+                        ref={ref}
+                        className='cntrs'
+                        type='email'
+                        isInvalid={error}
+                        required
+                        maxLength={50}
+                      />
+                    )}
+                  />
+                  <Form.Control.Feedback type='invalid'>
+                    {error}
+                  </Form.Control.Feedback>
+                </Form.Group>
 
-              <center>
-                <div>
-                  <a href='login' className={style.cancel}>
-                    Cancel
-                  </a>
+                <center>
+                  {submitStatus === false ? (
+                    <Button type='submit' id={style.button}>
+                      <span className={style.textbutton}>
+                        Send Recovery Link
+                      </span>
+                    </Button>
+                  ) : (
+                    <Button type='submit' id={style.button} disabled>
+                      <span className={style.textbutton}>
+                        Send Recovery Link
+                      </span>
+                    </Button>
+                  )}
+                </center>
+
+                <center>
+                  <div>
+                    <a href='login' className={style.cancel}>
+                      Cancel
+                    </a>
+                  </div>
+                </center>
+              </div>
+            ) : (
+              <div>
+                <h4 className={style.title}>Password Reset</h4>
+                <div className={style.successMessageContainer}>
+                  <span>{successMessage}</span>
                 </div>
-              </center>
-            </div>
+                <Link to={'/'} className={style.backButton}>
+                  Back
+                </Link>
+              </div>
+            )}
           </Form>
         </Stack>
       </Container>
-      <Modal
-        centered
-        show={show}
-        onHide={() => {
-          setShow(false);
-        }}
-      >
-        <Modal.Header id={style.modalcenter} closeButton>
-          <Modal.Title>
-            {' '}
-            <p style={{ fontWeight: 'Bold', fontSize: '16px' }}>
-              {' '}
-              Password Reset{' '}
-            </p>{' '}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className={style.textmodal}>{modalMessage}</div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            id={style.Btncolor}
-            onClick={() => {
-              setShow(false);
-            }}
-          >
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </center>
   );
 };
