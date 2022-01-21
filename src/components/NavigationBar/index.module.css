@@ -4,20 +4,20 @@
 
 .navbarLink {
   font-size: 21px;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
   margin: 28px 36px 27px 0px;
 }
 
 .navbarCollapse {
   background-color: #002037 !important;
-  margin-left: 0.5rem;
+  margin-left: 2rem;
   font-size: 20px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 #dropdownMenu {
-  background-color: #FFFFFF !important;
-  color: #FFFFFF !important;
+  background-color: #ffffff !important;
+  color: #ffffff !important;
   margin: 32px 50px 20px 0px;
   width: 35px;
   height: 35px;
@@ -34,11 +34,14 @@
 }
 
 .dropdownItem {
-  font-size: 14px;
-  color: #FFFFFF !important;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  width: 144px;
+  color: #ffffff !important;
 }
 
-.colorActive{
+.colorActive {
   background-color: #ffffff !important;
   color: black !important;
 }
@@ -47,16 +50,15 @@
   background-color: #ffffff;
 }
 
-.dropdownItem:hover{
+.dropdownItem:hover {
   color: #000 !important;
 }
 
-.colorActive:active{
+.colorActive:active {
   background-color: #ffffff9f !important;
 }
 
-
-#ItemColor{
+#ItemColor {
   background-color: #ffffff;
 }
 
@@ -65,11 +67,19 @@
   height: 20px;
 }
 
+.dropdownItemName {
+  margin-left: 10px;
+}
+
 .title {
-  background: linear-gradient(184.52deg, #FFFFFF 3.66%,
-  rgba(198, 236, 234, 0.552072) 84.58%, 
-  rgba(128, 214, 208, 0) 170.68%, 
-  rgba(70, 206, 198, 0.266022) 170.7%);
+  background: linear-gradient(
+    184.52deg,
+    #ffffff 3.66%,
+    rgba(198, 236, 234, 0.552072) 84.58%,
+    rgba(128, 214, 208, 0) 170.68%,
+    rgba(70, 206, 198, 0.266022) 170.7%
+  );
+
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
