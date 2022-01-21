@@ -1,13 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import faker from 'faker';
 import style from './index.module.css';
 import { PropTypes } from 'prop-types';
 import QuizAnswerResult from './QuizAnswerResult';
 import Recent from '../QuizResult/Recent/index';
-
 import { QuestionsContext } from '../QuestionList';
 import AnswerApi from '../../../../api/Answer';
 import FriendsScoreApi from '../../../../api/FriendsScore';
@@ -23,7 +22,6 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
     AnswerApi.getAll(quizTakenId).then(({ data }) => {
       setAnswers(data.data);
     });
-
     FriendsScoreApi.getAll(quizId).then(({ data }) => {
       setFriendsScore(data.data);
       console.log(data.data);
@@ -88,32 +86,35 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                           <div className={style.friendsScore}>
                             {friendScore.score}/{total}
                           </div>
-                          <tr>
-                            <td>
-                              <a href="/#">
-                                <img
-                                  className={style.ResultsizeOfAvatar}
-                                  alt="avatar"
-                                  src={faker.image.avatar()}
-                                />
-                              </a>
-                            </td>
-                            <td className={style.friendsName}>
-                              {friendScore.name}
-                            </td>
-                          </tr>
+                          <Link to={`/students/${friendScore.id}`}>
+                            <tr>
+                              <td>
+                                {friendScore.avatar === null ? (
+                                  <div>
+                                    <img
+                                      className={style.ResultsizeOfAvatar}
+                                      alt='avatar'
+                                      src='https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png'
+                                    />
+                                  </div>
+                                ) : (
+                                  <div>
+                                    <img
+                                      className={style.ResultsizeOfAvatar}
+                                      alt='avatar'
+                                      src={friendScore.avatar}
+                                    />
+                                  </div>
+                                )}
+                              </td>
+                              <td className={style.friendsName}>
+                                {friendScore.name}
+                              </td>
+                            </tr>
+                          </Link>
                         </div>
                       );
                     })}
-                    {friendsScore?.length === 0 ? (
-                      <div className={style.centerWord}>
-                        <center>
-                          <span>No Followed User</span>
-                        </center>
-                      </div>
-                    ) : (
-                      ''
-                    )}
                   </Card.Body>
                 </Card>
               </div>
@@ -138,10 +139,10 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
               <div>
                 <h2 className={style.h2_style}>Related Quizzes</h2>
                 <div className={style.bg}>
-                  <Recent title="HTML" />
-                  <Recent title="Linked List" />
-                  <Recent title="Encapsulation" />
-                  <Recent title="CSS" />
+                  <Recent title='HTML' />
+                  <Recent title='Linked List' />
+                  <Recent title='Encapsulation' />
+                  <Recent title='CSS' />
                 </div>
               </div>
             </footer>
@@ -167,6 +168,7 @@ QuizResult.propTypes = {
   score: PropTypes.number,
   total: PropTypes.number,
   quizId: PropTypes.number,
-  categoryId: PropTypes.number,
+  categoryId: PropTypes.number
 };
+
 export default QuizResult;
