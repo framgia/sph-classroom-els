@@ -99,7 +99,6 @@ const QuestionGrid = ({ quiz }) => {
               {getLatestScore() >= 0 ? getLatestScore() : 0}/{questions?.length}
             </p>
           </div>
-          {/* {`${quiz.correctAnswers}/${quiz.totalQuestions}`} */}
         </div>
       </Card.Body>
       {quiz.answerCount === 0 || (
