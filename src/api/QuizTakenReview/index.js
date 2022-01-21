@@ -4,7 +4,7 @@ const QuizzesTakenReviewApi = {
   getAll: (quiz_id) => {
     const options = {
       method: 'GET',
-      url: `/QuizAttempts/${quiz_id}`,
+      url: `/quiz_attempts/${quiz_id}`,
     };
 
     return API.request(options);
