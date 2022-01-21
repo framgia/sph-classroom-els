@@ -108,7 +108,7 @@ const ProfileDetail = () => {
                       <span className={style.margineforspan}>
                         {' '}
                         {recentActivity.description.replace(
-                          studentDetails.name,
+                          studentDetails?.name,
                           'You'
                         )}{' '}
                       </span>{' '}
