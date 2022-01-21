@@ -56,8 +56,8 @@ const ProfileDetail = () => {
         }}
       >
         <div style={{ display: 'flex' }}>
-          <div className={style.profile_01}>
-            <BiUser className={style.biuserposition} />
+          <div className={style.avatar}>
+            <BiUser className={style.biUserPosition} />
             <BsPencilSquare
               size='20px'
               style={{
@@ -85,27 +85,30 @@ const ProfileDetail = () => {
               >
                 20 Total Quizzes Taken
               </h4>
-              <p className={style.followone}>10 Followers</p>
-              <p className={style.follow}>10 Following</p>
+              <p className={style.followersText}>10 Followers</p>
+              <p className={style.followingText}>10 Following</p>
             </div>
           </div>
         </div>
       </div>
-      <div className={style.bg2} style={{ marginTop: '40px' }}>
+      <div
+        className={style.activitiesTableContainer}
+        style={{ marginTop: '40px' }}
+      >
         <div>
-          <div className={style.cal1}>
+          <div className={style.cardHeader}>
             <p style={{ float: 'left', marginLeft: '12px', marginTop: '10px' }}>
               Recent Activities
             </p>
           </div>
-          <div className={`${style.cal_02} ${style.cal_3}`}>
+          <div className={style.cardBody}>
             {recentActivities?.length > 0 ? (
               recentActivities?.map((recentActivity, idx) => {
                 return (
                   <div className={style.tableContainer} key={idx}>
-                    <h6 className={style.info}>
+                    <h6 className={style.activityInfo}>
                       {activitiesIconDisplay(recentActivity.subject_type)}
-                      <span className={style.margineforspan}>
+                      <span className={style.activityDescription}>
                         {' '}
                         {recentActivity.description.replace(
                           studentDetails?.name,
@@ -113,7 +116,7 @@ const ProfileDetail = () => {
                         )}{' '}
                       </span>{' '}
                     </h6>
-                    <div id={style.floatrighttext}>
+                    <div id={style.timestamp}>
                       <Moment fromNow>{recentActivity.created_at}</Moment>{' '}
                     </div>
                   </div>
@@ -127,24 +130,24 @@ const ProfileDetail = () => {
           </div>
         </div>
         <div>
-          <div className={style.cal1}>
+          <div className={style.cardHeader}>
             <p style={{ float: 'left', marginLeft: '12px', marginTop: '10px' }}>
               Friend’s Activities
             </p>
           </div>
-          <div className={`${style.cal_02} ${style.cal_3}`}>
+          <div className={style.cardBody}>
             {friendsActivities?.length > 0 ? (
               friendsActivities?.map((friendActivity, idx) => {
                 return (
                   <div className={style.tableContainer} key={idx}>
-                    <h6 className={style.info}>
+                    <h6 className={style.activityInfo}>
                       {activitiesIconDisplay(friendActivity.subject_type)}
-                      <span className={style.margineforspan}>
+                      <span className={style.activityDescription}>
                         {' '}
                         {friendActivity.description}{' '}
                       </span>{' '}
                     </h6>
-                    <div id={style.floatrighttext}>
+                    <div id={style.timestamp}>
                       <Moment fromNow>{friendActivity.created_at}</Moment>{' '}
                     </div>
                   </div>
