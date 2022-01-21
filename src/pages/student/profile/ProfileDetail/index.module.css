@@ -1,91 +1,100 @@
-.profile_01{
-    border: black 1px solid;
-    padding: 6px;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: orange;
+.userProfileContainer {
+  margin: 100px 130px;
 }
 
-.userEditText{
-    display: inline-flex;
-    margin-right: 50px;
-    color: #152536;
+.avatar {
+  border: black 1px solid;
+  padding: 6px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: orange;
 }
 
-.userEdit{
-    border: #E0EAEC 3px solid;
-    border-radius: 2px;
-    margin-left: 20px;
-    padding: 5px;
-    margin-bottom: 20px;
-    color:black
-
+.userEditText {
+  float: left;
+  display: inline-flex;
+  margin-right: 50px;
+  color: #152536;
 }
 
-.follow{
-    margin-left: 20px;
-    font-size: 20px;
-    margin-top: 0px;
-    display: inline-block;
-    font-weight: 300px;
-    color: #48535B;
-}
-.followone{
-    font-size: 20px;
-    margin-top: 0px;
-    display: inline-block;
-    font-weight: 300px;
-    color: #48535B;
+.userEdit {
+  border: #e0eaec 3px solid;
+  border-radius: 2px;
+  margin-left: 20px;
+  padding: 5px;
+  margin-bottom: 20px;
+  color: black;
 }
 
-.bg2{
-    padding: 0px 150px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    color: #48535B;
-}
-.cal1{
-    background-color:#E0EAEC;
-    width: 548px;
-    height: 40px;
-    border-radius: 2px 2px 0px 0px;
-    font-size: 18px;
-    filter: drop-shadow(0 1mm 1mm #48535b8c);
-}
-.cal_02{
-    background-color:white;
-    width: 548px;
-    height: 300px;
-    border-radius: 0px 0px 10px 10px;
-}
-.cal_3{
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-.s_h3{
-    margin-right: 110px;
-    float: left;
-    margin-top: 20px;
-    margin-left: 17px;
+.followingText {
+  margin-left: 20px;
+  font-size: 20px;
+  margin-top: 0px;
+  display: inline-block;
+  font-weight: 300px;
+  color: #48535b;
 }
 
-.biuserposition{
-    width: 200px;
-    height: 160px;
-    padding-right: 10px;
+.followersText {
+  font-size: 20px;
+  margin-top: 0px;
+  display: inline-block;
+  font-weight: 300px;
+  color: #48535b;
 }
 
-#floatrighttext{
-    float: right;
-    margin-top: 20px;
-    margin-right: 17px;
-    font-size: 14px;
+.activitiesTableContainer {
+  padding: 0px 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #48535b;
 }
 
-.margineforspan{
-    color: #48535B;
-    margin-left: 20px;
-    font-size: 16px;
+.cardHeader {
+  background-color: #e0eaec;
+  width: 650px;
+  height: 40px;
+  border-radius: 2px 2px 0px 0px;
+  font-size: 18px;
+  filter: drop-shadow(0 1mm 1mm #48535b8c);
+}
+
+.cardBody {
+  background-color: white;
+  width: 650px;
+  height: 330px;
+  border-radius: 0px 0px 10px 10px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.biUserPosition {
+  width: 200px;
+  height: 160px;
+  padding-right: 10px;
+}
+
+#timestamp {
+  float: right;
+  margin-top: 20px;
+  margin-right: 17px;
+  font-size: 14px;
+  margin-left: auto;
+}
+
+.activityDescription {
+  color: #48535b;
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+.tableContainer {
+  display: flex;
+}
+
+.activityInfo {
+  margin-top: 20px;
+  margin-left: 17px;
 }
