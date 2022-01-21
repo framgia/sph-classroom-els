@@ -1,14 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './index.module.css';
 import { FaUserEdit } from 'react-icons/fa';
 import { BsPencilSquare } from 'react-icons/bs';
 import { BiUser } from 'react-icons/bi';
 import { BsCardChecklist } from 'react-icons/bs';
 import { RiUserAddLine } from 'react-icons/ri';
+import Moment from 'react-moment';
+import Cookies from 'js-cookie';
+
+import StudentApi from '../../../../api/Student';
+import DashboardApi from '../../../../api/Dashboard';
 
 const ProfileDetail = () => {
+  const loggedInUserId = Cookies.get('user_id');
+
+  const ACTIVITY_TYPE = 'App\\Models\\Quiz';
+
+  const [studentDetails, setStudentDetails] = useState(null);
+  const [friendsActivities, setFriendsActivities] = useState(null);
+  const [recentActivities, setRecentActivities] = useState(null);
+
+  useEffect(() => {
+    StudentApi.getDetails(loggedInUserId).then(({ data }) => {
+      setStudentDetails(data.details);
+    });
+
+    StudentApi.getRecentActivities(loggedInUserId).then(({ data }) => {
+      setRecentActivities(data.data);
+    });
+
+    DashboardApi.getFriendsActivities().then(({ data }) => {
+      setFriendsActivities(data.data);
+      console.log(data.data);
+    });
+  }, []);
+
+  const activitiesIconDisplay = (activityDetail) => {
+    return activityDetail === ACTIVITY_TYPE ? (
+      <BsCardChecklist size='20px' />
+    ) : (
+      <RiUserAddLine size='20px' />
+    );
+  };
+
   return (
-    <center>
+    <center className={style.userProfileContainer}>
       <div
         style={{
           display: 'flex',
@@ -16,6 +52,7 @@ const ProfileDetail = () => {
           justifyContent: 'space-between',
           marginTop: '50px',
           paddingLeft: '10%',
+          marginBottom: '100px'
         }}
       >
         <div style={{ display: 'flex' }}>
@@ -26,7 +63,7 @@ const ProfileDetail = () => {
               style={{
                 marginLeft: '170px',
                 strokeWidth: '0px',
-                marginTop: '5px',
+                marginTop: '5px'
               }}
             />
           </div>
@@ -43,7 +80,7 @@ const ProfileDetail = () => {
                 style={{
                   fontSize: '24px',
                   marginBottom: '20px',
-                  color: '#48535B',
+                  color: '#48535B'
                 }}
               >
                 20 Total Quizzes Taken
@@ -58,139 +95,66 @@ const ProfileDetail = () => {
         <div>
           <div className={style.cal1}>
             <p style={{ float: 'left', marginLeft: '12px', marginTop: '10px' }}>
-             Recent Activities
+              Recent Activities
             </p>
           </div>
           <div className={`${style.cal_02} ${style.cal_3}`}>
-            <div>
-              <h6 className={style.s_h3}>
-                <RiUserAddLine size='20px' />
-                <span className={style.margineforspan}>You followed Isaac</span>
-              </h6>
-              <div id={style.floatrighttext}>1 minutes ago </div>
-            </div>
-            <div>
-              <h6 className={style.s_h3}>
-                <BsCardChecklist size='20px' />
-                <span className={style.margineforspan}>
-                  Answered C Programming Quiz
-                </span>
-              </h6>
-              <div id={style.floatrighttext}>6 minutes ago </div>
-            </div>
-            <div>
-              <h6 className={style.s_h3}>
-                <RiUserAddLine size='20px' />
-                <span className={style.margineforspan}>
-                  You followed Deucalion
-                </span>
-              </h6>
-              <div id={style.floatrighttext}>10 minutes ago </div>
-            </div>
-            <div>
-              <h6 className={style.s_h3}>
-                <RiUserAddLine size='20px' />
-                <span className={style.margineforspan}>You followed Derek</span>
-              </h6>
-              <div id={style.floatrighttext}>30 minutes ago </div>
-            </div>
-            <div>
-              <h6 className={style.s_h3}>
-                <BsCardChecklist size='20px' />
-                <span className={style.margineforspan}>HTML Quiz Retake</span>
-              </h6>
-              <div id={style.floatrighttext}>50 minutes ago </div>
-            </div>
-            <div>
-              <h6 className={style.s_h3}>
-                <BsCardChecklist size='20px' />
-                <span className={style.margineforspan}>
-                  Answered Geometry Quiz
-                </span>
-              </h6>
-              <div id={style.floatrighttext}>55 minutes ago </div>
-            </div>
-            <div>
-              <h6 className={style.s_h3}>
-                <BsCardChecklist size='20px' />
-                <span className={style.margineforspan}>
-                  Encapsulation Quiz Retake
-                </span>
-              </h6>
-              <div id={style.floatrighttext}>55 minutes ago </div>
-            </div>
+            {recentActivities?.length > 0 ? (
+              recentActivities?.map((recentActivity, idx) => {
+                return (
+                  <div className={style.tableContainer} key={idx}>
+                    <h6 className={style.info}>
+                      {activitiesIconDisplay(recentActivity.subject_type)}
+                      <span className={style.margineforspan}>
+                        {' '}
+                        {recentActivity.description.replace(
+                          studentDetails.name,
+                          'You'
+                        )}{' '}
+                      </span>{' '}
+                    </h6>
+                    <div id={style.floatrighttext}>
+                      <Moment fromNow>{recentActivity.created_at}</Moment>{' '}
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <div className={style.noQuizzesTakenMessage}>
+                <span>No Recent Activities</span>
+              </div>
+            )}
           </div>
         </div>
         <div>
           <div className={style.cal1}>
             <p style={{ float: 'left', marginLeft: '12px', marginTop: '10px' }}>
-             Friend’s Activities
+              Friend’s Activities
             </p>
           </div>
           <div className={`${style.cal_02} ${style.cal_3}`}>
-            <div>
-              <h6 className={style.s_h3}>
-                <RiUserAddLine size='20px' />
-                <span className={style.margineforspan}>
-                  Paul followed John Doe
-                </span>
-              </h6>
-              <div id={style.floatrighttext}>1 minutes ago </div>
-            </div>
-            <div>
-              <h6 className={style.s_h3}>
-                <BsCardChecklist size='20px' />
-                <span className={style.margineforspan}>
-                  Einstein answered Physics Quiz
-                </span>
-              </h6>
-              <div id={style.floatrighttext}>6 minutes ago </div>
-            </div>
-            <div>
-              <h6 className={style.s_h3}>
-                <RiUserAddLine size='20px' />
-                <span className={style.margineforspan}>
-                  Erick followed Joash
-                </span>
-              </h6>
-              <div id={style.floatrighttext}>10 minutes ago </div>
-            </div>
-            <div>
-              <h6 className={style.s_h3}>
-                <RiUserAddLine size='20px' />
-                <span className={style.margineforspan}>
-                  Harvey followed Gen
-                </span>
-              </h6>
-              <div id={style.floatrighttext}>30 minutes ago </div>
-            </div>
-            <div>
-              <h6 className={style.s_h3}>
-                <BsCardChecklist size='20px' />
-                <span className={style.margineforspan}>
-                  Therese answered HTML Quiz
-                </span>
-              </h6>
-              <div id={style.floatrighttext}>50 minutes ago </div>
-            </div>
-            <div>
-              <h6 className={style.s_h3}>
-                <BsCardChecklist size='20px' />
-                <span className={style.margineforspan}>
-                  John answered Programming Quiz
-                </span>
-              </h6>
-              <div id={style.floatrighttext}>55 minutes ago </div>
-            </div>
-            <div>
-              <h6 className={style.s_h3}>
-                <BsCardChecklist size='20px' />
-                <span className={style.margineforspan}>
-                  Cinderella answered History Quiz
-                </span>
-              </h6>
-              <div id={style.floatrighttext}>55 minutes ago </div>
-            </div>
+            {friendsActivities?.length > 0 ? (
+              friendsActivities?.map((friendActivity, idx) => {
+                return (
+                  <div className={style.tableContainer} key={idx}>
+                    <h6 className={style.info}>
+                      {activitiesIconDisplay(friendActivity.subject_type)}
+                      <span className={style.margineforspan}>
+                        {' '}
+                        {friendActivity.description}{' '}
+                      </span>{' '}
+                    </h6>
+                    <div id={style.floatrighttext}>
+                      <Moment fromNow>{friendActivity.created_at}</Moment>{' '}
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <div className={style.noQuizzesTakenMessage}>
+                <span>No Recent Activities</span>
+              </div>
+            )}
           </div>
         </div>
       </div>
