@@ -56,7 +56,7 @@ const QuizAnswerResult = ({
               </div>
             </div>
           </Card.Header>
-          <Badge bg='light' className={style.tml1}>
+          <Badge bg="light" className={style.tml1}>
             <div className={style.scorebg1}>Score</div>
             <Card.Text className={style.score1}>
               <span className={style.timeleftspace1}>

@@ -15,7 +15,7 @@ const Recent = (props) => {
             <tr>
               <td className={style.titleText}>{props.title}</td>
               <td style={{ textAlign: 'right' }}>
-                <CgTimer size='10px' />5 Mins
+                <CgTimer size="10px" />5 Mins
               </td>
             </tr>
           </tbody>

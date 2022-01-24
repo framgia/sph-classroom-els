@@ -38,9 +38,9 @@ const ProfileDetail = () => {
 
   const activitiesIconDisplay = (activityDetail) => {
     return activityDetail === ACTIVITY_TYPE ? (
-      <BsCardChecklist size='20px' />
+      <BsCardChecklist size="20px" />
     ) : (
-      <RiUserAddLine size='20px' />
+      <RiUserAddLine size="20px" />
     );
   };
 
@@ -60,7 +60,7 @@ const ProfileDetail = () => {
           <div className={style.avatar}>
             <BiUser className={style.biUserPosition} />
             <BsPencilSquare
-              size='20px'
+              size="20px"
               style={{
                 marginLeft: '170px',
                 strokeWidth: '0px',
@@ -75,7 +75,7 @@ const ProfileDetail = () => {
                 <h2 style={{ fontSize: '32px', fontWeight: 'Bold' }}>
                   {studentDetails?.name}
                 </h2>
-                <FaUserEdit size='40px' className={style.userEdit} />
+                <FaUserEdit size="40px" className={style.userEdit} />
               </div>
               <h4
                 style={{

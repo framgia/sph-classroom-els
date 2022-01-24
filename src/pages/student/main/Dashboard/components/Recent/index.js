@@ -47,7 +47,7 @@ const Recent = ({ recentQuizzes, quizzes }) => {
               <tr>
                 <td className={style.titleText}>{recentQuizzes.title}</td>
                 <td style={{ textAlign: 'right' }}>
-                  <CgTimer size='15px' className={style.timerIcon} />
+                  <CgTimer size="15px" className={style.timerIcon} />
                   {getTotalTimeLimit()} secs
                 </td>
               </tr>

@@ -20,8 +20,8 @@ const FriendsActivities = () => {
       return (
         <img
           className={style.tableIcon}
-          src='https://pxl02-scueduau.terminalfour.net/fit-in/800x10000/filters:quality(95)/prod01/channel_1/media/campaigns/evaluation2x.png'
-          alt='file'
+          src="https://pxl02-scueduau.terminalfour.net/fit-in/800x10000/filters:quality(95)/prod01/channel_1/media/campaigns/evaluation2x.png"
+          alt="file"
         />
       );
     }
@@ -29,8 +29,8 @@ const FriendsActivities = () => {
     return (
       <img
         className={style.tableIcon}
-        src='https://www.toprecursoshumanos.com.br/images/svg-colado-124643x123.svg?crc=3915734253'
-        alt='add'
+        src="https://www.toprecursoshumanos.com.br/images/svg-colado-124643x123.svg?crc=3915734253"
+        alt="add"
       />
     );
   };

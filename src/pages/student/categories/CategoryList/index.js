@@ -108,12 +108,12 @@ function CategoryList() {
     <div style={{ padding: '0px 196px', color: '#48535B' }}>
       <p className={style.title}>Categories</p>
       <div className={style.categoryConditionsStyle}>
-        <Form className='d-flex' onSubmit={onSearchSubmit}>
+        <Form className="d-flex" onSubmit={onSearchSubmit}>
           <FormControl
-            type='search'
-            placeholder='Search'
+            type="search"
+            placeholder="Search"
             className={style.searchBar}
-            aria-label='Search'
+            aria-label="Search"
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
@@ -124,7 +124,7 @@ function CategoryList() {
               }
             }}
           />
-          <Button type='submit' className={style.searchButton}>
+          <Button type="submit" className={style.searchButton}>
             <BiSearch className={style.searchIcon} />
           </Button>
         </Form>
@@ -132,14 +132,14 @@ function CategoryList() {
         <Dropdown>
           <Dropdown.Toggle
             className={style.dropdownStyle}
-            variant='link'
-            bsPrefix='none'
+            variant="link"
+            bsPrefix="none"
           >
             <span className={style.dropdownText}>
               {' '}
               {sortBy === 'asc' ? 'Ascending' : 'Descending'}{' '}
             </span>
-            <RiArrowDropDownLine size='20px' />
+            <RiArrowDropDownLine size="20px" />
           </Dropdown.Toggle>
           <Dropdown.Menu className={style.Dropdownmenustyle}>
             <Dropdown.Item
@@ -174,14 +174,14 @@ function CategoryList() {
         <Dropdown>
           <Dropdown.Toggle
             className={style.dropdownStyle}
-            variant='link'
-            bsPrefix='none'
+            variant="link"
+            bsPrefix="none"
           >
             <span className={style.dropdownText}>
               {' '}
               {filter === '' ? 'Filter' : filter}{' '}
             </span>
-            <VscFilter size='20px' />
+            <VscFilter size="20px" />
           </Dropdown.Toggle>
           <Dropdown.Menu className={style.Dropdownmenustyle}>
             <Dropdown.Item
@@ -229,7 +229,7 @@ function CategoryList() {
 
       {categories === null ? (
         <div className={style.loading}>
-          <Spinner animation='border' role='status'></Spinner>
+          <Spinner animation="border" role="status"></Spinner>
           <span className={style.loadingWord}>Loading</span>
         </div>
       ) : categories?.length > 0 ? (
@@ -243,7 +243,7 @@ function CategoryList() {
           <p className={style.message}>NO RESULTS FOUND</p>
         </div>
       ) : (
-        <div className='pt-4'>
+        <div className="pt-4">
           <Pagination
             page={page}
             perPage={perPage}

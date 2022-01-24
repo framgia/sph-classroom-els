@@ -6,7 +6,7 @@
   background-color: #e0eaec;
   padding: 40px;
   border-radius: 2px;
-  height: 298px;
+  height: auto;
   width: 430px;
   color: #48535b;
 }
@@ -62,7 +62,7 @@
 
 .textmodal {
   font-size: 16px;
-  color: #6C757D;
+  color: #6c757d;
 }
 
 #modalcenter {
@@ -76,18 +76,32 @@
 }
 
 #Btncolor {
-  background-color: #C0D5D8;
-  border-color: #C0D5D8;
+  background-color: #c0d5d8;
+  border-color: #c0d5d8;
   margin-bottom: 20px;
   width: 85px;
   height: 32px;
   font-size: 14px;
-  color : #48535B;
+  color: #48535b;
   margin-top: 10px;
 }
 
-#Btncolor:hover{
-  background-color: #9ABEC1;
-  border-color: #9ABEC1;
+#Btncolor:hover {
+  background-color: #9abec1;
+  border-color: #9abec1;
   color: white;
+}
+
+.title {
+  margin-bottom: 45px;
+}
+
+.successMessageContainer {
+  background-color: rgba(255, 255, 255, 0.692);
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+.backButton {
+  color: #3f98a5;
 }

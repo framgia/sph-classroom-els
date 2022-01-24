@@ -70,7 +70,7 @@ const QuestionGrid = ({ quiz }) => {
             style={{ fontSize: '12px', color: '#48535B', marginTop: '5px' }}
           >
             <BsClockHistory
-              size='15px'
+              size="15px"
               style={{
                 marginTop: '0px',
                 marginRight: '3px',

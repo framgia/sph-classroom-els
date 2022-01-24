@@ -93,15 +93,15 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                                   <div>
                                     <img
                                       className={style.ResultsizeOfAvatar}
-                                      alt='avatar'
-                                      src='https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png'
+                                      alt="avatar"
+                                      src="https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"
                                     />
                                   </div>
                                 ) : (
                                   <div>
                                     <img
                                       className={style.ResultsizeOfAvatar}
-                                      alt='avatar'
+                                      alt="avatar"
                                       src={friendScore.avatar}
                                     />
                                   </div>
@@ -139,10 +139,10 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
               <div>
                 <h2 className={style.h2_style}>Related Quizzes</h2>
                 <div className={style.bg}>
-                  <Recent title='HTML' />
-                  <Recent title='Linked List' />
-                  <Recent title='Encapsulation' />
-                  <Recent title='CSS' />
+                  <Recent title="HTML" />
+                  <Recent title="Linked List" />
+                  <Recent title="Encapsulation" />
+                  <Recent title="CSS" />
                 </div>
               </div>
             </footer>
