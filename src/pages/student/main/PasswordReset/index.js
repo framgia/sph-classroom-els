@@ -83,7 +83,7 @@ const PasswordReset = () => {
                   <Button
                     type="submit"
                     id={style.button}
-                    className={submitStatus === true ? 'disabled' : ''}
+                    disabled={submitStatus}
                   >
                     <span className={style.textbutton}>Send Recovery Link</span>
                   </Button>
