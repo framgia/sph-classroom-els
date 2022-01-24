@@ -21,10 +21,10 @@ const FillInTheBlankType = ({ question, getAnswer, answer, getPoint }) => {
         /> */}
         <input
           className={style.cardbody2}
-          type='text'
-          name='answer'
+          type="text"
+          name="answer"
           value={answer}
-          placeholder='Type your answer here'
+          placeholder="Type your answer here"
           onChange={(e) => {
             if (e.nativeEvent.data != ' ') {
               if (e.target.value === question.text_answer) {

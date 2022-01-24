@@ -79,7 +79,7 @@ const StudentList = () => {
       return (
         <Button
           className={style.button}
-          variant='primary'
+          variant="primary"
           onClick={() => {
             onUnfollowClick(userid);
           }}
@@ -91,7 +91,7 @@ const StudentList = () => {
       return (
         <Button
           className={style.button}
-          variant='primary'
+          variant="primary"
           onClick={() => {
             onFollowClick(userid);
           }}
@@ -112,10 +112,10 @@ const StudentList = () => {
         <div key={idx}>
           <div className={style.s_h3}>
             <img
-              src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/261163455_453166156175670_160593561815661759_n.png?_nc_cat=104&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeEr9QWUzJUU_Fl3Cwa6Og1hItwF4oLi_9si3AXiguL_24VoQld8u4528RHx5ywaOWtTql7cudY0IPOlFkj5UjIC&_nc_ohc=GddmaT-WdZAAX96Nv-S&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=7de756e93af262f36949cfcad9d768af&oe=61C67DE3'
-              alt='add user'
-              width='30px'
-              height='30px'
+              src="https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/261163455_453166156175670_160593561815661759_n.png?_nc_cat=104&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeEr9QWUzJUU_Fl3Cwa6Og1hItwF4oLi_9si3AXiguL_24VoQld8u4528RHx5ywaOWtTql7cudY0IPOlFkj5UjIC&_nc_ohc=GddmaT-WdZAAX96Nv-S&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=7de756e93af262f36949cfcad9d768af&oe=61C67DE3"
+              alt="add user"
+              width="30px"
+              height="30px"
             />
             <a>
               <span
@@ -140,7 +140,7 @@ const StudentList = () => {
 
   return (
     <div
-      className='d-flex justify-content-center'
+      className="d-flex justify-content-center"
       style={{ marginTop: '33px', display: 'block' }}
     >
       <div>
@@ -150,7 +150,7 @@ const StudentList = () => {
             <form onSubmit={onSearchSubmit}>
               <input
                 className={style.inputstyle}
-                type='search'
+                type="search"
                 value={search}
                 onChange={(e) => {
                   setSearch(e.target.value);
@@ -160,21 +160,21 @@ const StudentList = () => {
                     setStatus(!status);
                   }
                 }}
-                name='search'
-                placeholder='Search'
+                name="search"
+                placeholder="Search"
               />
-              <Button type='submit' className={style.searchButton}>
+              <Button type="submit" className={style.searchButton}>
                 <BiSearch className={style.iconsearchstyle} />
               </Button>
             </form>
             <Dropdown>
               <Dropdown.Toggle
                 className={style.Dropdownstyle}
-                variant='link'
-                bsPrefix='none'
+                variant="link"
+                bsPrefix="none"
               >
                 <span className={style.Textfordropdownstyle}> Filter </span>
-                <VscFilter size='20px' />
+                <VscFilter size="20px" />
               </Dropdown.Toggle>
               <Dropdown.Menu className={style.Dropdownmenustyle}>
                 <Dropdown.Item
@@ -214,7 +214,7 @@ const StudentList = () => {
           <Card.Body className={`${style.cal_02} ${style.cal_3}`}>
             {students === null ? (
               <div className={style.loading}>
-                <Spinner animation='border' role='status'></Spinner>
+                <Spinner animation="border" role="status"></Spinner>
                 <span className={style.loadingWord}>Loading</span>
               </div>
             ) : (

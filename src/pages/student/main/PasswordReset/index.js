@@ -14,6 +14,7 @@ const PasswordReset = () => {
   const [submitStatus, setSubmitStatus] = useState(false);
 
   const { control, handleSubmit } = useForm();
+
   const [error, setError] = useState('');
 
   const handleOnSubmit = async ({ email }) => {
@@ -35,68 +36,62 @@ const PasswordReset = () => {
   return (
     <center>
       <Container>
-        <Stack gap={2} className='col-md-5 mx-auto'>
+        <Stack gap={2} className="col-md-5 mx-auto">
           <Form
             onSubmit={handleSubmit(handleOnSubmit)}
             className={style.contentstyle}
           >
             {status === false ? (
-              <div className={style.center} align='start'>
+              <div className={style.center} align="start">
                 <center>
                   <Form.Label>
                     {' '}
-                    <h4> Password Reset </h4>
+                    <h4>Password Reset</h4>
                   </Form.Label>
                 </center>
                 <Form.Group
                   id={style.Containercentermargin}
-                  className='mb - 3'
-                  controlId='Email'
+                  className="mb-3"
+                  controlId="Email"
                 >
                   <Form.Label>
-                    <h6 style={{ marginBottom: '0px' }}>Email</h6>
+                    <h6 className="mb-0">Email</h6>
                   </Form.Label>
                   <Controller
                     control={control}
-                    name='email'
-                    defaultValue=''
+                    name="email"
+                    defaultValue=""
                     render={({ field: { onChange, value, ref } }) => (
                       <Form.Control
                         onChange={onChange}
                         value={value}
                         ref={ref}
-                        className='cntrs'
-                        type='email'
+                        className="cntrs"
+                        type="email"
                         isInvalid={error}
                         required
                         maxLength={50}
                       />
                     )}
                   />
-                  <Form.Control.Feedback type='invalid'>
+                  <Form.Control.Feedback type="invalid">
                     {error}
                   </Form.Control.Feedback>
                 </Form.Group>
 
                 <center>
-                  {submitStatus === false ? (
-                    <Button type='submit' id={style.button}>
-                      <span className={style.textbutton}>
-                        Send Recovery Link
-                      </span>
-                    </Button>
-                  ) : (
-                    <Button type='submit' id={style.button} disabled>
-                      <span className={style.textbutton}>
-                        Send Recovery Link
-                      </span>
-                    </Button>
-                  )}
+                  <Button
+                    type="submit"
+                    id={style.button}
+                    className={submitStatus === true ? 'disabled' : ''}
+                  >
+                    <span className={style.textbutton}>Send Recovery Link</span>
+                  </Button>
                 </center>
 
                 <center>
                   <div>
-                    <a href='login' className={style.cancel}>
+                    <a href="login" className={style.cancel}>
                       Cancel
                     </a>
                   </div>

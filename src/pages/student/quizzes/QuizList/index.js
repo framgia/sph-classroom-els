@@ -48,13 +48,13 @@ const QuizList = () => {
 
   return (
     <div className={style.container}>
-      <a href='/categories'>
+      <a href="/categories">
         <BsFillArrowLeftSquareFill className={style.backarrow} />
         <p className={style.title}>{category?.name}</p>
       </a>
       {quizzes === null ? (
         <div className={style.loading}>
-          <Spinner animation='border' role='status'></Spinner>
+          <Spinner animation="border" role="status"></Spinner>
           <span className={style.loadingWord}>Loading</span>
         </div>
       ) : (
@@ -85,7 +85,7 @@ const QuizList = () => {
           <p className={style.message}>NO RESULTS FOUND</p>
         </div>
       ) : (
-        <div className='pt-4'>
+        <div className="pt-4">
           <Pagination
             page={page}
             perPage={perPage}

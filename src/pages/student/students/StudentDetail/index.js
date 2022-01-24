@@ -48,7 +48,7 @@ const StudentDetail = () => {
       return (
         <Button
           className={style.Buttonstyle}
-          variant='success'
+          variant="success"
           onClick={() => {
             onUnfollowClick(userid);
           }}
@@ -60,7 +60,7 @@ const StudentDetail = () => {
       return (
         <Button
           className={style.Buttonstyle}
-          variant='success'
+          variant="success"
           onClick={() => {
             onFollowClick(userid);
           }}
@@ -76,10 +76,10 @@ const StudentDetail = () => {
       return (
         <img
           className={style.tableIcon}
-          src='https://pxl02-scueduau.terminalfour.net/fit-in/800x10000/filters:quality(95)/prod01/channel_1/media/campaigns/evaluation2x.png'
-          alt='file'
-          height='20px'
-          width='20px'
+          src="https://pxl02-scueduau.terminalfour.net/fit-in/800x10000/filters:quality(95)/prod01/channel_1/media/campaigns/evaluation2x.png"
+          alt="file"
+          height="20px"
+          width="20px"
         />
       );
     }
@@ -87,10 +87,10 @@ const StudentDetail = () => {
     return (
       <img
         className={style.tableIcon}
-        src='https://www.toprecursoshumanos.com.br/images/svg-colado-124643x123.svg?crc=3915734253'
-        alt='add'
-        height='20px'
-        width='20px'
+        src="https://www.toprecursoshumanos.com.br/images/svg-colado-124643x123.svg?crc=3915734253"
+        alt="add"
+        height="20px"
+        width="20px"
       />
     );
   };
@@ -148,10 +148,10 @@ const StudentDetail = () => {
                   <div key={idx} className={style.tableContainer}>
                     <h6 className={style.info}>
                       <img
-                        src='https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258753595_1042531349877078_5285897742986927636_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeG6ET7IUKZQ5FgOtWNcOnr0viTzQX3Fx---JPNBfcXH70y4ar8c4Wkjc7RYv6FaFSWU8dG7Ohov_UfvPthlxxln&_nc_ohc=Pv4nXOm1yrgAX_rTLc4&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=f3ca0a1461f5a71ef4638df807e84a88&oe=61BE3C6F'
-                        alt='add user'
-                        width='20px'
-                        height='20px'
+                        src="https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/258753595_1042531349877078_5285897742986927636_n.png?_nc_cat=107&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeG6ET7IUKZQ5FgOtWNcOnr0viTzQX3Fx---JPNBfcXH70y4ar8c4Wkjc7RYv6FaFSWU8dG7Ohov_UfvPthlxxln&_nc_ohc=Pv4nXOm1yrgAX_rTLc4&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=f3ca0a1461f5a71ef4638df807e84a88&oe=61BE3C6F"
+                        alt="add user"
+                        width="20px"
+                        height="20px"
                       />
                       <span className={style.margineforspan}>
                         {' '}

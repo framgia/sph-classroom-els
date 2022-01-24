@@ -132,7 +132,7 @@ const QuestionAnswer = () => {
               </div>
             </Card.Header>
             <Card.Body className={style.wholeBodyCard}>
-              <Badge bg='light' className={style.tml}>
+              <Badge bg="light" className={style.tml}>
                 <Card.Text className={style.time}>
                   <span className={style.timeleftspace}>Time Left: </span>
                   <b className={style.timer}> {time} </b>

@@ -52,7 +52,7 @@ const QuestionList = () => {
   };
 
   return (
-    <div className='d-flex justify-content-center align-items-center'>
+    <div className="d-flex justify-content-center align-items-center">
       <QuestionsContext.Provider
         value={{ questions, title: quizInfo?.title, quizTakenId }}
       >
@@ -73,7 +73,7 @@ const QuestionList = () => {
                 </div>
               </Card.Header>
               <Card.Body className={style.wholebodycard}>
-                <div align='center' id={style.overview}>
+                <div align="center" id={style.overview}>
                   <p>This quiz consist of {questions?.length} items</p>
                   <hr />
                   <p> Overall Time: {getTotalTimeLimit()} seconds </p>
