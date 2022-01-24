@@ -28,6 +28,7 @@ const QuestionAnswer = () => {
   const [point, setPoint] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(false);
+  const [timesUp, setTimesUp] = useState(false);
 
   const handleNextButtonClick = () => {
     setPrevPage(page);
@@ -100,6 +101,7 @@ const QuestionAnswer = () => {
         setTime(questions[page - 1]?.time_limit);
         setPage(page + 1);
       } else {
+        setTimesUp(true);
         storeLastAnswerAndGetTotalScore();
       }
     }
@@ -142,7 +144,6 @@ const QuestionAnswer = () => {
               question.question_type.question_type === 'Multiple Choice' ? (
                   <MultipleChoiceType
                     question={question}
-                    // page={page}
                     time={time}
                     getAnswer={getAnswer}
                     getPoint={getPoint}
@@ -150,7 +151,6 @@ const QuestionAnswer = () => {
                 ) : (
                   <FillInTheBlankType
                     question={question}
-                    // page={page}
                     time={time}
                     answer={textAnswer}
                     getAnswer={getAnswer}
@@ -166,9 +166,9 @@ const QuestionAnswer = () => {
                   <Button
                     id={style.nextBtn}
                     onClick={() => {
-                      submitStatus === false
-                        ? storeLastAnswerAndGetTotalScore()
-                        : '';
+                      submitStatus || timesUp
+                        ? ''
+                        : storeLastAnswerAndGetTotalScore();
 
                       setSubmitStatus(true);
                     }}
