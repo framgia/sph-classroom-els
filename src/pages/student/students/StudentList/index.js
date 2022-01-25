@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import { Dropdown } from 'react-bootstrap';
 import { VscFilter } from 'react-icons/vsc';
@@ -102,36 +102,32 @@ const StudentList = () => {
     }
   };
 
-  const redirectToStudDetail = (id) => {
-    window.location = `/students/${id}`;
-  };
-
   const renderStudList = () => {
     return students?.map((student, idx) => {
       return (
         <div key={idx}>
-          <div className={style.s_h3}>
+          <div className={style.studentInfo}>
             <img
-              src="https://scontent.xx.fbcdn.net/v/t1.15752-9/cp0/261163455_453166156175670_160593561815661759_n.png?_nc_cat=104&ccb=1-5&_nc_sid=aee45a&_nc_eui2=AeEr9QWUzJUU_Fl3Cwa6Og1hItwF4oLi_9si3AXiguL_24VoQld8u4528RHx5ywaOWtTql7cudY0IPOlFkj5UjIC&_nc_ohc=GddmaT-WdZAAX96Nv-S&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=7de756e93af262f36949cfcad9d768af&oe=61C67DE3"
-              alt="add user"
-              width="30px"
-              height="30px"
+              alt="avatar"
+              src={
+                student.avatar === null
+                  ? 'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png'
+                  : student.avatar
+              }
+              className={style.avatar}
             />
-            <a>
-              <span
-                className={style.margineforspan}
-                onClick={() => redirectToStudDetail(student.id)}
-              >
-                {student.name}
-              </span>
-            </a>
-            {followButton(student.has_followed, student.id)}
-          </div>
-          <div id={style.floatrighttext}>
-            <div> {student.followers_count} Followers </div>
-            <div className={style.followerstextindentstyle}>
-              {student.followings_count} Following
+
+            <div>
+              <Link to={`/students/${student.id}`}>
+                <span className={style.studentName}>{student.name}</span>
+              </Link>
+              <div id={style.followCount}>
+                <div>{student.followers_count} Followers</div>
+                <div>{student.followings_count} Following</div>
+              </div>
             </div>
+
+            {followButton(student.has_followed, student.id)}
           </div>
         </div>
       );
@@ -139,17 +135,14 @@ const StudentList = () => {
   };
 
   return (
-    <div
-      className="d-flex justify-content-center"
-      style={{ marginTop: '33px', display: 'block' }}
-    >
+    <div className={style.studentListContainer}>
       <div>
-        <div className={style.listofstudenttext}>List of {listInfo}</div>
+        <div className={style.studentListHeader}>List of {listInfo}</div>
         <Card>
-          <Card.Header className={style.CardHeaderstyle}>
+          <Card.Header className={style.cardHeader}>
             <form onSubmit={onSearchSubmit}>
               <input
-                className={style.inputstyle}
+                className={style.inputStyle}
                 type="search"
                 value={search}
                 onChange={(e) => {
@@ -164,21 +157,21 @@ const StudentList = () => {
                 placeholder="Search"
               />
               <Button type="submit" className={style.searchButton}>
-                <BiSearch className={style.iconsearchstyle} />
+                <BiSearch className={style.searchIcon} />
               </Button>
             </form>
             <Dropdown>
               <Dropdown.Toggle
-                className={style.Dropdownstyle}
+                className={style.dropdownStyle}
                 variant="link"
                 bsPrefix="none"
               >
-                <span className={style.Textfordropdownstyle}> Filter </span>
+                <span className={style.dropdownLabel}>Filter</span>
                 <VscFilter size="20px" />
               </Dropdown.Toggle>
-              <Dropdown.Menu className={style.Dropdownmenustyle}>
+              <Dropdown.Menu className={style.dropdownMenuStyle}>
                 <Dropdown.Item
-                  className={style.Dropdownitemstyle}
+                  className={style.dropdownItemStyle}
                   onClick={() => {
                     setFilter('');
                     setStatus(!status);
@@ -189,7 +182,7 @@ const StudentList = () => {
                   All
                 </Dropdown.Item>
                 <Dropdown.Item
-                  className={style.Dropdownitemstyle}
+                  className={style.dropdownItemStyle}
                   onClick={() => {
                     setFilter('followed');
                     setListInfo('Followed Students');
@@ -199,7 +192,7 @@ const StudentList = () => {
                   Following
                 </Dropdown.Item>
                 <Dropdown.Item
-                  className={style.Dropdownitemstyle}
+                  className={style.dropdownItemStyle}
                   onClick={() => {
                     setFilter('followers');
                     setListInfo('Followers');
@@ -211,7 +204,7 @@ const StudentList = () => {
               </Dropdown.Menu>
             </Dropdown>
           </Card.Header>
-          <Card.Body className={`${style.cal_02} ${style.cal_3}`}>
+          <Card.Body className={style.cardBody}>
             {students === null ? (
               <div className={style.loading}>
                 <Spinner animation="border" role="status"></Spinner>
