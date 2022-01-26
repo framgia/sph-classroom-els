@@ -24,7 +24,6 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
     });
     FriendsScoreApi.getAll(quizId).then(({ data }) => {
       setFriendsScore(data.data);
-      console.log(data.data);
     });
   }, []);
 
@@ -37,29 +36,29 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
       {viewResults == false ? (
         <Container className={style.card}>
           <div>
-            <div className={style.Resulttopic}>{title}</div>
-            <Card.Body className={style.ResultwholeBodyCard}>
-              <div className={style.ResultupperBodyCard}>
-                <div className={style.ResultcardLeft}>
-                  <div className={style.ResultscoreDisplay}>
+            <div className={style.resultTopic}>{title}</div>
+            <Card.Body className={style.resultWholeBodyCard}>
+              <div className={style.resultUpperBodyCard}>
+                <div className={style.resultCardLeft}>
+                  <div className={style.resultScoreDisplay}>
                     {score < passing ? (
                       <>
-                        <div className={style.ResultquizPraise}>
+                        <div className={style.resultQuizPraise}>
                           Better Luck Next Time!
                         </div>
-                        <div className={style.ResultquizRemarks}>
+                        <div className={style.resultQuizRemarks}>
                           You Failed
                         </div>
                       </>
                     ) : (
                       <>
-                        <div className={style.ResultquizPraise}>Great Job!</div>
-                        <div className={style.ResultquizRemarks}>
+                        <div className={style.resultQuizPraise}>Great Job!</div>
+                        <div className={style.resultQuizRemarks}>
                           You Passed
                         </div>
                       </>
                     )}
-                    <Card.Text className={style.Resultscore}>
+                    <Card.Text className={style.resultScore}>
                       {' '}
                       <span
                         className={
@@ -72,64 +71,63 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                     </Card.Text>
                   </div>
                 </div>
-                <Card className={style.Resultcard2}>
-                  <Card.Header className={style.friendsTitle}>
-                    <div className={style.texttittlestyle}>
-                      Friend&apos;s Score
-                    </div>
-                    <hr className={style.hrstyle} />
-                  </Card.Header>
-                  <Card.Body className={style.cardbodystyle}>
-                    {friendsScore?.map((friendScore, idx) => {
-                      return (
-                        <div key={idx}>
-                          <div className={style.friendsScore}>
-                            {friendScore.score}/{total}
-                          </div>
-                          <Link to={`/students/${friendScore.id}`}>
-                            <tr>
-                              <td>
-                                {friendScore.avatar === null ? (
-                                  <div>
-                                    <img
-                                      className={style.ResultsizeOfAvatar}
-                                      alt="avatar"
-                                      src="https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"
-                                    />
-                                  </div>
-                                ) : (
-                                  <div>
-                                    <img
-                                      className={style.ResultsizeOfAvatar}
-                                      alt="avatar"
-                                      src={friendScore.avatar}
-                                    />
-                                  </div>
-                                )}
-                              </td>
-                              <td className={style.friendsName}>
+                {friendsScore?.length > 0 ? (
+                  <Card className={style.friendsScoreCard}>
+                    <Card.Header className={style.friendsTitle}>
+                      <div className={style.friendsScoreText}>
+                        Friend&apos;s Score
+                      </div>
+                      <hr className={style.divider} />
+                    </Card.Header>
+                    <Card.Body className={style.friendsScoreCardBody}>
+                      {friendsScore?.map((friendScore, idx) => {
+                        return (
+                          <div key={idx}>
+                            <Link
+                              to={`/students/${friendScore.id}`}
+                              className={style.friendsScoreInfo}
+                            >
+                              <div>
+                                <img
+                                  className={style.friendsAvatar}
+                                  alt="avatar"
+                                  src={
+                                    friendScore.avatar === null
+                                      ? 'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png'
+                                      : friendScore.avatar
+                                  }
+                                />
+                              </div>
+
+                              <div className={style.friendsName}>
                                 {friendScore.name}
-                              </td>
-                            </tr>
-                          </Link>
-                        </div>
-                      );
-                    })}
-                  </Card.Body>
-                </Card>
+                              </div>
+
+                              <div className={style.friendsScore}>
+                                {friendScore.score}/{total}
+                              </div>
+                            </Link>
+                          </div>
+                        );
+                      })}
+                    </Card.Body>
+                  </Card>
+                ) : (
+                  ''
+                )}
               </div>
-              <hr className={style.ResulthrBreakButtom} />
-              <div className={style.ResultbottomBodyCard}>
+              <hr className={style.resultsCardDivider} />
+              <div className={style.resultsButtons}>
                 <Button
                   onClick={() => viewResultsPage()}
-                  id={style.ResultviewResultBtn}
+                  id={style.viewResultsButton}
                 >
                   View Result
                 </Button>
                 <a
                   href={`/categories/${categoryId}/quizzes/${quizId}/questions`}
                 >
-                  <Button id={style.ResultretakeBtn}>Retake Quiz</Button>
+                  <Button id={style.retakeButton}>Retake Quiz</Button>
                 </a>
               </div>
             </Card.Body>
@@ -137,8 +135,8 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
           <div>
             <footer>
               <div>
-                <h2 className={style.h2_style}>Related Quizzes</h2>
-                <div className={style.bg}>
+                <h2 className={style.relatedQuizzesText}>Related Quizzes</h2>
+                <div className={style.relatedQuizzes}>
                   <Recent title="HTML" />
                   <Recent title="Linked List" />
                   <Recent title="Encapsulation" />
