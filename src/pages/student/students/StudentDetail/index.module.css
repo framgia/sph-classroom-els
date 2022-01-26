@@ -1,4 +1,15 @@
-.profile_01 {
+.studentDetailContainer {
+  margin: 20px 130px;
+}
+
+.student {
+  display: flex;
+  justify-content: space-between;
+  margin: 100px 0px;
+  padding-left: 10%;
+}
+
+.profile {
   border: black 1px solid;
   padding: 6px;
   width: 200px;
@@ -7,27 +18,44 @@
   background-color: orange;
 }
 
-.userEditText {
+.biUserPosition {
+  width: 200px;
+  height: 160px;
+  padding-right: 10px;
+}
+
+.studentInfo {
+  margin-left: 40px;
+}
+
+.studentDetailsPosition {
+  margin-top: 40px;
+  display: inline-block;
+}
+
+.studentName {
   float: left;
   color: #152536;
   font-size: 32px;
   font-weight: bold;
-  margin-left: 3px;
 }
 
-.totalquizzestakenstyle {
+.totalQuizzesTaken {
   font-size: 24px;
   margin-bottom: 10px;
   color: #48535b;
   margin-top: 55px;
 }
 
-.studentdetailsposition {
-  margin-top: 40px;
+.followersText {
+  font-size: 20px;
+  margin-top: 0px;
   display: inline-block;
+  font-weight: 300px;
+  color: #48535b;
 }
 
-.follow {
+.followingText {
   margin-left: 20px;
   margin-right: 5px;
   font-size: 20px;
@@ -37,69 +65,7 @@
   color: #48535b;
 }
 
-.followone {
-  font-size: 20px;
-  margin-top: 0px;
-  display: inline-block;
-  font-weight: 300px;
-  color: #48535b;
-}
-
-.bg2 {
-  padding: 0px 150px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  color: #48535b;
-}
-
-.cal1 {
-  background-color: #e0eaec;
-  width: 650px;
-  height: 40px;
-  border-radius: 2px 2px 0px 0px;
-  font-size: 18px;
-  filter: drop-shadow(0 1mm 1mm #48535b8c);
-}
-
-.cal_02 {
-  background-color: white;
-  width: 650px;
-  height: 330px;
-  border-radius: 0px 0px 10px 10px;
-}
-
-.cal_3 {
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-.info {
-  margin-top: 20px;
-  margin-left: 17px;
-}
-
-.biuserposition {
-  width: 200px;
-  height: 160px;
-  padding-right: 10px;
-}
-
-#floatrighttext {
-  margin-top: 20px;
-  margin-right: 17px;
-  font-size: 14px;
-  order: 2;
-  margin-left: auto;
-}
-
-.margineforspan {
-  color: #48535b;
-  margin-left: 20px;
-  font-size: 16px;
-}
-
-.Buttonstyle {
+.followUnfollowButton {
   width: 92px;
   height: 37px;
   margin-top: 90px;
@@ -110,23 +76,71 @@
   border-radius: 4px;
 }
 
-.Buttonstyle:hover {
+.followUnfollowButton:hover {
   color: white;
   background-color: #9abec1;
 }
 
-.buttonDivstyle {
+.buttonAlignment {
   width: 250px;
 }
 
-.noQuizzesTakenMessage {
-  margin-top: 130px;
-}
-
-.studentDetailContainer {
-  margin: 20px 130px;
-}
-
-.tableContainer {
+.activityTables {
+  margin-top: 40px;
+  padding: 0px 150px;
   display: flex;
+  justify-content: space-between;
+  color: #48535b;
+}
+
+.tableHeader {
+  background-color: #e0eaec;
+  width: 650px;
+  height: 40px;
+  border-radius: 2px 2px 0px 0px;
+  font-size: 18px;
+  filter: drop-shadow(0 1mm 1mm #48535b8c);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.tableTitle {
+  margin-left: 15px;
+}
+
+.tableBody {
+  background-color: white;
+  width: 650px;
+  height: 330px;
+  border-radius: 0px 0px 10px 10px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.activityInfoAlignment {
+  display: flex;
+}
+
+.activityDescription {
+  color: #48535b;
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+.activityInfo {
+  margin-top: 20px;
+  margin-left: 17px;
+}
+
+#timestamp {
+  margin-top: 20px;
+  margin-right: 17px;
+  font-size: 14px;
+  order: 2;
+  margin-left: auto;
+}
+
+.noActivityMessage {
+  margin-top: 130px;
 }
