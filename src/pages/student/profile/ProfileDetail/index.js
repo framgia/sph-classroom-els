@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, props } from 'react';
 import style from './index.module.css';
 import { FaUserEdit } from 'react-icons/fa';
 import { BsPencilSquare } from 'react-icons/bs';
@@ -7,9 +7,17 @@ import { BsCardChecklist } from 'react-icons/bs';
 import { RiUserAddLine } from 'react-icons/ri';
 import Moment from 'react-moment';
 import Cookies from 'js-cookie';
+import { useForm } from 'react-hook-form';
+import { Form } from 'react-bootstrap';
+import { Controller } from 'react-hook-form';
+
+import MyVerticallyCenteredModal from 'react-bootstrap/Modal';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 import StudentApi from '../../../../api/Student';
 import DashboardApi from '../../../../api/Dashboard';
+import ProfileEditApi from '../../../../api/ProfileEdit';
 
 const ProfileDetail = () => {
   const loggedInUserId = Cookies.get('user_id');
@@ -20,6 +28,9 @@ const ProfileDetail = () => {
   const [overallQuizTaken, setOverallQuizTaken] = useState(0);
   const [friendsActivities, setFriendsActivities] = useState(null);
   const [recentActivities, setRecentActivities] = useState(null);
+  const [modalShow, setModalShow] = useState(null);
+  const { control, handleSubmit } = useForm();
+  // const [errors, setErrors] = useState({});
 
   useEffect(() => {
     StudentApi.getDetails(loggedInUserId).then(({ data }) => {
@@ -44,6 +55,23 @@ const ProfileDetail = () => {
     );
   };
 
+  // const handleOnSubmit = (data) => {
+  //   console.log(data);
+  // };
+
+  const handleOnSubmit = async ({ image }) => {
+    console.log(image);
+    try {
+      await ProfileEditApi.uploadImage({ image });
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+  // const changeHandler = (event) => {
+  //   console.log(event.target.files[0]);
+  // };
+
   return (
     <center className={style.userProfileContainer}>
       <div
@@ -53,19 +81,26 @@ const ProfileDetail = () => {
           justifyContent: 'space-between',
           marginTop: '50px',
           paddingLeft: '10%',
-          marginBottom: '100px'
+          marginBottom: '100px',
         }}
       >
         <div style={{ display: 'flex' }}>
           <div className={style.avatar}>
             <BiUser className={style.biUserPosition} />
-            <BsPencilSquare
-              size="20px"
-              style={{
-                marginLeft: '170px',
-                strokeWidth: '0px',
-                marginTop: '5px'
-              }}
+            <a onClick={() => setModalShow(true)}>
+              <BsPencilSquare
+                size="20px"
+                style={{
+                  marginLeft: '170px',
+                  strokeWidth: '0px',
+                  marginTop: '5px',
+                }}
+                className={style.iconcursor}
+              />
+            </a>
+            <MyVerticallyCenteredModal
+              show={modalShow}
+              onHide={() => setModalShow(false)}
             />
           </div>
 
@@ -75,13 +110,15 @@ const ProfileDetail = () => {
                 <h2 style={{ fontSize: '32px', fontWeight: 'Bold' }}>
                   {studentDetails?.name}
                 </h2>
-                <FaUserEdit size="40px" className={style.userEdit} />
+                <a href="/profile/view">
+                  <FaUserEdit size="40px" className={style.userEdit} />
+                </a>
               </div>
               <h4
                 style={{
                   fontSize: '24px',
                   marginBottom: '20px',
-                  color: '#48535B'
+                  color: '#48535B',
                 }}
               >
                 {overallQuizTaken} Total Quizzes Taken
@@ -168,6 +205,58 @@ const ProfileDetail = () => {
           </div>
         </div>
       </div>
+      <Modal
+        {...props}
+        size="50"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        show={modalShow}
+        onHide={() => {
+          setModalShow(false);
+        }}
+      >
+        <Modal.Header closeButton className={style.header}>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Upload Your Profile
+          </Modal.Title>
+        </Modal.Header>
+        <Form
+          onSubmit={handleSubmit(handleOnSubmit)}
+          // enctype='multipart/form-data'
+        >
+          <Form.Group className="mb-none" controlId="formBasicEmail">
+            {''}
+            {/* <input type='file' name='avatar' accept='image/png, image/jpeg'  className={style.modalform} /> */}
+            <Controller
+              control={control}
+              name="image"
+              defaultValue=""
+              // enctype='multipart/form-data'
+              render={({ field: { onChange, value, ref } }) => (
+                <Form.Control
+                  onChange={(e) => {
+                    onChange(e.target.files);
+                  }}
+                  // enctype='multipart/form-data'
+                  value={value}
+                  ref={ref}
+                  className="cntrs"
+                  type="file"
+                  isInvalid=""
+                  accept="image/png, image/jpeg"
+                  required
+                  maxLength={1000}
+                />
+              )}
+            />
+            <Modal.Footer>
+              <Button id={style.Btncolor} type="submit">
+                <p style={{ fontSize: '14px' }}>Upload</p>
+              </Button>
+            </Modal.Footer>
+          </Form.Group>
+        </Form>
+      </Modal>
     </center>
   );
 };

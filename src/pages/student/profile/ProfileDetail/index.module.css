@@ -104,3 +104,50 @@
   flex-direction: column;
   align-items: flex-start;
 }
+.modalform{
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.uploadbutton{
+    background-color: #C0D5D8;
+    border-color: #C0D5D8;
+    color: #48535B;
+    width: 85px;
+    height: 32px;
+    margin-top: 8px;
+    margin-bottom: 5px;
+    position: absolute;
+}
+
+.uploadbutton:hover{
+  background-color: #9ABEC1;
+  border-color: #9ABEC1;
+  color:white
+}
+
+#Btncolor {
+  background-color: #c0d5d8;
+  border-color: #c0d5d8;
+  width: 85px;
+  height: 32px;
+  font-size: 14px;
+  color: #48535b;
+  margin-top: 10px;
+}
+
+#Btncolor:hover {
+  background-color: #9abec1;
+  border-color: #9abec1;
+  color: white;
+  cursor: pointer;
+}
+
+.iconcursor:hover{
+  cursor: pointer;
+}
+
+.form-control{
+  color: red;
+}

@@ -5,10 +5,12 @@
     color: #48535B;
 }
 .changepassbutton{
-    margin-left: 128px;
+    float: right;
     background-color: #C0D5D8;
     border-color: #C0D5D8;
     color: #48535B;
+    width: 85px;
+    height: 32px;
 }
 .changepassbutton:hover{
     background-color: #9ABEC1;
@@ -16,11 +18,29 @@
     color:white
 }
 
+.changepassbutton:focus{
+    background-color: #9ABEC1;
+    border-color: #9ABEC1;
+    color:white;
+    border: none;
+}
+
 .cancel{
-    margin-top: 20px;
-    margin-left: 143px;
+    float: right;
+    margin-top: 6px;
+    margin-right: 11px;
     text-decoration: none;
-    display: inline-block;
     color: #48535B  ;
     font-size: 14px;
+}
+
+.cancel:hover{
+    border-color: #9ABEC1;
+    color:white
+}
+
+.allertstyle{
+    position: absolute;
+    top: 180px;
+    left: center;
 }
