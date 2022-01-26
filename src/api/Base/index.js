@@ -7,7 +7,7 @@ const API = axios.create({
   // baseURL: `${process.env.REACT_APP_SERVER_API}/api/v1`,
   baseURL: 'http://localhost:82/api/v1',
   headers: {
-    'Content-Type': 'multipart/form-data',
+    'Content-Type': 'application/json; multipart/form-data',
     'Authorization': `Bearer ${TOKEN}`,
   }
 });

@@ -43,7 +43,7 @@ const ProfileDetail = () => {
   const handleOnSubmit = async ({ image }) => {
     console.log(image[0]);
     try {
-      await ProfileEditApi.uploadImage( image[0] );
+      await ProfileEditApi.uploadImage({ image });
     } 
     catch (error) {
       console.log(error.response);
@@ -71,9 +71,9 @@ const ProfileDetail = () => {
 
   const activitiesIconDisplay = (activityDetail) => {
     return activityDetail === ACTIVITY_TYPE ? (
-      <BsCardChecklist size='20px' />
+      <BsCardChecklist size="20px" />
     ) : (
-      <RiUserAddLine size='20px' />
+      <RiUserAddLine size="20px" />
     );
   };
 
@@ -94,7 +94,7 @@ const ProfileDetail = () => {
             <BiUser className={style.biUserPosition} />
             <a onClick={() => setModalShow(true)}>
               <BsPencilSquare
-                size='20px'
+                size="20px"
                 style={{
                   marginLeft: '170px',
                   strokeWidth: '0px',
@@ -115,8 +115,8 @@ const ProfileDetail = () => {
                 <h2 style={{ fontSize: '32px', fontWeight: 'Bold' }}>
                   {studentDetails?.name}
                 </h2>
-                <a href='/profile/view'>
-                  <FaUserEdit size='40px' className={style.userEdit} />
+                <a href="/profile/view">
+                  <FaUserEdit size="40px" className={style.userEdit} />
                 </a>
               </div>
               <h4
@@ -212,8 +212,8 @@ const ProfileDetail = () => {
       </div>
       <Modal
         {...props}
-        size='50'
-        aria-labelledby='contained-modal-title-vcenter'
+        size="50"
+        aria-labelledby="contained-modal-title-vcenter"
         centered
         show={modalShow}
         onHide={() => {
@@ -221,34 +221,34 @@ const ProfileDetail = () => {
         }}
       >
         <Modal.Header closeButton className={style.header}>
-          <Modal.Title id='contained-modal-title-vcenter'>
+          <Modal.Title id="contained-modal-title-vcenter">
             Upload Your Profile
           </Modal.Title>
         </Modal.Header>
         <Form onSubmit={handleSubmit(handleOnSubmit)} onChange={onChange}>
-          <Form.Group className='mb-none' controlId='formBasicEmail'>
+          <Form.Group className="mb-none" controlId="formBasicEmail">
             {/* {''}
             <input type='file' name='image'  ref={control} accept='image/png, image/jpeg'  className={style.modalform}  onChange={onChange}/> */}
             <Controller
               control={control}
-              name='image'
-              defaultValue=''
+              name="image"
+              defaultValue=""
               render={({ field }) => (
                 <Form.Control
                   // value={value}
                   onChange={(e) => { field.onChange(e.target.files); }}
                   // ref={ref}
-                  className='cntrs'
-                  type='file'
-                  isInvalid=''
-                  accept='image/png, image/jpeg'
+                  className="cntrs"
+                  type="file"
+                  isInvalid=""
+                  accept="image/png, image/jpeg"
                   required
                   maxLength={1000}
                 />
               )}
             />
             <Modal.Footer>
-              <Button id={style.Btncolor} type='submit'>
+              <Button id={style.Btncolor} type="submit">
                 <p style={{ fontSize: '14px' }}>Upload</p>
               </Button>
             </Modal.Footer>
