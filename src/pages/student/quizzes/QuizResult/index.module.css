@@ -192,12 +192,3 @@
   justify-content: flex-start;
   align-items: center;
 }
-
-.noFriendsScoreMessage {
-  background-color: #f5f5f5f5;
-  color: #48535b;
-  border-radius: 5px;
-  text-align: center;
-  padding: 10px;
-  margin: 55px 15px;
-}
