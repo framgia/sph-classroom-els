@@ -92,9 +92,8 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                                   className={style.friendsAvatar}
                                   alt="avatar"
                                   src={
-                                    friendScore.avatar === null
-                                      ? 'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png'
-                                      : friendScore.avatar
+                                    friendScore.avatar ||
+                                    'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png'
                                   }
                                 />
                               </div>
