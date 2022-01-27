@@ -10,7 +10,7 @@
 }
 
 .profile {
-  border: black 1px solid;
+  border: var(--color-black) 1px solid;
   padding: 6px;
   width: 200px;
   height: 200px;
@@ -35,7 +35,7 @@
 
 .studentName {
   float: left;
-  color: #152536;
+  color: var(--color-dark-blue-5);
   font-size: 32px;
   font-weight: bold;
 }
@@ -43,7 +43,7 @@
 .totalQuizzesTaken {
   font-size: 24px;
   margin-bottom: 10px;
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   margin-top: 55px;
 }
 
@@ -51,8 +51,8 @@
   font-size: 20px;
   margin-top: 0px;
   display: inline-block;
-  font-weight: 300px;
-  color: #48535b;
+  font-weight: var(--font-weight-light);
+  color: var(--color-dark-blue-1);
 }
 
 .followingText {
@@ -61,8 +61,8 @@
   font-size: 20px;
   margin-top: 0px;
   display: inline-block;
-  font-weight: 300px;
-  color: #48535b;
+  font-weight: var(--font-weight-light);
+  color: var(--color-dark-blue-1);
 }
 
 .followUnfollowButton {
@@ -70,15 +70,15 @@
   height: 37px;
   margin-top: 90px;
   float: left;
-  background-color: #c0d5d8;
+  background-color: var(--color-light-blue-2);
   border: none;
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   border-radius: 4px;
 }
 
 .followUnfollowButton:hover {
-  color: white;
-  background-color: #9abec1;
+  color: var(--color-white);
+  background-color: var(--color-light-blue-3);
 }
 
 .buttonAlignment {
@@ -90,16 +90,16 @@
   padding: 0px 150px;
   display: flex;
   justify-content: space-between;
-  color: #48535b;
+  color: var(--color-dark-blue-1);
 }
 
 .tableHeader {
-  background-color: #e0eaec;
+  background-color: var(--color-light-blue-1);
   width: 650px;
   height: 40px;
   border-radius: 2px 2px 0px 0px;
   font-size: 18px;
-  filter: drop-shadow(0 1mm 1mm #48535b8c);
+  filter: drop-shadow(0 1mm 1mm var(--color-dark-blue-1));
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -110,7 +110,7 @@
 }
 
 .tableBody {
-  background-color: white;
+  background-color: var(--color-white);
   width: 650px;
   height: 330px;
   border-radius: 0px 0px 10px 10px;
@@ -123,9 +123,9 @@
 }
 
 .activityDescription {
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   margin-left: 20px;
-  font-size: 16px;
+  font-size: var(--font-size-lg);
 }
 
 .activityInfo {
@@ -136,7 +136,7 @@
 #timestamp {
   margin-top: 20px;
   margin-right: 17px;
-  font-size: 14px;
+  font-size: var(--font-size-base);
   order: 2;
   margin-left: auto;
 }

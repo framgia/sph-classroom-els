@@ -11,26 +11,26 @@
 }
 
 .cardHeader {
-  background-color: #e0eaec;
-  filter: drop-shadow(0 1mm 1mm #48535b8c);
+  background-color: var(--color-light-blue-1);
+  filter: drop-shadow(0 1mm 1mm var(--color-dark-blue-1));
   display: flex;
 }
 
 .dropdownStyle {
   margin-left: 45px;
-  background: white;
+  background: var(--color-white);
   border-radius: 2px;
-  border: 1px solid #0000002d;
+  border: 1px solid var(--color-black);
   height: 28px;
   width: 80px;
   margin-top: 0px;
   text-decoration: none;
-  color: black;
+  color: var(--color-black);
   padding-bottom: 25px;
 }
 
 .dropdownStyle:hover {
-  color: black;
+  color: var(--color-black);
 }
 
 .dropdownMenuStyle {
@@ -40,7 +40,7 @@
 .dropdownItemStyle {
   padding: 5px 0px 2px 11px;
   width: 82px;
-  background-color: white;
+  background-color: var(--color-white);
 }
 
 .dropdownItemStyle:focus {
@@ -48,7 +48,7 @@
 }
 
 .dropdownLabel {
-  color: #48535b;
+  color: var(--color-dark-blue-1);
 }
 
 .inputStyle {
@@ -82,7 +82,7 @@
 }
 
 .cardBody {
-  background-color: white;
+  background-color: var(--color-white);
   height: 640px;
   padding-top: 25px;
   overflow-y: scroll;
@@ -105,16 +105,16 @@
 }
 
 .studentName {
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   margin-left: 10px;
-  font-size: 16px;
+  font-size: var(--font-size-lg);
   font-weight: bold;
   cursor: pointer;
 }
 
 #followCount {
   display: flex;
-  font-size: 14px;
+  font-size: var(--font-size-base);
   gap: 20px;
   text-indent: 10px;
 }
@@ -127,14 +127,14 @@
   width: 80px;
   height: 28px;
   border: 1px solid rgba(0, 0, 0, 0.158);
-  background-color: #c0d5d8;
+  background-color: var(--color-light-blue-2);
   border-radius: 2px;
-  color: #48535b;
+  color: var(--color-dark-blue-1);
 }
 
 .button:hover {
-  background-color: #9abec1;
-  color: white;
+  background-color: var(--color-light-blue-3);
+  color: var(--color-white);
 }
 
 .noResults,

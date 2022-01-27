@@ -3,57 +3,57 @@
   margin-left: 64px;
   flex-direction: column;
   justify-content: center;
-  background-color: #e0eaec;
+  background-color: var(--color-light-blue-1);
   padding: 40px;
   border-radius: 2px;
   height: auto;
   width: 430px;
-  color: #48535b;
+  color: var(--color-dark-blue-1);
 }
 
 .center {
-  color: #48535b;
+  color: var(--color-dark-blue-1);
 }
 
 .left {
-  font-size: 16px;
+  font-size: var(--font-size-lg);
   width: 300px;
   margin-top: 20px;
-  color: #48535b;
+  color: var(--color-dark-blue-1);
 }
 
 #button {
-  background-color: #c0d5d8;
+  background-color: var(--color-light-blue-2);
   border: none;
   margin-top: 25px;
   margin-bottom: 25px;
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   width: 171px;
   height: 32px;
 }
 
 #button:hover {
-  background-color: #9abec1;
+  background-color: var(--color-light-blue-3);
 }
 
 .textbutton {
-  color: #48535b;
-  font-size: 14px;
+  color: var(--color-dark-blue-1);
+  font-size: var(--font-size-base);
 }
 
 .textbutton:hover {
-  color: white;
+  color: var(--color-white);
 }
 
 .cancel {
   text-decoration: none;
-  color: #48535b;
-  font-size: 14px;
+  color: var(--color-dark-blue-1);
+  font-size: var(--font-size-base);
 }
 
 .cancel:hover {
   text-decoration: none;
-  color: white;
+  color: var(--color-white);
 }
 
 .suggestion {
@@ -61,14 +61,14 @@
 }
 
 .textmodal {
-  font-size: 16px;
+  font-size: var(--font-size-lg);
   color: #6c757d;
 }
 
 #modalcenter {
-  font-size: 16px;
-  font-weight: 500px;
-  color: black;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-black);
 }
 
 #Containercentermargin {
@@ -76,20 +76,20 @@
 }
 
 #Btncolor {
-  background-color: #c0d5d8;
-  border-color: #c0d5d8;
+  background-color: var(--color-light-blue-2);
+  border-color: var(--color-light-blue-2);
   margin-bottom: 20px;
   width: 85px;
   height: 32px;
-  font-size: 14px;
-  color: #48535b;
+  font-size: var(--font-size-base);
+  color: var(--color-dark-blue-1);
   margin-top: 10px;
 }
 
 #Btncolor:hover {
-  background-color: #9abec1;
-  border-color: #9abec1;
-  color: white;
+  background-color: var(--color-light-blue-3);
+  border-color: var(--color-light-blue-3);
+  color: var(--color-white);
 }
 
 .title {
@@ -103,5 +103,5 @@
 }
 
 .backButton {
-  color: #3f98a5;
+  color: var(--color-dark-blue-3);
 }

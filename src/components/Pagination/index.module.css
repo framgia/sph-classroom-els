@@ -20,7 +20,7 @@
 }
 
 .pageDescription {
-  font-size: 14px;
+  font-size: var(--font-size-base);
   margin-right: 30px;
 }
 

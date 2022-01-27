@@ -7,7 +7,7 @@
 
 .hbreakbottom {
   margin-top: 6.5rem;
-  color: black;
+  color: var(--color-var(--color-black));
 }
 
 .headerquiz {
@@ -16,10 +16,10 @@
 }
 
 .button {
-  background-color: #c0d5d8;
-  font-size: 14px;
-  border-color: #c0d5d8;
-  color: #48535b;
+  background-color: var(--color-light-blue-2);
+  font-size: var(--font-size-base);
+  border-color: var(--color-light-blue-2);
+  color: var(--color-dark-blue-1);
   margin-top: 50px;
   float: right;
   margin-right: 50px;
@@ -27,9 +27,9 @@
 }
 
 .button:hover {
-  color: white;
-  background-color: #9abec1;
-  border-color: #9abec1;
+  color: var(--color-white);
+  background-color: var(--color-light-blue-3);
+  border-color: var(--color-light-blue-3);
 }
 
 .cardbody {
@@ -55,13 +55,13 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background-color: white;
+  background-color: var(--color-white);
   margin-left: 34rem;
 }
 
 .time {
   font-size: 30px;
-  color: black;
+  color: var(--color-black);
   align-content: center;
   justify-content: center;
   margin-top: 0.2rem;
@@ -91,7 +91,7 @@
 }
 
 .topic {
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   justify-content: space-between;
   font-size: 24px;
   width: 548px;
@@ -100,12 +100,12 @@
 }
 
 #topicbg {
-  background-color: #e0eaec;
+  background-color: var(--color-light-blue-1);
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  filter: drop-shadow(0 1mm 1mm #48535b8c);
+  filter: drop-shadow(0 1mm 1mm var(--color-dark-blue-1));
 }
 
 .cardbody1 {
@@ -125,13 +125,13 @@ input[type='radio'] {
 }
 
 .spanforanswer {
-  color: black;
+  color: var(--color-black);
   padding-left: 50px;
 }
 
 #overview {
   font-size: 24px;
-  color: #152536;
+  color: var(--color-dark-blue-5);
   margin-left: 4rem;
   margin-right: 4rem;
   margin-top: 60px;
@@ -169,7 +169,7 @@ input[type='radio'] {
 }
 
 .backarrow {
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   width: 40px;
   height: 40px;
   margin-top: 23px;
@@ -179,7 +179,7 @@ input[type='radio'] {
 }
 
 .topicspan {
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   /* margin-left: 30px; */
   font-weight: bold;
 }

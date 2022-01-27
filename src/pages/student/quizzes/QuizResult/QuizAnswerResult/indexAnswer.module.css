@@ -18,38 +18,38 @@
 .wholeBodyCard1 {
   padding: 20px 50px;
   width: 500px;
-  background-color: white;
+  background-color: var(--color-white);
 }
 .question1 {
-  font-size: 16px;
+  font-size: var(--font-size-lg);
 }
 
 .tml1 {
   width: 130px;
   height: 32px;
-  color: black;
+  color: var(--color-black);
   display: flex;
   float: right;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 2px;
-  font-size: 14px;
+  font-size: var(--font-size-base);
   margin-top: 20px;
   margin-left: 320px;
 }
 
 .timeleftspace1 {
   margin-right: 5px;
-  color: #48535b;
+  color: var(--color-dark-blue-1);
 }
 
 .time1 {
-  font-size: 14px;
+  font-size: var(--font-size-base);
   padding-left: 5px;
   padding-right: 5px;
   padding-top: 10px;
   padding-bottom: 10px;
   border: 1px solid rgba(0, 0, 0, 0.068);
-  background-color: white;
+  background-color: var(--color-white);
   border-radius: 2px;
 }
 
@@ -65,7 +65,7 @@
 }
 
 .theAnswer1 {
-  border-color: red;
+  border-color: var(--color-red);
   opacity: 2;
 }
 
@@ -81,13 +81,13 @@ input [type='radio']:disabled {
 }
 
 .spanAnswer {
-  color: black;
+  color: var(--color-black);
   margin-left: 20px;
   margin-bottom: 0px;
 }
 
 .spanAnswer2 {
-  color: black;
+  color: var(--color-black);
   margin-left: 10px;
   padding: 10px;
 }
@@ -135,12 +135,12 @@ input [type='radio']:disabled {
 }
 
 .numItems1 {
-  font-size: 16px;
+  font-size: var(--font-size-lg);
 }
 
 .score1 {
-  font-size: 14px;
-  background-color: #f5f5f5;
+  font-size: var(--font-size-base);
+  background-color: var(--color-white-2);
   border: 1px solid rgba(0, 0, 0, 0.2);
   width: 70px;
   height: 21px;
@@ -153,7 +153,7 @@ input [type='radio']:disabled {
 }
 
 .backarrow1 {
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   width: 70px;
   height: 40px;
   display: inline;
@@ -165,15 +165,15 @@ input [type='radio']:disabled {
 }
 
 .error {
-  border-color: red;
+  border-color: var(--color-red);
 }
 
 .wrongAnswer {
-  color: red;
+  color: var(--color-red);
 }
 
 .title {
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   font-size: 24px;
   width: 420px;
   padding-right: 60px;
@@ -182,7 +182,7 @@ input [type='radio']:disabled {
 .topic1 {
   display: flex;
   align-items: center;
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   font-size: 24px;
   font-weight: bold;
   padding: 5px;
@@ -190,54 +190,54 @@ input [type='radio']:disabled {
 }
 
 #topicbg1 {
-  background-color: #e0eaec;
+  background-color: var(--color-light-blue-1);
   padding: 0px;
-  filter: drop-shadow(0 1mm 1mm #48535b8c);
+  filter: drop-shadow(0 1mm 1mm var(--color-dark-blue-1));
 }
 
 .button1 {
   width: 125px;
   height: 32px;
   font-size: 13px;
-  background-color: #c0d5d8;
-  border-color: #c0d5d8;
-  color: #48535b;
+  background-color: var(--color-light-blue-2);
+  border-color: var(--color-light-blue-2);
+  color: var(--color-dark-blue-1);
   font-weight: 330;
 }
 
 .button1:hover {
   width: 125px;
   height: 32px;
-  background-color: #9abec1;
-  border-color: #9abec1;
-  color: white;
+  background-color: var(--color-light-blue-3);
+  border-color: var(--color-light-blue-3);
+  color: var(--color-white);
 }
 
 .button {
   width: 80px;
   height: 32px;
-  font-size: 14px;
-  background-color: #c0d5d8;
-  border-color: #c0d5d8;
+  font-size: var(--font-size-base);
+  background-color: var(--color-light-blue-2);
+  border-color: var(--color-light-blue-2);
   margin-right: 1rem;
-  color: #48535b;
+  color: var(--color-dark-blue-1);
 }
 
 .nextbutton {
   width: 80px;
   height: 32px;
-  font-size: 14px;
-  background-color: #c0d5d8;
-  border-color: #c0d5d8;
-  color: #48535b;
+  font-size: var(--font-size-base);
+  background-color: var(--color-light-blue-2);
+  border-color: var(--color-light-blue-2);
+  color: var(--color-dark-blue-1);
 }
 
 .button:hover {
   width: 80px;
   height: 32px;
-  background-color: #9abec1;
-  border-color: #9abec1;
-  color: white;
+  background-color: var(--color-light-blue-3);
+  border-color: var(--color-light-blue-3);
+  color: var(--color-white);
 }
 
 .iconalignmentstyle {

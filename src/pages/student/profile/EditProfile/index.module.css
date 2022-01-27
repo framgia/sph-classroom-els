@@ -2,18 +2,18 @@
     margin-left: 85px;
     margin-bottom: 10px;
     font-size: 24px;
-    color: #48535B;
+    color: var(--color-dark-blue-1);
 }
 .changepassbutton{
     margin-left: 128px;
-    background-color: #C0D5D8;
-    border-color: #C0D5D8;
-    color: #48535B;
+    background-color: var(--color-light-blue-2);
+    border-color: var(--color-light-blue-2);
+    color: var(--color-dark-blue-1);
 }
 .changepassbutton:hover{
-    background-color: #9ABEC1;
-    border-color: #9ABEC1;
-    color:white
+    background-color: var(--color-light-blue-3);
+    border-color: var(--color-light-blue-3);
+    color:var(--color-white);
 }
 
 .cancel{
@@ -21,6 +21,6 @@
     margin-left: 143px;
     text-decoration: none;
     display: inline-block;
-    color: #48535B  ;
-    font-size: 14px;
+    color: var(--color-dark-blue-1);
+    font-size: var(--font-size-base);
 }

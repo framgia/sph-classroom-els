@@ -7,45 +7,35 @@
     height: 418px;
     left: 414px;
     top: 170px;
-    
-    
-
 }
 .inputscontainer{
     display: flex;
     flex-direction: column;
-   align-items: center;
-
+    align-items: center;
 }
 
 .inputs {
     margin-top: 20px;
-   
 }
 .Button {
-    
     display:flex;
     justify-content: flex-end;
     align-items: center;  
     margin-top: 40px;
     margin-right: 35px;
-
-    
-
 }
 .ChangepassButton{
-
-   background-color:#4B847B;
-   height: 59px;
-   width: 177px;
-   font-size: 30px;
+    background-color:#4B847B;
+    height: 59px;
+    width: 177px;
+    font-size: 30px;
     margin-left: 20px;
 }
 .cancel{
 
     text-decoration: none;
     display: inline-block;
-    color: black   ;
+    color: var(--color-black)   ;
     font-size: 30px;
 }
 .Label {

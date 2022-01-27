@@ -1,5 +1,5 @@
 .navbar {
-    background-color: #002037;
+    background-color: var(--color-dark-blue-4);
     color: #E2DEC0;
 }
 
@@ -36,7 +36,7 @@
   }
 
   .dropdown-menu { 
-    background-color: #002037;
+    background-color: var(--color-dark-blue-4);
     padding: 0.5rem;
     left: 34% !important;
     transform: translateX(-50%) !important;
@@ -77,10 +77,10 @@ width: 611px;
 
 .cnb{
     margin-top: 20px;
-    color:black;
+    color:var(--color-black);
 }
 .cnb:hover{
-    color: white;
+    color: var(--color-white);
 }
 .btns{
     width: 190px;

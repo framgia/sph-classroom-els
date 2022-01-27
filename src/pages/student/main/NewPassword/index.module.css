@@ -2,48 +2,48 @@
 .contentstyle {
     margin-top: 100px;
     margin-left: 64px;
-    background-color: #E0EAEC;
+    background-color: var(--color-light-blue-1);
     padding: 46px;
     border-radius: 2px;
     height: fixed;
     width: 430px;
-    color : #48535B;
+    color : var(--color-dark-blue-1);
     }
 
 .left{
-    font-size: 16px;
+    font-size: var(--font-size-lg);
     margin-top: 25px;
-    color : #48535B;
+    color : var(--color-dark-blue-1);
 }
 .right{
-    font-size: 16px;
+    font-size: var(--font-size-lg);
 }
 
 #button{
-    background-color: #C0D5D8;
-    border-color: #C0D5D8;
+    background-color: var(--color-light-blue-2);
+    border-color: var(--color-light-blue-2);
     width: 85px;
     height: 32px;
-    font-size: 14px;
+    font-size: var(--font-size-base);
     margin-top: 5px;
-    color : #48535B;
+    color : var(--color-dark-blue-1);
 }
 
 #button:hover {
-    background-color: #9ABEC1;
-    border-color: #9ABEC1;
-    color: white;
+    background-color: var(--color-light-blue-3);
+    border-color: var(--color-light-blue-3);
+    color: var(--color-white);
 }
 
 
 .cancel{
     margin-top: 15px;
     text-decoration: none;
-    color: black;
+    color: var(--color-black);
 }
 
 .suggestion {
-    font-size: 14px;
+    font-size: var(--font-size-base);
     color: #6C757D;
     margin-top: 30px;
 }

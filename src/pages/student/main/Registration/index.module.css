@@ -1,50 +1,50 @@
 #log01 {
-  background-color: #e0eaec;
+  background-color: var(--color-light-blue-1);
   padding: 46px;
   border-radius: 2px;
   width: 430px;
-  color: #48535b;
+  color: var(--color-dark-blue-1);
 }
 
 .signintxts {
   margin-left: 137px;
-  font-weight: 400px;
-  color: #48535b;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-dark-blue-1);
   margin-bottom: 15px;
 }
 
 #Btncolor {
-  background-color: #c0d5d8;
-  border-color: #c0d5d8;
+  background-color: var(--color-light-blue-2);
+  border-color: var(--color-light-blue-2);
   /* margin-bottom: 10px; */
   width: 85px;
   height: 32px;
-  font-size: 14px;
-  color: #48535b;
+  font-size: var(--font-size-base);
+  color: var(--color-dark-blue-1);
   margin-top: 15px;
 }
 
 #Btncolor:hover {
-  background-color: #9abec1;
-  border-color: #9abec1;
-  color: white;
+  background-color: var(--color-light-blue-3);
+  border-color: var(--color-light-blue-3);
+  color: var(--color-white);
 }
 
 .sign {
   display: inline-block;
   padding-right: 10px;
-  font-size: 14px;
-  font-weight: 300px;
-  color: #48535b;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-light);
+  color: var(--color-dark-blue-1);
   margin-top: 25px;
 }
 
 .fotgotPswrd {
-  font-size: 14px;
-  color: #3f98a5;
-  font-weight: 400px;
+  font-size: var(--font-size-base);
+  color: var(--color-dark-blue-3);
+  font-weight: var(--font-weight-regular);
 }
 
 input::placeholder {
-  color: red;
+  color: var(--color-red);
 }

@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #002037;
+  background-color: var(--color-dark-blue-4);
 }
 
 .navbarLink {
@@ -9,7 +9,7 @@
 }
 
 .navbarCollapse {
-  background-color: #002037 !important;
+  background-color: var(--color-dark-blue-4) !important;
   margin-left: 2rem;
   font-size: 20px;
   color: #ffffff;
@@ -26,7 +26,7 @@
 }
 
 #dropdownMenu + div {
-  background-color: #002037 !important;
+  background-color: var(--color-dark-blue-4) !important;
 }
 
 #dropdownMenu::after {
@@ -82,7 +82,7 @@
   -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
   margin: 17px 0px 18px 50px;
-  font-weight: 600;
+  font-weight: var(--font-weight-heavy);
   font-size: 40px;
   line-height: 47px;
 }

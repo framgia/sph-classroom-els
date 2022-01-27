@@ -6,7 +6,7 @@
 
 .title {
   padding: 33px 0px; 
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-size: 24px;
 }
 .loading {
@@ -36,7 +36,7 @@
 }
 
 #btcolor{
-  color: #48535B;
+  color: var(--color-dark-blue-1);
 }
 
 #paginateNum{

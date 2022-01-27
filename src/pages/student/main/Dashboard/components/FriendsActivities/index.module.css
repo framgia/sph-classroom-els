@@ -1,20 +1,20 @@
 .forContainerBar2{
     position: relative;
     z-index: 1;
-    background-color: #E0EAEC;
+    background-color: var(--color-light-blue-1);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     height: 47px;
-    color: #48535B;
+    color: var(--color-dark-blue-1);
 }
 
 .forContent_box{
     height: 366px;
-    background-color: #FFFFFF;
+    background-color: var(--color-white);
 }
 
 .titleText{
     display: inline-block;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     font-size: 18px;
 }
 
@@ -24,16 +24,16 @@
 
 .forSeccolum {
   padding: 10px;
-  color: #48535b;
-  font-weight: 300;
-  font-size: 14px;
+  color: var(--color-dark-blue-1);
+  font-weight: var(--font-weight-light);
+  font-size: var(--font-size-base);
   text-align: right;
 }
 
 .listTable {
-  color: #48535b;
-  font-weight: 400;
-  font-size: 16px;
+  color: var(--color-dark-blue-1);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-lg);
   padding: 0px;
 }
 

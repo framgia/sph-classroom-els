@@ -9,7 +9,7 @@
 }
 
 #cardHeader {
-  background-color: #e0eaec;
+  background-color: var(--color-light-blue-1);
   border-radius: 2px;
   width: 340.5px;
   height: 167px;
@@ -36,7 +36,7 @@
 
 .title {
   padding: 33px 0px;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-size: 24px;
   margin: 0px;
 }
@@ -53,7 +53,7 @@
 }
 
 .cardTitle {
-  color: black;
+  color: var(--color-black);
 }
 
 .noResultsMessage {
@@ -76,24 +76,24 @@
 
 .cardTitle {
   font-size: 18px;
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   line-height: 21px;
 }
 
 .cardSubtitle {
-  font-size: 14px;
-  font-weight: 300;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-light);
   line-height: 16px;
 }
 
 #Subtitle {
-  font-size: 12px;
-  font-weight: 500;
-  color: #5d9098;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-dark-blue-2);
 }
 
 #btcolor {
-  color: #48535b;
+  color: var(--color-dark-blue-1);
 }
 
 #paginaPrevNext {
@@ -101,7 +101,7 @@
   width: 80px;
   height: 32px;
   text-align: center;
-  color: #48535b;
+  color: var(--color-dark-blue-1);
 }
 
 #paginateNum {
@@ -110,7 +110,7 @@
   text-align: center;
   margin-right: 5px;
   border-radius: 2px;
-  color: #48535b;
+  color: var(--color-dark-blue-1);
 }
 
 .categoryConditionsStyle {
@@ -141,16 +141,16 @@
 .dropdownStyle {
   display: flex;
   justify-content: space-between;
-  background-color: #ffffff;
+  background-color: var(--color-white);
   border: 1px #ced4da solid;
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   text-decoration: none;
   width: 120px;
   height: 30px;
 }
 
 .dropdownStyle:hover {
-  color: #48535b;
+  color: var(--color-dark-blue-1);
 }
 
 .dropdownItemStyle {

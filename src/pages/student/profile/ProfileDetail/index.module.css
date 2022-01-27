@@ -3,7 +3,7 @@
 }
 
 .avatar {
-  border: black 1px solid;
+  border: var(--color-black) 1px solid;
   padding: 6px;
   width: 200px;
   height: 200px;
@@ -15,16 +15,16 @@
   float: left;
   display: inline-flex;
   margin-right: 50px;
-  color: #152536;
+  color: var(--color-dark-blue-5);
 }
 
 .userEdit {
-  border: #e0eaec 3px solid;
+  border: var(--color-light-blue-1) 3px solid;
   border-radius: 2px;
   margin-left: 20px;
   padding: 5px;
   margin-bottom: 20px;
-  color: black;
+  color: var(--color-black);
 }
 
 .followingText {
@@ -32,16 +32,16 @@
   font-size: 20px;
   margin-top: 0px;
   display: inline-block;
-  font-weight: 300px;
-  color: #48535b;
+  font-weight: var(--font-weight-light);
+  color: var(--color-dark-blue-1);
 }
 
 .followersText {
   font-size: 20px;
   margin-top: 0px;
   display: inline-block;
-  font-weight: 300px;
-  color: #48535b;
+  font-weight: var(--font-weight-light);
+  color: var(--color-dark-blue-1);
 }
 
 .activitiesTableContainer {
@@ -49,20 +49,20 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: #48535b;
+  color: var(--color-dark-blue-1);
 }
 
 .cardHeader {
-  background-color: #e0eaec;
+  background-color: var(--color-light-blue-1);
   width: 650px;
   height: 40px;
   border-radius: 2px 2px 0px 0px;
   font-size: 18px;
-  filter: drop-shadow(0 1mm 1mm #48535b8c);
+  filter: drop-shadow(0 1mm 1mm var(--color-dark-blue-1));
 }
 
 .cardBody {
-  background-color: white;
+  background-color: var(--color-white);
   width: 650px;
   height: 330px;
   border-radius: 0px 0px 10px 10px;
@@ -80,14 +80,14 @@
   float: right;
   margin-top: 20px;
   margin-right: 17px;
-  font-size: 14px;
+  font-size: var(--font-size-base);
   margin-left: auto;
 }
 
 .activityDescription {
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   margin-left: 20px;
-  font-size: 16px;
+  font-size: var(--font-size-lg);
 }
 
 .tableContainer {

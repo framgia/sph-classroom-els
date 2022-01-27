@@ -5,17 +5,17 @@
 .wholeBodyCard {
   padding: 20px 50px;
   width: 500px;
-  background-color: white;
+  background-color: var(--color-white);
 }
 
 .question {
-  font-size: 16px;
+  font-size: var(--font-size-lg);
 }
 
 .tml {
   width: 150px;
   height: 32px;
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -25,7 +25,7 @@
 
 .timer {
   color: #72a085;
-  background-color: #f5f5f5;
+  background-color: var(--color-white-2);
   padding-left: 30px;
   padding-right: 30px;
   padding-top: 5px;
@@ -35,19 +35,19 @@
 }
 
 .time {
-  font-size: 14px;
+  font-size: var(--font-size-base);
   padding-left: 5px;
   padding-right: 5px;
   padding-top: 10px;
   padding-bottom: 10px;
   border: 1px solid rgba(0, 0, 0, 0.068);
-  background-color: white;
+  background-color: var(--color-white);
   border-radius: 2px;
 }
 
 .timeleftspace {
   margin-right: 5px;
-  color: #48535b;
+  color: var(--color-dark-blue-1);
 }
 
 .spacing {
@@ -67,7 +67,7 @@
   padding: 15px;
   padding-bottom: 0px;
   padding-top: 0px;
-  border: 2px solid #e0eaec;
+  border: 2px solid var(--color-light-blue-1);
   border-radius: 2px;
 }
 
@@ -76,7 +76,7 @@ input::placeholder {
 }
 
 .spanForAnswer {
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   margin-left: 20px;
 }
 
@@ -91,48 +91,48 @@ input::placeholder {
 }
 
 .numItems {
-  font-size: 16px;
+  font-size: var(--font-size-lg);
 }
 
 #nextBtn {
   width: 80px;
   height: 32px;
-  font-size: 14px;
-  background-color: #c0d5d8;
-  border-color: #c0d5d8;
+  font-size: var(--font-size-base);
+  background-color: var(--color-light-blue-2);
+  border-color: var(--color-light-blue-2);
 }
 
 #nextBtn:hover {
   width: 80px;
   height: 32px;
-  font-size: 14px;
-  background-color: #9abec1;
-  border-color: #9abec1;
+  font-size: var(--font-size-base);
+  background-color: var(--color-light-blue-3);
+  border-color: var(--color-light-blue-3);
 }
 
 #prevBtn {
   width: 80px;
   height: 32px;
-  font-size: 14px;
-  background-color: #c0d5d8;
-  border-color: #c0d5d8;
+  font-size: var(--font-size-base);
+  background-color: var(--color-light-blue-2);
+  border-color: var(--color-light-blue-2);
   margin-left: 47rem;
 }
 
 #prevBtn:hover {
   width: 80px;
   height: 32px;
-  font-size: 14px;
-  background-color: #9abec1;
-  border-color: #9abec1;
+  font-size: var(--font-size-base);
+  background-color: var(--color-light-blue-3);
+  border-color: var(--color-light-blue-3);
 }
 
 .buttontext {
-  color: #48535b;
+  color: var(--color-dark-blue-1);
 }
 
 .buttontext:hover {
-  color: white;
+  color: var(--color-white);
 }
 
 #answer2 {
@@ -148,12 +148,12 @@ input::placeholder {
 }
 
 .numItems {
-  font-size: 16px;
+  font-size: var(--font-size-lg);
 }
 
 .Answertopic {
-  color: #48535b;
-  background-color: #e0eaec;
+  color: var(--color-dark-blue-1);
+  background-color: var(--color-light-blue-1);
   margin-top: 30px;
   font-size: 24px;
   font-weight: bold;
@@ -170,7 +170,7 @@ input::placeholder {
 }
 
 .backarrow {
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   width: 30px;
   height: 30px;
   margin-top: 23px;
@@ -180,7 +180,7 @@ input::placeholder {
 }
 
 .topic {
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   justify-content: space-between;
   font-size: 24px;
   width: 548px;
@@ -189,19 +189,19 @@ input::placeholder {
 }
 
 .topicspan {
-  color: #48535b;
+  color: var(--color-dark-blue-1);
   font-weight: bold;
   width: 600px;
   padding-right: 210px;
 }
 
 #topicbg {
-  background-color: #e0eaec;
+  background-color: var(--color-light-blue-1);
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  filter: drop-shadow(0 1mm 1mm #48535b8c);
+  filter: drop-shadow(0 1mm 1mm var(--color-dark-blue-1));
 }
 
 .cardstyle {

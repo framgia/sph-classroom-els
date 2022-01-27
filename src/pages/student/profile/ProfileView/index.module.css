@@ -1,7 +1,7 @@
 .editbuttonone {
     width: 20px;
     height: 20px;
-    color: black;
+    color: var(--color-black);
     float: right;
     position: absolute;
     left: 345px;
@@ -11,7 +11,7 @@
 .editbuttonTwo{
     width: 20px;
     height: 20px;
-    color: black;
+    color: var(--color-black);
     float: right;
     position: absolute;
     left: 345px;
@@ -21,26 +21,26 @@
 .control1 {
     width: 334px;
     height: 38px;
-    font-size: 14px;
+    font-size: var(--font-size-base);
     margin-bottom: 0px;
-    color: #48535B;
+    color: var(--color-dark-blue-1);
 }
 
 .HeadingText{
     margin-left: 100px;
     margin-bottom: 10px;
     font-size: 24px;
-    color: #48535B;
+    color: var(--color-dark-blue-1);
 }
 
 .changepassbutton{
     margin-left: 190px;
-    background-color: #C0D5D8;
-    border-color: #C0D5D8;
-    color: #48535B;
+    background-color: var(--color-light-blue-2);
+    border-color: var(--color-light-blue-2);
+    color: var(--color-dark-blue-1);
 }
 .changepassbutton:hover{
-    background-color: #9ABEC1;
-    border-color: #9ABEC1;
-    color:white
+    background-color: var(--color-light-blue-3);
+    border-color: var(--color-light-blue-3);
+    color:var(--color-white);
 }
