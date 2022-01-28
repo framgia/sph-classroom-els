@@ -54,6 +54,8 @@ const ProfileView = () => {
               <Form.Control
                 style={{ fontSize: '14px' }}
                 value={profileName?.name}
+                disabled="disabled"
+                className={style.formControlstyle}
               />
             </Form.Group>
 
@@ -70,6 +72,8 @@ const ProfileView = () => {
               <Form.Control
                 style={{ fontSize: '14px' }}
                 value={profileName?.email}
+                disabled="disabled"
+                className={style.formControlstyle}
               />
             </Form.Group>
             <a href="/profile/change-password">
