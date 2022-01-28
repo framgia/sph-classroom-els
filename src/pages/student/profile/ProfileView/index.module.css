@@ -8,16 +8,6 @@
     top: 120px;
 }
 
-.editbuttonTwo{
-    width: 20px;
-    height: 20px;
-    color: black;
-    float: right;
-    position: absolute;
-    left: 345px;
-    top: 195px;
-}
-
 .control1 {
     width: 334px;
     height: 38px;
@@ -34,7 +24,9 @@
 }
 
 .changepassbutton{
-    margin-left: 190px;
+    float: left;
+    height: 32px;
+    font-size: 14px;
     background-color: #C0D5D8;
     border-color: #C0D5D8;
     color: #48535B;
@@ -43,4 +35,46 @@
     background-color: #9ABEC1;
     border-color: #9ABEC1;
     color:white
+}
+
+.editbutton{
+    float: right;
+    height: 32px;
+    width: 95px;
+    font-size: 14px;
+    background-color: #C0D5D8;
+    border-color: #C0D5D8;
+    color: #48535B;
+}
+
+.editbutton:hover{
+    background-color: #9ABEC1;
+    border-color: #9ABEC1;
+    color:white
+}
+
+.noResults,
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.loadingWord {
+  margin-left: 10px;
+}
+
+.formControlstyle:disabled{
+    background: white
+}
+
+.FormGroupStyle{
+    margin-bottom: 0px;
+    color: #48535B;
+    font-size: 16px,
+}
+
+.marginForForm{
+    margin-bottom: 20px;
 }
