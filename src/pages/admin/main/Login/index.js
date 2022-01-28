@@ -13,9 +13,10 @@ import AuthApi from '../../../../api/Auth';
 
 const AdminLogin = () => {
   const { control, handleSubmit } = useForm();
-  const [errors, setErrors] = useState('');
+  const [error, setError] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const [submitStatus, setSubmitStatus] = useState(false);
 
   const showAlertDialog = (isShow, message) => {
     setShowAlert(isShow);
@@ -23,6 +24,10 @@ const AdminLogin = () => {
   };
 
   const handleOnSubmit = async ({ email, password }) => {
+    setSubmitStatus(true);
+    setError('');
+    setShowAlert(false);
+
     try {
       const response = await AuthApi.login({ email, password, loginType: 'Admin' });
       Cookies.set('access_token', response.data.token);
@@ -30,8 +35,9 @@ const AdminLogin = () => {
       Cookies.set('user_type', 'admin');
       window.location = '/admin/categories';
     } catch (error) {
+      setSubmitStatus(false);
       if (error?.response?.data?.error?.error) {
-        setErrors(error?.response?.data?.error?.error);
+        setError(error?.response?.data?.error?.error);
         showAlertDialog(true, error?.response?.data?.error?.error);
       } else {
         showAlertDialog(true, 'An error has occurred.');
@@ -69,13 +75,13 @@ const AdminLogin = () => {
                         ref={ref}
                         type="email"
                         placeholder="Enter email here"
-                        isInvalid={errors === 'The password you’ve entered is incorrect.' ? '' : errors}
+                        isInvalid={error === 'The password you’ve entered is incorrect.' ? '' : error}
                         required
                         maxLength={50}
                       />
                     )}
                   />
-                  <Form.Control.Feedback type="invalid">{errors}</Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className="mb-1" controlId="password">
@@ -94,17 +100,17 @@ const AdminLogin = () => {
                         type="password"
                         name="password"
                         placeholder="Enter password here"
-                        isInvalid={errors === 'The email you’ve entered is incorrect.' ? '' : errors}
+                        isInvalid={error === 'The email you’ve entered is incorrect.' ? '' : error}
                         required
                         maxLength={20}
                       />
                     )}
                   />
-                  <Form.Control.Feedback type="invalid">{errors}</Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
                 </Form.Group>
 
                 <center>
-                  <Button id={style.signInButton} type="submit">
+                  <Button id={style.signInButton} type="submit" disabled={submitStatus}>
                     <p>Sign In</p>
                   </Button>
                 </center>
