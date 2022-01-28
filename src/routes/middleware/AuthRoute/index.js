@@ -19,14 +19,13 @@ const AuthRoute = ({ component: Component, ...rest }) => {
           if (!AuthService.authenticated()) {
             return <Component {...props} />;
           }
-
           return (
             <Redirect
               to={{
-                pathname: '/',
+                pathname: AuthService.isAdmin() ? '/admin/profile' : '/',
                 state: {
-                  from: props.location,
-                },
+                  from: props.location
+                }
               }}
             />
           );
@@ -39,8 +38,7 @@ const AuthRoute = ({ component: Component, ...rest }) => {
 AuthRoute.propTypes = {
   component: PropTypes.any,
   name: PropTypes.string,
-  location: PropTypes.any,
+  location: PropTypes.any
 };
-
 
 export default AuthRoute;

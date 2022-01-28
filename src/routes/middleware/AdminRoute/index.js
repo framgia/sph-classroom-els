@@ -15,17 +15,17 @@ const AdminRoute = ({ component: Component, ...rest }) => {
       <Route
         {...rest}
         render={(props) => {
-          if (AuthService.authenticated()) {
+          if (AuthService.authenticated() && AuthService.isAdmin()) {
             return <Component {...props} />;
           }
 
           return (
             <Redirect
               to={{
-                pathname: '/login',
+                pathname: AuthService.isAdmin() ? '/admin/login' : '/login',
                 state: {
-                  from: props.location,
-                },
+                  from: props.location
+                }
               }}
             />
           );
@@ -38,7 +38,7 @@ const AdminRoute = ({ component: Component, ...rest }) => {
 AdminRoute.propTypes = {
   component: PropTypes.any,
   name: PropTypes.string,
-  location: PropTypes.any,
+  location: PropTypes.any
 };
 
 export default AdminRoute;
