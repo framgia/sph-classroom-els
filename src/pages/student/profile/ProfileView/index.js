@@ -41,14 +41,8 @@ const ProfileView = () => {
           </div>
         ) : (
           <Form style={{ marginTop: '20px' }}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label
-                style={{
-                  marginBottom: '0px',
-                  color: '#48535B',
-                  fontSize: '16px',
-                }}
-              >
+            <Form.Group className={style.marginForForm} controlId="formBasicName">
+              <Form.Label className={style.FormGroupStyle}>
                 Name
               </Form.Label>
               <Form.Control
@@ -59,14 +53,9 @@ const ProfileView = () => {
               />
             </Form.Group>
 
-            <Form.Group className="mb-4" controlId="formBasicPassword">
+            <Form.Group className={style.marginForForm} controlId="formBasicEmail">
               <Form.Label
-                style={{
-                  marginBottom: '0px',
-                  color: '#48535B',
-                  fontSize: '16px',
-                }}
-              >
+                className={style.FormGroupStyle}>
                 Email
               </Form.Label>
               <Form.Control

@@ -84,14 +84,8 @@ const EditProfile = () => {
             onSubmit={handleSubmit(handleOnSubmit)}
             style={{ marginTop: '20px' }}
           >
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label
-                style={{
-                  marginBottom: '0px',
-                  color: '#48535B',
-                  fontSize: '16px',
-                }}
-              >
+            <Form.Group className={style.marginForForm} controlId="formBasicName">
+              <Form.Label className={style.FormGroupStyle}>
                 Name
               </Form.Label>
               {profileName ? (
@@ -121,8 +115,8 @@ const EditProfile = () => {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-4" controlId="formBasicPassword">
-              <Form.Label style={{ marginBottom: '0px', color: '#48535B' }}>
+            <Form.Group className={style.marginForForm} controlId="formBasicEmail">
+              <Form.Label className={style.FormGroupStyle}>
                 Email
               </Form.Label>
               {profileName ? (
@@ -153,8 +147,8 @@ const EditProfile = () => {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-4" controlId="formBasicPassword">
-              <Form.Label style={{ marginBottom: '0px', color: '#48535B' }}>
+            <Form.Group className={style.marginForForm} controlId="formBasicPassword">
+              <Form.Label className={style.FormGroupStyle}>
                 Password
               </Form.Label>
               {profileName ? (

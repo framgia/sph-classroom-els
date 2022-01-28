@@ -56,3 +56,13 @@
 .loadingWord {
   margin-left: 10px;
 }
+
+.FormGroupStyle{
+    margin-bottom: 0px;
+    color: #48535B;
+    font-size: 16px,
+}
+
+.marginForForm{
+    margin-bottom: 20px;
+}

@@ -15,12 +15,12 @@ const ProfileEditApi = {
     return API.request(options);
   },
 
-  uploadImage: ({ image }) => {
+  uploadImage: ( image ) => {
     const options = {
       method: 'POST',
       url: '/profileEdituploadImage',
       data: {
-        image: image,
+        image: image
       },
     };
 

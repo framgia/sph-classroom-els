@@ -30,15 +30,6 @@ const ProfileDetail = () => {
   const [recentActivities, setRecentActivities] = useState(null);
   const [modalShow, setModalShow] = useState(null);
   const { control, handleSubmit } = useForm();
-  // const [errors, setErrors] = useState({});
-
-  // const handleOnSubmit = (data) => {
-  //   console.log(data);
-  // };
-  const onChange = (e) => {
-    const file = e.target.files[0];
-    console.log(file);
-  };
 
   const handleOnSubmit = async ({ image }) => {
     console.log(image[0]);
@@ -49,10 +40,6 @@ const ProfileDetail = () => {
       console.log(error.response);
     }
   };
-
-  // const changeHandler = (event) => {
-  //   console.log(event.target.files[0]);
-  // };
 
   useEffect(() => {
     StudentApi.getDetails(loggedInUserId).then(({ data }) => {
@@ -225,19 +212,15 @@ const ProfileDetail = () => {
             Upload Your Profile
           </Modal.Title>
         </Modal.Header>
-        <Form onSubmit={handleSubmit(handleOnSubmit)} onChange={onChange}>
+        <Form onSubmit={handleSubmit(handleOnSubmit)}>
           <Form.Group className="mb-none" controlId="formBasicEmail">
-            {/* {''}
-            <input type='file' name='image'  ref={control} accept='image/png, image/jpeg'  className={style.modalform}  onChange={onChange}/> */}
             <Controller
               control={control}
               name="image"
               defaultValue=""
               render={({ field }) => (
                 <Form.Control
-                  // value={value}
                   onChange={(e) => { field.onChange(e.target.files); }}
-                  // ref={ref}
                   className="cntrs"
                   type="file"
                   isInvalid=""
