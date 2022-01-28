@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import { VscFilter } from 'react-icons/vsc';
+import { BsSortAlphaDown, BsSortAlphaDownAlt } from 'react-icons/bs';
 import Spinner from 'react-bootstrap/Spinner';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
@@ -104,6 +105,24 @@ function CategoryList() {
     });
   };
 
+  const renderSort = (sortPos) => {
+    if (sortPos === 'asc') {
+      return (
+        <div style={{  display: 'flex' }}>
+          Ascending
+          <BsSortAlphaDown size="20px" />
+        </div>
+      );
+    } else {
+      return (
+        <div style={{  display: 'flex' }}>
+          Descending
+          <BsSortAlphaDownAlt size="20px" />
+        </div>
+      );
+    }
+  };
+
   return (
     <div style={{ padding: '0px 196px', color: '#48535B' }}>
       <p className={style.title}>Categories</p>
@@ -136,8 +155,7 @@ function CategoryList() {
             bsPrefix="none"
           >
             <span className={style.dropdownText}>
-              {' '}
-              {sortBy === 'asc' ? 'Ascending' : 'Descending'}{' '}
+              {' '}{renderSort(sortBy)}{' '}
             </span>
             <RiArrowDropDownLine size="20px" />
           </Dropdown.Toggle>
@@ -154,6 +172,7 @@ function CategoryList() {
               }}
             >
               Ascending
+              <BsSortAlphaDown size="18px" />
             </Dropdown.Item>
             <Dropdown.Item
               className={
@@ -167,6 +186,7 @@ function CategoryList() {
               }}
             >
               Descending
+              <BsSortAlphaDownAlt size="18px" />
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
