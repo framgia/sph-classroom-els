@@ -1,0 +1,135 @@
+.displayFlexColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.displayFlexRow {
+  display: flex;
+  align-items: center;
+}
+
+.navbar {
+  background-color: #002037;
+  justify-content: flex-start;
+  height: 100vh;
+  width: 300px;
+  gap: 42px;
+}
+
+.title {
+  background: linear-gradient(
+    184.52deg,
+    #ffffff 3.66%,
+    rgba(198, 236, 234, 0.552072) 84.58%,
+    rgba(128, 214, 208, 0) 170.68%,
+    rgba(70, 206, 198, 0.266022) 170.7%
+  );
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 47px;
+  margin-top: 3rem;
+  margin-left: 1rem;
+}
+
+.adminInfo {
+  gap: 5px;
+}
+
+.iconBackground {
+  background-color: #ffffff !important;
+  color: #ffffff !important;
+  border-radius: 63px;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+}
+
+.userIcon {
+  width: 50px;
+  height: 50px;
+}
+
+.username {
+  color: white;
+  font-size: 30px;
+  margin: 0px;
+}
+
+.userRole {
+  font-size: 20px;
+  color: white;
+}
+
+.navItemsContainer {
+  padding: 0px;
+  margin-top: 40px;
+}
+
+.navItemInfo {
+  justify-content: center;
+}
+
+.navItem {
+  margin-top: 1rem;
+  color: white;
+  font-size: 20px;
+  height: 50px;
+  padding: 0;
+  width: 100%;
+}
+
+.navItem:hover {
+  background-color: #e0eaec;
+  color: #48535b;
+}
+
+.navItem:focus {
+  background-color: #e0eaec;
+  color: #48535b;
+}
+
+.navLogout {
+  color: white;
+  font-size: 20px;
+  height: 50px;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navLogout:hover {
+  background-color: #e0eaec;
+  color: #48535b;
+}
+
+.navLogout:focus {
+  background-color: #e0eaec;
+  color: #48535b;
+}
+
+.icon {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  left: 0;
+  margin-left: 75px;
+}
+
+.logoutPosition {
+  margin-top: 17rem;
+  margin-bottom: 1.4rem;
+}
+
+.alignContent {
+  margin-left: 125px;
+  position: absolute;
+  left: 0;
+}
