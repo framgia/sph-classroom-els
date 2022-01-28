@@ -10,10 +10,7 @@ import style from './index.module.css';
 
 const NavigationSideBar = () => {
   return (
-    <Navbar
-      expand="lg"
-      className={`${style.navbar} ${style.displayFlexColumn}`}
-    >
+    <Navbar className={`${style.navbar} ${style.displayFlexColumn}`}>
       <Navbar.Brand href="#" className={style.title}>
         E-LEARNING
       </Navbar.Brand>
@@ -31,6 +28,7 @@ const NavigationSideBar = () => {
         </div>
       </div>
       <Container
+        fluid
         className={`${style.navItemsContainer} ${style.displayFlexColumn}`}
       >
         <LinkContainer
