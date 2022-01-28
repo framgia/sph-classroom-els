@@ -44,3 +44,15 @@
     top: 180px;
     left: center;
 }
+
+.noResults,
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.loadingWord {
+  margin-left: 10px;
+}
