@@ -11,7 +11,7 @@ import StudentRoute from './middleware/StudentRoute';
 import AuthRoute from './middleware/AuthRoute';
 
 // Admin Components
-import adminLogin from '../pages/admin/categories/CategoryList';
+import admin from '../pages/admin/categories/CategoryList';
 
 // Student Components
 import Login from '../pages/student/main/Login';
@@ -39,7 +39,7 @@ const Routes = () => {
   return (
     <Switch>
       {/* ADMIN ROUTES */}
-      <AdminRoute path="/admin" exact component={adminLogin}></AdminRoute>
+      <AdminRoute path="/admin" exact component={admin}></AdminRoute>
 
       {/* STUDENT ROUTES */}
       <AuthRoute path="/login" exact component={Login}></AuthRoute>
