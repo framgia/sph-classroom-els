@@ -28,7 +28,7 @@ const AdminLogin = () => {
       Cookies.set('access_token', response.data.token);
       Cookies.set('admin_id', response.data.user.id);
       Cookies.set('user_type', 'admin');
-      window.location = '/admin/profile';
+      window.location = '/admin/categories';
     } catch (error) {
       if (error?.response?.data?.error?.error) {
         setErrors(error?.response?.data?.error?.error);

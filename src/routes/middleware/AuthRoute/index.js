@@ -22,7 +22,7 @@ const AuthRoute = ({ component: Component, ...rest }) => {
           return (
             <Redirect
               to={{
-                pathname: AuthService.isAdmin() ? '/admin/profile' : '/',
+                pathname: AuthService.isAdmin() ? '/admin/categories' : '/',
                 state: {
                   from: props.location
                 }

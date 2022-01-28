@@ -8,7 +8,7 @@ import AuthRoute from './middleware/AuthRoute';
 
 //Admin Components
 import AdminLogin from '../pages/admin/main/Login';
-import CategoryList from '../pages/admin/categories/CategoryList';
+import AdminCategoryList from '../pages/admin/categories/CategoryList';
 
 // Student Components
 import Login from '../pages/student/main/Login';
@@ -37,7 +37,7 @@ const Routes = () => {
       {/* ADMIN ROUTES */}
       <AuthRoute path="/admin/login" exact component={AdminLogin}></AuthRoute>
 
-      <AdminRoute path="/admin/categories" exact component={CategoryList}></AdminRoute>
+      <AdminRoute path="/admin/categories" exact component={AdminCategoryList}></AdminRoute>
 
       {/* STUDENT ROUTES */}
       <AuthRoute path="/login" exact component={Login}></AuthRoute>
