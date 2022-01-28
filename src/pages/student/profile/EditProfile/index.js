@@ -42,7 +42,7 @@ const EditProfile = () => {
       if (error?.response?.data?.errors) {
         setErrors(error?.response?.data?.errors);
       } else if (error?.response?.data?.error) {
-        showAlertDialog(true, 'You have Entered Incorect Password');
+        showAlertDialog(true, 'The password you have entered is incorrect.');
       } else {
         showAlertDialog(true, 'An error has occurred.');
       }
