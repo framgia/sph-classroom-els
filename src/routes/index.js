@@ -11,7 +11,7 @@ import StudentRoute from './middleware/StudentRoute';
 import AuthRoute from './middleware/AuthRoute';
 
 // Admin Components
-import adminLogin from '../pages/admin/main/Login';
+import adminLogin from '../pages/admin/categories/CategoryList';
 
 // Student Components
 import Login from '../pages/student/main/Login';
