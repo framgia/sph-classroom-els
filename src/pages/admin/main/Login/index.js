@@ -13,7 +13,7 @@ import AuthApi from '../../../../api/Auth';
 
 const AdminLogin = () => {
   const { control, handleSubmit } = useForm();
-  const [error, setError] = useState('');
+  const [error, setError] = useState({});
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const [submitStatus, setSubmitStatus] = useState(false);
@@ -36,9 +36,9 @@ const AdminLogin = () => {
       window.location = '/admin/categories';
     } catch (error) {
       setSubmitStatus(false);
-      if (error?.response?.data?.error?.error) {
-        setError(error?.response?.data?.error?.error);
-        showAlertDialog(true, error?.response?.data?.error?.error);
+      if (error?.response?.data?.error) {
+        setError(error?.response?.data?.error);
+        showAlertDialog(true, error?.response?.data?.error?.unauthorized || 'Incorrect Credentials');
       } else {
         showAlertDialog(true, 'An error has occurred.');
       }
@@ -75,13 +75,13 @@ const AdminLogin = () => {
                         ref={ref}
                         type="email"
                         placeholder="Enter email here"
-                        isInvalid={error === 'The password you’ve entered is incorrect.' ? '' : error}
+                        isInvalid={!!error?.email || !!error?.unauthorized}
                         required
                         maxLength={50}
                       />
                     )}
                   />
-                  <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{error?.email || error?.unauthorized}</Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className="mb-1" controlId="password">
@@ -100,13 +100,13 @@ const AdminLogin = () => {
                         type="password"
                         name="password"
                         placeholder="Enter password here"
-                        isInvalid={error === 'The email you’ve entered is incorrect.' ? '' : error}
+                        isInvalid={!!error?.password}
                         required
                         maxLength={20}
                       />
                     )}
                   />
-                  <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{error?.password}</Form.Control.Feedback>
                 </Form.Group>
 
                 <center>
