@@ -19,13 +19,11 @@ const Recent = ({ relatedQuiz, quizzes }) => {
 
   const getTotalTimeLimit = () => {
     if (questions != null) {
-      let total = 0;
+      const timeLimit = questions.reduce((prev, current) => {
+        return prev.time_limit + current.time_limit;
+      });
 
-      for (let x = 0; x < questions.length; x++) {
-        total += questions[x].time_limit;
-      }
-
-      return total;
+      return timeLimit;
     }
   };
 
