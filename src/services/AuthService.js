@@ -9,10 +9,14 @@ const authenticated = () => {
   return Cookies.get('access_token') ? true : false;
 };
 
+const isAdmin = () => {
+  return Cookies.get('user_type') === 'admin' ? true : false;
+};
+
 const login = (email, password) => {
   return API.post('/login', {
     email: email,
-    password: password,
+    password: password
   });
 };
 
@@ -23,8 +27,9 @@ const logout = () => {
 const AuthService = {
   getUser,
   authenticated,
+  isAdmin,
   login,
-  logout,
+  logout
 };
 
 export default AuthService;

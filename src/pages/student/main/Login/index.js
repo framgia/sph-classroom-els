@@ -11,9 +11,10 @@ import AuthApi from '../../../../api/Auth';
 
 const Login = () => {
   const { control, handleSubmit } = useForm();
-  const [errors, setErrors] = useState('');
+  const [error, setError] = useState({});
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const [submitStatus, setSubmitStatus] = useState(false);
 
   const showAlertDialog = (isShow, message) => {
     setShowAlert(isShow);
@@ -21,15 +22,21 @@ const Login = () => {
   };
 
   const handleOnSubmit = async ({ email, password }) => {
+    setSubmitStatus(true);
+    setError('');
+    setShowAlert(false);
+
     try {
-      const response = await AuthApi.login({ email, password });
+      const response = await AuthApi.login({ email, password, loginType: 'Student' });
       Cookies.set('access_token', response.data.token);
       Cookies.set('user_id', response.data.user.id);
+      Cookies.set('user_type', 'student');
       window.location = '/';
     } catch (error) {
-      if (error?.response?.data?.error?.error) {
-        setErrors(error?.response?.data?.error?.error);
-        showAlertDialog(true, 'Incorrect Credentials');
+      setSubmitStatus(false);
+      if (error?.response?.data?.error) {
+        setError(error?.response?.data?.error);
+        showAlertDialog(true, error?.response?.data?.error?.unauthorized || 'Incorrect Credentials');
       } else {
         showAlertDialog(true, 'An error has occurred.');
       }
@@ -39,12 +46,7 @@ const Login = () => {
   return (
     <div className="d-flex justify-content-center align-items-center">
       {showAlert && (
-        <Alert
-          className={`${style.alert}`}
-          variant="danger"
-          onClose={() => setShowAlert(false)}
-          dismissible
-        >
+        <Alert className={`${style.alert}`} variant="danger" onClose={() => setShowAlert(false)} dismissible>
           {alertMessage}
         </Alert>
       )}
@@ -72,26 +74,18 @@ const Login = () => {
                         ref={ref}
                         type="email"
                         placeholder="Enter here"
-                        isInvalid={
-                          errors === 'The password you’ve entered is incorrect.'
-                            ? ''
-                            : errors
-                        }
+                        isInvalid={!!error?.email || !!error?.unauthorized}
                         required
                         maxLength={50}
                       />
                     )}
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errors}
-                  </Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{error?.email || error?.unauthorized}</Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className="mb-1" controlId="password">
                   <Form.Label>
-                    <h6 style={{ marginBottom: '0px', marginTop: '10px' }}>
-                      Password
-                    </h6>
+                    <h6 style={{ marginBottom: '0px', marginTop: '10px' }}>Password</h6>
                   </Form.Label>
                   <Controller
                     control={control}
@@ -105,35 +99,25 @@ const Login = () => {
                         type="password"
                         name="password"
                         placeholder="Enter here"
-                        isInvalid={
-                          errors === 'The email you’ve entered is incorrect.'
-                            ? ''
-                            : errors
-                        }
+                        isInvalid={!!error?.password}
                         required
                         maxLength={20}
                       />
                     )}
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {errors}
-                  </Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{error?.password}</Form.Control.Feedback>
                 </Form.Group>
 
                 <p>
                   <LinkContainer to="/reset-password">
-                    <a
-                      className={style.forgotPswrdsize}
-                      style={{ textDecoration: 'none', marginTop: '0px' }}
-                      href="/#"
-                    >
+                    <a className={style.forgotPswrdsize} style={{ textDecoration: 'none', marginTop: '0px' }} href="/#">
                       Forgot password?
                     </a>
                   </LinkContainer>
                 </p>
 
                 <center>
-                  <Button id={style.Btncolor} type="submit">
+                  <Button id={style.Btncolor} type="submit" disabled={submitStatus}>
                     <p style={{ fontSize: '14px' }}>Sign In</p>
                   </Button>
                 </center>
@@ -143,11 +127,7 @@ const Login = () => {
                     <p className={style.sign}>No Account Yet?</p>
                     <h5 className={style.sign}>
                       <LinkContainer to="/registration">
-                        <a
-                          className={style.forgotPswrd}
-                          style={{ textDecoration: 'none' }}
-                          href="/#"
-                        >
+                        <a className={style.forgotPswrd} style={{ textDecoration: 'none' }} href="/#">
                           Sign Up
                         </a>
                       </LinkContainer>

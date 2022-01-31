@@ -5,7 +5,7 @@ const AuthApi = {
     const options = {
       method: 'GET',
       url: '/user',
-      params: { ...params },
+      params: { ...params }
     };
 
     return API.request(options);
@@ -20,21 +20,22 @@ const AuthApi = {
         name: name,
         email: email,
         password: password,
-        password_confirmation: password_confirmation,
-      },
+        password_confirmation: password_confirmation
+      }
     };
 
     return API.request(options);
   },
 
-  login: ({ email, password }) => {
+  login: ({ email, password, loginType }) => {
     const options = {
       method: 'POST',
       url: '/login',
       data: {
         email: email,
         password: password,
-      },
+        loginType: loginType
+      }
     };
 
     return API.request(options);
@@ -44,7 +45,7 @@ const AuthApi = {
     const options = {
       method: 'POST',
       url: '/logout',
-      data: {},
+      data: {}
     };
 
     return API.request(options);
@@ -55,8 +56,8 @@ const AuthApi = {
       method: 'POST',
       url: '/forgot-password',
       data: {
-        email: email,
-      },
+        email: email
+      }
     };
 
     return API.request(options);
@@ -70,12 +71,12 @@ const AuthApi = {
         email: email,
         password: password,
         password_confirmation: password_confirmation,
-        token: token,
-      },
+        token: token
+      }
     };
 
     return API.request(options);
-  },
+  }
 };
 
 export default AuthApi;
