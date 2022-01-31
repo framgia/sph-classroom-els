@@ -1,15 +1,12 @@
 .bg {
   display: flex;
-  justify-content: space-between;
+  column-gap: 50px;
   margin-bottom: 33px;
-  margin-right: 2rem;
-  margin-left: 2rem;
 }
 
 .forContainerBar {
   background-color: #e0eaec;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  width: 340.5px;
   height: 40px;
   color: #48535b;
 }
@@ -46,7 +43,7 @@
 .retake {
   font-size: 16px;
   font-weight: 600;
-  margin-left: 201px;
+  margin-left: 180px;
   color: #5d9098;
 }
 

@@ -31,11 +31,15 @@ const Recent = ({ recentQuizzes, quizzes }) => {
   };
 
   const getHighestScore = () => {
-    const highestScore = quizzes.reduce((prev, current) => {
-      return prev.score > current.score ? prev : current;
-    });
+    if (quizzes?.length > 0) {
+      const highestScore = quizzes.reduce((prev, current) => {
+        return prev.score > current.score ? prev : current;
+      });
 
-    return highestScore.score;
+      return highestScore.score;
+    }
+
+    return 0;
   };
 
   return (
@@ -95,7 +99,7 @@ const Recent = ({ recentQuizzes, quizzes }) => {
 
 Recent.propTypes = {
   recentQuizzes: PropTypes.object,
-  quizzes: PropTypes.array
+  quizzes: PropTypes.array,
 };
 
 export default Recent;
