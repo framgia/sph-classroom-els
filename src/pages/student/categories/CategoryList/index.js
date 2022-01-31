@@ -35,6 +35,11 @@ function CategoryList() {
   const [search, setSearch] = useState(searchVal ? searchVal : '');
   const [searchStatus, setSearchStatus] = useState(false);
 
+  const sortOptions = [
+    'asc',
+    'desc'
+  ];
+
   useEffect(() => {
     history.push(
       `?page=${page}&sortBy=${sortBy}&filter=${filter}&search=${search}`
@@ -160,34 +165,26 @@ function CategoryList() {
             <RiArrowDropDownLine size="20px" />
           </Dropdown.Toggle>
           <Dropdown.Menu className={style.Dropdownmenustyle}>
-            <Dropdown.Item
-              className={
-                sortBy === 'asc'
-                  ? `${style.dropdownItemStyle} ${style.dropdownFocus}`
-                  : style.dropdownItemStyle
-              }
-              onClick={() => {
-                setPage(1);
-                setSortBy('asc');
-              }}
-            >
-              Ascending
-              <BsSortAlphaDown size="18px" />
-            </Dropdown.Item>
-            <Dropdown.Item
-              className={
-                sortBy === 'desc'
-                  ? `${style.dropdownItemStyle} ${style.dropdownFocus}`
-                  : style.dropdownItemStyle
-              }
-              onClick={() => {
-                setPage(1);
-                setSortBy('desc');
-              }}
-            >
-              Descending
-              <BsSortAlphaDownAlt size="18px" />
-            </Dropdown.Item>
+            {
+              sortOptions.map((option, key) => {
+                return (
+                  <Dropdown.Item
+                    key={key}
+                    className={
+                      sortBy === option
+                        ? `${style.dropdownItemStyle} ${style.dropdownFocus}`
+                        : style.dropdownItemStyle
+                    }
+                    onClick={() => {
+                      setPage(1);
+                      setSortBy(option);
+                    }}
+                  >
+                    {renderSort(option)}
+                  </Dropdown.Item>
+                );
+              })
+            }
           </Dropdown.Menu>
         </Dropdown>
 
