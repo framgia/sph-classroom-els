@@ -36,7 +36,6 @@ const Routes = () => {
     <Switch>
       {/* ADMIN ROUTES */}
       <AuthRoute path="/admin/login" exact component={AdminLogin}></AuthRoute>
-
       <AdminRoute path="/admin/categories" exact component={AdminCategoryList}></AdminRoute>
 
       {/* STUDENT ROUTES */}

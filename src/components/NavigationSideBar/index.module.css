@@ -11,10 +11,11 @@
 
 .navbar {
   background-color: #002037;
+  display: inline-flex;
   justify-content: flex-start;
   height: 100vh;
   width: 300px;
-  gap: 42px;
+  margin-right: 160px;
 }
 
 .title {

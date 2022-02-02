@@ -1,0 +1,144 @@
+$light-green: #E0EAEC;
+$light-grayish-blue: #ced4da;
+$gray: rgba(255, 255, 255, 0);
+$light-bluegreen: #9abec1;
+$very-dark-grayish-blue: #48535b;
+$style: none;
+$sizefirst: 24px;
+$sizesec: 18px;
+$sizethrd: 14px;
+$white: #ffffff;
+$cnt: center;
+$flx: flex;
+
+%style-table-head {
+    font-size: $sizesec;
+    font-weight: 700;
+}
+
+%style-table-body {
+    border-bottom-width: 0px !important;
+    font-size: $sizesec;
+    color: #152536;
+    padding-top: 20px;
+}
+
+.Bodystyle{
+    display: inline-flex;
+}
+
+.navMaincard {
+    width: 1288px;
+    height: 700px;
+
+    .navContainer {
+        background: $light-green;
+    }
+}
+
+.title {
+    padding: 33px 0px;
+    font-weight: 500;
+    font-size: $sizefirst;
+    margin: 0px;
+}
+
+.categoryConditionsStyle {
+    display: $flx;
+    gap: 783px;
+}
+
+.searchBar {
+    height: 32px;
+    width: 340.5px;
+    margin: 3px 0px 3px 12px;
+}
+  
+.searchButton {
+    border: $style;
+    background-color: $gray;
+    display: hidden;
+    position: absolute;
+    left: 331px;
+    top: $sizethrd;
+}
+  
+.searchIcon {
+    width: 20px;
+    height: 20px;
+}
+  
+.dropdownStyle {
+    display: $flx;
+    justify-content: end;
+    background-color: $white;
+    border: 1px $light-grayish-blue solid;
+    color: $very-dark-grayish-blue;
+    text-decoration: $style;
+    width: 100px;
+    height: 32px;
+    margin: 3px 0px 3px 12px;
+}
+
+.dropdownText{
+      margin-right: 22px;
+      font-size: $sizethrd;
+}
+  
+.dropdownStyle:hover {
+    color: $very-dark-grayish-blue;
+}
+
+.button {
+    background-color: #c0d5d8;
+    font-size: $sizethrd;
+    color: $very-dark-grayish-blue;
+    float: right;
+    border: $style;
+    margin-right: 13px;
+    border-radius: 2px;
+    padding: 6px 18px;
+}
+  
+.button:hover {
+    color: $white;
+    background-color: $light-bluegreen;
+    border-color: $light-bluegreen;
+}
+
+.cardBodyScroll{
+    overflow-y: scroll;
+    padding: 30px;
+}
+
+#tBodyStyle{
+    @extend %style-table-body;
+}
+
+#tBodyStyle1{
+    @extend %style-table-body;
+    text-align: $cnt;
+}
+
+.firstCol{
+    @extend %style-table-head;
+}
+
+.firstCol1{
+    @extend %style-table-head;
+    text-align: $cnt;
+}
+
+.formatTable{
+    width: 100%;
+    margin-top: 63px;
+}
+
+#paginateStyle{
+    display: inline-block !important;
+}
+
+.designButton{
+    border: $style;
+    background: $style;
+}
