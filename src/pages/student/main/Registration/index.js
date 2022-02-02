@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useToast } from '../../../../hooks/useToast';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useForm, Controller } from 'react-hook-form';
 import { Button, Alert } from 'react-bootstrap';
@@ -14,23 +16,29 @@ const Registration = () => {
   const [errors, setErrors] = useState({});
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const [submitStatus, setSubmitStatus] = useState(false);
+
+  const history = useHistory();
+  const toast = useToast();
 
   const showAlertDialog = (isShow, message) => {
     setShowAlert(isShow);
     setAlertMessage(message);
   };
 
-  const handleOnSubmit = async ({
-    name,
-    email,
-    password,
-    password_confirmation,
-  }) => {
+  const handleOnSubmit = async ({ name, email, password, password_confirmation }) => {
+    toast('Processing', 'Creating your account...');
+    setSubmitStatus(true);
+    setErrors({});
+    setShowAlert(false);
+
     try {
       await AuthApi.register({ name, email, password, password_confirmation });
-      window.location = '/login';
+      toast('Success', 'Successfully Registered.');
+      history.push('/login');
     } catch (error) {
-      console.log(error.response);
+      toast('Error', 'Please enter a valid input to successfully register.');
+      setSubmitStatus(false);
       if (error?.response?.data?.errors) {
         setErrors(error?.response?.data?.errors);
       } else if (error?.response?.data?.error) {
@@ -44,12 +52,7 @@ const Registration = () => {
   return (
     <div>
       {showAlert && (
-        <Alert
-          className="mx-4 my-4"
-          variant="danger"
-          onClose={() => setShowAlert(false)}
-          dismissible
-        >
+        <Alert className="mx-4 my-4" variant="danger" onClose={() => setShowAlert(false)} dismissible>
           {alertMessage}
         </Alert>
       )}
@@ -83,9 +86,7 @@ const Registration = () => {
                     />
                   )}
                 />
-                <Form.Control.Feedback type="invalid">
-                  {errors?.name}
-                </Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">{errors?.name}</Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group className="mb-4" controlId="Email">
@@ -110,9 +111,7 @@ const Registration = () => {
                     />
                   )}
                 />
-                <Form.Control.Feedback type="invalid">
-                  {errors?.email}
-                </Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">{errors?.email}</Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group className="mb-4" controlId="Password">
@@ -138,9 +137,7 @@ const Registration = () => {
                     />
                   )}
                 />
-                <Form.Control.Feedback type="invalid">
-                  {errors?.password}
-                </Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">{errors?.password}</Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group className="mb-4" controlId="PasswordConfirmation">
@@ -166,13 +163,11 @@ const Registration = () => {
                     />
                   )}
                 />
-                <Form.Control.Feedback type="invalid">
-                  {errors?.password_confirmation}
-                </Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">{errors?.password_confirmation}</Form.Control.Feedback>
               </Form.Group>
 
               <center>
-                <Button id={style.Btncolor} type="submit">
+                <Button id={style.Btncolor} type="submit" disabled={submitStatus}>
                   <p style={{ fontSize: '14px' }}>Sign Up</p>
                 </Button>
               </center>
@@ -182,11 +177,7 @@ const Registration = () => {
                   <p className={style.sign}>Already have an Account?</p>
                   <h6 className={style.sign}>
                     <LinkContainer to="/login">
-                      <a
-                        className={style.fotgotPswrd}
-                        style={{ textDecoration: 'none' }}
-                        href="/#"
-                      >
+                      <a className={style.fotgotPswrd} style={{ textDecoration: 'none' }} href="/#">
                         Sign In
                       </a>
                     </LinkContainer>

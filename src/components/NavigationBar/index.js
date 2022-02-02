@@ -1,4 +1,5 @@
 import React from 'react';
+import { useToast } from '../../hooks/useToast';
 import Navbar from 'react-bootstrap/Navbar';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Container, Nav, NavDropdown } from 'react-bootstrap';
@@ -11,9 +12,14 @@ import style from './index.module.css';
 import AuthApi from '../../api/Auth';
 
 const NavigationBar = () => {
+  const toast = useToast();
+
   const onLogout = async () => {
+    toast('Processing', 'Logging out...');
+
     try {
       const response = await AuthApi.logout();
+      toast('Success', 'Successfully Logged Out.');
       console.log(response.data);
       Cookies.remove('access_token');
       window.location = '/login';
@@ -61,33 +67,18 @@ const NavigationBar = () => {
               id={style.dropdownMenu}
               align="end"
             >
-              <LinkContainer
-                exact
-                to="/learnings"
-                activeClassName={style.colorActive}
-              >
+              <LinkContainer exact to="/learnings" activeClassName={style.colorActive}>
                 <NavDropdown.Item href="#" className={style.dropdownItem}>
-                  <IoLibraryOutline />{' '}
-                  <span className={style.dropdownItemName}>Learnings</span>
+                  <IoLibraryOutline /> <span className={style.dropdownItemName}>Learnings</span>
                 </NavDropdown.Item>
               </LinkContainer>
-              <LinkContainer
-                exact
-                to="/profile"
-                activeClassName={style.colorActive}
-              >
+              <LinkContainer exact to="/profile" activeClassName={style.colorActive}>
                 <NavDropdown.Item href="#" className={style.dropdownItem}>
-                  <CgProfile />{' '}
-                  <span className={style.dropdownItemName}>Profile</span>
+                  <CgProfile /> <span className={style.dropdownItemName}>Profile</span>
                 </NavDropdown.Item>
               </LinkContainer>
-              <NavDropdown.Item
-                href="#"
-                className={style.dropdownItem}
-                onClick={onLogout}
-              >
-                <BiLogOutCircle />{' '}
-                <span className={style.dropdownItemName}>Logout</span>
+              <NavDropdown.Item href="#" className={style.dropdownItem} onClick={onLogout}>
+                <BiLogOutCircle /> <span className={style.dropdownItemName}>Logout</span>
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>

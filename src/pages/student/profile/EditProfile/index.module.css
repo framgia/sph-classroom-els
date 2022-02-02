@@ -1,48 +1,55 @@
-.HeadingText{
-    margin-left: 85px;
-    margin-bottom: 10px;
-    font-size: 24px;
-    color: #48535B;
-}
-.changepassbutton{
-    float: right;
-    background-color: #C0D5D8;
-    border-color: #C0D5D8;
-    color: #48535B;
-    width: 85px;
-    height: 32px;
-}
-.changepassbutton:hover{
-    background-color: #9ABEC1;
-    border-color: #9ABEC1;
-    color:white
+.HeadingText {
+  margin-left: 85px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #48535b;
 }
 
-.changepassbutton:focus{
-    background-color: #9ABEC1;
-    border-color: #9ABEC1;
-    color:white;
-    border: none;
+.changepassbutton {
+  float: right;
+  background-color: #c0d5d8;
+  border-color: #c0d5d8;
+  color: #48535b;
+  width: 85px;
+  height: 32px;
 }
 
-.cancel{
-    float: right;
-    margin-top: 6px;
-    margin-right: 11px;
-    text-decoration: none;
-    color: #48535B  ;
-    font-size: 14px;
+.changepassbutton:hover {
+  background-color: #9abec1;
+  border-color: #9abec1;
+  color: white;
 }
 
-.cancel:hover{
-    border-color: #9ABEC1;
-    color:white
+.changepassbutton:focus {
+  background-color: #9abec1;
+  border-color: #9abec1;
+  color: white;
+  border: none;
 }
 
-.allertstyle{
-    position: absolute;
-    top: 180px;
-    left: center;
+.changepassbutton:disabled {
+  background-color: #9abec1b4;
+  border-color: #9abec1b4;
+}
+
+.cancel {
+  float: right;
+  margin-top: 6px;
+  margin-right: 11px;
+  text-decoration: none;
+  color: #48535b;
+  font-size: 14px;
+}
+
+.cancel:hover {
+  border-color: #9abec1;
+  color: white;
+}
+
+.allertstyle {
+  position: absolute;
+  top: 180px;
+  left: center;
 }
 
 .noResults,
@@ -57,12 +64,12 @@
   margin-left: 10px;
 }
 
-.FormGroupStyle{
-    margin-bottom: 0px;
-    color: #48535B;
-    font-size: 16px,
+.FormGroupStyle {
+  margin-bottom: 0px;
+  color: #48535b;
+  font-size: 16px;
 }
 
-.marginForForm{
-    margin-bottom: 20px;
+.marginForForm {
+  margin-bottom: 20px;
 }

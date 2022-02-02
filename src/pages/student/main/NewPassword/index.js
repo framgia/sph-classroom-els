@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useToast } from '../../../../hooks/useToast';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
@@ -13,6 +15,10 @@ const NewPassword = () => {
   const [errors, setErrors] = useState({});
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const [submitStatus, setSubmitStatus] = useState(false);
+
+  const history = useHistory();
+  const toast = useToast();
 
   const queryParams = new URLSearchParams(window.location.search);
   const token = queryParams.get('token');
@@ -23,17 +29,24 @@ const NewPassword = () => {
   };
 
   const handleOnSubmit = async ({ email, password, password_confirmation }) => {
+    toast('Processing', 'Changing your password...');
+    setSubmitStatus(true);
+    setErrors({});
+    setShowAlert(false);
+
     try {
       const values = {
         email: email,
         password: password,
         password_confirmation: password_confirmation,
-        token: token,
+        token: token
       };
       await PasswordResetApi.resetPassword(values);
-      window.location = '/login';
+      toast('Success', 'Successfully Changed Your Password.');
+      history.push('/login');
     } catch (error) {
-      console.log(error.response);
+      toast('Error', 'Please enter a valid input to successfully change your password.');
+      setSubmitStatus(false);
       if (error?.response?.data?.errors) {
         setErrors(error?.response?.data?.errors);
       } else {
@@ -46,27 +59,18 @@ const NewPassword = () => {
     <center>
       <Container>
         {showAlert && (
-          <Alert
-            className={`${style.alertNewPassword}`}
-            variant="danger"
-            onClose={() => setShowAlert(false)}
-            dismissible
-          >
+          <Alert className={`${style.alertNewPassword}`} variant="danger" onClose={() => setShowAlert(false)} dismissible>
             {alertMessage}
           </Alert>
         )}
         <Stack gap={2} className="col-md-5 mx-auto">
-          <Form
-            onSubmit={handleSubmit(handleOnSubmit)}
-            className={style.contentstyle}
-          >
+          <Form onSubmit={handleSubmit(handleOnSubmit)} className={style.contentstyle}>
             <div>
               {' '}
               <h4> Change Password </h4>{' '}
             </div>
             <div align="start" className={style.suggestion}>
-              Create a new password that is at least 6 characters long. A strong
-              password is a combination of letters, numbers, and symbols.
+              Create a new password that is at least 6 characters long. A strong password is a combination of letters, numbers, and symbols.
             </div>
             <div className={style.left} align="start">
               <Form.Group className="mb-3" controlId="NewPassword">
@@ -91,18 +95,14 @@ const NewPassword = () => {
                     />
                   )}
                 />
-                <Form.Control.Feedback type="invalid">
-                  {errors?.email}
-                </Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">{errors?.email}</Form.Control.Feedback>
               </Form.Group>
             </div>
 
             <div className={style.right} align="start">
               <Form.Group className="mb-3" controlId="NewPassword">
                 <Form.Label>
-                  <h6 style={{ marginBottom: '0px', marginTop: '10px' }}>
-                    New Password
-                  </h6>
+                  <h6 style={{ marginBottom: '0px', marginTop: '10px' }}>New Password</h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -122,16 +122,12 @@ const NewPassword = () => {
                     />
                   )}
                 />
-                <Form.Control.Feedback type="invalid">
-                  {errors?.password}
-                </Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">{errors?.password}</Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="ConfirmPassword">
                 <Form.Label>
-                  <h6 style={{ marginBottom: '0px', marginTop: '10px' }}>
-                    Confirm Password
-                  </h6>
+                  <h6 style={{ marginBottom: '0px', marginTop: '10px' }}>Confirm Password</h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -152,13 +148,11 @@ const NewPassword = () => {
                     />
                   )}
                 />
-                <Form.Control.Feedback type="invalid">
-                  {errors?.password_confirmation}
-                </Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">{errors?.password_confirmation}</Form.Control.Feedback>
               </Form.Group>
 
               <center>
-                <Button type="submit" id={style.button}>
+                <Button type="submit" id={style.button} disabled={submitStatus}>
                   <a className={style.textbutton}>Continue</a>
                 </Button>
               </center>

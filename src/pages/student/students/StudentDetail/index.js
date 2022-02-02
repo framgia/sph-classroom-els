@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useToast } from '../../../../hooks/useToast';
 import style from './index.module.css';
 import { BiUser } from 'react-icons/bi';
 import Button from '@restart/ui/esm/Button';
@@ -18,6 +19,8 @@ const StudentDetail = () => {
   const [recentActivities, setRecentActivities] = useState(null);
   const [status, setStatus] = useState(false);
 
+  const toast = useToast();
+
   useEffect(() => {
     StudentApi.getDetails(id).then(({ data }) => {
       setStudentDetails(data.details);
@@ -33,26 +36,32 @@ const StudentDetail = () => {
     });
   }, [status]);
 
-  const onFollowClick = (userid) => {
+  const onFollowClick = (userid, name) => {
+    toast('Processing', `Following ${name}...`);
+
     StudentApi.follow(userid).then(() => {
+      toast('Success', `Successfully Followed ${name}.`);
       setStatus(!status);
     });
   };
 
-  const onUnfollowClick = (userid) => {
+  const onUnfollowClick = (userid, name) => {
+    toast('Processing', `Unfollowing ${name}...`);
+
     StudentApi.unfollow(userid).then(() => {
+      toast('Success', `Successfully Unfollowed ${name}.`);
       setStatus(!status);
     });
   };
 
-  const displayFollowUnfollowButton = (status, userid) => {
+  const displayFollowUnfollowButton = (status, userid, name) => {
     if (status) {
       return (
         <Button
           className={style.followUnfollowButton}
           variant="success"
           onClick={() => {
-            onUnfollowClick(userid);
+            onUnfollowClick(userid, name);
           }}
         >
           Unfollow
@@ -64,7 +73,7 @@ const StudentDetail = () => {
           className={style.followUnfollowButton}
           variant="success"
           onClick={() => {
-            onFollowClick(userid);
+            onFollowClick(userid, name);
           }}
         >
           Follow
@@ -100,23 +109,14 @@ const StudentDetail = () => {
           <div className={style.studentInfo}>
             <div className={style.studentDetailsPosition}>
               <div className={style.studentName}>{studentDetails?.name}</div>
-              <div className={style.totalQuizzesTaken}>
-                {overallQuizTaken} Total Quizzes Taken
-              </div>
-              <div className={style.followersText}>
-                {studentDetails?.followers_count} Followers
-              </div>
-              <div className={style.followingText}>
-                {studentDetails?.followings_count} Following
-              </div>
+              <div className={style.totalQuizzesTaken}>{overallQuizTaken} Total Quizzes Taken</div>
+              <div className={style.followersText}>{studentDetails?.followers_count} Followers</div>
+              <div className={style.followingText}>{studentDetails?.followings_count} Following</div>
             </div>
           </div>
         </div>
         <div className={style.buttonAlignment}>
-          {displayFollowUnfollowButton(
-            studentDetails?.has_followed,
-            studentDetails?.id
-          )}
+          {displayFollowUnfollowButton(studentDetails?.has_followed, studentDetails?.id, studentDetails?.name)}
         </div>
       </div>
       <div className={style.activityTables}>
@@ -136,10 +136,7 @@ const StudentDetail = () => {
                         width="20px"
                         height="20px"
                       />
-                      <span className={style.activityDescription}>
-                        {' '}
-                        Answered {quizTaken.title} Quiz{' '}
-                      </span>{' '}
+                      <span className={style.activityDescription}> Answered {quizTaken.title} Quiz </span>{' '}
                     </h6>
                     <div id={style.timestamp}>
                       <Moment fromNow>{quizTaken.created_at}</Moment>
@@ -165,10 +162,7 @@ const StudentDetail = () => {
                   <div className={style.activityInfoAlignment} key={idx}>
                     <h6 className={style.activityInfo}>
                       {iconDisplay(recentActivity.subject_type)}
-                      <span className={style.activityDescription}>
-                        {' '}
-                        {recentActivity.description}{' '}
-                      </span>{' '}
+                      <span className={style.activityDescription}> {recentActivity.description} </span>{' '}
                     </h6>
                     <div id={style.timestamp}>
                       <Moment fromNow>{recentActivity.created_at}</Moment>{' '}

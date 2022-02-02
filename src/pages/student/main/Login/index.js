@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useToast } from '../../../../hooks/useToast';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useForm, Controller } from 'react-hook-form';
 import { Button, Alert } from 'react-bootstrap';
@@ -16,23 +17,28 @@ const Login = () => {
   const [alertMessage, setAlertMessage] = useState('');
   const [submitStatus, setSubmitStatus] = useState(false);
 
+  const toast = useToast();
+
   const showAlertDialog = (isShow, message) => {
     setShowAlert(isShow);
     setAlertMessage(message);
   };
 
   const handleOnSubmit = async ({ email, password }) => {
+    toast('Processing', 'Logging in...');
     setSubmitStatus(true);
     setError('');
     setShowAlert(false);
 
     try {
       const response = await AuthApi.login({ email, password, loginType: 'Student' });
+      toast('Success', 'Successfully Logged In.');
       Cookies.set('access_token', response.data.token);
       Cookies.set('user_id', response.data.user.id);
       Cookies.set('user_type', 'student');
       window.location = '/';
     } catch (error) {
+      toast('Error', 'Incorrect Credentials, please try again.');
       setSubmitStatus(false);
       if (error?.response?.data?.error) {
         setError(error?.response?.data?.error);
