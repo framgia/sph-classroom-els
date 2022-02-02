@@ -25,13 +25,22 @@ const QuizApi = {
     return API.request(options);
   },
 
-  store: () => { },
+  getRelatedQuizzes: (categoryId, quizId) => {
+    const options = {
+      method: 'GET',
+      url: `/categories/${categoryId}/relatedQuizzes/${quizId}`,
+    };
 
-  update: () => { },
+    return API.request(options);
+  },
 
-  delete: () => { },
+  store: () => {},
 
-  restore: () => { },
+  update: () => {},
+
+  delete: () => {},
+
+  restore: () => {},
 };
 
 export default QuizApi;

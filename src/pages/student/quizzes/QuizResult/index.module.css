@@ -3,12 +3,12 @@
   flex-direction: column;
   display: flex;
   justify-content: center;
-  margin-top: 52px;
+  margin: 52px 300px 20px 300px;
 }
 
 .relatedQuizzes {
   display: flex;
-  justify-content: space-between;
+  column-gap: 50px;
   margin-bottom: 33px;
 }
 
