@@ -52,7 +52,7 @@ const Recent = ({ relatedQuiz, quizzes }) => {
   };
 
   return (
-    <Card className={style.bg}>
+    <Card>
       <Card.Header className={style.forContainerBar}>
         <table style={{ width: '100%' }}>
           <tbody>
@@ -89,9 +89,7 @@ const Recent = ({ relatedQuiz, quizzes }) => {
               </tr>
             </tbody>
           </table>
-          <Link
-            to={`/categories/${relatedQuiz.category_id}/quizzes/${relatedQuiz.id}/questions`}
-          >
+          <Link to={`/categories/${relatedQuiz.category_id}/quizzes/${relatedQuiz.id}/questions`}>
             <p className={style.retake}>Take Quiz</p>
           </Link>
         </div>
@@ -102,7 +100,7 @@ const Recent = ({ relatedQuiz, quizzes }) => {
 
 Recent.propTypes = {
   relatedQuiz: PropTypes.object,
-  quizzes: PropTypes.array,
+  quizzes: PropTypes.array
 };
 
 export default Recent;

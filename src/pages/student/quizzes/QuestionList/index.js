@@ -52,24 +52,19 @@ const QuestionList = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center">
-      <QuestionsContext.Provider
-        value={{ questions, title: quizInfo?.title, quizTakenId }}
-      >
+    <div>
+      <QuestionsContext.Provider value={{ questions, title: quizInfo?.title, quizTakenId }}>
         {showQuestionnaire ? (
           ''
         ) : (
-          <>
+          <div className="d-flex justify-content-center align-items-center">
             <Card className={style.carsize}>
               <Card.Header id={style.topicbg}>
                 <a href={`/categories/${categoryId}/quizzes`}>
                   <BsFillArrowLeftSquareFill className={style.backarrow} />
                 </a>{' '}
                 <div className={style.topic}>
-                  <center className={style.topicspan}>
-                    {' '}
-                    {quizInfo?.title}{' '}
-                  </center>
+                  <center className={style.topicspan}> {quizInfo?.title} </center>
                 </div>
               </Card.Header>
               <Card.Body className={style.wholebodycard}>
@@ -85,13 +80,9 @@ const QuestionList = () => {
                 </div>
               </Card.Body>
             </Card>{' '}
-          </>
+          </div>
         )}
-        {quizTakenId && questions && showQuestionnaire ? (
-          <QuestionAnswer />
-        ) : (
-          ''
-        )}
+        {quizTakenId && questions && showQuestionnaire ? <QuestionAnswer /> : ''}
       </QuestionsContext.Provider>
     </div>
   );
