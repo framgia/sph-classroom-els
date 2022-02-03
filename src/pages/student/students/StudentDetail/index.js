@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useToast } from '../../../../hooks/useToast';
 import style from './index.module.css';
 import { BiUser } from 'react-icons/bi';
 import Button from '@restart/ui/esm/Button';
@@ -18,6 +19,8 @@ const StudentDetail = () => {
   const [recentActivities, setRecentActivities] = useState(null);
   const [status, setStatus] = useState(false);
 
+  const toast = useToast();
+
   useEffect(() => {
     StudentApi.getDetails(id).then(({ data }) => {
       setStudentDetails(data.details);
@@ -33,26 +36,32 @@ const StudentDetail = () => {
     });
   }, [status]);
 
-  const onFollowClick = (userid) => {
+  const onFollowClick = (userid, name) => {
+    toast('Processing', `Following ${name}...`);
+
     StudentApi.follow(userid).then(() => {
+      toast('Success', `Successfully Followed ${name}.`);
       setStatus(!status);
     });
   };
 
-  const onUnfollowClick = (userid) => {
+  const onUnfollowClick = (userid, name) => {
+    toast('Processing', `Unfollowing ${name}...`);
+
     StudentApi.unfollow(userid).then(() => {
+      toast('Success', `Successfully Unfollowed ${name}.`);
       setStatus(!status);
     });
   };
 
-  const displayFollowUnfollowButton = (status, userid) => {
+  const displayFollowUnfollowButton = (status, userid, name) => {
     if (status) {
       return (
         <Button
           className={style.followUnfollowButton}
           variant="success"
           onClick={() => {
-            onUnfollowClick(userid);
+            onUnfollowClick(userid, name);
           }}
         >
           Unfollow
@@ -64,7 +73,7 @@ const StudentDetail = () => {
           className={style.followUnfollowButton}
           variant="success"
           onClick={() => {
-            onFollowClick(userid);
+            onFollowClick(userid, name);
           }}
         >
           Follow
@@ -115,7 +124,8 @@ const StudentDetail = () => {
         <div className={style.buttonAlignment}>
           {displayFollowUnfollowButton(
             studentDetails?.has_followed,
-            studentDetails?.id
+            studentDetails?.id,
+            studentDetails?.name
           )}
         </div>
       </div>

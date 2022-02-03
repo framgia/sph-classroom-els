@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useToast } from '../../../../hooks/useToast';
 import { Card } from 'react-bootstrap';
 import { Dropdown } from 'react-bootstrap';
 import { VscFilter } from 'react-icons/vsc';
@@ -18,6 +19,8 @@ const StudentList = () => {
   const filterVal = queryParams.get('filter');
   const searchVal = queryParams.get('search');
   const history = useHistory();
+
+  const toast = useToast();
 
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perPage, setPerPage] = useState(0);
@@ -62,26 +65,32 @@ const StudentList = () => {
     setPage(1);
   };
 
-  const onFollowClick = (userid) => {
+  const onFollowClick = (userid, name) => {
+    toast('Processing', `Following ${name}...`);
+
     StudentApi.follow(userid).then(() => {
+      toast('Success', `Successfully Followed ${name}.`);
       setStatus(!status);
     });
   };
 
-  const onUnfollowClick = (userid) => {
+  const onUnfollowClick = (userid, name) => {
+    toast('Processing', `Unfollowing ${name}...`);
+
     StudentApi.unfollow(userid).then(() => {
+      toast('Success', `Successfully Unfollowed ${name}.`);
       setStatus(!status);
     });
   };
 
-  const followButton = (status, userid) => {
+  const followButton = (status, userid, name) => {
     if (status) {
       return (
         <Button
           className={style.button}
           variant="primary"
           onClick={() => {
-            onUnfollowClick(userid);
+            onUnfollowClick(userid, name);
           }}
         >
           Unfollow
@@ -93,7 +102,7 @@ const StudentList = () => {
           className={style.button}
           variant="primary"
           onClick={() => {
-            onFollowClick(userid);
+            onFollowClick(userid, name);
           }}
         >
           Follow
@@ -127,7 +136,7 @@ const StudentList = () => {
               </div>
             </div>
 
-            {followButton(student.has_followed, student.id)}
+            {followButton(student.has_followed, student.id, student.name)}
           </div>
         </div>
       );

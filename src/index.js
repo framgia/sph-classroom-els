@@ -9,11 +9,17 @@ import './styles/index.css';
 
 import Routes from './routes';
 
+import { ToastProvider } from './context/ToastContext';
+import Toaster from './components/Toaster';
+
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
       <Router>
-        <Routes />
+        <ToastProvider>
+          <Routes />
+          <Toaster />
+        </ToastProvider>
       </Router>
     </React.StrictMode>
   </Provider>,

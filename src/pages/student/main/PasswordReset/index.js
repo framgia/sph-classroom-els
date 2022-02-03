@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useToast } from '../../../../hooks/useToast';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
@@ -17,17 +18,22 @@ const PasswordReset = () => {
 
   const [error, setError] = useState('');
 
+  const toast = useToast();
+
   const handleOnSubmit = async ({ email }) => {
+    toast('Processing', 'Sending you an email to reset your password...');
     setSubmitStatus(true);
     setError('');
 
     try {
       await PasswordResetApi.forgotPassword({ email });
+      toast('Success', 'An email has been successfully sent. Please check your inbox.');
       setSuccessMessage(
         'An email has been sent. Please click the link provided in the email sent to proceed with the password reset.'
       );
       setStatus(true);
     } catch (error) {
+      toast('Error', 'Incorrect email address, please try again.');
       setError(error.response.data.error);
       setSubmitStatus(false);
     }
@@ -37,10 +43,7 @@ const PasswordReset = () => {
     <center>
       <Container>
         <Stack gap={2} className="col-md-5 mx-auto">
-          <Form
-            onSubmit={handleSubmit(handleOnSubmit)}
-            className={style.contentstyle}
-          >
+          <Form onSubmit={handleSubmit(handleOnSubmit)} className={style.contentstyle}>
             {status === false ? (
               <div className={style.center} align="start">
                 <center>
@@ -74,17 +77,11 @@ const PasswordReset = () => {
                       />
                     )}
                   />
-                  <Form.Control.Feedback type="invalid">
-                    {error}
-                  </Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
                 </Form.Group>
 
                 <center>
-                  <Button
-                    type="submit"
-                    id={style.button}
-                    disabled={submitStatus}
-                  >
+                  <Button type="submit" id={style.button} disabled={submitStatus}>
                     <span className={style.textbutton}>Send Recovery Link</span>
                   </Button>
                 </center>

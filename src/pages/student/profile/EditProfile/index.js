@@ -1,4 +1,6 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { useToast } from '../../../../hooks/useToast';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Card } from 'react-bootstrap';
@@ -21,7 +23,11 @@ const EditProfile = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const [profileName, setprofileName] = useState(null);
+  const [submitStatus, setSubmitStatus] = useState(false);
   const loggedInUserId = Cookies.get('user_id');
+
+  const history = useHistory();
+  const toast = useToast();
 
   useEffect(() => {
     StudentsApi.getDetails(loggedInUserId).then(({ data }) => {
@@ -35,11 +41,17 @@ const EditProfile = () => {
   };
 
   const handleOnSubmit = async ({ name, email, password }) => {
+    toast('Processing', 'Changing your account information...');
+    setSubmitStatus(true);
+    setShowAlert(false);
+
     try {
       await ProfileEditApi.profileEdit({ name, email, password });
-      window.location = '/profile/view';
+      toast('Success', 'Successfully Changed Your Account Information.');
+      history.push('/profile/view');
     } catch (error) {
-      console.log(error.response);
+      toast('Error', error?.response?.data?.error?.error);
+      setSubmitStatus(false);
       if (error?.response?.data?.errors) {
         setErrors(error?.response?.data?.errors);
       } else if (error?.response?.data?.error) {
@@ -70,7 +82,7 @@ const EditProfile = () => {
           width: '430px',
           padding: '50px',
           paddingTop: '20px',
-          backgroundColor: '#E0EAEC',
+          backgroundColor: '#E0EAEC'
         }}
       >
         <div className={style.HeadingText}>Edit Account Info</div>
@@ -80,14 +92,9 @@ const EditProfile = () => {
             <span className={style.loadingWord}>Loading</span>
           </div>
         ) : (
-          <Form
-            onSubmit={handleSubmit(handleOnSubmit)}
-            style={{ marginTop: '20px' }}
-          >
+          <Form onSubmit={handleSubmit(handleOnSubmit)} style={{ marginTop: '20px' }}>
             <Form.Group className={style.marginForForm} controlId="formBasicName">
-              <Form.Label className={style.FormGroupStyle}>
-                Name
-              </Form.Label>
+              <Form.Label className={style.FormGroupStyle}>Name</Form.Label>
               {profileName ? (
                 <Controller
                   control={control}
@@ -116,9 +123,7 @@ const EditProfile = () => {
             </Form.Group>
 
             <Form.Group className={style.marginForForm} controlId="formBasicEmail">
-              <Form.Label className={style.FormGroupStyle}>
-                Email
-              </Form.Label>
+              <Form.Label className={style.FormGroupStyle}>Email</Form.Label>
               {profileName ? (
                 <Controller
                   control={control}
@@ -148,9 +153,7 @@ const EditProfile = () => {
             </Form.Group>
 
             <Form.Group className={style.marginForForm} controlId="formBasicPassword">
-              <Form.Label className={style.FormGroupStyle}>
-                Password
-              </Form.Label>
+              <Form.Label className={style.FormGroupStyle}>Password</Form.Label>
               {profileName ? (
                 <Controller
                   control={control}
@@ -181,8 +184,8 @@ const EditProfile = () => {
             <div className={style.buttonposition}>
               <Button
                 className={style.changepassbutton}
-                variant="primary"
                 type="submit"
+                disabled={submitStatus}
               >
                 Change
               </Button>
@@ -201,7 +204,7 @@ const EditProfile = () => {
 
 EditProfile.propTypes = {
   name: PropTypes.any,
-  email: PropTypes.any,
+  email: PropTypes.any
 };
 
 export default EditProfile;

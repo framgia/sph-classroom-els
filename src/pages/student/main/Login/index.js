@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useToast } from '../../../../hooks/useToast';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useForm, Controller } from 'react-hook-form';
 import { Button, Alert } from 'react-bootstrap';
@@ -16,27 +17,35 @@ const Login = () => {
   const [alertMessage, setAlertMessage] = useState('');
   const [submitStatus, setSubmitStatus] = useState(false);
 
+  const toast = useToast();
+
   const showAlertDialog = (isShow, message) => {
     setShowAlert(isShow);
     setAlertMessage(message);
   };
 
   const handleOnSubmit = async ({ email, password }) => {
+    toast('Processing', 'Logging in...');
     setSubmitStatus(true);
     setError('');
     setShowAlert(false);
 
     try {
       const response = await AuthApi.login({ email, password, loginType: 'Student' });
+      toast('Success', 'Successfully Logged In.');
       Cookies.set('access_token', response.data.token);
       Cookies.set('user_id', response.data.user.id);
       Cookies.set('user_type', 'student');
       window.location = '/';
     } catch (error) {
+      toast('Error', 'Incorrect Credentials, please try again.');
       setSubmitStatus(false);
       if (error?.response?.data?.error) {
         setError(error?.response?.data?.error);
-        showAlertDialog(true, error?.response?.data?.error?.unauthorized || 'Incorrect Credentials');
+        showAlertDialog(
+          true,
+          error?.response?.data?.error?.unauthorized || 'Incorrect Credentials'
+        );
       } else {
         showAlertDialog(true, 'An error has occurred.');
       }
@@ -46,7 +55,12 @@ const Login = () => {
   return (
     <div className="d-flex justify-content-center align-items-center">
       {showAlert && (
-        <Alert className={`${style.alert}`} variant="danger" onClose={() => setShowAlert(false)} dismissible>
+        <Alert
+          className={`${style.alert}`}
+          variant="danger"
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
           {alertMessage}
         </Alert>
       )}
@@ -80,7 +94,9 @@ const Login = () => {
                       />
                     )}
                   />
-                  <Form.Control.Feedback type="invalid">{error?.email || error?.unauthorized}</Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">
+                    {error?.email || error?.unauthorized}
+                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className="mb-1" controlId="password">
@@ -105,12 +121,18 @@ const Login = () => {
                       />
                     )}
                   />
-                  <Form.Control.Feedback type="invalid">{error?.password}</Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">
+                    {error?.password}
+                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <p>
                   <LinkContainer to="/reset-password">
-                    <a className={style.forgotPswrdsize} style={{ textDecoration: 'none', marginTop: '0px' }} href="/#">
+                    <a
+                      className={style.forgotPswrdsize}
+                      style={{ textDecoration: 'none', marginTop: '0px' }}
+                      href="/#"
+                    >
                       Forgot password?
                     </a>
                   </LinkContainer>
@@ -127,7 +149,11 @@ const Login = () => {
                     <p className={style.sign}>No Account Yet?</p>
                     <h5 className={style.sign}>
                       <LinkContainer to="/registration">
-                        <a className={style.forgotPswrd} style={{ textDecoration: 'none' }} href="/#">
+                        <a
+                          className={style.forgotPswrd}
+                          style={{ textDecoration: 'none' }}
+                          href="/#"
+                        >
                           Sign Up
                         </a>
                       </LinkContainer>
