@@ -109,14 +109,24 @@ const StudentDetail = () => {
           <div className={style.studentInfo}>
             <div className={style.studentDetailsPosition}>
               <div className={style.studentName}>{studentDetails?.name}</div>
-              <div className={style.totalQuizzesTaken}>{overallQuizTaken} Total Quizzes Taken</div>
-              <div className={style.followersText}>{studentDetails?.followers_count} Followers</div>
-              <div className={style.followingText}>{studentDetails?.followings_count} Following</div>
+              <div className={style.totalQuizzesTaken}>
+                {overallQuizTaken} Total Quizzes Taken
+              </div>
+              <div className={style.followersText}>
+                {studentDetails?.followers_count} Followers
+              </div>
+              <div className={style.followingText}>
+                {studentDetails?.followings_count} Following
+              </div>
             </div>
           </div>
         </div>
         <div className={style.buttonAlignment}>
-          {displayFollowUnfollowButton(studentDetails?.has_followed, studentDetails?.id, studentDetails?.name)}
+          {displayFollowUnfollowButton(
+            studentDetails?.has_followed,
+            studentDetails?.id,
+            studentDetails?.name
+          )}
         </div>
       </div>
       <div className={style.activityTables}>
@@ -136,7 +146,10 @@ const StudentDetail = () => {
                         width="20px"
                         height="20px"
                       />
-                      <span className={style.activityDescription}> Answered {quizTaken.title} Quiz </span>{' '}
+                      <span className={style.activityDescription}>
+                        {' '}
+                        Answered {quizTaken.title} Quiz{' '}
+                      </span>{' '}
                     </h6>
                     <div id={style.timestamp}>
                       <Moment fromNow>{quizTaken.created_at}</Moment>
@@ -162,7 +175,10 @@ const StudentDetail = () => {
                   <div className={style.activityInfoAlignment} key={idx}>
                     <h6 className={style.activityInfo}>
                       {iconDisplay(recentActivity.subject_type)}
-                      <span className={style.activityDescription}> {recentActivity.description} </span>{' '}
+                      <span className={style.activityDescription}>
+                        {' '}
+                        {recentActivity.description}{' '}
+                      </span>{' '}
                     </h6>
                     <div id={style.timestamp}>
                       <Moment fromNow>{recentActivity.created_at}</Moment>{' '}

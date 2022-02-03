@@ -31,17 +31,25 @@ const StudentList = () => {
   const [search, setSearch] = useState(searchVal ? searchVal : '');
   const [status, setStatus] = useState(false);
   const [filter, setFilter] = useState(filterVal ? filterVal : '');
-  const [listInfo, setListInfo] = useState(filterVal === 'followed' ? 'Followed Students' : filterVal === 'followers' ? 'Followers' : 'All Students');
+  const [listInfo, setListInfo] = useState(
+    filterVal === 'followed'
+      ? 'Followed Students'
+      : filterVal === 'followers'
+        ? 'Followers'
+        : 'All Students'
+  );
 
   useEffect(() => {
     history.push(`?page=${page}&filter=${filter}&search=${search}`);
 
-    StudentApi.getAll({ page: page, filter: filter, search: search }).then(({ data }) => {
-      setStudents(data.data);
-      setPerPage(data.per_page);
-      setTotalItems(data.total);
-      setLastPage(data.last_page);
-    });
+    StudentApi.getAll({ page: page, filter: filter, search: search }).then(
+      ({ data }) => {
+        setStudents(data.data);
+        setPerPage(data.per_page);
+        setTotalItems(data.total);
+        setLastPage(data.last_page);
+      }
+    );
   }, [status, page, filter]);
 
   const onPageChange = (selected) => {
@@ -110,7 +118,11 @@ const StudentList = () => {
           <div className={style.studentInfo}>
             <img
               alt="avatar"
-              src={student.avatar === null ? 'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png' : student.avatar}
+              src={
+                student.avatar === null
+                  ? 'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png'
+                  : student.avatar
+              }
               className={style.avatar}
             />
 
@@ -158,7 +170,11 @@ const StudentList = () => {
               </Button>
             </form>
             <Dropdown>
-              <Dropdown.Toggle className={style.dropdownStyle} variant="link" bsPrefix="none">
+              <Dropdown.Toggle
+                className={style.dropdownStyle}
+                variant="link"
+                bsPrefix="none"
+              >
                 <span className={style.dropdownLabel}>Filter</span>
                 <VscFilter size="20px" />
               </Dropdown.Toggle>
@@ -213,7 +229,13 @@ const StudentList = () => {
               </div>
             ) : (
               <div className={style.pagination}>
-                <Pagination page={page} perPage={perPage} totalItems={totalItems} pageCount={lastPage} onPageChange={onPageChange}></Pagination>
+                <Pagination
+                  page={page}
+                  perPage={perPage}
+                  totalItems={totalItems}
+                  pageCount={lastPage}
+                  onPageChange={onPageChange}
+                ></Pagination>
               </div>
             )}
           </Card.Body>

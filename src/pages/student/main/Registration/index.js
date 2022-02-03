@@ -52,7 +52,12 @@ const Registration = () => {
   return (
     <div>
       {showAlert && (
-        <Alert className="mx-4 my-4" variant="danger" onClose={() => setShowAlert(false)} dismissible>
+        <Alert
+          className="mx-4 my-4"
+          variant="danger"
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
           {alertMessage}
         </Alert>
       )}
@@ -86,7 +91,9 @@ const Registration = () => {
                     />
                   )}
                 />
-                <Form.Control.Feedback type="invalid">{errors?.name}</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  {errors?.name}
+                </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group className="mb-4" controlId="Email">
@@ -111,7 +118,9 @@ const Registration = () => {
                     />
                   )}
                 />
-                <Form.Control.Feedback type="invalid">{errors?.email}</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  {errors?.email}
+                </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group className="mb-4" controlId="Password">
@@ -137,7 +146,9 @@ const Registration = () => {
                     />
                   )}
                 />
-                <Form.Control.Feedback type="invalid">{errors?.password}</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  {errors?.password}
+                </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group className="mb-4" controlId="PasswordConfirmation">
@@ -163,7 +174,9 @@ const Registration = () => {
                     />
                   )}
                 />
-                <Form.Control.Feedback type="invalid">{errors?.password_confirmation}</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  {errors?.password_confirmation}
+                </Form.Control.Feedback>
               </Form.Group>
 
               <center>
@@ -177,7 +190,11 @@ const Registration = () => {
                   <p className={style.sign}>Already have an Account?</p>
                   <h6 className={style.sign}>
                     <LinkContainer to="/login">
-                      <a className={style.fotgotPswrd} style={{ textDecoration: 'none' }} href="/#">
+                      <a
+                        className={style.fotgotPswrd}
+                        style={{ textDecoration: 'none' }}
+                        href="/#"
+                      >
                         Sign In
                       </a>
                     </LinkContainer>

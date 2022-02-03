@@ -42,7 +42,10 @@ const Login = () => {
       setSubmitStatus(false);
       if (error?.response?.data?.error) {
         setError(error?.response?.data?.error);
-        showAlertDialog(true, error?.response?.data?.error?.unauthorized || 'Incorrect Credentials');
+        showAlertDialog(
+          true,
+          error?.response?.data?.error?.unauthorized || 'Incorrect Credentials'
+        );
       } else {
         showAlertDialog(true, 'An error has occurred.');
       }
@@ -52,7 +55,12 @@ const Login = () => {
   return (
     <div className="d-flex justify-content-center align-items-center">
       {showAlert && (
-        <Alert className={`${style.alert}`} variant="danger" onClose={() => setShowAlert(false)} dismissible>
+        <Alert
+          className={`${style.alert}`}
+          variant="danger"
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
           {alertMessage}
         </Alert>
       )}
@@ -86,7 +94,9 @@ const Login = () => {
                       />
                     )}
                   />
-                  <Form.Control.Feedback type="invalid">{error?.email || error?.unauthorized}</Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">
+                    {error?.email || error?.unauthorized}
+                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className="mb-1" controlId="password">
@@ -111,12 +121,18 @@ const Login = () => {
                       />
                     )}
                   />
-                  <Form.Control.Feedback type="invalid">{error?.password}</Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">
+                    {error?.password}
+                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <p>
                   <LinkContainer to="/reset-password">
-                    <a className={style.forgotPswrdsize} style={{ textDecoration: 'none', marginTop: '0px' }} href="/#">
+                    <a
+                      className={style.forgotPswrdsize}
+                      style={{ textDecoration: 'none', marginTop: '0px' }}
+                      href="/#"
+                    >
                       Forgot password?
                     </a>
                   </LinkContainer>
@@ -133,7 +149,11 @@ const Login = () => {
                     <p className={style.sign}>No Account Yet?</p>
                     <h5 className={style.sign}>
                       <LinkContainer to="/registration">
-                        <a className={style.forgotPswrd} style={{ textDecoration: 'none' }} href="/#">
+                        <a
+                          className={style.forgotPswrd}
+                          style={{ textDecoration: 'none' }}
+                          href="/#"
+                        >
                           Sign Up
                         </a>
                       </LinkContainer>

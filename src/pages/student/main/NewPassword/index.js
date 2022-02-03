@@ -45,7 +45,10 @@ const NewPassword = () => {
       toast('Success', 'Successfully Changed Your Password.');
       history.push('/login');
     } catch (error) {
-      toast('Error', 'Please enter a valid input to successfully change your password.');
+      toast(
+        'Error',
+        'Please enter a valid input to successfully change your password.'
+      );
       setSubmitStatus(false);
       if (error?.response?.data?.errors) {
         setErrors(error?.response?.data?.errors);
@@ -59,7 +62,12 @@ const NewPassword = () => {
     <center>
       <Container>
         {showAlert && (
-          <Alert className={`${style.alertNewPassword}`} variant="danger" onClose={() => setShowAlert(false)} dismissible>
+          <Alert
+            className={`${style.alertNewPassword}`}
+            variant="danger"
+            onClose={() => setShowAlert(false)}
+            dismissible
+          >
             {alertMessage}
           </Alert>
         )}
@@ -70,7 +78,8 @@ const NewPassword = () => {
               <h4> Change Password </h4>{' '}
             </div>
             <div align="start" className={style.suggestion}>
-              Create a new password that is at least 6 characters long. A strong password is a combination of letters, numbers, and symbols.
+              Create a new password that is at least 6 characters long. A strong
+              password is a combination of letters, numbers, and symbols.
             </div>
             <div className={style.left} align="start">
               <Form.Group className="mb-3" controlId="NewPassword">
@@ -95,14 +104,18 @@ const NewPassword = () => {
                     />
                   )}
                 />
-                <Form.Control.Feedback type="invalid">{errors?.email}</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  {errors?.email}
+                </Form.Control.Feedback>
               </Form.Group>
             </div>
 
             <div className={style.right} align="start">
               <Form.Group className="mb-3" controlId="NewPassword">
                 <Form.Label>
-                  <h6 style={{ marginBottom: '0px', marginTop: '10px' }}>New Password</h6>
+                  <h6 style={{ marginBottom: '0px', marginTop: '10px' }}>
+                    New Password
+                  </h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -122,12 +135,16 @@ const NewPassword = () => {
                     />
                   )}
                 />
-                <Form.Control.Feedback type="invalid">{errors?.password}</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  {errors?.password}
+                </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="ConfirmPassword">
                 <Form.Label>
-                  <h6 style={{ marginBottom: '0px', marginTop: '10px' }}>Confirm Password</h6>
+                  <h6 style={{ marginBottom: '0px', marginTop: '10px' }}>
+                    Confirm Password
+                  </h6>
                 </Form.Label>
                 <Controller
                   control={control}
@@ -148,7 +165,9 @@ const NewPassword = () => {
                     />
                   )}
                 />
-                <Form.Control.Feedback type="invalid">{errors?.password_confirmation}</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  {errors?.password_confirmation}
+                </Form.Control.Feedback>
               </Form.Group>
 
               <center>

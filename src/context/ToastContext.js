@@ -36,7 +36,9 @@ export function ToastProvider({ children }) {
 
   return (
     <ToastStateContext.Provider value={state}>
-      <ToastDispatchContext.Provider value={dispatch}>{children}</ToastDispatchContext.Provider>
+      <ToastDispatchContext.Provider value={dispatch}>
+        {children}
+      </ToastDispatchContext.Provider>
     </ToastStateContext.Provider>
   );
 }

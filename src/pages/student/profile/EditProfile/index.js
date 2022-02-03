@@ -63,9 +63,17 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center text-align-center" style={{ marginTop: '150px' }}>
+    <div
+      className="d-flex justify-content-center align-items-center text-align-center"
+      style={{ marginTop: '150px' }}
+    >
       {showAlert && (
-        <Alert className={style.allertstyle} variant="danger" onClose={() => setShowAlert(false)} dismissible>
+        <Alert
+          className={style.allertstyle}
+          variant="danger"
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
           {alertMessage}
         </Alert>
       )}
@@ -109,7 +117,9 @@ const EditProfile = () => {
               ) : (
                 ''
               )}
-              <Form.Control.Feedback type="invalid">{errors?.name}</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                {errors?.name}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className={style.marginForForm} controlId="formBasicEmail">
@@ -137,7 +147,9 @@ const EditProfile = () => {
                 ''
               )}
 
-              <Form.Control.Feedback type="invalid">{errors?.email}</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                {errors?.email}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className={style.marginForForm} controlId="formBasicPassword">
@@ -164,11 +176,17 @@ const EditProfile = () => {
               ) : (
                 ''
               )}
-              <Form.Control.Feedback type="invalid">{errors?.password}</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                {errors?.password}
+              </Form.Control.Feedback>
             </Form.Group>
 
             <div className={style.buttonposition}>
-              <Button className={style.changepassbutton} type="submit" disabled={submitStatus}>
+              <Button
+                className={style.changepassbutton}
+                type="submit"
+                disabled={submitStatus}
+              >
                 Change
               </Button>
               <div>

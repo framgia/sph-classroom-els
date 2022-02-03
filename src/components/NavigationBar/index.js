@@ -69,7 +69,8 @@ const NavigationBar = () => {
             >
               <LinkContainer exact to="/learnings" activeClassName={style.colorActive}>
                 <NavDropdown.Item href="#" className={style.dropdownItem}>
-                  <IoLibraryOutline /> <span className={style.dropdownItemName}>Learnings</span>
+                  <IoLibraryOutline />{' '}
+                  <span className={style.dropdownItemName}>Learnings</span>
                 </NavDropdown.Item>
               </LinkContainer>
               <LinkContainer exact to="/profile" activeClassName={style.colorActive}>
@@ -77,8 +78,13 @@ const NavigationBar = () => {
                   <CgProfile /> <span className={style.dropdownItemName}>Profile</span>
                 </NavDropdown.Item>
               </LinkContainer>
-              <NavDropdown.Item href="#" className={style.dropdownItem} onClick={onLogout}>
-                <BiLogOutCircle /> <span className={style.dropdownItemName}>Logout</span>
+              <NavDropdown.Item
+                href="#"
+                className={style.dropdownItem}
+                onClick={onLogout}
+              >
+                <BiLogOutCircle />{' '}
+                <span className={style.dropdownItemName}>Logout</span>
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>

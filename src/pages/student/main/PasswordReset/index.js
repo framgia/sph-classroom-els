@@ -28,7 +28,9 @@ const PasswordReset = () => {
     try {
       await PasswordResetApi.forgotPassword({ email });
       toast('Success', 'An email has been successfully sent. Please check your inbox.');
-      setSuccessMessage('An email has been sent. Please click the link provided in the email sent to proceed with the password reset.');
+      setSuccessMessage(
+        'An email has been sent. Please click the link provided in the email sent to proceed with the password reset.'
+      );
       setStatus(true);
     } catch (error) {
       toast('Error', 'Incorrect email address, please try again.');
@@ -50,7 +52,11 @@ const PasswordReset = () => {
                     <h4>Password Reset</h4>
                   </Form.Label>
                 </center>
-                <Form.Group id={style.Containercentermargin} className="mb-3" controlId="Email">
+                <Form.Group
+                  id={style.Containercentermargin}
+                  className="mb-3"
+                  controlId="Email"
+                >
                   <Form.Label>
                     <h6 className="mb-0">Email</h6>
                   </Form.Label>
