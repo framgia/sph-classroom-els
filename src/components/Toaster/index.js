@@ -11,6 +11,17 @@ const Toaster = () => {
   const { toasts } = useToastStateContext();
   const dispatch = useToastDispatchContext();
 
+  const toastBackgroundColor = (type) => {
+    switch (type) {
+    case 'Success':
+      return 'success';
+    case 'Error':
+      return 'danger';
+    default:
+      return '';
+    }
+  };
+
   return (
     <ToastContainer position="bottom-end" className="mb-5 me-5">
       {toasts &&
@@ -21,13 +32,7 @@ const Toaster = () => {
                 dispatch({ type: 'DELETE_TOAST', id: toast.id });
               }}
               key={idx}
-              bg={
-                toast.type === 'Success'
-                  ? 'success'
-                  : toast.type === 'Error'
-                    ? 'danger'
-                    : ''
-              }
+              bg={toastBackgroundColor(toast.type)}
             >
               <Toast.Header>
                 <strong className="me-auto">{toast.type}</strong>

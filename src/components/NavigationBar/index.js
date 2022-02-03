@@ -18,9 +18,8 @@ const NavigationBar = () => {
     toast('Processing', 'Logging out...');
 
     try {
-      const response = await AuthApi.logout();
+      await AuthApi.logout();
       toast('Success', 'Successfully Logged Out.');
-      console.log(response.data);
       Cookies.remove('access_token');
       window.location = '/login';
     } catch (error) {
