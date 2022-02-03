@@ -146,7 +146,7 @@ const CategoryList = () => {
               totalItems={totalItems}
               pageCount={lastPage}
               onPageChange={onPageChange}
-            ></Pagination>
+            />
           </div>
         </div>
       </div>
