@@ -1,9 +1,5 @@
 .card {
-  align-items: center;
-  flex-direction: column;
-  display: flex;
-  justify-content: center;
-  margin: 52px 300px 20px 300px;
+  margin: 52px 0px 20px 0px;
 }
 
 .relatedQuizzes {
@@ -13,7 +9,7 @@
 }
 
 .relatedQuizzesText {
-  padding: 33px 30px;
+  padding: 33px 0px;
 }
 
 .resultWholeBodyCard {

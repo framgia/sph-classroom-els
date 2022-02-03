@@ -122,7 +122,7 @@ const QuestionAnswer = () => {
   return (
     <div>
       {showResult === false ? (
-        <div>
+        <div className="d-flex justify-content-center align-items-center">
           <Card className={style.cardstyle}>
             <Card.Header id={style.topicbg}>
               <a href={`/categories/${categoryId}/quizzes/${quizId}/questions`}>
@@ -166,9 +166,7 @@ const QuestionAnswer = () => {
                   <Button
                     id={style.nextBtn}
                     onClick={() => {
-                      submitStatus || timesUp
-                        ? ''
-                        : storeLastAnswerAndGetTotalScore();
+                      submitStatus || timesUp ? '' : storeLastAnswerAndGetTotalScore();
 
                       setSubmitStatus(true);
                     }}

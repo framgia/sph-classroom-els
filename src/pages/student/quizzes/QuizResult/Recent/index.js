@@ -52,7 +52,7 @@ const Recent = ({ relatedQuiz, quizzes }) => {
   };
 
   return (
-    <Card className={style.bg}>
+    <Card>
       <Card.Header className={style.forContainerBar}>
         <table style={{ width: '100%' }}>
           <tbody>
@@ -102,7 +102,7 @@ const Recent = ({ relatedQuiz, quizzes }) => {
 
 Recent.propTypes = {
   relatedQuiz: PropTypes.object,
-  quizzes: PropTypes.array,
+  quizzes: PropTypes.array
 };
 
 export default Recent;
