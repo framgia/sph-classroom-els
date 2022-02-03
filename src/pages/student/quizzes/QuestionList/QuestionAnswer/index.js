@@ -140,17 +140,23 @@ const QuestionAnswer = () => {
                   <b className={style.timer}> {time} </b>
                 </Card.Text>
               </Badge>
-              {question && question.question_type.question_type === 'Multiple Choice' ? (
-                <MultipleChoiceType question={question} time={time} getAnswer={getAnswer} getPoint={getPoint}></MultipleChoiceType>
-              ) : (
-                <FillInTheBlankType
-                  question={question}
-                  time={time}
-                  answer={textAnswer}
-                  getAnswer={getAnswer}
-                  getPoint={getPoint}
-                ></FillInTheBlankType>
-              )}
+              {question &&
+              question.question_type.question_type === 'Multiple Choice' ? (
+                  <MultipleChoiceType
+                    question={question}
+                    time={time}
+                    getAnswer={getAnswer}
+                    getPoint={getPoint}
+                  ></MultipleChoiceType>
+                ) : (
+                  <FillInTheBlankType
+                    question={question}
+                    time={time}
+                    answer={textAnswer}
+                    getAnswer={getAnswer}
+                    getPoint={getPoint}
+                  ></FillInTheBlankType>
+                )}
               <hr className={style.spacing} />
               <div className={style.bottomBodyCard}>
                 <p className={style.numItems}>
@@ -179,7 +185,12 @@ const QuestionAnswer = () => {
           <br />
         </div>
       ) : (
-        <QuizResult score={score} total={questions.length} categoryId={parseInt(categoryId)} quizId={parseInt(quizId)} />
+        <QuizResult
+          score={score}
+          total={questions.length}
+          categoryId={parseInt(categoryId)}
+          quizId={parseInt(quizId)}
+        />
       )}
     </div>
   );

@@ -53,7 +53,9 @@ const QuestionList = () => {
 
   return (
     <div>
-      <QuestionsContext.Provider value={{ questions, title: quizInfo?.title, quizTakenId }}>
+      <QuestionsContext.Provider
+        value={{ questions, title: quizInfo?.title, quizTakenId }}
+      >
         {showQuestionnaire ? (
           ''
         ) : (

@@ -89,7 +89,9 @@ const Recent = ({ relatedQuiz, quizzes }) => {
               </tr>
             </tbody>
           </table>
-          <Link to={`/categories/${relatedQuiz.category_id}/quizzes/${relatedQuiz.id}/questions`}>
+          <Link
+            to={`/categories/${relatedQuiz.category_id}/quizzes/${relatedQuiz.id}/questions`}
+          >
             <p className={style.retake}>Take Quiz</p>
           </Link>
         </div>
