@@ -9,6 +9,7 @@ import AuthRoute from './middleware/AuthRoute';
 //Admin Components
 import AdminLogin from '../pages/admin/main/Login';
 import AdminCategoryList from '../pages/admin/categories/CategoryList';
+import AddEditCategory from '../pages/admin/categories/AddEditCategory';
 
 // Student Components
 import Login from '../pages/student/main/Login';
@@ -36,29 +37,110 @@ const Routes = () => {
     <Switch>
       {/* ADMIN ROUTES */}
       <AuthRoute path="/admin/login" exact component={AdminLogin}></AuthRoute>
-      <AdminRoute path="/admin/categories" exact component={AdminCategoryList}></AdminRoute>
+
+      <AdminRoute
+        path="/admin/categories"
+        exact
+        component={AdminCategoryList}
+      ></AdminRoute>
+
+      <AdminRoute
+        path="/admin/add-category"
+        exact
+        component={AddEditCategory}
+      ></AdminRoute>
+
+      <AdminRoute
+        path="/admin/edit-category"
+        exact
+        component={AddEditCategory}
+      ></AdminRoute>
 
       {/* STUDENT ROUTES */}
       <AuthRoute path="/login" exact component={Login}></AuthRoute>
-      <AuthRoute path="/registration" exact component={Registration}></AuthRoute>
-      <AuthRoute path="/reset-password" exact component={forgotPassword}></AuthRoute>
+      <AuthRoute
+        path="/registration"
+        exact
+        component={Registration}
+      ></AuthRoute>
+      <AuthRoute
+        path="/reset-password"
+        exact
+        component={forgotPassword}
+      ></AuthRoute>
       <AuthRoute path="/new-password" exact component={NewPassword}></AuthRoute>
 
-      <StudentRoute path="/profile" exact component={ProfileDetail}></StudentRoute>
+      <StudentRoute
+        path="/profile"
+        exact
+        component={ProfileDetail}
+      ></StudentRoute>
       <StudentRoute path="/" exact component={Dashboard}></StudentRoute>
-      <StudentRoute path="/students" exact component={StudentList}></StudentRoute>
-      <StudentRoute path="/learnings" exact component={LearningList}></StudentRoute>
-      <StudentRoute path="/categories" exact component={CategoryList}></StudentRoute>
-      <StudentRoute path="/categories/:id/sub" exact component={CategoryDetail}></StudentRoute>
-      <StudentRoute path="/categories/:id/quizzes" exact component={QuizList}></StudentRoute>
-      <StudentRoute path="/categories/:categoryId/quizzes/:quizId/questions" exact component={QuestionList}></StudentRoute>
-      <StudentRoute path="/categories/:categoryId/quizzes/:quizId/questions/:questionId/answer" exact component={QuestionAnswer}></StudentRoute>
-      <StudentRoute path="/categories/:id/quizzes/:id/results" exact component={QuizResult}></StudentRoute>
-      <StudentRoute path="/categories/:id/quizzes/:id/results/:id/answer-result" exact component={QuizAnswerResult}></StudentRoute>
-      <StudentRoute path="/profile/change-password" exact component={ChangePassword}></StudentRoute>
-      <StudentRoute path="/profile/view" exact component={ProfileView}></StudentRoute>
-      <StudentRoute path="/profile/edit" exact component={ProfileEdit}></StudentRoute>
-      <StudentRoute path="/students/:id" exact component={StudentDetails}></StudentRoute>
+      <StudentRoute
+        path="/students"
+        exact
+        component={StudentList}
+      ></StudentRoute>
+      <StudentRoute
+        path="/learnings"
+        exact
+        component={LearningList}
+      ></StudentRoute>
+      <StudentRoute
+        path="/categories"
+        exact
+        component={CategoryList}
+      ></StudentRoute>
+      <StudentRoute
+        path="/categories/:id/sub"
+        exact
+        component={CategoryDetail}
+      ></StudentRoute>
+      <StudentRoute
+        path="/categories/:id/quizzes"
+        exact
+        component={QuizList}
+      ></StudentRoute>
+      <StudentRoute
+        path="/categories/:categoryId/quizzes/:quizId/questions"
+        exact
+        component={QuestionList}
+      ></StudentRoute>
+      <StudentRoute
+        path="/categories/:categoryId/quizzes/:quizId/questions/:questionId/answer"
+        exact
+        component={QuestionAnswer}
+      ></StudentRoute>
+      <StudentRoute
+        path="/categories/:id/quizzes/:id/results"
+        exact
+        component={QuizResult}
+      ></StudentRoute>
+      <StudentRoute
+        path="/categories/:id/quizzes/:id/results/:id/answer-result"
+        exact
+        component={QuizAnswerResult}
+      ></StudentRoute>
+      <StudentRoute
+        path="/profile/change-password"
+        exact
+        component={ChangePassword}
+      ></StudentRoute>
+      <StudentRoute
+        path="/profile/view"
+        exact
+        component={ProfileView}
+      ></StudentRoute>
+      <StudentRoute
+        path="/profile/edit"
+        exact
+        component={ProfileEdit}
+      ></StudentRoute>
+      <StudentRoute
+        path="/students/:id"
+        exact
+        component={StudentDetails}
+      ></StudentRoute>
 
       {/* ERROR ROUTES */}
     </Switch>
