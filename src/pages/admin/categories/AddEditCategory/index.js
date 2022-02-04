@@ -2,9 +2,12 @@ import React from 'react';
 import { Card, Button, Form } from 'react-bootstrap';
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 
+import { useLocation } from 'react-router-dom';
+
 import style from './index.module.scss';
 
-const AddEditCategory = ({ location }) => {
+const AddEditCategory = () => {
+  const location = useLocation();
   return (
     <Card style={{ width: '1063px' }} className={style.card}>
       <Card.Header className={style.header}>
