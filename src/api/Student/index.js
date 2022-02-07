@@ -40,7 +40,10 @@ const StudentsApi = {
   getDetails: (id) => {
     const options = {
       method: 'GET',
-      url: `/students/${id}`
+      url: `/students/${id}`,
+      headers: {
+        'Content-Type': 'image/jpeg, image/png, image/jpg, image/gif, image/svg'
+      },
     };
 
     return API.request(options);
