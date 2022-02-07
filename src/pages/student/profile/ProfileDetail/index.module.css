@@ -11,6 +11,14 @@
   background-color: orange;
 }
 
+.avatarforUser{
+  height: 200px;
+  border-radius: 50%;
+  position: absolute;
+  top: 215px;
+  left: 297px
+}
+
 .userEditText {
   float: left;
   display: inline-flex;
@@ -71,9 +79,17 @@
 }
 
 .biUserPosition {
+  border: black 1px solid;
   width: 200px;
-  height: 160px;
-  padding-right: 10px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.biUserPosition1 {
+  border: black 1px solid;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
 }
 
 #timestamp {
@@ -150,4 +166,14 @@
 
 .form-control{
   color: red;
+}
+
+.controllerstyle{
+  border-top: none;
+  padding: 8px
+}
+
+.successMessageContainer {
+  background-color: rgba(255, 255, 255, 0.692);
+  padding: 25px;
 }

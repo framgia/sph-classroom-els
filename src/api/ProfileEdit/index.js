@@ -19,13 +19,15 @@ const ProfileEditApi = {
     const options = {
       method: 'POST',
       url: '/profileEdituploadImage',
-      data: {
-        image: image
+      data: image,
+      headers: {
+        'Content-Type': 'multipart/form-data'
       },
     };
 
     return API.request(options);
   },
+
 
 };
 
