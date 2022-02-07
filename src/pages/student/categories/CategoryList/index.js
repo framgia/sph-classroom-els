@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import { VscFilter } from 'react-icons/vsc';
+import { BsSortAlphaDown, BsSortAlphaDownAlt } from 'react-icons/bs';
 import Spinner from 'react-bootstrap/Spinner';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
@@ -33,6 +34,11 @@ function CategoryList() {
   const [filter, setFilter] = useState(filterVal ? filterVal : '');
   const [search, setSearch] = useState(searchVal ? searchVal : '');
   const [searchStatus, setSearchStatus] = useState(false);
+
+  const sortOptions = [
+    'asc',
+    'desc'
+  ];
 
   useEffect(() => {
     history.push(
@@ -104,6 +110,24 @@ function CategoryList() {
     });
   };
 
+  const renderSort = (sortPos) => {
+    if (sortPos === 'asc') {
+      return (
+        <div className="d-flex">
+          Ascending
+          <BsSortAlphaDown size="20px" />
+        </div>
+      );
+    } else {
+      return (
+        <div className="d-flex">
+          Descending
+          <BsSortAlphaDownAlt size="20px" />
+        </div>
+      );
+    }
+  };
+
   return (
     <div style={{ padding: '0px 196px', color: '#48535B' }}>
       <p className={style.title}>Categories</p>
@@ -136,38 +160,31 @@ function CategoryList() {
             bsPrefix="none"
           >
             <span className={style.dropdownText}>
-              {' '}
-              {sortBy === 'asc' ? 'Ascending' : 'Descending'}{' '}
+              {' '}{renderSort(sortBy)}{' '}
             </span>
             <RiArrowDropDownLine size="20px" />
           </Dropdown.Toggle>
           <Dropdown.Menu className={style.Dropdownmenustyle}>
-            <Dropdown.Item
-              className={
-                sortBy === 'asc'
-                  ? `${style.dropdownItemStyle} ${style.dropdownFocus}`
-                  : style.dropdownItemStyle
-              }
-              onClick={() => {
-                setPage(1);
-                setSortBy('asc');
-              }}
-            >
-              Ascending
-            </Dropdown.Item>
-            <Dropdown.Item
-              className={
-                sortBy === 'desc'
-                  ? `${style.dropdownItemStyle} ${style.dropdownFocus}`
-                  : style.dropdownItemStyle
-              }
-              onClick={() => {
-                setPage(1);
-                setSortBy('desc');
-              }}
-            >
-              Descending
-            </Dropdown.Item>
+            {
+              sortOptions.map((option, key) => {
+                return (
+                  <Dropdown.Item
+                    key={key}
+                    className={
+                      sortBy === option
+                        ? `${style.dropdownItemStyle} ${style.dropdownFocus}`
+                        : style.dropdownItemStyle
+                    }
+                    onClick={() => {
+                      setPage(1);
+                      setSortBy(option);
+                    }}
+                  >
+                    {renderSort(option)}
+                  </Dropdown.Item>
+                );
+              })
+            }
           </Dropdown.Menu>
         </Dropdown>
 
