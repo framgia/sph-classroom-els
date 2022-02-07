@@ -119,9 +119,9 @@ const StudentList = () => {
             <img
               alt="avatar"
               src={
-                student.avatar === null
-                  ? 'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png'
-                  : student.avatar
+                student.avatar
+                  ? student.avatar_url
+                  : 'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png'
               }
               className={style.avatar}
             />
