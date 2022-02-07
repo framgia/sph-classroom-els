@@ -25,6 +25,7 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
     AnswerApi.getAll(quizTakenId).then(({ data }) => {
       setAnswers(data.data);
     });
+
     FriendsScoreApi.getAll(quizId).then(({ data }) => {
       setFriendsScore(data.data);
     });
@@ -103,8 +104,9 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                                     className={style.friendsAvatar}
                                     alt="avatar"
                                     src={
-                                      friendScore.avatar ||
-                                      'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png'
+                                      friendScore.avatar
+                                        ? friendScore.avatar_url
+                                        : 'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png'
                                     }
                                   />
                                 </div>
