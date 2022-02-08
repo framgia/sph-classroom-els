@@ -1,0 +1,37 @@
+@import '../index.module.scss';
+
+.tblData1{
+    @extend %tbleData;
+    height: 0px;
+
+    &:nth-child(1){
+        width: 328px;
+    }
+
+    &:nth-child(2){
+        width: 216px;
+        font-size: $third_text_size;
+        font-weight: $secondary_font_weight;
+    }
+
+    &:nth-child(3){
+        font-size: $third_text_size;
+        font-weight: $secondary_font_weight;
+    }
+
+    &:nth-child(4){
+        width: 581px;
+        font-size: $third_text_size;
+        font-weight: $secondary_font_weight;
+    }
+}
+
+.tbleColum{
+    color: $primary_text;
+    font-weight: $primary_font_weight;
+    font-size: $secondary_text_size;
+
+    &:hover{
+        color: $primary_text;
+    }
+}

@@ -16,7 +16,7 @@ const Recent = ({ recentQuizzes, quizzes }) => {
     QuestionApi.getAll(recentQuizzes.quiz_id).then(({ data }) => {
       setQuestions(data.data);
     });
-  }, []);
+  }, []); 
 
   const getTotalTimeLimit = () => {
     if (questions != null) {

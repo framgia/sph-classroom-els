@@ -25,6 +25,7 @@ import QuestionList from '../pages/student/quizzes/QuestionList';
 import QuestionAnswer from '../pages/student/quizzes/QuestionList/QuestionAnswer';
 import QuizResult from '../pages/student/quizzes/QuizResult';
 import LearningList from '../pages/student/learnings/LearningList';
+import LearningDetail from '../pages/student/learnings/LearningDetail';
 import StudentList from '../pages/student/students/StudentList';
 import QuizAnswerResult from '../pages/student/quizzes/QuizResult/QuizAnswerResult';
 import ChangePassword from '../pages/student/profile/ChangePassword';
@@ -85,6 +86,11 @@ const Routes = () => {
         path="/learnings"
         exact
         component={LearningList}
+      ></StudentRoute>
+      <StudentRoute 
+        path="/learningsdetail" 
+        exact 
+        component={LearningDetail}
       ></StudentRoute>
       <StudentRoute
         path="/categories"
