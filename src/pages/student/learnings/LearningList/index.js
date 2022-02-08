@@ -61,11 +61,11 @@ const LearningList = () => {
                         <CategoryLearned learning={learning} key={idx}/>
                       ); 
                     }) : 
-                      <div>
-                        <center>
-                          <span>No Quizzes Learned</span>
-                        </center>
-                      </div>
+                    <div>
+                      <center>
+                        <span>No Quizzes Learned</span>
+                      </center>
+                    </div>
                   }
                 </tbody>
               </Table>
