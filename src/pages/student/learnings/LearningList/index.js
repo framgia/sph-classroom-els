@@ -55,11 +55,18 @@ const LearningList = () => {
             <div className={style.tableScrol}>
               <Table style={{ width: '100%' }}>
                 <tbody>
-                  {learnings?.map((learning, idx) => { 
-                    return (
-                      <CategoryLearned learning={learning} key={idx}/>
-                    ); 
-                  })}
+                  {learnings?.length > 0 ?
+                    learnings?.map((learning, idx) => { 
+                      return (
+                        <CategoryLearned learning={learning} key={idx}/>
+                      ); 
+                    }) : 
+                      <div>
+                        <center>
+                          <span>No Quizzes Learned</span>
+                        </center>
+                      </div>
+                  }
                 </tbody>
               </Table>
             </div>
