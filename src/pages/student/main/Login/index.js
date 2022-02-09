@@ -32,7 +32,6 @@ const Login = () => {
 
     try {
       const response = await AuthApi.login({ email, password, loginType: 'Student' });
-      toast('Success', 'Successfully Logged In.');
       Cookies.set('access_token', response.data.token);
       Cookies.set('user_id', response.data.user.id);
       Cookies.set('user_type', 'student');

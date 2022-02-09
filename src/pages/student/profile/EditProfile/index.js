@@ -47,8 +47,8 @@ const EditProfile = () => {
 
     try {
       await ProfileEditApi.profileEdit({ name, email, password });
-      toast('Success', 'Successfully Changed Your Account Information.');
       history.push('/profile/view');
+      toast('Success', 'Successfully Changed Your Account Information.');
     } catch (error) {
       toast('Error', error?.response?.data?.error?.error);
       setSubmitStatus(false);

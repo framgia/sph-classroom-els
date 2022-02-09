@@ -19,7 +19,6 @@ const NavigationBar = () => {
 
     try {
       await AuthApi.logout();
-      toast('Success', 'Successfully Logged Out.');
       Cookies.remove('access_token');
       window.location = '/login';
     } catch (error) {
