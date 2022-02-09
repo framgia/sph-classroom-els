@@ -19,11 +19,10 @@ const NavigationSideBar = () => {
 
     try {
       await AuthApi.logout();
-      toast('Success', 'Successfully Logged Out.');
       Cookies.remove('access_token');
       window.location = '/admin/login';
     } catch (error) {
-      console.log(error.response);
+      toast('Error', error);
     }
   };
 
