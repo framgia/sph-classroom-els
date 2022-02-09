@@ -9,19 +9,18 @@
   padding-left: 10%;
 }
 
-.profile {
+.biUserPosition {
   border: black 1px solid;
-  padding: 6px;
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background-color: orange;
 }
 
-.biUserPosition {
+.biUserPosition1 {
+  border: black 1px solid;
   width: 200px;
-  height: 160px;
-  padding-right: 10px;
+  height: 200px;
+  border-radius: 50%;
 }
 
 .studentInfo {
