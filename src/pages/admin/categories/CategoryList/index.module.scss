@@ -102,6 +102,12 @@
 
 #tBodyStyle {
   @extend %style-table-body;
+  color: $color-dark-blue-1;
+
+  &:nth-child(3) {
+    padding-right: 88px;
+    height: 74px;
+  }
 }
 
 #tBodyStyle1 {
@@ -111,11 +117,25 @@
 
 .firstCol {
   @extend %style-table-head;
+
+
+  &:nth-child(1) {
+    width: 88px;
+  }
+
+  &:nth-child(2) {
+    width: 123px;
+  }
+
+  &:nth-child(3) {
+    width: 300px;
+  }
 }
 
 .firstCol1 {
   @extend %style-table-head;
   text-align: center;
+  width: 88px;
 }
 
 .formatTable {

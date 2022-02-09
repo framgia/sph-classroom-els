@@ -1,14 +1,31 @@
 import React from 'react';
+import { useToast } from '../../hooks/useToast';
 import Navbar from 'react-bootstrap/Navbar';
 import { Nav, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { ImUser } from 'react-icons/im';
 import { BiCategory, BiLogOutCircle, BiShieldQuarter } from 'react-icons/bi';
 import { IoIosPeople } from 'react-icons/io';
+import Cookies from 'js-cookie';
 
 import style from './index.module.css';
+import AuthApi from '../../api/Auth';
 
 const NavigationSideBar = () => {
+  const toast = useToast();
+
+  const onLogout = async () => {
+    toast('Processing', 'Logging out...');
+
+    try {
+      await AuthApi.logout();
+      Cookies.remove('access_token');
+      window.location = '/admin/login';
+    } catch (error) {
+      toast('Error', error);
+    }
+  };
+
   return (
     <Navbar className={`${style.navbar} ${style.displayFlexColumn}`}>
       <Navbar.Brand href="#" className={style.title}>
@@ -67,17 +84,17 @@ const NavigationSideBar = () => {
             <span className={style.alignContent}>Admins</span>
           </Nav.Link>
         </LinkContainer>
-        <LinkContainer to="/admin">
-          <Nav.Link
-            href="#"
-            className={`${style.logoutPosition} ${style.navLogout}`}
-          >
-            <BiLogOutCircle className={style.icon} /> <span>Logout</span>
-          </Nav.Link>
-        </LinkContainer>
+        <Nav.Link
+          href="#"
+          className={`${style.logoutPosition} ${style.navLogout}`}
+          onClick={onLogout}
+        >
+          <BiLogOutCircle className={style.icon} />{' '}
+          <span>Logout</span>
+        </Nav.Link> 
       </Container>
     </Navbar>
-  );
+  ); 
 };
 
 export default NavigationSideBar;
