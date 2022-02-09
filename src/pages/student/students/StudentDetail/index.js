@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
 import style from './index.module.css';
-import { BiUser } from 'react-icons/bi';
+// import { BiUser } from 'react-icons/bi';
 import Button from '@restart/ui/esm/Button';
 import Moment from 'react-moment';
 
@@ -18,6 +18,7 @@ const StudentDetail = () => {
   const [quizzesTaken, setQuizzesTaken] = useState(null);
   const [recentActivities, setRecentActivities] = useState(null);
   const [status, setStatus] = useState(false);
+  const [avatar, setAvatar] = useState([]);
 
   const toast = useToast();
 
@@ -25,6 +26,7 @@ const StudentDetail = () => {
     StudentApi.getDetails(id).then(({ data }) => {
       setStudentDetails(data.details);
       setOverallQuizTaken(data.quizzesTaken);
+      setAvatar(data.avatar);
     });
 
     StudentApi.getRecentActivities(id).then(({ data }) => {
@@ -102,8 +104,16 @@ const StudentDetail = () => {
     <center className={style.studentDetailContainer}>
       <div className={style.student}>
         <div className="d-flex">
-          <div className={style.profile}>
-            <BiUser className={style.biUserPosition} />
+          <div>
+            {studentDetails?.avatar ? (
+              <div>
+                <img src={avatar} className={style.biUserPosition} />
+              </div>
+            ) : (
+              <div>
+                <img className={style.biUserPosition1} src="https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"/>
+              </div>
+            )} 
           </div>
 
           <div className={style.studentInfo}>
