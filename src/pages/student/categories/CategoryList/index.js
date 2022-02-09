@@ -55,7 +55,6 @@ function CategoryList() {
       setPerPage(data.per_page);
       setTotalItems(data.total);
       setLastPage(data.last_page);
-      console.log(data.data);
     });
   }, [page, sortBy, filter, searchStatus]);
 
