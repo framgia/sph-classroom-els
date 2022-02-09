@@ -1,4 +1,4 @@
-@import '../../../../styles/globalVariables';
+@use '../../../../styles/variables' as *;
 
 %style-table-head {
   font-size: $font-size-lg;
