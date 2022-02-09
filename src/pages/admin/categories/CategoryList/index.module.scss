@@ -1,24 +1,13 @@
-$light-green: #e0eaec;
-$light-grayish-blue: #ced4da;
-$gray: rgba(255, 255, 255, 0);
-$light-bluegreen: #9abec1;
-$very-dark-grayish-blue: #48535b;
-$style: none;
-$sizefirst: 24px;
-$sizesec: 18px;
-$sizethrd: 14px;
-$white: #ffffff;
-$cnt: center;
-$flx: flex;
+@use '../../../../styles/variables' as *;
 
 %style-table-head {
-  font-size: $sizesec;
-  font-weight: 700;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
 }
 
 %style-table-body {
   border-bottom-width: 0px !important;
-  font-size: $sizesec;
+  font-size: $font-size-base;
   color: #152536;
   padding-top: 20px;
 }
@@ -32,19 +21,19 @@ $flx: flex;
   height: 700px;
 
   .navContainer {
-    background: $light-green;
+    background: $color-light-blue-1;
   }
 }
 
 .title {
   padding: 33px 0px;
-  font-weight: 500;
-  font-size: $sizefirst;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-page-title;
   margin: 0px;
 }
 
 .categoryConditionsStyle {
-  display: $flx;
+  display: flex;
   gap: 783px;
 }
 
@@ -55,12 +44,12 @@ $flx: flex;
 }
 
 .searchButton {
-  border: $style;
-  background-color: $gray;
+  border: none;
+  background-color: $color-white;
   display: hidden;
   position: absolute;
   left: 331px;
-  top: $sizethrd;
+  top: $font-size-md;
 }
 
 .searchIcon {
@@ -69,12 +58,12 @@ $flx: flex;
 }
 
 .dropdownStyle {
-  display: $flx;
+  display: flex;
   justify-content: end;
-  background-color: $white;
-  border: 1px $light-grayish-blue solid;
-  color: $very-dark-grayish-blue;
-  text-decoration: $style;
+  background-color: $color-white;
+  border: 1px $color-white solid;
+  color: $color-dark-blue-1;
+  text-decoration: none;
   width: 100px;
   height: 32px;
   margin: 3px 0px 3px 12px;
@@ -82,28 +71,28 @@ $flx: flex;
 
 .dropdownText {
   margin-right: 22px;
-  font-size: $sizethrd;
+  font-size: $font-size-md;
 }
 
 .dropdownStyle:hover {
-  color: $very-dark-grayish-blue;
+  color: $color-dark-blue-1;
 }
 
 .button {
   background-color: #c0d5d8;
-  font-size: $sizethrd;
-  color: $very-dark-grayish-blue;
+  font-size: $font-size-md;
+  color: $color-dark-blue-1;
   float: right;
-  border: $style;
+  border: none;
   margin-right: 13px;
   border-radius: 2px;
   padding: 6px 18px;
 }
 
 .button:hover {
-  color: $white;
-  background-color: $light-bluegreen;
-  border-color: $light-bluegreen;
+  color: $color-white;
+  background-color: $color-light-blue-3;
+  border-color: $color-light-blue-3;
 }
 
 .cardBodyScroll {
@@ -115,18 +104,9 @@ $flx: flex;
   @extend %style-table-body;
 }
 
-.paragraphEllipsis {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: -webkit-box !important;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  white-space: normal;
-}
-
 #tBodyStyle1 {
   @extend %style-table-body;
-  text-align: $cnt;
+  text-align: center;
 }
 
 .firstCol {
@@ -135,7 +115,7 @@ $flx: flex;
 
 .firstCol1 {
   @extend %style-table-head;
-  text-align: $cnt;
+  text-align: center;
 }
 
 .formatTable {
@@ -148,6 +128,6 @@ $flx: flex;
 }
 
 .designButton {
-  border: $style;
-  background: $style;
+  border: none;
+  background: none;
 }
