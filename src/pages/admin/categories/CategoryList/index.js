@@ -117,7 +117,7 @@ const CategoryList = () => {
                     <td style={{ textAlign: 'right' }}></td>
                   </tr>
                 </tbody>
-              </table>
+              </table> 
             </Card.Header>
             <Card.Body className={style.cardBodyScroll}>
               <Button className={style.button}>Add Category</Button>
