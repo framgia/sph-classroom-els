@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import { Col, Table } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 import Pagination from '../../../../components/Pagination';
 import style from './index.module.scss';
@@ -12,12 +13,17 @@ const LearningList = () => {
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
 
+  const history = useHistory  ();
+
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
 
   useEffect(() => {
+    history.push(
+      `?page=${page}`
+    );
 
     LearningApi.getAll({
       page: page
@@ -33,6 +39,9 @@ const LearningList = () => {
   const onPageChange = (selected) => {
     setPage(selected + 1);
 
+    history.push(
+      `?page=${page}`
+    );
   };
 
   return (

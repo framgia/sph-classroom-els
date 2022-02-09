@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom'; 
 import Card from 'react-bootstrap/Card';
 import { VscFilter } from 'react-icons/vsc';
 import { BsSortAlphaDown, BsSortAlphaDownAlt } from 'react-icons/bs';
@@ -23,7 +23,7 @@ function CategoryList() {
   const filterVal = queryParams.get('filter');
   const searchVal = queryParams.get('search');
 
-  const history = useHistory();
+  const history = useHistory  ();
 
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perPage, setPerPage] = useState(0);
@@ -55,6 +55,7 @@ function CategoryList() {
       setPerPage(data.per_page);
       setTotalItems(data.total);
       setLastPage(data.last_page);
+      console.log(data.data);
     });
   }, [page, sortBy, filter, searchStatus]);
 
