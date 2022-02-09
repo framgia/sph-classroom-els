@@ -100,15 +100,15 @@ const ProfileDetail = () => {
           <div>
             <div>
               <div>
-                {studentDetails?.avatar ? (
-                  <div>
-                    <img src={avatar} className={style.biUserPosition} />
-                  </div>
-                ) : (
-                  <div>
-                    <img className={style.biUserPosition1} src="https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"/>
-                  </div>
-                )} 
+                <img src={
+                  studentDetails?.avatar 
+                    ? avatar 
+                    : 'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png' 
+                } 
+                className={
+                  studentDetails?.avatar 
+                    ? style.biUserPosition 
+                    : style.biUserPosition1} />
               </div>
               <a onClick={() => setModalShow(true)}>
                 <BsPencilSquare
