@@ -44,8 +44,11 @@ const ProfileDetail = () => {
     try {
       await ProfileEditApi.uploadImage(data);
       toast('Success', 'Successfully Upload.');
-      setSuccessMessage('Upload Successful, Please refresh the page');
+      setSuccessMessage('Upload Successful');
       setStatus(true);
+      StudentApi.getDetails(loggedInUserId).then(({ data }) => {
+        setAvatar(data.avatar);
+      });
     } catch (error) {
       if (error?.response?.data?.errors) {
         toast('Error', 'Please enter a valid input to successfully upload.');
@@ -96,15 +99,17 @@ const ProfileDetail = () => {
         <div style={{ display: 'flex' }}>
           <div>
             <div>
-              {studentDetails?.avatar ? (
-                <div>
-                  <img src={avatar} className={style.biUserPosition} />
-                </div>
-              ) : (
-                <div>
-                  <img className={style.biUserPosition1} src="https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"/>
-                </div>
-              )} 
+              <div>
+                {studentDetails?.avatar ? (
+                  <div>
+                    <img src={avatar} className={style.biUserPosition} />
+                  </div>
+                ) : (
+                  <div>
+                    <img className={style.biUserPosition1} src="https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"/>
+                  </div>
+                )} 
+              </div>
               <a onClick={() => setModalShow(true)}>
                 <BsPencilSquare
                   size="20px"
