@@ -1,5 +1,5 @@
 //font-size
-$font-one: 28px;
+$font-one: 24px;
 $font-two: 18px;
 $font-three: 16px;
 
@@ -28,7 +28,7 @@ $inline: inline-flex;
   font-size: $font-one;
   background-color: $light-grayish-blue;
   height: 50px;
-  font-weight: 500;
+  font-weight: 600;
   display: $flex;
   padding: 20px;
   align-items: center;
@@ -43,7 +43,7 @@ $inline: inline-flex;
 .backarrow {
   color: #48535b;
   width: 40px;
-  height: 40px;
+  height: 38px;
 }
 
 .textTitle {
@@ -62,11 +62,13 @@ $inline: inline-flex;
   background-color: $grayish-blue;
   border: $grayish-blue;
   color: $text-color;
+  font-size: $font-three;
   display: flex;
   float: right;
-  height: 28px;
-  width: 120px;
+  height: 38px;
+  width: 140px;
   justify-content: center;
+  align-items: center;
   margin-top: 3rem;
   margin-bottom: 2rem;
 
