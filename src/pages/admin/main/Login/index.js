@@ -34,7 +34,6 @@ const AdminLogin = () => {
 
     try {
       const response = await AuthApi.login({ email, password, loginType: 'Admin' });
-      toast('Success', 'Successfully Logged In.');
       Cookies.set('access_token', response.data.token);
       Cookies.set('admin_id', response.data.user.id);
       Cookies.set('user_type', 'admin');
@@ -44,7 +43,10 @@ const AdminLogin = () => {
       setSubmitStatus(false);
       if (error?.response?.data?.error) {
         setError(error?.response?.data?.error);
-        showAlertDialog(true, error?.response?.data?.error?.unauthorized || 'Incorrect Credentials');
+        showAlertDialog(
+          true,
+          error?.response?.data?.error?.unauthorized || 'Incorrect Credentials'
+        );
       } else {
         showAlertDialog(true, 'An error has occurred.');
       }
@@ -54,7 +56,12 @@ const AdminLogin = () => {
   return (
     <div className="d-flex justify-content-center align-items-center">
       {showAlert && (
-        <Alert className={`${style.alert}`} variant="danger" onClose={() => setShowAlert(false)} dismissible>
+        <Alert
+          className={`${style.alert}`}
+          variant="danger"
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
           {alertMessage}
         </Alert>
       )}
@@ -87,7 +94,9 @@ const AdminLogin = () => {
                       />
                     )}
                   />
-                  <Form.Control.Feedback type="invalid">{error?.email || error?.unauthorized}</Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">
+                    {error?.email || error?.unauthorized}
+                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group className="mb-1" controlId="password">
@@ -112,7 +121,9 @@ const AdminLogin = () => {
                       />
                     )}
                   />
-                  <Form.Control.Feedback type="invalid">{error?.password}</Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">
+                    {error?.password}
+                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <center>
