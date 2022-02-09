@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
 import style from './index.module.css';
-// import { BiUser } from 'react-icons/bi';
 import Button from '@restart/ui/esm/Button';
 import Moment from 'react-moment';
 
@@ -105,15 +104,15 @@ const StudentDetail = () => {
       <div className={style.student}>
         <div className="d-flex">
           <div>
-            {studentDetails?.avatar ? (
-              <div>
-                <img src={avatar} className={style.biUserPosition} />
-              </div>
-            ) : (
-              <div>
-                <img className={style.biUserPosition1} src="https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png"/>
-              </div>
-            )} 
+            <img src={
+              studentDetails?.avatar 
+                ? avatar 
+                : 'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png' 
+            } 
+            className={
+              studentDetails?.avatar 
+                ? style.biUserPosition 
+                : style.biUserPosition1} />
           </div>
 
           <div className={style.studentInfo}>
