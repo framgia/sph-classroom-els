@@ -5,6 +5,7 @@ import { Nav, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { ImUser } from 'react-icons/im';
 import { BiCategory, BiLogOutCircle, BiShieldQuarter } from 'react-icons/bi';
+import { BsCardChecklist } from 'react-icons/bs';
 import { IoIosPeople } from 'react-icons/io';
 import Cookies from 'js-cookie';
 
@@ -67,6 +68,15 @@ const NavigationSideBar = () => {
           </Nav.Link>
         </LinkContainer>
         <LinkContainer
+          to="/admin/quizzes"
+          className={`${style.displayFlexRow} ${style.navItemInfo}`}
+        >
+          <Nav.Link href="#" className={style.navItem}>
+            <BsCardChecklist className={style.icon} />
+            <span className={style.alignContent}>Quizzes</span>
+          </Nav.Link>
+        </LinkContainer>
+        <LinkContainer
           to="/admin"
           className={`${style.displayFlexRow} ${style.navItemInfo}`}
         >
@@ -89,12 +99,11 @@ const NavigationSideBar = () => {
           className={`${style.logoutPosition} ${style.navLogout}`}
           onClick={onLogout}
         >
-          <BiLogOutCircle className={style.icon} />{' '}
-          <span>Logout</span>
-        </Nav.Link> 
+          <BiLogOutCircle className={style.icon} /> <span>Logout</span>
+        </Nav.Link>
       </Container>
     </Navbar>
-  ); 
+  );
 };
 
 export default NavigationSideBar;

@@ -1,0 +1,151 @@
+@use '../../../../styles/variables' as *;
+
+%style-table-head {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+}
+
+%style-table-body {
+  border-bottom-width: 0px !important;
+  font-size: $font-size-base;
+  color: #152536;
+  padding-top: 20px;
+}
+
+.Bodystyle {
+  display: inline-flex;
+}
+
+.navMaincard {
+  width: 1288px;
+  height: 700px;
+
+  .navContainer {
+    background: $color-light-blue-1;
+  }
+}
+
+.title {
+  padding: 33px 0px;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-page-title;
+  margin: 0px;
+}
+
+.categoryConditionsStyle {
+  display: flex;
+}
+
+.searchBar {
+  height: 32px;
+  width: 352px;
+  margin-top: 2px;
+}
+
+.searchButton {
+  border: none;
+  background-color: $color-white;
+  display: hidden;
+  position: absolute;
+  left: 331px;
+  top: $font-size-md;
+}
+
+.searchIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.dropdownStyle {
+  display: flex;
+  justify-content: end;
+  background-color: $color-white;
+  border: 1px $color-white solid;
+  color: $color-dark-blue-1;
+  text-decoration: none;
+  width: 100px;
+  height: 32px;
+  margin: 3px 0px 3px 12px;
+  align-items: center;
+}
+
+.dropdownText {
+  margin-right: 22px;
+  font-size: $font-size-md;
+}
+
+.dropdownStyle:hover {
+  color: $color-dark-blue-1;
+}
+
+.button {
+  background-color: #c0d5d8;
+  font-size: $font-size-md;
+  color: $color-dark-blue-1;
+  float: right;
+  border: none;
+  border-radius: 2px;
+  padding: 6px 18px;
+}
+
+.button:hover {
+  color: $color-white;
+  background-color: $color-light-blue-3;
+  border-color: $color-light-blue-3;
+}
+
+.cardBodyScroll {
+  overflow-y: scroll;
+  padding: 30px;
+}
+
+#classColumn {
+  @extend %style-table-body;
+  color: $color-dark-blue-1;
+
+  &:nth-child(3) {
+    padding-right: 88px;
+    height: 74px;
+  }
+}
+
+#buttonColumn {
+  @extend %style-table-body;
+  text-align: center;
+}
+
+.classCol {
+  @extend %style-table-head;
+
+  &:nth-child(1) {
+    width: 88px;
+  }
+
+  &:nth-child(2) {
+    width: 123px;
+  }
+
+  &:nth-child(3) {
+    width: 300px;
+  }
+}
+
+.buttonCol {
+  @extend %style-table-head;
+  text-align: center;
+  width: 88px;
+}
+
+.formatTable {
+  width: 100%;
+  margin-top: 63px;
+}
+
+#paginateStyle {
+  display: inline-block !important;
+}
+
+.designButton {
+  border: none;
+  background: none;
+}
