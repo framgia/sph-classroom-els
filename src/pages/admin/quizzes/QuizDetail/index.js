@@ -11,6 +11,7 @@ import IdentificationAccordion from './components/IdentificationAccordion';
 import style from './index.module.scss';
 
 const QuizDetail = () => {
+  const quizTitle = 'Web Development Basics';
   const questions = [
     {
       id: 1,
@@ -19,12 +20,12 @@ const QuizDetail = () => {
       time_limit: 10,
       choices: [
         {
-          choice: 'HyperText Markup Language',
-          isCorrect: true
+          choice: 'How To Make Lumpia',
+          isCorrect: false
         },
         {
-          choice: 'How To Make Lugaw',
-          isCorrect: false
+          choice: 'HyperText Markup Language',
+          isCorrect: true
         },
         {
           choice: 'Hyper Tell Mixed Language',
@@ -52,7 +53,7 @@ const QuizDetail = () => {
           <div className="d-flex mb-5">
             <div className="d-flex gap-4 align-items-center">
               <BsFillArrowLeftSquareFill className={style.backButton} />
-              <h1 className={style.quizTitle}>Web Development</h1>
+              <h1 className={style.quizTitle}>{quizTitle}</h1>
             </div>
             <Button className={style.editButton}>Edit Quiz</Button>
           </div>
