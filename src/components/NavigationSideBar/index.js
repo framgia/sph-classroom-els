@@ -67,6 +67,15 @@ const NavigationSideBar = () => {
           </Nav.Link>
         </LinkContainer>
         <LinkContainer
+          to="/admin/quizzes"
+          className={`${style.displayFlexRow} ${style.navItemInfo}`}
+        >
+          <Nav.Link href="#" className={style.navItem}>
+            <BiCategory className={style.icon} />
+            <span className={style.alignContent}>Quizzes</span>
+          </Nav.Link>
+        </LinkContainer>
+        <LinkContainer
           to="/admin"
           className={`${style.displayFlexRow} ${style.navItemInfo}`}
         >
@@ -89,12 +98,11 @@ const NavigationSideBar = () => {
           className={`${style.logoutPosition} ${style.navLogout}`}
           onClick={onLogout}
         >
-          <BiLogOutCircle className={style.icon} />{' '}
-          <span>Logout</span>
-        </Nav.Link> 
+          <BiLogOutCircle className={style.icon} /> <span>Logout</span>
+        </Nav.Link>
       </Container>
     </Navbar>
-  ); 
+  );
 };
 
 export default NavigationSideBar;
