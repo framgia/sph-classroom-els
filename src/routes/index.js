@@ -10,7 +10,11 @@ import AuthRoute from './middleware/AuthRoute';
 import AdminLogin from '../pages/admin/main/Login';
 import AdminCategoryList from '../pages/admin/categories/CategoryList';
 import AddEditCategory from '../pages/admin/categories/AddEditCategory';
+<<<<<<< HEAD
 import AdminQuizList from '../pages/admin/quizzes/QuizList';
+=======
+import AdminQuizDetail from '../pages/admin/quizzes/QuizDetail';
+>>>>>>> bb93bd2 (E_CLASSROOM-250 [UI] Display Quiz Overview)
 
 // Student Components
 import Login from '../pages/student/main/Login';
@@ -59,51 +63,41 @@ const Routes = () => {
       ></AdminRoute>
 
       <AdminRoute
+<<<<<<< HEAD
         path="/admin/quizzes"
         exact
         component={AdminQuizList}
+=======
+        path="/admin/quizzes/:quizId"
+        exact
+        component={AdminQuizDetail}
+>>>>>>> bb93bd2 (E_CLASSROOM-250 [UI] Display Quiz Overview)
       ></AdminRoute>
 
       {/* STUDENT ROUTES */}
       <AuthRoute path="/login" exact component={Login}></AuthRoute>
-      <AuthRoute
-        path="/registration"
-        exact
-        component={Registration}
-      ></AuthRoute>
-      <AuthRoute
-        path="/reset-password"
-        exact
-        component={forgotPassword}
-      ></AuthRoute>
+      <AuthRoute path="/registration" exact component={Registration}></AuthRoute>
+      <AuthRoute path="/reset-password" exact component={forgotPassword}></AuthRoute>
       <AuthRoute path="/new-password" exact component={NewPassword}></AuthRoute>
 
-      <StudentRoute
-        path="/profile"
-        exact
-        component={ProfileDetail}
-      ></StudentRoute>
+      <StudentRoute path="/profile" exact component={ProfileDetail}></StudentRoute>
       <StudentRoute path="/" exact component={Dashboard}></StudentRoute>
+      <StudentRoute path="/students" exact component={StudentList}></StudentRoute>
+      <StudentRoute path="/learnings" exact component={LearningList}></StudentRoute>
       <StudentRoute
-        path="/students"
+        path="/learningsdetail"
         exact
-        component={StudentList}
-      ></StudentRoute>
-      <StudentRoute
-        path="/learnings"
-        exact
+<<<<<<< HEAD
         component={LearningList}
       ></StudentRoute>
       <StudentRoute
         path="/learningsdetail"
         exact
+=======
+>>>>>>> bb93bd2 (E_CLASSROOM-250 [UI] Display Quiz Overview)
         component={LearningDetail}
       ></StudentRoute>
-      <StudentRoute
-        path="/categories"
-        exact
-        component={CategoryList}
-      ></StudentRoute>
+      <StudentRoute path="/categories" exact component={CategoryList}></StudentRoute>
       <StudentRoute
         path="/categories/:id/sub"
         exact
@@ -139,16 +133,8 @@ const Routes = () => {
         exact
         component={ChangePassword}
       ></StudentRoute>
-      <StudentRoute
-        path="/profile/view"
-        exact
-        component={ProfileView}
-      ></StudentRoute>
-      <StudentRoute
-        path="/profile/edit"
-        exact
-        component={ProfileEdit}
-      ></StudentRoute>
+      <StudentRoute path="/profile/view" exact component={ProfileView}></StudentRoute>
+      <StudentRoute path="/profile/edit" exact component={ProfileEdit}></StudentRoute>
       <StudentRoute
         path="/students/:id"
         exact

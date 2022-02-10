@@ -1,0 +1,26 @@
+@use '../../../../../styles/variables' as *;
+
+.wrongMarkIcon {
+  color: $color-incorrect;
+  margin-right: 10px;
+}
+
+.checkMarkIcon {
+  color: $color-correct;
+  margin-right: 10px;
+}
+
+.timeLimit {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  position: absolute;
+  right: 0;
+  margin-right: 50px;
+}
+
+.accordionBody {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $color-light-blue-1;
+}
