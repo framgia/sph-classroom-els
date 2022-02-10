@@ -11,6 +11,7 @@ import AdminLogin from '../pages/admin/main/Login';
 import AdminCategoryList from '../pages/admin/categories/CategoryList';
 import AddEditCategory from '../pages/admin/categories/AddEditCategory';
 import AdminQuizList from '../pages/admin/quizzes/QuizList';
+import AdminQuizDetail from '../pages/admin/quizzes/QuizDetail';
 
 // Student Components
 import Login from '../pages/student/main/Login';
@@ -62,6 +63,12 @@ const Routes = () => {
         path="/admin/quizzes"
         exact
         component={AdminQuizList}
+      ></AdminRoute>
+
+      <AdminRoute
+        path="/admin/quizzes/:quizId"
+        exact
+        component={AdminQuizDetail}
       ></AdminRoute>
 
       {/* STUDENT ROUTES */}
