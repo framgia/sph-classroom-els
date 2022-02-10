@@ -10,6 +10,7 @@ import AuthRoute from './middleware/AuthRoute';
 import AdminLogin from '../pages/admin/main/Login';
 import AdminCategoryList from '../pages/admin/categories/CategoryList';
 import AddEditCategory from '../pages/admin/categories/AddEditCategory';
+import AdminQuizList from '../pages/admin/quizzes/QuizList';
 
 // Student Components
 import Login from '../pages/student/main/Login';
@@ -57,6 +58,12 @@ const Routes = () => {
         component={AddEditCategory}
       ></AdminRoute>
 
+      <AdminRoute
+        path="/admin/quizzes"
+        exact
+        component={AdminQuizList}
+      ></AdminRoute>
+
       {/* STUDENT ROUTES */}
       <AuthRoute path="/login" exact component={Login}></AuthRoute>
       <AuthRoute
@@ -87,9 +94,9 @@ const Routes = () => {
         exact
         component={LearningList}
       ></StudentRoute>
-      <StudentRoute 
-        path="/learningsdetail" 
-        exact 
+      <StudentRoute
+        path="/learningsdetail"
+        exact
         component={LearningDetail}
       ></StudentRoute>
       <StudentRoute
