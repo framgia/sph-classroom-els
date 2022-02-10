@@ -37,7 +37,7 @@ const QuizDetail = () => {
       ]
     },
     {
-      id: 1,
+      id: 2,
       question_type: 'Identification',
       question: 'Tim Berners-Lee invented ______.',
       time_limit: 20,
