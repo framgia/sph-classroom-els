@@ -99,7 +99,7 @@
   padding: 30px;
 }
 
-#tBodyStyle {
+#classColumn {
   @extend %style-table-body;
   color: $color-dark-blue-1;
 
@@ -109,12 +109,12 @@
   }
 }
 
-#tBodyStyle1 {
+#buttonColumn {
   @extend %style-table-body;
   text-align: center;
 }
 
-.firstCol {
+.classCol {
   @extend %style-table-head;
 
   &:nth-child(1) {
@@ -130,7 +130,7 @@
   }
 }
 
-.firstCol1 {
+.buttonCol {
   @extend %style-table-head;
   text-align: center;
   width: 88px;

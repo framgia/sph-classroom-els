@@ -27,15 +27,15 @@ const QuizList = () => {
     return quizzes.map((quiz, idx) => {
       return (
         <tr key={idx}>
-          <td id={style.tBodyStyle}>{quiz.id}</td>
-          <td id={style.tBodyStyle}>{quiz.category}</td>
-          <td id={style.tBodyStyle}>{quiz.name}</td>
-          <td id={style.tBodyStyle1}>
+          <td id={style.classColumn}>{quiz.id}</td>
+          <td id={style.classColumn}>{quiz.category}</td>
+          <td id={style.classColumn}>{quiz.name}</td>
+          <td id={style.buttonColumn}>
             <Button className={style.designButton}>
               <FaRegEdit size="20px" />
             </Button>
           </td>
-          <td id={style.tBodyStyle1}>
+          <td id={style.buttonColumn}>
             <Button className={style.designButton}>
               <RiDeleteBin2Fill size="30px" color="#db7771" />
             </Button>
@@ -103,11 +103,11 @@ const QuizList = () => {
                 <Table className={style.formatTable}>
                   <thead>
                     <tr>
-                      <td className={style.firstCol}>ID</td>
-                      <td className={style.firstCol}>Category</td>
-                      <td className={style.firstCol}>Name</td>
-                      <td className={style.firstCol1}>Edit</td>
-                      <td className={style.firstCol1}>Delete</td>
+                      <td className={style.classCol}>ID</td>
+                      <td className={style.classCol}>Category</td>
+                      <td className={style.classCol}>Name</td>
+                      <td className={style.buttonCol}>Edit</td>
+                      <td className={style.buttonCol}>Delete</td>
                     </tr>
                   </thead>
                   <tbody>{renderList()}</tbody>

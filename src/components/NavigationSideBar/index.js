@@ -5,6 +5,7 @@ import { Nav, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { ImUser } from 'react-icons/im';
 import { BiCategory, BiLogOutCircle, BiShieldQuarter } from 'react-icons/bi';
+import { BsCardChecklist } from 'react-icons/bs';
 import { IoIosPeople } from 'react-icons/io';
 import Cookies from 'js-cookie';
 
@@ -71,7 +72,7 @@ const NavigationSideBar = () => {
           className={`${style.displayFlexRow} ${style.navItemInfo}`}
         >
           <Nav.Link href="#" className={style.navItem}>
-            <BiCategory className={style.icon} />
+            <BsCardChecklist className={style.icon} />
             <span className={style.alignContent}>Quizzes</span>
           </Nav.Link>
         </LinkContainer>
