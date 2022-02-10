@@ -10,11 +10,8 @@ import AuthRoute from './middleware/AuthRoute';
 import AdminLogin from '../pages/admin/main/Login';
 import AdminCategoryList from '../pages/admin/categories/CategoryList';
 import AddEditCategory from '../pages/admin/categories/AddEditCategory';
-<<<<<<< HEAD
 import AdminQuizList from '../pages/admin/quizzes/QuizList';
-=======
 import AdminQuizDetail from '../pages/admin/quizzes/QuizDetail';
->>>>>>> bb93bd2 (E_CLASSROOM-250 [UI] Display Quiz Overview)
 
 // Student Components
 import Login from '../pages/student/main/Login';
@@ -63,15 +60,15 @@ const Routes = () => {
       ></AdminRoute>
 
       <AdminRoute
-<<<<<<< HEAD
         path="/admin/quizzes"
         exact
         component={AdminQuizList}
-=======
+      ></AdminRoute>
+
+      <AdminRoute
         path="/admin/quizzes/:quizId"
         exact
         component={AdminQuizDetail}
->>>>>>> bb93bd2 (E_CLASSROOM-250 [UI] Display Quiz Overview)
       ></AdminRoute>
 
       {/* STUDENT ROUTES */}
@@ -107,14 +104,6 @@ const Routes = () => {
       <StudentRoute
         path="/learningsdetail"
         exact
-<<<<<<< HEAD
-        component={LearningList}
-      ></StudentRoute>
-      <StudentRoute
-        path="/learningsdetail"
-        exact
-=======
->>>>>>> bb93bd2 (E_CLASSROOM-250 [UI] Display Quiz Overview)
         component={LearningDetail}
       ></StudentRoute>
       <StudentRoute
