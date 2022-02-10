@@ -76,14 +76,34 @@ const Routes = () => {
 
       {/* STUDENT ROUTES */}
       <AuthRoute path="/login" exact component={Login}></AuthRoute>
-      <AuthRoute path="/registration" exact component={Registration}></AuthRoute>
-      <AuthRoute path="/reset-password" exact component={forgotPassword}></AuthRoute>
+      <AuthRoute
+        path="/registration"
+        exact
+        component={Registration}
+      ></AuthRoute>
+      <AuthRoute
+        path="/reset-password"
+        exact
+        component={forgotPassword}
+      ></AuthRoute>
       <AuthRoute path="/new-password" exact component={NewPassword}></AuthRoute>
 
-      <StudentRoute path="/profile" exact component={ProfileDetail}></StudentRoute>
+      <StudentRoute
+        path="/profile"
+        exact
+        component={ProfileDetail}
+      ></StudentRoute>
       <StudentRoute path="/" exact component={Dashboard}></StudentRoute>
-      <StudentRoute path="/students" exact component={StudentList}></StudentRoute>
-      <StudentRoute path="/learnings" exact component={LearningList}></StudentRoute>
+      <StudentRoute
+        path="/students"
+        exact
+        component={StudentList}
+      ></StudentRoute>
+      <StudentRoute
+        path="/learnings"
+        exact
+        component={LearningList}
+      ></StudentRoute>
       <StudentRoute
         path="/learningsdetail"
         exact
@@ -97,7 +117,11 @@ const Routes = () => {
 >>>>>>> bb93bd2 (E_CLASSROOM-250 [UI] Display Quiz Overview)
         component={LearningDetail}
       ></StudentRoute>
-      <StudentRoute path="/categories" exact component={CategoryList}></StudentRoute>
+      <StudentRoute
+        path="/categories"
+        exact
+        component={CategoryList}
+      ></StudentRoute>
       <StudentRoute
         path="/categories/:id/sub"
         exact
@@ -133,8 +157,16 @@ const Routes = () => {
         exact
         component={ChangePassword}
       ></StudentRoute>
-      <StudentRoute path="/profile/view" exact component={ProfileView}></StudentRoute>
-      <StudentRoute path="/profile/edit" exact component={ProfileEdit}></StudentRoute>
+      <StudentRoute
+        path="/profile/view"
+        exact
+        component={ProfileView}
+      ></StudentRoute>
+      <StudentRoute
+        path="/profile/edit"
+        exact
+        component={ProfileEdit}
+      ></StudentRoute>
       <StudentRoute
         path="/students/:id"
         exact
