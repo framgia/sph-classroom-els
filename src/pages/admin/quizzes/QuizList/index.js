@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import { Col, Table } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from '@restart/ui/esm/Button';
@@ -10,26 +11,54 @@ import { BiSearch } from 'react-icons/bi';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { BsSortAlphaDown } from 'react-icons/bs';
-import Pagination from '../../../../components/Pagination';
 
+import Pagination from '../../../../components/Pagination';
 import style from './index.module.scss';
+import QuizApi from '../../../../api/Quiz';
 
 const QuizList = () => {
-  const quizzes = [
-    {
-      category: 'Web Development',
-      name: 'The Basics of Web Development',
-      id: '1',
-    },
-  ];
+  const [adminquiz, setAdminquiz] = useState(null);
+  const queryParams = new URLSearchParams(window.location.search);
+  const pageNum = queryParams.get('page');
+
+  const history = useHistory  ();
+
+  const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
+  const [perPage, setPerPage] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
+  const [lastPage, setLastPage] = useState(0);
+
+  useEffect(() => {
+    history.push(
+      `?page=${page}`
+    );
+
+    QuizApi.adminQuiz({
+      page: page
+    }).then(({ data }) => {
+      setAdminquiz(data.data);
+      setPerPage(data.per_page);
+      setTotalItems(data.total);
+      setLastPage(data.last_page);
+    });
+
+  }, [page]);
+
+  const onPageChange = (selected) => {
+    setPage(selected + 1);
+
+    history.push(
+      `?page=${page}`
+    );
+  };
 
   const renderList = () => {
-    return quizzes.map((quiz, idx) => {
+    return adminquiz?.map((quiz, idx) => {
       return (
         <tr key={idx}>
           <td id={style.classColumn}>{quiz.id}</td>
-          <td id={style.classColumn}>{quiz.category}</td>
           <td id={style.classColumn}>{quiz.name}</td>
+          <td id={style.classColumn}>{quiz.title}</td>
           <td id={style.buttonColumn}>
             <Button className={style.designButton}>
               <FaRegEdit size="20px" />
@@ -117,9 +146,14 @@ const QuizList = () => {
           </Card>
         </Col>
         <div className="pt-4">
-          <p id={style.paginateStyle}>1 - 24 of 36</p>
           <div id={style.paginateStyle}>
-            <Pagination></Pagination>
+            <Pagination
+              page={page}
+              perPage={perPage}
+              totalItems={totalItems}
+              pageCount={lastPage}
+              onPageChange={onPageChange}
+            ></Pagination>
           </div>
         </div>
       </div>

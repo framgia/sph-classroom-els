@@ -34,6 +34,18 @@ const QuizApi = {
     return API.request(options);
   },
 
+  adminQuiz: ({ ...params }) => {
+    const options = {
+      method: 'GET',
+      url: '/admin_quizzes',
+      params: {
+        ...params,
+      },
+    };
+
+    return API.request(options);
+  },
+
   store: () => {},
 
   update: () => {},
