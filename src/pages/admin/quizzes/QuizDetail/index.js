@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Accordion from 'react-bootstrap/Accordion';
-import Button from 'react-bootstrap/Button';
 
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 
@@ -11,7 +11,11 @@ import IdentificationAccordion from './components/IdentificationAccordion';
 import style from './index.module.scss';
 
 const QuizDetail = () => {
-  const quizTitle = 'Web Development Basics';
+  const quiz = {
+    id: 1,
+    title: 'Web Development Basics'
+  };
+
   const questions = [
     {
       id: 1,
@@ -53,9 +57,14 @@ const QuizDetail = () => {
           <div className="d-flex mb-5">
             <div className="d-flex gap-4 align-items-center">
               <BsFillArrowLeftSquareFill className={style.backButton} />
-              <h1 className={style.quizTitle}>{quizTitle}</h1>
+              <h1 className={style.quizTitle}>{quiz.title}</h1>
             </div>
-            <Button className={style.editButton}>Edit Quiz</Button>
+            <Link
+              to={`/admin/quizzes/${quiz.id}/edit`}
+              className={style.editButton}
+            >
+              Edit Quiz
+            </Link>
           </div>
           <h4 className={style.questionText}>Questions ({questions.length})</h4>
           {questions &&

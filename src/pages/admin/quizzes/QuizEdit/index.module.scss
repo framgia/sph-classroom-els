@@ -1,0 +1,139 @@
+@use '../../../../styles/variables' as *;
+
+%button-colors {
+  background: $color-light-blue-2;
+  border-color: $color-light-blue-3;
+  border-radius: 2px;
+  color: $color-dark-blue-1;
+
+  &:hover,
+  &:focus {
+    color: $color-white;
+    border-color: $color-dark-blue-2;
+    background-color: $color-dark-blue-3;
+  }
+}
+
+%column-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.quizEditContainer {
+  background: $color-white;
+  border-radius: 2px;
+  border: 1px solid $color-light-blue-1;
+  color: $color-dark-blue-1;
+
+  width: 926px;
+  height: 670px;
+  padding: 50px;
+
+  position: absolute;
+  left: 650px;
+  top: 130px;
+
+  @extend %column-flex;
+}
+
+.quizTitle {
+  font-weight: $font-weight-bold;
+  font-size: $font-size-page-title;
+  margin-bottom: 10px;
+}
+
+.quizCategory {
+  color: rgb(129, 139, 144);
+  font-size: $font-size-md;
+  margin-bottom: 50px;
+}
+
+.quizEditSidebar {
+  gap: 15px;
+  width: 176px;
+  height: 375px;
+  margin-right: 20px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+  overflow: scroll;
+  overflow-x: hidden;
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: $color-white;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $color-light-blue-1;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: $color-light-blue-2;
+  }
+
+  @extend %column-flex;
+}
+
+.navLinkItem {
+  width: 150px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+
+  &:focus,
+  &:active {
+    box-shadow: inset 0px 3px 4px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.questionNumber {
+  font-size: $font-size-sm;
+  color: rgba(154, 165, 172, 1);
+}
+
+.question {
+  font-size: $font-size-md;
+  color: #48535b;
+
+  display: -webkit-box;
+  max-width: 200px;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sidebarButtons {
+  width: 151px;
+  height: 32px;
+
+  @extend %button-colors;
+}
+
+.confirmationButtons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 25px;
+  margin-top: auto;
+}
+
+.cancelButton {
+  color: $color-dark-blue-1;
+
+  &:hover {
+    color: $color-dark-blue-3;
+  }
+}
+
+.saveButton {
+  width: 120px;
+
+  @extend %button-colors;
+}
