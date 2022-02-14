@@ -20,7 +20,7 @@ const IdentificationAccordion = ({ questionNumber, question }) => {
         </Accordion.Header>
         <Accordion.Body className={style.accordionBody}>
           <BsFillCheckCircleFill className={style.checkMarkIcon} />
-          {question.correct_answer}
+          {question.text_answer}
         </Accordion.Body>
       </Accordion.Item>
     </Fragment>

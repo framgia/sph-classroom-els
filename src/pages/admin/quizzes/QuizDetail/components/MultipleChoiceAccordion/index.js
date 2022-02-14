@@ -1,12 +1,23 @@
 import React, { Fragment } from 'react';
 import { PropTypes } from 'prop-types';
 import Accordion from 'react-bootstrap/Accordion';
+import { FcOk } from 'react-icons/fc';
 
 import { BsClockHistory, BsFillCheckCircleFill, BsXCircleFill } from 'react-icons/bs';
 
 import style from '../../components/index.module.scss';
 
 const MultipleChoiceAccordion = ({ questionNumber, question }) => {
+
+  const correctAnswer = (item) => {
+    if (item?.is_correct) {
+      return (
+        <FcOk
+          className={style.sizeOfAvatarInResult1}
+        />
+      );
+    }
+  };
   return (
     <Fragment>
       <Accordion.Item eventKey="0">
@@ -21,7 +32,7 @@ const MultipleChoiceAccordion = ({ questionNumber, question }) => {
         {question.choices.map((choice, idx) => {
           return (
             <Accordion.Body key={idx} className={style.accordionBody}>
-              {choice.isCorrect ? (
+              {correctAnswer (choice) ? (
                 <BsFillCheckCircleFill className={style.checkMarkIcon} />
               ) : (
                 <BsXCircleFill className={style.wrongMarkIcon} />
