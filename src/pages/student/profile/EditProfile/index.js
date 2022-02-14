@@ -44,18 +44,31 @@ const EditProfile = () => {
     toast('Processing', 'Changing your account information...');
     setSubmitStatus(true);
     setShowAlert(false);
+    setErrors({});
 
     try {
       await ProfileEditApi.profileEdit({ name, email, password });
       history.push('/profile/view');
       toast('Success', 'Successfully Changed Your Account Information.');
     } catch (error) {
-      toast('Error', error?.response?.data?.error?.error);
+      toast(
+        'Error',
+        error?.response?.data?.error?.password ||
+          error?.response?.data?.errors?.email
+      );
+
       setSubmitStatus(false);
-      if (error?.response?.data?.errors) {
-        setErrors(error?.response?.data?.errors);
-      } else if (error?.response?.data?.error) {
-        showAlertDialog(true, 'The password you have entered is incorrect.');
+
+      if (error?.response?.data?.error || error?.response?.data?.errors) {
+        setErrors(
+          error?.response?.data?.error || error?.response?.data?.errors
+        );
+
+        showAlertDialog(
+          true,
+          error?.response?.data?.error?.password ||
+            error?.response?.data?.errors?.email
+        );
       } else {
         showAlertDialog(true, 'An error has occurred.');
       }
@@ -92,8 +105,14 @@ const EditProfile = () => {
             <span className={style.loadingWord}>Loading</span>
           </div>
         ) : (
-          <Form onSubmit={handleSubmit(handleOnSubmit)} style={{ marginTop: '20px' }}>
-            <Form.Group className={style.marginForForm} controlId="formBasicName">
+          <Form
+            onSubmit={handleSubmit(handleOnSubmit)}
+            style={{ marginTop: '20px' }}
+          >
+            <Form.Group
+              className={style.marginForForm}
+              controlId="formBasicName"
+            >
               <Form.Label className={style.FormGroupStyle}>Name</Form.Label>
               {profileName ? (
                 <Controller
@@ -122,7 +141,10 @@ const EditProfile = () => {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className={style.marginForForm} controlId="formBasicEmail">
+            <Form.Group
+              className={style.marginForForm}
+              controlId="formBasicEmail"
+            >
               <Form.Label className={style.FormGroupStyle}>Email</Form.Label>
               {profileName ? (
                 <Controller
@@ -152,7 +174,10 @@ const EditProfile = () => {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className={style.marginForForm} controlId="formBasicPassword">
+            <Form.Group
+              className={style.marginForForm}
+              controlId="formBasicPassword"
+            >
               <Form.Label className={style.FormGroupStyle}>Password</Form.Label>
               {profileName ? (
                 <Controller

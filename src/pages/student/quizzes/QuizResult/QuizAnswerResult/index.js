@@ -21,6 +21,7 @@ const QuizAnswerResult = ({
   const { questions, title } = useContext(QuestionsContext);
   const [question, setQuestion] = useState(questions[page - 1]);
   const [answer, setAnswer] = useState(answers[page - 1]);
+  const passingScore = total / 2;
 
   const handlePrevButtonClick = () => {
     if (page <= 1) return;
@@ -60,7 +61,13 @@ const QuizAnswerResult = ({
             <div className={style.scorebg1}>Score</div>
             <Card.Text className={style.score1}>
               <span className={style.timeleftspace1}>
-                <b className={style.timer1}>{score}</b>
+                <b
+                  className={
+                    score < passingScore ? `${style.fail}` : `${style.pass}`
+                  }
+                >
+                  {score}
+                </b>
               </span>
               <b>/ {total}</b>
             </Card.Text>
