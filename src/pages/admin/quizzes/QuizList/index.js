@@ -11,6 +11,7 @@ import { BiSearch } from 'react-icons/bi';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { BsSortAlphaDown } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 import Pagination from '../../../../components/Pagination';
 import style from './index.module.scss';
@@ -60,9 +61,13 @@ const QuizList = () => {
           <td id={style.classColumn}>{quiz.name}</td>
           <td id={style.classColumn}>{quiz.title}</td>
           <td id={style.buttonColumn}>
-            <Button className={style.designButton}>
-              <FaRegEdit size="20px" />
-            </Button>
+            <Link
+              to={`/admin/quizzes/${quiz.id}`}
+            >
+              <Button className={style.designButton}>
+                <FaRegEdit size="20px" />
+              </Button>
+            </Link>
           </td>
           <td id={style.buttonColumn}>
             <Button className={style.designButton}>
