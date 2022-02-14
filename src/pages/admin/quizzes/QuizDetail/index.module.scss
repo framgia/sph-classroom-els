@@ -54,8 +54,13 @@
 
 .editButton {
   width: 120px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-left: auto;
   color: $color-dark-blue-1;
+  border-radius: 2px;
   border-color: $color-light-blue-2;
   background-color: $color-light-blue-2;
 
