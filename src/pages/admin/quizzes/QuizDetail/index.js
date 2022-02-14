@@ -36,7 +36,11 @@ const QuizDetail = () => {
         <div className="flex-column">
           <div className="d-flex mb-5">
             <div className="d-flex gap-4 align-items-center">
-              <BsFillArrowLeftSquareFill className={style.backButton} />
+              <Link
+                to={'/admin/quizzes'}
+              >
+                <BsFillArrowLeftSquareFill className={style.backButton} />
+              </Link>
               <h1 className={style.quizTitle}>{quizInfo?.title}</h1>
             </div>
             <Link
