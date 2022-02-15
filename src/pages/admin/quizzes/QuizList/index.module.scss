@@ -22,6 +22,7 @@
 
   .navContainer {
     background: $color-light-blue-1;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 }
 
@@ -148,4 +149,35 @@
 .designButton {
   border: none;
   background: none;
+}
+
+#forForm{
+  height: 436px;
+  border-radius: 0px;
+  padding: 30px 20px;
+}
+
+#modalHeader{
+  background-color: $color-light-blue-1;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  height: 50px;
+  display: block;
+}
+
+.modalTitle{
+  text-align: center;
+}
+
+.modalFooter{
+  border: 0px;
+}
+
+.cancelTag{
+  cursor: pointer;
+  color: $color-dark-blue-1;
+  font-size: 14px;
+
+  &:hover{
+    color: $color-dark-blue-1;
+  }
 }

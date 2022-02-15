@@ -46,6 +46,22 @@ const QuizApi = {
     return API.request(options);
   },
 
+  adminAdd: (name, instruction) => {
+    const options = {
+      method: 'POST',
+
+      url: '/admin_add',
+
+      data: {
+        title: name,
+        instruction: instruction
+       }
+
+    };
+
+    return API.request(options);
+  },
+
   store: () => {},
 
   update: () => {},

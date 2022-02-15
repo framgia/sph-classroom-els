@@ -154,7 +154,7 @@ const EditProfile = () => {
 
             <Form.Group className={style.marginForForm} controlId="formBasicPassword">
               <Form.Label className={style.FormGroupStyle}>Password</Form.Label>
-              {profileName ? (
+              {profileName ? ( 
                 <Controller
                   control={control}
                   name="password"

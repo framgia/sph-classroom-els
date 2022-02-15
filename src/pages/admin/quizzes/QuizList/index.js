@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, props } from 'react';
 import Card from 'react-bootstrap/Card';
 import { Col, Table } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import { useForm, Controller } from 'react-hook-form';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from '@restart/ui/esm/Button';
@@ -12,6 +13,10 @@ import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { BsSortAlphaDown } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { useToast } from '../../../../hooks/useToast';
+
+import MyVerticallyCenteredModal from 'react-bootstrap/Modal';
+import Modal from 'react-bootstrap/Modal';
 
 import Pagination from '../../../../components/Pagination';
 import style from './index.module.scss';
@@ -21,8 +26,13 @@ const QuizList = () => {
   const [adminquiz, setAdminquiz] = useState(null);
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
+  const [modalShow, setModalShow] = useState(null);
+  const [errors, setErrors] = useState({});
+  const { control, handleSubmit } = useForm();
+  const [submitStatus, setSubmitStatus] = useState(false);
 
   const history = useHistory  ();
+  const toast = useToast();
 
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perPage, setPerPage] = useState(0);
@@ -51,6 +61,22 @@ const QuizList = () => {
     history.push(
       `?page=${page}`
     );
+  };
+
+  const handleOnSubmit = async ({name, instruction}) => {
+    let data = new FormData();
+    data.append('name', name.name);
+    toast('Processing', 'Adding quiz...');
+    setSubmitStatus(true);
+    setErrors('');
+
+    try {
+      await QuizApi.adminAdd(name, instruction);
+      history.push('/admin/quizzes');
+      toast('Success', 'Successfully Added quiz.');
+    } catch (error) {
+      toast('Error', 'Incorrect Credentials, please try again.');
+    }
   };
 
   const renderList = () => {
@@ -132,7 +158,16 @@ const QuizList = () => {
               </table>
             </Card.Header>
             <Card.Body className={style.cardBodyScroll}>
-              <Button className={style.button}>Add a Quiz</Button>
+              <Button 
+                className={style.button}
+                onClick={() => setModalShow(true)}
+              >
+                Add a Quiz
+              </Button>
+              <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+              />
               <div>
                 <Table className={style.formatTable}>
                   <thead>
@@ -161,6 +196,96 @@ const QuizList = () => {
             ></Pagination>
           </div>
         </div>
+        <Modal
+          {...props}
+          size="50"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          show={modalShow}
+        >
+          <Modal.Header id={style.modalHeader}>
+            <Modal.Title className={style.modalTitle} id="contained-modal-title-vcenter">
+            Add a Quiz
+            </Modal.Title>
+          </Modal.Header>
+          <Form id={style.forForm} onSubmit={handleSubmit(handleOnSubmit)}>
+            <Form.Group className="mb-3" controlId="name">
+              <Form.Label>
+                <h6 className="mb-0">Name</h6>
+              </Form.Label>
+              <Controller
+                control={control}
+                name="name"
+                defaultValue=""
+                render={({ field: { onChange, value, ref } }) => (
+                  <Form.Control
+                    onChange={onChange}
+                    value={value}
+                    ref={ref}
+                    type="text"
+                    placeholder="Sample Quiz"
+                    isInvalid={!!errors?.name}
+                    required
+                    maxLength={50}
+                  />
+                )}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors?.name}
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="instruction">
+              <Form.Label>
+                <h6 className="mb-0">Instruction</h6>
+              </Form.Label>
+              <Controller
+                control={control}
+                name="instruction"
+                defaultValue=""
+                render={({ field: { onChange, value, ref } }) => (
+                  <Form.Control
+                    onChange={onChange}
+                    value={value}
+                    ref={ref}
+                    type="text"
+                    placeholder="Instruction"
+                    isInvalid={!!errors?.instruction}
+                    required
+                    maxLength={2000}
+                  />
+                )}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors?.instruction}
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            <p style={{height: '165px'}}>Root
+              <br/>Web Development
+              <br/>Web Development
+              <br/>Web Development
+              <br/>Web Development
+            </p>
+            <Modal.Footer className={style.modalFooter}>
+            <a 
+              className={style.cancelTag}
+              onClick={() =>{
+                setModalShow(false);
+              }}
+            >
+              Cancel
+            </a>
+            <Button 
+              className={style.button} 
+              type="submit" 
+              disabled={submitStatus}
+            >
+              Add Quiz
+            </Button>
+          </Modal.Footer>
+          </Form>
+        </Modal>
       </div>
     </div>
   );

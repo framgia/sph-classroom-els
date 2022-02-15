@@ -67,7 +67,7 @@ const Registration = () => {
             {' '}
             <h4> Sign Up </h4>{' '}
           </div>
-          <Form onSubmit={handleSubmit(handleOnSubmit)}>
+          <Form onSubmit={handleOnSubmit(handleOnSubmit)}>
             <div>
               <Form.Group className="mb-4" controlId="Name">
                 <Form.Label>
