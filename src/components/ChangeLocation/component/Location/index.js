@@ -49,7 +49,6 @@ const Location = () => {
                 onClick={() => setLocation([...location, category.name])}
                 onMouseEnter={() => {
                   setHoveredItem(idx);
-                  console.log(hoveredItem);
                 }}
                 onMouseLeave={() => {
                   setHoveredItem(null);
