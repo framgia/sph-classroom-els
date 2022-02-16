@@ -28,7 +28,7 @@ const QuizList = () => {
   const pageNum = queryParams.get('page');
   const [modalShow, setModalShow] = useState(null);
   const [errors, setErrors] = useState({});
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, reset } = useForm();
   const [submitStatus, setSubmitStatus] = useState(false);
 
   const history = useHistory  ();
@@ -39,33 +39,10 @@ const QuizList = () => {
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
 
-  useEffect(() => {
-    history.push(
-      `?page=${page}`
-    );
-
-    QuizApi.adminQuiz({
-      page: page
-    }).then(({ data }) => {
-      setAdminquiz(data.data);
-      setPerPage(data.per_page);
-      setTotalItems(data.total);
-      setLastPage(data.last_page);
-    });
-
-  }, [page]);
-
-  const onPageChange = (selected) => {
-    setPage(selected + 1);
-
-    history.push(
-      `?page=${page}`
-    );
-  };
-
   const handleOnSubmit = async ({name, instruction}) => {
     let data = new FormData();
     data.append('name', name.name);
+    console.log(data);
     toast('Processing', 'Adding quiz...');
     setSubmitStatus(true);
     setErrors('');
@@ -75,9 +52,43 @@ const QuizList = () => {
       history.push('/admin/quizzes');
       toast('Success', 'Successfully Added quiz.');
       setModalShow(false);
+      load();
+      reset({
+        name: '',
+        instruction: ''
+      });
+      setSubmitStatus(false);
     } catch (error) {
       toast('Error', 'Incorrect Credentials, please try again.');
     }
+  };
+
+  const load = () => {
+    QuizApi.adminQuiz({
+      page: page
+    }).then(({ data }) => {
+      setAdminquiz(data.data);
+      setPerPage(data.per_page);
+      setTotalItems(data.total);
+      setLastPage(data.last_page);
+    });
+  };
+
+  useEffect(() => {
+    history.push(
+      `?page=${page}`
+    );
+
+    load();
+
+  }, [page]);
+
+  const onPageChange = (selected) => {
+    setPage(selected + 1);
+
+    history.push(
+      `?page=${page}`
+    );
   };
 
   const renderList = () => {
@@ -250,7 +261,7 @@ const QuizList = () => {
                     value={value}
                     ref={ref}
                     as="textarea"
-                    style={{height: '100px'}}
+                    style={{height: '100px', resize: 'none'}}
                     placeholder="Instruction"
                     isInvalid={!!errors?.instruction}
                     required
@@ -270,17 +281,13 @@ const QuizList = () => {
               <br/>Web Development
             </p>
             <Modal.Footer className={style.modalFooter}>
-              <Link
-                to={'/admin/categories?page=1'}
+              <Button 
+                className={style.button} 
+                type="submit" 
+                disabled={submitStatus}
               >
-                <Button 
-                  className={style.button} 
-                  type="submit" 
-                  disabled={submitStatus}
-                >
               Go Back
-                </Button>
-              </Link>
+              </Button>
               <div className={style.spaceBettewen}>
                 <a 
                   className={style.cancelTag}
