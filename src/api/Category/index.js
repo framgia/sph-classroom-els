@@ -28,14 +28,25 @@ const CategoryApi = {
   store: (name, description) => {
     const options = {
       method: 'POST',
-      
+
       url: '/admin/add-category',
 
       data: {
         name: name,
         description: description
       }
-      
+    };
+
+    return API.request(options);
+  },
+
+  getCategories: ({ ...params }) => {
+    const options = {
+      method: 'GET',
+      url: '/admin/categories',
+      params: {
+        ...params
+      }
     };
 
     return API.request(options);
@@ -44,15 +55,13 @@ const CategoryApi = {
   update: (name, description, category_id) => {
     const options = {
       method: 'PATCH',
-      
+
       url: `/categories/${category_id}`,
 
       data: {
         name: name,
-        description: description,
-
+        description: description
       }
-      
     };
 
     return API.request(options);

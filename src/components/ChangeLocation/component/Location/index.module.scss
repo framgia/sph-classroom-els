@@ -21,4 +21,17 @@
 
 .arrowRightIcon {
   font-size: $font-size-lg;
+  color: $color-dark-blue-1;
+
+  &:hover {
+    color: $color-black;
+  }
+
+  &:active {
+    color: $color-dark-blue-3;
+  }
+}
+
+.spinner {
+  margin-top: 120px;
 }

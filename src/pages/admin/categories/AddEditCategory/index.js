@@ -117,7 +117,7 @@ const AddEditCategory = () => {
             <Form.Label className={style.inputLabel}>Location</Form.Label>
             <Form.Control
               className={style.inputFieldTitle}
-              readonly="readonly"
+              readOnly="readonly"
               type="text"
             />
             <CgMenuCake className={style.menuIcon} onClick={handleShow} />
@@ -164,11 +164,7 @@ const AddEditCategory = () => {
         
       </Card.Body>
       <div className={style.modalContainer}>
-        <ChangeLocation
-          show={show}
-          handleClose={handleClose}
-          handleShow={handleShow}
-        />
+        <ChangeLocation show={show} handleClose={handleClose} />
       </div>
     </Card>
   );

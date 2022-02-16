@@ -8,7 +8,8 @@
   height: 38px;
   margin-right: auto;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: $color-dark-blue-3;
   }
 }
