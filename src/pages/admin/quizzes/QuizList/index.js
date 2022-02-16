@@ -74,6 +74,7 @@ const QuizList = () => {
       await QuizApi.adminAdd(name, instruction);
       history.push('/admin/quizzes');
       toast('Success', 'Successfully Added quiz.');
+      setModalShow(false);
     } catch (error) {
       toast('Error', 'Incorrect Credentials, please try again.');
     }
@@ -208,7 +209,7 @@ const QuizList = () => {
             Add a Quiz
             </Modal.Title>
           </Modal.Header>
-          <Form id={style.forForm} onSubmit={handleSubmit(handleOnSubmit)}>
+          <Form onSubmit={handleSubmit(handleOnSubmit)} id={style.forForm}>
             <Form.Group className="mb-3" controlId="name">
               <Form.Label>
                 <h6 className="mb-0">Name</h6>
@@ -248,7 +249,8 @@ const QuizList = () => {
                     onChange={onChange}
                     value={value}
                     ref={ref}
-                    type="text"
+                    as="textarea"
+                    style={{height: '100px'}}
                     placeholder="Instruction"
                     isInvalid={!!errors?.instruction}
                     required
@@ -268,22 +270,35 @@ const QuizList = () => {
               <br/>Web Development
             </p>
             <Modal.Footer className={style.modalFooter}>
-            <a 
-              className={style.cancelTag}
-              onClick={() =>{
-                setModalShow(false);
-              }}
-            >
+              <Link
+                to={'/admin/categories?page=1'}
+              >
+                <Button 
+                  className={style.button} 
+                  type="submit" 
+                  disabled={submitStatus}
+                >
+              Go Back
+                </Button>
+              </Link>
+              <div className={style.spaceBettewen}>
+                <a 
+                  className={style.cancelTag}
+                  onClick={() =>{
+                    setModalShow(false);
+                  }}
+                >
               Cancel
-            </a>
-            <Button 
-              className={style.button} 
-              type="submit" 
-              disabled={submitStatus}
-            >
+                </a>
+                <Button 
+                  className={style.button} 
+                  type="submit" 
+                  disabled={submitStatus}
+                >
               Add Quiz
-            </Button>
-          </Modal.Footer>
+                </Button>
+              </div>
+            </Modal.Footer>
           </Form>
         </Modal>
       </div>

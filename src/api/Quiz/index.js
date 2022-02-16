@@ -54,8 +54,9 @@ const QuizApi = {
 
       data: {
         title: name,
-        instruction: instruction
-       }
+        instruction: instruction,
+        category_id: '1'
+      }
 
     };
 

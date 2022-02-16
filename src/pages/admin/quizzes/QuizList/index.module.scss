@@ -12,6 +12,16 @@
   padding-top: 20px;
 }
 
+%style-button{
+  background-color: #c0d5d8;
+  font-size: $font-size-md;
+  color: $color-dark-blue-1;
+  float: right;
+  border: none;
+  border-radius: 2px;
+  padding: 6px 18px;
+}
+
 .Bodystyle {
   display: inline-flex;
 }
@@ -80,13 +90,11 @@
 }
 
 .button {
-  background-color: #c0d5d8;
-  font-size: $font-size-md;
-  color: $color-dark-blue-1;
-  float: right;
-  border: none;
-  border-radius: 2px;
-  padding: 6px 18px;
+  @extend %style-button;
+
+  &:nth-child(2) {
+    width: 120px;
+  }
 }
 
 .button:hover {
@@ -152,7 +160,7 @@
 }
 
 #forForm{
-  height: 436px;
+  height: 506px;
   border-radius: 0px;
   padding: 30px 20px;
 }
@@ -170,14 +178,22 @@
 
 .modalFooter{
   border: 0px;
+  justify-content: space-between;
 }
 
 .cancelTag{
   cursor: pointer;
   color: $color-dark-blue-1;
   font-size: 14px;
+  padding: 5px 3px;
 
   &:hover{
     color: $color-dark-blue-1;
   }
+}
+
+.spaceBettewen{
+  display: flex;
+  justify-content: space-between;
+  width: 204px;
 }
