@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Card, Button, Form } from 'react-bootstrap';
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
-import { MdOutlineOpenInNew } from 'react-icons/md';
+import { CgMenuCake } from 'react-icons/cg';
 
 import style from './index.module.scss';
 
@@ -43,10 +43,7 @@ const AddEditCategory = () => {
               readonly="readonly"
               type="text"
             />
-            <MdOutlineOpenInNew
-              className={style.openIcon}
-              onClick={handleShow}
-            />
+            <CgMenuCake className={style.menuIcon} onClick={handleShow} />
           </div>
           <Form.Label className={`${style.inputLabel} mt-3`}>
             Description
