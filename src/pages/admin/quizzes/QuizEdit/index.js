@@ -47,14 +47,25 @@ const QuizEdit = () => {
     setTimeLimit(e);
   };
 
+  const question_type = (choice) => {
+    switch (choice) {
+      case 'multiple_choice':
+        return <MultipleChoiceType questions={questions[0]} />;
+      case 'identification':
+        return <IdentificationType questions={questions[1]} />;
+      default:
+        break;
+    }
+  };
+
   const choice = (option) => {
     switch (option) {
-    case 'multiple_choice':
-      return 'Multiple Choice';
-    case 'identification':
-      return 'Identification';
-    default:
-      break;
+      case 'multiple_choice':
+        return 'Multiple Choice';
+      case 'identification':
+        return 'Identification';
+      default:
+        break;
     }
   };
 
@@ -83,13 +94,7 @@ const QuizEdit = () => {
             <Button className={style.sidebarButtons}>Add a Question</Button>
             <Button className={style.sidebarButtons}>Change Category</Button>
           </div>
-          <div>
-            {questionType === 'multiple_choice' ? (
-              <MultipleChoiceType questions={questions[0]} />
-            ) : (
-              <IdentificationType questions={questions[1]} />
-            )}
-          </div>
+          <div>{question_type(questionType)}</div>
           <div className={style.formGap}>
             <Dropdown onSelect={question}>
               <Form>
@@ -120,7 +125,6 @@ const QuizEdit = () => {
                 <Form>
                   <Form.Label className={style.inputTitle}>
                     Time Limit
-                    <RiArrowDropDownLine className={style.iconSize} />
                   </Form.Label>
                 </Form>
                 <Dropdown.Toggle

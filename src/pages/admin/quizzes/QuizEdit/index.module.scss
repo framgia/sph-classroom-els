@@ -155,12 +155,17 @@
 .inputWidth {
   width: 400px;
   border: 2.5px solid $color-light-blue-1;
+  font-size: $font-size-base;
+  font-weight: $font-weight-light;
 }
 
 .inputHeight {
   height: 240px;
   max-height: 240px;
   border: 2.5px solid $color-light-blue-1;
+  resize: none;
+  font-size: $font-size-base;
+  font-weight: $font-weight-light;
 }
 
 .formGap {
@@ -194,23 +199,30 @@
 .dropdownStyle {
   display: flex;
   justify-content: space-between;
-  background-color: #ffffff;
-  border: 1px #ced4da solid;
-  color: black;
+  background-color: $color-white;
+  border: 1px $color-light-blue-2 solid;
+  color: $color-black;
   text-decoration: none;
   width: 200px;
+  font-size: $font-size-base;
+  font-weight: $font-weight-light;
+}
 
-  .btn-link:hover {
-    color: black;
-  }
+.dropdownStyle:hover {
+  color: $color-black !important;
 }
 
 .dropdownMenuStyle {
   width: 200px;
+  font-size: $font-size-base;
+  font-weight: $font-weight-light;
 }
 
 .choicesAlignment {
+  color: $color-black;
   font-size: $font-size-md;
   position: absolute;
-  margin: 8px 0px 0px 10px;
+  margin: 3.5px 0px 0px 12px;
+  font-size: $font-size-base;
+  font-weight: $font-weight-light;
 }
