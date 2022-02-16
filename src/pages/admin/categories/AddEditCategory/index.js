@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Card, Button, Form } from 'react-bootstrap';
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
-
-import { useLocation } from 'react-router-dom';
+import { CgMenuCake } from 'react-icons/cg';
 
 import style from './index.module.scss';
 
+import ChangeLocation from '../../../../components/ChangeLocation';
+
 const AddEditCategory = () => {
   const location = useLocation();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <Card style={{ width: '1063px' }} className={style.card}>
       <Card.Header className={style.header}>
         <div>
           <a href="/admin/categories">
-            <BsFillArrowLeftSquareFill className={style.backarrow} />
+            <BsFillArrowLeftSquareFill className={style.backArrow} />
           </a>
         </div>
         <div className={style.headerText}>
@@ -24,11 +30,25 @@ const AddEditCategory = () => {
           </span>
         </div>
       </Card.Header>
-      <Card.Body style={{ margin: '1.5rem 1rem' }}>
+      <Card.Body className={style.cardBody}>
         <Form>
-          <Form.Label className={style.textTitle}>Title</Form.Label>
-          <Form.Control type="title" className={style.inputFieldTitle} />
-          <Form.Label className={style.textDescription}>Description</Form.Label>
+          <div className={style.inputFieldContainer}>
+            <Form.Label className={style.inputLabel}>Title</Form.Label>
+            <Form.Control type="title" className={style.inputFieldTitle} />
+          </div>
+          <div className={style.inputFieldContainer}>
+            <Form.Label className={style.inputLabel}>Location</Form.Label>
+            <Form.Control
+              className={style.inputFieldTitle}
+              readonly="readonly"
+              type="text"
+              onClick={handleShow}
+            />
+            <CgMenuCake className={style.menuIcon} onClick={handleShow} />
+          </div>
+          <Form.Label className={`${style.inputLabel} mt-3`}>
+            Description
+          </Form.Label>
           <Form.Control as="textarea" className={style.inputFieldDescription} />
         </Form>
         <Button className={style.button}>
@@ -37,6 +57,13 @@ const AddEditCategory = () => {
             : 'Save Category'}
         </Button>
       </Card.Body>
+      <div className={style.modalContainer}>
+        <ChangeLocation
+          show={show}
+          handleClose={handleClose}
+          handleShow={handleShow}
+        />
+      </div>
     </Card>
   );
 };

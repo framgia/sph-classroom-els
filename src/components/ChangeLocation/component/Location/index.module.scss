@@ -1,0 +1,24 @@
+@use '../../../../styles/variables' as *;
+
+.locationLabel {
+  font-size: $font-size-lg;
+}
+
+.categoryListItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+
+  font-weight: $font-weight-light;
+  font-size: $font-size-md;
+
+  &:hover {
+    background-color: $color-light-blue-1;
+    cursor: pointer;
+  }
+}
+
+.arrowRightIcon {
+  font-size: $font-size-lg;
+}
