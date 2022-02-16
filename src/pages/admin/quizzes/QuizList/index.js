@@ -283,8 +283,6 @@ const QuizList = () => {
             <Modal.Footer className={style.modalFooter}>
               <Button 
                 className={style.button} 
-                type="submit" 
-                disabled={submitStatus}
               >
               Go Back
               </Button>
