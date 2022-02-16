@@ -68,6 +68,7 @@
 
 .inputFieldTitle {
   width: 400px;
+  cursor: pointer;
 
   @extend %input-field-style;
 

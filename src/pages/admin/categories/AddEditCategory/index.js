@@ -42,6 +42,7 @@ const AddEditCategory = () => {
               className={style.inputFieldTitle}
               readonly="readonly"
               type="text"
+              onClick={handleShow}
             />
             <CgMenuCake className={style.menuIcon} onClick={handleShow} />
           </div>
