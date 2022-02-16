@@ -250,3 +250,11 @@ input [type='radio']:disabled {
   color: green;
   margin-bottom: 25px;
 }
+
+.pass {
+  color: green;
+}
+
+.fail {
+  color: red;
+}
