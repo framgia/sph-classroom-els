@@ -46,11 +46,11 @@ const QuizApi = {
     return API.request(options);
   },
 
-  adminAdd: (name, instruction) => {
+  addQuiz: (name, instruction) => {
     const options = {
       method: 'POST',
 
-      url: '/admin_add',
+      url: '/admin/add-quiz',
 
       data: {
         title: name,

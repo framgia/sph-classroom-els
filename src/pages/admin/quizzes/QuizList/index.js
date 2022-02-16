@@ -1,4 +1,4 @@
-import React, { useState, useEffect, props } from 'react';
+import React, { useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card';
 import { Col, Table } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
@@ -15,7 +15,6 @@ import { BsSortAlphaDown } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
 
-import MyVerticallyCenteredModal from 'react-bootstrap/Modal';
 import Modal from 'react-bootstrap/Modal';
 
 import Pagination from '../../../../components/Pagination';
@@ -40,15 +39,12 @@ const QuizList = () => {
   const [lastPage, setLastPage] = useState(0);
 
   const handleOnSubmit = async ({name, instruction}) => {
-    let data = new FormData();
-    data.append('name', name.name);
-    console.log(data);
     toast('Processing', 'Adding quiz...');
     setSubmitStatus(true);
     setErrors('');
 
     try {
-      await QuizApi.adminAdd(name, instruction);
+      await QuizApi.addQuiz(name, instruction);
       history.push('/admin/quizzes');
       toast('Success', 'Successfully Added quiz.');
       setModalShow(false);
@@ -176,10 +172,6 @@ const QuizList = () => {
               >
                 Add a Quiz
               </Button>
-              <MyVerticallyCenteredModal
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-              />
               <div>
                 <Table className={style.formatTable}>
                   <thead>
@@ -209,7 +201,7 @@ const QuizList = () => {
           </div>
         </div>
         <Modal
-          {...props}
+          // {...props}
           size="50"
           aria-labelledby="contained-modal-title-vcenter"
           centered
@@ -284,7 +276,7 @@ const QuizList = () => {
               <Button 
                 className={style.button} 
               >
-              Go Back
+                  Go Back
               </Button>
               <div className={style.spaceBettewen}>
                 <a 
@@ -293,14 +285,14 @@ const QuizList = () => {
                     setModalShow(false);
                   }}
                 >
-              Cancel
+                    Cancel
                 </a>
                 <Button 
                   className={style.button} 
                   type="submit" 
                   disabled={submitStatus}
                 >
-              Add Quiz
+                    Add Quiz
                 </Button>
               </div>
             </Modal.Footer>
