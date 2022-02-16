@@ -47,7 +47,7 @@ FillInTheBlankType.propTypes = {
   page: PropTypes.number,
   getAnswer: PropTypes.any,
   answer: PropTypes.string,
-  getPoint: PropTypes.any
+  getPoint: PropTypes.any,
 };
 
 export default FillInTheBlankType;

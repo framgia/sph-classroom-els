@@ -1,27 +1,60 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
+import Form from 'react-bootstrap/Form';
+import Dropdown from 'react-bootstrap/Dropdown';
+import { RiArrowDropDownLine } from 'react-icons/ri';
+import MultipleChoiceType from './components/MultipleChoiceType';
+import IdentificationType from './components/IdentificationType';
 
 import style from './index.module.scss';
 
 const QuizEdit = () => {
+  const [questionType, setQuestionType] = useState('multiple_choice');
+  const [timeLimit, setTimeLimit] = useState(0);
+
   const quiz = {
     id: 1,
-    title: 'Web Development Basics'
+    title: 'Web Development Basics',
   };
 
   const questions = [
     {
       id: 1,
-      question: 'What is HTML?'
+      question: 'What is HTML?',
+      question_type: 'multiple choice',
+      choices: [
+        { description: 'Hypertext Markup Language' },
+        { description: 'Hyper Text Mark Lauron' },
+        { description: 'Hypertext Mixed Language' },
+        { description: 'How To Make Lumpia' },
+      ],
     },
     {
       id: 2,
-      question: 'Tim Berners-Lee invented ______.'
-    }
+      question: 'Tim Berners-Lee invented ______.',
+      question_type: 'identification',
+    },
   ];
+
+  const question = (e) => {
+    setQuestionType(e);
+  };
+
+  const time = (e) => {
+    setTimeLimit(e);
+  };
+
+  const choice = (option) => {
+    switch (option) {
+    case 'multiple_choice':
+      return 'Multiple Choice';
+    default:
+      break;
+    }
+  };
 
   return (
     <div className="d-inline-flex">
@@ -48,7 +81,65 @@ const QuizEdit = () => {
             <Button className={style.sidebarButtons}>Add a Question</Button>
             <Button className={style.sidebarButtons}>Change Category</Button>
           </div>
-          {/*************** INSERT <QUESTION FORM> CODE HERE ***************/}
+          <div>
+            {questionType === 'multiple_choice' ? (
+              <MultipleChoiceType questions={questions[0]} />
+            ) : (
+              <IdentificationType questions={questions[1]} />
+            )}
+          </div>
+          <div className={style.formGap}>
+            <Dropdown onSelect={question}>
+              <Form>
+                <Form.Label className={style.inputTitle}>
+                  Question Type
+                </Form.Label>
+              </Form>
+              <Dropdown.Toggle
+                variant="link"
+                id="dropdown-basic"
+                bsPrefix="none"
+                className={style.dropdownStyle}
+              >
+                {choice('multiple_choice')}
+                <RiArrowDropDownLine className={style.iconSize} />
+              </Dropdown.Toggle>
+              <Dropdown.Menu className={style.dropdownMenuStyle}>
+                <Dropdown.Item eventKey={'multiple_choice'}>
+                  Multiple Choice
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="identification">
+                  Identification
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <div className={style.formSpacing}>
+              <Dropdown onSelect={time}>
+                <Form>
+                  <Form.Label className={style.inputTitle}>
+                    Time Limit
+                    <RiArrowDropDownLine className={style.iconSize} />
+                  </Form.Label>
+                </Form>
+                <Dropdown.Toggle
+                  variant="link"
+                  id="dropdown-basic"
+                  bsPrefix="none"
+                  className={style.dropdownStyle}
+                >
+                  {timeLimit} seconds
+                  <RiArrowDropDownLine className={style.iconSize} />
+                </Dropdown.Toggle>
+                <Dropdown.Menu className={style.dropdownMenuStyle}>
+                  <Dropdown.Item eventKey="5">5 seconds</Dropdown.Item>
+                  <Dropdown.Item eventKey="10">10 seconds</Dropdown.Item>
+                  <Dropdown.Item eventKey="20">20 seconds</Dropdown.Item>
+                  <Dropdown.Item eventKey="30">30 seconds</Dropdown.Item>
+                  <Dropdown.Item eventKey="60">60 seconds</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+          </div>
         </div>
         <div className={style.confirmationButtons}>
           <Link to={`/admin/quizzes/${quiz.id}`} className={style.cancelButton}>
