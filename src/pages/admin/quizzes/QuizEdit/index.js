@@ -51,6 +51,8 @@ const QuizEdit = () => {
     switch (option) {
     case 'multiple_choice':
       return 'Multiple Choice';
+    case 'identification':
+      return 'Identification';
     default:
       break;
     }
@@ -101,7 +103,7 @@ const QuizEdit = () => {
                 bsPrefix="none"
                 className={style.dropdownStyle}
               >
-                {choice('multiple_choice')}
+                {choice(questionType)}
                 <RiArrowDropDownLine className={style.iconSize} />
               </Dropdown.Toggle>
               <Dropdown.Menu className={style.dropdownMenuStyle}>

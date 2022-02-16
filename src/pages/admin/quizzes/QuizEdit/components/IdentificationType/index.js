@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Form from 'react-bootstrap/Form';
 import style from '../../index.module.scss';
-import PropTypes from 'react-bootstrap/propTypes';
+import { PropTypes } from 'prop-types';
 
 const IdentificationType = ({ questions }) => {
   return (
@@ -13,7 +13,7 @@ const IdentificationType = ({ questions }) => {
             type="title"
             className={style.inputWidth}
             value={`${questions.id}. ${questions.question}`}
-          ></Form.Control>
+          />
         </Form>
       </div>
       <div className={style.formSpacing}>

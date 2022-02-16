@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import style from '../../index.module.scss';
 import { GrAddCircle } from 'react-icons/gr';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
-import PropTypes from 'react-bootstrap/propTypes';
+import { PropTypes } from 'prop-types';
 
 const MultipleChoiceType = ({ questions }) => {
   return (
@@ -16,7 +16,7 @@ const MultipleChoiceType = ({ questions }) => {
             type="title"
             className={style.inputWidth}
             value={`${questions.id}. ${questions.question}`}
-          ></Form.Control>
+          />
         </Form>
       </div>
       <div className={style.formSpacing}>
