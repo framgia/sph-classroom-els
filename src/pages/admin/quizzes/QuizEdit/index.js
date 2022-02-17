@@ -39,6 +39,19 @@ const QuizEdit = () => {
     },
   ];
 
+  const types = [
+    {
+      name: 'Multiple Choice',
+      value: 'multiple_choice',
+    },
+    {
+      name: 'Identification',
+      value: 'identification',
+    },
+  ];
+
+  const limit = ['5', '10', '20', '30', '60'];
+
   const question = (e) => {
     setQuestionType(e);
   };
@@ -49,23 +62,23 @@ const QuizEdit = () => {
 
   const question_type = (choice) => {
     switch (choice) {
-      case 'multiple_choice':
-        return <MultipleChoiceType questions={questions[0]} />;
-      case 'identification':
-        return <IdentificationType questions={questions[1]} />;
-      default:
-        break;
+    case 'multiple_choice':
+      return <MultipleChoiceType questions={questions[0]} />;
+    case 'identification':
+      return <IdentificationType questions={questions[1]} />;
+    default:
+      break;
     }
   };
 
   const choice = (option) => {
     switch (option) {
-      case 'multiple_choice':
-        return 'Multiple Choice';
-      case 'identification':
-        return 'Identification';
-      default:
-        break;
+    case 'multiple_choice':
+      return 'Multiple Choice';
+    case 'identification':
+      return 'Identification';
+    default:
+      break;
     }
   };
 
@@ -112,12 +125,13 @@ const QuizEdit = () => {
                 <RiArrowDropDownLine className={style.iconSize} />
               </Dropdown.Toggle>
               <Dropdown.Menu className={style.dropdownMenuStyle}>
-                <Dropdown.Item eventKey={'multiple_choice'}>
-                  Multiple Choice
-                </Dropdown.Item>
-                <Dropdown.Item eventKey="identification">
-                  Identification
-                </Dropdown.Item>
+                {types.map((type, idx) => {
+                  return (
+                    <Dropdown.Item key={idx} eventKey={type.value}>
+                      {type.name}
+                    </Dropdown.Item>
+                  );
+                })}
               </Dropdown.Menu>
             </Dropdown>
             <div className={style.formSpacing}>
@@ -137,11 +151,13 @@ const QuizEdit = () => {
                   <RiArrowDropDownLine className={style.iconSize} />
                 </Dropdown.Toggle>
                 <Dropdown.Menu className={style.dropdownMenuStyle}>
-                  <Dropdown.Item eventKey="5">5 seconds</Dropdown.Item>
-                  <Dropdown.Item eventKey="10">10 seconds</Dropdown.Item>
-                  <Dropdown.Item eventKey="20">20 seconds</Dropdown.Item>
-                  <Dropdown.Item eventKey="30">30 seconds</Dropdown.Item>
-                  <Dropdown.Item eventKey="60">60 seconds</Dropdown.Item>
+                  {limit.map((time, idx) => {
+                    return (
+                      <Dropdown.Item key={idx} eventKey={time}>
+                        {time} seconds
+                      </Dropdown.Item>
+                    );
+                  })}
                 </Dropdown.Menu>
               </Dropdown>
             </div>
