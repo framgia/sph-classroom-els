@@ -3,24 +3,33 @@ import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
+import QuestionType from './components/QuestionType';
 
 import style from './index.module.scss';
 
 const QuizEdit = () => {
   const quiz = {
     id: 1,
-    title: 'Web Development Basics'
+    title: 'Web Development Basics',
   };
 
   const questions = [
     {
       id: 1,
-      question: 'What is HTML?'
+      question: 'What is HTML?',
+      question_type: 'multiple choice',
+      choices: [
+        { description: 'Hypertext Markup Language' },
+        { description: 'Hyper Text Mark Lauron' },
+        { description: 'Hypertext Mixed Language' },
+        { description: 'How To Make Lumpia' },
+      ],
     },
     {
       id: 2,
-      question: 'Tim Berners-Lee invented ______.'
-    }
+      question: 'Tim Berners-Lee invented ______.',
+      question_type: 'identification',
+    },
   ];
 
   return (
@@ -48,7 +57,7 @@ const QuizEdit = () => {
             <Button className={style.sidebarButtons}>Add a Question</Button>
             <Button className={style.sidebarButtons}>Change Category</Button>
           </div>
-          {/*************** INSERT <QUESTION FORM> CODE HERE ***************/}
+          <QuestionType questions={questions} />
         </div>
         <div className={style.confirmationButtons}>
           <Link to={`/admin/quizzes/${quiz.id}`} className={style.cancelButton}>

@@ -137,3 +137,92 @@
 
   @extend %button-colors;
 }
+
+.centerForm {
+  align-self: center;
+  margin-bottom: 30px;
+}
+
+.formSpacing {
+  margin-top: 20px;
+}
+
+.inputTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-regular;
+}
+
+.inputWidth {
+  width: 400px;
+  border: 2.5px solid $color-light-blue-1;
+  font-size: $font-size-base;
+  font-weight: $font-weight-light;
+}
+
+.inputHeight {
+  height: 240px;
+  max-height: 240px;
+  border: 2.5px solid $color-light-blue-1;
+  resize: none;
+  font-size: $font-size-base;
+  font-weight: $font-weight-light;
+}
+
+.formGap {
+  margin-top: 1px;
+  margin-left: 30px;
+}
+
+.iconSize {
+  height: 20px;
+  width: 20px;
+}
+
+.inputIconSize {
+  height: 20px;
+  width: 20px;
+  float: right;
+  margin: 6px 5px 0.5px 0px;
+}
+
+.cardBody {
+  width: 400px;
+  height: 38px;
+  border: 2.5px solid $color-light-blue-1;
+  margin-bottom: 15px;
+
+  input[type='radio'] {
+    margin: 6px 0px 0px 6px;
+  }
+}
+
+.dropdownStyle {
+  display: flex;
+  justify-content: space-between;
+  background-color: $color-white;
+  border: 1px $color-light-blue-2 solid;
+  color: $color-black;
+  text-decoration: none;
+  width: 200px;
+  font-size: $font-size-base;
+  font-weight: $font-weight-light;
+}
+
+.dropdownStyle:hover {
+  color: $color-black !important;
+}
+
+.dropdownMenuStyle {
+  width: 200px;
+  font-size: $font-size-base;
+  font-weight: $font-weight-light;
+}
+
+.choicesAlignment {
+  color: $color-black;
+  font-size: $font-size-md;
+  position: absolute;
+  margin: 3.5px 0px 0px 12px;
+  font-size: $font-size-base;
+  font-weight: $font-weight-light;
+}
