@@ -35,7 +35,7 @@ const ModalRender = ({handleOnSubmit, submitStatus, errors, modalShow, setModalS
       <Form onSubmit={handleSubmit(handleOnSubmit)} id={style.forForm}>
         <Form.Group className="mb-3" controlId="name">
           <Form.Label>
-            <h6 className="mb-0">Name</h6>
+            <h6 className={style.titleStyle}>Name</h6>
           </Form.Label>
           <Controller
             control={control}
@@ -61,7 +61,7 @@ const ModalRender = ({handleOnSubmit, submitStatus, errors, modalShow, setModalS
 
         <Form.Group className="mb-3" controlId="instruction">
           <Form.Label>
-            <h6 className="mb-0">Instruction</h6>
+            <h6 className={style.titleStyle}>Instruction</h6>
           </Form.Label>
           <Controller
             control={control}
