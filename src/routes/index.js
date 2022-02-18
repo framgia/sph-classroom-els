@@ -55,7 +55,7 @@ const Routes = () => {
       ></AdminRoute>
 
       <AdminRoute
-        path="/admin/edit-category"
+        path="/admin/edit-category/:category_id"
         exact
         component={AddEditCategory}
       ></AdminRoute>
