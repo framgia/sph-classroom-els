@@ -75,10 +75,10 @@ const QuizAnswerResult = ({
           <Card.Body className={style.wholeBodyCard1}>
             {question &&
             question.question_type.question_type === 'Multiple Choice' ? (
-              <MultipleChoiceType question={question} answer={answer} />
-            ) : (
-              <FillInTheBlankType question={question} answer={answer} />
-            )}
+                <MultipleChoiceType question={question} answer={answer} />
+              ) : (
+                <FillInTheBlankType question={question} answer={answer} />
+              )}
             <hr />
             <div className={style.bottomBodyCard1}>
               <p className={style.numItems1}>
