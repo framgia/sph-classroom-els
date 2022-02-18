@@ -52,7 +52,7 @@
   color: #48535b;
 }
 
-.activitiesTableContainer {
+.activitiesTableContainer { 
   padding: 0px 150px;
   display: flex;
   flex-direction: row;

@@ -8,8 +8,18 @@
 %style-table-body {
   border-bottom-width: 0px !important;
   font-size: $font-size-base;
-  color: #152536;
+  color: $color-dark-blue-5;
   padding-top: 20px;
+}
+
+%style-button{
+  background-color: $color-light-blue-2;
+  font-size: $font-size-md;
+  color: $color-dark-blue-1;
+  float: right;
+  border: none;
+  border-radius: 2px;
+  padding: 6px 18px;
 }
 
 .Bodystyle {
@@ -22,6 +32,7 @@
 
   .navContainer {
     background: $color-light-blue-1;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 }
 
@@ -79,13 +90,11 @@
 }
 
 .button {
-  background-color: #c0d5d8;
-  font-size: $font-size-md;
-  color: $color-dark-blue-1;
-  float: right;
-  border: none;
-  border-radius: 2px;
-  padding: 6px 18px;
+  @extend %style-button;
+
+  &:nth-child(2) {
+    width: 120px;
+  }
 }
 
 .button:hover {
@@ -148,4 +157,53 @@
 .designButton {
   border: none;
   background: none;
+}
+
+#forForm{
+  height: 506px;
+  border-radius: 0px;
+  padding: 30px 20px;
+}
+
+#modalHeader{
+  background-color: $color-light-blue-1;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  height: 50px;
+  display: block;
+  padding: 8px 15px;
+}
+
+.modalTitle{
+  text-align: center;
+  font-size: $font-size-page-title;
+  color: $color-dark-blue-5;
+  font-weight: $font-weight-medium;
+}
+
+.modalFooter{
+  border: 0px;
+  justify-content: space-between;
+}
+
+.cancelTag{
+  cursor: pointer;
+  color: $color-dark-blue-1;
+  font-size: 14px;
+  padding: 5px 3px;
+
+  &:hover{
+    color: $color-dark-blue-1;
+  }
+}
+
+.spaceBettewen{
+  display: flex;
+  justify-content: space-between;
+  width: 204px;
+}
+
+.titleStyle{
+  font-size: $font-size-lg;
+  font-weight: $font-weight-regular;
+  color: $color-dark-blue-1;
 }

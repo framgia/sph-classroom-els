@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card';
 import { Col, Table } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
@@ -12,28 +12,49 @@ import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { BsSortAlphaDown } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { useToast } from '../../../../hooks/useToast';
 
 import Pagination from '../../../../components/Pagination';
 import style from './index.module.scss';
 import QuizApi from '../../../../api/Quiz';
+import AddQuizModal from './components/AddQuizModal';
 
 const QuizList = () => {
   const [adminquiz, setAdminquiz] = useState(null);
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
+  const [modalShow, setModalShow] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [submitStatus, setSubmitStatus] = useState(false);
 
-  const history = useHistory  ();
+  const history = useHistory();
+  const toast = useToast();
 
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
 
-  useEffect(() => {
-    history.push(
-      `?page=${page}`
-    );
+  const handleOnSubmit = async ({name, instruction}) => {
+    toast('Processing', 'Adding quiz...');
+    setSubmitStatus(true);
+    setErrors('');
 
+    try {
+      await QuizApi.addQuiz(name, instruction);
+      history.push('/admin/quizzes');
+      toast('Success', 'Successfully Added quiz.');
+      setModalShow(false);
+      load();
+      setSubmitStatus(false);
+    } catch (error) {
+      toast('Error', 'Incorrect Credentials, please try again.');
+      setModalShow(false);
+      setSubmitStatus(false);
+    }
+  };
+
+  const load = () => {
     QuizApi.adminQuiz({
       page: page
     }).then(({ data }) => {
@@ -42,6 +63,14 @@ const QuizList = () => {
       setTotalItems(data.total);
       setLastPage(data.last_page);
     });
+  };
+
+  useEffect(() => {
+    history.push(
+      `?page=${page}`
+    );
+
+    load();
 
   }, [page]);
 
@@ -132,7 +161,12 @@ const QuizList = () => {
               </table>
             </Card.Header>
             <Card.Body className={style.cardBodyScroll}>
-              <Button className={style.button}>Add a Quiz</Button>
+              <Button 
+                className={style.button}
+                onClick={() => setModalShow(true)}
+              >
+                Add a Quiz
+              </Button>
               <div>
                 <Table className={style.formatTable}>
                   <thead>
@@ -161,6 +195,13 @@ const QuizList = () => {
             ></Pagination>
           </div>
         </div>
+        <AddQuizModal 
+          handleOnSubmit={handleOnSubmit} 
+          submitStatus={submitStatus}
+          modalShow={modalShow}
+          setModalShow={setModalShow}
+          errors={errors}
+        />
       </div>
     </div>
   );
