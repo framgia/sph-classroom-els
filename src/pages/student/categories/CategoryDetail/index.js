@@ -50,8 +50,14 @@ function Subcategories() {
       <div className={style.subTile}>
         <div>
           <p className={style.title}>
-            <LinkContainer to="/categories">
-              <BsFillArrowLeftSquareFill size="50" className={style.backIcon} />
+            <LinkContainer
+              to={
+                category?.category_id
+                  ? `/categories/${category?.category_id}/sub`
+                  : '/categories'
+              }
+            >
+              <BsFillArrowLeftSquareFill size="50" id={style.BckIcon} />
             </LinkContainer>
             {category?.name}
           </p>

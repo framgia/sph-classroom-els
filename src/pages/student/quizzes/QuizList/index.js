@@ -48,7 +48,7 @@ const QuizList = () => {
 
   return (
     <div className={style.container}>
-      <a href="/categories">
+      <a href={`/categories/${category?.category_id}/sub`}>
         <BsFillArrowLeftSquareFill className={style.backarrow} />
         <p className={style.title}>{category?.name}</p>
       </a>
@@ -61,7 +61,7 @@ const QuizList = () => {
         ''
       )}
       <div>
-        {quizzes && (quizzes.length > 0) && (
+        {quizzes && quizzes.length > 0 && (
           <div id={style.GridCard}>
             {/* <Row xs={1} sm={2} md={3} lg={3}> */}
             {quizzes.map((quiz, index) => {
