@@ -15,7 +15,7 @@ const QuizAnswerResult = ({
   score,
   total,
   categoryId,
-  viewResultsPage
+  viewResultsPage,
 }) => {
   const [page, setPage] = useState(1);
   const { questions, title } = useContext(QuestionsContext);
@@ -75,10 +75,10 @@ const QuizAnswerResult = ({
           <Card.Body className={style.wholeBodyCard1}>
             {question &&
             question.question_type.question_type === 'Multiple Choice' ? (
-                <MultipleChoiceType question={question} answer={answer} />
-              ) : (
-                <FillInTheBlankType question={question} answer={answer} />
-              )}
+              <MultipleChoiceType question={question} answer={answer} />
+            ) : (
+              <FillInTheBlankType question={question} answer={answer} />
+            )}
             <hr />
             <div className={style.bottomBodyCard1}>
               <p className={style.numItems1}>
@@ -103,7 +103,7 @@ const QuizAnswerResult = ({
                   </a>
                 ) : (
                   <Button
-                    className={style.nextbutton}
+                    className={style.nextButton}
                     onClick={handleNextButtonClick}
                   >
                     Next
@@ -124,7 +124,7 @@ QuizAnswerResult.propTypes = {
   answers: PropTypes.array,
   score: PropTypes.number,
   total: PropTypes.number,
-  categoryId: PropTypes.number
+  categoryId: PropTypes.number,
 };
 
 export default QuizAnswerResult;
