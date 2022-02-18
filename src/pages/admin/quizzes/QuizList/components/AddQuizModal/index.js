@@ -5,9 +5,9 @@ import Form from 'react-bootstrap/Form';
 import Button from '@restart/ui/esm/Button';
 import { PropTypes } from 'prop-types';
 
-import style from '.././index.module.scss';
+import style from '../../index.module.scss';
 
-const ModalRender = ({handleOnSubmit, submitStatus, errors, modalShow, setModalShow}) => {
+const AddQuizModal = ({handleOnSubmit, submitStatus, errors, modalShow, setModalShow}) => {
   const { control, handleSubmit, reset} = useForm();
 
   useEffect(() =>{
@@ -121,7 +121,7 @@ const ModalRender = ({handleOnSubmit, submitStatus, errors, modalShow, setModalS
   );
 };
 
-ModalRender.propTypes = {
+AddQuizModal.propTypes = {
   handleOnSubmit: PropTypes.bool,
   submitStatus: PropTypes.bool,
   setModalShow: PropTypes.bool,
@@ -129,4 +129,4 @@ ModalRender.propTypes = {
   errors: PropTypes.any,
 };
 
-export default ModalRender;
+export default AddQuizModal;

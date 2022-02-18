@@ -17,7 +17,7 @@ import { useToast } from '../../../../hooks/useToast';
 import Pagination from '../../../../components/Pagination';
 import style from './index.module.scss';
 import QuizApi from '../../../../api/Quiz';
-import ModalRender from './components';
+import AddQuizModal from './components/AddQuizModal';
 
 const QuizList = () => {
   const [adminquiz, setAdminquiz] = useState(null);
@@ -49,6 +49,8 @@ const QuizList = () => {
       setSubmitStatus(false);
     } catch (error) {
       toast('Error', 'Incorrect Credentials, please try again.');
+      setModalShow(false);
+      setSubmitStatus(false);
     }
   };
 
@@ -193,7 +195,7 @@ const QuizList = () => {
             ></Pagination>
           </div>
         </div>
-        <ModalRender 
+        <AddQuizModal 
           handleOnSubmit={handleOnSubmit} 
           submitStatus={submitStatus}
           modalShow={modalShow}
