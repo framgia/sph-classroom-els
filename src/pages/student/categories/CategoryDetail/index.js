@@ -51,7 +51,7 @@ function Subcategories() {
         <div>
           <p className={style.title}>
             <LinkContainer to="/categories">
-              <BsFillArrowLeftSquareFill size="50" id={style.BckIcon} />
+              <BsFillArrowLeftSquareFill size="50" className={style.backIcon} />
             </LinkContainer>
             {category?.name}
           </p>
