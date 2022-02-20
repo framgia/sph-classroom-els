@@ -16,56 +16,73 @@ const Location = ({
   setBackButtonStatus
 }) => {
   const toast = useToast();
-  const [categories, setCategories] = useState(null);
-  const [locations, setLocations] = useState([]);
-  const [location, setLocation] = useState('');
-  const [currentLocation, setCurrentLocation] = useState({});
   const [hoveredItem, setHoveredItem] = useState(null);
-  const [chosenCategoryID, setChosenCategoryID] = useState(null);
-  const [moved, setMoved] = useState(false);
+  const [categories, setCategories] = useState(null);
+  const [paths, setPaths] = useState([]);
+  const [path, setPath] = useState('');
+  const [currentPath, setCurrentPath] = useState({});
+  const [chosenPath, setChosenPath] = useState(null);
+  const [chosenCategoryPathID, setChosenCategoryPathID] = useState(null);
+  const [location, setLocation] = useState(null);
 
+  //TO HANDLE THE FETCHING OF CATEGORIES/SUBCATEGORIES
   useEffect(() => {
     setCategories(null);
-    chosenCategoryID ? toast('Processing', 'Getting Subcategories...') : '';
+    chosenCategoryPathID ? toast('Processing', 'Getting Subcategories...') : {};
 
-    CategoryApi.getCategories({ category_id: chosenCategoryID }).then(
+    CategoryApi.getCategories({ category_id: chosenCategoryPathID }).then(
       ({ data }) => {
         setCategories(data.data);
-        chosenCategoryID ? isRootCategory(false) : '';
+        chosenCategoryPathID ? isRootCategory(false) : {};
       }
     );
-  }, [chosenCategoryID]);
+  }, [chosenCategoryPathID]);
 
+  //TO HANDLE THE SETTING OF PATH
   useEffect(() => {
-    setLocation('');
+    setPath('');
 
-    if (locations?.length > 0) {
-      formatLocations();
-      setCurrentLocation(locations[locations.length - 1]);
+    if (paths?.length > 0) {
+      formatPath();
+      setCurrentPath(paths[paths.length - 1]);
     } else {
-      setCurrentLocation('');
+      setCurrentPath('');
     }
-  }, [locations]);
+  }, [paths]);
 
+  //TO HANDLE GOING BACK TO A CERTAIN PARENT CATEGORY
   useEffect(() => {
     if (backToParentCategory) {
-      setChosenCategoryID(currentLocation?.category_id);
-      setLocations(
-        locations.filter((location) => location.id !== currentLocation?.id)
-      );
+      setChosenCategoryPathID(currentPath?.category_id);
+      setPaths(paths.filter((path) => path.id !== currentPath?.id));
       setBackButtonStatus(false);
+      setLocation(null);
     }
 
-    if (!chosenCategoryID) {
+    if (!chosenCategoryPathID) {
       isRootCategory(true);
     }
   }, [backToParentCategory]);
 
-  const formatLocations = () => {
-    locations.forEach((loc, idx) =>
+  //TO SET LOCATION OR PATH
+  useEffect(() => {
+    if (location) {
+      setPaths([...paths, location]);
+    }
+
+    if (chosenPath) {
+      setChosenCategoryPathID(chosenPath.id);
+      setPaths([...paths, chosenPath]);
+      setChosenPath(null);
+    }
+  }, [location, chosenPath]);
+
+  //TO FORMAT THE LOCATION FROM AN ARRAY TO A STRING
+  const formatPath = () => {
+    paths?.forEach((p, idx) =>
       idx === 0
-        ? setLocation((location) => location.concat(loc.name))
-        : setLocation((location) => location.concat(' > ', loc.name))
+        ? setPath((path) => path.concat(p.name))
+        : setPath((path) => path.concat(' > ', p.name))
     );
   };
 
@@ -73,11 +90,11 @@ const Location = ({
     <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label className={style.locationLabel}>Location</Form.Label>
-        <Form.Control readOnly="readonly" value={location} />
+        <Form.Control readOnly="readonly" value={path} />
       </Form.Group>
 
       <ListGroup>
-        {
+        {!chosenCategoryPathID && categories ? (
           <ListGroup.Item
             className={style.categoryListItem}
             onMouseEnter={() => {
@@ -90,9 +107,12 @@ const Location = ({
             <div>Root</div>
             <BsArrowRightCircle
               className={hoveredItem === -1 ? style.arrowRightIcon : 'd-none'}
+              onClick={() => setLocation(null)}
             />
           </ListGroup.Item>
-        }
+        ) : (
+          {}
+        )}
         {categories ? (
           categories.map((category, idx) => {
             return (
@@ -109,10 +129,11 @@ const Location = ({
                 <div
                   onClick={() => {
                     if (category.subcategories_count > 0) {
-                      if (category.name !== currentLocation?.name) {
-                        setChosenCategoryID(category.id);
-                        setLocations([...locations, category]);
-                      }
+                      setPaths(
+                        paths.filter((path) => path.id !== location?.id)
+                      );
+                      setLocation(null);
+                      setChosenPath(category);
                     } else {
                       toast(
                         'Message',
@@ -128,16 +149,11 @@ const Location = ({
                     hoveredItem === idx ? style.arrowRightIcon : 'd-none'
                   }
                   onClick={() => {
-                    if (category.name !== currentLocation?.name && !moved) {
-                      setLocations([...locations, category]);
-                      setMoved(true);
-                    } else {
-                      setLocations(
-                        locations.filter(
-                          (location) => location.id !== currentLocation?.id
-                        )
+                    if (location?.name !== category.name) {
+                      setPaths(
+                        paths.filter((path) => path.id !== location?.id)
                       );
-                      setMoved(false);
+                      setLocation(category);
                     }
                   }}
                 />

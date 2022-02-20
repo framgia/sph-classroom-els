@@ -40,7 +40,7 @@ const ChangeLocation = ({ show, handleClose }) => {
         </Modal.Body>
         <Modal.Footer className="d-flex gap-3">
           {isRootCategory ? (
-            ''
+            {}
           ) : (
             <Button
               onClick={() => setBackButtonClicked(true)}
