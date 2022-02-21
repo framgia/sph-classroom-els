@@ -40,16 +40,16 @@ const QuestionType = ({ question }) => {
     setTimeLimit(e);
   };
 
-  const question_type = (option) => {
-    switch (option) {
-    case 'multiple_choice':
-      return <MultipleChoiceType questions={question} />;
-    case 'identification':
-      return <IdentificationType questions={question} />;
-    default:
-      break;
-    }
-  };
+  // const question_type = (option) => {
+  //   switch (option) {
+  //   case 'multiple_choice':
+  //     return <MultipleChoiceType questions={question} />;
+  //   case 'identification':
+  //     return <IdentificationType questions={question} />;
+  //   default:
+  //     break;
+  //   }
+  // };
 
   // const question_type = (questions) => {
   //   if (questions.question_type_id === 1) {
@@ -80,15 +80,15 @@ const QuestionType = ({ question }) => {
         </div>
       ) : (
         <div>
-          {question_type(question.question_type_id === 1 ? (
+          {question.question_type_id === 1 ? (
             <MultipleChoiceType
-              question={question}
+              questions={question}
             />
           ) : (
             <IdentificationType
-              question={question}
+              questions={question}
             />
-          ))}
+          )}
           
         </div>
       )}

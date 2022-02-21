@@ -9,7 +9,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import { Controller, useForm } from 'react-hook-form';
 
 const MultipleChoiceType = ({ questions }) => {
-  // console.log(questions.question);
+  console.log(questions.choices);
   const { control } = useForm();
   return (
     <Fragment>
@@ -27,13 +27,12 @@ const MultipleChoiceType = ({ questions }) => {
                 control={control}
                 name="question"
                 defaultValue={questions.question}
-                render={({ field: { onChange, ref } }) => (
-                  <Form.Control
+                render={({ field: { onChange, value, ref } }) => (
+                  <Form.Control 
                     onChange={onChange}
                     type="text"
                     className={style.inputWidth}
-                    // value={value}
-                    value={`${questions.question}`}
+                    value={value}
                     ref={ref}
                   />
                 )}
@@ -54,10 +53,29 @@ const MultipleChoiceType = ({ questions }) => {
           <Card key={idx} className={style.cardBody}>
             <div>
               <input type="radio" name="choice" />
+              {/* {questions?.choices ? (
+                <Controller
+                  control={control}
+                  name="choices"
+                  defaultValue={choice.choice}
+                  render={({ field: { onChange, value, ref } }) => (
+                    <Form.Control 
+                      onChange={onChange}
+                      type="text"
+                      className={style.choicesAlignment}
+                      value={value}
+                      ref={ref}
+                    />
+                  )}
+                />
+              ) : (
+                ''
+              )}  */}
               <span className={style.choicesAlignment}>
                 {choice.choice}
               </span>
               <AiOutlineCloseCircle className={style.inputIconSize} />
+              
             </div>
           </Card>
         ))}
