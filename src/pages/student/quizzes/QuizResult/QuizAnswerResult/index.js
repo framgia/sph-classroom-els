@@ -15,7 +15,7 @@ const QuizAnswerResult = ({
   score,
   total,
   categoryId,
-  viewResultsPage
+  viewResultsPage,
 }) => {
   const [page, setPage] = useState(1);
   const { questions, title } = useContext(QuestionsContext);
@@ -103,7 +103,7 @@ const QuizAnswerResult = ({
                   </a>
                 ) : (
                   <Button
-                    className={style.nextbutton}
+                    className={style.nextButton}
                     onClick={handleNextButtonClick}
                   >
                     Next
@@ -124,7 +124,7 @@ QuizAnswerResult.propTypes = {
   answers: PropTypes.array,
   score: PropTypes.number,
   total: PropTypes.number,
-  categoryId: PropTypes.number
+  categoryId: PropTypes.number,
 };
 
 export default QuizAnswerResult;
