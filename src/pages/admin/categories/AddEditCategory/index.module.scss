@@ -105,8 +105,19 @@
 
   &:hover,
   &:focus {
-    background-color: $color-dark-blue-3;
-    border: $color-light-blue-2;
-    color: $color-white;
+    background-color: $color-dark-blue-3 !important;
+    border: $color-light-blue-2 !important;
+    color: $color-white !important;
   }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 604px;
+}
+
+.loadingWord {
+  margin-left: 10px;
 }

@@ -5,6 +5,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 import { CgMenuCake } from 'react-icons/cg';
 import { useToast } from '../../../../hooks/useToast';
+import Spinner from 'react-bootstrap/Spinner';
 
 import style from './index.module.scss';
 
@@ -29,7 +30,7 @@ const AddEditCategory = () => {
     if (location.pathname !== '/admin/add-category') {
       CategoryApi.show({ categoryId: category_id }).then(({data}) => {
         setCategory(data.data);
-      })
+      });
     }
   },[]);
 
@@ -39,18 +40,18 @@ const AddEditCategory = () => {
     setErrors('');
 
     try {
-     if (location.pathname === '/admin/add-category') {
+      if (location.pathname === '/admin/add-category') {
         toast('Processing', 'Adding a Category...');
         CategoryApi.store( name, description ).then(() => {
           toast('Success', 'Successfully Added Category.');
           history.push('/admin/categories');
-        })
-       } else { 
-          toast('Processing', 'Updating Category...');
-          CategoryApi.update(name, description, category_id).then(() => {
-            toast('Success', 'Successfully Updated Category.');
-            history.push('/admin/categories');
-          });
+        });
+      } else { 
+        toast('Processing', 'Updating Category...');
+        CategoryApi.update(name, description, category_id).then(() => {
+          toast('Success', 'Successfully Updated Category.');
+          history.push('/admin/categories');
+        });
       }
     } catch (error) {
       toast('Error', 'The given data was invalid.');
@@ -98,41 +99,41 @@ const AddEditCategory = () => {
               )}
             />
             <Form.Control.Feedback type="invalid">
-            {errors?.name}
-          </Form.Control.Feedback>
+              {errors?.name}
+            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className={style.inputFieldContainer} controlId="lacation">
             <Form.Label className={style.inputLabel}>Location</Form.Label>
-                <Form.Control
-                  className={style.inputFieldTitle}
-                  readonly="readonly"
-                  type="text"
-                />
+            <Form.Control
+              className={style.inputFieldTitle}
+              readonly="readonly"
+              type="text"
+            />
             <CgMenuCake className={style.menuIcon} onClick={handleShow} />
           </Form.Group>
-          <Form.Group controlId='description'>
-          <Form.Label className={`${style.inputLabel} mt-3`}>
+          <Form.Group controlId="description">
+            <Form.Label className={`${style.inputLabel} mt-3`}>
             Description
-          </Form.Label>
-          <Controller
-            control={control}
-            name="description"
-            defaultValue={category?.description}
-            render={({ field: { onChange, value, ref } }) => (
-              <Form.Control 
-                className={style.inputFieldDescription}
-                onChange={onChange}
-                value={value}
-                ref={ref}
-                as="textarea"  
-                placeholder="Category Description"
-                isInvalid={!!errors?.description}
-              />
-            )}
-          />
-          <Form.Control.Feedback type="invalid">
-            {errors?.description}
-          </Form.Control.Feedback>
+            </Form.Label>
+            <Controller
+              control={control}
+              name="description"
+              defaultValue={category?.description}
+              render={({ field: { onChange, value, ref } }) => (
+                <Form.Control 
+                  className={style.inputFieldDescription}
+                  onChange={onChange}
+                  value={value}
+                  ref={ref}
+                  as="textarea"  
+                  placeholder="Category Description"
+                  isInvalid={!!errors?.description}
+                />
+              )}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors?.description}
+            </Form.Control.Feedback>
           </Form.Group>
           <Button 
             className={style.button}
@@ -143,7 +144,11 @@ const AddEditCategory = () => {
               ? 'Add Category'
               : 'Save Category'}
           </Button>
-        </Form> : ''
+        </Form> :  
+          <div className={style.loading}>
+            <Spinner animation="border" role="status"></Spinner>
+            <span className={style.loadingWord}>Loading</span>
+          </div>
         } 
         
       </Card.Body>
