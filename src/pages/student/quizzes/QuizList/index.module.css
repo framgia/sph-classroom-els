@@ -1,7 +1,7 @@
 .title {
   font-size: 24px;
   font-weight: 500;
-  color: #48535B;
+  color: #48535b;
   display: inline-block;
   margin-left: 10px;
   margin-top: 37px;
@@ -27,7 +27,7 @@
   color: white;
 }
 
-#GridCard{
+#GridCard {
   display: grid;
   grid-column-gap: 46px;
   grid-row-gap: 48px;
@@ -62,10 +62,9 @@
   font-size: 24px;
 }
 
-.backarrow{
-  color: #48535B;
+.backArrow {
+  color: #48535b;
   width: 50px;
   height: 50px;
-  margin-top: 29px;
-  margin-bottom: 23px;
+  margin: 29px 10px 23px 0px;
 }
