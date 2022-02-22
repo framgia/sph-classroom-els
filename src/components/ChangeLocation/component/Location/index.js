@@ -13,7 +13,11 @@ import CategoryApi from '../../../../api/Category';
 const Location = ({
   isRootCategory,
   backToParentCategory,
-  setBackButtonStatus
+  setBackButtonStatus,
+  location,
+  setLocation,
+  setLocationPath,
+  type
 }) => {
   const toast = useToast();
   const [hoveredItem, setHoveredItem] = useState(null);
@@ -23,20 +27,25 @@ const Location = ({
   const [currentPath, setCurrentPath] = useState({});
   const [chosenPath, setChosenPath] = useState(null);
   const [chosenCategoryPathID, setChosenCategoryPathID] = useState(null);
-  const [location, setLocation] = useState(null);
 
   //TO HANDLE THE FETCHING OF CATEGORIES/SUBCATEGORIES
   useEffect(() => {
     setCategories(null);
-    chosenCategoryPathID ? toast('Processing', 'Getting Subcategories...') : {};
+    chosenCategoryPathID ? toast('Processing', 'Getting Subcategories...') : '';
 
     CategoryApi.getCategories({ category_id: chosenCategoryPathID }).then(
       ({ data }) => {
         setCategories(data.data);
-        chosenCategoryPathID ? isRootCategory(false) : {};
+        chosenCategoryPathID ? isRootCategory(false) : '';
       }
     );
   }, [chosenCategoryPathID]);
+
+  useEffect(() => {
+    if (type === 'Category') {
+      setLocationPath(path);
+    }
+  });
 
   //TO HANDLE THE SETTING OF PATH
   useEffect(() => {
@@ -49,6 +58,15 @@ const Location = ({
       setCurrentPath('');
     }
   }, [paths]);
+
+  //TO FORMAT THE LOCATION FROM AN ARRAY TO A STRING
+  const formatPath = () => {
+    paths?.forEach((p, idx) =>
+      idx === 0
+        ? setPath((path) => path.concat(p.name))
+        : setPath((path) => path.concat(' > ', p.name))
+    );
+  };
 
   //TO HANDLE GOING BACK TO A CERTAIN PARENT CATEGORY
   useEffect(() => {
@@ -64,7 +82,7 @@ const Location = ({
     }
   }, [backToParentCategory]);
 
-  //TO SET LOCATION OR PATH
+  //TO SET LOCATION OR PATH WHEN CLICKING A CATEGORY
   useEffect(() => {
     if (location) {
       setPaths([...paths, location]);
@@ -77,15 +95,6 @@ const Location = ({
     }
   }, [location, chosenPath]);
 
-  //TO FORMAT THE LOCATION FROM AN ARRAY TO A STRING
-  const formatPath = () => {
-    paths?.forEach((p, idx) =>
-      idx === 0
-        ? setPath((path) => path.concat(p.name))
-        : setPath((path) => path.concat(' > ', p.name))
-    );
-  };
-
   return (
     <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -94,7 +103,7 @@ const Location = ({
       </Form.Group>
 
       <ListGroup>
-        {!chosenCategoryPathID && categories ? (
+        {!chosenCategoryPathID && categories && type === 'Category' ? (
           <ListGroup.Item
             className={style.categoryListItem}
             onMouseEnter={() => {
@@ -107,11 +116,14 @@ const Location = ({
             <div>Root</div>
             <BsArrowRightCircle
               className={hoveredItem === -1 ? style.arrowRightIcon : 'd-none'}
-              onClick={() => setLocation(null)}
+              onClick={() => {
+                setLocation(null);
+                setPath('Root');
+              }}
             />
           </ListGroup.Item>
         ) : (
-          {}
+          ''
         )}
         {categories ? (
           categories.map((category, idx) => {
@@ -173,7 +185,12 @@ const Location = ({
 Location.propTypes = {
   isRootCategory: PropTypes.func,
   backToParentCategory: PropTypes.bool,
-  setBackButtonStatus: PropTypes.func
+  setBackButtonStatus: PropTypes.func,
+  location: PropTypes.object,
+  setLocation: PropTypes.func,
+  setLocationPath: PropTypes.func,
+  save: PropTypes.bool,
+  type: PropTypes.string
 };
 
 export default Location;

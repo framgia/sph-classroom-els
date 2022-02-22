@@ -2,6 +2,7 @@
 
 .locationLabel {
   font-size: $font-size-lg;
+  color: $color-dark-blue-1;
 }
 
 .categoryListItem {
@@ -12,9 +13,11 @@
 
   font-weight: $font-weight-light;
   font-size: $font-size-md;
+  color: $color-dark-blue-1;
 
   &:hover {
     background-color: $color-light-blue-1;
+    color: $color-black;
     cursor: pointer;
   }
 }
@@ -33,5 +36,5 @@
 }
 
 .spinner {
-  margin-top: 120px;
+  margin-top: 30px;
 }

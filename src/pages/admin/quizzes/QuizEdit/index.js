@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
@@ -6,11 +6,17 @@ import Nav from 'react-bootstrap/Nav';
 import QuestionType from './components/QuestionType';
 
 import style from './index.module.scss';
+import ChangeLocation from '../../../../components/ChangeLocation';
 
 const QuizEdit = () => {
+  const TYPE = 'Quiz';
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const quiz = {
     id: 1,
-    title: 'Web Development Basics',
+    title: 'Web Development Basics'
   };
 
   const questions = [
@@ -22,14 +28,14 @@ const QuizEdit = () => {
         { description: 'Hypertext Markup Language' },
         { description: 'Hyper Text Mark Lauron' },
         { description: 'Hypertext Mixed Language' },
-        { description: 'How To Make Lumpia' },
-      ],
+        { description: 'How To Make Lumpia' }
+      ]
     },
     {
       id: 2,
       question: 'Tim Berners-Lee invented ______.',
-      question_type: 'identification',
-    },
+      question_type: 'identification'
+    }
   ];
 
   return (
@@ -55,7 +61,9 @@ const QuizEdit = () => {
                 );
               })}
             <Button className={style.sidebarButtons}>Add a Question</Button>
-            <Button className={style.sidebarButtons}>Change Category</Button>
+            <Button className={style.sidebarButtons} onClick={handleShow}>
+              Change Category
+            </Button>
           </div>
           <QuestionType questions={questions} />
         </div>
@@ -66,6 +74,7 @@ const QuizEdit = () => {
           <Button className={style.saveButton}>Save</Button>
         </div>
       </Container>
+      <ChangeLocation show={show} handleClose={handleClose} type={TYPE} />
     </div>
   );
 };
