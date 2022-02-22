@@ -48,7 +48,7 @@ const AddEditCategory = () => {
 
     if (loc.pathname === '/admin/add-category') {
       toast('Processing', 'Adding a Category...');
-      CategoryApi.store(name, description)
+      CategoryApi.store(name, description, location)
         .then(() => {
           toast('Success', 'Successfully Added Category.');
           history.push('/admin/categories');
@@ -62,7 +62,7 @@ const AddEditCategory = () => {
         });
     } else if (loc.pathname === `/admin/edit-category/${category_id}`) {
       toast('Processing', 'Updating Category...');
-      CategoryApi.update(name, description, category_id)
+      CategoryApi.update(name, description, location, category_id)
         .then(() => {
           toast('Success', 'Successfully Updated Category.');
           history.push('/admin/categories');
@@ -72,11 +72,6 @@ const AddEditCategory = () => {
       toast('Error', 'Invalid Url. Please try again...');
     }
   };
-
-  console.log(location?.name);
-  useEffect(() => {
-    location ? '' : setLocationPathDisplay('');
-  }, [location]);
 
   return (
     <Card className={style.card}>

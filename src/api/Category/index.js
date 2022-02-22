@@ -25,15 +25,14 @@ const CategoryApi = {
     return API.request(options);
   },
 
-  store: (name, description) => {
+  store: (name, description, location) => {
     const options = {
       method: 'POST',
-
       url: '/admin/add-category',
-
       data: {
         name: name,
-        description: description
+        description: description,
+        category_id: location?.id
       }
     };
 
@@ -52,7 +51,7 @@ const CategoryApi = {
     return API.request(options);
   },
 
-  update: (name, description, category_id) => {
+  update: (name, description, location, category_id) => {
     const options = {
       method: 'PATCH',
 
@@ -60,7 +59,8 @@ const CategoryApi = {
 
       data: {
         name: name,
-        description: description
+        description: description,
+        category_id: location?.id
       }
     };
 

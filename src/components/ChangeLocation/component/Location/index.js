@@ -17,14 +17,14 @@ const Location = ({
   location,
   setLocation,
   setLocationPathDisplay,
-  type
-  // isSaved
+  type,
+  isSaved
 }) => {
   const toast = useToast();
   const [hoveredItem, setHoveredItem] = useState(null);
   const [categories, setCategories] = useState(null);
   const [paths, setPaths] = useState([]);
-  const [pathDisplay, setPathDisplay] = useState('');
+  const [pathDisplay, setPathDisplay] = useState(setLocationPathDisplay);
   const [currentPath, setCurrentPath] = useState({});
   const [chosenPath, setChosenPath] = useState(null);
   const [chosenCategoryPathID, setChosenCategoryPathID] = useState(null);
@@ -43,7 +43,7 @@ const Location = ({
   }, [chosenCategoryPathID]);
 
   useEffect(() => {
-    if (type === 'withPathDisplay') {
+    if (type === 'withPathDisplay' && isSaved) {
       setLocationPathDisplay(pathDisplay);
     }
   });
