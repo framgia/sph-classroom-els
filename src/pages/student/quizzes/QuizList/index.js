@@ -39,7 +39,7 @@ const QuizList = () => {
       setCategory(data.data);
     });
   }, [page]);
-
+  console.log(category);
   const onPageChange = (selected) => {
     setPage(selected + 1);
 
@@ -48,7 +48,13 @@ const QuizList = () => {
 
   return (
     <div className={style.container}>
-      <a href={`/categories/${categoryId}/sub`}>
+      <a
+        href={
+          category?.category_id
+            ? `/categories/${category?.category_id}/sub`
+            : '/categories'
+        }
+      >
         <BsFillArrowLeftSquareFill className={style.backArrow} />
       </a>
       <p className={style.title}>{category?.name}</p>
