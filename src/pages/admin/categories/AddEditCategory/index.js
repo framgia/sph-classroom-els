@@ -35,7 +35,7 @@ const AddEditCategory = () => {
   },[]);
 
   const detectTypo = () => {
-    toast('Error', 'The Given Data was Invalid. Please try again...');
+    toast('Error', 'Category name is Already Taken. Please try again...');
     setSubmitStatus(false);
   };
 
