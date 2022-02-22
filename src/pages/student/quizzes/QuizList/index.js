@@ -39,7 +39,7 @@ const QuizList = () => {
       setCategory(data.data);
     });
   }, [page]);
-  console.log(category);
+
   const onPageChange = (selected) => {
     setPage(selected + 1);
 
