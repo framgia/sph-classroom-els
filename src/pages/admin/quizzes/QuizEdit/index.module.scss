@@ -222,7 +222,7 @@
   color: $color-black;
   font-size: $font-size-md;
   position: absolute;
-  margin: 3.5px 0px 0px 12px;
+  margin: 0px 0px 0px 12px;
   font-size: $font-size-base;
   font-weight: $font-weight-light;
 }
@@ -230,10 +230,25 @@
 .loading {
   display: flex;
   justify-content: center;
-  margin: 50px 140px 0px 160px;
+  margin: 0px 140px 100px 160px;
   align-items: center;
 }
 
 .loadingWord {
   margin-left: 10px;
+}
+
+.choicesInput{
+  border : 0px;
+  background-color: transparent;
+  position: fixed;
+  height: 35px;
+}
+
+.choicesInput:focus{
+  outline: none;
+}
+
+.choicecontentinput{
+  display:inline-block;
 }

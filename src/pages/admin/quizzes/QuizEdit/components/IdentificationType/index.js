@@ -15,14 +15,14 @@ const IdentificationType = ({ questions }) => {
           <Controller
             control={control}
             name="question"
-            defaultValue={questions.question}
-            render={({ field: { onChange, value, ref } }) => (
+            // defaultValue={questions.question}
+            render={({ field: { onChange, ref } }) => (
               <Form.Control
                 type="title"
                 className={style.inputWidth}
-                // value={`${questions.id}. ${questions.question}`}
+                value={questions.question}
                 onChange={onChange}
-                value={value}
+                // value={value}
                 ref={ref}
               />
             )}
@@ -34,13 +34,14 @@ const IdentificationType = ({ questions }) => {
         <Controller
           control={control}
           name="text_answer"
-          defaultValue={questions.text_answer}
-          render={({ field: { onChange, value, ref } }) => (
+          // defaultValue={questions.text_answer}
+          render={({ field: { onChange, ref } }) => (
             <Form.Control 
               as="textarea" 
               className={style.inputHeight} 
               onChange={onChange}
-              value={value}
+              value={questions.text_answer}
+              // value={value}
               ref={ref}
             />
           )}

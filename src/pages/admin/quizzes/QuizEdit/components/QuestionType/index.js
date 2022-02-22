@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 import { RiArrowDropDownLine } from 'react-icons/ri';
@@ -19,6 +19,11 @@ const QuestionType = ({ question }) => {
   //   console.log(selectedQuestionTypeId);
   // };
 
+  // useEffect(() => {
+  //   setQuestionType(question.question);
+  //   console.log(questionType);
+  // }, [question]);
+
   const types = [
     {
       name: 'Multiple Choice',
@@ -30,6 +35,20 @@ const QuestionType = ({ question }) => {
     },
   ];
 
+  // const types = (question) => {
+  //   if (question.question_type_id === 1) {
+  //     return(
+  //       name: 'Multiple Choice',
+  //       value: 'multiple_choice',
+  //     );
+  //   } else {
+  //     return(
+  //       name: 'Multiple Choice',
+  //       value: 'multiple_choice',
+  //     );
+  //   }
+  // }
+
   const limit = ['5', '10', '20', '30', '60'];
 
   const onSelectQuestionType = (e) => {
@@ -40,8 +59,8 @@ const QuestionType = ({ question }) => {
     setTimeLimit(e);
   };
 
-  // const question_type = (option) => {
-  //   switch (option) {
+  // const question_type = (choice) => {
+  //   switch (choice) {
   //   case 'multiple_choice':
   //     return <MultipleChoiceType questions={question} />;
   //   case 'identification':
@@ -81,15 +100,18 @@ const QuestionType = ({ question }) => {
       ) : (
         <div>
           {question.question_type_id === 1 ? (
+            // question_type(questionType,
             <MultipleChoiceType
               questions={question}
             />
+            // )
           ) : (
+            // question_type(questionType,
             <IdentificationType
               questions={question}
             />
+            // )
           )}
-          
         </div>
       )}
       <div className={style.formGap}>
@@ -97,6 +119,12 @@ const QuestionType = ({ question }) => {
           <Form>
             <Form.Label className={style.inputTitle}>Question Type</Form.Label>
           </Form>
+          {/* {question === null ? (
+            <div className={style.loading}>
+              <Spinner animation="border" role="status"></Spinner>
+              <span className={style.loadingWord}>Loading</span>
+            </div>
+          ) : ( */}
           <Dropdown.Toggle
             variant="link"
             id="dropdown-basic"
@@ -104,8 +132,23 @@ const QuestionType = ({ question }) => {
             className={style.dropdownStyle}
           >
             {choice(questionType)}
+            {/* {question.question_type_id &&
+                  types.map((type) => {
+                    return (
+                      {question.question_type_id === 1 ? (
+                        choice(questionType,
+                          type='Multiple Choice'
+                        )
+                      ):(
+                        choice(questionType,
+                          type='Identification'
+                        )
+                      )}
+                    );
+                  })} */}
             <RiArrowDropDownLine className={style.iconSize} />
           </Dropdown.Toggle>
+          {/* )} */}
           <Dropdown.Menu className={style.dropdownMenuStyle}>
             {types.map((type, idx) => {
               return (
@@ -114,6 +157,27 @@ const QuestionType = ({ question }) => {
                 </Dropdown.Item>
               );
             })}
+            {/* {question === null ? (
+            <div className={style.loading}>
+              <Spinner animation="border" role="status"></Spinner>
+              <span className={style.loadingWord}>Loading</span>
+            </div>
+          ) : (
+            <Dropdown.Menu className={style.dropdownMenuStyle}>
+              {question.question_type_id &&
+                types.map((type, idx) => {
+                  return (
+                    <Dropdown.Item key={idx} eventKey={type.value}>
+                      {question.question_type_id === 1 ? (
+                        type='Multiple Choice'
+                      ):(
+                        type='Identification'
+                      )}
+                    </Dropdown.Item>
+                  );
+                })}
+            </Dropdown.Menu>
+          )} */}
           </Dropdown.Menu>
         </Dropdown>
         <div className={style.formSpacing}>

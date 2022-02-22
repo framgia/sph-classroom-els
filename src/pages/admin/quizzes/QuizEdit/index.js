@@ -25,6 +25,7 @@ const QuizEdit = () => {
 
     QuestionApi.getAll(quizId).then(({ data }) => {
       setQuestions(data.data);
+      setSelectedQuestion(data.data[0]);
     });
   }, []);
 
@@ -73,11 +74,7 @@ const QuizEdit = () => {
               Change Category
             </Button>
           </div>
-          {selectedQuestion === null ? (
-            <QuestionType question={questions} />
-          ) : (
-            <QuestionType question={selectedQuestion} />
-          )}
+          <QuestionType question={selectedQuestion} />
         </div>
         <div className={style.confirmationButtons}>
           <Link to={`/admin/quizzes/${quizId}`} className={style.cancelButton}>

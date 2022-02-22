@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
+// import Card from 'react-bootstrap/Card';
 import style from '../../index.module.scss';
 import { GrAddCircle } from 'react-icons/gr';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
@@ -9,7 +9,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import { Controller, useForm } from 'react-hook-form';
 
 const MultipleChoiceType = ({ questions }) => {
-  console.log(questions.choices);
+  // console.log(questions.choices);
   const { control } = useForm();
   return (
     <Fragment>
@@ -27,12 +27,13 @@ const MultipleChoiceType = ({ questions }) => {
                 control={control}
                 name="question"
                 defaultValue={questions.question}
-                render={({ field: { onChange, value, ref } }) => (
+                render={({ field: { onChange, ref } }) => (
                   <Form.Control 
                     onChange={onChange}
                     type="text"
                     className={style.inputWidth}
-                    value={value}
+                    // value={value}
+                    value={questions.question}
                     ref={ref}
                   />
                 )}
@@ -50,9 +51,9 @@ const MultipleChoiceType = ({ questions }) => {
           </Form.Label>
         </Form>
         {questions?.choices?.map((choice, idx) => (
-          <Card key={idx} className={style.cardBody}>
+          <Form key={idx} className={style.cardBody}>
             <div>
-              <input type="radio" name="choice" />
+              <input type="radio" name="choices" />
               {/* {questions?.choices ? (
                 <Controller
                   control={control}
@@ -73,11 +74,30 @@ const MultipleChoiceType = ({ questions }) => {
               )}  */}
               <span className={style.choicesAlignment}>
                 {choice.choice}
+                {/* <input type="text" name="choice" value = {choice.choice} /> */}
+                {/* {questions?.choices ? (
+                  <input
+                    className={style.choicesInput}
+                    control={control}
+                    name="choices"
+                    defaultValue={choice.choice}
+                    render={({ field: { onChange,value, ref } }) => (
+                      <Form.Control 
+                        onChange={onChange}
+                        type="radio"
+                        value={value}
+                        ref={ref}
+                      />
+                    )}
+                  />
+                ) : (
+                  ''
+                )}  */}
               </span>
               <AiOutlineCloseCircle className={style.inputIconSize} />
               
             </div>
-          </Card>
+          </Form>
         ))}
       </div>
     </Fragment>
