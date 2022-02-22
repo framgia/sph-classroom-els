@@ -1,4 +1,4 @@
-import React, { useState, Fragment, } from 'react';
+import React, { useState, Fragment, useEffect} from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 import { RiArrowDropDownLine } from 'react-icons/ri';
@@ -19,6 +19,12 @@ const QuestionType = ({ question }) => {
   //   console.log(selectedQuestionTypeId);
   // };
 
+  useEffect(() => {
+    if (question) {
+      setQuestionType(question.question_type_id.toString());
+    }
+  }, [question]);
+
   // useEffect(() => {
   //   setQuestionType(question.question);
   //   console.log(questionType);
@@ -27,11 +33,11 @@ const QuestionType = ({ question }) => {
   const types = [
     {
       name: 'Multiple Choice',
-      value: 'multiple_choice',
+      value: '1',
     },
     {
       name: 'Identification',
-      value: 'identification',
+      value: '2',
     },
   ];
 
@@ -80,9 +86,9 @@ const QuestionType = ({ question }) => {
 
   const choice = (option) => {
     switch (option) {
-    case 'multiple_choice':
+    case '1':
       return 'Multiple Choice';
-    case 'identification':
+    case '2':
       return 'Identification';
     default:
       break;
