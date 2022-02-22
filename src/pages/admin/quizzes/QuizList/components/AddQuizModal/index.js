@@ -24,16 +24,16 @@ const AddQuizModal = ({
   const [backButtonClicked, setBackButtonClicked] = useState(false);
 
   useEffect(() => {
-    if (submitStatus) {
+    if (submitStatus && location) {
       reset({
         name: '',
         instruction: ''
       });
+      setLocation(null);
     }
 
     if (!modalShow) {
       setIsRootCategory(true);
-      setLocation(null);
     }
   }, [submitStatus]);
 
@@ -136,7 +136,6 @@ const AddQuizModal = ({
             <Button
               className={style.button}
               type="submit"
-              onClick={() => setModalShow(false)}
               disabled={submitStatus}
             >
               Add Quiz

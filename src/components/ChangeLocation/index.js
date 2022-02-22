@@ -12,18 +12,16 @@ const ChangeLocation = ({
   handleClose,
   location,
   setLocation,
-  setLocationPath,
+  setLocationPathDisplay,
   type
 }) => {
   const [isRootCategory, setIsRootCategory] = useState(true);
   const [backButtonClicked, setBackButtonClicked] = useState(false);
-  const [save, setSave] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
     if (!show) {
       setIsRootCategory(true);
-      setLocation(null);
-      setLocationPath('');
     }
   }, [show]);
 
@@ -48,8 +46,8 @@ const ChangeLocation = ({
             setBackButtonStatus={setBackButtonClicked}
             location={location}
             setLocation={setLocation}
-            setLocationPath={setLocationPath}
-            save={save}
+            setLocationPathDisplay={setLocationPathDisplay}
+            isSaved={isSaved}
             type={type}
           />
         </Modal.Body>
@@ -68,6 +66,7 @@ const ChangeLocation = ({
             <Button
               className={style.cancelButton}
               onClick={() => {
+                setLocation(null);
                 handleClose();
               }}
             >
@@ -76,8 +75,10 @@ const ChangeLocation = ({
             <Button
               className={style.saveButton}
               onClick={() => {
-                setSave(true);
-                handleClose();
+                if (location) {
+                  setIsSaved(true);
+                  handleClose();
+                }
               }}
             >
               Save
@@ -94,7 +95,7 @@ ChangeLocation.propTypes = {
   handleClose: PropTypes.func,
   location: PropTypes.object,
   setLocation: PropTypes.func,
-  setLocationPath: PropTypes.func,
+  setLocationPathDisplay: PropTypes.func,
   type: PropTypes.string
 };
 

@@ -26,7 +26,7 @@ const QuizList = () => {
   const [modalShow, setModalShow] = useState(false);
   const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState(false);
-  const TYPE = 'Quiz';
+  const TYPE = 'withoutPathDisplay';
 
   const history = useHistory();
   const toast = useToast();
@@ -40,7 +40,12 @@ const QuizList = () => {
 
   const handleOnSubmit = async ({ name, instruction }) => {
     setSubmitStatus(true);
-    toast('Processing', 'Adding quiz...');
+
+    if (location) {
+      toast('Processing', 'Adding quiz...');
+      setModalShow(false);
+    }
+
     setErrors('');
 
     try {
@@ -50,8 +55,7 @@ const QuizList = () => {
       setSubmitStatus(false);
       load();
     } catch (error) {
-      toast('Error', 'You did not choose a category, please try again.');
-      setModalShow(false);
+      toast('Error', 'Please choose a category.');
       setSubmitStatus(false);
     }
   };

@@ -9,10 +9,12 @@ import style from './index.module.scss';
 import ChangeLocation from '../../../../components/ChangeLocation';
 
 const QuizEdit = () => {
-  const TYPE = 'Quiz';
+  const TYPE = 'withPathDisplay';
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [location, setLocation] = useState(null);
+  const [locationPathDisplay, setLocationPathDisplay] = useState('');
 
   const quiz = {
     id: 1,
@@ -42,7 +44,7 @@ const QuizEdit = () => {
     <div className="d-inline-flex">
       <Container className={style.quizEditContainer}>
         <h2 className={style.quizTitle}>{quiz.title}</h2>
-        <h3 className={style.quizCategory}>Web Development &gt; Basics</h3>
+        <h3 className={style.quizCategory}>{locationPathDisplay}</h3>
         <div className="d-flex">
           <div className={style.quizEditSidebar}>
             {questions &&
@@ -74,7 +76,14 @@ const QuizEdit = () => {
           <Button className={style.saveButton}>Save</Button>
         </div>
       </Container>
-      <ChangeLocation show={show} handleClose={handleClose} type={TYPE} />
+      <ChangeLocation
+        show={show}
+        handleClose={handleClose}
+        location={location}
+        setLocation={setLocation}
+        setLocationPathDisplay={setLocationPathDisplay}
+        type={TYPE}
+      />
     </div>
   );
 };

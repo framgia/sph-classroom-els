@@ -14,7 +14,7 @@ import CategoryApi from '../../../../api/Category';
 
 const AddEditCategory = () => {
   const loc = useLocation();
-  const TYPE = 'Category';
+  const TYPE = 'withPathDisplay';
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -24,7 +24,7 @@ const AddEditCategory = () => {
   const { category_id } = useParams();
   const [category, setCategory] = useState(null);
   const [location, setLocation] = useState(null);
-  const [locationPath, setLocationPath] = useState('');
+  const [locationPathDisplay, setLocationPathDisplay] = useState('');
 
   const history = useHistory();
   const toast = useToast();
@@ -74,6 +74,9 @@ const AddEditCategory = () => {
   };
 
   console.log(location?.name);
+  useEffect(() => {
+    location ? '' : setLocationPathDisplay('');
+  }, [location]);
 
   return (
     <Card className={style.card}>
@@ -127,7 +130,7 @@ const AddEditCategory = () => {
                 className={style.inputFieldTitle}
                 readOnly="readonly"
                 type="text"
-                value={locationPath}
+                value={locationPathDisplay}
                 onClick={handleShow}
               />
               <CgMenuCake className={style.menuIcon} onClick={handleShow} />
@@ -179,7 +182,7 @@ const AddEditCategory = () => {
           handleClose={handleClose}
           location={location}
           setLocation={setLocation}
-          setLocationPath={setLocationPath}
+          setLocationPathDisplay={setLocationPathDisplay}
           type={TYPE}
         />
       </div>

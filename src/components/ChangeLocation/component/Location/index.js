@@ -16,14 +16,15 @@ const Location = ({
   setBackButtonStatus,
   location,
   setLocation,
-  setLocationPath,
+  setLocationPathDisplay,
   type
+  // isSaved
 }) => {
   const toast = useToast();
   const [hoveredItem, setHoveredItem] = useState(null);
   const [categories, setCategories] = useState(null);
   const [paths, setPaths] = useState([]);
-  const [path, setPath] = useState('');
+  const [pathDisplay, setPathDisplay] = useState('');
   const [currentPath, setCurrentPath] = useState({});
   const [chosenPath, setChosenPath] = useState(null);
   const [chosenCategoryPathID, setChosenCategoryPathID] = useState(null);
@@ -42,17 +43,17 @@ const Location = ({
   }, [chosenCategoryPathID]);
 
   useEffect(() => {
-    if (type === 'Category') {
-      setLocationPath(path);
+    if (type === 'withPathDisplay') {
+      setLocationPathDisplay(pathDisplay);
     }
   });
 
-  //TO HANDLE THE SETTING OF PATH
+  //TO HANDLE THE SETTING OF THE PATH
   useEffect(() => {
-    setPath('');
+    setPathDisplay('');
 
     if (paths?.length > 0) {
-      formatPath();
+      formatPathDisplay();
       setCurrentPath(paths[paths.length - 1]);
     } else {
       setCurrentPath('');
@@ -60,11 +61,11 @@ const Location = ({
   }, [paths]);
 
   //TO FORMAT THE LOCATION FROM AN ARRAY TO A STRING
-  const formatPath = () => {
+  const formatPathDisplay = () => {
     paths?.forEach((p, idx) =>
       idx === 0
-        ? setPath((path) => path.concat(p.name))
-        : setPath((path) => path.concat(' > ', p.name))
+        ? setPathDisplay((path) => path.concat(p.name))
+        : setPathDisplay((path) => path.concat(' > ', p.name))
     );
   };
 
@@ -99,7 +100,7 @@ const Location = ({
     <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label className={style.locationLabel}>Location</Form.Label>
-        <Form.Control readOnly="readonly" value={path} />
+        <Form.Control readOnly="readonly" value={pathDisplay} />
       </Form.Group>
 
       <ListGroup>
@@ -118,7 +119,7 @@ const Location = ({
               className={hoveredItem === -1 ? style.arrowRightIcon : 'd-none'}
               onClick={() => {
                 setLocation(null);
-                setPath('Root');
+                setPathDisplay('Root');
               }}
             />
           </ListGroup.Item>
@@ -188,9 +189,9 @@ Location.propTypes = {
   setBackButtonStatus: PropTypes.func,
   location: PropTypes.object,
   setLocation: PropTypes.func,
-  setLocationPath: PropTypes.func,
-  save: PropTypes.bool,
-  type: PropTypes.string
+  setLocationPathDisplay: PropTypes.func,
+  type: PropTypes.string,
+  isSaved: PropTypes.bool
 };
 
 export default Location;
