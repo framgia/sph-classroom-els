@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import { Col, Table } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
@@ -65,9 +65,13 @@ const CategoryList = () => {
             {category.description}
           </td>
           <td id={style.tBodyStyle1}>
-            <Button className={style.designButton}>
-              <FaRegEdit size="20px" />
-            </Button>
+            <Link
+              to={`/admin/edit-category/${category.id}`}
+            >
+              <Button className={style.designButton}>
+                <FaRegEdit size="20px"/>
+              </Button>
+            </Link>
           </td>
           <td id={style.tBodyStyle1}>
             <Button className={style.designButton}>
@@ -120,7 +124,11 @@ const CategoryList = () => {
               </table> 
             </Card.Header>
             <Card.Body className={style.cardBodyScroll}>
-              <Button className={style.button}>Add Category</Button>
+              <Link
+                to="/admin/add-category"
+              >
+                <Button className={style.button}>Add Category</Button>
+              </Link>
               <div>
                 <Table className={style.formatTable}>
                   <thead>
