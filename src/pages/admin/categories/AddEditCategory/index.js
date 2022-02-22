@@ -17,7 +17,7 @@ const AddEditCategory = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, reset } = useForm();
   const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState(false);
   const { category_id } = useParams();
@@ -34,29 +34,40 @@ const AddEditCategory = () => {
     }
   },[]);
 
+  const detectTypo = () => {
+    toast('Error', 'The Given Data was Invalid. Please try again...');
+    setSubmitStatus(false);
+  };
 
   const handleOnSubmit = async ({ name, description }) => {
     setSubmitStatus(true);
     setErrors('');
 
-    try {
-      if (location.pathname === '/admin/add-category') {
-        toast('Processing', 'Adding a Category...');
-        CategoryApi.store( name, description ).then(() => {
+    if (location.pathname === '/admin/add-category') {
+      toast('Processing', 'Adding a Category...');
+      CategoryApi.store( name, description )
+        .then(() => {
           toast('Success', 'Successfully Added Category.');
           history.push('/admin/categories');
+        })
+        .catch(error => {
+          detectTypo(error);
+          reset({
+            name: '',
+            description: ''
+          });
         });
-      } else { 
-        toast('Processing', 'Updating Category...');
-        CategoryApi.update(name, description, category_id).then(() => {
+    
+    } else if (location.pathname === `/admin/edit-category/${category_id}`) { 
+      toast('Processing', 'Updating Category...');
+      CategoryApi.update(name, description, category_id)
+        .then(() => {
           toast('Success', 'Successfully Updated Category.');
           history.push('/admin/categories');
-        });
-      }
-    } catch (error) {
-      toast('Error', 'The given data was invalid.');
-      setSubmitStatus(false);
-      console.log(error);
+        })
+        .catch(error => detectTypo(error));
+    } else {
+      toast('Error', 'Invalid Url. Please try again...');
     }
   };
 

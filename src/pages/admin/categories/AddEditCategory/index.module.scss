@@ -81,6 +81,7 @@
 .inputFieldDescription {
   height: 300px;
   max-height: 300px;
+  resize: none;
 
   @extend %input-field-style;
 
@@ -105,7 +106,7 @@
 
   &:hover,
   &:focus {
-    background-color: $color-dark-blue-3 !important;
+    background-color: $color-dark-blue-2 !important;
     border: $color-light-blue-2 !important;
     color: $color-white !important;
   }
