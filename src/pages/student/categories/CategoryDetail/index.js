@@ -56,8 +56,9 @@ function Subcategories() {
                   ? `/categories/${category?.category_id}/sub`
                   : '/categories'
               }
+              className={style.titleSpacing}
             >
-              <BsFillArrowLeftSquareFill size="50" id={style.BckIcon} />
+              <BsFillArrowLeftSquareFill size="50" id={style.backIcon} />
             </LinkContainer>
             {category?.name}
           </p>

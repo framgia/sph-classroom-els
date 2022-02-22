@@ -48,10 +48,10 @@ const QuizList = () => {
 
   return (
     <div className={style.container}>
-      <a href={`/categories/${category?.category_id}/sub`}>
-        <BsFillArrowLeftSquareFill className={style.backarrow} />
-        <p className={style.title}>{category?.name}</p>
+      <a href={`/categories/${categoryId}/sub`}>
+        <BsFillArrowLeftSquareFill className={style.backArrow} />
       </a>
+      <p className={style.title}>{category?.name}</p>
       {quizzes === null ? (
         <div className={style.loading}>
           <Spinner animation="border" role="status"></Spinner>
