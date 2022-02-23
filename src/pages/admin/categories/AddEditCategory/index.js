@@ -46,8 +46,8 @@ const AddEditCategory = () => {
         toast('Error', error?.response?.data?.errors?.description);
       }
     } else {
-        toast('Error', 'There`s an Error in the Data. Please try again...');
-        setSubmitStatus(false);
+      toast('Error', 'There`s an Error in the Data. Please try again...');
+      setSubmitStatus(false);
     } 
   };
 
