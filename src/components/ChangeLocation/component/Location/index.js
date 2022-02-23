@@ -34,12 +34,14 @@ const Location = ({
     setCategories(null);
     chosenCategoryPathID ? toast('Processing', 'Getting Subcategories...') : '';
 
-    CategoryApi.getCategories({ category_id: chosenCategoryPathID }).then(
-      ({ data }) => {
+    CategoryApi.getCategories({ category_id: chosenCategoryPathID })
+      .then(({ data }) => {
         setCategories(data.data);
         chosenCategoryPathID ? isRootCategory(false) : '';
-      }
-    );
+      })
+      .catch(() =>
+        toast('Error', 'There was an error getting the list of categories.')
+      );
   }, [chosenCategoryPathID]);
 
   useEffect(() => {
