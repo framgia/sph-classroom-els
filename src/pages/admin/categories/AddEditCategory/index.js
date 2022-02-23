@@ -18,7 +18,7 @@ const AddEditCategory = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const { control, handleSubmit, reset } = useForm();
+  const { control, handleSubmit } = useForm();
   const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState(false);
   const { category_id } = useParams();
@@ -37,9 +37,18 @@ const AddEditCategory = () => {
     }
   }, []);
 
-  const detectTypo = () => {
-    toast('Error', 'Category name is Already Taken. Please try again...');
-    setSubmitStatus(false);
+  const detectTypo = (error) => {
+    if (loc.pathname === '/admin/add-category') {
+      setSubmitStatus(false);
+      if (error?.response?.data?.errors?.name) {
+        toast('Error', error?.response?.data?.errors?.name);
+      } else {
+        toast('Error', error?.response?.data?.errors?.description);
+      }
+    } else {
+        toast('Error', 'There`s an Error in the Data. Please try again...');
+        setSubmitStatus(false);
+    } 
   };
 
   const handleOnSubmit = async ({ name, description }) => {
@@ -55,10 +64,6 @@ const AddEditCategory = () => {
         })
         .catch((error) => {
           detectTypo(error);
-          reset({
-            name: '',
-            description: ''
-          });
         });
     } else if (loc.pathname === `/admin/edit-category/${category_id}`) {
       toast('Processing', 'Updating Category...');
@@ -107,7 +112,6 @@ const AddEditCategory = () => {
                     type="title"
                     placeholder="Category Name"
                     isInvalid={!!errors?.name}
-                    required
                     maxLength={50}
                   />
                 )}
@@ -147,6 +151,7 @@ const AddEditCategory = () => {
                     as="textarea"
                     placeholder="Category Description"
                     isInvalid={!!errors?.description}
+                    maxLength={255}
                   />
                 )}
               />
