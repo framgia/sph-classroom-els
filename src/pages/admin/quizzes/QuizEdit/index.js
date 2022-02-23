@@ -18,25 +18,6 @@ const QuizEdit = () => {
   const [questions, setQuestions] = useState(null);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
-  // const questions = [
-  //   {
-  //     id: 1,
-  //     question: 'What is HTML?',
-  //     question_type: 'multiple choice',
-  //     choices: [
-  //       { description: 'Hypertext Markup Language' },
-  //       { description: 'Hyper Text Mark Lauron' },
-  //       { description: 'Hypertext Mixed Language' },
-  //       { description: 'How To Make Lumpia' },
-  //     ],
-  //   },
-  //   {
-  //     id: 2,
-  //     question: 'Tim Berners-Lee invented ______.',
-  //     question_type: 'identification',
-  //   },
-  // ];
-
   useEffect(() => {
     QuizApi.show({ categoryId, quizId }).then(({ data }) => {
       setQuizInfo(data.data);
@@ -48,9 +29,15 @@ const QuizEdit = () => {
   }, []);
 
   const onSelectQuestion = (e) => {
+<<<<<<< HEAD
     setSelectedQuestion(
       questions.find((question) => question.id === parseInt(e))
     );
+=======
+    setSelectedQuestion(questions.find(question => question.id === parseInt(e)));
+    
+    // console.log(selectedQuestion);
+>>>>>>> 8db85c5 (E_CLASSROOM-254- For pair programming)
   };
 
   return (
@@ -71,7 +58,7 @@ const QuizEdit = () => {
                         active
                       >
                         <span className={style.questionNumber}>
-                          Question #{idx + 1}
+                          Question # {idx + 1}
                         </span>
                         <p key={idx} className={style.question}>
                           {question.question}
@@ -86,7 +73,11 @@ const QuizEdit = () => {
               Change Category
             </Button>
           </div>
-          <QuestionType question={selectedQuestion} />
+          {selectedQuestion === null ? (
+            <QuestionType question={questions} />
+          ) : (
+            <QuestionType question={selectedQuestion} />
+          )}
         </div>
         <div className={style.confirmationButtons}>
           <Link to={`/admin/quizzes/${quizId}`} className={style.cancelButton}>

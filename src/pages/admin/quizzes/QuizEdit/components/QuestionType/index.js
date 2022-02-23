@@ -5,12 +5,19 @@ import { RiArrowDropDownLine } from 'react-icons/ri';
 import MultipleChoiceType from '../MultipleChoiceType';
 import IdentificationType from '../IdentificationType';
 import PropTypes from 'prop-types';
+import Spinner from 'react-bootstrap/Spinner';
 
 import style from '../../index.module.scss';
 
 const QuestionType = ({ question }) => {
   const [questionType, setQuestionType] = useState('multiple_choice');
   const [timeLimit, setTimeLimit] = useState(0);
+  // const [selectedQuestionTypeId, setSelectedQuestionTypeId] = useState(null);
+
+  // const onSelectQuestionTypeId = (e) => {
+  //   setSelectedQuestionTypeId(question.find(question => question.id === parseInt(e)));
+  //   console.log(selectedQuestionTypeId);
+  // };
 
   const types = [
     {
@@ -33,8 +40,8 @@ const QuestionType = ({ question }) => {
     setTimeLimit(e);
   };
 
-  const question_type = (choice) => {
-    switch (choice) {
+  const question_type = (option) => {
+    switch (option) {
     case 'multiple_choice':
       return <MultipleChoiceType questions={question} />;
     case 'identification':
@@ -43,6 +50,14 @@ const QuestionType = ({ question }) => {
       break;
     }
   };
+
+  // const question_type = (questions) => {
+  //   if (questions.question_type_id === 1) {
+  //     return <MultipleChoiceType questions={question} />;
+  //   } else {
+  //     return <IdentificationType questions={question} />;
+  //   }
+  // };
 
   const choice = (option) => {
     switch (option) {
@@ -57,7 +72,26 @@ const QuestionType = ({ question }) => {
 
   return (
     <Fragment>
-      <div>{question_type(questionType)}</div>
+      {/* <div>{question_type(questionType)}</div> */}
+      {question === null ? (
+        <div className={style.loading}>
+          <Spinner animation="border" role="status"></Spinner>
+          <span className={style.loadingWord}>Loading</span>
+        </div>
+      ) : (
+        <div>
+          {question_type(question.question_type_id === 1 ? (
+            <MultipleChoiceType
+              question={question}
+            />
+          ) : (
+            <IdentificationType
+              question={question}
+            />
+          ))}
+          
+        </div>
+      )}
       <div className={style.formGap}>
         <Dropdown onSelect={onSelectQuestionType}>
           <Form>
