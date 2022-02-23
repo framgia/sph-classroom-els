@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect} from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 import { RiArrowDropDownLine } from 'react-icons/ri';
@@ -21,7 +21,7 @@ const QuestionType = ({ question }) => {
 
   useEffect(() => {
     if (question) {
-      setQuestionType(question.question_type_id.toString());
+      setQuestionType(question?.question_type_id?.toString());
     }
   }, [question]);
 
@@ -107,15 +107,11 @@ const QuestionType = ({ question }) => {
         <div>
           {question.question_type_id === 1 ? (
             // question_type(questionType,
-            <MultipleChoiceType
-              questions={question}
-            />
-            // )
+            <MultipleChoiceType questions={question} />
           ) : (
+            // )
             // question_type(questionType,
-            <IdentificationType
-              questions={question}
-            />
+            <IdentificationType questions={question} />
             // )
           )}
         </div>

@@ -13,6 +13,12 @@ import QuizApi from '../../../../api/Quiz';
 import QuestionApi from '../../../../api/Question';
 
 const QuizEdit = () => {
+  const TYPE = 'withPathDisplay';
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [location, setLocation] = useState(null);
+  const [locationPathDisplay, setLocationPathDisplay] = useState('');
   const [quizInfo, setQuizInfo] = useState(null);
   const { categoryId, quizId } = useParams();
   const [questions, setQuestions] = useState(null);
@@ -25,27 +31,20 @@ const QuizEdit = () => {
 
     QuestionApi.getAll(quizId).then(({ data }) => {
       setQuestions(data.data);
-      setSelectedQuestion(data.data[0]);
     });
   }, []);
 
   const onSelectQuestion = (e) => {
-<<<<<<< HEAD
     setSelectedQuestion(
       questions.find((question) => question.id === parseInt(e))
     );
-=======
-    setSelectedQuestion(questions.find(question => question.id === parseInt(e)));
-    
-    // console.log(selectedQuestion);
->>>>>>> 8db85c5 (E_CLASSROOM-254- For pair programming)
   };
 
   return (
     <div className="d-inline-flex">
       <Container className={style.quizEditContainer}>
         <h2 className={style.quizTitle}>{quizInfo?.title}</h2>
-        <h3 className={style.quizCategory}>Web Development &gt; Basics</h3>
+        <h3 className={style.quizCategory}>{locationPathDisplay}</h3>
         <div className="d-flex">
           <div className={style.quizEditSidebar}>
             {questions &&
@@ -74,7 +73,11 @@ const QuizEdit = () => {
               Change Category
             </Button>
           </div>
-          <QuestionType question={selectedQuestion} />
+          {selectedQuestion === null ? (
+            <QuestionType question={questions} />
+          ) : (
+            <QuestionType question={selectedQuestion} />
+          )}
         </div>
         <div className={style.confirmationButtons}>
           <Link to={`/admin/quizzes/${quizId}`} className={style.cancelButton}>
