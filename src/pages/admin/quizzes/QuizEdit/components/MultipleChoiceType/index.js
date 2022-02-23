@@ -7,6 +7,7 @@ import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { PropTypes } from 'prop-types';
 
 const MultipleChoiceType = ({ questions }) => {
+  console.log(questions);
   return (
     <Fragment>
       <div>
@@ -30,7 +31,7 @@ const MultipleChoiceType = ({ questions }) => {
             <div>
               <input type="radio" name="choice" />
               <span className={style.choicesAlignment}>
-                {choice.description}
+                {choice.choice}
               </span>
               <AiOutlineCloseCircle className={style.inputIconSize} />
             </div>

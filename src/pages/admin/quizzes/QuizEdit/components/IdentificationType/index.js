@@ -19,6 +19,7 @@ const IdentificationType = ({ questions }) => {
       <div className={style.formSpacing}>
         <Form.Label className={style.inputTitle}>Answer</Form.Label>
         <Form.Control as="textarea" className={style.inputHeight} />
+        {questions.text_answer}
       </div>
     </Fragment>
   );

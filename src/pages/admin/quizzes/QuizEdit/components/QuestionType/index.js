@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 import style from '../../index.module.scss';
 
-const QuestionType = ({ questions }) => {
+const QuestionType = ({ question }) => {
   const [questionType, setQuestionType] = useState('multiple_choice');
   const [timeLimit, setTimeLimit] = useState(0);
 
@@ -25,7 +25,7 @@ const QuestionType = ({ questions }) => {
 
   const limit = ['5', '10', '20', '30', '60'];
 
-  const question = (e) => {
+  const onSelectQuestionType = (e) => {
     setQuestionType(e);
   };
 
@@ -36,9 +36,9 @@ const QuestionType = ({ questions }) => {
   const question_type = (choice) => {
     switch (choice) {
     case 'multiple_choice':
-      return <MultipleChoiceType questions={questions[0]} />;
+      return <MultipleChoiceType questions={question} />;
     case 'identification':
-      return <IdentificationType questions={questions[1]} />;
+      return <IdentificationType questions={question} />;
     default:
       break;
     }
@@ -59,7 +59,7 @@ const QuestionType = ({ questions }) => {
     <Fragment>
       <div>{question_type(questionType)}</div>
       <div className={style.formGap}>
-        <Dropdown onSelect={question}>
+        <Dropdown onSelect={onSelectQuestionType}>
           <Form>
             <Form.Label className={style.inputTitle}>Question Type</Form.Label>
           </Form>
@@ -113,7 +113,7 @@ const QuestionType = ({ questions }) => {
 };
 
 QuestionType.propTypes = {
-  questions: PropTypes.object,
+  question: PropTypes.object,
 };
 
 export default QuestionType;
