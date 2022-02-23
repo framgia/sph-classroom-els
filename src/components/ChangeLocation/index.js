@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
@@ -7,7 +7,25 @@ import style from './index.module.scss';
 
 import Location from './component/Location';
 
-const ChangeLocation = ({ show, handleClose }) => {
+const ChangeLocation = ({
+  show,
+  handleClose,
+  location,
+  setLocation,
+  setLocationPathDisplay,
+  type
+}) => {
+  const [isRootCategory, setIsRootCategory] = useState(true);
+  const [backButtonClicked, setBackButtonClicked] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+
+  useEffect(() => {
+    if (!show) {
+      setIsRootCategory(true);
+      setIsSaved(false);
+    }
+  }, [show]);
+
   return (
     <Fragment>
       <Modal
@@ -23,15 +41,46 @@ const ChangeLocation = ({ show, handleClose }) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className={style.modalBody}>
-          <Location />
+          <Location
+            isRootCategory={setIsRootCategory}
+            backToParentCategory={backButtonClicked}
+            setBackButtonStatus={setBackButtonClicked}
+            location={location}
+            setLocation={setLocation}
+            setLocationPathDisplay={setLocationPathDisplay}
+            isSaved={isSaved}
+            type={type}
+          />
         </Modal.Body>
         <Modal.Footer className="d-flex gap-3">
-          <Button className={style.backButton}>Go Back</Button>
+          {isRootCategory ? (
+            ''
+          ) : (
+            <Button
+              onClick={() => setBackButtonClicked(true)}
+              className={style.backButton}
+            >
+              Go Back
+            </Button>
+          )}
           <div>
-            <Button className={style.cancelButton} onClick={handleClose}>
+            <Button
+              className={style.cancelButton}
+              onClick={() => {
+                handleClose();
+              }}
+            >
               Cancel
             </Button>
-            <Button className={style.saveButton}>Save</Button>
+            <Button
+              className={style.saveButton}
+              onClick={() => {
+                setIsSaved(true);
+                handleClose();
+              }}
+            >
+              Save
+            </Button>
           </div>
         </Modal.Footer>
       </Modal>
@@ -40,9 +89,12 @@ const ChangeLocation = ({ show, handleClose }) => {
 };
 
 ChangeLocation.propTypes = {
-  show: PropTypes.string,
-  handleClose: PropTypes.any,
-  handleShow: PropTypes.any
+  show: PropTypes.bool,
+  handleClose: PropTypes.func,
+  location: PropTypes.object,
+  setLocation: PropTypes.func,
+  setLocationPathDisplay: PropTypes.func,
+  type: PropTypes.string
 };
 
 export default ChangeLocation;

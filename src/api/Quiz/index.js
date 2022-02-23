@@ -4,7 +4,7 @@ const QuizApi = {
   getAll: (id, pageNum) => {
     const options = {
       method: 'GET',
-      url: `/categories/${id}/quizzes?page=${pageNum}`,
+      url: `/categories/${id}/quizzes?page=${pageNum}`
       //   params: {
       //   ...params,
       // },
@@ -18,8 +18,8 @@ const QuizApi = {
       method: 'GET',
       url: `/categories/${categoryId}/quizzes/${quizId}`,
       params: {
-        ...params,
-      },
+        ...params
+      }
     };
 
     return API.request(options);
@@ -28,7 +28,7 @@ const QuizApi = {
   getRelatedQuizzes: (categoryId, quizId) => {
     const options = {
       method: 'GET',
-      url: `/categories/${categoryId}/relatedQuizzes/${quizId}`,
+      url: `/categories/${categoryId}/relatedQuizzes/${quizId}`
     };
 
     return API.request(options);
@@ -39,14 +39,14 @@ const QuizApi = {
       method: 'GET',
       url: '/admin_quizzes',
       params: {
-        ...params,
-      },
+        ...params
+      }
     };
 
     return API.request(options);
   },
 
-  addQuiz: (name, instruction) => {
+  addQuiz: (name, instruction, location) => {
     const options = {
       method: 'POST',
 
@@ -55,9 +55,8 @@ const QuizApi = {
       data: {
         title: name,
         instruction: instruction,
-        category_id: '1'
+        category_id: location.id
       }
-
     };
 
     return API.request(options);
@@ -69,7 +68,7 @@ const QuizApi = {
 
   delete: () => {},
 
-  restore: () => {},
+  restore: () => {}
 };
 
 export default QuizApi;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import { Col, Table } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
@@ -26,6 +26,7 @@ const QuizList = () => {
   const [modalShow, setModalShow] = useState(false);
   const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState(false);
+  const TYPE = 'withoutPathDisplay';
 
   const history = useHistory();
   const toast = useToast();
@@ -35,21 +36,26 @@ const QuizList = () => {
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
 
-  const handleOnSubmit = async ({name, instruction}) => {
-    toast('Processing', 'Adding quiz...');
+  const [location, setLocation] = useState(null);
+
+  const handleOnSubmit = async ({ name, instruction }) => {
     setSubmitStatus(true);
+
+    if (location) {
+      toast('Processing', 'Adding quiz...');
+      setModalShow(false);
+    }
+
     setErrors('');
 
     try {
-      await QuizApi.addQuiz(name, instruction);
+      await QuizApi.addQuiz(name, instruction, location);
       history.push('/admin/quizzes');
       toast('Success', 'Successfully Added quiz.');
-      setModalShow(false);
-      load();
       setSubmitStatus(false);
+      load();
     } catch (error) {
-      toast('Error', 'Incorrect Credentials, please try again.');
-      setModalShow(false);
+      toast('Error', 'Please choose a category.');
       setSubmitStatus(false);
     }
   };
@@ -66,20 +72,15 @@ const QuizList = () => {
   };
 
   useEffect(() => {
-    history.push(
-      `?page=${page}`
-    );
+    history.push(`?page=${page}`);
 
     load();
-
   }, [page]);
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
 
-    history.push(
-      `?page=${page}`
-    );
+    history.push(`?page=${page}`);
   };
 
   const renderList = () => {
@@ -90,9 +91,7 @@ const QuizList = () => {
           <td id={style.classColumn}>{quiz.name}</td>
           <td id={style.classColumn}>{quiz.title}</td>
           <td id={style.buttonColumn}>
-            <Link
-              to={`/admin/quizzes/${quiz.id}`}
-            >
+            <Link to={`/admin/quizzes/${quiz.id}`}>
               <Button className={style.designButton}>
                 <FaRegEdit size="20px" />
               </Button>
@@ -161,7 +160,7 @@ const QuizList = () => {
               </table>
             </Card.Header>
             <Card.Body className={style.cardBodyScroll}>
-              <Button 
+              <Button
                 className={style.button}
                 onClick={() => setModalShow(true)}
               >
@@ -195,12 +194,15 @@ const QuizList = () => {
             ></Pagination>
           </div>
         </div>
-        <AddQuizModal 
-          handleOnSubmit={handleOnSubmit} 
+        <AddQuizModal
+          handleOnSubmit={handleOnSubmit}
           submitStatus={submitStatus}
           modalShow={modalShow}
           setModalShow={setModalShow}
           errors={errors}
+          location={location}
+          setLocation={setLocation}
+          type={TYPE}
         />
       </div>
     </div>

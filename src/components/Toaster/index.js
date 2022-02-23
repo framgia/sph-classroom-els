@@ -17,6 +17,8 @@ const Toaster = () => {
       return 'success';
     case 'Error':
       return 'danger';
+    case 'Message':
+      return 'info';
     default:
       return '';
     }
