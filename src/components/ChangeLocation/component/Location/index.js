@@ -96,15 +96,24 @@ const Location = ({
     }
   }, [location, chosenPath]);
 
+  const onCategoryClick = (category) => {
+    if (category.subcategories_count > 0) {
+      setPaths(paths.filter((path) => path.id !== location?.id));
+      setLocation(null);
+      setChosenPath(category);
+    } else {
+      toast('Message', 'This category does not have a subcategory.');
+    }
+  };
+
   return (
     <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label className={style.locationLabel}>Location</Form.Label>
         <Form.Control readOnly="readonly" value={pathDisplay} />
       </Form.Group>
-
       <ListGroup>
-        {!chosenCategoryPathID && categories && type === 'Category' ? (
+        {!chosenCategoryPathID && categories && type === 'withPathDisplay' ? (
           <ListGroup.Item
             className={style.categoryListItem}
             onMouseEnter={() => {
@@ -141,18 +150,7 @@ const Location = ({
               >
                 <div
                   onClick={() => {
-                    if (category.subcategories_count > 0) {
-                      setPaths(
-                        paths.filter((path) => path.id !== location?.id)
-                      );
-                      setLocation(null);
-                      setChosenPath(category);
-                    } else {
-                      toast(
-                        'Message',
-                        'This category does not have a subcategory.'
-                      );
-                    }
+                    onCategoryClick(category);
                   }}
                 >
                   {category.name}

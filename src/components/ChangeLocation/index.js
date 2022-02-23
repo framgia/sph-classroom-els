@@ -22,6 +22,7 @@ const ChangeLocation = ({
   useEffect(() => {
     if (!show) {
       setIsRootCategory(true);
+      setIsSaved(false);
     }
   }, [show]);
 
@@ -66,7 +67,6 @@ const ChangeLocation = ({
             <Button
               className={style.cancelButton}
               onClick={() => {
-                setLocation(null);
                 handleClose();
               }}
             >
@@ -75,10 +75,8 @@ const ChangeLocation = ({
             <Button
               className={style.saveButton}
               onClick={() => {
-                if (location) {
-                  setIsSaved(true);
-                  handleClose();
-                }
+                setIsSaved(true);
+                handleClose();
               }}
             >
               Save
