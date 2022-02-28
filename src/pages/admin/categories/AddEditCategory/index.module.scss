@@ -67,7 +67,7 @@
   cursor: pointer;
 }
 
-.inputFieldTitle {
+.inputField {
   width: 400px;
   cursor: pointer;
 
@@ -76,6 +76,10 @@
   &:focus {
     background-color: $color-white-2;
   }
+}
+
+.spaceForIconArea {
+  padding-right: 38px;
 }
 
 .inputFieldDescription {
