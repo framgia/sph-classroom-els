@@ -41,17 +41,21 @@ const AddEditCategory = () => {
 
   useEffect(() => {
     if (loc.pathname !== '/admin/add-category') {
-      CategoryApi.show({ categoryId: category_id }).then(({ data }) => {
-        setCategory(data.data);
-        setParentCategoryID(data.data.category_id);
-        if (data.data.category_id) {
-          CategoryApi.getParentCategories(category_id).then(({ data }) => {
-            setParentCategories(data);
-          });
-        } else {
-          setLocationPathDisplay('Root');
-        }
-      });
+      CategoryApi.show({ categoryId: category_id })
+        .then(({ data }) => {
+          setCategory(data.data);
+          setParentCategoryID(data.data.category_id);
+          if (data.data.category_id) {
+            CategoryApi.getParentCategories(category_id)
+              .then(({ data }) => {
+                setParentCategories(data);
+              })
+              .catch((error) => toast('Error', error));
+          } else {
+            setLocationPathDisplay('Root');
+          }
+        })
+        .catch((error) => toast('Error', error));
     } else {
       setLocationPathDisplay('Root');
     }
