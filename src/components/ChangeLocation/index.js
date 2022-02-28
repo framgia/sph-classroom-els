@@ -13,11 +13,12 @@ const ChangeLocation = ({
   location,
   setLocation,
   setLocationPathDisplay,
-  type
+  type,
+  isSaved,
+  setIsSaved
 }) => {
   const [isRootCategory, setIsRootCategory] = useState(true);
   const [backButtonClicked, setBackButtonClicked] = useState(false);
-  const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
     if (!show) {
@@ -67,6 +68,7 @@ const ChangeLocation = ({
             <Button
               className={style.cancelButton}
               onClick={() => {
+                setLocation(null);
                 handleClose();
               }}
             >
@@ -94,7 +96,9 @@ ChangeLocation.propTypes = {
   location: PropTypes.object,
   setLocation: PropTypes.func,
   setLocationPathDisplay: PropTypes.func,
-  type: PropTypes.string
+  type: PropTypes.string,
+  isSaved: PropTypes.bool,
+  setIsSaved: PropTypes.func
 };
 
 export default ChangeLocation;

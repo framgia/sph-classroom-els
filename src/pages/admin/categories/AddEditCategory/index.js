@@ -24,18 +24,50 @@ const AddEditCategory = () => {
   const { category_id } = useParams();
   const [category, setCategory] = useState(null);
   const [location, setLocation] = useState(null);
+  const [parentCategories, setParentCategories] = useState(null);
+  const [parentCategoryID, setParentCategoryID] = useState(null);
   const [locationPathDisplay, setLocationPathDisplay] = useState('');
+  const [isSaved, setIsSaved] = useState(false);
 
   const history = useHistory();
   const toast = useToast();
 
   useEffect(() => {
+    if (isSaved) {
+      setParentCategoryID(location?.id);
+      setLocation(null);
+    }
+  }, [location, isSaved]);
+
+  useEffect(() => {
     if (loc.pathname !== '/admin/add-category') {
-      CategoryApi.show({ categoryId: category_id }).then(({ data }) => {
-        setCategory(data.data);
-      });
+      CategoryApi.show({ categoryId: category_id })
+        .then(({ data }) => {
+          setCategory(data.data);
+          setParentCategoryID(data.data.category_id);
+          if (data.data.category_id) {
+            CategoryApi.getParentCategories(category_id)
+              .then(({ data }) => {
+                setParentCategories(data);
+              })
+              .catch((error) => toast('Error', error));
+          } else {
+            setLocationPathDisplay('Root');
+          }
+        })
+        .catch((error) => toast('Error', error));
+    } else {
+      setLocationPathDisplay('Root');
     }
   }, []);
+
+  useEffect(() => {
+    parentCategories?.forEach((p, idx) =>
+      idx === 0
+        ? setLocationPathDisplay((path) => path.concat(p.name))
+        : setLocationPathDisplay((path) => path.concat(' > ', p.name))
+    );
+  }, [parentCategories]);
 
   const detectTypo = (error) => {
     if (loc.pathname === '/admin/add-category') {
@@ -48,7 +80,7 @@ const AddEditCategory = () => {
     } else {
       toast('Error', 'There`s an Error in the Data. Please try again...');
       setSubmitStatus(false);
-    } 
+    }
   };
 
   const handleOnSubmit = async ({ name, description }) => {
@@ -57,7 +89,7 @@ const AddEditCategory = () => {
 
     if (loc.pathname === '/admin/add-category') {
       toast('Processing', 'Adding a Category...');
-      CategoryApi.store(name, description, location)
+      CategoryApi.store(name, description, parentCategoryID)
         .then(() => {
           toast('Success', 'Successfully Added Category.');
           history.push('/admin/categories');
@@ -67,7 +99,7 @@ const AddEditCategory = () => {
         });
     } else if (loc.pathname === `/admin/edit-category/${category_id}`) {
       toast('Processing', 'Updating Category...');
-      CategoryApi.update(name, description, location, category_id)
+      CategoryApi.update(name, description, parentCategoryID, category_id)
         .then(() => {
           toast('Success', 'Successfully Updated Category.');
           history.push('/admin/categories');
@@ -95,86 +127,87 @@ const AddEditCategory = () => {
         </div>
       </Card.Header>
       <Card.Body className={style.cardBody}>
-        {category || loc.pathname === '/admin/add-category' ? (
-          <Form onSubmit={handleSubmit(handleOnSubmit)}>
-            <Form.Group className={style.inputFieldContainer} controlId="name">
-              <Form.Label className={style.inputLabel}>Title</Form.Label>
-              <Controller
-                control={control}
-                name="name"
-                defaultValue={category?.name}
-                render={({ field: { onChange, value, ref } }) => (
-                  <Form.Control
-                    className={style.inputFieldTitle}
-                    onChange={onChange}
-                    value={value}
-                    ref={ref}
-                    type="title"
-                    placeholder="Category Name"
-                    isInvalid={!!errors?.name}
-                    maxLength={50}
-                  />
-                )}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors?.name}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group
-              className={style.inputFieldContainer}
-              controlId="lacation"
-            >
-              <Form.Label className={style.inputLabel}>Location</Form.Label>
-              <Form.Control
-                className={style.inputFieldTitle}
-                readOnly="readonly"
-                type="text"
-                value={locationPathDisplay}
-                onClick={handleShow}
-              />
-              <CgMenuCake className={style.menuIcon} onClick={handleShow} />
-            </Form.Group>
-            <Form.Group controlId="description">
-              <Form.Label className={`${style.inputLabel} mt-3`}>
+        {(category && locationPathDisplay) ||
+        loc.pathname === '/admin/add-category' ? (
+            <Form onSubmit={handleSubmit(handleOnSubmit)}>
+              <Form.Group className={style.inputFieldContainer} controlId="name">
+                <Form.Label className={style.inputLabel}>Title</Form.Label>
+                <Controller
+                  control={control}
+                  name="name"
+                  defaultValue={category?.name}
+                  render={({ field: { onChange, value, ref } }) => (
+                    <Form.Control
+                      className={style.inputField}
+                      onChange={onChange}
+                      value={value}
+                      ref={ref}
+                      type="title"
+                      placeholder="Category Name"
+                      isInvalid={!!errors?.name}
+                      maxLength={50}
+                    />
+                  )}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors?.name}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group
+                className={style.inputFieldContainer}
+                controlId="lacation"
+              >
+                <Form.Label className={style.inputLabel}>Location</Form.Label>
+                <Form.Control
+                  className={`${style.inputField} ${style.spaceForIconArea}`}
+                  readOnly="readonly"
+                  type="text"
+                  value={locationPathDisplay}
+                  onClick={handleShow}
+                />
+                <CgMenuCake className={style.menuIcon} onClick={handleShow} />
+              </Form.Group>
+              <Form.Group controlId="description">
+                <Form.Label className={`${style.inputLabel} mt-3`}>
                 Description
-              </Form.Label>
-              <Controller
-                control={control}
-                name="description"
-                defaultValue={category?.description}
-                render={({ field: { onChange, value, ref } }) => (
-                  <Form.Control
-                    className={style.inputFieldDescription}
-                    onChange={onChange}
-                    value={value}
-                    ref={ref}
-                    as="textarea"
-                    placeholder="Category Description"
-                    isInvalid={!!errors?.description}
-                    maxLength={255}
-                  />
-                )}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors?.description}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Button
-              className={style.button}
-              type="submit"
-              disabled={submitStatus}
-            >
-              {loc.pathname === '/admin/add-category'
-                ? 'Add Category'
-                : 'Save Category'}
-            </Button>
-          </Form>
-        ) : (
-          <div className={style.loading}>
-            <Spinner animation="border" role="status"></Spinner>
-            <span className={style.loadingWord}>Loading</span>
-          </div>
-        )}
+                </Form.Label>
+                <Controller
+                  control={control}
+                  name="description"
+                  defaultValue={category?.description}
+                  render={({ field: { onChange, value, ref } }) => (
+                    <Form.Control
+                      className={style.inputFieldDescription}
+                      onChange={onChange}
+                      value={value}
+                      ref={ref}
+                      as="textarea"
+                      placeholder="Category Description"
+                      isInvalid={!!errors?.description}
+                      maxLength={255}
+                    />
+                  )}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors?.description}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Button
+                className={style.button}
+                type="submit"
+                disabled={submitStatus}
+              >
+                {loc.pathname === '/admin/add-category'
+                  ? 'Add Category'
+                  : 'Save Category'}
+              </Button>
+            </Form>
+          ) : (
+            <div className={style.loading}>
+              <Spinner animation="border" role="status"></Spinner>
+              <span className={style.loadingWord}>Loading</span>
+            </div>
+          )}
       </Card.Body>
       <div className={style.modalContainer}>
         <ChangeLocation
@@ -184,6 +217,8 @@ const AddEditCategory = () => {
           setLocation={setLocation}
           setLocationPathDisplay={setLocationPathDisplay}
           type={TYPE}
+          isSaved={isSaved}
+          setIsSaved={setIsSaved}
         />
       </div>
     </Card>

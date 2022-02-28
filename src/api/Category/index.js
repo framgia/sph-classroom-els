@@ -25,14 +25,14 @@ const CategoryApi = {
     return API.request(options);
   },
 
-  store: (name, description, location) => {
+  store: (name, description, parentCategoryID) => {
     const options = {
       method: 'POST',
       url: '/admin/add-category',
       data: {
         name: name,
         description: description,
-        category_id: location?.id
+        category_id: parentCategoryID
       }
     };
 
@@ -51,17 +51,24 @@ const CategoryApi = {
     return API.request(options);
   },
 
-  update: (name, description, location, category_id) => {
+  update: (name, description, parentCategoryID, category_id) => {
     const options = {
       method: 'PATCH',
-
       url: `/categories/${category_id}`,
-
       data: {
         name: name,
         description: description,
-        category_id: location?.id
+        category_id: parentCategoryID
       }
+    };
+
+    return API.request(options);
+  },
+
+  getParentCategories: (subcategoryID) => {
+    const options = {
+      method: 'GET',
+      url: `/admin/nested-categories/${subcategoryID}`
     };
 
     return API.request(options);
