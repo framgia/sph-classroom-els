@@ -5,7 +5,6 @@ import { PropTypes } from 'prop-types';
 import { Controller, useForm } from 'react-hook-form';
 
 const IdentificationType = ({ questions }) => {
-  console.log(questions);
   const { control } = useForm();
   return (
     <Fragment>
@@ -15,14 +14,14 @@ const IdentificationType = ({ questions }) => {
           <Controller
             control={control}
             name="question"
-            // defaultValue={questions.question}
-            render={({ field: { onChange, ref } }) => (
+            defaultValue={questions.question}
+            render={({ field: { onChange, value, ref } }) => (
               <Form.Control
                 type="title"
                 className={style.inputWidth}
-                value={questions.question}
+                // value={questions.question}
                 onChange={onChange}
-                // value={value}
+                value={value}
                 ref={ref}
               />
             )}
