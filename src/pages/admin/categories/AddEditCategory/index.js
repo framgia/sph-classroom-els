@@ -52,6 +52,8 @@ const AddEditCategory = () => {
           setLocationPathDisplay('Root');
         }
       });
+    } else {
+      setLocationPathDisplay('Root');
     }
   }, []);
 
