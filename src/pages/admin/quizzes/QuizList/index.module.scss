@@ -125,28 +125,6 @@
   text-align: center;
 }
 
-.classCol {
-  @extend %style-table-head;
-
-  &:nth-child(1) {
-    width: 88px;
-  }
-
-  &:nth-child(2) {
-    width: 123px;
-  }
-
-  &:nth-child(3) {
-    width: 300px;
-  }
-}
-
-.buttonCol {
-  @extend %style-table-head;
-  text-align: center;
-  width: 88px;
-}
-
 .formatTable {
   width: 100%;
   margin-top: 63px;
@@ -154,11 +132,6 @@
 
 #paginateStyle {
   display: inline-block !important;
-}
-
-.designButton {
-  border: none;
-  background: none;
 }
 
 #forForm {
