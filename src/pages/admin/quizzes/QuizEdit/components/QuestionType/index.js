@@ -69,7 +69,7 @@ const QuestionType = ({ question }) => {
 
   return (
     <Fragment>
-      <div>{question_type(questionType)}</div>
+      <div  className={style.questionTypestyle}>{question_type(questionType)}</div>
       <div className={style.formGap}>
         <Dropdown onSelect={onSelectQuestionType}>
           <Form>

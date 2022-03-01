@@ -23,7 +23,6 @@ const QuizEdit = () => {
   const { categoryId, quizId } = useParams();
   const [questions, setQuestions] = useState(null);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
-  // const [addQuestion, setAddQuestion] = useState(null);
 
   useEffect(() => {
     QuizApi.show({ categoryId, quizId }).then(({ data }) => {
@@ -42,10 +41,9 @@ const QuizEdit = () => {
     );
   };
 
-  // const addNewQuestion = (question) => {
-  //   setAddQuestion( question);
-  //   console.log(addQuestion);
-  // };
+  const addQuestionFields = (e) => {
+    setQuestions([...questions, { e }]);
+  };
 
   return (
     <div className="d-inline-flex">
@@ -69,13 +67,14 @@ const QuizEdit = () => {
                         </span>
                         <p key={idx} className={style.question}>
                           {question.question}
+                          {/* <QuestionType types /> */}
                         </p>
                       </Nav.Link>
                     </Nav>
                   </Fragment>
                 );
               })}
-            <Button className={style.sidebarButtons}>Add a Question</Button>
+            <Button className={style.sidebarButtons} onClick={() => addQuestionFields()} >Add a Question</Button>
             <Button className={style.sidebarButtons} onClick={handleShow}>
               Change Category
             </Button>

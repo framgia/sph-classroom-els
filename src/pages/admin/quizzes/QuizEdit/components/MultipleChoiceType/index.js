@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import style from '../../index.module.scss';
 import { GrAddCircle } from 'react-icons/gr';
@@ -9,7 +9,30 @@ import { Controller, useForm } from 'react-hook-form';
 
 const MultipleChoiceType = ({ questions }) => {
   const { control } = useForm();
-  const [addChoices, setAddChoices] = useState([]);
+  const [selectedChoices, setselectedChoices] = useState(null);
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
+  const [choices, setChoice] = useState([]);
+
+  useEffect(() => {
+    if (questions) {
+      setChoice(questions.choices);
+    }
+    console.log(choices);
+  }, [questions]);
+
+  const onSelectQuestion = (e) => {
+    setSelectedQuestion(
+      find((question) => question.id === e)
+    );
+    console.log(selectedQuestion);
+  };
+
+  const onSelectedChoices = (e) => {
+    setselectedChoices(
+      choices.find((choice) => choice.id === e)
+    );
+    console.log(selectedChoices);
+  };
   // const [errors, setErrors] = useState({});
 
   // const handleOnSubmit = async ({ question, choice }) => {
@@ -27,8 +50,14 @@ const MultipleChoiceType = ({ questions }) => {
   //   console.log(choice);
   // };
 
-  const handleAddChoices = () => {
-    setAddChoices(control);
+  const addChoicesFields = (e) => {
+    setChoice([...choices, { e }]);
+  };
+
+  const removeChoicesFields = (e) => {
+    let newchoices = [...choices];
+    newchoices.splice(e, 1);
+    setChoice(newchoices);
   };
   return (
     <Fragment>
@@ -56,22 +85,25 @@ const MultipleChoiceType = ({ questions }) => {
           <Form>
             <Form.Label className={style.inputTitle}>Question</Form.Label>
             {questions ? (
-              <Controller
-                control={control}
-                name="question"
-                defaultValue={questions.question}
-                render={({ field: { onChange, value, ref } }) => (
-                  <Form.Control 
-                    onChange={onChange}
-                    // onChange={(e) => questions.question(e.target.value)}
-                    type="text"
-                    className={style.inputWidth}
-                    value={value}
-                    // value={questions.question}
-                    ref={ref}
-                  />
-                )}
-              />
+              <div onSelect={onSelectQuestion}>
+                <Controller
+                  eventKey={questions.id}
+                  control={control}
+                  name="question"
+                  defaultValue={questions.question}
+                  render={({ field: { onChange, value, ref } }) => (
+                    <Form.Control 
+                      onChange={onChange}
+                      // onChange={(e) => questions.question(e.target.value)}
+                      type="text"
+                      className={style.inputWidth}
+                      value={value}
+                      // value={questions.question}
+                      ref={ref}
+                    />
+                  )}
+                />
+              </div>
             ) : (
               ''
             )} 
@@ -79,40 +111,38 @@ const MultipleChoiceType = ({ questions }) => {
         )}
       </div>
       <div className={style.formSpacing}>
-        <div className={style.inputTitle}
-          onClick = {() => handleAddChoices()}
+        <div className={style.inputchoices}
         >
-          Choices <GrAddCircle className={style.iconSize} />
+          Choices <GrAddCircle className={style.iconSize} onClick={() => addChoicesFields()} />
         </div>
         <div>
-          {addChoices && questions?.choices?.map((choice, idx) => (
-            <Form key={idx} className={style.cardBody}>
-              <div>
+          {choices && choices.map((choice, idx) => {
+            return(
+              <Form onSelect={onSelectedChoices} key={idx} className={style.cardBody}>
                 <input type="radio" name="choice" />
-                <span className={style.choicesAlignment}>
-                  {questions?.choices ? (
+                <span eventKey={choice.id} className={style.choicesAlignment}>
+                  {choices ? (
                     <input
                       className={style.choicesInput}
                       control={control}
                       name="choice"
                       defaultValue={choice.choice}
-                      render={({ field: { onChange,value, ref } }) => (
+                      render={({ field: { onChange, ref } }) => (
                         <Form.Control 
                           onChange={onChange}
                           type="text"
-                          value={value}
+                          value={choice.choice}
                           ref={ref}
                         />
                       )}
-                    />
+                    /> 
                   ) : (
                     ''
-                  )} 
+                  )}
                 </span>
-                <AiOutlineCloseCircle className={style.inputIconSize} /> 
-              </div>
-            </Form>
-          ))}
+                <AiOutlineCloseCircle className={style.inputIconSize} onClick={() => removeChoicesFields(idx)}/>
+              </Form>
+            );})}
         </div>
       </div>
     </Fragment>
@@ -121,6 +151,7 @@ const MultipleChoiceType = ({ questions }) => {
 
 MultipleChoiceType.propTypes = {
   questions: PropTypes.object,
+  // choices: PropTypes.object,
 };
 
 export default MultipleChoiceType;
