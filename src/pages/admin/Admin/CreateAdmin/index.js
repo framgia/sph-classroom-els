@@ -21,22 +21,20 @@ const CreateAdmin = () => {
     toast('Processing', `Creating an admin account for ${name}...`);
     setErrors({});
 
-    try {
-      const response = await AdminApi.createAdmin({
-        name,
-        email
+    await AdminApi.createAdmin({ name, email })
+      .then(({ data }) => {
+        toast('Success', data.message);
+        setSubmitStatus(false);
+        reset({
+          name: '',
+          email: ''
+        });
+      })
+      .catch((error) => {
+        setSubmitStatus(false);
+        toast('Error', error?.response?.data?.message);
+        setErrors(error?.response?.data?.errors);
       });
-      toast('Success', response?.data?.message);
-      setSubmitStatus(false);
-      reset({
-        name: '',
-        email: ''
-      });
-    } catch (error) {
-      setSubmitStatus(false);
-      toast('Error', error?.response?.data?.message);
-      setErrors(error?.response?.data?.errors);
-    }
   };
 
   return (
@@ -66,7 +64,10 @@ const CreateAdmin = () => {
                 />
               )}
             />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback
+              className={style.validationMessage}
+              type="invalid"
+            >
               {errors?.name}
             </Form.Control.Feedback>
           </Form.Group>
@@ -90,7 +91,10 @@ const CreateAdmin = () => {
                 />
               )}
             />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback
+              className={style.validationMessage}
+              type="invalid"
+            >
               {errors?.email}
             </Form.Control.Feedback>
           </Form.Group>
