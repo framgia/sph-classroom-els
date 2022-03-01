@@ -1,0 +1,75 @@
+.HeadingText {
+  margin-left: 85px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #48535b;
+}
+
+.changepassbutton {
+  float: right;
+  background-color: #c0d5d8;
+  border-color: #c0d5d8;
+  color: #48535b;
+  width: 85px;
+  height: 32px;
+}
+
+.changepassbutton:hover {
+  background-color: #9abec1;
+  border-color: #9abec1;
+  color: white;
+}
+
+.changepassbutton:focus {
+  background-color: #9abec1;
+  border-color: #9abec1;
+  color: white;
+  border: none;
+}
+
+.changepassbutton:disabled {
+  background-color: #9abec1b4;
+  border-color: #9abec1b4;
+}
+
+.cancel {
+  float: right;
+  margin-top: 6px;
+  margin-right: 11px;
+  text-decoration: none;
+  color: #48535b;
+  font-size: 14px;
+}
+
+.cancel:hover {
+  border-color: #9abec1;
+  color: white;
+}
+
+.allertstyle {
+  position: absolute;
+  top: 180px;
+  left: center;
+}
+
+.noResults,
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.loadingWord {
+  margin-left: 10px;
+}
+
+.FormGroupStyle {
+  margin-bottom: 0px;
+  color: #48535b;
+  font-size: 16px;
+}
+
+.marginForForm {
+  margin-bottom: 20px;
+}

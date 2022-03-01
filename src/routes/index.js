@@ -37,6 +37,7 @@ import ChangePassword from '../pages/student/profile/ChangePassword';
 import ProfileView from '../pages/student/profile/ProfileView';
 import ProfileEdit from '../pages/student/profile/EditProfile';
 import StudentDetails from '../pages/student/students/StudentDetail';
+import AdminEditProfile from '../pages/admin/profile/EditProfile';
 
 const Routes = () => {
   return (
@@ -91,6 +92,12 @@ const Routes = () => {
         exact
         component={AdminSetPassword}
       ></AuthRoute>
+
+      <AdminRoute
+        path="/admin/profile/edit"
+        exact
+        component={AdminEditProfile}
+      ></AdminRoute>
 
       {/* STUDENT ROUTES */}
       <AuthRoute path="/login" exact component={Login}></AuthRoute>
