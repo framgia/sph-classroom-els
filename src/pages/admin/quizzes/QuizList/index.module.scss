@@ -214,3 +214,29 @@
   font-weight: $font-weight-regular;
   color: $color-dark-blue-1;
 }
+
+.classCol{
+  @extend %style-table-head;
+
+  &:nth-child(1) {
+    width: 153px;
+  }
+
+  &:nth-child(2) {
+    width: 285px;
+  }
+
+  &:nth-child(3) {
+    width: 517px;
+  }
+
+  &:nth-child(4) {
+      width: 151px;
+      text-align: center;
+  }
+
+  &:nth-child(5) {
+      width: 151px;
+      text-align: center;
+  }
+}

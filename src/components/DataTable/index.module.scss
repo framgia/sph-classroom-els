@@ -1,32 +1,4 @@
-@use '../../pages/admin/quizzes/QuizList/index.module' as *;
-
 .formatTable {
     width: 100%;
     margin-top: 63px;
   }
-
-.classCol{
-    @extend %style-table-head;
-  
-    &:nth-child(1) {
-      width: 153px;
-    }
-  
-    &:nth-child(2) {
-      width: 285px;
-    }
-  
-    &:nth-child(3) {
-      width: 517px;
-    }
-
-    &:nth-child(4) {
-        width: 151px;
-        text-align: center;
-    }
-
-    &:nth-child(5) {
-        width: 151px;
-        text-align: center;
-    }
-}

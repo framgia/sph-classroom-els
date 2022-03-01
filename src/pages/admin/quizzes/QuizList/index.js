@@ -174,6 +174,7 @@ const QuizList = () => {
                 <DataTable
                   tableHeaderNames={tableHeaderNames}
                   renderTableData={renderTableData}
+                  titleHeaderStyle={style.classCol}
                 />
               </div>
             </Card.Body>
