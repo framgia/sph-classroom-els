@@ -16,6 +16,12 @@
   display: inline-flex;
 }
 
+.categoryListContainer {
+  position: absolute;
+  left: 500px;
+  top: 50px;
+}
+
 .navMaincard {
   width: 1288px;
   height: 700px;
@@ -117,7 +123,6 @@
 
 .firstCol {
   @extend %style-table-head;
-
 
   &:nth-child(1) {
     width: 88px;

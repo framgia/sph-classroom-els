@@ -11,6 +11,7 @@ import { BiSearch } from 'react-icons/bi';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import Pagination from '../../../../components/Pagination';
+import Container from 'react-bootstrap/Container';
 
 import style from './index.module.scss';
 
@@ -40,7 +41,7 @@ const CategoryList = () => {
       page: page,
       sortBy: sortBy,
       filter: filter,
-      search: search
+      search: search,
     }).then(({ data }) => {
       setCategories(data.data);
       setPerPage(data.per_page);
@@ -65,11 +66,9 @@ const CategoryList = () => {
             {category.description}
           </td>
           <td id={style.tBodyStyle1}>
-            <Link
-              to={`/admin/edit-category/${category.id}`}
-            >
+            <Link to={`/admin/edit-category/${category.id}`}>
               <Button className={style.designButton}>
-                <FaRegEdit size="20px"/>
+                <FaRegEdit size="20px" />
               </Button>
             </Link>
           </td>
@@ -85,79 +84,79 @@ const CategoryList = () => {
 
   return (
     <div className={style.Bodystyle}>
-      <div>
-        <p className={style.title}>Categories</p>
-        <Col>
-          <Card className={style.navMaincard}>
-            <Card.Header className={style.navContainer}>
-              <div className={style.categoryConditionsStyle}>
-                <Form className="d-flex">
-                  <FormControl
-                    type="search"
-                    placeholder="Search"
-                    className={style.searchBar}
-                    aria-label="Search"
-                  />
-                  <Button type="submit" className={style.searchButton}>
-                    <BiSearch className={style.searchIcon} />
-                  </Button>
-                </Form>
+      <Container className={style.categoryListContainer}>
+        <div>
+          <p className={style.title}>Categories</p>
+          <Col>
+            <Card className={style.navMaincard}>
+              <Card.Header className={style.navContainer}>
+                <div className={style.categoryConditionsStyle}>
+                  <Form className="d-flex">
+                    <FormControl
+                      type="search"
+                      placeholder="Search"
+                      className={style.searchBar}
+                      aria-label="Search"
+                    />
+                    <Button type="submit" className={style.searchButton}>
+                      <BiSearch className={style.searchIcon} />
+                    </Button>
+                  </Form>
 
-                <Dropdown>
-                  <Dropdown.Toggle
-                    className={style.dropdownStyle}
-                    variant="link"
-                    bsPrefix="none"
-                  >
-                    <span className={style.dropdownText}>Filter</span>
-                    <VscFilter size="20px" />
-                  </Dropdown.Toggle>
-                </Dropdown>
-              </div>
-              <table style={{ width: '100%' }}>
-                <tbody>
-                  <tr>
-                    <td className={style.titleText}></td>
-                    <td style={{ textAlign: 'right' }}></td>
-                  </tr>
-                </tbody>
-              </table> 
-            </Card.Header>
-            <Card.Body className={style.cardBodyScroll}>
-              <Link
-                to="/admin/add-category"
-              >
-                <Button className={style.button}>Add Category</Button>
-              </Link>
-              <div>
-                <Table className={style.formatTable}>
-                  <thead>
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      className={style.dropdownStyle}
+                      variant="link"
+                      bsPrefix="none"
+                    >
+                      <span className={style.dropdownText}>Filter</span>
+                      <VscFilter size="20px" />
+                    </Dropdown.Toggle>
+                  </Dropdown>
+                </div>
+                <table style={{ width: '100%' }}>
+                  <tbody>
                     <tr>
-                      <td className={style.firstCol}>ID</td>
-                      <td className={style.firstCol}>Name</td>
-                      <td className={style.firstCol}>Description</td>
-                      <td className={style.firstCol1}>Edit</td>
-                      <td className={style.firstCol1}>Delete</td>
+                      <td className={style.titleText}></td>
+                      <td style={{ textAlign: 'right' }}></td>
                     </tr>
-                  </thead>
-                  <tbody>{renderList()}</tbody>
-                </Table>
-              </div>
-            </Card.Body>
-          </Card>
-        </Col>
-        <div className="pt-4">
-          <div id={style.paginateStyle}>
-            <Pagination
-              page={page}
-              perPage={perPage}
-              totalItems={totalItems}
-              pageCount={lastPage}
-              onPageChange={onPageChange}
-            />
+                  </tbody>
+                </table>
+              </Card.Header>
+              <Card.Body className={style.cardBodyScroll}>
+                <Link to="/admin/add-category">
+                  <Button className={style.button}>Add Category</Button>
+                </Link>
+                <div>
+                  <Table className={style.formatTable}>
+                    <thead>
+                      <tr>
+                        <td className={style.firstCol}>ID</td>
+                        <td className={style.firstCol}>Name</td>
+                        <td className={style.firstCol}>Description</td>
+                        <td className={style.firstCol1}>Edit</td>
+                        <td className={style.firstCol1}>Delete</td>
+                      </tr>
+                    </thead>
+                    <tbody>{renderList()}</tbody>
+                  </Table>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+          <div className="pt-4">
+            <div id={style.paginateStyle}>
+              <Pagination
+                page={page}
+                perPage={perPage}
+                totalItems={totalItems}
+                pageCount={lastPage}
+                onPageChange={onPageChange}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </Container>
     </div>
   );
 };
