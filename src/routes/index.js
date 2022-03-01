@@ -13,6 +13,8 @@ import AddEditCategory from '../pages/admin/categories/AddEditCategory';
 import AdminQuizList from '../pages/admin/quizzes/QuizList';
 import AdminQuizDetail from '../pages/admin/quizzes/QuizDetail';
 import AdminQuizEdit from '../pages/admin/quizzes/QuizEdit';
+import AdminCreateAdmin from '../pages/admin/Admin/CreateAdmin';
+import AdminSetPassword from '../pages/admin/Admin/SetAdminPassword';
 
 // Student Components
 import Login from '../pages/student/main/Login';
@@ -77,6 +79,18 @@ const Routes = () => {
         exact
         component={AdminQuizEdit}
       ></AdminRoute>
+
+      <AdminRoute
+        path="/admin/create-admin-account"
+        exact
+        component={AdminCreateAdmin}
+      ></AdminRoute>
+
+      <AuthRoute
+        path="/admin/set-password"
+        exact
+        component={AdminSetPassword}
+      ></AuthRoute>
 
       {/* STUDENT ROUTES */}
       <AuthRoute path="/login" exact component={Login}></AuthRoute>
