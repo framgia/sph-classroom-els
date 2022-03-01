@@ -125,28 +125,6 @@
   text-align: center;
 }
 
-.classCol {
-  @extend %style-table-head;
-
-  &:nth-child(1) {
-    width: 88px;
-  }
-
-  &:nth-child(2) {
-    width: 123px;
-  }
-
-  &:nth-child(3) {
-    width: 300px;
-  }
-}
-
-.buttonCol {
-  @extend %style-table-head;
-  text-align: center;
-  width: 88px;
-}
-
 .formatTable {
   width: 100%;
   margin-top: 63px;
@@ -154,11 +132,6 @@
 
 #paginateStyle {
   display: inline-block !important;
-}
-
-.designButton {
-  border: none;
-  background: none;
 }
 
 #forForm {
@@ -240,4 +213,30 @@
   font-size: $font-size-lg;
   font-weight: $font-weight-regular;
   color: $color-dark-blue-1;
+}
+
+.classCol{
+  @extend %style-table-head;
+
+  &:nth-child(1) {
+    width: 153px;
+  }
+
+  &:nth-child(2) {
+    width: 285px;
+  }
+
+  &:nth-child(3) {
+    width: 517px;
+  }
+
+  &:nth-child(4) {
+      width: 151px;
+      text-align: center;
+  }
+
+  &:nth-child(5) {
+      width: 151px;
+      text-align: center;
+  }
 }

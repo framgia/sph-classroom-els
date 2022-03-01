@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
-import { Col, Table } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
@@ -18,6 +18,7 @@ import Pagination from '../../../../components/Pagination';
 import style from './index.module.scss';
 import QuizApi from '../../../../api/Quiz';
 import AddQuizModal from './components/AddQuizModal';
+import DataTable from '../../../../components/DataTable';
 
 const QuizList = () => {
   const [adminquiz, setAdminquiz] = useState(null);
@@ -83,7 +84,14 @@ const QuizList = () => {
     history.push(`?page=${page}`);
   };
 
-  const renderList = () => {
+  const tableHeaderNames = [
+    { title: 'ID' },
+    { title: 'Category' },
+    { title: 'Name' },
+    { title: 'Edit' }
+  ];
+
+  const renderTableData = () => {
     return adminquiz?.map((quiz, idx) => {
       return (
         <tr key={idx}>
@@ -92,15 +100,11 @@ const QuizList = () => {
           <td id={style.classColumn}>{quiz.title}</td>
           <td id={style.buttonColumn}>
             <Link to={`/admin/quizzes/${quiz.id}`}>
-              <Button className={style.designButton}>
-                <FaRegEdit size="20px" />
-              </Button>
+              <FaRegEdit size="20px" color="black"/>
             </Link>
           </td>
           <td id={style.buttonColumn}>
-            <Button className={style.designButton}>
-              <RiDeleteBin2Fill size="30px" color="#db7771" />
-            </Button>
+            <RiDeleteBin2Fill size="30px" color="#db7771" />
           </td>
         </tr>
       );
@@ -167,18 +171,11 @@ const QuizList = () => {
                 Add a Quiz
               </Button>
               <div>
-                <Table className={style.formatTable}>
-                  <thead>
-                    <tr>
-                      <td className={style.classCol}>ID</td>
-                      <td className={style.classCol}>Category</td>
-                      <td className={style.classCol}>Name</td>
-                      <td className={style.buttonCol}>Edit</td>
-                      <td className={style.buttonCol}>Delete</td>
-                    </tr>
-                  </thead>
-                  <tbody>{renderList()}</tbody>
-                </Table>
+                <DataTable
+                  tableHeaderNames={tableHeaderNames}
+                  renderTableData={renderTableData}
+                  titleHeaderStyle={style.classCol}
+                />
               </div>
             </Card.Body>
           </Card>
