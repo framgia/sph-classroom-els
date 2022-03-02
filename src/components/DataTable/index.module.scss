@@ -1,4 +1,18 @@
+@use '../../styles/variables' as *;
+
 .formatTable {
-    width: 100%;
-    margin-top: 63px;
-  }
+  width: 100%;
+  margin-top: 63px;
+}
+
+.headerName {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: $font-size-lg;
+  cursor: pointer;
+}
+
+.arrowIcons {
+  height: 27px;
+}

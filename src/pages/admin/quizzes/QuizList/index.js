@@ -25,6 +25,8 @@ const QuizList = () => {
   const [adminquiz, setAdminquiz] = useState(null);
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
+  const sortBy = queryParams.get('sortBy');
+  const sortDirection = queryParams.get('sortDirection');
   const [modalShow, setModalShow] = useState(false);
   const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState(false);
@@ -32,6 +34,11 @@ const QuizList = () => {
 
   const history = useHistory();
   const toast = useToast();
+
+  const [sortOptions, setSortOptions] = useState({
+    sortBy,
+    sortDirection
+  });
 
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perPage, setPerPage] = useState(0);
@@ -64,7 +71,9 @@ const QuizList = () => {
 
   const load = () => {
     QuizApi.adminQuiz({
-      page: page,
+      page,
+      sortBy,
+      sortDirection
     }).then(({ data }) => {
       setAdminquiz(data.data);
       setPerPage(data.per_page);
@@ -74,22 +83,26 @@ const QuizList = () => {
   };
 
   useEffect(() => {
-    history.push(`?page=${page}`);
+    history.push(
+      `?page=${page}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`
+    );
 
     load();
-  }, [page]);
+  }, [page, sortOptions]);
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
 
-    history.push(`?page=${page}`);
+    history.push(
+      `?page=${page}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`
+    );
   };
 
   const tableHeaderNames = [
     { title: 'ID' },
     { title: 'Category' },
     { title: 'Name' },
-    { title: 'Edit' },
+    { title: 'Edit' }
   ];
 
   const renderTableData = () => {
@@ -198,6 +211,8 @@ const QuizList = () => {
                     tableHeaderNames={tableHeaderNames}
                     renderTableData={renderTableData}
                     titleHeaderStyle={style.classCol}
+                    sortOptions={sortOptions}
+                    setSortOptions={setSortOptions}
                   />
                 </div>
               </Card.Body>
