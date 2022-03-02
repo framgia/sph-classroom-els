@@ -108,24 +108,24 @@ const AdminEditProfile = () => {
                 controlId="formBasicName"
               >
                 <Form.Label className={style.FormGroupStyle}>Name</Form.Label>
-                  <Controller
-                    control={control}
-                    name="name"
-                    defaultValue={profileName?.name}
-                    render={({ field: { onChange, value, ref } }) => (
-                      <Form.Control
-                        onChange={onChange}
-                        value={value}
-                        ref={ref}
-                        className="cntrs"
-                        type="text"
-                        placeholder="e.g. jhondoe"
-                        isInvalid={!!errors?.name}
-                        required
-                        maxLength={50}
-                      />
-                    )}
-                  />
+                <Controller
+                  control={control}
+                  name="name"
+                  defaultValue={profileName?.name}
+                  render={({ field: { onChange, value, ref } }) => (
+                    <Form.Control
+                      onChange={onChange}
+                      value={value}
+                      ref={ref}
+                      className="cntrs"
+                      type="text"
+                      placeholder="e.g. jhondoe"
+                      isInvalid={!!errors?.name}
+                      required
+                      maxLength={50}
+                    />
+                  )}
+                />
                 <Form.Control.Feedback type="invalid">
                   {errors?.name}
                 </Form.Control.Feedback>
@@ -136,24 +136,24 @@ const AdminEditProfile = () => {
                 controlId="formBasicEmail"
               >
                 <Form.Label className={style.FormGroupStyle}>Email</Form.Label>
-                  <Controller
-                    control={control}
-                    name="email"
-                    defaultValue={profileName?.email}
-                    render={({ field: { onChange, value, ref } }) => (
-                      <Form.Control
-                        onChange={onChange}
-                        value={value}
-                        ref={ref}
-                        className="cntrs"
-                        type="email"
-                        placeholder="e.g. jhondoe@gmail.com"
-                        isInvalid={!!errors?.email}
-                        required
-                        maxLength={50}
-                      />
-                    )}
-                  />
+                <Controller
+                  control={control}
+                  name="email"
+                  defaultValue={profileName?.email}
+                  render={({ field: { onChange, value, ref } }) => (
+                    <Form.Control
+                      onChange={onChange}
+                      value={value}
+                      ref={ref}
+                      className="cntrs"
+                      type="email"
+                      placeholder="e.g. jhondoe@gmail.com"
+                      isInvalid={!!errors?.email}
+                      required
+                      maxLength={50}
+                    />
+                  )}
+                />
                 <Form.Control.Feedback type="invalid">
                   {errors?.email}
                 </Form.Control.Feedback>
@@ -164,24 +164,24 @@ const AdminEditProfile = () => {
                 controlId="formBasicPassword"
               >
                 <Form.Label className={style.FormGroupStyle}>Password</Form.Label>
-                  <Controller
-                    control={control}
-                    name="password"
-                    defaultValue={profileName?.password}
-                    render={({ field: { onChange, value, ref } }) => (
-                      <Form.Control
-                        onChange={onChange}
-                        value={value}
-                        ref={ref}
-                        className="cntrs"
-                        type="password"
-                        placeholder="**********"
-                        isInvalid={!!errors?.password}
-                        required
-                        maxLength={50}
-                      />
-                    )}
-                  />
+                <Controller
+                  control={control}
+                  name="password"
+                  defaultValue={profileName?.password}
+                  render={({ field: { onChange, value, ref } }) => (
+                    <Form.Control
+                      onChange={onChange}
+                      value={value}
+                      ref={ref}
+                      className="cntrs"
+                      type="password"
+                      placeholder="**********"
+                      isInvalid={!!errors?.password}
+                      required
+                      maxLength={50}
+                    />
+                  )}
+                />
                 <Form.Control.Feedback type="invalid">
                   {errors?.password}
                 </Form.Control.Feedback>
