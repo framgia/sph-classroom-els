@@ -28,7 +28,19 @@ const ProfileEditApi = {
     return API.request(options);
   },
 
+  restore: ({name, email, password}) => {
+    const options = {
+      method: 'POST',
+      url: '/admin/profileEdit',
+      data: {
+        name: name,
+        email: email,
+        password: password
+      },
+    };
 
+    return API.request(options);
+  },
 };
 
 export default ProfileEditApi;

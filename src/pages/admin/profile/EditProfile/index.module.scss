@@ -1,0 +1,89 @@
+@use '../../../../styles/variables' as *;
+
+.bodyStyle{
+  display: inline-flex;
+  position: absolute;
+}
+
+.cardStyle{
+    width: 430px;
+    padding: 50px;
+    padding-top: 20px;
+    background-color: $color-light-blue-1;
+}
+
+.HeadingText {
+  margin-left: 85px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: $color-dark-blue-1;
+}
+
+.changepassbutton {
+  float: right;
+  background-color: $color-light-blue-2;
+  border-color: $color-light-blue-2;
+  color: $color-dark-blue-1;
+  width: 85px;
+  height: 32px;
+}
+
+.changepassbutton:hover {
+  background-color: $color-light-blue-3;
+  border-color: $color-light-blue-3;
+  color: $color-white;
+}
+
+.changepassbutton:focus {
+  background-color: $color-light-blue-3;
+  border-color: $color-light-blue-3;
+  color: $color-white;
+  border: none;
+}
+
+.changepassbutton:disabled {
+  background-color: #9abec1b4;
+  border-color: #9abec1b4;
+}
+
+.cancel {
+  float: right;
+  margin-top: 6px;
+  margin-right: 11px;
+  text-decoration: none;
+  color: $color-dark-blue-1;
+  font-size: 14px;
+}
+
+.cancel:hover {
+  border-color: $color-light-blue-3;
+  color: $color-white;
+}
+
+.allertstyle {
+  position: absolute;
+  top: 180px;
+  left: center;
+}
+
+.noResults,
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.loadingWord {
+  margin-left: 10px;
+}
+
+.FormGroupStyle {
+  margin-bottom: 0px;
+  color: $color-dark-blue-1;
+  font-size: 16px;
+}
+
+.marginForForm {
+  margin-bottom: 20px;
+}
