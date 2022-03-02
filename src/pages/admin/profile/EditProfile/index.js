@@ -46,33 +46,31 @@ const AdminEditProfile = () => {
     setShowAlert(false);
     setErrors({});
 
-    try {
-      await ProfileEditApi.restore({ name, email, password });
-      history.push('/admin/categories');
-      toast('Success', 'Successfully Changed Your Account Information.');
-    } catch (error) {
-      toast(
-        'Error',
-        error?.response?.data?.error?.password ||
-          error?.response?.data?.errors?.email
-      );
-
-      setSubmitStatus(false);
-
-      if (error?.response?.data?.error || error?.response?.data?.errors) {
-        setErrors(
-          error?.response?.data?.error || error?.response?.data?.errors
-        );
-
-        showAlertDialog(
-          true,
+    await ProfileEditApi.restore({ name, email, password })
+      .then(() => {
+        history.push('/admin/categories');
+        toast('Success', 'Successfully Changed Your Account Information.');
+      })
+      .catch ((error) => {
+        toast(
+          'Error',
           error?.response?.data?.error?.password ||
-            error?.response?.data?.errors?.email
+          error?.response?.data?.errors?.email
         );
-      } else {
-        showAlertDialog(true, 'An error has occurred.');
-      }
-    }
+        setSubmitStatus(false);
+        if (error?.response?.data?.error || error?.response?.data?.errors) {
+          setErrors(
+            error?.response?.data?.error || error?.response?.data?.errors
+          );
+          showAlertDialog(
+            true,
+            error?.response?.data?.error?.password ||
+          error?.response?.data?.errors?.email
+          );
+        } else {
+          showAlertDialog(true, 'An error has occurred.');
+        }
+      });
   };
 
   return (
@@ -92,12 +90,7 @@ const AdminEditProfile = () => {
           </Alert>
         )}
         <Card
-          style={{
-            width: '430px',
-            padding: '50px',
-            paddingTop: '20px',
-            backgroundColor: '#E0EAEC'
-          }}
+          className={style.cardStyle}
         >
           <div className={style.HeadingText}>Edit Account Info</div>
           {profileName === null ? (
@@ -115,7 +108,6 @@ const AdminEditProfile = () => {
                 controlId="formBasicName"
               >
                 <Form.Label className={style.FormGroupStyle}>Name</Form.Label>
-                {profileName ? (
                   <Controller
                     control={control}
                     name="name"
@@ -134,9 +126,6 @@ const AdminEditProfile = () => {
                       />
                     )}
                   />
-                ) : (
-                  ''
-                )}
                 <Form.Control.Feedback type="invalid">
                   {errors?.name}
                 </Form.Control.Feedback>
@@ -147,7 +136,6 @@ const AdminEditProfile = () => {
                 controlId="formBasicEmail"
               >
                 <Form.Label className={style.FormGroupStyle}>Email</Form.Label>
-                {profileName ? (
                   <Controller
                     control={control}
                     name="email"
@@ -166,10 +154,6 @@ const AdminEditProfile = () => {
                       />
                     )}
                   />
-                ) : (
-                  ''
-                )}
-
                 <Form.Control.Feedback type="invalid">
                   {errors?.email}
                 </Form.Control.Feedback>
@@ -180,7 +164,6 @@ const AdminEditProfile = () => {
                 controlId="formBasicPassword"
               >
                 <Form.Label className={style.FormGroupStyle}>Password</Form.Label>
-                {profileName ? ( 
                   <Controller
                     control={control}
                     name="password"
@@ -199,9 +182,6 @@ const AdminEditProfile = () => {
                       />
                     )}
                   />
-                ) : (
-                  ''
-                )}
                 <Form.Control.Feedback type="invalid">
                   {errors?.password}
                 </Form.Control.Feedback>
