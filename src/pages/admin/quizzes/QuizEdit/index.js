@@ -35,10 +35,12 @@ const QuizEdit = () => {
     });
   }, []);
 
+
   const onSelectQuestion = (e) => {
     setSelectedQuestion(
       questions.find((question) => question.id === parseInt(e))
     );
+    console.log(selectedQuestion);
   };
 
   const addQuestionFields = (e) => {
@@ -67,7 +69,6 @@ const QuizEdit = () => {
                         </span>
                         <p key={idx} className={style.question}>
                           {question.question}
-                          {/* <QuestionType types /> */}
                         </p>
                       </Nav.Link>
                     </Nav>

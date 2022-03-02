@@ -7,25 +7,18 @@ import { PropTypes } from 'prop-types';
 import { Controller, useForm } from 'react-hook-form';
 // import QuestionApi from '../../../../../../api/Question';
 
-const MultipleChoiceType = ({ questions }) => {
+const MultipleChoiceType = ({ question }) => {
   const { control } = useForm();
   const [selectedChoices, setselectedChoices] = useState(null);
-  const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [choices, setChoice] = useState([]);
 
   useEffect(() => {
-    if (questions) {
-      setChoice(questions.choices);
+    if (question) {
+      setChoice(question.choices);
     }
     console.log(choices);
-  }, [questions]);
-
-  const onSelectQuestion = (e) => {
-    setSelectedQuestion(
-      find((question) => question.id === e)
-    );
-    console.log(selectedQuestion);
-  };
+  }, [question]);
+  
 
   const onSelectedChoices = (e) => {
     setselectedChoices(
@@ -63,7 +56,7 @@ const MultipleChoiceType = ({ questions }) => {
     <Fragment>
       <div>
         {/* <Form onSubmit={handleSubmit(handleOnSubmit)}> */}
-        {questions === null ? (
+        {question === null ? (
           <Form>
             <Form.Label className={style.inputTitle}>Question</Form.Label>
             <Controller
@@ -84,21 +77,20 @@ const MultipleChoiceType = ({ questions }) => {
         ) : (
           <Form>
             <Form.Label className={style.inputTitle}>Question</Form.Label>
-            {questions ? (
-              <div onSelect={onSelectQuestion}>
+            {question ? (
+              <div>
                 <Controller
-                  eventKey={questions.id}
                   control={control}
                   name="question"
-                  defaultValue={questions.question}
+                  defaultValue={question.question}
                   render={({ field: { onChange, value, ref } }) => (
                     <Form.Control 
                       onChange={onChange}
-                      // onChange={(e) => questions.question(e.target.value)}
+                      // onChange={(e) => question.question(e.target.value)}
                       type="text"
                       className={style.inputWidth}
                       value={value}
-                      // value={questions.question}
+                      // value={question.question}
                       ref={ref}
                     />
                   )}
@@ -118,9 +110,9 @@ const MultipleChoiceType = ({ questions }) => {
         <div>
           {choices && choices.map((choice, idx) => {
             return(
-              <Form onSelect={onSelectedChoices} key={idx} className={style.cardBody}>
+              <Form onClick={() => {onSelectedChoices(choice.id);}} key={idx} className={style.cardBody}>
                 <input type="radio" name="choice" />
-                <span eventKey={choice.id} className={style.choicesAlignment}>
+                <span className={style.choicesAlignment}>
                   {choices ? (
                     <input
                       className={style.choicesInput}
@@ -150,7 +142,7 @@ const MultipleChoiceType = ({ questions }) => {
 };
 
 MultipleChoiceType.propTypes = {
-  questions: PropTypes.object,
+  question: PropTypes.object,
   // choices: PropTypes.object,
 };
 

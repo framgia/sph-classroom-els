@@ -48,9 +48,9 @@ const QuestionType = ({ question }) => {
   const question_type = (choice) => {
     switch (choice) {
     case '1':
-      return <MultipleChoiceType questions={question} />;
+      return <MultipleChoiceType question={question} />;
     case '2':
-      return <IdentificationType questions={question} />;
+      return <IdentificationType question={question} />;
     default:
       break;
     }

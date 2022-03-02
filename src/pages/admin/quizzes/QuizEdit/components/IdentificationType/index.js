@@ -4,7 +4,7 @@ import style from '../../index.module.scss';
 import { PropTypes } from 'prop-types';
 import { Controller, useForm } from 'react-hook-form';
 
-const IdentificationType = ({ questions }) => {
+const IdentificationType = ({ question }) => {
   const { control } = useForm();
   return (
     <Fragment>
@@ -14,12 +14,12 @@ const IdentificationType = ({ questions }) => {
           <Controller
             control={control}
             name="question"
-            defaultValue={questions.question}
+            defaultValue={question.question}
             render={({ field: { onChange, value, ref } }) => (
               <Form.Control
                 type="title"
                 className={style.inputWidth}
-                // value={questions.question}
+                // value={question.question}
                 onChange={onChange}
                 value={value}
                 ref={ref}
@@ -33,13 +33,13 @@ const IdentificationType = ({ questions }) => {
         <Controller
           control={control}
           name="text_answer"
-          // defaultValue={questions.text_answer}
+          // defaultValue={question.text_answer}
           render={({ field: { onChange, ref } }) => (
             <Form.Control 
               as="textarea" 
               className={style.inputHeight} 
               onChange={onChange}
-              value={questions.text_answer}
+              value={question.text_answer}
               // value={value}
               ref={ref}
             />
@@ -51,7 +51,7 @@ const IdentificationType = ({ questions }) => {
 };
 
 IdentificationType.propTypes = {
-  questions: PropTypes.object,
+  question: PropTypes.object,
 };
 
 export default IdentificationType;
