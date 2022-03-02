@@ -14,8 +14,8 @@ import { PropTypes } from 'prop-types';
 import Spinner from 'react-bootstrap/Spinner';
 
 import ProfileEditApi from '../../../../api/ProfileEdit';
-import StudentsApi from '../../../../api/Student';
 import Cookies from 'js-cookie';
+import AdminApi from '../../../../api/Admin';
 
 const AdminEditProfile = () => {
   const { control, handleSubmit } = useForm();
@@ -24,14 +24,14 @@ const AdminEditProfile = () => {
   const [alertMessage, setAlertMessage] = useState('');
   const [profileName, setprofileName] = useState(null);
   const [submitStatus, setSubmitStatus] = useState(false);
-  const loggedInUserId = Cookies.get('user_id');
+  const loggedInUserId = Cookies.get('admin_id');
 
   const history = useHistory();
   const toast = useToast();
 
   useEffect(() => {
-    StudentsApi.getDetails(loggedInUserId).then(({ data }) => {
-      setprofileName(data.details);
+    AdminApi.getAllUsers(loggedInUserId).then(({ data }) => {
+      setprofileName(data.data);
     });
   }, []);
 
@@ -48,7 +48,7 @@ const AdminEditProfile = () => {
 
     try {
       await ProfileEditApi.profileEdit({ name, email, password });
-      history.push('/profile/view');
+      history.push('/admin/categories');
       toast('Success', 'Successfully Changed Your Account Information.');
     } catch (error) {
       toast(
@@ -76,153 +76,155 @@ const AdminEditProfile = () => {
   };
 
   return (
-    <div
-      className="d-flex justify-content-center align-items-center text-align-center"
-      style={{ marginTop: '150px' }}
-    >
-      {showAlert && (
-        <Alert
-          className={style.allertstyle}
-          variant="danger"
-          onClose={() => setShowAlert(false)}
-          dismissible
-        >
-          {alertMessage}
-        </Alert>
-      )}
-      <Card
-        style={{
-          width: '430px',
-          padding: '50px',
-          paddingTop: '20px',
-          backgroundColor: '#E0EAEC'
-        }}
+    <div className={style.bodyStyle}>
+      <div
+        className="d-flex justify-content-center align-items-center text-align-center"
+        style={{ marginTop: '267px', marginLeft: '408px' }}
       >
-        <div className={style.HeadingText}>Edit Account Info</div>
-        {profileName === null ? (
-          <div className={style.loading}>
-            <Spinner animation="border" role="status"></Spinner>
-            <span className={style.loadingWord}>Loading</span>
-          </div>
-        ) : (
-          <Form
-            onSubmit={handleSubmit(handleOnSubmit)}
-            style={{ marginTop: '20px' }}
+        {showAlert && (
+          <Alert
+            className={style.allertstyle}
+            variant="danger"
+            onClose={() => setShowAlert(false)}
+            dismissible
           >
-            <Form.Group
-              className={style.marginForForm}
-              controlId="formBasicName"
-            >
-              <Form.Label className={style.FormGroupStyle}>Name</Form.Label>
-              {profileName ? (
-                <Controller
-                  control={control}
-                  name="name"
-                  defaultValue={profileName?.name}
-                  render={({ field: { onChange, value, ref } }) => (
-                    <Form.Control
-                      onChange={onChange}
-                      value={value}
-                      ref={ref}
-                      className="cntrs"
-                      type="text"
-                      placeholder="e.g. jhondoe"
-                      isInvalid={!!errors?.name}
-                      required
-                      maxLength={50}
-                    />
-                  )}
-                />
-              ) : (
-                ''
-              )}
-              <Form.Control.Feedback type="invalid">
-                {errors?.name}
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group
-              className={style.marginForForm}
-              controlId="formBasicEmail"
-            >
-              <Form.Label className={style.FormGroupStyle}>Email</Form.Label>
-              {profileName ? (
-                <Controller
-                  control={control}
-                  name="email"
-                  defaultValue={profileName?.email}
-                  render={({ field: { onChange, value, ref } }) => (
-                    <Form.Control
-                      onChange={onChange}
-                      value={value}
-                      ref={ref}
-                      className="cntrs"
-                      type="email"
-                      placeholder="e.g. jhondoe@gmail.com"
-                      isInvalid={!!errors?.email}
-                      required
-                      maxLength={50}
-                    />
-                  )}
-                />
-              ) : (
-                ''
-              )}
-
-              <Form.Control.Feedback type="invalid">
-                {errors?.email}
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group
-              className={style.marginForForm}
-              controlId="formBasicPassword"
-            >
-              <Form.Label className={style.FormGroupStyle}>Password</Form.Label>
-              {profileName ? ( 
-                <Controller
-                  control={control}
-                  name="password"
-                  defaultValue={profileName?.password}
-                  render={({ field: { onChange, value, ref } }) => (
-                    <Form.Control
-                      onChange={onChange}
-                      value={value}
-                      ref={ref}
-                      className="cntrs"
-                      type="password"
-                      placeholder="**********"
-                      isInvalid={!!errors?.password}
-                      required
-                      maxLength={50}
-                    />
-                  )}
-                />
-              ) : (
-                ''
-              )}
-              <Form.Control.Feedback type="invalid">
-                {errors?.password}
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            <div className={style.buttonposition}>
-              <Button
-                className={style.changepassbutton}
-                type="submit"
-                disabled={submitStatus}
-              >
-                Change
-              </Button>
-              <div>
-                <a className={style.cancel} href="/profile">
-                  Cancel
-                </a>
-              </div>
-            </div>
-          </Form>
+            {alertMessage}
+          </Alert>
         )}
-      </Card>
+        <Card
+          style={{
+            width: '430px',
+            padding: '50px',
+            paddingTop: '20px',
+            backgroundColor: '#E0EAEC'
+          }}
+        >
+          <div className={style.HeadingText}>Edit Account Info</div>
+          {profileName === null ? (
+            <div className={style.loading}>
+              <Spinner animation="border" role="status"></Spinner>
+              <span className={style.loadingWord}>Loading</span>
+            </div>
+          ) : (
+            <Form
+              onSubmit={handleSubmit(handleOnSubmit)}
+              style={{ marginTop: '20px' }}
+            >
+              <Form.Group
+                className={style.marginForForm}
+                controlId="formBasicName"
+              >
+                <Form.Label className={style.FormGroupStyle}>Name</Form.Label>
+                {profileName ? (
+                  <Controller
+                    control={control}
+                    name="name"
+                    defaultValue={profileName?.name}
+                    render={({ field: { onChange, value, ref } }) => (
+                      <Form.Control
+                        onChange={onChange}
+                        value={value}
+                        ref={ref}
+                        className="cntrs"
+                        type="text"
+                        placeholder="e.g. jhondoe"
+                        isInvalid={!!errors?.name}
+                        required
+                        maxLength={50}
+                      />
+                    )}
+                  />
+                ) : (
+                  ''
+                )}
+                <Form.Control.Feedback type="invalid">
+                  {errors?.name}
+                </Form.Control.Feedback>
+              </Form.Group>
+
+              <Form.Group
+                className={style.marginForForm}
+                controlId="formBasicEmail"
+              >
+                <Form.Label className={style.FormGroupStyle}>Email</Form.Label>
+                {profileName ? (
+                  <Controller
+                    control={control}
+                    name="email"
+                    defaultValue={profileName?.email}
+                    render={({ field: { onChange, value, ref } }) => (
+                      <Form.Control
+                        onChange={onChange}
+                        value={value}
+                        ref={ref}
+                        className="cntrs"
+                        type="email"
+                        placeholder="e.g. jhondoe@gmail.com"
+                        isInvalid={!!errors?.email}
+                        required
+                        maxLength={50}
+                      />
+                    )}
+                  />
+                ) : (
+                  ''
+                )}
+
+                <Form.Control.Feedback type="invalid">
+                  {errors?.email}
+                </Form.Control.Feedback>
+              </Form.Group>
+
+              <Form.Group
+                className={style.marginForForm}
+                controlId="formBasicPassword"
+              >
+                <Form.Label className={style.FormGroupStyle}>Password</Form.Label>
+                {profileName ? ( 
+                  <Controller
+                    control={control}
+                    name="password"
+                    defaultValue={profileName?.password}
+                    render={({ field: { onChange, value, ref } }) => (
+                      <Form.Control
+                        onChange={onChange}
+                        value={value}
+                        ref={ref}
+                        className="cntrs"
+                        type="password"
+                        placeholder="**********"
+                        isInvalid={!!errors?.password}
+                        required
+                        maxLength={50}
+                      />
+                    )}
+                  />
+                ) : (
+                  ''
+                )}
+                <Form.Control.Feedback type="invalid">
+                  {errors?.password}
+                </Form.Control.Feedback>
+              </Form.Group>
+
+              <div className={style.buttonposition}>
+                <Button
+                  className={style.changepassbutton}
+                  type="submit"
+                  disabled={submitStatus}
+                >
+                Change
+                </Button>
+                <div>
+                  <a className={style.cancel} href="/profile">
+                  Cancel
+                  </a>
+                </div>
+              </div>
+            </Form>
+          )}
+        </Card>
+      </div>
     </div>
   );
 };

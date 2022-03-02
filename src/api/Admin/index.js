@@ -26,7 +26,15 @@ const AdminApi = {
     };
 
     return API.request(options);
-  }
+  },
+  
+  getAllUsers: (id) => {
+    const options = {
+      method: 'GET',
+      url: `/users/${id}`
+    };
+    return API.request(options);
+  },
 };
 
 export default AdminApi;
