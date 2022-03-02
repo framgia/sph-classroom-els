@@ -12,6 +12,20 @@ const AdminApi = {
     };
 
     return API.request(options);
+  },
+
+  setNewPassword: ({ email, password, password_confirmation }) => {
+    const options = {
+      method: 'PATCH',
+      url: '/admin/set-password',
+      data: {
+        email: email,
+        password: password,
+        password_confirmation: password_confirmation
+      }
+    };
+
+    return API.request(options);
   }
 };
 
