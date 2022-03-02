@@ -31,7 +31,7 @@ const ProfileEditApi = {
   restore: ({name, email, password}) => {
     const options = {
       method: 'POST',
-      url: '/admin/profileEdit',
+      url: '/admin/profile-edit',
       data: {
         name: name,
         email: email,
