@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import QuestionType from './components/QuestionType';
 import { useParams } from 'react-router-dom';
+// import MultipleChoiceType from './components/MultipleChoiceType';
 
 import style from './index.module.scss';
 import ChangeLocation from '../../../../components/ChangeLocation';
@@ -40,7 +41,6 @@ const QuizEdit = () => {
     setSelectedQuestion(
       questions.find((question) => question.id === parseInt(e))
     );
-    console.log(selectedQuestion);
   };
 
   const addQuestionFields = (e) => {
@@ -69,6 +69,7 @@ const QuizEdit = () => {
                         </span>
                         <p key={idx} className={style.question}>
                           {question.question}
+                          {/* <MultipleChoiceType question={question} />; */}
                         </p>
                       </Nav.Link>
                     </Nav>

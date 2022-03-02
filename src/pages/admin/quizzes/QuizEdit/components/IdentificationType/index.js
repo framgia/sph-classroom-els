@@ -1,15 +1,21 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import style from '../../index.module.scss';
 import { PropTypes } from 'prop-types';
 import { Controller, useForm } from 'react-hook-form';
 
 const IdentificationType = ({ question }) => {
-  const { control } = useForm();
+  const { control, handleSubmit } = useForm();
+  const [questionEdit, setQuesetionEdit] = useState([]);
+
+  const onSelectedQuestion = (value) => {
+    setQuesetionEdit([...questionEdit,{id: question.id, question:value }]);
+  };
+  console.log(questionEdit);
   return (
     <Fragment>
       <div>
-        <Form>
+        <Form onSubmit={handleSubmit(onSelectedQuestion)}>
           <Form.Label className={style.inputTitle}>Question</Form.Label>
           <Controller
             control={control}
@@ -19,7 +25,6 @@ const IdentificationType = ({ question }) => {
               <Form.Control
                 type="title"
                 className={style.inputWidth}
-                // value={question.question}
                 onChange={onChange}
                 value={value}
                 ref={ref}
@@ -33,14 +38,13 @@ const IdentificationType = ({ question }) => {
         <Controller
           control={control}
           name="text_answer"
-          // defaultValue={question.text_answer}
-          render={({ field: { onChange, ref } }) => (
+          defaultValue={question.text_answer}
+          render={({ field: { onChange, value, ref } }) => (
             <Form.Control 
               as="textarea" 
               className={style.inputHeight} 
               onChange={onChange}
-              value={question.text_answer}
-              // value={value}
+              value={value}
               ref={ref}
             />
           )}

@@ -10,20 +10,16 @@ import style from '../../index.module.scss';
 
 const QuestionType = ({ question }) => {
   const [questionType, setQuestionType] = useState('multiple_choice');
-  const [questionName, setQuestion] = useState();
   const [timeLimit, setTimeLimit] = useState(0);
 
   useEffect(() => {
     if (question) {
       setQuestionType(question?.question_type_id?.toString());
-        
       setTimeLimit(question?.time_limit);
     }
-
-    console.log(questionName);
   }, [question]);
 
-  const types = [
+  const question_type_id = [
     {
       name: 'Multiple Choice',
       value: '1',
@@ -34,11 +30,10 @@ const QuestionType = ({ question }) => {
     },
   ];
 
-  const limit = ['5', '10', '20', '30', '60'];
+  const time_limit = ['5', '10', '20', '30', '60'];
 
   const onSelectQuestionType = (e) => {
     setQuestionType(e);
-    setQuestion(e);
   };
 
   const time = (e) => {
@@ -85,7 +80,7 @@ const QuestionType = ({ question }) => {
             <RiArrowDropDownLine className={style.iconSize} />
           </Dropdown.Toggle>
           <Dropdown.Menu className={style.dropdownMenuStyle}>
-            {types.map((type, idx) => {
+            {question_type_id.map((type, idx) => {
               return (
                 <Dropdown.Item key={idx} eventKey={type.value}>
                   {type.name}
@@ -109,7 +104,7 @@ const QuestionType = ({ question }) => {
               <RiArrowDropDownLine className={style.iconSize} />
             </Dropdown.Toggle>
             <Dropdown.Menu className={style.dropdownMenuStyle}>
-              {limit.map((time, idx) => {
+              {time_limit.map((time, idx) => {
                 return (
                   <Dropdown.Item key={idx} eventKey={time}>
                     {time} seconds

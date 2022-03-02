@@ -5,43 +5,54 @@ import { GrAddCircle } from 'react-icons/gr';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { PropTypes } from 'prop-types';
 import { Controller, useForm } from 'react-hook-form';
-// import QuestionApi from '../../../../../../api/Question';
 
 const MultipleChoiceType = ({ question }) => {
-  const { control } = useForm();
+  const { control, handleSubmit } = useForm();
   const [selectedChoices, setselectedChoices] = useState(null);
   const [choices, setChoice] = useState([]);
+  const [isCorrect, setIsCorrect] = useState();
+  const [questionEdit, setQuesetionEdit] = useState([]);
+  // const [editChoice, setEditChoice] = useState([]);
+
+  // const onSelectedQuestion = (value) => {
+  //   setQuesetionEdit([...editChoice,{type: type, id: choices.id, choices:value }]);
+  // };
+  // console.log(questionEdit);
+
+  // const choiceTypes = [
+  //   {
+  //     type:'Add'
+  //   },
+  //   {
+  //     type:'Edit'
+  //   },
+  //   {
+  //     type:'Delete'
+  //   }
+  // ]
+
+  const onSelectedQuestion = (value) => {
+    setQuesetionEdit([...questionEdit,{id: question.id, question:value }]);
+  };
+  console.log(questionEdit);
+
+  const onSelectCorrectAnswer = (e) => {
+    setIsCorrect(e);
+  };
+
+  console.log(isCorrect);
 
   useEffect(() => {
     if (question) {
       setChoice(question.choices);
     }
-    console.log(choices);
   }, [question]);
-  
 
   const onSelectedChoices = (e) => {
     setselectedChoices(
       choices.find((choice) => choice.id === e)
     );
-    console.log(selectedChoices);
   };
-  // const [errors, setErrors] = useState({});
-
-  // const handleOnSubmit = async ({ question, choice }) => {
-  //   try {
-  //     await QuestionApi.editQuestion({ question, choice });
-  //   } catch (error) {
-  //     if (error?.response?.data?.error || error?.response?.data?.errors) {
-  //       setErrors(
-  //         error?.response?.data?.error || error?.response?.data?.errors
-  //       );
-  //       console.log(errors);
-  //     }
-  //   }
-  //   console.log(question);
-  //   console.log(choice);
-  // };
 
   const addChoicesFields = (e) => {
     setChoice([...choices, { e }]);
@@ -52,55 +63,35 @@ const MultipleChoiceType = ({ question }) => {
     newchoices.splice(e, 1);
     setChoice(newchoices);
   };
+
+  // const is_correct = ['1', '2'];
   return (
     <Fragment>
-      <div>
-        {/* <Form onSubmit={handleSubmit(handleOnSubmit)}> */}
-        {question === null ? (
-          <Form>
-            <Form.Label className={style.inputTitle}>Question</Form.Label>
-            <Controller
-              control={control}
-              name="question"
-              defaultValue=""
-              render={({ field: { onChange, value, ref } }) => (
-                <Form.Control 
-                  onChange={onChange}
-                  type="text"
-                  className={style.inputWidth}
-                  value={value}
-                  ref={ref}
-                />
-              )}
-            />
-          </Form>
-        ) : (
-          <Form>
-            <Form.Label className={style.inputTitle}>Question</Form.Label>
-            {question ? (
-              <div>
-                <Controller
-                  control={control}
-                  name="question"
-                  defaultValue={question.question}
-                  render={({ field: { onChange, value, ref } }) => (
-                    <Form.Control 
-                      onChange={onChange}
-                      // onChange={(e) => question.question(e.target.value)}
-                      type="text"
-                      className={style.inputWidth}
-                      value={value}
-                      // value={question.question}
-                      ref={ref}
-                    />
-                  )}
-                />
-              </div>
-            ) : (
-              ''
-            )} 
-          </Form>
-        )}
+      <div onSubmit={handleSubmit(onSelectedQuestion)}>
+        <Form>
+          <Form.Label className={style.inputTitle}>Question</Form.Label>
+          {question ? (
+            <div>
+              <Controller
+                control={control}
+                name="question"
+                defaultValue={question.question}
+                render={({ field: { onChange, value, ref } }) => (
+                  <Form.Control 
+                    // onClick={() => {onSelectedQuestion(value);}}
+                    onChange={onChange}
+                    type="text"
+                    className={style.inputWidth}
+                    value={value}
+                    ref={ref}
+                  />
+                )}
+              />
+            </div>
+          ) : (
+            ''
+          )} 
+        </Form>
       </div>
       <div className={style.formSpacing}>
         <div className={style.inputchoices}
@@ -111,7 +102,7 @@ const MultipleChoiceType = ({ question }) => {
           {choices && choices.map((choice, idx) => {
             return(
               <Form onClick={() => {onSelectedChoices(choice.id);}} key={idx} className={style.cardBody}>
-                <input type="radio" name="choice" />
+                <input onClick={() => onSelectCorrectAnswer(choice.is_correct)} type="radio" name="is_correct" value={isCorrect}/>
                 <span className={style.choicesAlignment}>
                   {choices ? (
                     <input
@@ -123,7 +114,7 @@ const MultipleChoiceType = ({ question }) => {
                         <Form.Control 
                           onChange={onChange}
                           type="text"
-                          value={choice.choice}
+                          value={selectedChoices.choice}
                           ref={ref}
                         />
                       )}
@@ -143,7 +134,6 @@ const MultipleChoiceType = ({ question }) => {
 
 MultipleChoiceType.propTypes = {
   question: PropTypes.object,
-  // choices: PropTypes.object,
 };
 
 export default MultipleChoiceType;
