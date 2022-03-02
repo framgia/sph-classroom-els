@@ -47,7 +47,7 @@ const AdminEditProfile = () => {
     setErrors({});
 
     try {
-      await ProfileEditApi.profileEdit({ name, email, password });
+      await ProfileEditApi.restore({ name, email, password });
       history.push('/admin/categories');
       toast('Success', 'Successfully Changed Your Account Information.');
     } catch (error) {
