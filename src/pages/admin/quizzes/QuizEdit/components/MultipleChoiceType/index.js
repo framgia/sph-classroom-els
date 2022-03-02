@@ -34,13 +34,10 @@ const MultipleChoiceType = ({ question }) => {
   const onSelectedQuestion = (value) => {
     setQuesetionEdit([...questionEdit,{id: question.id, question:value }]);
   };
-  console.log(questionEdit);
 
   const onSelectCorrectAnswer = (e) => {
     setIsCorrect(e);
   };
-
-  console.log(isCorrect);
 
   useEffect(() => {
     if (question) {
