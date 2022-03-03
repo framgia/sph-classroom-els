@@ -1,4 +1,38 @@
+@use '../../styles/variables' as *;
+
+%flex-align-center {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .formatTable {
-    width: 100%;
-    margin-top: 63px;
+  width: 100%;
+  margin-top: 63px;
+}
+
+.headerName {
+  font-size: $font-size-lg;
+  cursor: pointer;
+
+  @extend %flex-align-center;
+}
+
+.arrowIcons {
+  height: 27px;
+}
+
+.spinner {
+  position: absolute;
+  height: 25px;
+  left: 580px;
+  top: 380px;
+
+  @extend %flex-align-center;
+
+  &:disabled {
+    background-color: $color-white;
+    color: $color-black;
+    border: none;
   }
+}

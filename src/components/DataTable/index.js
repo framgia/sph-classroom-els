@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
-import { Table } from 'react-bootstrap';
+import { Spinner, Table, Button } from 'react-bootstrap';
+import { BsArrowUp, BsArrowDown } from 'react-icons/bs';
 
 import style from './index.module.scss';
+import { useEffect } from 'react';
 
 /*
     To use this component, pass the following props:
@@ -20,19 +22,81 @@ import style from './index.module.scss';
     
     > renderTableData : its prop-type is a function, therefore you should only pass a function that would render the list of data needed for the table.
     > titleHeaderStyle : it will take the style.
+    > sortOptions      : to get the initial value.
+    > setSortOptions   : To get the value of the sortBy and sortDescsription, to determine how to sort the list.
+    > data             : This is the data you want to load inside the table, this is only to determine if the data is still being loaded or not.
   */
-const DataTable = ({ tableHeaderNames, renderTableData, titleHeaderStyle }) => {
+
+const DataTable = ({
+  tableHeaderNames,
+  renderTableData,
+  titleHeaderStyle,
+  sortOptions,
+  setSortOptions,
+  data
+}) => {
+  const [sortBy, setSortBy] = useState(sortOptions.sortBy);
+  const [sortDirection, setSortDirection] = useState(sortOptions.sortDirection);
+
+  useEffect(() => {
+    setSortOptions({ sortBy, sortDirection });
+  }, [sortBy, sortDirection]);
+
+  const renderArrowIcons = (name) => {
+    if (sortBy === name && sortBy !== 'Edit') {
+      return sortDirection === 'asc' ? (
+        <BsArrowUp className={style.arrowIcons} />
+      ) : (
+        <BsArrowDown className={style.arrowIcons} />
+      );
+    }
+  };
+
+  const onSortClick = (headerName) => {
+    if (sortBy !== headerName) {
+      setSortBy(headerName);
+      setSortDirection('asc');
+    } else if (sortDirection === 'asc') {
+      setSortDirection('desc');
+    } else {
+      setSortBy('');
+      setSortDirection('');
+    }
+  };
+
   return (
     <Table className={style.formatTable}>
       <thead>
         <tr>
           {tableHeaderNames.map((header, idx) => {
-            return <td className={titleHeaderStyle} key={idx}>{header.title}</td>;
+            return (
+              <td
+                className={titleHeaderStyle}
+                onClick={() => {
+                  onSortClick(header.title);
+                }}
+                key={idx}
+              >
+                <div
+                  className={header.title !== 'Edit' ? style.headerName : ''}
+                >
+                  <span>{header.title}</span>
+                  <div>{renderArrowIcons(header.title)}</div>
+                </div>
+              </td>
+            );
           })}
           <td className={titleHeaderStyle}>Delete</td>
         </tr>
       </thead>
-      <tbody>{renderTableData()}</tbody>
+      {data ? (
+        <tbody>{renderTableData()}</tbody>
+      ) : (
+        <Button className={style.spinner} disabled>
+          <Spinner animation="border" />
+          <span>Loading</span>
+        </Button>
+      )}
     </Table>
   );
 };
@@ -40,7 +104,10 @@ const DataTable = ({ tableHeaderNames, renderTableData, titleHeaderStyle }) => {
 DataTable.propTypes = {
   tableHeaderNames: PropTypes.array,
   renderTableData: PropTypes.func,
-  titleHeaderStyle: PropTypes.any
+  titleHeaderStyle: PropTypes.any,
+  sortOptions: PropTypes.object,
+  setSortOptions: PropTypes.func,
+  data: PropTypes.array
 };
 
 export default DataTable;
