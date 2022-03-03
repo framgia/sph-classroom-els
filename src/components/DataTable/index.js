@@ -50,6 +50,18 @@ const DataTable = ({
     }
   };
 
+  const onSortClick = (headerName) => {
+    if (sortBy !== headerName) {
+      setSortBy(headerName);
+      setSortDirection('asc');
+    } else if (sortDirection === 'asc') {
+      setSortDirection('desc');
+    } else {
+      setSortBy('');
+      setSortDirection('');
+    }
+  };
+
   return (
     <Table className={style.formatTable}>
       <thead>
@@ -59,13 +71,7 @@ const DataTable = ({
               <td
                 className={titleHeaderStyle}
                 onClick={() => {
-                  setSortBy(header.title);
-
-                  if (sortDirection === 'desc') {
-                    setSortDirection('asc');
-                  } else {
-                    setSortDirection('desc');
-                  }
+                  onSortClick(header.title);
                 }}
                 key={idx}
               >

@@ -25,8 +25,8 @@ const QuizList = () => {
   const [adminquiz, setAdminquiz] = useState(null);
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
-  const sortBy = queryParams.get('sortBy');
-  const sortDirection = queryParams.get('sortDirection');
+  const sortBy = queryParams.get('sortBy') || '';
+  const sortDirection = queryParams.get('sortDirection') || '';
   const [modalShow, setModalShow] = useState(false);
   const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState(false);
