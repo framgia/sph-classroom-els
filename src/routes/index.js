@@ -15,6 +15,8 @@ import AdminQuizDetail from '../pages/admin/quizzes/QuizDetail';
 import AdminQuizEdit from '../pages/admin/quizzes/QuizEdit';
 import AdminCreateAdmin from '../pages/admin/Admin/CreateAdmin';
 import AdminSetPassword from '../pages/admin/Admin/SetAdminPassword';
+import AdminProfile from '../pages/admin/profile/Profile';
+import AdminEditProfile from '../pages/admin/profile/EditProfile';
 
 // Student Components
 import Login from '../pages/student/main/Login';
@@ -37,13 +39,18 @@ import ChangePassword from '../pages/student/profile/ChangePassword';
 import ProfileView from '../pages/student/profile/ProfileView';
 import ProfileEdit from '../pages/student/profile/EditProfile';
 import StudentDetails from '../pages/student/students/StudentDetail';
-import AdminEditProfile from '../pages/admin/profile/EditProfile';
 
 const Routes = () => {
   return (
     <Switch>
       {/* ADMIN ROUTES */}
       <AuthRoute path="/admin/login" exact component={AdminLogin}></AuthRoute>
+
+      <AdminRoute
+        path="/admin/profile"
+        exact
+        component={AdminProfile}
+      ></AdminRoute>
 
       <AdminRoute
         path="/admin/categories"

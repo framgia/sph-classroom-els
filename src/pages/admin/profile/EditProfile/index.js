@@ -46,13 +46,12 @@ const AdminEditProfile = () => {
     setShowAlert(false);
     setErrors({});
 
-    await ProfileEditApi.restore({ name, email, password })
+    await ProfileEditApi.profileEdit({ name, email, password })
       .then(() => {
-        history.push('/admin/categories');
+        history.push('/admin/profile');
         toast('Success', 'Successfully Changed Your Account Information.');
       })
-      .catch ((error) => {
-        toastError(error);
+      .catch((error) => {
         setSubmitStatus(false);
         if (error?.response?.data?.error || error?.response?.data?.errors) {
           setErrors(
@@ -62,20 +61,6 @@ const AdminEditProfile = () => {
           showAlertDialog(true, 'An error has occurred.');
         }
       });
-  };
-
-  const toastError = (error) => {
-    if (error?.response?.data?.errors?.email) {
-      toast('Error', error?.response?.data?.errors?.email);
-      showAlertDialog(
-        true, error?.response?.data?.errors?.email 
-      );
-    } else {
-      toast('Error', error?.response?.data?.errors?.password);
-      showAlertDialog(
-        true, error?.response?.data?.errors?.password
-      );
-    }
   };
 
   return (
@@ -94,9 +79,7 @@ const AdminEditProfile = () => {
             {alertMessage}
           </Alert>
         )}
-        <Card
-          className={style.cardStyle}
-        >
+        <Card className={style.cardStyle}>
           <div className={style.HeadingText}>Edit Account Info</div>
           {profileName === null ? (
             <div className={style.loading}>
@@ -168,7 +151,9 @@ const AdminEditProfile = () => {
                 className={style.marginForForm}
                 controlId="formBasicPassword"
               >
-                <Form.Label className={style.FormGroupStyle}>Password</Form.Label>
+                <Form.Label className={style.FormGroupStyle}>
+                  Password
+                </Form.Label>
                 <Controller
                   control={control}
                   name="password"
@@ -198,11 +183,11 @@ const AdminEditProfile = () => {
                   type="submit"
                   disabled={submitStatus}
                 >
-                Change
+                  Change
                 </Button>
                 <div>
                   <a className={style.cancel} href="/profile">
-                  Cancel
+                    Cancel
                   </a>
                 </div>
               </div>
@@ -216,7 +201,7 @@ const AdminEditProfile = () => {
 
 AdminEditProfile.propTypes = {
   name: PropTypes.any,
-  email: PropTypes.any
+  email: PropTypes.any,
 };
 
 export default AdminEditProfile;
