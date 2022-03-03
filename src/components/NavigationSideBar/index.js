@@ -50,7 +50,7 @@ const NavigationSideBar = () => {
         className={`${style.navItemsContainer} ${style.displayFlexColumn}`}
       >
         <LinkContainer
-          to="/admin"
+          to="/admin/profile"
           className={`${style.displayFlexRow} ${style.navItemInfo}`}
         >
           <Nav.Link href="#" className={style.navItem}>
