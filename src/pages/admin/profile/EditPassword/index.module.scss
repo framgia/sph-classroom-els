@@ -1,0 +1,68 @@
+@use '../../../../styles/variables' as *;
+
+%button-style {
+  font-size: $font-size-md;
+  color: $color-dark-blue-1;
+}
+
+.formTitle {
+  font-weight: $font-weight-regular;
+  font-size: $font-size-page-title;
+}
+
+.form {
+  position: absolute;
+  left: 880px;
+  top: 230px;
+
+  width: 450px;
+  height: auto;
+  padding: 40px 30px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+
+  background-color: $color-light-blue-1;
+  color: $color-dark-blue-1;
+}
+
+.inputLabel {
+  font-weight: $font-weight-regular;
+  font-size: $font-size-base;
+}
+
+.inputField,
+.validationMessage {
+  width: 335px;
+}
+
+.changeButton {
+  background-color: $color-light-blue-2;
+  border: none;
+  width: 85px;
+  height: 35px;
+
+  @extend %button-style;
+
+  &:hover,
+  &:focus {
+    background-color: $color-dark-blue-3;
+  }
+
+  &:disabled {
+    background-color: $color-dark-blue-3;
+    opacity: 0.5;
+  }
+}
+
+.cancelButton {
+  @extend %button-style;
+
+  &:hover,
+  &:focus {
+    color: $color-black;
+  }
+}
