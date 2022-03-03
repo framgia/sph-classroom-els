@@ -52,25 +52,30 @@ const AdminEditProfile = () => {
         toast('Success', 'Successfully Changed Your Account Information.');
       })
       .catch ((error) => {
-        toast(
-          'Error',
-          error?.response?.data?.error?.password ||
-          error?.response?.data?.errors?.email
-        );
+        toastError(error);
         setSubmitStatus(false);
         if (error?.response?.data?.error || error?.response?.data?.errors) {
           setErrors(
             error?.response?.data?.error || error?.response?.data?.errors
           );
-          showAlertDialog(
-            true,
-            error?.response?.data?.error?.password ||
-          error?.response?.data?.errors?.email
-          );
         } else {
           showAlertDialog(true, 'An error has occurred.');
         }
       });
+  };
+
+  const toastError = (error) => {
+    if (error?.response?.data?.errors?.email) {
+      toast('Error', error?.response?.data?.errors?.email);
+      showAlertDialog(
+        true, error?.response?.data?.errors?.email 
+      );
+    } else {
+      toast('Error', error?.response?.data?.errors?.password);
+      showAlertDialog(
+        true, error?.response?.data?.errors?.password
+      );
+    }
   };
 
   return (
