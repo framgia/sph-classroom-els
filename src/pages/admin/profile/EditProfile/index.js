@@ -55,7 +55,6 @@ const AdminEditProfile = () => {
         toastError(error);
         setSubmitStatus(false);
         if (error?.response?.data?.error || error?.response?.data?.errors) {
-          console.log(error?.response?.data?.errors);
           setErrors(
             error?.response?.data?.error || error?.response?.data?.errors
           );
