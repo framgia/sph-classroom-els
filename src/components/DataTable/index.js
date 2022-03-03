@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
-import { Table } from 'react-bootstrap';
+import { Spinner, Table, Button } from 'react-bootstrap';
 import { BsArrowUp, BsArrowDown } from 'react-icons/bs';
 
 import style from './index.module.scss';
@@ -24,6 +24,7 @@ import { useEffect } from 'react';
     > titleHeaderStyle : it will take the style.
     > sortOptions      : to get the initial value.
     > setSortOptions   : To get the value of the sortBy and sortDescsription, to determine how to sort the list.
+    > data             : This is the data you want to load inside the table, this is only to determine if the data is still being loaded or not.
   */
 
 const DataTable = ({
@@ -31,14 +32,15 @@ const DataTable = ({
   renderTableData,
   titleHeaderStyle,
   sortOptions,
-  setSortOptions
+  setSortOptions,
+  data
 }) => {
   const [sortBy, setSortBy] = useState(sortOptions.sortBy);
   const [sortDirection, setSortDirection] = useState(sortOptions.sortDirection);
 
   useEffect(() => {
     setSortOptions({ sortBy, sortDirection });
-  }, [sortDirection]);
+  }, [sortBy, sortDirection]);
 
   const renderArrowIcons = (name) => {
     if (sortBy === name && sortBy !== 'Edit') {
@@ -87,7 +89,14 @@ const DataTable = ({
           <td className={titleHeaderStyle}>Delete</td>
         </tr>
       </thead>
-      <tbody>{renderTableData()}</tbody>
+      {data ? (
+        <tbody>{renderTableData()}</tbody>
+      ) : (
+        <Button className={style.spinner} disabled>
+          <Spinner animation="border" />
+          <span>Loading</span>
+        </Button>
+      )}
     </Table>
   );
 };
@@ -97,7 +106,8 @@ DataTable.propTypes = {
   renderTableData: PropTypes.func,
   titleHeaderStyle: PropTypes.any,
   sortOptions: PropTypes.object,
-  setSortOptions: PropTypes.func
+  setSortOptions: PropTypes.func,
+  data: PropTypes.array
 };
 
 export default DataTable;

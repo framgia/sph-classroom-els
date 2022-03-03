@@ -5,12 +5,9 @@ import { useHistory } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from '@restart/ui/esm/Button';
-import Dropdown from 'react-bootstrap/Dropdown';
-import { VscFilter } from 'react-icons/vsc';
 import { BiSearch } from 'react-icons/bi';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
-import { BsSortAlphaDown } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
 import Container from 'react-bootstrap/Container';
@@ -22,7 +19,7 @@ import AddQuizModal from './components/AddQuizModal';
 import DataTable from '../../../../components/DataTable';
 
 const QuizList = () => {
-  const [adminquiz, setAdminquiz] = useState(null);
+  const [adminQuiz, setAdminQuiz] = useState(null);
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
   const sortBy = queryParams.get('sortBy') || '';
@@ -70,12 +67,14 @@ const QuizList = () => {
   };
 
   const load = () => {
+    setAdminQuiz(null);
+
     QuizApi.adminQuiz({
-      page,
-      sortBy,
-      sortDirection
+      page: page,
+      sortBy: sortOptions.sortBy,
+      sortDirection: sortOptions.sortDirection
     }).then(({ data }) => {
-      setAdminquiz(data.data);
+      setAdminQuiz(data.data);
       setPerPage(data.per_page);
       setTotalItems(data.total);
       setLastPage(data.last_page);
@@ -106,7 +105,7 @@ const QuizList = () => {
   ];
 
   const renderTableData = () => {
-    return adminquiz?.map((quiz, idx) => {
+    return adminQuiz?.map((quiz, idx) => {
       return (
         <tr key={idx}>
           <td id={style.classColumn}>{quiz.id}</td>
@@ -147,48 +146,6 @@ const QuizList = () => {
                       </Button>
                     </Form>
                   </div>
-
-                  <Dropdown style={{ margin: '0px 0px 0px 683px' }}>
-                    <Dropdown.Toggle
-                      className={style.dropdownStyle}
-                      variant="link"
-                      bsPrefix="none"
-                    >
-                      <span className={style.dropdownText}>Filter</span>
-                      <VscFilter size="20px" />
-                    </Dropdown.Toggle>
-                  </Dropdown>
-                  <Dropdown>
-                    <Dropdown.Toggle
-                      className={style.dropdownStyle}
-                      variant="link"
-                      bsPrefix="none"
-                    >
-                      <span className={style.dropdownText}>Sort</span>
-                      <BsSortAlphaDown size="20px" />
-                    </Dropdown.Toggle>
-                  </Dropdown>
-
-                  <Dropdown style={{ margin: '0px 0px 0px 683px' }}>
-                    <Dropdown.Toggle
-                      className={style.dropdownStyle}
-                      variant="link"
-                      bsPrefix="none"
-                    >
-                      <span className={style.dropdownText}>Filter</span>
-                      <VscFilter size="20px" />
-                    </Dropdown.Toggle>
-                  </Dropdown>
-                  <Dropdown>
-                    <Dropdown.Toggle
-                      className={style.dropdownStyle}
-                      variant="link"
-                      bsPrefix="none"
-                    >
-                      <span className={style.dropdownText}>Sort</span>
-                      <BsSortAlphaDown size="20px" />
-                    </Dropdown.Toggle>
-                  </Dropdown>
                 </div>
                 <table style={{ width: '100%' }}>
                   <tbody>
@@ -213,6 +170,7 @@ const QuizList = () => {
                     titleHeaderStyle={style.classCol}
                     sortOptions={sortOptions}
                     setSortOptions={setSortOptions}
+                    data={adminQuiz}
                   />
                 </div>
               </Card.Body>
