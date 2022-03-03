@@ -91,10 +91,6 @@ const QuizList = () => {
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
-
-    history.push(
-      `?page=${page}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`
-    );
   };
 
   const tableHeaderNames = [
