@@ -17,6 +17,7 @@ import AdminCreateAdmin from '../pages/admin/Admin/CreateAdmin';
 import AdminSetPassword from '../pages/admin/Admin/SetAdminPassword';
 import AdminProfile from '../pages/admin/profile/Profile';
 import AdminEditProfile from '../pages/admin/profile/EditProfile';
+import AdminEditPassword from '../pages/admin/profile/EditPassword';
 
 // Student Components
 import Login from '../pages/student/main/Login';
@@ -104,6 +105,12 @@ const Routes = () => {
         path="/admin/profile/edit"
         exact
         component={AdminEditProfile}
+      ></AdminRoute>
+
+      <AdminRoute
+        path="/admin/profile/edit-password"
+        exact
+        component={AdminEditPassword}
       ></AdminRoute>
 
       {/* STUDENT ROUTES */}
