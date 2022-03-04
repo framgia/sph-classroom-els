@@ -6,6 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 import QuestionType from './components/QuestionType';
 import { useParams } from 'react-router-dom';
 // import MultipleChoiceType from './components/MultipleChoiceType';
+// import IdentificationType from './components/IdentificationType';
 
 import style from './index.module.scss';
 import ChangeLocation from '../../../../components/ChangeLocation';
@@ -24,6 +25,7 @@ const QuizEdit = () => {
   const { categoryId, quizId } = useParams();
   const [questions, setQuestions] = useState(null);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
+  // const [newQuesetionItem, setNewQuestion] = useState(null);
 
   useEffect(() => {
     QuizApi.show({ categoryId, quizId }).then(({ data }) => {
@@ -33,8 +35,17 @@ const QuizEdit = () => {
     QuestionApi.getAll(quizId).then(({ data }) => {
       setQuestions(data.data);
       setSelectedQuestion(data.data[0]);
+      // setQuestions(questions.value);
     });
+    
   }, []);
+
+  // useEffect(() => {
+  //   if (questions) {
+  //     setQuestions(questions.title);
+  //   }
+  // }, [questions]);
+  // console.log(newQuesetionItem);
 
 
   const onSelectQuestion = (e) => {
@@ -46,6 +57,10 @@ const QuizEdit = () => {
   const addQuestionFields = (e) => {
     setQuestions([...questions, { e }]);
   };
+  
+  // const handleQuestionChange =({questionOnChange}) =>{
+  //   setQuestions(question.value);
+  // };
 
   return (
     <div className="d-inline-flex">
@@ -68,8 +83,11 @@ const QuizEdit = () => {
                           Question # {idx + 1}
                         </span>
                         <p key={idx} className={style.question}>
+                          {/* {newQuesetion} */}
+                          {/* <QuestionType question={selectedQuestion.question} /> */}
                           {question.question}
                           {/* <MultipleChoiceType question={question} />; */}
+                          {/* <IdentificationType question={questions} />; */}
                         </p>
                       </Nav.Link>
                     </Nav>

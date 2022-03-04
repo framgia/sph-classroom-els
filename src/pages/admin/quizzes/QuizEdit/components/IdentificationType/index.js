@@ -5,32 +5,55 @@ import { PropTypes } from 'prop-types';
 import { Controller, useForm } from 'react-hook-form';
 
 const IdentificationType = ({ question }) => {
-  const { control, handleSubmit } = useForm();
-  const [questionEdit, setQuesetionEdit] = useState([]);
+  const { control } = useForm();
+  // const [questionEdit, setQuesetionEdit] = useState([]);
+  const [questionOnChange, setQuestionOnChange] = useState([]);
+  // const [questionItem, setQuestionItem] = useState([]);
 
-  const onSelectedQuestion = (value) => {
-    setQuesetionEdit([...questionEdit,{id: question.id, question:value }]);
+  // console.log(questionItem);
+
+  // const onSelectedQuestion = (value) => {
+  //   setQuesetionEdit([...questionEdit,{id: question.id, question:value }]);
+  // setQuestionOnChange (e) => field.onChange(e.target.value);
+  // };
+  // console.log(questionOnChange);
+  // const onChangequestion = (e) => {
+  //   setQuesetionEdit(onChange(e.target.value));
+  // };
+  // console.log(questionEdit);
+
+  const handleChangeQuestion = (e) => {
+    setQuestionOnChange(e.target.value);
+    question = {questionOnChange};
   };
-  console.log(questionEdit);
+  console.log(question);
   return (
     <Fragment>
       <div>
-        <Form onSubmit={handleSubmit(onSelectedQuestion)}>
+        {/* <Form onSubmit={handleSubmit(onSelectedQuestion)}> */}
+        <Form>
           <Form.Label className={style.inputTitle}>Question</Form.Label>
-          <Controller
-            control={control}
-            name="question"
-            defaultValue={question.question}
-            render={({ field: { onChange, value, ref } }) => (
-              <Form.Control
-                type="title"
-                className={style.inputWidth}
-                onChange={onChange}
-                value={value}
-                ref={ref}
-              />
-            )}
-          />
+          {question ? (
+            <Controller
+              data = {question.question}
+              control={control}
+              name="question"
+              defaultValue={question.question}
+              render={({ field: { ref } }) => (
+                <Form.Control
+                  type="text"
+                  className={style.inputWidth}
+                  // onChange={changeTitle}
+                  onChange ={handleChangeQuestion}
+                  value={questionOnChange}
+                  // value= {value}
+                  ref={ref}
+                />
+              )}
+            />
+          ) : (
+            ''
+          )}
         </Form>
       </div>
       <div className={style.formSpacing}>
