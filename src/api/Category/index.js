@@ -74,6 +74,18 @@ const CategoryApi = {
     return API.request(options);
   },
 
+  listOfCategories: ({ ...params }) => {
+    const options = {
+      method: 'GET',
+      url: '/admin/categories-data',
+      params: {
+        ...params
+      }
+    };
+
+    return API.request(options);
+  },
+
   delete: () => {},
 
   restore: () => {}

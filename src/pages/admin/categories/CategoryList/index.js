@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import { Col, Table } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from '@restart/ui/esm/Button';
@@ -16,67 +16,78 @@ import Container from 'react-bootstrap/Container';
 import style from './index.module.scss';
 
 import CategoryApi from '../../../../api/Category';
+import DataTable from '../../../../components/DataTable';
 
 const CategoryList = () => {
+  const [categories, setCategories] = useState(null);
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
+  const sortBy = queryParams.get('sortBy') || '';
+  const sortDirection = queryParams.get('sortDirection') || '';
 
   //TEMPORARY VALUES since the search, sort, and filter functionality isn't implemented yet.
-  const sortBy = 'asc';
-  const filter = '';
+  // const sortBy = 'asc';
+  // const filter = '';
   const search = '';
 
   const history = useHistory();
 
-  const [categories, setCategories] = useState(null);
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
 
-  useEffect(() => {
-    history.push(`?page=${page}`);
+  const [sortOptions, setSortOptions] = useState({
+    sortBy,
+    sortDirection
+  });
 
-    CategoryApi.getAll({
+  useEffect(() => {
+    history.push(`?page=${page}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`);
+
+    CategoryApi.listOfCategories({
       page: page,
-      sortBy: sortBy,
-      filter: filter,
       search: search,
+      sortBy: sortOptions.sortBy,
+      sortDirection: sortOptions.sortDirection
     }).then(({ data }) => {
       setCategories(data.data);
+      console.log(data.data);
       setPerPage(data.per_page);
       setTotalItems(data.total);
       setLastPage(data.last_page);
     });
-  }, [page]);
+  }, [page, sortOptions]);
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
 
-    history.push(`?page=${selected + 1}`);
+    history.push(`?page=${selected + 1}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`);
   };
 
-  const renderList = () => {
+  const tableHeaderNames = [
+    { title: 'ID' },
+    { title: 'Actions' },
+    { title: 'Name' },
+    { title: 'Description' }
+  ];
+
+  const renderTableData = () => {
     return categories?.map((category, idx) => {
       return (
         <tr key={idx}>
           <td id={style.tBodyStyle}>{category.id}</td>
+          <td id={style.tBodyStyle1}>
+            <Link to={`/admin/edit-category/${category.id}`}>
+              <FaRegEdit className={style.actionBtn} size="20px" color="black" />
+            </Link>
+            <RiDeleteBin2Fill className={style.actionBtn} size="30px" color="#db7771"/>
+          </td>
           <td id={style.tBodyStyle}>{category.name}</td>
           <td id={style.tBodyStyle} className={`${style.paragraphEllipsis}`}>
             {category.description}
           </td>
-          <td id={style.tBodyStyle1}>
-            <Link to={`/admin/edit-category/${category.id}`}>
-              <Button className={style.designButton}>
-                <FaRegEdit size="20px" />
-              </Button>
-            </Link>
-          </td>
-          <td id={style.tBodyStyle1}>
-            <Button className={style.designButton}>
-              <RiDeleteBin2Fill size="30px" color="#db7771" />
-            </Button>
-          </td>
+          
         </tr>
       );
     });
@@ -86,7 +97,12 @@ const CategoryList = () => {
     <div className={style.Bodystyle}>
       <Container className={style.categoryListContainer}>
         <div>
-          <p className={style.title}>Categories</p>
+          <div className={style.headerTitle}>
+            <p className={style.title}>Categories</p>
+            <Link to="/admin/add-category">
+              <Button className={style.button}>Add Category</Button>
+            </Link>
+          </div>
           <Col>
             <Card className={style.navMaincard}>
               <Card.Header className={style.navContainer}>
@@ -124,22 +140,15 @@ const CategoryList = () => {
                 </table>
               </Card.Header>
               <Card.Body className={style.cardBodyScroll}>
-                <Link to="/admin/add-category">
-                  <Button className={style.button}>Add Category</Button>
-                </Link>
                 <div>
-                  <Table className={style.formatTable}>
-                    <thead>
-                      <tr>
-                        <td className={style.firstCol}>ID</td>
-                        <td className={style.firstCol}>Name</td>
-                        <td className={style.firstCol}>Description</td>
-                        <td className={style.firstCol1}>Edit</td>
-                        <td className={style.firstCol1}>Delete</td>
-                      </tr>
-                    </thead>
-                    <tbody>{renderList()}</tbody>
-                  </Table>
+                  <DataTable
+                    tableHeaderNames={tableHeaderNames}
+                    renderTableData={renderTableData}
+                    titleHeaderStyle={style.classCol}
+                    sortOptions={sortOptions}
+                    setSortOptions={setSortOptions}
+                    data={categories}
+                  />
                 </div>
               </Card.Body>
             </Card>
