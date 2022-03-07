@@ -79,55 +79,53 @@ const AdminList = () => {
   };
 
   return (
-    <div className={style.adminListContainer}>
-      <div className={style.mainContent}>
-        <div>
-          <h1 className={style.pageTitle}>Admin Accounts</h1>
-        </div>
-        <Card className={style.card}>
-          <Card.Header className={style.cardHeader}>
-            <Form className={style.searchSection}>
-              <div className={style.searchInput}>
-                <Form.Control
-                  className={style.searchBar}
-                  type="text"
-                  placeholder="Search name or email"
-                />
-                <BiSearch size={17} className={style.searchIcon} />
-              </div>
-              <Button className={style.searchButton} type="submit">
-                Search
-              </Button>
-            </Form>
-            <Dropdown>
-              <Dropdown.Toggle className={style.dropdownButton} bsPrefix="none">
-                Filter
-                <VscFilter size={17} />
-              </Dropdown.Toggle>
-            </Dropdown>
-          </Card.Header>
-          <Card.Body className={style.cardBody}>
-            <Button className={style.addAdminButton}>Add an Admin</Button>
-            <DataTable
-              tableHeaderNames={tableHeaderNames}
-              renderTableData={renderTableData}
-              titleHeaderStyle={style.tableHeader}
-              sortOptions={sortOptions}
-              setSortOptions={setSortOptions}
-              data={adminAccounts}
-            />
-          </Card.Body>
-        </Card>
-        <section>
-          <Pagination
-            page={page}
-            perPage={perPage}
-            totalItems={totalItems}
-            pageCount={lastPage}
-            onPageChange={onPageChange}
-          />
-        </section>
+    <div className={style.mainContent}>
+      <div>
+        <h1 className={style.pageTitle}>Admin Accounts</h1>
       </div>
+      <Card className={style.card}>
+        <Card.Header className={style.cardHeader}>
+          <Form className={style.searchSection}>
+            <div className={style.searchInput}>
+              <Form.Control
+                className={style.searchBar}
+                type="text"
+                placeholder="Search name or email"
+              />
+              <BiSearch size={17} className={style.searchIcon} />
+            </div>
+            <Button className={style.searchButton} type="submit">
+              Search
+            </Button>
+          </Form>
+          <Dropdown>
+            <Dropdown.Toggle className={style.dropdownButton} bsPrefix="none">
+              Filter
+              <VscFilter size={17} />
+            </Dropdown.Toggle>
+          </Dropdown>
+        </Card.Header>
+        <Card.Body className={style.cardBody}>
+          <Button className={style.addAdminButton}>Add an Admin</Button>
+          <DataTable
+            tableHeaderNames={tableHeaderNames}
+            renderTableData={renderTableData}
+            titleHeaderStyle={style.tableHeader}
+            sortOptions={sortOptions}
+            setSortOptions={setSortOptions}
+            data={adminAccounts}
+          />
+        </Card.Body>
+      </Card>
+      <section>
+        <Pagination
+          page={page}
+          perPage={perPage}
+          totalItems={totalItems}
+          pageCount={lastPage}
+          onPageChange={onPageChange}
+        />
+      </section>
     </div>
   );
 };
