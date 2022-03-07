@@ -48,6 +48,17 @@ const AdminApi = {
     };
 
     return API.request(options);
+  },
+
+  getAdminAccounts: ({ ...params }) => {
+    const options = {
+      method: 'GET',
+      url: '/admin/users',
+      params: {
+        ...params
+      }
+    };
+    return API.request(options);
   }
 };
 

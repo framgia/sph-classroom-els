@@ -10,6 +10,7 @@
 }
 
 .navbar {
+  position: fixed;
   background-color: #002037;
   display: inline-flex;
   justify-content: flex-start;
