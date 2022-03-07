@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -7,7 +7,6 @@ import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { VscFilter } from 'react-icons/vsc';
 import { BiSearch } from 'react-icons/bi';
-import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import Pagination from '../../../../components/Pagination';
 import DataTable from '../../../../components/DataTable';
@@ -35,8 +34,7 @@ const AdminList = () => {
   const tableHeaderNames = [
     { title: 'ID' },
     { title: 'Name' },
-    { title: 'Email' },
-    { title: 'Edit' }
+    { title: 'Email' }
   ];
 
   useEffect(() => {
@@ -65,11 +63,6 @@ const AdminList = () => {
           <td className={style.tableData}>{admin.id}</td>
           <td className={style.tableData}>{admin.name}</td>
           <td className={style.tableData}>{admin.email}</td>
-          <td className={`${style.tableData} ${style.buttonColumn}`}>
-            <Link to={`/admin/admins/${admin.id}`}>
-              <FaRegEdit size="20px" color="black" />
-            </Link>
-          </td>
           <td className={`${style.tableData} ${style.buttonColumn}`}>
             <RiDeleteBin2Fill size="25px" color="#db7771" />
           </td>

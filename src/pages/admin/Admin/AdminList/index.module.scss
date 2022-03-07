@@ -104,8 +104,7 @@
   font-weight: $font-weight-bold;
 
   &:first-child,
-  &:last-child,
-  &:nth-last-child(2) {
+  &:last-child {
     width: 110px;
     text-align: center;
   }

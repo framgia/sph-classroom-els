@@ -114,7 +114,7 @@ const Routes = () => {
         component={AdminEditPassword}
       ></AdminRoute>
 
-      <AdminRoute path="/admin/admins" exact component={AdminList}></AdminRoute>
+      <AdminRoute path="/admin/users" exact component={AdminList}></AdminRoute>
 
       {/* STUDENT ROUTES */}
       <AuthRoute path="/login" exact component={Login}></AuthRoute>

@@ -53,7 +53,7 @@ const AdminApi = {
   getAdminAccounts: ({ ...params }) => {
     const options = {
       method: 'GET',
-      url: '/admin/admins',
+      url: '/admin/users',
       params: {
         ...params
       }
