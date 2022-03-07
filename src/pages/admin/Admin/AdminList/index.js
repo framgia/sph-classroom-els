@@ -38,6 +38,10 @@ const AdminList = () => {
   ];
 
   useEffect(() => {
+    load();
+  }, [page]);
+
+  const load = () => {
     AdminApi.getAdminAccounts({ page })
       .then(({ data }) => {
         setAdminAccounts(data.data);
@@ -48,7 +52,7 @@ const AdminList = () => {
       .catch(() =>
         toast('Error', 'There was an error getting the list of admin accounts.')
       );
-  }, [page]);
+  };
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
