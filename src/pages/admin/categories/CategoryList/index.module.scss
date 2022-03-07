@@ -40,12 +40,12 @@
 
 .categoryConditionsStyle {
   display: flex;
-  gap: 783px;
+  gap: 720px;
 }
 
 .searchBar {
-  height: 32px;
-  width: 340.5px;
+  height: 38px;
+  width: 300px;
   margin: 3px 0px 3px 12px;
 }
 
@@ -54,8 +54,8 @@
   background-color: $color-white;
   display: hidden;
   position: absolute;
-  left: 331px;
-  top: $font-size-md;
+  left: 285px;
+  top: 17px;
 }
 
 .searchIcon {
@@ -65,13 +65,13 @@
 
 .dropdownStyle {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   background-color: $color-white;
   border: 1px $color-white solid;
   color: $color-dark-blue-1;
   text-decoration: none;
-  width: 100px;
-  height: 32px;
+  width: 200px;
+  height: 38px;
   margin: 3px 0px 3px 12px;
 }
 
@@ -90,10 +90,14 @@
   color: $color-dark-blue-1;
   float: right;
   border: none;
+  height: 38px;
+  width: 172px;
   margin-right: 13px;
   border-radius: 2px;
   padding: 6px 18px;
 }
+
+
 
 .button:hover {
   color: $color-white;
@@ -155,4 +159,37 @@
 .designButton {
   border: none;
   background: none;
+}
+
+.classCol {
+  @extend %style-table-head;
+
+  &:nth-child(1) {
+    width: 153px;
+  }
+
+  &:nth-child(2) {
+    width: 285px;
+  }
+
+  &:nth-child(3) {
+    width: 517px;
+  }
+
+  &:nth-child(4) {
+    width: 151px;
+    text-align: center;
+  }
+
+  &:nth-child(5) {
+    width: 151px;
+    text-align: center;
+  }
+}
+
+
+.headerTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

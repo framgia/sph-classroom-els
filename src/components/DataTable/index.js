@@ -17,6 +17,7 @@ import { useEffect } from 'react';
         const tableHeader = [
             {
                 title: //insert header name
+                canSort: //bool
             }
         ]
     
@@ -73,12 +74,14 @@ const DataTable = ({
               <td
                 className={titleHeaderStyle}
                 onClick={() => {
-                  onSortClick(header.title);
+                  if (header?.canSort){
+                    onSortClick(header.title);
+                  }
                 }}
                 key={idx}
               >
                 <div
-                  className={header.title !== 'Edit' ? style.headerName : ''}
+                  className={header?.canSort ? style.headerName : ''}
                 >
                   <span>{header.title}</span>
                   <div>{renderArrowIcons(header.title)}</div>

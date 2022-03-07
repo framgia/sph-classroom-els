@@ -47,7 +47,7 @@ const QuizList = () => {
   const handleOnSubmit = async ({ name, instruction }) => {
     setSubmitStatus(true);
 
-    if (location) {
+    if (location) { 
       toast('Processing', 'Adding quiz...');
       setModalShow(false);
     }
@@ -94,10 +94,10 @@ const QuizList = () => {
   };
 
   const tableHeaderNames = [
-    { title: 'ID' },
-    { title: 'Category' },
-    { title: 'Name' },
-    { title: 'Edit' }
+    { title: 'ID', canSort: true  },
+    { title: 'Category', canSort: true  },
+    { title: 'Name', canSort: true  },
+    { title: 'Edit', canSort: false }
   ];
 
   const renderTableData = () => {

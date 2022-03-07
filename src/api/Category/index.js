@@ -42,7 +42,7 @@ const CategoryApi = {
   getCategories: ({ ...params }) => {
     const options = {
       method: 'GET',
-      url: '/admin/categories',
+      url: '/admin/categories-data',
       params: {
         ...params
       }
@@ -69,6 +69,18 @@ const CategoryApi = {
     const options = {
       method: 'GET',
       url: `/admin/nested-categories/${subcategoryID}`
+    };
+
+    return API.request(options);
+  },
+
+  listOfCategories: ({ ...params }) => {
+    const options = {
+      method: 'GET',
+      url: '/admin/categories',
+      params: {
+        ...params
+      }
     };
 
     return API.request(options);
