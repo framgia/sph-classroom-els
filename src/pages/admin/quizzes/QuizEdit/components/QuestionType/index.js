@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 import style from '../../index.module.scss';
 
-const QuestionType = ({ question }) => {
+const QuestionType = ({ question, onGetData }) => {
   const [questionType, setQuestionType] = useState('multiple_choice');
   const [timeLimit, setTimeLimit] = useState(0);
 
@@ -18,6 +18,10 @@ const QuestionType = ({ question }) => {
       setTimeLimit(question?.time_limit);
     }
   }, [question]);
+
+  const handleChangeQuestionType = (value) => {
+    onGetData(value);
+  };
 
   const question_type_id = [
     {
@@ -43,9 +47,9 @@ const QuestionType = ({ question }) => {
   const question_type = (choice) => {
     switch (choice) {
     case '1':
-      return <MultipleChoiceType question={question} />;
+      return <MultipleChoiceType question={question} getData = {handleChangeQuestionType} />;
     case '2':
-      return <IdentificationType question={question} />;
+      return <IdentificationType question={question} getData = {handleChangeQuestionType} />;
     default:
       break;
     }
@@ -121,6 +125,7 @@ const QuestionType = ({ question }) => {
 
 QuestionType.propTypes = {
   question: PropTypes.object,
+  onGetData: PropTypes.func,
 };
 
 export default QuestionType;

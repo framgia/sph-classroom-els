@@ -196,6 +196,7 @@
   height: 38px;
   border: 2.5px solid $color-light-blue-1;
   margin-bottom: 15px;
+  display: flex;
 
   input[type='radio'] {
     margin: 6px 0px 0px 6px;
@@ -230,6 +231,13 @@
   margin: 0px 0px 0px 10px;
   font-size: $font-size-base;
   font-weight: $font-weight-light;
+  border: none;
+  background-color: transparent;
+  height: 35px;
+}
+
+.choicesAlignment:focus{
+  outline: none;
 }
 
 .loading {
@@ -243,19 +251,19 @@
   margin-left: 10px;
 }
 
-.choicesInput{
-  border : 0px;
-  background-color: transparent;
-  height: 35px;
-}
+// .choicesInput{
+//   border : 0px;
+//   background-color: transparent;
+//   height: 35px;
+// }
 
-.choicesInput:focus{
-  outline: none;
-}
+// .choicesInput:focus{
+//   outline: none;
+// }
 
-.choicecontentinput{
-  display:inline-block;
-}
+// .choicecontentinput{
+//   display:inline-block;
+// }
 
 .questionTypestyle{
   overflow: scroll;

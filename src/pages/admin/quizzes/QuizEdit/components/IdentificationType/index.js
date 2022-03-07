@@ -1,59 +1,66 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import style from '../../index.module.scss';
 import { PropTypes } from 'prop-types';
 import { Controller, useForm } from 'react-hook-form';
 
-const IdentificationType = ({ question }) => {
+const IdentificationType = ({ question, getData }) => {
   const { control } = useForm();
-  // const [questionEdit, setQuesetionEdit] = useState([]);
-  const [questionOnChange, setQuestionOnChange] = useState([]);
-  // const [questionItem, setQuestionItem] = useState([]);
+  const [questionOnChange, setQuestionOnChange ] = useState({
+    question : question.question,
+    answer: question.text_answer,
+    questionId: question.id,
+  });
 
-  // console.log(questionItem);
-
-  // const onSelectedQuestion = (value) => {
-  //   setQuesetionEdit([...questionEdit,{id: question.id, question:value }]);
-  // setQuestionOnChange (e) => field.onChange(e.target.value);
-  // };
-  // console.log(questionOnChange);
-  // const onChangequestion = (e) => {
-  //   setQuesetionEdit(onChange(e.target.value));
-  // };
-  // console.log(questionEdit);
+  useEffect(() => {
+    setQuestionOnChange({
+      ...questionOnChange,
+      question: question.question,
+      answer: question.text_answer,
+      questionId: question.id
+    });
+  }, [question]);
 
   const handleChangeQuestion = (e) => {
-    setQuestionOnChange(e.target.value);
-    question = {questionOnChange};
+    setQuestionOnChange({
+      ...questionOnChange,
+      question: e.target.value
+    });
   };
-  console.log(question);
+  
+  useEffect(() => {
+    if(questionOnChange){
+      getData(questionOnChange);
+    }
+  }, [questionOnChange]);
+
+  const handleChangeAnswer = (e) => {
+    setQuestionOnChange({
+      ...questionOnChange,
+      answer: e.target.value
+    });
+    getData(questionOnChange);
+  };
+  
   return (
     <Fragment>
       <div>
-        {/* <Form onSubmit={handleSubmit(onSelectedQuestion)}> */}
         <Form>
           <Form.Label className={style.inputTitle}>Question</Form.Label>
-          {question ? (
-            <Controller
-              data = {question.question}
-              control={control}
-              name="question"
-              defaultValue={question.question}
-              render={({ field: { ref } }) => (
-                <Form.Control
-                  type="text"
-                  className={style.inputWidth}
-                  // onChange={changeTitle}
-                  onChange ={handleChangeQuestion}
-                  value={questionOnChange}
-                  // value= {value}
-                  ref={ref}
-                />
-              )}
-            />
-          ) : (
-            ''
-          )}
+          <Controller
+            control={control}
+            name="question"
+            defaultValue={question.question}
+            render={({ field: { ref } }) => (
+              <Form.Control
+                type="text"
+                className={style.inputWidth}
+                onChange ={handleChangeQuestion}
+                value={questionOnChange.question}
+                ref={ref}
+              />
+            )}
+          />
         </Form>
       </div>
       <div className={style.formSpacing}>
@@ -62,12 +69,12 @@ const IdentificationType = ({ question }) => {
           control={control}
           name="text_answer"
           defaultValue={question.text_answer}
-          render={({ field: { onChange, value, ref } }) => (
+          render={({ field: { ref } }) => (
             <Form.Control 
               as="textarea" 
               className={style.inputHeight} 
-              onChange={onChange}
-              value={value}
+              onChange ={handleChangeAnswer}
+              value={questionOnChange.answer}
               ref={ref}
             />
           )}
@@ -79,6 +86,7 @@ const IdentificationType = ({ question }) => {
 
 IdentificationType.propTypes = {
   question: PropTypes.object,
+  getData: PropTypes.func,
 };
 
 export default IdentificationType;
