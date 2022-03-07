@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from '@restart/ui/esm/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { VscFilter } from 'react-icons/vsc';
+import { IoIosArrowDown } from 'react-icons/io';
 import { BiSearch } from 'react-icons/bi';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
@@ -26,8 +26,6 @@ const CategoryList = () => {
   const sortDirection = queryParams.get('sortDirection') || '';
 
   //TEMPORARY VALUES since the search, sort, and filter functionality isn't implemented yet.
-  // const sortBy = 'asc';
-  // const filter = '';
   const search = '';
 
   const history = useHistory();
@@ -43,6 +41,8 @@ const CategoryList = () => {
   });
 
   useEffect(() => {
+    setCategories(null);
+
     history.push(`?page=${page}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`);
 
     CategoryApi.listOfCategories({
@@ -52,7 +52,6 @@ const CategoryList = () => {
       sortDirection: sortOptions.sortDirection
     }).then(({ data }) => {
       setCategories(data.data);
-      console.log(data.data);
       setPerPage(data.per_page);
       setTotalItems(data.total);
       setLastPage(data.last_page);
@@ -61,15 +60,13 @@ const CategoryList = () => {
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
-
-    history.push(`?page=${selected + 1}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`);
   };
 
   const tableHeaderNames = [
-    { title: 'ID' },
-    { title: 'Actions' },
-    { title: 'Name' },
-    { title: 'Description' }
+    { title: 'ID', canSort: true },
+    { title: 'Name',canSort: true },
+    { title: 'Description', canSort: false },
+    { title: 'Edit', canSort: false }
   ];
 
   const renderTableData = () => {
@@ -77,17 +74,18 @@ const CategoryList = () => {
       return (
         <tr key={idx}>
           <td id={style.tBodyStyle}>{category.id}</td>
-          <td id={style.tBodyStyle1}>
-            <Link to={`/admin/edit-category/${category.id}`}>
-              <FaRegEdit className={style.actionBtn} size="20px" color="black" />
-            </Link>
-            <RiDeleteBin2Fill className={style.actionBtn} size="30px" color="#db7771"/>
-          </td>
           <td id={style.tBodyStyle}>{category.name}</td>
           <td id={style.tBodyStyle} className={`${style.paragraphEllipsis}`}>
             {category.description}
           </td>
-          
+          <td id={style.tBodyStyle1}>
+            <Link to={`/admin/edit-category/${category.id}`}>
+              <FaRegEdit size="20px" color="black" />
+            </Link>
+          </td>
+          <td id={style.tBodyStyle1}>
+            <RiDeleteBin2Fill size="30px" color="#db7771" />
+          </td>
         </tr>
       );
     });
@@ -99,9 +97,6 @@ const CategoryList = () => {
         <div>
           <div className={style.headerTitle}>
             <p className={style.title}>Categories</p>
-            <Link to="/admin/add-category">
-              <Button className={style.button}>Add Category</Button>
-            </Link>
           </div>
           <Col>
             <Card className={style.navMaincard}>
@@ -126,7 +121,7 @@ const CategoryList = () => {
                       bsPrefix="none"
                     >
                       <span className={style.dropdownText}>Filter</span>
-                      <VscFilter size="20px" />
+                      <IoIosArrowDown size="20px" />
                     </Dropdown.Toggle>
                   </Dropdown>
                 </div>
@@ -140,6 +135,9 @@ const CategoryList = () => {
                 </table>
               </Card.Header>
               <Card.Body className={style.cardBodyScroll}>
+                <Link to="/admin/add-category">
+                  <Button className={style.button}>Add Category</Button>
+                </Link>
                 <div>
                   <DataTable
                     tableHeaderNames={tableHeaderNames}

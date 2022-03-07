@@ -42,7 +42,7 @@ const CategoryApi = {
   getCategories: ({ ...params }) => {
     const options = {
       method: 'GET',
-      url: '/admin/categories',
+      url: '/admin/categories-data',
       params: {
         ...params
       }
@@ -77,7 +77,7 @@ const CategoryApi = {
   listOfCategories: ({ ...params }) => {
     const options = {
       method: 'GET',
-      url: '/admin/categories-data',
+      url: '/admin/categories',
       params: {
         ...params
       }

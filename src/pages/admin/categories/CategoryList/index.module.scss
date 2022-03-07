@@ -65,7 +65,7 @@
 
 .dropdownStyle {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: $color-white;
   border: 1px $color-white solid;
   color: $color-dark-blue-1;
@@ -97,9 +97,7 @@
   padding: 6px 18px;
 }
 
-.actionBtn {
-  margin: 0px 30px;
-}
+
 
 .button:hover {
   color: $color-white;
@@ -116,7 +114,7 @@
   @extend %style-table-body;
   color: $color-dark-blue-1;
 
-  &:nth-child(4) {
+  &:nth-child(3) {
     padding-right: 88px;
     height: 74px;
   }
@@ -124,6 +122,7 @@
 
 #tBodyStyle1 {
   @extend %style-table-body;
+  text-align: center;
 }
 
 .firstCol {
@@ -166,26 +165,28 @@
   @extend %style-table-head;
 
   &:nth-child(1) {
-    width: 43px;
+    width: 153px;
   }
 
   &:nth-child(2) {
-    width: 193px;
-    padding-left: 64px;
+    width: 285px;
   }
 
   &:nth-child(3) {
-    width: 164px;
+    width: 517px;
   }
 
   &:nth-child(4) {
-    width: 516px;
+    width: 151px;
+    text-align: center;
   }
 
   &:nth-child(5) {
     width: 151px;
+    text-align: center;
   }
 }
+
 
 .headerTitle {
   display: flex;
