@@ -1,0 +1,79 @@
+@use '../../../../styles/variables' as *;
+
+@mixin flex($justify-value, $align-value, $direction, $gap-value) {
+  display: flex;
+  align-items: $align-value;
+  justify-content: $justify-value;
+  flex-direction: $direction;
+  gap: $gap-value;
+}
+
+.mainContent {
+  position: absolute;
+  height: 100%;
+  width: calc(100% - 300px);
+  left: 300px;
+  padding: 40px;
+
+  overflow: auto;
+  overflow-x: hidden;
+
+  @include flex(none, none, column, 35px);
+}
+
+.breadcrumbsContainer {
+  font-weight: $font-weight-medium;
+  font-size: $font-size-page-title;
+  color: #697582;
+  width: 100%;
+
+  white-space: nowrap;
+  overflow: scroll;
+  overflow-y: hidden;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    height: 0px;
+  }
+}
+
+.breadcrumbArrowIcon {
+  margin: 0px 7px;
+}
+
+.listItems {
+  padding: 20px;
+  cursor: pointer;
+
+  @include flex(space-between, center, row, 0px);
+
+  &:hover {
+    background-color: $color-light-blue-1;
+  }
+}
+
+.breadcrumbs {
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:last-child {
+    text-decoration: none;
+    color: $color-black;
+    cursor: default;
+  }
+}
+
+.categoryName {
+  color: $color-dark-blue-1;
+
+  &:hover {
+    color: $color-black;
+    font-weight: $font-weight-medium;
+  }
+}
+
+.spinner {
+  height: 700px;
+
+  @include flex(center, center, row, 10px);
+}

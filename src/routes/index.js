@@ -19,6 +19,7 @@ import AdminProfile from '../pages/admin/profile/Profile';
 import AdminEditProfile from '../pages/admin/profile/EditProfile';
 import AdminEditPassword from '../pages/admin/profile/EditPassword';
 import AdminList from '../pages/admin/Admin/AdminList';
+import AdminCategoryHierarchy from '../pages/admin/categories/CategoryHierarchy';
 
 // Student Components
 import Login from '../pages/student/main/Login';
@@ -115,6 +116,12 @@ const Routes = () => {
       ></AdminRoute>
 
       <AdminRoute path="/admin/users" exact component={AdminList}></AdminRoute>
+
+      <AdminRoute
+        path="/admin/category-hierarchy"
+        exact
+        component={AdminCategoryHierarchy}
+      ></AdminRoute>
 
       {/* STUDENT ROUTES */}
       <AuthRoute path="/login" exact component={Login}></AuthRoute>

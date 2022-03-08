@@ -115,117 +115,122 @@ const AddEditCategory = () => {
   };
 
   return (
-    <Card className={style.card}>
-      <Card.Header className={style.header}>
-        <div>
-          <a href="/admin/categories">
-            <BsFillArrowLeftSquareFill className={style.backArrow} />
-          </a>
+    <div className={style.cardContainer}>
+      <Card className={style.card}>
+        <Card.Header className={style.header}>
+          <div>
+            <a href="/admin/categories">
+              <BsFillArrowLeftSquareFill className={style.backArrow} />
+            </a>
+          </div>
+          <div className={style.headerText}>
+            <span>
+              {loc.pathname === '/admin/add-category'
+                ? 'Add a Category'
+                : 'Edit Category'}
+            </span>
+          </div>
+        </Card.Header>
+        <Card.Body className={style.cardBody}>
+          {(category && locationPathDisplay) ||
+          loc.pathname === '/admin/add-category' ? (
+              <Form onSubmit={handleSubmit(handleOnSubmit)}>
+                <Form.Group
+                  className={style.inputFieldContainer}
+                  controlId="name"
+                >
+                  <Form.Label className={style.inputLabel}>Title</Form.Label>
+                  <Controller
+                    control={control}
+                    name="name"
+                    defaultValue={category?.name}
+                    render={({ field: { onChange, value, ref } }) => (
+                      <Form.Control
+                        className={style.inputField}
+                        onChange={onChange}
+                        value={value}
+                        ref={ref}
+                        type="title"
+                        placeholder="Category Name"
+                        isInvalid={!!errors?.name}
+                        maxLength={50}
+                      />
+                    )}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors?.name}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group
+                  className={style.inputFieldContainer}
+                  controlId="lacation"
+                >
+                  <Form.Label className={style.inputLabel}>Location</Form.Label>
+                  <Form.Control
+                    className={`${style.inputField} ${style.spaceForIconArea}`}
+                    readOnly="readonly"
+                    type="text"
+                    value={locationPathDisplay}
+                    onClick={handleShow}
+                  />
+                  <CgMenuCake className={style.menuIcon} onClick={handleShow} />
+                </Form.Group>
+                <Form.Group controlId="description">
+                  <Form.Label className={`${style.inputLabel} mt-3`}>
+                  Description
+                  </Form.Label>
+                  <Controller
+                    control={control}
+                    name="description"
+                    defaultValue={category?.description}
+                    render={({ field: { onChange, value, ref } }) => (
+                      <Form.Control
+                        className={style.inputFieldDescription}
+                        onChange={onChange}
+                        value={value}
+                        ref={ref}
+                        as="textarea"
+                        placeholder="Category Description"
+                        isInvalid={!!errors?.description}
+                        maxLength={255}
+                      />
+                    )}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors?.description}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Button
+                  className={style.button}
+                  type="submit"
+                  disabled={submitStatus}
+                >
+                  {loc.pathname === '/admin/add-category'
+                    ? 'Add Category'
+                    : 'Save Category'}
+                </Button>
+              </Form>
+            ) : (
+              <div className={style.loading}>
+                <Spinner animation="border" role="status"></Spinner>
+                <span className={style.loadingWord}>Loading</span>
+              </div>
+            )}
+        </Card.Body>
+        <div className={style.modalContainer}>
+          <ChangeLocation
+            show={show}
+            handleClose={handleClose}
+            location={location}
+            setLocation={setLocation}
+            setLocationPathDisplay={setLocationPathDisplay}
+            type={TYPE}
+            isSaved={isSaved}
+            setIsSaved={setIsSaved}
+          />
         </div>
-        <div className={style.headerText}>
-          <span>
-            {loc.pathname === '/admin/add-category'
-              ? 'Add a Category'
-              : 'Edit Category'}
-          </span>
-        </div>
-      </Card.Header>
-      <Card.Body className={style.cardBody}>
-        {(category && locationPathDisplay) ||
-        loc.pathname === '/admin/add-category' ? (
-            <Form onSubmit={handleSubmit(handleOnSubmit)}>
-              <Form.Group className={style.inputFieldContainer} controlId="name">
-                <Form.Label className={style.inputLabel}>Title</Form.Label>
-                <Controller
-                  control={control}
-                  name="name"
-                  defaultValue={category?.name}
-                  render={({ field: { onChange, value, ref } }) => (
-                    <Form.Control
-                      className={style.inputField}
-                      onChange={onChange}
-                      value={value}
-                      ref={ref}
-                      type="title"
-                      placeholder="Category Name"
-                      isInvalid={!!errors?.name}
-                      maxLength={50}
-                    />
-                  )}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors?.name}
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group
-                className={style.inputFieldContainer}
-                controlId="lacation"
-              >
-                <Form.Label className={style.inputLabel}>Location</Form.Label>
-                <Form.Control
-                  className={`${style.inputField} ${style.spaceForIconArea}`}
-                  readOnly="readonly"
-                  type="text"
-                  value={locationPathDisplay}
-                  onClick={handleShow}
-                />
-                <CgMenuCake className={style.menuIcon} onClick={handleShow} />
-              </Form.Group>
-              <Form.Group controlId="description">
-                <Form.Label className={`${style.inputLabel} mt-3`}>
-                Description
-                </Form.Label>
-                <Controller
-                  control={control}
-                  name="description"
-                  defaultValue={category?.description}
-                  render={({ field: { onChange, value, ref } }) => (
-                    <Form.Control
-                      className={style.inputFieldDescription}
-                      onChange={onChange}
-                      value={value}
-                      ref={ref}
-                      as="textarea"
-                      placeholder="Category Description"
-                      isInvalid={!!errors?.description}
-                      maxLength={255}
-                    />
-                  )}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors?.description}
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Button
-                className={style.button}
-                type="submit"
-                disabled={submitStatus}
-              >
-                {loc.pathname === '/admin/add-category'
-                  ? 'Add Category'
-                  : 'Save Category'}
-              </Button>
-            </Form>
-          ) : (
-            <div className={style.loading}>
-              <Spinner animation="border" role="status"></Spinner>
-              <span className={style.loadingWord}>Loading</span>
-            </div>
-          )}
-      </Card.Body>
-      <div className={style.modalContainer}>
-        <ChangeLocation
-          show={show}
-          handleClose={handleClose}
-          location={location}
-          setLocation={setLocation}
-          setLocationPathDisplay={setLocationPathDisplay}
-          type={TYPE}
-          isSaved={isSaved}
-          setIsSaved={setIsSaved}
-        />
-      </div>
-    </Card>
+      </Card>
+    </div>
   );
 };
 

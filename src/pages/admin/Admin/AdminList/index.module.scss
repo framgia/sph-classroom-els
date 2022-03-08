@@ -103,7 +103,10 @@
   font-size: $font-size-lg;
   font-weight: $font-weight-bold;
 
-  &:first-child,
+  &:first-child {
+    width: 110px;
+  }
+
   &:last-child {
     width: 110px;
     text-align: center;
