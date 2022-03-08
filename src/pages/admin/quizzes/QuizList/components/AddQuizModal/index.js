@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useForm, Controller } from 'react-hook-form';
 import Form from 'react-bootstrap/Form';
-import Button from '@restart/ui/esm/Button';
+import Button from 'react-bootstrap/Button';
 import { PropTypes } from 'prop-types';
 
 import style from '../../index.module.scss';
@@ -17,7 +17,7 @@ const AddQuizModal = ({
   setModalShow,
   location,
   setLocation,
-  type
+  type,
 }) => {
   const { control, handleSubmit, reset } = useForm();
   const [isRootCategory, setIsRootCategory] = useState(true);
@@ -27,7 +27,7 @@ const AddQuizModal = ({
     if (submitStatus && location) {
       reset({
         name: '',
-        instruction: ''
+        instruction: '',
       });
       setLocation(null);
     }
@@ -118,7 +118,7 @@ const AddQuizModal = ({
             ''
           ) : (
             <Button
-              className={style.button}
+              className={style.modalButton}
               onClick={() => setBackButtonClicked(true)}
             >
               Go Back
@@ -134,7 +134,7 @@ const AddQuizModal = ({
               Cancel
             </a>
             <Button
-              className={style.button}
+              className={style.modalButton}
               type="submit"
               disabled={submitStatus}
             >
@@ -155,7 +155,7 @@ AddQuizModal.propTypes = {
   errors: PropTypes.any,
   location: PropTypes.object,
   setLocation: PropTypes.func,
-  type: PropTypes.string
+  type: PropTypes.string,
 };
 
 export default AddQuizModal;

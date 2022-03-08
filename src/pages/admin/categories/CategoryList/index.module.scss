@@ -1,5 +1,24 @@
 @use '../../../../styles/variables' as *;
 
+@use '../../../../styles/global-styles' as *;
+
+@mixin button-style($background-color, $width, $height) {
+  background-color: $background-color;
+  color: $color-dark-blue-1;
+  font-size: $font-size-md;
+  border: none;
+  height: $height;
+  width: $width;
+}
+
+@mixin flex($justify-value, $align-value, $direction, $gap-value) {
+  display: flex;
+  align-items: $align-value;
+  justify-content: $justify-value;
+  flex-direction: $direction;
+  gap: $gap-value;
+}
+
 %style-table-head {
   font-size: $font-size-lg;
   font-weight: $font-weight-bold;
@@ -12,97 +31,74 @@
   padding-top: 20px;
 }
 
-.Bodystyle {
-  display: inline-flex;
+.mainCard {
+  width: 100%;
+  height: 745px;
 }
 
-.categoryListContainer {
+.cardHeader {
+  height: auto;
+  background-color: $color-light-blue-1;
+  padding: 12px 20px;
+  box-shadow: $drop-shadow;
+
+  @include flex(space-between, none, row, 0px);
+}
+
+.searchSection {
+  @include flex(none, center, row, 10px);
+}
+
+.searchInput {
+  position: relative;
+}
+
+.searchBar {
+  width: 335px;
+  padding-right: 34px;
+}
+
+.searchIcon {
   position: absolute;
-  left: 500px;
-  top: 50px;
+  left: 92%;
+  top: 28%;
 }
 
-.navMaincard {
-  width: 1288px;
-  height: 700px;
+.searchButton {
+  @include button-style($color-light-blue-2, 93px, 38px);
 
-  .navContainer {
-    background: $color-light-blue-1;
+  &:hover {
+    background-color: $color-light-blue-3;
+    color: $color-white;
+  }
+}
+
+.dropdownButton {
+  @include flex(center, center, row, 10px);
+  @include button-style($color-white, 93px, 38px);
+
+  &:hover {
+    background-color: $color-white;
+    color: $color-dark-blue-1;
   }
 }
 
 .title {
-  padding: 33px 0px;
+  padding: 0px 0px 33px;
   font-weight: $font-weight-medium;
   font-size: $font-size-page-title;
   margin: 0px;
 }
 
-.categoryConditionsStyle {
-  display: flex;
-  gap: 720px;
-}
-
-.searchBar {
-  height: 38px;
-  width: 300px;
-  margin: 3px 0px 3px 12px;
-}
-
-.searchButton {
-  border: none;
-  background-color: $color-white;
-  display: hidden;
-  position: absolute;
-  left: 285px;
-  top: 17px;
-}
-
-.searchIcon {
-  width: 20px;
-  height: 20px;
-}
-
-.dropdownStyle {
-  display: flex;
-  justify-content: space-between;
-  background-color: $color-white;
-  border: 1px $color-white solid;
-  color: $color-dark-blue-1;
-  text-decoration: none;
-  width: 200px;
-  height: 38px;
-  margin: 3px 0px 3px 12px;
-}
-
-.dropdownText {
-  margin-right: 22px;
-  font-size: $font-size-md;
-}
-
-.dropdownStyle:hover {
-  color: $color-dark-blue-1;
-}
-
-.button {
-  background-color: #c0d5d8;
-  font-size: $font-size-md;
-  color: $color-dark-blue-1;
+.addButton {
   float: right;
-  border: none;
-  height: 38px;
-  width: 172px;
-  margin-right: 13px;
-  border-radius: 2px;
-  padding: 6px 18px;
-}
+  margin: 10px 0px 30px;
+  @include button-style($color-light-blue-2, 172px, 38px);
 
-
-
-.button:hover {
-  color: $color-white;
-  background-color: $color-light-blue-3;
-  border-color: $color-light-blue-3;
+  &:hover {
+    background-color: $color-light-blue-3;
+    border-color: $color-light-blue-3;
+  }
 }
 
 .cardBodyScroll {
@@ -147,18 +143,8 @@
   width: 88px;
 }
 
-.formatTable {
-  width: 100%;
-  margin-top: 63px;
-}
-
 #paginateStyle {
-  display: inline-block !important;
-}
-
-.designButton {
-  border: none;
-  background: none;
+  float: right;
 }
 
 .classCol {
@@ -186,7 +172,6 @@
     text-align: center;
   }
 }
-
 
 .headerTitle {
   display: flex;

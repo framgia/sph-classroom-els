@@ -22,7 +22,7 @@
   height: 100%;
   width: calc(100% - 300px);
   left: 300px;
-  padding: 60px 165px 0px;
+  padding: 60px 40px 60px;
 
   @include flex(none, none, column, 30px);
 }
@@ -69,7 +69,7 @@
   @include button-style($color-light-blue-2, 93px, 38px);
 
   &:hover {
-    background-color: $color-dark-blue-3;
+    background-color: $color-light-blue-3;
   }
 }
 
@@ -95,7 +95,7 @@
   @include button-style($color-light-blue-2, 172px, 38px);
 
   &:hover {
-    background-color: $color-dark-blue-3;
+    background-color: $color-light-blue-3;
   }
 }
 
@@ -126,4 +126,8 @@
 
 .buttonColumn {
   text-align: center;
+}
+
+#pagPosition {
+  float: right;
 }

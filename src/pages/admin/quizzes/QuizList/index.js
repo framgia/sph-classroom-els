@@ -3,14 +3,14 @@ import Card from 'react-bootstrap/Card';
 import { Col } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from '@restart/ui/esm/Button';
+import Button from 'react-bootstrap/Button';
 import { BiSearch } from 'react-icons/bi';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
-import Container from 'react-bootstrap/Container';
+import { VscFilter } from 'react-icons/vsc';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 import Pagination from '../../../../components/Pagination';
 import style from './index.module.scss';
@@ -34,7 +34,7 @@ const QuizList = () => {
 
   const [sortOptions, setSortOptions] = useState({
     sortBy,
-    sortDirection
+    sortDirection,
   });
 
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
@@ -47,7 +47,7 @@ const QuizList = () => {
   const handleOnSubmit = async ({ name, instruction }) => {
     setSubmitStatus(true);
 
-    if (location) { 
+    if (location) {
       toast('Processing', 'Adding quiz...');
       setModalShow(false);
     }
@@ -72,7 +72,7 @@ const QuizList = () => {
     QuizApi.adminQuiz({
       page: page,
       sortBy: sortOptions.sortBy,
-      sortDirection: sortOptions.sortDirection
+      sortDirection: sortOptions.sortDirection,
     }).then(({ data }) => {
       setAdminQuiz(data.data);
       setPerPage(data.per_page);
@@ -94,10 +94,10 @@ const QuizList = () => {
   };
 
   const tableHeaderNames = [
-    { title: 'ID', canSort: true  },
-    { title: 'Category', canSort: true  },
-    { title: 'Name', canSort: true  },
-    { title: 'Edit', canSort: false }
+    { title: 'ID', canSort: true },
+    { title: 'Category', canSort: true },
+    { title: 'Name', canSort: true },
+    { title: 'Edit', canSort: false },
   ];
 
   const renderTableData = () => {
@@ -121,80 +121,77 @@ const QuizList = () => {
   };
 
   return (
-    <div className={style.Bodystyle}>
-      <Container className={style.quizListContainer}>
-        <div>
-          <p className={style.title}>Quizzes</p>
-          <Col>
-            <Card className={style.navMaincard}>
-              <Card.Header className={style.navContainer}>
-                <div className="d-flex">
-                  <div>
-                    <Form className="d-flex">
-                      <FormControl
-                        type="search"
-                        placeholder="Search"
-                        className={style.searchBar}
-                        aria-label="Search"
-                      />
-                      <Button type="submit" className={style.searchButton}>
-                        <BiSearch className={style.searchIcon} />
-                      </Button>
-                    </Form>
-                  </div>
-                </div>
-                <table style={{ width: '100%' }}>
-                  <tbody>
-                    <tr>
-                      <td className={style.titleText}></td>
-                      <td style={{ textAlign: 'right' }}></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </Card.Header>
-              <Card.Body className={style.cardBodyScroll}>
-                <Button
-                  className={style.button}
-                  onClick={() => setModalShow(true)}
-                >
-                  Add a Quiz
-                </Button>
-                <div>
-                  <DataTable
-                    tableHeaderNames={tableHeaderNames}
-                    renderTableData={renderTableData}
-                    titleHeaderStyle={style.classCol}
-                    sortOptions={sortOptions}
-                    setSortOptions={setSortOptions}
-                    data={adminQuiz}
+    <div className={style.cardContainer}>
+      <div>
+        <p className={style.title}>Quizzes</p>
+        <Col>
+          <Card className={style.mainCard}>
+            <Card.Header className={style.cardHeader}>
+              <Form className={style.searchSection}>
+                <div className={style.searchInput}>
+                  <Form.Control
+                    className={style.searchBar}
+                    type="text"
+                    placeholder="Search name or email"
                   />
+                  <BiSearch size={17} className={style.searchIcon} />
                 </div>
-              </Card.Body>
-            </Card>
-          </Col>
+                <Button className={style.searchButton} type="submit">
+                  Search
+                </Button>
+              </Form>
+              <Dropdown>
+                <Dropdown.Toggle
+                  className={style.dropdownButton}
+                  bsPrefix="none"
+                >
+                  Filter
+                  <VscFilter size={17} />
+                </Dropdown.Toggle>
+              </Dropdown>
+            </Card.Header>
+            <Card.Body className={style.cardBodyScroll}>
+              <Button
+                className={style.addButton}
+                onClick={() => setModalShow(true)}
+              >
+                Add a Quiz
+              </Button>
+              <div>
+                <DataTable
+                  tableHeaderNames={tableHeaderNames}
+                  renderTableData={renderTableData}
+                  titleHeaderStyle={style.classCol}
+                  sortOptions={sortOptions}
+                  setSortOptions={setSortOptions}
+                  data={adminQuiz}
+                />
+              </div>
+            </Card.Body>
+          </Card>
+        </Col>
+      </div>
+      <div className="pt-4">
+        <div id={style.paginateStyle}>
+          <Pagination
+            page={page}
+            perPage={perPage}
+            totalItems={totalItems}
+            pageCount={lastPage}
+            onPageChange={onPageChange}
+          ></Pagination>
         </div>
-        <div className="pt-4">
-          <div id={style.paginateStyle}>
-            <Pagination
-              page={page}
-              perPage={perPage}
-              totalItems={totalItems}
-              pageCount={lastPage}
-              onPageChange={onPageChange}
-            ></Pagination>
-          </div>
-          <AddQuizModal
-            handleOnSubmit={handleOnSubmit}
-            submitStatus={submitStatus}
-            modalShow={modalShow}
-            setModalShow={setModalShow}
-            errors={errors}
-            location={location}
-            setLocation={setLocation}
-            type={TYPE}
-          />
-        </div>
-      </Container>
+        <AddQuizModal
+          handleOnSubmit={handleOnSubmit}
+          submitStatus={submitStatus}
+          modalShow={modalShow}
+          setModalShow={setModalShow}
+          errors={errors}
+          location={location}
+          setLocation={setLocation}
+          type={TYPE}
+        />
+      </div>
     </div>
   );
 };

@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import { Col } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from '@restart/ui/esm/Button';
+import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { IoIosArrowDown } from 'react-icons/io';
 import { BiSearch } from 'react-icons/bi';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import Pagination from '../../../../components/Pagination';
-import Container from 'react-bootstrap/Container';
+import { VscFilter } from 'react-icons/vsc';
 
 import style from './index.module.scss';
 
@@ -37,19 +34,21 @@ const CategoryList = () => {
 
   const [sortOptions, setSortOptions] = useState({
     sortBy,
-    sortDirection
+    sortDirection,
   });
 
   useEffect(() => {
     setCategories(null);
 
-    history.push(`?page=${page}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`);
+    history.push(
+      `?page=${page}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`
+    );
 
     CategoryApi.listOfCategories({
       page: page,
       search: search,
       sortBy: sortOptions.sortBy,
-      sortDirection: sortOptions.sortDirection
+      sortDirection: sortOptions.sortDirection,
     }).then(({ data }) => {
       setCategories(data.data);
       setPerPage(data.per_page);
@@ -64,9 +63,9 @@ const CategoryList = () => {
 
   const tableHeaderNames = [
     { title: 'ID', canSort: true },
-    { title: 'Name',canSort: true },
+    { title: 'Name', canSort: true },
     { title: 'Description', canSort: false },
-    { title: 'Edit', canSort: false }
+    { title: 'Edit', canSort: false },
   ];
 
   const renderTableData = () => {
@@ -92,78 +91,61 @@ const CategoryList = () => {
   };
 
   return (
-    <div className={style.Bodystyle}>
-      <Container className={style.categoryListContainer}>
-        <div>
-          <div className={style.headerTitle}>
-            <p className={style.title}>Categories</p>
-          </div>
-          <Col>
-            <Card className={style.navMaincard}>
-              <Card.Header className={style.navContainer}>
-                <div className={style.categoryConditionsStyle}>
-                  <Form className="d-flex">
-                    <FormControl
-                      type="search"
-                      placeholder="Search"
-                      className={style.searchBar}
-                      aria-label="Search"
-                    />
-                    <Button type="submit" className={style.searchButton}>
-                      <BiSearch className={style.searchIcon} />
-                    </Button>
-                  </Form>
-
-                  <Dropdown>
-                    <Dropdown.Toggle
-                      className={style.dropdownStyle}
-                      variant="link"
-                      bsPrefix="none"
-                    >
-                      <span className={style.dropdownText}>Filter</span>
-                      <IoIosArrowDown size="20px" />
-                    </Dropdown.Toggle>
-                  </Dropdown>
-                </div>
-                <table style={{ width: '100%' }}>
-                  <tbody>
-                    <tr>
-                      <td className={style.titleText}></td>
-                      <td style={{ textAlign: 'right' }}></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </Card.Header>
-              <Card.Body className={style.cardBodyScroll}>
-                <Link to="/admin/add-category">
-                  <Button className={style.button}>Add Category</Button>
-                </Link>
-                <div>
-                  <DataTable
-                    tableHeaderNames={tableHeaderNames}
-                    renderTableData={renderTableData}
-                    titleHeaderStyle={style.classCol}
-                    sortOptions={sortOptions}
-                    setSortOptions={setSortOptions}
-                    data={categories}
-                  />
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-          <div className="pt-4">
-            <div id={style.paginateStyle}>
-              <Pagination
-                page={page}
-                perPage={perPage}
-                totalItems={totalItems}
-                pageCount={lastPage}
-                onPageChange={onPageChange}
+    <div className={style.cardContainer}>
+      <div>
+        <div className={style.headerTitle}>
+          <p className={style.title}>Categories</p>
+        </div>
+        <Card className={style.mainCard}>
+          <Card.Header className={style.cardHeader}>
+            <Form className={style.searchSection}>
+              <div className={style.searchInput}>
+                <Form.Control
+                  className={style.searchBar}
+                  type="text"
+                  placeholder="Search name or email"
+                />
+                <BiSearch size={17} className={style.searchIcon} />
+              </div>
+              <Button className={style.searchButton} type="submit">
+                Search
+              </Button>
+            </Form>
+            <Dropdown>
+              <Dropdown.Toggle className={style.dropdownButton} bsPrefix="none">
+                Filter
+                <VscFilter size={17} />
+              </Dropdown.Toggle>
+            </Dropdown>
+          </Card.Header>
+          <Card.Body className={style.cardBodyScroll}>
+            <Link to="/admin/add-category">
+              <Button className={style.addButton}>Add Category</Button>
+            </Link>
+            <div>
+              <DataTable
+                tableHeaderNames={tableHeaderNames}
+                renderTableData={renderTableData}
+                titleHeaderStyle={style.classCol}
+                sortOptions={sortOptions}
+                setSortOptions={setSortOptions}
+                data={categories}
               />
             </div>
+          </Card.Body>
+        </Card>
+        <div className="pt-4">
+          <div id={style.paginateStyle}>
+            <Pagination
+              page={page}
+              perPage={perPage}
+              totalItems={totalItems}
+              pageCount={lastPage}
+              onPageChange={onPageChange}
+            />
           </div>
         </div>
-      </Container>
+      </div>
     </div>
   );
 };

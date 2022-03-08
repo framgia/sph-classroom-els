@@ -1,5 +1,7 @@
 @use '../../../../styles/variables' as *;
 
+@use '../../../../styles/global-styles' as *;
+
 %button-colors {
   background: $color-light-blue-2;
   border-color: $color-light-blue-3;
@@ -25,13 +27,9 @@
   border: 1px solid $color-light-blue-1;
   color: $color-dark-blue-1;
 
-  width: 926px;
-  height: 670px;
+  width: 100%;
+  height: 100%;
   padding: 50px;
-
-  position: absolute;
-  left: 650px;
-  top: 150px;
 
   @extend %column-flex;
 }
@@ -238,17 +236,17 @@
   margin-left: 10px;
 }
 
-.choicesInput{
-  border : 0px;
+.choicesInput {
+  border: 0px;
   background-color: transparent;
   position: fixed;
   height: 35px;
 }
 
-.choicesInput:focus{
+.choicesInput:focus {
   outline: none;
 }
 
-.choicecontentinput{
-  display:inline-block;
+.choicecontentinput {
+  display: inline-block;
 }

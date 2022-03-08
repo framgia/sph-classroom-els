@@ -28,13 +28,13 @@ const AdminList = () => {
   const [lastPage, setLastPage] = useState(0);
   const [sortOptions, setSortOptions] = useState({
     sortBy,
-    sortDirection
+    sortDirection,
   });
 
   const tableHeaderNames = [
     { title: 'ID' },
     { title: 'Name' },
-    { title: 'Email' }
+    { title: 'Email' },
   ];
 
   useEffect(() => {
@@ -115,13 +115,15 @@ const AdminList = () => {
         </Card.Body>
       </Card>
       <section>
-        <Pagination
-          page={page}
-          perPage={perPage}
-          totalItems={totalItems}
-          pageCount={lastPage}
-          onPageChange={onPageChange}
-        />
+        <div id={style.pagPosition}>
+          <Pagination
+            page={page}
+            perPage={perPage}
+            totalItems={totalItems}
+            pageCount={lastPage}
+            onPageChange={onPageChange}
+          />
+        </div>
       </section>
     </div>
   );

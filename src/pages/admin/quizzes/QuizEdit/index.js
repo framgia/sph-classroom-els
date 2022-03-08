@@ -41,7 +41,7 @@ const QuizEdit = () => {
   };
 
   return (
-    <div className="d-inline-flex">
+    <div className={style.cardContainer}>
       <Container className={style.quizEditContainer}>
         <h2 className={style.quizTitle}>{quizInfo?.title}</h2>
         <h3 className={style.quizCategory}>{locationPathDisplay}</h3>

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
 import Accordion from 'react-bootstrap/Accordion';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -27,18 +26,15 @@ const QuizDetail = () => {
     QuestionApi.getAll(quizId).then(({ data }) => {
       setQuestions(data.data);
     });
-    
   }, []);
 
   return (
-    <div className="d-inline-flex">
-      <Container className={style.quizContainer}>
+    <div className={style.cardContainer}>
+      <div className={style.quizContainer}>
         <div className="flex-column">
           <div className="d-flex mb-5">
             <div className="d-flex gap-4 align-items-center">
-              <Link
-                to={'/admin/quizzes'}
-              >
+              <Link to={'/admin/quizzes'}>
                 <BsFillArrowLeftSquareFill className={style.backButton} />
               </Link>
               <h1 className={style.quizTitle}>{quizInfo?.title}</h1>
@@ -50,7 +46,9 @@ const QuizDetail = () => {
               Edit Quiz
             </Link>
           </div>
-          <h4 className={style.questionText}>Questions ({questions?.length})</h4>
+          <h4 className={style.questionText}>
+            Questions ({questions?.length})
+          </h4>
           {questions &&
             questions.map((question, idx) => {
               return (
@@ -59,7 +57,7 @@ const QuizDetail = () => {
                     <MultipleChoiceAccordion
                       questionNumber={idx + 1}
                       question={question}
-                      choice = {1}
+                      choice={1}
                     />
                   ) : (
                     <IdentificationAccordion
@@ -71,7 +69,7 @@ const QuizDetail = () => {
               );
             })}
         </div>
-      </Container>
+      </div>
     </div>
   );
 };

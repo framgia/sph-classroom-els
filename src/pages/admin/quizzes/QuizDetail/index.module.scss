@@ -1,13 +1,11 @@
 @use '../../../../styles/variables' as *;
 
-.quizContainer {
-  width: 926px;
-  height: 800px;
-  padding: 50px;
+@use '../../../../styles/global-styles' as *;
 
-  position: absolute;
-  left: 650px;
-  top: 90px;
+.quizContainer {
+  width: 100%;
+  height: 100%;
+  padding: 50px;
 
   background: $color-white;
   border-radius: 2px;

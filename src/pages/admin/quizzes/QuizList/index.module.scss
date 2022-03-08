@@ -1,5 +1,24 @@
 @use '../../../../styles/variables' as *;
 
+@use '../../../../styles/global-styles' as *;
+
+@mixin button-style($background-color, $width, $height) {
+  background-color: $background-color;
+  color: $color-dark-blue-1;
+  font-size: $font-size-md;
+  border: none;
+  height: $height;
+  width: $width;
+}
+
+@mixin flex($justify-value, $align-value, $direction, $gap-value) {
+  display: flex;
+  align-items: $align-value;
+  justify-content: $justify-value;
+  flex-direction: $direction;
+  gap: $gap-value;
+}
+
 %style-table-head {
   font-size: $font-size-lg;
   font-weight: $font-weight-bold;
@@ -23,70 +42,90 @@
   cursor: pointer;
 }
 
-.Bodystyle {
-  display: inline-flex;
+.mainCard {
+  width: 100%;
+  height: 745px;
 }
 
-.navMaincard {
-  width: 1288px;
-  height: 700px;
+.cardHeader {
+  height: auto;
+  background-color: $color-light-blue-1;
+  padding: 12px 20px;
+  box-shadow: $drop-shadow;
 
-  .navContainer {
-    background: $color-light-blue-1;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  @include flex(space-between, none, row, 0px);
+}
+
+.searchSection {
+  @include flex(none, center, row, 10px);
+}
+
+.searchInput {
+  position: relative;
+}
+
+.searchBar {
+  width: 335px;
+  padding-right: 34px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 92%;
+  top: 28%;
+}
+
+.searchButton {
+  @include button-style($color-light-blue-2, 93px, 38px);
+
+  &:hover {
+    background-color: $color-light-blue-3;
+    color: $color-white;
   }
 }
 
-.quizListContainer {
-  position: absolute;
-  left: 500px;
-  top: 50px;
+.dropdownButton {
+  @include flex(center, center, row, 10px);
+  @include button-style($color-white, 93px, 38px);
+
+  &:hover {
+    background-color: $color-white;
+    color: $color-dark-blue-1;
+  }
 }
 
 .title {
-  padding: 33px 0px;
+  padding: 0px 0px 33px;
   font-weight: $font-weight-medium;
   font-size: $font-size-page-title;
   margin: 0px;
 }
 
-.categoryConditionsStyle {
-  display: flex;
-}
+.addButton {
+  float: right;
+  margin: 10px 0px 30px;
+  @include button-style($color-light-blue-2, 172px, 38px);
 
-.searchBar {
-  height: 32px;
-  width: 352px;
-  margin-top: 2px;
-}
-
-.searchButton {
-  border: none;
-  background-color: $color-white;
-  display: hidden;
-  position: absolute;
-  left: 331px;
-  top: $font-size-md;
-}
-
-.searchIcon {
-  width: 20px;
-  height: 20px;
-}
-
-.button {
-  @extend %style-button;
-  margin-right: auto;
-
-  &:nth-child(2) {
-    width: 120px;
+  &:hover {
+    background-color: $color-light-blue-3;
+    border-color: $color-light-blue-3;
   }
 }
 
-.button:hover {
-  color: $color-white;
-  background-color: $color-dark-blue-3;
-  border-color: $color-light-blue-3;
+.modalButton {
+  @include button-style($color-light-blue-2, 172px, 38px);
+
+  &:hover {
+    background-color: $color-light-blue-3;
+    border-color: $color-light-blue-3;
+    color: $color-white;
+  }
+
+  &:focus {
+    background-color: $color-light-blue-3;
+    border-color: $color-light-blue-3;
+    color: $color-white;
+  }
 }
 
 .cardBodyScroll {
@@ -109,13 +148,8 @@
   text-align: center;
 }
 
-.formatTable {
-  width: 100%;
-  margin-top: 63px;
-}
-
 #paginateStyle {
-  display: inline-block !important;
+  float: right;
 }
 
 #forForm {
@@ -176,11 +210,6 @@
   align-items: center;
 }
 
-.primaryButtons {
-  display: flex;
-  align-items: center;
-}
-
 .cancelTag {
   cursor: pointer;
   color: $color-dark-blue-1;
@@ -207,7 +236,7 @@
   }
 
   &:nth-child(2) {
-    width: 285px; 
+    width: 285px;
   }
 
   &:nth-child(3) {
