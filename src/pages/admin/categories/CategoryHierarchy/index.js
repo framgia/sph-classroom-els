@@ -1,11 +1,11 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
+import { GoKebabVertical } from 'react-icons/go';
+import { RiArrowRightSLine } from 'react-icons/ri';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Spinner from 'react-bootstrap/Spinner';
 import CategoryApi from '../../../../api/Category';
-import { GoKebabVertical } from 'react-icons/go';
-import { RiArrowRightSLine } from 'react-icons/ri';
 import style from './index.module.scss';
 
 const CategoryHierarchy = () => {
@@ -15,9 +15,10 @@ const CategoryHierarchy = () => {
   const [breadcrumbs, setBreadCrumbs] = useState([]);
 
   useEffect(() => {
-    console.log(breadcrumbs);
     setCategories(null);
-    chosenCategoryPathID ? toast('Processing', 'Getting Subcategories...') : '';
+    chosenCategoryPathID
+      ? toast('Processing', 'Getting Subcategories...')
+      : toast('Processing', 'Getting Root Categories...');
 
     CategoryApi.getCategories({ category_id: chosenCategoryPathID })
       .then(({ data }) => {
