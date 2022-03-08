@@ -15,7 +15,7 @@ import AdminQuizDetail from '../pages/admin/quizzes/QuizDetail';
 import AdminQuizEdit from '../pages/admin/quizzes/QuizEdit';
 import AdminCreateAdmin from '../pages/admin/Admin/CreateAdmin';
 import AdminSetPassword from '../pages/admin/Admin/SetAdminPassword';
-import AdminProfile from '../pages/admin/profile/Profile';
+import AdminProfile from '../pages/admin/profile/ProfileView';
 import AdminEditProfile from '../pages/admin/profile/EditProfile';
 import AdminEditPassword from '../pages/admin/profile/EditPassword';
 import AdminList from '../pages/admin/Admin/AdminList';

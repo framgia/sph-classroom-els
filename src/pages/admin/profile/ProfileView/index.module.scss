@@ -1,0 +1,130 @@
+@use '../../../../styles/variables' as *;
+
+.editbuttonone {
+  width: 20px;
+  height: 20px;
+  color: black;
+  float: right;
+  position: absolute;
+  left: 345px;
+  top: 120px;
+}
+
+.control1 {
+  width: 334px;
+  height: 38px;
+  font-size: 14px;
+  margin-bottom: 0px;
+  color: #48535B;
+}
+
+.HeadingText{
+  margin-left: 100px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #48535B;
+}
+
+.changepassbutton{
+  float: left;
+  height: 32px;
+  font-size: 14px;
+  background-color: #C0D5D8;
+  border-color: #C0D5D8;
+  color: #48535B;
+}
+.changepassbutton:hover{
+  background-color: #9ABEC1;
+  border-color: #9ABEC1;
+  color:white
+}
+
+.editbutton{
+  float: right;
+  height: 32px;
+  width: 95px;
+  font-size: 14px;
+  background-color: #C0D5D8;
+  border-color: #C0D5D8;
+  color: #48535B;
+}
+
+.editbutton:hover{
+  background-color: #9ABEC1;
+  border-color: #9ABEC1;
+  color:white
+}
+
+.noResults,
+.loading {
+display: flex;
+justify-content: center;
+margin-top: 82px;
+align-items: center;
+}
+
+.loadingWord {
+margin-left: 10px;
+}
+
+.formControlstyle:disabled{
+  background: white
+}
+
+.FormGroupStyle{
+  margin-bottom: 0px;
+  color: #48535B;
+  font-size: 16px,
+}
+
+.marginForForm{
+  margin-bottom: 20px;
+}
+
+.biUserPosition1 {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: absolute;
+  margin-top: -106px;
+  margin-left: 118px;
+  z-index: 1;
+}
+
+.biUserPosition {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: absolute;
+  margin-top: -106px;
+  margin-left: 118px;
+  z-index: 1;
+}
+
+.mainBody {
+  position: absolute;
+}
+
+.buttonEditIcon {
+  position: fixed;
+  margin-left: 278px;
+  margin-top: 8px;
+  stroke-width: 0px;
+  background-color: $color-white;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.bodyCard {
+  width: 430px;
+  height: 340px;
+  padding: 50px;
+  padding-top: 82px;
+  background-color: $color-light-blue-1;
+  z-index: -1;
+}
+
+.successMessageContainer {
+  background-color: rgba(255, 255, 255, 0.692);
+  padding: 25px;
+}
