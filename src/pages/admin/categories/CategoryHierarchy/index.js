@@ -20,6 +20,10 @@ const CategoryHierarchy = () => {
       ? toast('Processing', 'Getting the subcategories...')
       : toast('Processing', 'Getting the root categories...');
 
+    load();
+  }, [chosenCategoryPathID]);
+
+  const load = () => {
     CategoryApi.getCategories({ category_id: chosenCategoryPathID })
       .then(({ data }) => {
         setCategories(data.data);
@@ -27,7 +31,7 @@ const CategoryHierarchy = () => {
       .catch(() =>
         toast('Error', 'There was an error getting the list of categories.')
       );
-  }, [chosenCategoryPathID]);
+  };
 
   const onCategoryClick = (category, index) => {
     if (category.subcategories_count > 0) {
@@ -42,7 +46,6 @@ const CategoryHierarchy = () => {
   };
 
   const onBreadcrumbClick = (category_id, index) => {
-    console.log(breadcrumbs);
     setBreadCrumbs(breadcrumbs.slice(0, index + 1));
     setChosenCategoryPathID(category_id);
   };
