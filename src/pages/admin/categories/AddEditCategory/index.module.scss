@@ -16,7 +16,7 @@
 
 .card {
   width: 100%;
-  height: 100%;
+  height: 860px;
 }
 
 .header {
@@ -29,12 +29,12 @@
   padding: 20px;
   align-items: center;
   box-shadow: $drop-shadow;
-  gap: 655px;
 }
 
 .headerText {
   display: flex;
-  text-align: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .backArrow {
@@ -49,7 +49,7 @@
 
 .inputFieldContainer {
   position: relative;
-  width: 510px;
+  max-width: 510px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -73,7 +73,7 @@
 }
 
 .inputField {
-  width: 400px;
+  max-width: 400px;
   cursor: pointer;
 
   @extend %input-field-style;
@@ -88,7 +88,7 @@
 }
 
 .inputFieldDescription {
-  height: 470px;
+  height: 455px;
   resize: none;
 
   @extend %input-field-style;
