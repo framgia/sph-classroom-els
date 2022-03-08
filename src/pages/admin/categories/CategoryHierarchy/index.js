@@ -17,8 +17,8 @@ const CategoryHierarchy = () => {
   useEffect(() => {
     setCategories(null);
     chosenCategoryPathID
-      ? toast('Processing', 'Getting Subcategories...')
-      : toast('Processing', 'Getting Root Categories...');
+      ? toast('Processing', 'Getting the subcategories...')
+      : toast('Processing', 'Getting the root categories...');
 
     CategoryApi.getCategories({ category_id: chosenCategoryPathID })
       .then(({ data }) => {
