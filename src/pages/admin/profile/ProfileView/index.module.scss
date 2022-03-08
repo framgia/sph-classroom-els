@@ -3,7 +3,7 @@
 .editbuttonone {
   width: 20px;
   height: 20px;
-  color: black;
+  color: $color-black;
   float: right;
   position: absolute;
   left: 345px;
@@ -15,28 +15,28 @@
   height: 38px;
   font-size: 14px;
   margin-bottom: 0px;
-  color: #48535B;
+  color: $color-dark-blue-1;
 }
 
 .HeadingText{
   margin-left: 100px;
   margin-bottom: 10px;
   font-size: 24px;
-  color: #48535B;
+  color: $color-dark-blue-1;
 }
 
 .changepassbutton{
   float: left;
   height: 32px;
   font-size: 14px;
-  background-color: #C0D5D8;
-  border-color: #C0D5D8;
-  color: #48535B;
+  background-color: $color-light-blue-2;
+  border-color: $color-light-blue-2;
+  color: $color-dark-blue-1;
 }
 .changepassbutton:hover{
-  background-color: #9ABEC1;
-  border-color: #9ABEC1;
-  color:white
+  background-color: $color-light-blue-3;
+  border-color: $color-light-blue-3;
+  color:$color-white;
 }
 
 .editbutton{
@@ -44,15 +44,15 @@
   height: 32px;
   width: 95px;
   font-size: 14px;
-  background-color: #C0D5D8;
-  border-color: #C0D5D8;
-  color: #48535B;
+  background-color: $color-light-blue-2;
+  border-color: $color-light-blue-2;
+  color: $color-dark-blue-1;
 }
 
 .editbutton:hover{
-  background-color: #9ABEC1;
-  border-color: #9ABEC1;
-  color:white
+  background-color: $color-light-blue-3;
+  border-color: $color-light-blue-3;
+  color:$color-white;
 }
 
 .noResults,
@@ -68,12 +68,12 @@ margin-left: 10px;
 }
 
 .formControlstyle:disabled{
-  background: white
+  background: $color-white;
 }
 
 .FormGroupStyle{
   margin-bottom: 0px;
-  color: #48535B;
+  color: $color-dark-blue-1;
   font-size: 16px,
 }
 
@@ -106,13 +106,34 @@ margin-left: 10px;
 }
 
 .buttonEditIcon {
-  position: fixed;
+  position: absolute;
   margin-left: 278px;
   margin-top: 8px;
   stroke-width: 0px;
-  background-color: $color-white;
+  background-color: $color-white;;
   cursor: pointer;
   z-index: 1;
+}
+
+#Btncolor {
+  background-color: $color-light-blue-2;
+  border-color: $color-light-blue-2;
+  width: 85px;
+  height: 32px;
+  font-size: 14px;
+  color: $color-dark-blue-1;
+  margin-top: 10px;
+}
+
+#Btncolor:hover {
+  background-color: $color-light-blue-3;
+  border-color: $color-light-blue-3;
+  color: $color-white;
+  cursor: pointer;
+}
+
+#mainModal {
+  margin-right: 560px;
 }
 
 .bodyCard {
@@ -121,7 +142,6 @@ margin-left: 10px;
   padding: 50px;
   padding-top: 82px;
   background-color: $color-light-blue-1;
-  z-index: -1;
 }
 
 .successMessageContainer {

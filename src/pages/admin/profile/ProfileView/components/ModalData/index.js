@@ -24,6 +24,7 @@ const ModalData = ({
       size="50"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      id={style.mainModal}
       show={modalShow}
       onHide={() => {
         setModalShow(false);
