@@ -1,5 +1,7 @@
 @use '../../../../styles/variables' as *;
 
+@use '../../../../styles/card-container.scss' as *;
+
 @mixin button-style($background-color, $width, $height) {
   background-color: $background-color;
   color: $color-dark-blue-1;
@@ -27,14 +29,6 @@
   font-size: $font-size-base;
   color: #152536;
   padding-top: 20px;
-}
-
-.cardContainer {
-  position: absolute;
-  height: 100%;
-  width: calc(100% - 300px);
-  left: 300px;
-  padding: 60px 35px 0px;
 }
 
 .mainCard {

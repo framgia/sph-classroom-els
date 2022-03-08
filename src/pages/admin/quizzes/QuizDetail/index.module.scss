@@ -1,12 +1,6 @@
 @use '../../../../styles/variables' as *;
 
-.cardContainer {
-  position: absolute;
-  height: 100%;
-  width: calc(100% - 300px);
-  left: 300px;
-  padding: 60px 40px 60px;
-}
+@use '../../../../styles/card-container.scss' as *;
 
 .quizContainer {
   width: 100%;
