@@ -19,19 +19,23 @@
   flex-direction: column;
 }
 
+.cardContainer {
+  position: absolute;
+  height: 100%;
+  width: calc(100% - 300px);
+  left: 300px;
+  padding: 60px 40px 60px;
+}
+
 .quizEditContainer {
   background: $color-white;
   border-radius: 2px;
   border: 1px solid $color-light-blue-1;
   color: $color-dark-blue-1;
 
-  width: 926px;
-  height: 670px;
+  width: 100%;
+  height: 100%;
   padding: 50px;
-
-  position: absolute;
-  left: 650px;
-  top: 150px;
 
   @extend %column-flex;
 }
@@ -238,17 +242,17 @@
   margin-left: 10px;
 }
 
-.choicesInput{
-  border : 0px;
+.choicesInput {
+  border: 0px;
   background-color: transparent;
   position: fixed;
   height: 35px;
 }
 
-.choicesInput:focus{
+.choicesInput:focus {
   outline: none;
 }
 
-.choicecontentinput{
-  display:inline-block;
+.choicecontentinput {
+  display: inline-block;
 }

@@ -11,15 +11,12 @@
   height: 100%;
   width: calc(100% - 300px);
   left: 300px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 60px 40px 60px;
 }
 
 .card {
-  width: 1063px;
-  height: auto;
+  width: 100%;
+  height: 100%;
 }
 
 .header {
@@ -32,11 +29,12 @@
   padding: 20px;
   align-items: center;
   box-shadow: $drop-shadow;
-  gap: 380px;
+  gap: 655px;
 }
 
 .headerText {
   display: flex;
+  text-align: center;
 }
 
 .backArrow {
@@ -90,8 +88,7 @@
 }
 
 .inputFieldDescription {
-  height: 300px;
-  max-height: 300px;
+  height: 470px;
   resize: none;
 
   @extend %input-field-style;
@@ -127,7 +124,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 604px;
+  height: 700px;
 }
 
 .loadingWord {
