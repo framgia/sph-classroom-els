@@ -155,7 +155,7 @@ function CategoryList() {
 
         <Dropdown>
           <Dropdown.Toggle
-            className={style.dropdownStyle}
+            className={style.dropdownStyle} 
             variant="link"
             bsPrefix="none"
           >

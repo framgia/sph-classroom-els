@@ -17,6 +17,7 @@ const AdminList = () => {
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
   const sortBy = queryParams.get('sortBy') || '';
+  const searchVal = queryParams.get('search');
   const sortDirection = queryParams.get('sortDirection') || '';
   const history = useHistory();
   const toast = useToast();
@@ -26,6 +27,8 @@ const AdminList = () => {
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
+  const [search, setSearch] = useState(searchVal ? searchVal : '');
+  const [searchStatus, setSearchStatus] = useState(false);
   const [sortOptions, setSortOptions] = useState({
     sortBy,
     sortDirection,
@@ -38,11 +41,16 @@ const AdminList = () => {
   ];
 
   useEffect(() => {
+    history.push(`?page=${page}&search=${search}`);
+
     load();
-  }, [page]);
+  }, [page, searchStatus]);
 
   const load = () => {
-    AdminApi.getAdminAccounts({ page })
+    AdminApi.getAdminAccounts({ 
+      page,
+      search
+    })
       .then(({ data }) => {
         setAdminAccounts(data.data);
         setPerPage(data.per_page);
@@ -54,10 +62,24 @@ const AdminList = () => {
       );
   };
 
+  const onSearchSubmit = (e) => {
+    e.preventDefault();
+
+    setPage(1);
+    setSearchStatus(!searchStatus);
+  };
+
+  function onChangeData(e) {
+    setSearch(e.target.value);
+    
+    if (e.target.value.length === 0) {
+      setPage(1);
+      setSearchStatus(!searchStatus);
+    }
+  }
+
   const onPageChange = (selected) => {
     setPage(selected + 1);
-
-    history.push(`?page=${selected + 1}`);
   };
 
   const renderTableData = () => {
@@ -82,11 +104,14 @@ const AdminList = () => {
       </div>
       <Card className={style.card}>
         <Card.Header className={style.cardHeader}>
-          <Form className={style.searchSection}>
+          <Form className={style.searchSection} onSubmit={onSearchSubmit}>
             <div className={style.searchInput}>
               <Form.Control
                 className={style.searchBar}
                 type="text"
+                aria-label="Search"
+                value={search}
+                onChange={onChangeData}
                 placeholder="Search name or email"
               />
               <BiSearch size={17} className={style.searchIcon} />
