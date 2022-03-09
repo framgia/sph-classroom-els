@@ -48,6 +48,9 @@ const ProfileDetail = () => {
       setStatus(true);
       StudentApi.getDetails(loggedInUserId).then(({ data }) => {
         setAvatar(data.avatar);
+        setStatus(false);
+        setModalShow(false);
+        setError(false);
       });
     } catch (error) {
       if (error?.response?.data?.errors) {
