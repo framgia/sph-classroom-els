@@ -13,6 +13,9 @@ import ChangeLocation from '../../../../components/ChangeLocation';
 import CategoryApi from '../../../../api/Category';
 
 const AddEditCategory = () => {
+  const queryParams = new URLSearchParams(window.location.search);
+  const categoryViewType = queryParams.get('categoryViewType');
+  const categoryID = queryParams.get('categoryID');
   const loc = useLocation();
   const TYPE = 'withPathDisplay';
   const [show, setShow] = useState(false);
@@ -40,26 +43,37 @@ const AddEditCategory = () => {
   }, [location, isSaved]);
 
   useEffect(() => {
-    if (loc.pathname !== '/admin/add-category') {
-      CategoryApi.show({ categoryId: category_id })
-        .then(({ data }) => {
-          setCategory(data.data);
-          setParentCategoryID(data.data.category_id);
-          if (data.data.category_id) {
-            CategoryApi.getParentCategories(category_id)
-              .then(({ data }) => {
-                setParentCategories(data);
-              })
-              .catch((error) => toast('Error', error));
-          } else {
-            setLocationPathDisplay('Root');
-          }
-        })
-        .catch((error) => toast('Error', error));
+    if (categoryViewType === 'Hierarchy') {
+      getParentCategories();
+      setParentCategoryID(categoryID);
+    } else if (loc.pathname !== '/admin/add-category') {
+      load();
     } else {
       setLocationPathDisplay('Root');
     }
   }, []);
+
+  const load = () => {
+    CategoryApi.show({ categoryId: category_id })
+      .then(({ data }) => {
+        setCategory(data.data);
+        setParentCategoryID(data.data.category_id);
+        if (data.data.category_id) {
+          getParentCategories();
+        } else {
+          setLocationPathDisplay('Root');
+        }
+      })
+      .catch((error) => toast('Error', error));
+  };
+
+  const getParentCategories = () => {
+    CategoryApi.getParentCategories(category_id || categoryID)
+      .then(({ data }) => {
+        setParentCategories(data);
+      })
+      .catch((error) => toast('Error', error));
+  };
 
   useEffect(() => {
     parentCategories?.forEach((p, idx) =>
@@ -96,7 +110,9 @@ const AddEditCategory = () => {
       CategoryApi.store(name, description, parentCategoryID)
         .then(() => {
           toast('Success', 'Successfully Added Category.');
-          history.push('/admin/categories');
+          categoryViewType === 'Hierarchy'
+            ? history.push(`/admin/category-hierarchy?categoryID=${categoryID}`)
+            : history.push('/admin/categories');
         })
         .catch((error) => {
           detectTypo(error);
