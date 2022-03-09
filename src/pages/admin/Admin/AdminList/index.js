@@ -53,7 +53,6 @@ const AdminList = () => {
     })
       .then(({ data }) => {
         setAdminAccounts(data.data);
-        console.log(data.data);
         setPerPage(data.per_page);
         setTotalItems(data.total);
         setLastPage(data.last_page);
@@ -69,6 +68,15 @@ const AdminList = () => {
     setPage(1);
     setSearchStatus(!searchStatus);
   };
+
+  function onChangeData(e) {
+    setSearch(e.target.value);
+    
+    if (e.target.value.length === 0) {
+      setPage(1);
+      setSearchStatus(!searchStatus);
+    }
+  }
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
@@ -103,14 +111,7 @@ const AdminList = () => {
                 type="text"
                 aria-label="Search"
                 value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-    
-                  if (e.target.value.length === 0) {
-                    setPage(1);
-                    setSearchStatus(!searchStatus);
-                  }
-                }}
+                onChange={onChangeData}
                 placeholder="Search name or email"
               />
               <BiSearch size={17} className={style.searchIcon} />
