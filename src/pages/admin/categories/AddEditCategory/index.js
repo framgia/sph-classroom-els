@@ -43,7 +43,10 @@ const AddEditCategory = () => {
   }, [location, isSaved]);
 
   useEffect(() => {
-    if (categoryViewType === 'Hierarchy') {
+    if (
+      categoryViewType === 'Hierarchy' &&
+      loc.pathname === '/admin/add-category'
+    ) {
       getParentCategories();
       setParentCategoryID(categoryID);
     } else if (loc.pathname !== '/admin/add-category') {
@@ -122,7 +125,11 @@ const AddEditCategory = () => {
       CategoryApi.update(name, description, parentCategoryID, category_id)
         .then(() => {
           toast('Success', 'Successfully Updated Category.');
-          history.push('/admin/categories');
+          categoryViewType === 'Hierarchy'
+            ? history.push(
+                `/admin/category-hierarchy?categoryID=${category_id}`
+            )
+            : history.push('/admin/categories');
         })
         .catch((error) => detectTypo(error));
     } else {
