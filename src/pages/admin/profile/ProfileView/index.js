@@ -27,22 +27,25 @@ const AdminProfile = () => {
     let data = new FormData();
     data.append('image', image.image);
     toast('Processing', 'Uploading image...');
-    try {
-      await ProfileEditApi.uploadImage(data);
-      toast('Success', 'Successfully Upload.');
-      setSuccessMessage('Upload Successful');
-      setStatus(true);
-      AdminApi.getAllUsers(loggedInUserId).then(({ data }) => {
-        setAvatar(data.avatar);
-        setStatus(false);
-        setModalShow(false);
-      });
-    } catch (error) {
-      if (error?.response?.data?.errors) {
-        toast('Error', 'Please enter a valid input to successfully upload.');
-        setError(error?.response?.data?.errors);}
-      setSubmitStatus(false);
-    }
+
+    ProfileEditApi.uploadImage(data)
+      .then(() => {
+        toast('Success', 'Successfully Upload.');
+        setSuccessMessage('Upload Successful');
+        setStatus(true);
+        AdminApi.getAllUsers(loggedInUserId).then(({ data }) => {
+          setAvatar(data.avatar);
+          setStatus(false);
+          setModalShow(false);
+          setError(false);
+        });
+      })
+      .catch((error) => {
+        if (error?.response?.data?.errors) {
+          toast('Error', 'Please enter a valid input to successfully upload.');
+          setError(error?.response?.data?.errors);}
+        setSubmitStatus(false);
+      });  
   };
 
   useEffect(() => {
@@ -102,7 +105,7 @@ const AdminProfile = () => {
               <Form style={{ marginTop: '20px' }}>
                 <Form.Group className={style.marginForForm} controlId="formBasicName">
                   <Form.Label className={style.FormGroupStyle}>
-                Name
+                      Name
                   </Form.Label>
                   <Form.Control
                     style={{ fontSize: '14px' }}
@@ -114,8 +117,9 @@ const AdminProfile = () => {
 
                 <Form.Group className={style.marginForForm} controlId="formBasicEmail">
                   <Form.Label
-                    className={style.FormGroupStyle}>
-                Email
+                    className={style.FormGroupStyle}
+                  >
+                      Email
                   </Form.Label>
                   <Form.Control
                     style={{ fontSize: '14px' }}
@@ -126,12 +130,12 @@ const AdminProfile = () => {
                 </Form.Group>
                 <a href="/admin/profile/edit-password">
                   <Button className={style.changepassbutton} variant="primary">
-                Change Password
+                      Change Password
                   </Button>
                 </a>
                 <a href="/admin/profile/edit">
                   <Button className={style.editbutton} variant="primary">
-                Edit
+                      Edit
                   </Button>
                 </a>
               </Form>
