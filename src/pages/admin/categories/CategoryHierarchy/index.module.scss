@@ -24,7 +24,7 @@
 .breadcrumbsContainer {
   font-weight: $font-weight-medium;
   font-size: $font-size-page-title;
-  color: #697582;
+  color: $color-gray;
   width: 100%;
 
   white-space: nowrap;
@@ -42,8 +42,8 @@
 }
 
 .listItems {
-  padding: 20px;
   cursor: pointer;
+  padding: 0px 20px;
 
   @include flex(space-between, center, row, 0px);
 
@@ -63,13 +63,47 @@
   }
 }
 
+.clickableArea {
+  width: calc(100% - 30px);
+  height: 100%;
+  padding: 20px 0px;
+}
+
 .categoryName {
   color: $color-dark-blue-1;
 
   &:hover {
     color: $color-black;
     font-weight: $font-weight-medium;
+    text-decoration: underline;
   }
+}
+
+.kebabMenu {
+  background-color: transparent;
+  border: none;
+  color: $color-gray;
+  width: 20px;
+  height: 25px;
+  padding: 0px;
+
+  &:focus,
+  &:hover {
+    background-color: $color-white;
+    color: $color-gray;
+  }
+}
+
+.kebabMenuList {
+  border: 1px $color-light-blue-1 solid;
+  border-radius: 2px;
+  width: 200px;
+  height: 100px;
+}
+
+.kebabMenuItems:focus {
+  background-color: $color-light-blue-1;
+  color: $color-dark-blue-1;
 }
 
 .spinner {
