@@ -18,12 +18,23 @@
   overflow: auto;
   overflow-x: hidden;
 
-  @include flex(none, none, column, 35px);
+  @include flex(none, none, column, 30px);
+}
+
+.headerSection {
+  @include flex(flex-start, flex-start, column, 5px);
+}
+
+.pageTitle {
+  font-weight: $font-weight-medium;
+  font-size: $font-size-page-title;
+  color: $color-dark-blue-1;
+  margin: 0px;
 }
 
 .breadcrumbsContainer {
   font-weight: $font-weight-medium;
-  font-size: $font-size-page-title;
+  font-size: $font-size-md;
   color: $color-gray;
   width: 100%;
 
@@ -35,10 +46,6 @@
   &::-webkit-scrollbar {
     height: 0px;
   }
-}
-
-.breadcrumbArrowIcon {
-  margin: 0px 7px;
 }
 
 .listItems {
@@ -56,10 +63,16 @@
   text-decoration: underline;
   cursor: pointer;
 
+  &:first-child,
+  &:nth-child(3) {
+    text-decoration: none;
+    cursor: default;
+  }
+
   &:last-child {
     text-decoration: none;
-    color: $color-black;
     cursor: default;
+    color: black;
   }
 }
 

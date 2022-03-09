@@ -1,8 +1,8 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
 import { GoKebabVertical } from 'react-icons/go';
-import { RiArrowRightSLine } from 'react-icons/ri';
+import { CgFormatSlash } from 'react-icons/cg';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Spinner from 'react-bootstrap/Spinner';
@@ -11,10 +11,11 @@ import style from './index.module.scss';
 
 const CategoryHierarchy = () => {
   const toast = useToast();
+  const history = useHistory();
   const queryParams = new URLSearchParams(window.location.search);
   const categoryID = queryParams.get('categoryID');
   const [categories, setCategories] = useState();
-  const [chosenCategoryPathID, setChosenCategoryPathID] = useState(null);
+  const [chosenCategoryPathID, setChosenCategoryPathID] = useState(categoryID);
   const [breadcrumbs, setBreadcrumbs] = useState([]);
 
   useEffect(() => {
@@ -23,7 +24,7 @@ const CategoryHierarchy = () => {
       ? toast('Processing', 'Getting the subcategories...')
       : toast('Processing', 'Getting the root categories...');
 
-    if (categoryID && !chosenCategoryPathID) {
+    if (categoryID) {
       getParentCategories();
     }
 
@@ -32,7 +33,7 @@ const CategoryHierarchy = () => {
 
   const load = () => {
     CategoryApi.getCategories({
-      category_id: chosenCategoryPathID || categoryID
+      category_id: chosenCategoryPathID
     })
       .then(({ data }) => {
         setCategories(data.data);
@@ -46,6 +47,7 @@ const CategoryHierarchy = () => {
     CategoryApi.getParentCategories(categoryID)
       .then(({ data }) => {
         setBreadcrumbs(data);
+        history.replace({ categoryID });
       })
       .catch((error) => toast('Error', error));
   };
@@ -69,10 +71,13 @@ const CategoryHierarchy = () => {
 
   return (
     <div className={style.mainContent}>
-      <div>
+      <section className={style.headerSection}>
+        <span className={style.pageTitle}>Category Hierarchy</span>
         <div className={style.breadcrumbsContainer}>
-          <span>Category Hierarchy</span>
-          <RiArrowRightSLine className={style.breadcrumbArrowIcon} />
+          <span className={style.breadcrumbs}>Categories</span>
+          <CgFormatSlash size={20} />
+          <span className={style.breadcrumbs}>Hierarchy View</span>
+          <CgFormatSlash size={20} />
           <span
             className={style.breadcrumbs}
             onClick={() => {
@@ -85,7 +90,10 @@ const CategoryHierarchy = () => {
           {breadcrumbs?.map((breadcrumb, idx) => {
             return (
               <Fragment key={idx}>
-                <RiArrowRightSLine className={style.breadcrumbArrowIcon} />
+                <CgFormatSlash
+                  size={20}
+                  className={style.breadcrumbSlashIcon}
+                />
                 <span
                   className={style.breadcrumbs}
                   onClick={() => {
@@ -98,7 +106,7 @@ const CategoryHierarchy = () => {
             );
           })}
         </div>
-      </div>
+      </section>
       <ListGroup>
         {categories ? (
           categories?.map((category, idx) => {
@@ -110,7 +118,9 @@ const CategoryHierarchy = () => {
                     onCategoryClick(category, idx);
                   }}
                 >
-                  <Link to={`/admin/edit-category/${category.id}`}>
+                  <Link
+                    to={`/admin/edit-category/${category.id}?categoryViewType=Hierarchy`}
+                  >
                     <span className={style.categoryName}>{category.name}</span>
                   </Link>
                 </div>
