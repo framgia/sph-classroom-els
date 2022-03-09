@@ -31,7 +31,7 @@ const AdminEditProfile = () => {
 
   useEffect(() => {
     AdminApi.getAllUsers(loggedInUserId).then(({ data }) => {
-      setprofileName(data.data);
+      setprofileName(data[0]);
     });
   }, []);
 
@@ -67,7 +67,7 @@ const AdminEditProfile = () => {
     <div className={style.bodyStyle}>
       <div
         className="d-flex justify-content-center align-items-center text-align-center"
-        style={{ marginTop: '267px', marginLeft: '408px' }}
+        style={{ marginTop: '267px', marginLeft: '861px' }}
       >
         {showAlert && (
           <Alert
@@ -186,7 +186,7 @@ const AdminEditProfile = () => {
                   Change
                 </Button>
                 <div>
-                  <a className={style.cancel} href="/profile">
+                  <a className={style.cancel} href="/admin/profile">
                     Cancel
                   </a>
                 </div>
