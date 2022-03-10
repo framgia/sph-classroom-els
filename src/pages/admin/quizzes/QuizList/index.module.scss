@@ -56,44 +56,6 @@
   @include flex(space-between, none, row, 0px);
 }
 
-.searchSection {
-  @include flex(none, center, row, 10px);
-}
-
-.searchInput {
-  position: relative;
-}
-
-.searchBar {
-  width: 335px;
-  padding-right: 34px;
-}
-
-.searchIcon {
-  position: absolute;
-  left: 92%;
-  top: 28%;
-}
-
-.searchButton {
-  @include button-style($color-light-blue-2, 93px, 38px);
-
-  &:hover {
-    background-color: $color-light-blue-3;
-    color: $color-white;
-  }
-}
-
-.dropdownButton {
-  @include flex(center, center, row, 10px);
-  @include button-style($color-white, 93px, 38px);
-
-  &:hover {
-    background-color: $color-white;
-    color: $color-dark-blue-1;
-  }
-}
-
 .title {
   padding: 0px 0px 33px;
   font-weight: $font-weight-medium;

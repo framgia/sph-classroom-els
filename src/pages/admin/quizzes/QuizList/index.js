@@ -1,48 +1,52 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { useToast } from '../../../../hooks/useToast';
+import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import { Col } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { BiSearch } from 'react-icons/bi';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
-import { useToast } from '../../../../hooks/useToast';
-import { VscFilter } from 'react-icons/vsc';
-import Dropdown from 'react-bootstrap/Dropdown';
 
 import Pagination from '../../../../components/Pagination';
-import style from './index.module.scss';
-import QuizApi from '../../../../api/Quiz';
-import AddQuizModal from './components/AddQuizModal';
 import DataTable from '../../../../components/DataTable';
+import AddQuizModal from './components/AddQuizModal';
+import SearchBar from '../../../../components/SearchBar';
+import FilterDropdown from '../../../../components/FilterDropdown';
+
+import QuizApi from '../../../../api/Quiz';
+import CategoryApi from '../../../../api/Category';
+
+import style from './index.module.scss';
 
 const QuizList = () => {
-  const [adminQuiz, setAdminQuiz] = useState(null);
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
+  const searchVal = queryParams.get('search');
+  const filterVal = queryParams.get('filter');
   const sortBy = queryParams.get('sortBy') || '';
   const sortDirection = queryParams.get('sortDirection') || '';
-  const [modalShow, setModalShow] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [submitStatus, setSubmitStatus] = useState(false);
-  const TYPE = 'withoutPathDisplay';
 
+  const TYPE = 'withoutPathDisplay';
   const history = useHistory();
   const toast = useToast();
 
-  const [sortOptions, setSortOptions] = useState({
-    sortBy,
-    sortDirection,
-  });
+  const [adminQuiz, setAdminQuiz] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [submitStatus, setSubmitStatus] = useState(false);
+  const [location, setLocation] = useState(null);
 
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
-
-  const [location, setLocation] = useState(null);
+  const [filter, setFilter] = useState(filterVal ? filterVal : '');
+  const [search, setSearch] = useState(searchVal ? searchVal : '');
+  const [sortOptions, setSortOptions] = useState({
+    sortBy,
+    sortDirection
+  });
 
   const handleOnSubmit = async ({ name, instruction }) => {
     setSubmitStatus(true);
@@ -69,25 +73,45 @@ const QuizList = () => {
   const load = () => {
     setAdminQuiz(null);
 
+    CategoryApi.listOfCategories({
+      listCondition: 'unpaginated'
+    })
+      .then(({ data }) => {
+        setCategories(data.data);
+      })
+      .catch(() =>
+        toast('Error', 'There was an error getting the list of categories.')
+      );
+
     QuizApi.adminQuiz({
-      page: page,
+      page,
+      filter,
+      search,
       sortBy: sortOptions.sortBy,
-      sortDirection: sortOptions.sortDirection,
-    }).then(({ data }) => {
-      setAdminQuiz(data.data);
-      setPerPage(data.per_page);
-      setTotalItems(data.total);
-      setLastPage(data.last_page);
-    });
+      sortDirection: sortOptions.sortDirection
+    })
+      .then(({ data }) => {
+        setAdminQuiz(data.data);
+        setPerPage(data.per_page);
+        setTotalItems(data.total);
+        setLastPage(data.last_page);
+      })
+      .catch(() =>
+        toast('Error', 'There was an error getting the list of quizzes.')
+      );
   };
 
   useEffect(() => {
     history.push(
-      `?page=${page}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`
+      `?page=${page}&search=${search}&filter=${filter}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`
     );
 
     load();
-  }, [page, sortOptions]);
+  }, [page, sortOptions, search, filter]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [filter, search]);
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
@@ -97,7 +121,7 @@ const QuizList = () => {
     { title: 'ID', canSort: true },
     { title: 'Category', canSort: true },
     { title: 'Name', canSort: true },
-    { title: 'Edit', canSort: false },
+    { title: 'Edit', canSort: false }
   ];
 
   const renderTableData = () => {
@@ -127,28 +151,18 @@ const QuizList = () => {
         <Col>
           <Card className={style.mainCard}>
             <Card.Header className={style.cardHeader}>
-              <Form className={style.searchSection}>
-                <div className={style.searchInput}>
-                  <Form.Control
-                    className={style.searchBar}
-                    type="text"
-                    placeholder="Search name or email"
-                  />
-                  <BiSearch size={17} className={style.searchIcon} />
-                </div>
-                <Button className={style.searchButton} type="submit">
-                  Search
-                </Button>
-              </Form>
-              <Dropdown>
-                <Dropdown.Toggle
-                  className={style.dropdownButton}
-                  bsPrefix="none"
-                >
-                  Filter
-                  <VscFilter size={17} />
-                </Dropdown.Toggle>
-              </Dropdown>
+              <SearchBar
+                placeholder="Filter by name"
+                search={search}
+                setSearch={setSearch}
+              />
+              <FilterDropdown
+                dropdownLabel={'Filter by Category'}
+                dropdownItems={categories}
+                isScrollable={true}
+                filter={filter}
+                setFilter={setFilter}
+              />
             </Card.Header>
             <Card.Body className={style.cardBodyScroll}>
               <Button

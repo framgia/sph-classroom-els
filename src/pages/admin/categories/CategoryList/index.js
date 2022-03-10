@@ -34,7 +34,7 @@ const CategoryList = () => {
 
   const [sortOptions, setSortOptions] = useState({
     sortBy,
-    sortDirection,
+    sortDirection
   });
 
   useEffect(() => {
@@ -49,6 +49,7 @@ const CategoryList = () => {
       search: search,
       sortBy: sortOptions.sortBy,
       sortDirection: sortOptions.sortDirection,
+      listCondition: 'paginated'
     }).then(({ data }) => {
       setCategories(data.data);
       setPerPage(data.per_page);
@@ -65,7 +66,7 @@ const CategoryList = () => {
     { title: 'ID', canSort: true },
     { title: 'Name', canSort: true },
     { title: 'Description', canSort: false },
-    { title: 'Edit', canSort: false },
+    { title: 'Edit', canSort: false }
   ];
 
   const renderTableData = () => {
