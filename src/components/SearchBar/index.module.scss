@@ -1,0 +1,35 @@
+@use '../../styles/variables' as *;
+
+.searchSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.searchInput {
+  position: relative;
+}
+
+.searchBar {
+  width: 304px;
+  padding-right: 34px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 92%;
+  top: 28%;
+}
+
+.searchButton {
+  background-color: $color-light-blue-2;
+  color: $color-dark-blue-1;
+  border: none;
+  width: 93px;
+  height: 38px;
+
+  &:hover {
+    background-color: $color-light-blue-3;
+    color: $color-white;
+  }
+}

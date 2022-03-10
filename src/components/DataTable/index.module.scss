@@ -25,9 +25,9 @@
 .spinner,
 .noResultsFound {
   position: absolute;
-  height: 25px;
-  left: 715px;
-  top: 430px;
+  top: 450px;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   @extend %flex-align-center;
 

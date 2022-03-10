@@ -86,6 +86,15 @@ const CategoryApi = {
     return API.request(options);
   },
 
+  getUnpaginatedCategoryList: () => {
+    const options = {
+      method: 'GET',
+      url: '/admin/unpaginated-categories'
+    };
+
+    return API.request(options);
+  },
+
   delete: () => {},
 
   restore: () => {}
