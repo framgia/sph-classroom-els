@@ -22,10 +22,11 @@
   height: 27px;
 }
 
-.spinner {
+.spinner,
+.noResultsFound {
   position: absolute;
   height: 25px;
-  left: 760px;
+  left: 715px;
   top: 430px;
 
   @extend %flex-align-center;

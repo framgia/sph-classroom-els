@@ -74,15 +74,13 @@ const DataTable = ({
               <td
                 className={titleHeaderStyle}
                 onClick={() => {
-                  if (header?.canSort){
+                  if (header?.canSort) {
                     onSortClick(header.title);
                   }
                 }}
                 key={idx}
               >
-                <div
-                  className={header?.canSort ? style.headerName : ''}
-                >
+                <div className={header?.canSort ? style.headerName : ''}>
                   <span>{header.title}</span>
                   <div>{renderArrowIcons(header.title)}</div>
                 </div>
@@ -93,7 +91,13 @@ const DataTable = ({
         </tr>
       </thead>
       {data ? (
-        <tbody>{renderTableData()}</tbody>
+        <tbody>
+          {data.length > 0 ? (
+            renderTableData()
+          ) : (
+            <span className={style.noResultsFound}>No Results Found</span>
+          )}
+        </tbody>
       ) : (
         <Button className={style.spinner} disabled>
           <Spinner animation="border" />
