@@ -106,12 +106,22 @@ const QuizEdit = () => {
         id: maxId,
         question: '',
         question_type_id: 1,
-        quiz_id: 1,     
+        quiz_id: quizId,
         text_answer: '',
         time_limit: 5
       }
     );
     setQuestions(newQuestions);
+  };
+
+  const handleSubmit = () => {
+    QuestionApi.editQuestion(questions, quizId)
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   return (
@@ -159,7 +169,7 @@ const QuizEdit = () => {
           <Link to={`/admin/quizzes/${quizId}`} className={style.cancelButton}>
             Cancel
           </Link>
-          <Button className={style.saveButton}>Save</Button>
+          <Button className={style.saveButton} onClick={handleSubmit}>Save</Button>
         </div>
       </Container>
       <ChangeLocation
