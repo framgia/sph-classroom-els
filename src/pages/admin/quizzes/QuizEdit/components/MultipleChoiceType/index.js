@@ -6,40 +6,18 @@ import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { PropTypes } from 'prop-types';
 import { Controller, useForm } from 'react-hook-form';
 
-const MultipleChoiceType = ({ question, getData }) => {
+const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
   const { control} = useForm();
-  // const [selectedChoices, setselectedChoices] = useState({
-  //   choices: question.choices,
-  //   choice: question.choices.choice
-  // });
-  const [choices, setChoice] = useState([]);
-  // const [isCorrect, setIsCorrect] = useState();
+  const [choices, setChoices] = useState([]);
   const [questionOnChange, setQuestionOnChange ] = useState({
     question : question.question,
     questionId: question.id,
-    choice: question.choices
+    choices: question.choices
   });
-
-  // const onSelectedQuestion = (value) => {
-  //   setQuesetionEdit([...editChoice,{type: type, id: choices.id, choices:value }]);
-  // };
-  // console.log(questionEdit);
-
-  // const choiceTypes = [
-  //   {
-  //     type:'Add'
-  //   },
-  //   {
-  //     type:'Edit'
-  //   },
-  //   {
-  //     type:'Delete'
-  //   }
-  // ]
 
   useEffect(() => {
     if (question) {
-      setChoice(question.choices);
+      setChoices(question.choices);
     }
 
     setQuestionOnChange({
@@ -49,10 +27,6 @@ const MultipleChoiceType = ({ question, getData }) => {
     });
 
   }, [question]);
-
-  // const onSelectCorrectAnswer = (e) => {
-  //   setIsCorrect(e);
-  // };
 
   const handleChangeQuestion = (e) => {
     setQuestionOnChange({
@@ -68,39 +42,46 @@ const MultipleChoiceType = ({ question, getData }) => {
     }
   }, [questionOnChange]);
 
-  // const handleChangeChoices = (e) => {
-  //   setselectedChoices({
-  //     ...selectedChoices,
-  //     choices: e.target.value
-  //   });
-  //   getData(selectedChoices);
-  // };
-  // console.log(selectedChoices);
-  
-  // const onSelectedChoices = (e) => {
-  //   setselectedChoices(
-  //     choices.find((choice) => choice.id === e)
-  //   );
-  // };
-
-  const addChoicesFields = (e) => {
-    setChoice([...choices, { e }]);
+  const addChoicesFields = () => {
+    // Condition in place in case there is a question with no choices yet
+    // If the choices in a question is not empty then map all elements and return choice.id
+    // Else, return [0] as a starting id
+    const choiceIds = choices.length > 0 ? choices.map(choice => choice.id) : [0];
+    const maxId = Math.max(...choiceIds) + 1;
+    setChoices([
+      ...choices,
+      {
+        id: maxId,
+        question_id: question.id,
+        choice: '',
+        is_correct: false
+      }
+    ]);
   };
 
-  const removeChoicesFields = (e) => {
-    let newchoices = [...choices];
-    newchoices.splice(e, 1);
-    setChoice(newchoices);
+  useEffect(() => {
+    if (question) {
+      onUpdateChoices(choices, question.id);
+    }
+  }, [choices]);
+
+  const removeChoicesFields = (idx) => {
+    let newChoices = [...choices];
+    newChoices.splice(idx, 1);
+    setChoices(newChoices);
   };
 
-  // const is_correct = ['1', '2'];
-
-  const handleChangeChoices = (e) => {
-    setQuestionOnChange({
-      ...questionOnChange,
-      choice: e.target.value
+  const handleChangeChoices = (e, choiceId) => {
+    let updateChoices = choices.map(choice => {
+      if (choice.id === choiceId) {
+        return {
+          ...choice,
+          choice: e.target.value
+        };
+      }
+      return choice;
     });
-    getData(questionOnChange);
+    setChoices(updateChoices);
   };
   
   useEffect(() => {
@@ -108,6 +89,22 @@ const MultipleChoiceType = ({ question, getData }) => {
       getData(questionOnChange);
     }
   }, [questionOnChange]);
+
+  const changeCorrectAnswer = (e, choiceId) => {
+    let updateCorrectAnswer = choices.map(choice => {
+      if (choice.id === choiceId) {
+        return {
+          ...choice,
+          is_correct: true
+        };
+      }
+      return {
+        ...choice,
+        is_correct: false
+      };
+    });
+    setChoices(updateCorrectAnswer);
+  };
 
   return (
     <Fragment>
@@ -175,7 +172,13 @@ const MultipleChoiceType = ({ question, getData }) => {
         </Form>
         {question &&  choices.map((choice, idx) => (
           <Form key={idx} className={style.cardBody}>
-            <input type="radio" name="choice" className={style.radioAlignment}/>
+            {/* <input type="radio" name="choice" className={style.radioAlignment} onChange={testFunction}/> */}
+            <Form.Check 
+              type="radio"
+              id={choice.id}
+              onChange={(e) => changeCorrectAnswer(e, choice.id)}
+              checked={choice.is_correct}
+            />
             <Controller
               control={control}
               name="choice"
@@ -183,7 +186,7 @@ const MultipleChoiceType = ({ question, getData }) => {
               render={({ field: { ref } }) => (
                 <Form.Control 
                   className={style.choicesAlignment}
-                  onChange={handleChangeChoices}
+                  onChange={(e) => handleChangeChoices(e, choice.id)}
                   type="text"
                   value={choice.choice}
                   ref={ref}
@@ -201,7 +204,8 @@ const MultipleChoiceType = ({ question, getData }) => {
 
 MultipleChoiceType.propTypes = {
   question: PropTypes.object,
-  getData: PropTypes.func
+  getData: PropTypes.func,
+  onUpdateChoices: PropTypes.func
 };
 
 export default MultipleChoiceType;

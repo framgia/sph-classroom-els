@@ -37,7 +37,6 @@ const QuizEdit = () => {
   }, []);
 
   const changeQuestion = (value) => {
-
     const updateQuestion = questions.map( question =>
     {
       if (question.id === value.questionId){
@@ -75,6 +74,20 @@ const QuizEdit = () => {
       return question;
     });
     setQuestions(updateQuestionType);
+  }; 
+
+  // Function will trigger if the choices are updated
+  const changeChoices = (choices, questionId) => {
+    const updateChoices = questions.map(question => {
+      if (question.id === questionId) {
+        return {
+          ...question,
+          choices: choices
+        };
+      }
+      return question;
+    });
+    setQuestions(updateChoices);
   };
 
   const onSelectQuestion = (e) => {
@@ -83,8 +96,22 @@ const QuizEdit = () => {
     );
   };
 
-  const addQuestionFields = (e) => {
-    setQuestions([...questions, { e }]);
+  const addQuestionFields = () => {
+    const questionIds = questions.length > 0 ? questions.map(question => question.id) : [0];
+    const maxId = Math.max(...questionIds) + 1;
+    let newQuestions = [...questions];
+    newQuestions.push(
+      {
+        choices: [],
+        id: maxId,
+        question: '',
+        question_type_id: 1,
+        quiz_id: 1,     
+        text_answer: '',
+        time_limit: 5
+      }
+    );
+    setQuestions(newQuestions);
   };
 
   return (
@@ -125,6 +152,7 @@ const QuizEdit = () => {
             onGetData={changeQuestion}
             onChangeTimeLimit={changeTimeLimit}
             onChangeQuestionType={changeQuestionType}
+            onChangeChoices={changeChoices}
           />
         </div>
         <div className={style.confirmationButtons}>
