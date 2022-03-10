@@ -8,21 +8,10 @@ import PropTypes from 'prop-types';
 
 import style from '../../index.module.scss';
 
-const QuestionType = ({ question, onGetData }) => {
+const QuestionType = ({ question, onGetData, onChangeTimeLimit, onChangeQuestionType }) => {
   const [questionType, setQuestionType] = useState('multiple_choice');
   const [timeLimit, setTimeLimit] = useState(0);
-
-  useEffect(() => {
-    if (question) {
-      setQuestionType(question?.question_type_id?.toString());
-      setTimeLimit(question?.time_limit);
-    }
-  }, [question]);
-
-  const handleChangeQuestionType = (value) => {
-    onGetData(value);
-  };
-
+  const timeOptions = [5, 10, 20, 30, 60];
   const question_type_id = [
     {
       name: 'Multiple Choice',
@@ -34,7 +23,32 @@ const QuestionType = ({ question, onGetData }) => {
     },
   ];
 
-  const time_limit = ['5', '10', '20', '30', '60'];
+  useEffect(() => {
+    if (question) {
+      setQuestionType(question?.question_type_id?.toString());
+      setTimeLimit(question?.time_limit);
+    }
+  }, [question]);
+
+  // Watches changes in the timeLimit variable
+  // If timeLimit is changed, call function and pass new timeLimit value and question id
+  useEffect(() => {
+    if (question) {
+      onChangeTimeLimit(timeLimit, question.id);
+    }
+  }, [timeLimit]);
+
+  // Watches changes in the questionType variable
+  // If questionType is changed, call function and pass new questionType value and question id
+  useEffect(() => {
+    if (question){
+      onChangeQuestionType(questionType, question.id);
+    }
+  }, [questionType]);
+
+  const handleChangeQuestionType = (value) => {
+    onGetData(value);
+  };
 
   const onSelectQuestionType = (e) => {
     setQuestionType(e);
@@ -108,7 +122,7 @@ const QuestionType = ({ question, onGetData }) => {
               <RiArrowDropDownLine className={style.iconSize} />
             </Dropdown.Toggle>
             <Dropdown.Menu className={style.dropdownMenuStyle}>
-              {time_limit.map((time, idx) => {
+              {timeOptions.map((time, idx) => {
                 return (
                   <Dropdown.Item key={idx} eventKey={time}>
                     {time} seconds
@@ -126,6 +140,8 @@ const QuestionType = ({ question, onGetData }) => {
 QuestionType.propTypes = {
   question: PropTypes.object,
   onGetData: PropTypes.func,
+  onChangeTimeLimit: PropTypes.func,
+  onChangeQuestionType: PropTypes.func
 };
 
 export default QuestionType;

@@ -49,6 +49,34 @@ const QuizEdit = () => {
     setQuestions(updateQuestion);
   };
 
+  // Function will trigger if the question time limit is updated
+  const changeTimeLimit = (newTime, questionId) => {
+    const updateTimeLimit = questions.map(question => {
+      if (question.id === questionId) {
+        return {
+          ...question,
+          time_limit: parseInt(newTime)
+        };
+      }
+      return question;
+    });
+    setQuestions(updateTimeLimit);
+  };
+
+  // Function will trigger if the question type is updated
+  const changeQuestionType = (newType, questionId) => {
+    const updateQuestionType = questions.map(question => {
+      if (question.id === questionId) {
+        return {
+          ...question,
+          question_type_id: parseInt(newType)
+        };
+      }
+      return question;
+    });
+    setQuestions(updateQuestionType);
+  };
+
   const onSelectQuestion = (e) => {
     setSelectedQuestion(
       questions.find((question) => question.id === parseInt(e))
@@ -92,7 +120,12 @@ const QuizEdit = () => {
               Change Category
             </Button>
           </div>
-          <QuestionType question={selectedQuestion} onGetData = {changeQuestion} />
+          <QuestionType 
+            question={selectedQuestion}
+            onGetData={changeQuestion}
+            onChangeTimeLimit={changeTimeLimit}
+            onChangeQuestionType={changeQuestionType}
+          />
         </div>
         <div className={style.confirmationButtons}>
           <Link to={`/admin/quizzes/${quizId}`} className={style.cancelButton}>

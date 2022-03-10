@@ -102,7 +102,6 @@ const MultipleChoiceType = ({ question, getData }) => {
     });
     getData(questionOnChange);
   };
-  console.log(questionOnChange);
   
   useEffect(() => {
     if(questionOnChange){
