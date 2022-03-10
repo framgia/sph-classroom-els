@@ -43,7 +43,6 @@ const QuizList = () => {
   const [lastPage, setLastPage] = useState(0);
   const [filter, setFilter] = useState(filterVal ? filterVal : '');
   const [search, setSearch] = useState(searchVal ? searchVal : '');
-  const [searchStatus, setSearchStatus] = useState(false);
   const [sortOptions, setSortOptions] = useState({
     sortBy,
     sortDirection
@@ -74,7 +73,9 @@ const QuizList = () => {
   const load = () => {
     setAdminQuiz(null);
 
-    CategoryApi.getUnpaginatedCategoryList()
+    CategoryApi.listOfCategories({
+      listCondition: 'unpaginated'
+    })
       .then(({ data }) => {
         setCategories(data.data);
       })
@@ -102,31 +103,15 @@ const QuizList = () => {
 
   useEffect(() => {
     history.push(
-      `?page=${page}&search${search}&filter=${filter}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`
+      `?page=${page}&search=${search}&filter=${filter}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`
     );
 
     load();
-  }, [page, sortOptions, searchStatus, filter]);
+  }, [page, sortOptions, search, filter]);
 
   useEffect(() => {
     setPage(1);
-  }, [filter]);
-
-  const onSearchSubmit = (e) => {
-    e.preventDefault();
-
-    setPage(1);
-    setSearchStatus(!searchStatus);
-  };
-
-  const onSearchValueChange = (e) => {
-    setSearch(e.target.value);
-
-    if (e.target.value.length === 0) {
-      setPage(1);
-      setSearchStatus(!searchStatus);
-    }
-  };
+  }, [filter, search]);
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
@@ -167,9 +152,9 @@ const QuizList = () => {
           <Card className={style.mainCard}>
             <Card.Header className={style.cardHeader}>
               <SearchBar
-                onSearchSubmit={onSearchSubmit}
-                onSearchValueChange={onSearchValueChange}
                 placeholder="Filter by name"
+                search={search}
+                setSearch={setSearch}
               />
               <FilterDropdown
                 dropdownLabel={'Filter by Category'}
