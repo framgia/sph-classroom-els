@@ -31,25 +31,31 @@ const AdminList = () => {
   const [searchStatus, setSearchStatus] = useState(false);
   const [sortOptions, setSortOptions] = useState({
     sortBy,
-    sortDirection,
+    sortDirection
   });
 
   const tableHeaderNames = [
-    { title: 'ID' },
-    { title: 'Name' },
-    { title: 'Email' },
+    { title: 'ID', canSort: true },
+    { title: 'Name', canSort: true },
+    { title: 'Email', canSort: true }
   ];
 
   useEffect(() => {
-    history.push(`?page=${page}&search=${search}`);
+    history.push(
+      `?page=${page}&search=${search}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`
+    );
+
+    setAdminAccounts(null);
 
     load();
-  }, [page, searchStatus]);
+  }, [page, searchStatus, sortOptions]);
 
   const load = () => {
-    AdminApi.getAdminAccounts({ 
+    AdminApi.getAdminAccounts({
       page,
-      search
+      search,
+      sortBy: sortOptions.sortBy,
+      sortDirection: sortOptions.sortDirection
     })
       .then(({ data }) => {
         setAdminAccounts(data.data);
@@ -71,7 +77,7 @@ const AdminList = () => {
 
   function onChangeData(e) {
     setSearch(e.target.value);
-    
+
     if (e.target.value.length === 0) {
       setPage(1);
       setSearchStatus(!searchStatus);
