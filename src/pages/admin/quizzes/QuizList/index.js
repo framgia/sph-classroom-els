@@ -153,7 +153,7 @@ const QuizList = () => {
             <Card.Header className={style.cardHeader}>
               <SearchBar
                 placeholder="Filter by name"
-                search={search}
+                search={search} 
                 setSearch={setSearch}
               />
               <FilterDropdown
