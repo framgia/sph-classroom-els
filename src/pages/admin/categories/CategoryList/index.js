@@ -124,7 +124,7 @@ const CategoryList = () => {
                   aria-label="Search"
                   value={search}
                   onChange={onChangeData}
-                  placeholder="Search name or email"
+                  placeholder="Search category name"
                 />
                 <BiSearch size={17} className={style.searchIcon} />
               </div>
