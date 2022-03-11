@@ -1,102 +1,165 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
-// import Card from 'react-bootstrap/Card';
 import style from '../../index.module.scss';
 import { GrAddCircle } from 'react-icons/gr';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { PropTypes } from 'prop-types';
-import Spinner from 'react-bootstrap/Spinner';
 import { Controller, useForm } from 'react-hook-form';
 
-const MultipleChoiceType = ({ questions }) => {
-  // console.log(questions.choices);
-  const { control } = useForm();
+const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
+  const { control} = useForm();
+  const [choices, setChoices] = useState([]);
+  const [questionOnChange, setQuestionOnChange ] = useState({
+    question : question.question,
+    questionId: question.id,
+    choices: question.choices
+  });
+
+  useEffect(() => {
+    if (question) {
+      setChoices(question.choices);
+    }
+
+    setQuestionOnChange({
+      ...questionOnChange,
+      question: question.question,
+      questionId: question.id
+    });
+
+  }, [question]);
+
+  const handleChangeQuestion = (e) => {
+    setQuestionOnChange({
+      ...questionOnChange,
+      question: e.target.value
+    });
+    getData(questionOnChange);
+  };
+
+  useEffect(() => {
+    if(questionOnChange){
+      getData(questionOnChange);
+    }
+  }, [questionOnChange]);
+
+  const addChoicesFields = () => {
+    // Condition in place in case there is a question with no choices yet
+    // If the choices in a question is not empty then map all elements and return choice.id
+    // Else, return [0] as a starting id
+    const choiceIds = choices.length > 0 ? choices.map(choice => choice.id) : [0];
+    const maxId = Math.max(...choiceIds) + 1;
+    setChoices([
+      ...choices,
+      {
+        id: maxId,
+        question_id: question.id,
+        choice: '',
+        is_correct: false
+      }
+    ]);
+  };
+
+  useEffect(() => {
+    if (question) {
+      onUpdateChoices(choices, question.id);
+    }
+  }, [choices]);
+
+  const removeChoicesFields = (idx) => {
+    let newChoices = [...choices];
+    newChoices.splice(idx, 1);
+    setChoices(newChoices);
+  };
+
+  const handleChangeChoices = (e, choiceId) => {
+    let updateChoices = choices.map(choice => {
+      if (choice.id === choiceId) {
+        return {
+          ...choice,
+          choice: e.target.value
+        };
+      }
+      return choice;
+    });
+    setChoices(updateChoices);
+  };
+  
+  useEffect(() => {
+    if(questionOnChange){
+      getData(questionOnChange);
+    }
+  }, [questionOnChange]);
+
+  const changeCorrectAnswer = (e, choiceId) => {
+    let updateCorrectAnswer = choices.map(choice => {
+      if (choice.id === choiceId) {
+        // Only one is true
+        return {
+          ...choice,
+          is_correct: true
+        };
+      }
+      // Other choices are returned false
+      return {
+        ...choice,
+        is_correct: false
+      };
+    });
+    setChoices(updateCorrectAnswer);
+  };
+
   return (
     <Fragment>
       <div>
-        {questions === null ? (
-          <div className={style.loading}>
-            <Spinner animation="border" role="status"></Spinner>
-            <span className={style.loadingWord}>Loading</span>
+        <Form>
+          <Form.Label className={style.inputTitle}>Question</Form.Label>
+          <div>
+            <Controller
+              control={control}
+              name="question"
+              defaultValue={question.question}
+              render={({ field: { ref } }) => (
+                <Form.Control 
+                  onChange={handleChangeQuestion}
+                  type="text"
+                  className={style.inputWidth}
+                  value={questionOnChange.question}
+                  ref={ref}
+                />
+              )}
+            />
           </div>
-        ) : (
-          <Form>
-            <Form.Label className={style.inputTitle}>Question</Form.Label>
-            {questions ? (
-              <Controller
-                control={control}
-                name="question"
-                defaultValue={questions.question}
-                render={({ field: { onChange, ref } }) => (
-                  <Form.Control 
-                    onChange={onChange}
-                    type="text"
-                    className={style.inputWidth}
-                    // value={value}
-                    value={questions.question}
-                    ref={ref}
-                  />
-                )}
-              />
-            ) : (
-              ''
-            )} 
-          </Form>
-        )}
+        </Form>
       </div>
       <div className={style.formSpacing}>
         <Form>
           <Form.Label className={style.inputTitle}>
-            Choices <GrAddCircle className={style.iconSize} />
+            Choices <GrAddCircle className={style.iconSize} onClick={() => addChoicesFields()}/>
           </Form.Label>
         </Form>
-        {questions?.choices?.map((choice, idx) => (
+        {question &&  choices.map((choice, idx) => (
           <Form key={idx} className={style.cardBody}>
-            <div>
-              <input type="radio" name="choices" />
-              {/* {questions?.choices ? (
-                <Controller
-                  control={control}
-                  name="choices"
-                  defaultValue={choice.choice}
-                  render={({ field: { onChange, value, ref } }) => (
-                    <Form.Control 
-                      onChange={onChange}
-                      type="text"
-                      className={style.choicesAlignment}
-                      value={value}
-                      ref={ref}
-                    />
-                  )}
+            <Form.Check 
+              type="radio"
+              id={choice.id}
+              onChange={(e) => changeCorrectAnswer(e, choice.id)}
+              checked={choice.is_correct}
+            />
+            <Controller
+              control={control}
+              name="choice"
+              defaultValue={choice.choice}
+              render={({ field: { ref } }) => (
+                <Form.Control 
+                  className={style.choicesAlignment}
+                  onChange={(e) => handleChangeChoices(e, choice.id)}
+                  type="text"
+                  value={choice.choice}
+                  ref={ref}
                 />
-              ) : (
-                ''
-              )}  */}
-              <span className={style.choicesAlignment}>
-                {choice.choice}
-                {/* <input type="text" name="choice" value = {choice.choice} /> */}
-                {/* {questions?.choices ? (
-                  <input
-                    className={style.choicesInput}
-                    control={control}
-                    name="choices"
-                    defaultValue={choice.choice}
-                    render={({ field: { onChange,value, ref } }) => (
-                      <Form.Control 
-                        onChange={onChange}
-                        type="radio"
-                        value={value}
-                        ref={ref}
-                      />
-                    )}
-                  />
-                ) : (
-                  ''
-                )}  */}
-              </span>
-              <AiOutlineCloseCircle className={style.inputIconSize} />
-              
-            </div>
+              )}
+            /> 
+            <AiOutlineCloseCircle className={style.inputIconSize} onClick={() => removeChoicesFields(idx)}/>
           </Form>
         ))}
       </div>
@@ -105,7 +168,9 @@ const MultipleChoiceType = ({ questions }) => {
 };
 
 MultipleChoiceType.propTypes = {
-  questions: PropTypes.object,
+  question: PropTypes.object,
+  getData: PropTypes.func,
+  onUpdateChoices: PropTypes.func
 };
 
 export default MultipleChoiceType;

@@ -27,11 +27,17 @@
   border: 1px solid $color-light-blue-1;
   color: $color-dark-blue-1;
 
-  width: 100%;
+  width: 1090px;
   height: 100%;
   padding: 50px;
 
   @extend %column-flex;
+}
+
+.divStyle{
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .quizTitle {
@@ -49,7 +55,7 @@
 .quizEditSidebar {
   gap: 15px;
   width: 176px;
-  height: 375px;
+  height: 80%;
   margin-right: 20px;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 
@@ -115,11 +121,14 @@
 }
 
 .confirmationButtons {
+  position: absolute;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 25px;
   margin-top: auto;
+  top: 85%;
+  left: 69%
 }
 
 .cancelButton {
@@ -148,6 +157,12 @@
 .inputTitle {
   font-size: $font-size-lg;
   font-weight: $font-weight-regular;
+}
+
+.inputchoices {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-regular;
+  margin-bottom: 20px;
 }
 
 .inputWidth {
@@ -188,6 +203,7 @@
   height: 38px;
   border: 2.5px solid $color-light-blue-1;
   margin-bottom: 15px;
+  display: flex;
 
   input[type='radio'] {
     margin: 6px 0px 0px 6px;
@@ -219,10 +235,16 @@
 .choicesAlignment {
   color: $color-black;
   font-size: $font-size-md;
-  position: absolute;
-  margin: 0px 0px 0px 12px;
+  margin: 0px 0px 0px 10px;
   font-size: $font-size-base;
   font-weight: $font-weight-light;
+  border: none;
+  background-color: transparent;
+  height: 35px;
+}
+
+.choicesAlignment:focus{
+  outline: none;
 }
 
 .loading {
@@ -236,17 +258,28 @@
   margin-left: 10px;
 }
 
-.choicesInput {
-  border: 0px;
-  background-color: transparent;
-  position: fixed;
-  height: 35px;
-}
+.questionTypestyle{
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 80%;
 
-.choicesInput:focus {
-  outline: none;
-}
+  /* width */
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
 
-.choicecontentinput {
-  display: inline-block;
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: $color-white;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: $color-light-blue-1;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: $color-light-blue-2;
+  } 
 }

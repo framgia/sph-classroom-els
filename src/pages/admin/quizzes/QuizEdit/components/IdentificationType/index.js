@@ -1,12 +1,47 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import style from '../../index.module.scss';
 import { PropTypes } from 'prop-types';
 import { Controller, useForm } from 'react-hook-form';
 
-const IdentificationType = ({ questions }) => {
-  console.log(questions);
+const IdentificationType = ({ question, getData }) => {
   const { control } = useForm();
+  const [questionOnChange, setQuestionOnChange ] = useState({
+    question : question.question,
+    answer: question.text_answer,
+    questionId: question.id,
+  });
+
+  useEffect(() => {
+    setQuestionOnChange({
+      ...questionOnChange,
+      question: question.question,
+      answer: question.text_answer,
+      questionId: question.id
+    });
+  }, [question]);
+
+  const handleChangeQuestion = (e) => {
+    setQuestionOnChange({
+      ...questionOnChange,
+      question: e.target.value
+    });
+  };
+  
+  useEffect(() => {
+    if(questionOnChange){
+      getData(questionOnChange);
+    }
+  }, [questionOnChange]);
+
+  const handleChangeAnswer = (e) => {
+    setQuestionOnChange({
+      ...questionOnChange,
+      answer: e.target.value
+    });
+    getData(questionOnChange);
+  };
+  
   return (
     <Fragment>
       <div>
@@ -15,14 +50,13 @@ const IdentificationType = ({ questions }) => {
           <Controller
             control={control}
             name="question"
-            // defaultValue={questions.question}
-            render={({ field: { onChange, ref } }) => (
+            defaultValue={question.question}
+            render={({ field: { ref } }) => (
               <Form.Control
-                type="title"
+                type="text"
                 className={style.inputWidth}
-                value={questions.question}
-                onChange={onChange}
-                // value={value}
+                onChange ={handleChangeQuestion}
+                value={questionOnChange.question}
                 ref={ref}
               />
             )}
@@ -34,14 +68,13 @@ const IdentificationType = ({ questions }) => {
         <Controller
           control={control}
           name="text_answer"
-          // defaultValue={questions.text_answer}
-          render={({ field: { onChange, ref } }) => (
+          defaultValue={question.text_answer}
+          render={({ field: { ref } }) => (
             <Form.Control 
               as="textarea" 
               className={style.inputHeight} 
-              onChange={onChange}
-              value={questions.text_answer}
-              // value={value}
+              onChange ={handleChangeAnswer}
+              value={questionOnChange.answer}
               ref={ref}
             />
           )}
@@ -52,7 +85,8 @@ const IdentificationType = ({ questions }) => {
 };
 
 IdentificationType.propTypes = {
-  questions: PropTypes.object,
+  question: PropTypes.object,
+  getData: PropTypes.func,
 };
 
 export default IdentificationType;
