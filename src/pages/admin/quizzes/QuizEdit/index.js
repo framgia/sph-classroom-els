@@ -42,7 +42,10 @@ const QuizEdit = () => {
     const updateQuestion = questions.map( question =>
     {
       if (question.id === value.questionId){
-        return {...question, question: value.question, text_answer: value.answer, choices: value.choices};
+        return {...question, 
+          question: value.question, 
+          text_answer: value.answer, 
+          choices: value.choices};
       }
       return question;  
     });
@@ -123,6 +126,7 @@ const QuizEdit = () => {
       .then(({ data }) => {
         setQuestions(data);
         toast('Success', 'Successfully updated questions');
+        window.location = `/admin/quizzes/${quizId}`;
       })
       .catch(error => {
         toast('Error', error);
