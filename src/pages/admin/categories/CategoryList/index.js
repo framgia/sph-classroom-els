@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { BiSearch } from 'react-icons/bi';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import Pagination from '../../../../components/Pagination';
@@ -14,6 +12,7 @@ import style from './index.module.scss';
 
 import CategoryApi from '../../../../api/Category';
 import DataTable from '../../../../components/DataTable';
+import SearchBar from '../../../../components/SearchBar';
 
 const CategoryList = () => {
   const [categories, setCategories] = useState(null);
@@ -24,7 +23,6 @@ const CategoryList = () => {
   const sortDirection = queryParams.get('sortDirection') || '';
 
   const [search, setSearch] = useState(searchVal ? searchVal : '');
-  const [searchStatus, setSearchStatus] = useState(false);
 
   const history = useHistory();
 
@@ -57,23 +55,7 @@ const CategoryList = () => {
       setTotalItems(data.total);
       setLastPage(data.last_page);
     });
-  }, [page, searchStatus, sortOptions]);
-
-  const onSearchSubmit = (e) => {
-    e.preventDefault();
-
-    setPage(1);
-    setSearchStatus(!searchStatus);
-  };
-
-  function onChangeData(e) {
-    setSearch(e.target.value);
-
-    if (e.target.value.length === 0) {
-      setPage(1);
-      setSearchStatus(!searchStatus);
-    }
-  }
+  }, [page, search, sortOptions]);
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
@@ -116,22 +98,11 @@ const CategoryList = () => {
         </div>
         <Card className={style.mainCard}>
           <Card.Header className={style.cardHeader}>
-            <Form className={style.searchSection} onSubmit={onSearchSubmit}>
-              <div className={style.searchInput}>
-                <Form.Control
-                  className={style.searchBar}
-                  type="text"
-                  aria-label="Search"
-                  value={search}
-                  onChange={onChangeData}
-                  placeholder="Search category name"
-                />
-                <BiSearch size={17} className={style.searchIcon} />
-              </div>
-              <Button className={style.searchButton} type="submit">
-                Search
-              </Button>
-            </Form>
+            <SearchBar
+              placeholder="Search by Category name"
+              search={search}
+              setSearch={setSearch}
+            />
             <Dropdown>
               <Dropdown.Toggle className={style.dropdownButton} bsPrefix="none">
                 Filter
