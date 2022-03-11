@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
+// import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import QuestionType from './components/QuestionType';
@@ -135,7 +135,7 @@ const QuizEdit = () => {
 
   return (
     <div className={style.cardContainer}>
-      <Container className={style.quizEditContainer}>
+      <div className={style.quizEditContainer}>
         <h2 className={style.quizTitle}>{quizInfo?.title}</h2>
         {/* <h3 className={style.quizCategory}>{locationPathDisplay}</h3> */}
         <h3 className={style.quizCategory}>Location</h3>
@@ -184,7 +184,7 @@ const QuizEdit = () => {
           </Link>
           <Button className={style.saveButton} onClick={handleSubmit}>Save</Button>
         </div>
-      </Container>
+      </div>
       {/* <ChangeLocation
         show={show}
         handleClose={handleClose}

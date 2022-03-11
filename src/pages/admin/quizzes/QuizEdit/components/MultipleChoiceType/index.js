@@ -140,6 +140,7 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
         {question &&  choices.map((choice, idx) => (
           <Form key={idx} className={style.cardBody}>
             <Form.Check 
+              className={style.radioStyle}
               type="radio"
               id={choice.id}
               onChange={(e) => changeCorrectAnswer(e, choice.id)}
