@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import QuestionType from './components/QuestionType';
 import { useParams } from 'react-router-dom';
+import { useToast } from '../../../../hooks/useToast';
 
 import style from './index.module.scss';
 import ChangeLocation from '../../../../components/ChangeLocation';
@@ -23,6 +24,7 @@ const QuizEdit = () => {
   const { categoryId, quizId } = useParams();
   const [questions, setQuestions] = useState(null);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
+  const toast = useToast();
 
   useEffect(() => {
     QuizApi.show({ categoryId, quizId }).then(({ data }) => {
@@ -40,7 +42,7 @@ const QuizEdit = () => {
     const updateQuestion = questions.map( question =>
     {
       if (question.id === value.questionId){
-        return {...question, question: value.question, text_answer: value.answer, choice: value.choices};
+        return {...question, question: value.question, text_answer: value.answer, choices: value.choices};
       }
       return question;  
     });
@@ -97,7 +99,7 @@ const QuizEdit = () => {
   };
 
   const addQuestionFields = () => {
-    const questionIds = questions.length > 0 ? questions.map(question => question.id) : [0];
+    const questionIds = questions && questions.length > 0 ? questions.map(question => question.id) : [0];
     const maxId = Math.max(...questionIds) + 1;
     let newQuestions = [...questions];
     newQuestions.push(
@@ -115,12 +117,15 @@ const QuizEdit = () => {
   };
 
   const handleSubmit = () => {
+    toast('Processing', 'Updating questions...');
+
     QuestionApi.editQuestion(questions, quizId)
-      .then(data => {
-        console.log(data);
+      .then(({ data }) => {
+        setQuestions(data);
+        toast('Success', 'Successfully updated questions');
       })
       .catch(error => {
-        console.log(error);
+        toast('Error', error);
       });
   };
 

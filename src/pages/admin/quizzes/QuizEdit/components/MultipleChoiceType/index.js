@@ -93,11 +93,13 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
   const changeCorrectAnswer = (e, choiceId) => {
     let updateCorrectAnswer = choices.map(choice => {
       if (choice.id === choiceId) {
+        // Only one is true
         return {
           ...choice,
           is_correct: true
         };
       }
+      // Other choices are returned false
       return {
         ...choice,
         is_correct: false
@@ -129,41 +131,6 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
           </div>
         </Form>
       </div>
-      {/* <div className={style.formSpacing}>
-        <div className={style.inputchoices}
-        >
-          Choices <GrAddCircle className={style.iconSize} onClick={() => addChoicesFields()} />
-        </div>
-        <div>
-          {choices && choices.map((choice, idx) => {
-            return(
-              <Form onClick={() => {onSelectedChoices(choice.id);}} key={idx} className={style.cardBody}>
-                <input onClick={() => onSelectCorrectAnswer(choice.is_correct)} type="radio" name="is_correct" value={isCorrect}/>
-                <span className={style.choicesAlignment}>
-                  {choices ? (
-                    <input
-                      className={style.choicesInput}
-                      control={control}
-                      name="choice"
-                      defaultValue={choice.choice}
-                      render={({ field: { ref } }) => (
-                        <Form.Control 
-                          onChange={handleChangeChoices}
-                          type="text"
-                          value={selectedChoices.choices}
-                          ref={ref}
-                        />
-                      )}
-                    /> 
-                  ) : (
-                    ''
-                  )}
-                </span>
-                <AiOutlineCloseCircle className={style.inputIconSize} onClick={() => removeChoicesFields(idx)}/>
-              </Form>
-            );})}
-        </div>
-      </div> */}
       <div className={style.formSpacing}>
         <Form>
           <Form.Label className={style.inputTitle}>
@@ -172,7 +139,6 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
         </Form>
         {question &&  choices.map((choice, idx) => (
           <Form key={idx} className={style.cardBody}>
-            {/* <input type="radio" name="choice" className={style.radioAlignment} onChange={testFunction}/> */}
             <Form.Check 
               type="radio"
               id={choice.id}
@@ -193,7 +159,6 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
                 />
               )}
             /> 
-            {/* {choice.choice} */}
             <AiOutlineCloseCircle className={style.inputIconSize} onClick={() => removeChoicesFields(idx)}/>
           </Form>
         ))}

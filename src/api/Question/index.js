@@ -34,7 +34,6 @@ const QuestionApi = {
   restore: () => {},
 
   editQuestion: (questions, quizId) => {
-    console.log(questions);
     const options = {
       method: 'POST',
       url: '/admin_edit_question',
