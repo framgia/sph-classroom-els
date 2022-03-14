@@ -6,8 +6,8 @@
 }
 
 %dropdown-menu-style {
-  width: auto;
-  border: 1px $color-light-blue-1 solid;
+  width: 215px;
+  border: 2px $color-light-blue-1 solid;
 }
 
 .dropdownButton {
@@ -19,9 +19,9 @@
   background-color: $color-white;
   color: $color-dark-blue-1;
   font-size: $font-size-md;
-  border: none;
   height: 38px;
-  width: 215px;
+
+  @extend %dropdown-menu-style;
 
   &:hover,
   &:focus {
@@ -49,6 +49,7 @@
 }
 
 .dropdownItems {
+  width: 215px;
   color: $color-dark-blue-1;
 
   &:hover,

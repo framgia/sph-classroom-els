@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { PropTypes } from 'prop-types';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
@@ -15,7 +15,7 @@ import style from './index.module.scss';
                        e.g.  const items = [{name: 'Web Development'}, {name: 'Science'}];
     
     > isScrollable : Pass true if there are a lot of menu items to make the dropdown menu scrollable, 
-                     otherwise pass false and the dropdown menu height will adjust according to how many items there are.
+                     otherwise you don't have to pass this prop and the dropdown menu height will adjust according to how many items there are.
 
     > fillter      : Pass the filter value
     
@@ -25,26 +25,44 @@ import style from './index.module.scss';
 const FilterDropdown = ({
   dropdownLabel,
   dropdownItems,
-  isScrollable,
+  isScrollable = false,
   filter,
   setFilter
 }) => {
   const [activeItem, setActiveItem] = useState(filter || 'All');
   const [isClicked, setIsClicked] = useState(false);
+  const ref = useRef();
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      if (isClicked && ref.current && !ref.current.contains(e.target)) {
+        setIsClicked(false);
+      }
+    };
+
+    document.addEventListener('mousedown', checkIfClickedOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', checkIfClickedOutside);
+    };
+  }, [isClicked]);
 
   return (
-    <Dropdown
-      onClick={() => {
-        if (dropdownItems?.length > 0) {
+    <div ref={ref}>
+      <Dropdown
+        onClick={() => {
           setIsClicked(!isClicked);
-        }
-      }}
-    >
-      <Dropdown.Toggle className={style.dropdownButton} bsPrefix="none">
-        {filter || dropdownLabel}
-        {isClicked ? <IoIosArrowUp size={17} /> : <IoIosArrowDown size={17} />}
-      </Dropdown.Toggle>
-      {dropdownItems?.length ? (
+        }}
+      >
+        <Dropdown.Toggle className={style.dropdownButton} bsPrefix="none">
+          {filter || dropdownLabel}
+          {isClicked ? (
+            <IoIosArrowUp size={17} />
+          ) : (
+            <IoIosArrowDown size={17} />
+          )}
+        </Dropdown.Toggle>
+
         <Dropdown.Menu
           className={
             isScrollable ? style.dropdownMenuScrollable : style.dropdownMenu
@@ -81,10 +99,8 @@ const FilterDropdown = ({
             );
           })}
         </Dropdown.Menu>
-      ) : (
-        ''
-      )}
-    </Dropdown>
+      </Dropdown>
+    </div>
   );
 };
 
