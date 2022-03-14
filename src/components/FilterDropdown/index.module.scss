@@ -19,9 +19,9 @@
   background-color: $color-white;
   color: $color-dark-blue-1;
   font-size: $font-size-md;
-  border: none;
   height: 38px;
-  width: 215px;
+
+  @extend %dropdown-menu-style;
 
   &:hover,
   &:focus {
