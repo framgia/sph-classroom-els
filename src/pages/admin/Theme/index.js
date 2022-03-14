@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ThemePage = () => {
-  return <div></div>;
+  return <div className="container"></div>;
 };
 
 export default ThemePage;
