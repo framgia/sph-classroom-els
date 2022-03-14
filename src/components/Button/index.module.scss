@@ -1,0 +1,198 @@
+@use '../../styles/variables' as *;
+
+%hover-style {
+  background-color: $color-light-blue-1;
+  color: $color-dark-blue-1;
+}
+
+.largeButtonStyle {
+  background-color: #658286;
+  border-color: #658286;
+  color: $color-dark-blue-1;
+  font-size: $font-size-lg;
+  height: 42px;
+  width: 238px;
+
+  &:hover,
+  &:focus {
+    background-color: #658286ad;
+    border-color: #658286ad;
+    color: $color-dark-blue-1;
+  }
+}
+
+.defaultButtonStyle {
+    background-color: #658286;
+    border-color: #658286;
+    color: $color-dark-blue-1;
+    font-size: $font-size-base;
+    height: 38px;
+    width: 172px;
+  
+    &:hover,
+    &:focus {
+      background-color: #658286ad;
+      border-color: #658286ad;
+      color: $color-dark-blue-1;
+    }
+  }
+
+  .smallButtonStyle {
+    background-color: #658286;
+    border-color: #658286;
+    color: $color-dark-blue-1;
+    font-size: $font-size-md;
+    height: 30px;
+    width: 80px;
+  
+    &:hover,
+    &:focus {
+      background-color: #658286ad;
+      border-color: #658286ad;
+      color: $color-dark-blue-1;
+    }
+  }
+
+  .largeButtonDisableStyle {
+    background-color: #658286a9;
+    border-color: #658286a9;
+    color: $color-dark-blue-1;
+    font-size: $font-size-lg;
+    height: 42px;
+    width: 238px;
+  
+    &:hover,
+    &:focus {
+      background-color: #658286a9;
+      border-color: #658286a9;
+      color: $color-dark-blue-1;
+    }
+  }
+
+  .defaultButtonDisableStyle {
+    background-color: #658286a9;
+    border-color: #658286a9;
+    color: $color-dark-blue-1;
+    font-size: $font-size-base;
+    height: 38px;
+    width: 172px;
+  
+    &:hover,
+    &:focus {
+      background-color: #658286a9;
+      border-color: #658286a9;
+      color: $color-dark-blue-1;
+    }
+  }
+
+  .smallButtonDisableStyle {
+    background-color: #658286a9;
+    border-color: #658286a9;
+    color: $color-dark-blue-1;
+    font-size: $font-size-md;
+    height: 30px;
+    width: 80px;
+  
+    &:hover,
+    &:focus {
+      background-color: #658286a9;
+      border-color: #658286a9;
+      color: $color-dark-blue-1;
+    }
+  }
+
+  .largeButtonOutlineStyle {
+    background-color: $color-white;
+    border-color: #658286a9;
+    color: $color-dark-blue-1;
+    font-size: $font-size-lg;
+    height: 42px;
+    width: 238px;
+  
+    &:hover,
+    &:focus {
+      background-color: $color-white;
+      border-color: #658286a9;
+      color: $color-dark-blue-1;
+    }
+  }
+
+  .defaultButtonOutlineStyle {
+    background-color: $color-white;
+    border-color: #658286a9;
+    color: $color-dark-blue-1;
+    font-size: $font-size-base;
+    height: 38px;
+    width: 172px;
+  
+    &:hover,
+    &:focus {
+      background-color: $color-white;
+      border-color: #658286a9;
+      color: $color-dark-blue-1;
+    }
+  }
+
+  .smallButtonOutlineStyle {
+    background-color: $color-white;
+    border-color: #658286a9;
+    color: $color-dark-blue-1;
+    font-size: $font-size-md;
+    height: 30px;
+    width: 80px;
+  
+    &:hover,
+    &:focus {
+      background-color: $color-white;
+      border-color: #658286a9;
+      color: $color-dark-blue-1;
+    }
+  }
+
+  .largeButtonOutlineDisableStyle {
+    background-color: $color-white-4;
+    border-color: #658286a9;
+    color: $color-dark-blue-1;
+    font-size: $font-size-lg;
+    height: 42px;
+    width: 238px;
+  
+    &:hover,
+    &:focus {
+      background-color: $color-white-4;
+      border-color: #658286a9;
+      color: $color-dark-blue-1;
+    }
+  }
+  
+  .defaultButtonOutlineDisableStyle {
+    background-color: $color-white-4;
+    border-color: #658286a9;
+    color: $color-dark-blue-1;
+    font-size: $font-size-base;
+    height: 38px;
+    width: 172px;
+  
+    &:hover,
+    &:focus {
+      background-color: $color-white-4;
+      border-color: #658286a9;
+      color: $color-dark-blue-1;
+    }
+  }
+
+  .smallButtonOutlineDisableStyle {
+    background-color: $color-white-4;
+    border-color: #658286a9;
+    color: $color-dark-blue-1;
+    font-size: $font-size-md;
+    height: 30px;
+    width: 80px;
+  
+    &:hover,
+    &:focus {
+      background-color: $color-white-4;
+      border-color: #658286a9;
+      color: $color-dark-blue-1;
+    }
+  }
