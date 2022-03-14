@@ -115,7 +115,7 @@
 }
 
 .sidebarButtons {
-  width: 256px;
+  width: 245px;
   height: 40.32px;
 
   @extend %button-colors;
@@ -194,11 +194,19 @@
   margin-left: 20px;
 }
 
+.iconSize:hover {
+  cursor: pointer;
+}
+
 .inputIconSize {
   height: 30px;
   width: 30px;
   float: right;
   margin: 10px 5px 0.5px 0px;
+}
+
+.inputIconSize:hover{
+  cursor: pointer;
 }
 
 .cardBody {
@@ -296,4 +304,21 @@
 
 .questionTypeChoiceStyle{
   margin-top: 500px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 250px;
+}
+
+.loadingWord {
+  margin-left: 10px;
+}
+
+.message{
+  margin: 230px 0px 0px 300px;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-page-title;
 }
