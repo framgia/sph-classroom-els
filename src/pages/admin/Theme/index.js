@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import FilterDropdown from '../../../components/FilterDropdown';
 
 const ThemePage = () => {
+  const [scrollableFilter, setScrollableFilter] = useState('');
   const [filter, setFilter] = useState('');
   const dropdownOptions = [
     { name: 'Option 1' },
@@ -28,8 +29,8 @@ const ThemePage = () => {
             dropdownLabel="Scrollable Dropdown"
             dropdownItems={dropdownOptions}
             isScrollable={true}
-            filter={filter}
-            setFilter={setFilter}
+            filter={scrollableFilter}
+            setFilter={setScrollableFilter}
           />
           <FilterDropdown
             dropdownLabel="Fixed Dropdown"
