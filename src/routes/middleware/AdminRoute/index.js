@@ -5,11 +5,11 @@ import AuthService from '../../../services/AuthService';
 import Navbar from '../../../components/NavigationSideBar';
 import { PropTypes } from 'prop-types';
 
-const AdminRoute = ({ component: Component, ...rest }) => {
+const AdminRoute = ({ sidebar = true, component: Component, ...rest }) => {
   return (
     <Fragment>
       {/* Navigation Side Bar */}
-      <Navbar />
+      {sidebar ? <Navbar /> : ''}
 
       {/* Main Component */}
       <Route
@@ -24,8 +24,8 @@ const AdminRoute = ({ component: Component, ...rest }) => {
               to={{
                 pathname: AuthService.isAdmin() ? '/admin/login' : '/login',
                 state: {
-                  from: props.location,
-                },
+                  from: props.location
+                }
               }}
             />
           );
@@ -39,6 +39,7 @@ AdminRoute.propTypes = {
   component: PropTypes.any,
   name: PropTypes.string,
   location: PropTypes.any,
+  sidebar: PropTypes.bool
 };
 
 export default AdminRoute;
