@@ -6,6 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 import QuestionType from './components/QuestionType';
 import { useParams } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
+import Spinner from 'react-bootstrap/Spinner';
 
 import style from './index.module.scss';
 // import ChangeLocation from '../../../../components/ChangeLocation';
@@ -117,6 +118,7 @@ const QuizEdit = () => {
       }
     );
     setQuestions(newQuestions);
+    setSelectedQuestion(newQuestions.find((question) => question.id === maxId));
   };
 
   const handleSubmit = () => {
@@ -139,45 +141,58 @@ const QuizEdit = () => {
         <h2 className={style.quizTitle}>{quizInfo?.title}</h2>
         {/* <h3 className={style.quizCategory}>{locationPathDisplay}</h3> */}
         <h3 className={style.quizCategory}>Location</h3>
-        <div className={style.divStyle}>
-          <div className={style.quizEditSidebar}>
-            {questions &&
-              questions.map((question, idx) => {
-                return (
-                  <Fragment key={idx}>
-                    <Nav className="flex-column" onSelect={onSelectQuestion}>
-                      <Nav.Link
-                        eventKey={question.id}
-                        className={style.navLinkItem}
-                        active
-                      >
-                        <span className={style.questionNumber}>
-                          Question # {idx + 1}
-                        </span>
-                        <p key={idx} className={style.question}>
-                          {question.question}
-                        </p>
-                      </Nav.Link>
-                    </Nav>
-                  </Fragment>
-                );
-              })}
-            <Button className={style.sidebarButtons} onClick={() => addQuestionFields()} >Add a Question</Button>
-            {/* <Button className={style.sidebarButtons} onClick={handleShow}>
+        {questions === null ? (
+          <div className={style.loading}>
+            <Spinner animation="border" role="status"></Spinner>
+            <span className={style.loadingWord}>Loading</span>
+          </div>
+        ) : (
+          <div className={style.divStyle}>
+            <div className={style.quizEditSidebar}>
+              {questions &&
+                questions.map((question, idx) => {
+                  return (
+                    <Fragment key={idx}>
+                      <Nav className="flex-column" onSelect={onSelectQuestion}>
+                        <Nav.Link
+                          eventKey={question.id}
+                          className={style.navLinkItem}
+                          active
+                        >
+                          <span className={style.questionNumber}>
+                            Question # {idx + 1}
+                          </span>
+                          <p key={idx} className={style.question}>
+                            {question.question}
+                          </p>
+                        </Nav.Link>
+                      </Nav>
+                    </Fragment>
+                  );
+                })}
+              <Button className={style.sidebarButtons} onClick={() => addQuestionFields()} >Add a Question</Button>
+              {/* <Button className={style.sidebarButtons} onClick={handleShow}>
               Change Category
             </Button> */}
-            <Button className={style.sidebarButtons}>
-              Change Category
-            </Button>
+              <Button className={style.sidebarButtons}>
+                Change Category
+              </Button>
+            </div>
+            {questions?.length === 0 ? (
+              <div className={style.message}>
+                <p>NO QUESTION FOUND</p>
+              </div>
+            ) : (
+              <QuestionType 
+                question={selectedQuestion}
+                onGetData={changeQuestion}
+                onChangeTimeLimit={changeTimeLimit}
+                onChangeQuestionType={changeQuestionType}
+                onChangeChoices={changeChoices}
+              />
+            )}
           </div>
-          <QuestionType 
-            question={selectedQuestion}
-            onGetData={changeQuestion}
-            onChangeTimeLimit={changeTimeLimit}
-            onChangeQuestionType={changeQuestionType}
-            onChangeChoices={changeChoices}
-          />
-        </div>
+        )}
         <div className={style.confirmationButtons}>
           <Link to={`/admin/quizzes/${quizId}`} className={style.cancelButton}>
             Cancel
