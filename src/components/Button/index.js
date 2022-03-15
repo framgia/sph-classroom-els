@@ -16,7 +16,7 @@ import style from './index.module.scss';
     > disabled: Pass disabled if you want to have a disable button.
 */
 
-const ButtonComponet = ({
+const ButtonComponent = ({
   buttonLabel,
   buttonSize,
   disabled,
@@ -48,11 +48,11 @@ const ButtonComponet = ({
   );
 };
 
-ButtonComponet.propTypes = {
+ButtonComponent.propTypes = {
   buttonLabel: PropTypes.string,
   buttonSize: PropTypes.string,
   disabled: PropTypes.bool,
   outline: PropTypes.bool
 };
 
-export default ButtonComponet;
+export default ButtonComponent;
