@@ -6,44 +6,74 @@ import style from './index.module.scss';
 /*
     To use this component, pass the following props:
     
-    > dropdownLabel : Pass a string value for the dropdown label.
+    > buttonLabel : Pass a string value for the button label.
     
-    > dropdownItems : Pass an array of objects containing the name of the dropdown items
+    > isLarge : Pass true if you want to have a large button. 
+                otherwise it will return default button.
 
-                       e.g.  const items = [{name: 'Web Development'}, {name: 'Science'}];
+    > isSmall : Pass true if you want to have a small button. 
+                otherwise it will return default button.
     
-    > isScrollable : Pass true if there are a lot of menu items to make the dropdown menu scrollable, 
-                     otherwise you don't have to pass this prop and the dropdown menu height will adjust according to how many items there are.
-
-    > fillter      : Pass the filter value
-    
-    > setFilter    : Pass your setter function to set the filter value.
+    > isSmall : Pass true if you want to have a outline button. 
+                otherwise it will return default button.
 */
 
-const buttonComponets = () => {
-    
+const buttonComponets = ({
+  buttonLabel,
+  isLarge = false, 
+  isSmall = false,
+  disabled,
+  outline = false
+
+}) => {
+
   return (
     <div>
-      <Button className={style.largeButtonStyle} />
-      <Button className={style.defaultButtonStyle} />
-      <Button className={style.smallButtonStyle} />
-      <Button className={style.largeButtonDisableStyle} />
-      <Button className={style.defaultButtonDisableStyle} />
-      <Button className={style.smallButtonDisableStyle} />
-      <Button className={style.largeButtonOutlineStyle} />
-      <Button className={style.defaultButtonOutlineStyle} />
-      <Button className={style.smallButtonOutlineStyle} />
-      <Button className={style.largeButtonOutlineDisableStyle} />
-      <Button className={style.defaultButtonOutlineDisableStyle} />
-      <Button className={style.smallButtonOutlineDisableStyle} />
+      {outline === true ? (
+        <div>
+          {isLarge || isSmall === true ? (
+            <Button 
+              className={
+                isLarge ? style.largeButtonOutlineStyle : style.largeButtonOutlineStyle ||
+                isSmall ? style.smallButtonOutlineStyle : style.smallButtonOutlineStyle
+              }
+              disabled = {disabled}
+            >
+              {buttonLabel}
+            </Button>
+          ):(
+            <Button className={style.defaultButtonOutlineStyle} disabled = {disabled}>
+              {buttonLabel}
+            </Button>)}
+        </div>
+      ) : (
+        <div>
+          {isLarge || isSmall === true ? (
+            <Button 
+              className={
+                isLarge ? style.largeButtonStyle : style.largeButtonStyle ||
+                isSmall ? style.smallButtonStyle : style.smallButtonStyle
+              }
+              disabled = {disabled}
+            >
+              {buttonLabel}
+            </Button>
+          ):(
+            <Button className={style.defaultButtonStyle} disabled = {disabled}>
+              {buttonLabel}
+            </Button>)}
+        </div>
+      )}
     </div>
   );
 };
 
 buttonComponets.propTypes = {
-  largeButton: PropTypes.func,
-  defaultButton: PropTypes.func,
-  smallButton: PropTypes.func
+  buttonLabel: PropTypes.string,
+  isLarge: PropTypes.bool,
+  isSmall: PropTypes.bool,
+  disabled: PropTypes.bool,
+  outline: PropTypes.bool
 };
 
 export default buttonComponets;
