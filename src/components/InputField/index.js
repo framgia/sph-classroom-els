@@ -43,7 +43,7 @@ const InputField = ({
     
 }) => {
 
-  function styleSize() {
+  const styleSize = () => {
         
     switch(fieldSize) {
     case 'lg':
@@ -53,7 +53,7 @@ const InputField = ({
     case 'sm':
       return style.sm;
     }
-  }
+  };
 
   return (
     <Form.Control
@@ -63,7 +63,7 @@ const InputField = ({
       value={value}
       onChange={onChange}
       isInvalid={isInvalid}
-      className={styleSize()}
+      className={`${style.defaultInputField} ${styleSize()}`}
       placeholder={placeholder}
     />
   );
