@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import Pagination from '../../../../components/Pagination';
 import { VscFilter } from 'react-icons/vsc';
+import ButtonComponets from '../../../../components/Button';
 
 import style from './index.module.scss';
 
@@ -111,8 +111,8 @@ const CategoryList = () => {
             </Dropdown>
           </Card.Header>
           <Card.Body className={style.cardBodyScroll}>
-            <Link to="/admin/add-category">
-              <Button className={style.addButton}>Add Category</Button>
+            <Link to="/admin/add-category" className={style.addButton}>
+              <ButtonComponets buttonLabel="Add Category"/>
             </Link>
             <div>
               <DataTable

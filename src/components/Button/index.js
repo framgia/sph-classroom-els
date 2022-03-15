@@ -18,7 +18,7 @@ import style from './index.module.scss';
                 otherwise it will return default button.
 */
 
-const buttonComponets = ({
+const ButtonComponets = ({
   buttonLabel,
   isLarge = false, 
   isSmall = false,
@@ -68,7 +68,7 @@ const buttonComponets = ({
   );
 };
 
-buttonComponets.propTypes = {
+ButtonComponets.propTypes = {
   buttonLabel: PropTypes.string,
   isLarge: PropTypes.bool,
   isSmall: PropTypes.bool,
@@ -76,4 +76,4 @@ buttonComponets.propTypes = {
   outline: PropTypes.bool
 };
 
-export default buttonComponets;
+export default ButtonComponets;
