@@ -213,7 +213,7 @@
   height: 30px;
   width: 30px;
   float: right;
-  margin: 10px 5px 0.5px 0px;
+  margin: 10px 10px 0.5px 0px;
   cursor: pointer;
 
   &:hover {
@@ -248,6 +248,7 @@
 .dropdownStyle {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: $color-white;
   border: 1px $color-light-blue-2 solid;
   color: $color-black;
@@ -322,6 +323,7 @@
 
 .radioStyle {
   margin-top: 9px;
+  margin-left: 5px;
   height: 30px;
   width: 30px;
 }
