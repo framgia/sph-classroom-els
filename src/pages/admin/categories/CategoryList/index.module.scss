@@ -93,12 +93,6 @@
 .addButton {
   float: right;
   margin: 10px 0px 30px;
-  @include button-style($color-light-blue-2, 172px, 38px);
-
-  &:hover {
-    background-color: $color-light-blue-3;
-    border-color: $color-light-blue-3;
-  }
 }
 
 .cardBodyScroll {

@@ -6,7 +6,7 @@ import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import Pagination from '../../../../components/Pagination';
 import { VscFilter } from 'react-icons/vsc';
-import ButtonComponets from '../../../../components/Button';
+import Button from '../../../../components/Button';
 
 import style from './index.module.scss';
 
@@ -112,7 +112,7 @@ const CategoryList = () => {
           </Card.Header>
           <Card.Body className={style.cardBodyScroll}>
             <Link to="/admin/add-category" className={style.addButton}>
-              <ButtonComponets buttonLabel="Add Category"/>
+              <Button buttonLabel="Add Category" buttonSize="def"/>
             </Link>
             <div>
               <DataTable
