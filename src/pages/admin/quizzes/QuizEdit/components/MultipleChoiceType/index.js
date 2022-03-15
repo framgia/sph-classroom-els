@@ -7,10 +7,10 @@ import { PropTypes } from 'prop-types';
 import { Controller, useForm } from 'react-hook-form';
 
 const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
-  const { control} = useForm();
+  const { control } = useForm();
   const [choices, setChoices] = useState([]);
-  const [questionOnChange, setQuestionOnChange ] = useState({
-    question : question.question,
+  const [questionOnChange, setQuestionOnChange] = useState({
+    question: question.question,
     questionId: question.id,
     choices: question.choices
   });
@@ -25,7 +25,6 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
       question: question.question,
       questionId: question.id
     });
-
   }, [question]);
 
   const handleChangeQuestion = (e) => {
@@ -37,7 +36,7 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
   };
 
   useEffect(() => {
-    if(questionOnChange){
+    if (questionOnChange) {
       getData(questionOnChange);
     }
   }, [questionOnChange]);
@@ -46,7 +45,7 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
     // Condition in place in case there is a question with no choices yet
     // If the choices in a question is not empty then map all elements and return choice.id
     // Else, return [0] as a starting id
-    const choiceIds = choices.length > 0 ? choices.map(choice => choice.id) : [0];
+    const choiceIds = choices.length > 0 ? choices.map((choice) => choice.id) : [0];
     const maxId = Math.max(...choiceIds) + 1;
     setChoices([
       ...choices,
@@ -72,7 +71,7 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
   };
 
   const handleChangeChoices = (e, choiceId) => {
-    let updateChoices = choices.map(choice => {
+    let updateChoices = choices.map((choice) => {
       if (choice.id === choiceId) {
         return {
           ...choice,
@@ -83,15 +82,15 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
     });
     setChoices(updateChoices);
   };
-  
+
   useEffect(() => {
-    if(questionOnChange){
+    if (questionOnChange) {
       getData(questionOnChange);
     }
   }, [questionOnChange]);
 
   const changeCorrectAnswer = (e, choiceId) => {
-    let updateCorrectAnswer = choices.map(choice => {
+    let updateCorrectAnswer = choices.map((choice) => {
       if (choice.id === choiceId) {
         // Only one is true
         return {
@@ -119,7 +118,7 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
               name="question"
               defaultValue={question.question}
               render={({ field: { ref } }) => (
-                <Form.Control 
+                <Form.Control
                   onChange={handleChangeQuestion}
                   type="text"
                   className={style.inputWidth}
@@ -134,12 +133,16 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
       <div className={style.formSpacing}>
         <Form>
           <Form.Label className={style.inputTitle}>
-            Choices <GrAddCircle className={style.iconSize} onClick={() => addChoicesFields()}/>
+            Choices
+            <GrAddCircle
+              className={style.iconSize}
+              onClick={() => addChoicesFields()}
+            />
           </Form.Label>
         </Form>
-        {question &&  choices.map((choice, idx) => (
+        {question && choices.map((choice, idx) => (
           <Form key={idx} className={style.cardBody}>
-            <Form.Check 
+            <Form.Check
               className={style.radioStyle}
               type="radio"
               id={choice.id}
@@ -151,7 +154,7 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
               name="choice"
               defaultValue={choice.choice}
               render={({ field: { ref } }) => (
-                <Form.Control 
+                <Form.Control
                   className={style.choicesAlignment}
                   onChange={(e) => handleChangeChoices(e, choice.id)}
                   type="text"
@@ -159,8 +162,11 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
                   ref={ref}
                 />
               )}
-            /> 
-            <AiOutlineCloseCircle className={style.inputIconSize} onClick={() => removeChoicesFields(idx)}/>
+            />
+            <AiOutlineCloseCircle
+              className={style.removeChoiceIcon}
+              onClick={() => removeChoicesFields(idx)}
+            />
           </Form>
         ))}
       </div>

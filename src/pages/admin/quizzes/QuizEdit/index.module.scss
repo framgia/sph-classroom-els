@@ -34,7 +34,7 @@
   @extend %column-flex;
 }
 
-.divStyle{
+.divStyle {
   display: flex;
   height: 100%;
   gap: 65px;
@@ -85,17 +85,30 @@
   @extend %column-flex;
 }
 
-.navLinkItem {
+%nav-link-style {
   width: 245px;
   height: 61px;
   border-radius: 2px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
 
-  &:focus,
-  &:active {
-    box-shadow: inset 0px 3px 4px rgba(0, 0, 0, 0.25);
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navLinkItem {
+ @extend %nav-link-style;
+}
+
+.currentNavLinkItem {
+  @extend %nav-link-style;
+
+  box-shadow: inset 0px 3px 4px rgba(0, 0, 0, 0.25);
+} 
+
+.questionDetails {
+  width: 100%;
 }
 
 .questionNumber {
@@ -129,7 +142,7 @@
   gap: 25px;
   margin-top: auto;
   top: 85%;
-  left: 83%
+  left: 83%;
 }
 
 .cancelButton {
@@ -192,20 +205,31 @@
   height: 25px;
   width: 25px;
   margin-left: 20px;
-}
-
-.iconSize:hover {
   cursor: pointer;
 }
 
-.inputIconSize {
+.removeChoiceIcon {
+  color: $color-light-gray;
   height: 30px;
   width: 30px;
   float: right;
-  margin: 10px 5px 0.5px 0px;
+  margin: 10px 10px 0.5px 0px;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-dark-blue-1;
+  }
 }
 
-.inputIconSize:hover{
+.removeQuestionIcon {
+  color: $color-light-gray;
+
+  &:hover {
+    color: $color-dark-blue-1;
+  }
+}
+
+.inputIconSize:hover {
   cursor: pointer;
 }
 
@@ -224,6 +248,7 @@
 .dropdownStyle {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: $color-white;
   border: 1px $color-light-blue-2 solid;
   color: $color-black;
@@ -255,7 +280,7 @@
   height: 50px;
 }
 
-.choicesAlignment:focus{
+.choicesAlignment:focus {
   outline: none;
 }
 
@@ -270,7 +295,7 @@
   margin-left: 10px;
 }
 
-.questionTypestyle{
+.questionTypestyle {
   overflow: scroll;
   overflow-x: hidden;
   height: 80%;
@@ -293,16 +318,17 @@
   /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
     background: $color-light-blue-2;
-  } 
+  }
 }
 
-.radioStyle{
+.radioStyle {
   margin-top: 9px;
+  margin-left: 5px;
   height: 30px;
   width: 30px;
 }
 
-.questionTypeChoiceStyle{
+.questionTypeChoiceStyle {
   margin-top: 500px;
 }
 
@@ -317,7 +343,7 @@
   margin-left: 10px;
 }
 
-.message{
+.message {
   margin: 230px 0px 0px 300px;
   font-weight: $font-weight-bold;
   font-size: $font-size-page-title;

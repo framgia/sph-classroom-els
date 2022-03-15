@@ -1,14 +1,13 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-// import Container from 'react-bootstrap/Container';
+import { Link, useParams } from 'react-router-dom';
+import { useToast } from '../../../../hooks/useToast';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
-import QuestionType from './components/QuestionType';
-import { useParams } from 'react-router-dom';
-import { useToast } from '../../../../hooks/useToast';
 import Spinner from 'react-bootstrap/Spinner';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 import style from './index.module.scss';
+import QuestionType from './components/QuestionType';
 // import ChangeLocation from '../../../../components/ChangeLocation';
 
 import QuizApi from '../../../../api/Quiz';
@@ -36,19 +35,19 @@ const QuizEdit = () => {
       setQuestions(data.data);
       setSelectedQuestion(data.data[0]);
     });
-
   }, []);
 
   const changeQuestion = (value) => {
-    const updateQuestion = questions.map( question =>
-    {
-      if (question.id === value.questionId){
-        return {...question, 
-          question: value.question, 
-          text_answer: value.answer, 
-          choices: value.choices};
+    const updateQuestion = questions.map((question) => {
+      if (question.id === value.questionId) {
+        return {
+          ...question,
+          question: value.question,
+          text_answer: value.answer,
+          choices: value.choices
+        };
       }
-      return question;  
+      return question;
     });
 
     setQuestions(updateQuestion);
@@ -56,7 +55,7 @@ const QuizEdit = () => {
 
   // Function will trigger if the question time limit is updated
   const changeTimeLimit = (newTime, questionId) => {
-    const updateTimeLimit = questions.map(question => {
+    const updateTimeLimit = questions.map((question) => {
       if (question.id === questionId) {
         return {
           ...question,
@@ -70,7 +69,7 @@ const QuizEdit = () => {
 
   // Function will trigger if the question type is updated
   const changeQuestionType = (newType, questionId) => {
-    const updateQuestionType = questions.map(question => {
+    const updateQuestionType = questions.map((question) => {
       if (question.id === questionId) {
         return {
           ...question,
@@ -80,11 +79,11 @@ const QuizEdit = () => {
       return question;
     });
     setQuestions(updateQuestionType);
-  }; 
+  };
 
   // Function will trigger if the choices are updated
   const changeChoices = (choices, questionId) => {
-    const updateChoices = questions.map(question => {
+    const updateChoices = questions.map((question) => {
       if (question.id === questionId) {
         return {
           ...question,
@@ -96,29 +95,37 @@ const QuizEdit = () => {
     setQuestions(updateChoices);
   };
 
-  const onSelectQuestion = (e) => {
-    setSelectedQuestion(
-      questions.find((question) => question.id === parseInt(e))
-    );
+  const onSelectQuestion = (idx) => {
+    setSelectedQuestion(questions[idx]);
   };
 
   const addQuestionFields = () => {
-    const questionIds = questions && questions.length > 0 ? questions.map(question => question.id) : [0];
+    const questionIds = questions && questions.length > 0 ? questions.map((question) => question.id) : [0];
     const maxId = Math.max(...questionIds) + 1;
     let newQuestions = [...questions];
-    newQuestions.push(
-      {
-        choices: [],
-        id: maxId,
-        question: '',
-        question_type_id: 1,
-        quiz_id: quizId,
-        text_answer: '',
-        time_limit: 5
-      }
-    );
+    newQuestions.push({
+      choices: [],
+      id: maxId,
+      question: '',
+      question_type_id: 1,
+      quiz_id: quizId,
+      text_answer: '',
+      time_limit: 5
+    });
     setQuestions(newQuestions);
     setSelectedQuestion(newQuestions.find((question) => question.id === maxId));
+  };
+
+  const onRemoveQuestion = (idx) => {
+    let newQuestions = [...questions];
+    newQuestions.splice(idx, 1);
+    setQuestions(newQuestions);
+
+    if(idx < newQuestions.length){
+      setSelectedQuestion(newQuestions[idx]);
+    } else {
+      setSelectedQuestion(newQuestions[idx - 1]);
+    }
   };
 
   const handleSubmit = () => {
@@ -130,7 +137,7 @@ const QuizEdit = () => {
         toast('Success', 'Successfully updated questions');
         window.location = `/admin/quizzes/${quizId}`;
       })
-      .catch(error => {
+      .catch((error) => {
         toast('Error', error);
       });
   };
@@ -153,37 +160,49 @@ const QuizEdit = () => {
                 questions.map((question, idx) => {
                   return (
                     <Fragment key={idx}>
-                      <Nav className="flex-column" onSelect={onSelectQuestion}>
+                      <Nav className="flex-column">
                         <Nav.Link
                           eventKey={question.id}
-                          className={style.navLinkItem}
+                          className={selectedQuestion?.id === question.id ? style.currentNavLinkItem : style.navLinkItem}
                           active
                         >
-                          <span className={style.questionNumber}>
-                            Question # {idx + 1}
-                          </span>
-                          <p key={idx} className={style.question}>
-                            {question.question}
-                          </p>
+                          <div className={style.questionDetails} onClick={() => onSelectQuestion(idx)}>
+                            <span className={style.questionNumber}>
+                              Question # {idx + 1}
+                            </span>
+                            <p key={idx} className={style.question}>
+                              {question.question}
+                            </p>
+                          </div>
+                          <AiOutlineCloseCircle
+                            size={25}
+                            className={style.removeQuestionIcon}
+                            onClick={() => {
+                              onRemoveQuestion(idx); 
+                            }}
+                          />
                         </Nav.Link>
                       </Nav>
                     </Fragment>
                   );
                 })}
-              <Button className={style.sidebarButtons} onClick={() => addQuestionFields()} >Add a Question</Button>
+              <Button
+                className={style.sidebarButtons}
+                onClick={() => addQuestionFields()}
+              >
+                Add a Question
+              </Button>
               {/* <Button className={style.sidebarButtons} onClick={handleShow}>
               Change Category
             </Button> */}
-              <Button className={style.sidebarButtons}>
-                Change Category
-              </Button>
+              <Button className={style.sidebarButtons}>Change Category</Button>
             </div>
             {questions?.length === 0 ? (
               <div className={style.message}>
                 <p>NO QUESTION FOUND</p>
               </div>
             ) : (
-              <QuestionType 
+              <QuestionType
                 question={selectedQuestion}
                 onGetData={changeQuestion}
                 onChangeTimeLimit={changeTimeLimit}
@@ -197,7 +216,9 @@ const QuizEdit = () => {
           <Link to={`/admin/quizzes/${quizId}`} className={style.cancelButton}>
             Cancel
           </Link>
-          <Button className={style.saveButton} onClick={handleSubmit}>Save</Button>
+          <Button className={style.saveButton} onClick={handleSubmit}>
+            Save
+          </Button>
         </div>
       </div>
       {/* <ChangeLocation
