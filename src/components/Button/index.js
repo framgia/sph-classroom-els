@@ -24,41 +24,26 @@ const ButtonComponets = ({
 
 }) => {
 
-  function onButtonSize() {
-
+  const sizeButton = () => {
     switch(buttonSize) {
     case 'lg':
-      return style.largeButtonStyle;
+      return style.large;
     case 'def':
-      return style.defaultButtonStyle;
+      return style.default;
     case 'sm':
-      return style.smallButtonStyle;
+      return style.small;
     }
-  }
+  };
 
-  function onOutlineButtonSize() {
-
-    switch(buttonSize) {
-    case 'lg':
-      return style.largeButtonOutlineStyle;
-    case 'def':
-      return style.defaultButtonOutlineStyle;
-    case 'sm':
-      return style.smallButtonOutlineStyle;
-    }
-  }
-
+  const isOutline = () => {
+    return outline ? style.outlineButton : '';
+  };
 
   return (
     <div>
-      {outline === true ? ( 
-        <Button className={onOutlineButtonSize()} disabled = {disabled} >
-          {buttonLabel}
-        </Button>
-      ):( 
-        <Button className={onButtonSize()} disabled = {disabled} >
-          {buttonLabel}
-        </Button>)}
+      <Button className={`${style.defaultButton} ${sizeButton()} ${isOutline()}`} disabled={disabled} >
+        {buttonLabel}
+      </Button>
     </div>
   );
 };

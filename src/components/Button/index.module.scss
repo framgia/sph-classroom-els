@@ -5,14 +5,43 @@
   color: $color-dark-blue-1;
 }
 
-.largeButtonStyle {
+.defaultButton {
   background-color: $color-dark-blue-6;
   border-color: $color-dark-blue-6;
   color: $color-white;
   font-size: $font-size-md;
-  height: 42px;
-  width: 238px;
+  height: 38px;
   padding: 0px;
+
+  &.default {
+    width: 172px;
+  }
+
+  &.small {
+    width: 80px;
+  }
+
+  &.large {
+    width: 240px;
+  }
+
+  &.outlineButton {
+    background-color: $color-white;
+    border-color: $color-light-blue-5;
+    color: $color-dark-blue-1;
+    font-size: $font-size-md;
+    &:hover,
+    &:focus {
+      background-color: $color-white;
+      border-color: $color-light-blue-5;
+      color: $color-dark-blue-1;
+    }
+    &:disabled {
+      background-color: $color-white-4;
+      border-color: $color-light-blue-6;
+      color: $color-dark-blue-1;
+    }
+  }
 
   &:hover,
   &:focus {
@@ -20,123 +49,10 @@
     border-color: $color-light-blue-4;
     color: $color-white;
   }
-}
 
-.largeButtonStyle:disabled{
-  background-color: $color-light-blue-5;
-  border-color: $color-light-blue-5;
-  color: $color-white;
-}
-
-.defaultButtonStyle {
-    background-color: $color-dark-blue-6;
-    border-color: $color-dark-blue-6;
-    color: $color-white;
-    font-size: $font-size-md;
-    height: 38px;
-    width: 172px;
-    padding: 0px;
-  
-    &:hover,
-    &:focus {
-      background-color: $color-light-blue-4;
-      border-color: $color-light-blue-4;
-      color: $color-white;
-    }
-  }
-
-.defaultButtonStyle:disabled{
-  background-color: $color-light-blue-5;
-  border-color: $color-light-blue-5;
-  color: $color-white;
-}
-
-  .smallButtonStyle {
-    background-color: $color-dark-blue-6;
-    border-color: $color-dark-blue-6;
-    color: $color-white;
-    font-size: $font-size-md;
-    height: 30px;
-    width: 80px;
-    padding: 0px;
-  
-    &:hover,
-    &:focus {
-      background-color: $color-light-blue-4;
-      border-color: $color-light-blue-4;
-      color: $color-white;
-    }
-  }
-
-  .smallButtonStyle:disabled{
+  &:disabled {
     background-color: $color-light-blue-5;
     border-color: $color-light-blue-5;
     color: $color-white;
   }
-
-  .largeButtonOutlineStyle {
-    background-color: $color-white;
-    border-color: $color-light-blue-5;
-    color: $color-dark-blue-1;
-    font-size: $font-size-md;
-    height: 42px;
-    width: 238px;
-    padding: 0px;
-  
-    &:hover,
-    &:focus {
-      background-color: $color-white;
-      border-color: $color-light-blue-5;
-      color: $color-dark-blue-1;
-    }
-  }
-  .largeButtonOutlineStyle:disabled{
-    background-color: $color-white-4;
-    border-color: $color-light-blue-6;
-    color: $color-dark-blue-1;
-  }
-
-  .defaultButtonOutlineStyle {
-    background-color: $color-white;
-    border-color: $color-light-blue-5;
-    color: $color-dark-blue-1;
-    font-size: $font-size-md;
-    height: 38px;
-    width: 172px;
-    padding: 0px;
-  
-    &:hover,
-    &:focus {
-      background-color: $color-white;
-      border-color: $color-light-blue-5;
-      color: $color-dark-blue-1;
-    }
-  }
-
-  .defaultButtonOutlineStyle:disabled{
-    background-color: $color-white-4;
-    border-color: $color-light-blue-6;
-    color: $color-dark-blue-1;
-  }
-
-  .smallButtonOutlineStyle {
-    background-color: $color-white;
-    border-color: $color-light-blue-5;
-    color: $color-dark-blue-1;
-    font-size: $font-size-md;
-    height: 30px;
-    width: 80px;
-    padding: 0px;
-  
-    &:hover,
-    &:focus {
-      background-color: $color-white;
-      border-color: $color-light-blue-5;
-      color: $color-dark-blue-1;
-    }
-  }
-  .smallButtonOutlineStyle:disabled{
-    background-color: $color-white-4;
-    border-color: $color-light-blue-6;
-    color: $color-dark-blue-1;
-  }
+}
