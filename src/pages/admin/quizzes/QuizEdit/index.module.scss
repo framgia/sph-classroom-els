@@ -85,7 +85,7 @@
   @extend %column-flex;
 }
 
-.navLinkItem {
+%nav-link-style {
   width: 245px;
   height: 61px;
   border-radius: 2px;
@@ -95,11 +95,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
 
-  &:focus,
-  &:active {
-    box-shadow: inset 0px 3px 4px rgba(0, 0, 0, 0.25);
-  }
+.navLinkItem {
+ @extend %nav-link-style;
+}
+
+.currentNavLinkItem {
+  @extend %nav-link-style;
+
+  box-shadow: inset 0px 3px 4px rgba(0, 0, 0, 0.25);
+} 
+
+.questionDetails {
+  width: 100%;
 }
 
 .questionNumber {
@@ -206,10 +215,18 @@
   float: right;
   margin: 10px 5px 0.5px 0px;
   cursor: pointer;
+
+  &:hover {
+    color: $color-dark-blue-1;
+  }
 }
 
 .removeQuestionIcon {
   color: $color-light-gray;
+
+  &:hover {
+    color: $color-dark-blue-1;
+  }
 }
 
 .inputIconSize:hover {

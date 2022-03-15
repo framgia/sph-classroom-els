@@ -95,10 +95,8 @@ const QuizEdit = () => {
     setQuestions(updateChoices);
   };
 
-  const onSelectQuestion = (e) => {
-    setSelectedQuestion(
-      questions.find((question) => question.id === parseInt(e))
-    );
+  const onSelectQuestion = (idx) => {
+    setSelectedQuestion(questions[idx]);
   };
 
   const addQuestionFields = () => {
@@ -118,10 +116,16 @@ const QuizEdit = () => {
     setSelectedQuestion(newQuestions.find((question) => question.id === maxId));
   };
 
-  const removeQuestion = (idx) => {
+  const onRemoveQuestion = (idx) => {
     let newQuestions = [...questions];
     newQuestions.splice(idx, 1);
     setQuestions(newQuestions);
+
+    if(idx < newQuestions.length){
+      setSelectedQuestion(newQuestions[idx]);
+    } else {
+      setSelectedQuestion(newQuestions[idx - 1]);
+    }
   };
 
   const handleSubmit = () => {
@@ -156,13 +160,13 @@ const QuizEdit = () => {
                 questions.map((question, idx) => {
                   return (
                     <Fragment key={idx}>
-                      <Nav className="flex-column" onSelect={onSelectQuestion}>
+                      <Nav className="flex-column">
                         <Nav.Link
                           eventKey={question.id}
-                          className={style.navLinkItem}
+                          className={selectedQuestion?.id === question.id ? style.currentNavLinkItem : style.navLinkItem}
                           active
                         >
-                          <div>
+                          <div className={style.questionDetails} onClick={() => onSelectQuestion(idx)}>
                             <span className={style.questionNumber}>
                               Question # {idx + 1}
                             </span>
@@ -173,7 +177,9 @@ const QuizEdit = () => {
                           <AiOutlineCloseCircle
                             size={25}
                             className={style.removeQuestionIcon}
-                            onClick={() => removeQuestion(idx)}
+                            onClick={() => {
+                              onRemoveQuestion(idx); 
+                            }}
                           />
                         </Nav.Link>
                       </Nav>
