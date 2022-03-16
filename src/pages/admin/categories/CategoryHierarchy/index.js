@@ -1,32 +1,28 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
 import { GoKebabVertical } from 'react-icons/go';
-import { CgFormatSlash } from 'react-icons/cg';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Spinner from 'react-bootstrap/Spinner';
+import Breadcrumbs from '../../../../components/Breadcrumbs';
 import CategoryApi from '../../../../api/Category';
 import style from './index.module.scss';
 
 const CategoryHierarchy = () => {
   const toast = useToast();
   const history = useHistory();
+
   const queryParams = new URLSearchParams(window.location.search);
   const categoryID = queryParams.get('categoryID');
   const [categories, setCategories] = useState();
   const [chosenCategoryPathID, setChosenCategoryPathID] = useState(categoryID);
-  const [breadcrumbs, setBreadcrumbs] = useState([]);
 
   useEffect(() => {
     setCategories(null);
-    chosenCategoryPathID || categoryID
+    chosenCategoryPathID
       ? toast('Processing', 'Getting the subcategories...')
       : toast('Processing', 'Getting the root categories...');
-
-    if (categoryID) {
-      getParentCategories();
-    }
 
     load();
   }, [chosenCategoryPathID]);
@@ -37,75 +33,30 @@ const CategoryHierarchy = () => {
     })
       .then(({ data }) => {
         setCategories(data.data);
-      })
-      .catch(() =>
-        toast('Error', 'There was an error getting the list of categories.')
-      );
-  };
-
-  const getParentCategories = () => {
-    CategoryApi.getParentCategories(categoryID)
-      .then(({ data }) => {
-        setBreadcrumbs(data);
         history.replace({ categoryID });
       })
-      .catch((error) => toast('Error', error));
+      .catch((error) => {
+        console.log(error);
+        toast('Error', 'There was an error getting the list of categories.');
+      });
   };
 
-  const onCategoryClick = (category, index) => {
+  const onCategoryClick = (category) => {
     if (category.subcategories_count > 0) {
       setChosenCategoryPathID(category.id);
-      setBreadcrumbs([
-        ...breadcrumbs,
-        { id: category.id, name: category.name, idx: index }
-      ]);
     } else {
       toast('Message', 'This category does not have a subcategory.');
     }
-  };
-
-  const onBreadcrumbClick = (category_id, index) => {
-    setBreadcrumbs(breadcrumbs.slice(0, index + 1));
-    setChosenCategoryPathID(category_id);
   };
 
   return (
     <div className={style.mainContent}>
       <section className={style.headerSection}>
         <span className={style.pageTitle}>Category Hierarchy</span>
-        <div className={style.breadcrumbsContainer}>
-          <span className={style.breadcrumbs}>Categories</span>
-          <CgFormatSlash size={20} />
-          <span className={style.breadcrumbs}>Hierarchy View</span>
-          <CgFormatSlash size={20} />
-          <span
-            className={style.breadcrumbs}
-            onClick={() => {
-              setChosenCategoryPathID(null);
-              setBreadcrumbs([]);
-            }}
-          >
-            Root
-          </span>
-          {breadcrumbs?.map((breadcrumb, idx) => {
-            return (
-              <Fragment key={idx}>
-                <CgFormatSlash
-                  size={20}
-                  className={style.breadcrumbSlashIcon}
-                />
-                <span
-                  className={style.breadcrumbs}
-                  onClick={() => {
-                    onBreadcrumbClick(breadcrumb.id, idx);
-                  }}
-                >
-                  {breadcrumb.name}
-                </span>
-              </Fragment>
-            );
-          })}
-        </div>
+        <Breadcrumbs
+          chosenCategoryPathID={chosenCategoryPathID}
+          setChosenCategoryPathID={setChosenCategoryPathID}
+        />
       </section>
       <ListGroup>
         {categories ? (

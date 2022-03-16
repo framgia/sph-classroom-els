@@ -5,7 +5,7 @@ import { PropTypes } from 'prop-types';
 
 import style from './index.module.css';
 
-const SubcategoryCard = ({ category }) => {
+const SubcategoryCard = ({ category, setChosenCategoryPathID }) => {
   return (
     <Card className={style.card}>
       <Card.Header id={style.cardHeader}>
@@ -20,7 +20,10 @@ const SubcategoryCard = ({ category }) => {
               : `/categories/${category.id}/quizzes`
           }
         >
-          <div id={style.Subtitle}>
+          <div
+            id={style.Subtitle}
+            onClick={() => setChosenCategoryPathID(category.id)}
+          >
             {category?.subcategories_count
               ? `View Available SubCategories: ${category?.subcategories_count}`
               : 'Check Available Quizzes'}
@@ -32,7 +35,8 @@ const SubcategoryCard = ({ category }) => {
 };
 
 SubcategoryCard.propTypes = {
-  category: PropTypes.object
+  category: PropTypes.object,
+  setChosenCategoryPathID: PropTypes.func
 };
 
 export default SubcategoryCard;
