@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Button from '../../../../components/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { VscFilter } from 'react-icons/vsc';
-import { BiSearch } from 'react-icons/bi';
-import { RiDeleteBin2Fill } from 'react-icons/ri';
 import Pagination from '../../../../components/Pagination';
 import DataTable from '../../../../components/DataTable';
 import AdminApi from '../../../../api/Admin';
 import style from './index.module.scss';
+import { BiSearch } from 'react-icons/bi';
 
 const AdminList = () => {
   const queryParams = new URLSearchParams(window.location.search);
@@ -36,6 +35,7 @@ const AdminList = () => {
 
   const tableHeaderNames = [
     { title: 'ID', canSort: true },
+    { title: 'Action', canSort: false },
     { title: 'Name', canSort: true },
     { title: 'Email', canSort: true }
   ];
@@ -93,11 +93,11 @@ const AdminList = () => {
       return (
         <tr key={idx} className={style.tableDataRow}>
           <td className={style.tableData}>{admin.id}</td>
+          <td className={`${style.tableData}`}>
+            <Button buttonLabel="Delete" buttonSize="sm" outline={true}/>
+          </td>
           <td className={style.tableData}>{admin.name}</td>
           <td className={style.tableData}>{admin.email}</td>
-          <td className={`${style.tableData} ${style.buttonColumn}`}>
-            <RiDeleteBin2Fill size="25px" color="#db7771" />
-          </td>
         </tr>
       );
     });
@@ -105,8 +105,11 @@ const AdminList = () => {
 
   return (
     <div className={style.mainContent}>
-      <div>
+      <div className={style.headerTittleStyle}>
         <h1 className={style.pageTitle}>Admin Accounts</h1>
+        <Link to="/admin/create-admin-account">
+          <Button buttonLabel="Add an Admin" buttonSize="def"/> 
+        </Link>
       </div>
       <Card className={style.card}>
         <Card.Header className={style.cardHeader}>
@@ -122,9 +125,7 @@ const AdminList = () => {
               />
               <BiSearch size={17} className={style.searchIcon} />
             </div>
-            <Button className={style.searchButton} type="submit">
-              Search
-            </Button>
+            <Button className={style.searchButton} buttonSize="sm" buttonLabel="Search" type="submit" />
           </Form>
           <Dropdown>
             <Dropdown.Toggle className={style.dropdownButton} bsPrefix="none">
@@ -134,7 +135,6 @@ const AdminList = () => {
           </Dropdown>
         </Card.Header>
         <Card.Body className={style.cardBody}>
-          <Button className={style.addAdminButton}>Add an Admin</Button>
           <DataTable
             tableHeaderNames={tableHeaderNames}
             renderTableData={renderTableData}

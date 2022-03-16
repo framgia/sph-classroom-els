@@ -87,7 +87,6 @@ const DataTable = ({
               </td>
             );
           })}
-          <td className={titleHeaderStyle}>Delete</td>
         </tr>
       </thead>
       {data ? (
