@@ -120,10 +120,7 @@ function CategoryList() {
     <div className={style.container}>
       <section className={style.headerSection}>
         <p className={style.title}>Categories</p>
-        <Breadcrumbs
-          chosenCategoryPathID={null}
-          setChosenCategoryPathID={() => {}}
-        />
+        <Breadcrumbs />
       </section>
       <div className={style.categoryConditionsStyle}>
         <Form className="d-flex" onSubmit={onSearchSubmit}>

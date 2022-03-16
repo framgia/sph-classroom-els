@@ -5,7 +5,10 @@ import { CgFormatSlash } from 'react-icons/cg';
 import CategoryApi from '../../api/Category';
 import style from './index.module.scss';
 
-const Breadcrumbs = ({ chosenCategoryPathID, setChosenCategoryPathID }) => {
+const Breadcrumbs = ({
+  chosenCategoryPathID = null,
+  setChosenCategoryPathID
+}) => {
   const [breadcrumbs, setBreadcrumbs] = useState([]);
   const toast = useToast();
 
@@ -33,8 +36,10 @@ const Breadcrumbs = ({ chosenCategoryPathID, setChosenCategoryPathID }) => {
       <span
         className={style.breadcrumbs}
         onClick={() => {
-          setChosenCategoryPathID(null);
-          setBreadcrumbs([]);
+          if (chosenCategoryPathID) {
+            setChosenCategoryPathID(null);
+            setBreadcrumbs([]);
+          }
         }}
       >
         Root
@@ -46,7 +51,9 @@ const Breadcrumbs = ({ chosenCategoryPathID, setChosenCategoryPathID }) => {
             <span
               className={style.breadcrumbs}
               onClick={() => {
-                onBreadcrumbClick(breadcrumb.id, idx);
+                if (chosenCategoryPathID != breadcrumb.id) {
+                  onBreadcrumbClick(breadcrumb.id, idx);
+                }
               }}
             >
               {breadcrumb?.name}
