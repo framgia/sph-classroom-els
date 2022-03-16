@@ -35,10 +35,9 @@ const CategoryHierarchy = () => {
         setCategories(data.data);
         history.replace({ categoryID });
       })
-      .catch((error) => {
-        console.log(error);
-        toast('Error', 'There was an error getting the list of categories.');
-      });
+      .catch(() =>
+        toast('Error', 'There was an error getting the list of categories.')
+      );
   };
 
   const onCategoryClick = (category) => {
