@@ -33,10 +33,10 @@
   padding-top: 2px;
 }
 
-.headerTittleStyle{
-  display: flex;
-  justify-content: space-between;
+.header {
   padding-top: 10px;
+
+  @include flex(space-between, center, row, none);
 }
 
 .card {
@@ -51,33 +51,6 @@
   box-shadow: $drop-shadow;
 
   @include flex(space-between, none, row, 0px);
-}
-
-.searchSection {
-  @include flex(none, center, row, 10px);
-}
-
-.searchInput {
-  position: relative;
-}
-
-.searchBar {
-  width: 335px;
-  padding-right: 34px;
-}
-
-.searchIcon {
-  position: absolute;
-  left: 92%;
-  top: 28%;
-}
-
-.searchButton {
-  @include button-style($color-light-blue-2, 93px, 38px);
-
-  &:hover {
-    background-color: $color-light-blue-3;
-  }
 }
 
 .dropdownButton {
@@ -123,7 +96,6 @@
   &:nth-child(3) {
     width: 432px;
   }
-
 }
 
 .tableDataRow {

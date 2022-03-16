@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
 import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { VscFilter } from 'react-icons/vsc';
-import { BiSearch } from 'react-icons/bi';
 import ConfirmationModal from '../../../../components/ConfirmationModal';
+import SearchBar from '../../../../components/SearchBar';
 import Pagination from '../../../../components/Pagination';
 import DataTable from '../../../../components/DataTable';
 import Button from '../../../../components/Button';
@@ -31,7 +30,6 @@ const AdminList = () => {
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
   const [search, setSearch] = useState(searchVal ? searchVal : '');
-  const [searchStatus, setSearchStatus] = useState(false);
   const [sortOptions, setSortOptions] = useState({
     sortBy,
     sortDirection
@@ -50,7 +48,7 @@ const AdminList = () => {
     );
 
     load();
-  }, [page, searchStatus, sortOptions]);
+  }, [page, search, sortOptions]);
 
   useEffect(() => {
     if (deleteConfirmed) {
@@ -91,22 +89,6 @@ const AdminList = () => {
       );
   };
 
-  const onSearchSubmit = (e) => {
-    e.preventDefault();
-
-    setPage(1);
-    setSearchStatus(!searchStatus);
-  };
-
-  function onChangeData(e) {
-    setSearch(e.target.value);
-
-    if (e.target.value.length === 0) {
-      setPage(1);
-      setSearchStatus(!searchStatus);
-    }
-  }
-
   const onPageChange = (selected) => {
     setPage(selected + 1);
   };
@@ -116,7 +98,7 @@ const AdminList = () => {
       return (
         <tr key={idx} className={style.tableDataRow}>
           <td className={style.tableData}>{admin.id}</td>
-          <td className={`${style.tableData}`}>
+          <td className={style.tableData}>
             <Button
               buttonLabel="Delete"
               buttonSize="sm"
@@ -142,7 +124,7 @@ const AdminList = () => {
         itemToDelete={itemToDelete.name}
         setDeleteConfirmed={setDeleteConfirmed}
       />
-      <div className={style.headerTittleStyle}>
+      <div className={style.header}>
         <h1 className={style.pageTitle}>Admin Accounts</h1>
         <Link to="/admin/create-admin-account">
           <Button buttonLabel="Add an Admin" buttonSize="def" />
@@ -150,25 +132,11 @@ const AdminList = () => {
       </div>
       <Card className={style.card}>
         <Card.Header className={style.cardHeader}>
-          <Form className={style.searchSection} onSubmit={onSearchSubmit}>
-            <div className={style.searchInput}>
-              <Form.Control
-                className={style.searchBar}
-                type="text"
-                aria-label="Search"
-                value={search}
-                onChange={onChangeData}
-                placeholder="Search name or email"
-              />
-              <BiSearch size={17} className={style.searchIcon} />
-            </div>
-            <Button
-              className={style.searchButton}
-              buttonSize="sm"
-              buttonLabel="Search"
-              type="submit"
-            />
-          </Form>
+          <SearchBar
+            placeholder="Search by name or email"
+            search={search}
+            setSearch={setSearch}
+          />
           <Dropdown>
             <Dropdown.Toggle className={style.dropdownButton} bsPrefix="none">
               Filter
