@@ -5,6 +5,20 @@ import { CgFormatSlash } from 'react-icons/cg';
 import CategoryApi from '../../api/Category';
 import style from './index.module.scss';
 
+/*
+    To use this component, pass the following props:
+
+    chosenCategoryPathID     :    pass the category ID of the category being clicked
+    setChosenCategoryPathID  :    pass the setter function of the state holding the current category ID, 
+                                  this is to set the current ID to the chosen breadcrumb
+
+    basically you're just going to pass the state you defined that will hold the current category ID being clicked.
+
+    e.g.       const [chosenCategoryID, setChosenCategoryID] = useState()
+
+               <Breadcrumbs chosenCategoryPathID={chosenCategoryID} setChosenCategoryPathID={setChosenCategoryID} />
+*/
+
 const Breadcrumbs = ({
   chosenCategoryPathID = null,
   setChosenCategoryPathID
