@@ -14,13 +14,21 @@ import style from './index.module.scss';
                 otherwise it will return default button.
                 
     > disabled: Pass disabled if you want to have a disable button.
+
+    >type : Pass a string for a type of button
+            example type = "submit"
+    
+    >buttonStyle : will take the any style.
 */
 
 const ButtonComponent = ({
   buttonLabel,
   buttonSize,
   disabled,
-  outline = false
+  outline = false,
+  type,
+  onClick,
+  buttonStyle
 
 }) => {
 
@@ -41,7 +49,11 @@ const ButtonComponent = ({
 
   return (
     <div>
-      <Button className={`${style.defaultButton} ${sizeButton()} ${isOutline()}`} disabled={disabled} >
+      <Button className={`${style.defaultButton} ${sizeButton()} ${isOutline()} ${buttonStyle}`} 
+        disabled={disabled} 
+        type={type}
+        onClick={onClick}
+      >
         {buttonLabel}
       </Button>
     </div>
@@ -52,7 +64,10 @@ ButtonComponent.propTypes = {
   buttonLabel: PropTypes.string,
   buttonSize: PropTypes.string,
   disabled: PropTypes.bool,
-  outline: PropTypes.bool
+  outline: PropTypes.bool,
+  type: PropTypes.string,
+  onClick: PropTypes.func,
+  buttonStyle: PropTypes.any,
 };
 
 export default ButtonComponent;

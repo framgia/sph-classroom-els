@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import Button from '../../components/Button';
 import { BiSearch } from 'react-icons/bi';
 
 import style from './index.module.scss';
@@ -45,9 +45,7 @@ const SearchBar = ({ placeholder, search, setSearch }) => {
         />
         <BiSearch size={17} className={style.searchIcon} />
       </div>
-      <Button className={style.searchButton} type="submit">
-        Search
-      </Button>
+      <Button buttonLabel="Search" buttonSize="sm" type="submit"/>
     </Form>
   );
 };

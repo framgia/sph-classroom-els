@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { FaRegEdit } from 'react-icons/fa';
-import { RiDeleteBin2Fill } from 'react-icons/ri';
 import Pagination from '../../../../components/Pagination';
 import { VscFilter } from 'react-icons/vsc';
 import Button from '../../../../components/Button';
@@ -63,9 +61,9 @@ const CategoryList = () => {
 
   const tableHeaderNames = [
     { title: 'ID', canSort: true },
+    { title: 'Action', canSort: false },
     { title: 'Name', canSort: true },
     { title: 'Description', canSort: false },
-    { title: 'Edit', canSort: false }
   ];
 
   const renderTableData = () => {
@@ -73,17 +71,19 @@ const CategoryList = () => {
       return (
         <tr key={idx}>
           <td id={style.tBodyStyle}>{category.id}</td>
+          <td id={style.tBodyStyle1}>
+            <td>
+              <Link to={`/admin/edit-category/${category.id}`}>
+                <Button buttonLabel="Edit" buttonSize="sm"/>
+              </Link>
+            </td>
+            <td>
+              <Button buttonLabel="Delete" buttonSize="sm" outline={true}/>
+            </td>
+          </td>
           <td id={style.tBodyStyle}>{category.name}</td>
           <td id={style.tBodyStyle} className={`${style.paragraphEllipsis}`}>
             {category.description}
-          </td>
-          <td id={style.tBodyStyle1}>
-            <Link to={`/admin/edit-category/${category.id}`}>
-              <FaRegEdit size="20px" color="black" />
-            </Link>
-          </td>
-          <td id={style.tBodyStyle1}>
-            <RiDeleteBin2Fill size="30px" color="#db7771" />
           </td>
         </tr>
       );
@@ -95,6 +95,9 @@ const CategoryList = () => {
       <div>
         <div className={style.headerTitle}>
           <p className={style.title}>Categories</p>
+          <Link to="/admin/add-category" className={style.addButton}>
+            <Button buttonLabel="Add Category" buttonSize="def"/>
+          </Link>
         </div>
         <Card className={style.mainCard}>
           <Card.Header className={style.cardHeader}>
@@ -111,9 +114,6 @@ const CategoryList = () => {
             </Dropdown>
           </Card.Header>
           <Card.Body className={style.cardBodyScroll}>
-            <Link to="/admin/add-category" className={style.addButton}>
-              <Button buttonLabel="Add Category" buttonSize="def"/>
-            </Link>
             <div>
               <DataTable
                 tableHeaderNames={tableHeaderNames}

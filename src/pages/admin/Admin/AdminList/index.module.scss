@@ -30,6 +30,13 @@
 .pageTitle {
   font-weight: $font-weight-medium;
   font-size: $font-size-page-title;
+  padding-top: 2px;
+}
+
+.headerTittleStyle{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
 }
 
 .card {
@@ -84,7 +91,7 @@
 }
 
 .cardBody {
-  padding: 20px;
+  padding: 0px 30px 30px 30px;
   overflow: auto;
   overflow-x: hidden;
 }
@@ -104,13 +111,19 @@
   font-weight: $font-weight-bold;
 
   &:first-child {
-    width: 110px;
+    width: 247px;
   }
 
-  &:last-child {
-    width: 110px;
-    text-align: center;
+  &:nth-child(2) {
+    width: 400px;
+    padding-right: 394px;
+    padding-left: 10px;
   }
+
+  &:nth-child(3) {
+    width: 432px;
+  }
+
 }
 
 .tableDataRow {
@@ -122,10 +135,10 @@
 
 .tableData {
   border-bottom-width: 0px !important;
-}
 
-.buttonColumn {
-  text-align: center;
+  &:nth-child(2) {
+    padding-left: 0px;
+  }
 }
 
 #pagPosition {

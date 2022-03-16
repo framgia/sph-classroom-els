@@ -84,7 +84,7 @@
 }
 
 .title {
-  padding: 0px 0px 33px;
+  padding: 0px 0px 23px;
   font-weight: $font-weight-medium;
   font-size: $font-size-page-title;
   margin: 0px;
@@ -97,7 +97,7 @@
 
 .cardBodyScroll {
   overflow-y: scroll;
-  padding: 30px;
+  padding: 0px 30px 30px 30px;
 }
 
 #tBodyStyle {
@@ -107,12 +107,23 @@
   &:nth-child(3) {
     padding-right: 88px;
     height: 74px;
+    padding-left: 60px
+  }
+
+  &:nth-child(4) {
+    height: 74px;
+    padding-left: 50px
   }
 }
 
 #tBodyStyle1 {
   @extend %style-table-body;
-  text-align: center;
+  align-items: center;
+  display: flex;
+  padding-top: 10px;
+  gap: 11px;
+  width: 0px;
+  margin-left: 60px;
 }
 
 .firstCol {
@@ -145,26 +156,25 @@
   @extend %style-table-head;
 
   &:nth-child(1) {
-    width: 153px;
+    width: 77.2px;
   }
 
   &:nth-child(2) {
-    width: 285px;
+    width: 10px;
+    text-align: center;
+    padding-right: 225px;
   }
 
   &:nth-child(3) {
-    width: 517px;
+    width: 250px;
+    padding-left: 60px
   }
 
   &:nth-child(4) {
-    width: 151px;
-    text-align: center;
+    width: 210px;
+    padding-left: 50px
   }
 
-  &:nth-child(5) {
-    width: 151px;
-    text-align: center;
-  }
 }
 
 .headerTitle {

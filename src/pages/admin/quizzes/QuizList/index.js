@@ -3,10 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import { FaRegEdit } from 'react-icons/fa';
-import { RiDeleteBin2Fill } from 'react-icons/ri';
-
+import Button from '../../../../components/Button';
 import Pagination from '../../../../components/Pagination';
 import DataTable from '../../../../components/DataTable';
 import AddQuizModal from './components/AddQuizModal';
@@ -119,9 +116,9 @@ const QuizList = () => {
 
   const tableHeaderNames = [
     { title: 'ID', canSort: true },
+    { title: 'Action', canSort: false },
     { title: 'Category', canSort: true },
-    { title: 'Name', canSort: true },
-    { title: 'Edit', canSort: false }
+    { title: 'Name', canSort: true }
   ];
 
   const renderTableData = () => {
@@ -129,16 +126,18 @@ const QuizList = () => {
       return (
         <tr key={idx}>
           <td id={style.classColumn}>{quiz.id}</td>
+          <td id={style.buttonColumn}>
+            <center>
+              <Link to={`/admin/quizzes/${quiz.id}`}>
+                <Button buttonLabel="Edit" buttonSize="sm"/>
+              </Link>
+            </center>
+            <center>
+              <Button buttonLabel="Delete" buttonSize="sm" outline={true}/>
+            </center>
+          </td>
           <td id={style.classColumn}>{quiz.name}</td>
           <td id={style.classColumn}>{quiz.title}</td>
-          <td id={style.buttonColumn}>
-            <Link to={`/admin/quizzes/${quiz.id}`}>
-              <FaRegEdit size="20px" color="black" />
-            </Link>
-          </td>
-          <td id={style.buttonColumn}>
-            <RiDeleteBin2Fill size="30px" color="#db7771" />
-          </td>
         </tr>
       );
     });
@@ -147,7 +146,15 @@ const QuizList = () => {
   return (
     <div className={style.cardContainer}>
       <div>
-        <p className={style.title}>Quizzes</p>
+        <div className={style.headerTittleStyle}>
+          <p className={style.title}>Quizzes</p>
+          <Button
+            buttonStyle={style.addButton}
+            onClick={() => setModalShow(true)}
+            buttonLabel="Add a Quiz"
+            buttonSize="def"
+          />
+        </div>
         <Col>
           <Card className={style.mainCard}>
             <Card.Header className={style.cardHeader}>
@@ -165,12 +172,6 @@ const QuizList = () => {
               />
             </Card.Header>
             <Card.Body className={style.cardBodyScroll}>
-              <Button
-                className={style.addButton}
-                onClick={() => setModalShow(true)}
-              >
-                Add a Quiz
-              </Button>
               <div>
                 <DataTable
                   tableHeaderNames={tableHeaderNames}
