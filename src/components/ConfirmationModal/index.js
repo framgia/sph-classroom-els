@@ -11,7 +11,7 @@ import Button from '../Button';
 
     basically you're just going to pass the state you defined that will hold the boolean value to determine whether to show or hide modal.
 
-    e.g.       const [showModal, ] = useState()
+    e.g.       const [showModal, setShowModal] = useState()
 
                <Breadcrumbs showModal={showModal} setShowModal={setShowModal} />
 
