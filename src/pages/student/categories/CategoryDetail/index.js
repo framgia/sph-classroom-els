@@ -1,72 +1,104 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import Spinner from 'react-bootstrap/Spinner';
-import style from './index.module.css';
-import Pagination from '../../../../components/Pagination';
+import { useToast } from '../../../../hooks/useToast';
 import { LinkContainer } from 'react-router-bootstrap';
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
-
+import Spinner from 'react-bootstrap/Spinner';
+import Pagination from '../../../../components/Pagination';
+import Breadcrumbs from '../../../../components/Breadcrumbs';
 import CategoryApi from '../../../../api/Category';
 import SubcategoryCard from './components/SubcategoryCard';
+import style from './index.module.scss';
 
 function Subcategories() {
-  const [categories, setCategories] = useState(null);
-  const [category, setCategory] = useState(null);
+  const toast = useToast();
+  const history = useHistory();
   const categoryId = useParams().id;
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
-  const history = useHistory();
+
+  const [categories, setCategories] = useState(null);
+  const [category, setCategory] = useState(null);
+  const [chosenCategoryPathID, setChosenCategoryPathID] = useState(categoryId);
   const [page, setPage] = useState(pageNum ? pageNum : 1);
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
 
   useEffect(() => {
-    CategoryApi.show({ categoryId }).then(({ data }) => {
-      setCategory(data.data);
-      CategoryApi.getAll({ category_id: categoryId }, page).then(({ data }) => {
-        setCategories(data.data);
-        setPerPage(data.per_page);
-        setTotalItems(data.total);
-        setLastPage(data.last_page);
-      });
-    });
-  }, [categoryId, page]);
+    setCategories(null);
+
+    if (!chosenCategoryPathID) {
+      history.push('/categories');
+    } else {
+      history.push(`/categories/${chosenCategoryPathID}/sub?page=${page}`);
+
+      load();
+    }
+  }, [chosenCategoryPathID, page]);
+
+  const load = () => {
+    CategoryApi.show({ categoryId: chosenCategoryPathID })
+      .then(({ data }) => {
+        setCategory(data.data);
+        CategoryApi.getAll({ category_id: chosenCategoryPathID }, page).then(
+          ({ data }) => {
+            setCategories(data.data);
+            setPerPage(data.per_page);
+            setTotalItems(data.total);
+            setLastPage(data.last_page);
+          }
+        );
+      })
+      .catch(() =>
+        toast('Error', 'There was an error getting the list of subcategories.')
+      );
+  };
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
-
-    history.push(`/categories/${categoryId}/sub?page=${selected + 1}`);
   };
 
   const renderCatList = () => {
     return categories.map((subcategory, idx) => {
-      return <SubcategoryCard key={idx} category={subcategory} />;
+      return (
+        <SubcategoryCard
+          key={idx}
+          category={subcategory}
+          setChosenCategoryPathID={setChosenCategoryPathID}
+        />
+      );
     });
   };
 
   return (
-    <div style={{ padding: '0px 196px', color: '#48535B' }}>
+    <div className={style.subcategoryContainer}>
       <div className={style.subTile}>
         <div>
-          <p className={style.title}>
+          <p className={style.header}>
             <LinkContainer
               to={
                 category?.category_id
                   ? `/categories/${category?.category_id}/sub`
                   : '/categories'
               }
-              className={style.titleSpacing}
+              className={style.backButton}
             >
-              <BsFillArrowLeftSquareFill size="50" id={style.backIcon} />
+              <BsFillArrowLeftSquareFill size="50" />
             </LinkContainer>
-            {category?.name}
+            <div className={style.pageTitle}>
+              <span className={style.pageTitleName}>{category?.name}</span>
+              <Breadcrumbs
+                chosenCategoryPathID={chosenCategoryPathID}
+                setChosenCategoryPathID={setChosenCategoryPathID}
+              />
+            </div>
           </p>
         </div>
         <div id={style.quizlink}>
           {category?.quizzes_count ? (
             <a
-              style={{ color: 'black', fontSize: '24px' }}
+              className={style.linkToQuizzes}
               href={`/categories/${category?.id}/quizzes`}
             >
               Check Available Quizzes &gt;&gt;
@@ -86,7 +118,7 @@ function Subcategories() {
         <div className={style.cardList}>{renderCatList()}</div>
       )}
 
-      {categories?.length <= 0 ? (
+      {categories && categories?.length <= 0 ? (
         <div className={style.noResultsMessage}>
           <p className={style.message}>NO RESULTS FOUND</p>
         </div>

@@ -1,0 +1,42 @@
+@use '../../styles/variables' as *;
+
+@mixin flex($justify-value, $align-value, $direction, $gap-value) {
+  display: flex;
+  align-items: $align-value;
+  justify-content: $justify-value;
+  flex-direction: $direction;
+  gap: $gap-value;
+}
+
+.breadcrumbsContainer {
+  font-weight: $font-weight-medium;
+  font-size: $font-size-md;
+  color: $color-gray;
+  width: 100%;
+
+  white-space: nowrap;
+  overflow: scroll;
+  overflow-y: hidden;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    height: 0px;
+  }
+}
+
+.breadcrumbs {
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:first-child,
+  &:nth-child(3) {
+    text-decoration: none;
+    cursor: default;
+  }
+
+  &:last-child {
+    text-decoration: none;
+    cursor: default;
+    color: black;
+  }
+}

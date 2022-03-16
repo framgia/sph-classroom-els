@@ -1,46 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom'; 
+import { Link, useHistory } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import { VscFilter } from 'react-icons/vsc';
-import { BsSortAlphaDown, BsSortAlphaDownAlt } from 'react-icons/bs';
 import Spinner from 'react-bootstrap/Spinner';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from '@restart/ui/esm/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { BsSortAlphaDown, BsSortAlphaDownAlt } from 'react-icons/bs';
+import { VscFilter } from 'react-icons/vsc';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { BiSearch } from 'react-icons/bi';
-import style from './index.module.css';
 import Pagination from '../../../../components/Pagination';
-
+import Breadcrumbs from '../../../../components/Breadcrumbs';
 import CategoryApi from '../../../../api/Category';
+import style from './index.module.scss';
 
 function CategoryList() {
-  const [categories, setCategories] = useState(null);
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
   const sortVal = queryParams.get('sortBy');
   const filterVal = queryParams.get('filter');
   const searchVal = queryParams.get('search');
 
-  const history = useHistory  ();
+  const history = useHistory();
 
+  const [categories, setCategories] = useState(null);
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
-
   const [sortBy, setSortBy] = useState(sortVal ? sortVal : 'asc');
   const [filter, setFilter] = useState(filterVal ? filterVal : '');
   const [search, setSearch] = useState(searchVal ? searchVal : '');
   const [searchStatus, setSearchStatus] = useState(false);
 
-  const sortOptions = [
-    'asc',
-    'desc'
-  ];
+  const sortOptions = ['asc', 'desc'];
 
   useEffect(() => {
+    setCategories(null);
+
     history.push(
       `?page=${page}&sortBy=${sortBy}&filter=${filter}&search=${search}`
     );
@@ -84,24 +82,14 @@ function CategoryList() {
           <Card.Body>
             {category.subcategories_count ? (
               <Link to={`/categories/${category.id}/sub`}>
-                <div>
-                  {' '}
-                  <Card.Title>
-                    <p id={style.Subtitle}>
-                      View Available SubCategories:{' '}
-                      {category.subcategories_count}
-                    </p>
-                  </Card.Title>{' '}
-                </div>
+                <p id={style.subTitle}>
+                  View Available SubCategories:
+                  {category.subcategories_count}
+                </p>
               </Link>
             ) : (
               <Link to={`/categories/${category.id}/quizzes`}>
-                <div>
-                  {' '}
-                  <Card.Title>
-                    <p id={style.Subtitle}>Check Available Quizzes</p>
-                  </Card.Title>{' '}
-                </div>
+                <p id={style.subTitle}>Check Available Quizzes</p>
               </Link>
             )}
           </Card.Body>
@@ -129,8 +117,11 @@ function CategoryList() {
   };
 
   return (
-    <div style={{ padding: '0px 196px', color: '#48535B' }}>
-      <p className={style.title}>Categories</p>
+    <div className={style.container}>
+      <section className={style.headerSection}>
+        <p className={style.title}>Categories</p>
+        <Breadcrumbs />
+      </section>
       <div className={style.categoryConditionsStyle}>
         <Form className="d-flex" onSubmit={onSearchSubmit}>
           <FormControl
@@ -155,36 +146,32 @@ function CategoryList() {
 
         <Dropdown>
           <Dropdown.Toggle
-            className={style.dropdownStyle} 
+            className={style.dropdownStyle}
             variant="link"
             bsPrefix="none"
           >
-            <span className={style.dropdownText}>
-              {' '}{renderSort(sortBy)}{' '}
-            </span>
+            <span className={style.dropdownText}> {renderSort(sortBy)} </span>
             <RiArrowDropDownLine size="20px" />
           </Dropdown.Toggle>
-          <Dropdown.Menu className={style.Dropdownmenustyle}>
-            {
-              sortOptions.map((option, key) => {
-                return (
-                  <Dropdown.Item
-                    key={key}
-                    className={
-                      sortBy === option
-                        ? `${style.dropdownItemStyle} ${style.dropdownFocus}`
-                        : style.dropdownItemStyle
-                    }
-                    onClick={() => {
-                      setPage(1);
-                      setSortBy(option);
-                    }}
-                  >
-                    {renderSort(option)}
-                  </Dropdown.Item>
-                );
-              })
-            }
+          <Dropdown.Menu className={style.dropdownMenu}>
+            {sortOptions.map((option, key) => {
+              return (
+                <Dropdown.Item
+                  key={key}
+                  className={
+                    sortBy === option
+                      ? `${style.dropdownItemStyle} ${style.dropdownFocus}`
+                      : style.dropdownItemStyle
+                  }
+                  onClick={() => {
+                    setPage(1);
+                    setSortBy(option);
+                  }}
+                >
+                  {renderSort(option)}
+                </Dropdown.Item>
+              );
+            })}
           </Dropdown.Menu>
         </Dropdown>
 
@@ -195,8 +182,7 @@ function CategoryList() {
             bsPrefix="none"
           >
             <span className={style.dropdownText}>
-              {' '}
-              {filter === '' ? 'Filter' : filter}{' '}
+              {filter === '' ? 'Filter' : filter}
             </span>
             <VscFilter size="20px" />
           </Dropdown.Toggle>

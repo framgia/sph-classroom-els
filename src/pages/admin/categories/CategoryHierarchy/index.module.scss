@@ -32,22 +32,6 @@
   margin: 0px;
 }
 
-.breadcrumbsContainer {
-  font-weight: $font-weight-medium;
-  font-size: $font-size-md;
-  color: $color-gray;
-  width: 100%;
-
-  white-space: nowrap;
-  overflow: scroll;
-  overflow-y: hidden;
-  overflow-x: auto;
-
-  &::-webkit-scrollbar {
-    height: 0px;
-  }
-}
-
 .listItems {
   cursor: pointer;
   padding: 0px 20px;
@@ -56,23 +40,6 @@
 
   &:hover {
     background-color: $color-white-4;
-  }
-}
-
-.breadcrumbs {
-  text-decoration: underline;
-  cursor: pointer;
-
-  &:first-child,
-  &:nth-child(3) {
-    text-decoration: none;
-    cursor: default;
-  }
-
-  &:last-child {
-    text-decoration: none;
-    cursor: default;
-    color: black;
   }
 }
 

@@ -1,3 +1,18 @@
+@use '../../../../styles/variables' as *;
+
+@mixin flex($justify-value, $align-value, $direction, $gap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify-value;
+  align-items: $align-value;
+  gap: $gap;
+}
+
+.container {
+  padding: 0px 196px;
+  color: $color-dark-blue-1;
+}
+
 .cardList {
   display: grid;
   grid-column-gap: 48px;
@@ -9,7 +24,7 @@
 }
 
 #cardHeader {
-  background-color: #e0eaec;
+  background-color: $color-light-blue-1;
   border-radius: 2px;
   width: 340.5px;
   height: 167px;
@@ -17,7 +32,6 @@
   position: relative;
   z-index: 1;
   padding: 15px;
-  font-size: 18px;
 }
 
 .card {
@@ -34,18 +48,24 @@
   margin-right: 10px;
 }
 
+.headerSection {
+  margin-bottom: 33px;
+
+  @include flex(center, none, column, 5px);
+}
+
 .title {
-  padding: 33px 0px;
+  padding: 33px 0px 0px;
   font-weight: 500;
   font-size: 24px;
   margin: 0px;
 }
 
 .loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 250px;
+  margin-top: 300px;
+  margin-bottom: 400px;
+
+  @include flex(center, center, row, none);
 }
 
 .loadingWord {
@@ -53,64 +73,37 @@
 }
 
 .cardTitle {
-  color: black;
+  color: $color-dark-blue-1;
 }
 
 .noResultsMessage {
   margin: 220px 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+  @include flex(center, center, row, none);
 }
 
 .message {
   margin-left: 20px;
-  font-size: 24px;
-}
-
-#TitleIcon {
-  width: 50px;
-  height: 50px;
-  margin-right: 20px;
+  font-size: $font-size-page-title;
 }
 
 .cardTitle {
-  font-size: 18px;
-  font-weight: 400;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-regular;
   line-height: 21px;
 }
 
 .cardSubtitle {
-  font-size: 14px;
+  font-size: $font-size-md;
   font-weight: 300;
   line-height: 16px;
 }
 
-#Subtitle {
-  font-size: 12px;
+#subTitle {
+  font-size: $font-size-sm;
   font-weight: 500;
-  color: #5d9098;
-}
-
-#btcolor {
-  color: #48535b;
-}
-
-#paginaPrevNext {
-  margin-right: 5px;
-  width: 80px;
-  height: 32px;
-  text-align: center;
-  color: #48535b;
-}
-
-#paginateNum {
-  width: 40px;
-  height: 34px;
-  text-align: center;
-  margin-right: 5px;
-  border-radius: 2px;
-  color: #48535b;
+  color: $color-dark-blue-3;
+  margin-top: 3px;
 }
 
 .categoryConditionsStyle {
@@ -130,7 +123,7 @@
   display: hidden;
   position: absolute;
   left: 500px;
-  top: 218px;
+  top: 244px;
 }
 
 .searchIcon {
@@ -142,15 +135,15 @@
   display: flex;
   justify-content: space-between;
   background-color: #ffffff;
-  border: 1px #ced4da solid;
-  color: #48535b;
+  border: 1px $color-light-blue-2 solid;
+  color: $color-dark-blue-1;
   text-decoration: none;
   width: 120px;
   height: 30px;
 }
 
 .dropdownStyle:hover {
-  color: #48535b;
+  color: $color-dark-blue-1;
 }
 
 .dropdownItemStyle {
@@ -161,6 +154,6 @@
   background-color: rgba(224, 234, 236, 0.6);
 }
 
-.Dropdownmenustyle {
+.dropdownMenu {
   width: 120px;
 }
