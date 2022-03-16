@@ -16,7 +16,6 @@ import CategoryApi from '../../../../api/Category';
 import style from './index.module.scss';
 
 function CategoryList() {
-  const [categories, setCategories] = useState(null);
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
   const sortVal = queryParams.get('sortBy');
@@ -25,11 +24,11 @@ function CategoryList() {
 
   const history = useHistory();
 
+  const [categories, setCategories] = useState(null);
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
-
   const [sortBy, setSortBy] = useState(sortVal ? sortVal : 'asc');
   const [filter, setFilter] = useState(filterVal ? filterVal : '');
   const [search, setSearch] = useState(searchVal ? searchVal : '');
@@ -38,6 +37,8 @@ function CategoryList() {
   const sortOptions = ['asc', 'desc'];
 
   useEffect(() => {
+    setCategories(null);
+
     history.push(
       `?page=${page}&sortBy=${sortBy}&filter=${filter}&search=${search}`
     );

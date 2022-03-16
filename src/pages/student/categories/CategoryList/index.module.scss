@@ -62,7 +62,8 @@
 }
 
 .loading {
-  margin-top: 250px;
+  margin-top: 300px;
+  margin-bottom: 400px;
 
   @include flex(center, center, row, none);
 }
