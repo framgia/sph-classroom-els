@@ -15,20 +15,20 @@ import QuestionApi from '../../../../api/Question';
 import CategoryApi from '../../../../api/Category';
 
 const QuizEdit = () => {
-  const TYPE = 'withPathDisplay';
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [location, setLocation] = useState(null);
+  const TYPE = 'quizWithPathDisplay';
   const [locationPathDisplay, setLocationPathDisplay] = useState('');
+  const [location, setLocation] = useState(null);
   const [quizInfo, setQuizInfo] = useState(null);
-  const { categoryId, quizId } = useParams();
   const [questions, setQuestions] = useState(null);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
-  const toast = useToast();
   const [changeCategoryId, setChangeCategoryId] = useState(null);
   const [parentCategories, setParentCategories] = useState(null);
   const [saveLocation, setSaveLocation] = useState(false);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const { categoryId, quizId } = useParams();
+  const toast = useToast();
 
   useEffect(() => {
     QuizApi.show({ categoryId, quizId }).then(({ data }) => {
@@ -47,7 +47,8 @@ const QuizEdit = () => {
       CategoryApi.getParentCategories(quizInfo.category_id)
         .then(({ data }) => {
           setParentCategories(data);
-        });
+        })
+        .catch((error) => toast('Error', error));
     }
   }, [quizInfo]);
 
@@ -60,7 +61,7 @@ const QuizEdit = () => {
 
   useEffect(() => {
     parentCategories?.forEach((p, idx) =>
-      idx === 0
+      !idx
         ? setLocationPathDisplay((path) => path.concat(p.name))
         : setLocationPathDisplay((path) => path.concat(' > ', p.name))
     );

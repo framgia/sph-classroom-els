@@ -3,6 +3,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Button from '../../../../components/Button';
+import { useToast } from '../../../../hooks/useToast';
 
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 
@@ -18,9 +19,10 @@ import style from './index.module.scss';
 const QuizDetail = () => {
   const [quizInfo, setQuizInfo] = useState(null);
   const [questions, setQuestions] = useState(null);
-  const { categoryId, quizId } = useParams();
   const [parentCategories, setParentCategories] = useState(null);
   const [locationPathDisplay, setLocationPathDisplay] = useState('');
+  const { categoryId, quizId } = useParams();
+  const toast = useToast();
 
   useEffect(() => {
     QuizApi.show({ categoryId, quizId }).then(({ data }) => {
@@ -34,15 +36,20 @@ const QuizDetail = () => {
   }, []);
   
   useEffect(() => {
-    CategoryApi.getParentCategories(quizInfo?.category_id)
-      .then(({ data }) => {
-        setParentCategories(data);
-      });
+    if (quizInfo?.category_id) {
+      CategoryApi.getParentCategories(quizInfo?.category_id)
+        .then(({ data }) => {
+          setParentCategories(data);
+        })
+        .catch((error) => {
+          toast('Error', error);
+        });
+    }
   }, [quizInfo]);
   
   useEffect(() => {
     parentCategories?.forEach((p, idx) =>
-      idx === 0
+      !idx
         ? setLocationPathDisplay((path) => path.concat(p.name))
         : setLocationPathDisplay((path) => path.concat(' > ', p.name))
     );
