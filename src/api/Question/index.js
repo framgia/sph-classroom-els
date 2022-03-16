@@ -5,9 +5,6 @@ const QuestionApi = {
     const options = {
       method: 'GET',
       url: `/quizzes/${quizId}/questions`,
-      // params: {
-      //   ...params,
-      // },
     };
 
     return API.request(options);
@@ -33,13 +30,14 @@ const QuestionApi = {
 
   restore: () => {},
 
-  editQuestion: (questions, quizId) => {
+  editQuestion: (questions, quizId, categoryId) => {
     const options = {
       method: 'POST',
       url: '/admin_edit_question',
       data: {
         questions,
-        quizId
+        quizId,
+        categoryId
       },
     };
 

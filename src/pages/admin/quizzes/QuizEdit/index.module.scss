@@ -2,20 +2,6 @@
 
 @use '../../../../styles/global-styles' as *;
 
-%button-colors {
-  background: $color-light-blue-2;
-  border-color: $color-light-blue-3;
-  border-radius: 2px;
-  color: $color-dark-blue-1;
-
-  &:hover,
-  &:focus {
-    color: $color-white;
-    border-color: $color-dark-blue-2;
-    background-color: $color-dark-blue-3;
-  }
-}
-
 %column-flex {
   display: flex;
   flex-direction: column;
@@ -127,13 +113,6 @@
   overflow: hidden;
 }
 
-.sidebarButtons {
-  width: 245px;
-  height: 40.32px;
-
-  @extend %button-colors;
-}
-
 .confirmationButtons {
   position: absolute;
   display: flex;
@@ -142,7 +121,7 @@
   gap: 25px;
   margin-top: auto;
   top: 85%;
-  left: 83%;
+  left: 79%;
 }
 
 .cancelButton {
@@ -151,12 +130,6 @@
   &:hover {
     color: $color-dark-blue-3;
   }
-}
-
-.saveButton {
-  width: 120px;
-
-  @extend %button-colors;
 }
 
 .centerForm {

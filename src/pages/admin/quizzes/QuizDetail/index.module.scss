@@ -52,26 +52,17 @@
 }
 
 .editButton {
-  width: 120px;
-  height: 38px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-left: auto;
-  color: $color-dark-blue-1;
-  border-radius: 2px;
-  border-color: $color-light-blue-2;
-  background-color: $color-light-blue-2;
-
-  &:hover {
-    color: $color-white;
-    border-color: $color-dark-blue-3;
-    background-color: $color-dark-blue-3;
-  }
 }
 
 .questionText {
   font-size: $font-size-lg;
   font-weight: $font-weight-regular;
   margin-bottom: 20px;
+}
+
+.quizCategory {
+  color: rgb(129, 139, 144);
+  font-size: $font-size-md;
+  padding-left: 50px;
 }

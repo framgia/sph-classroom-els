@@ -1,30 +1,34 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
-import Button from 'react-bootstrap/Button';
+import Button from '../../../../components/Button';
 import Nav from 'react-bootstrap/Nav';
 import Spinner from 'react-bootstrap/Spinner';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 import style from './index.module.scss';
 import QuestionType from './components/QuestionType';
-// import ChangeLocation from '../../../../components/ChangeLocation';
+import ChangeLocation from '../../../../components/ChangeLocation';
 
 import QuizApi from '../../../../api/Quiz';
 import QuestionApi from '../../../../api/Question';
+import CategoryApi from '../../../../api/Category';
 
 const QuizEdit = () => {
-  // const TYPE = 'withPathDisplay';
-  // const [show, setShow] = useState(false);
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
-  // const [location, setLocation] = useState(null);
-  // const [locationPathDisplay, setLocationPathDisplay] = useState('');
+  const TYPE = 'withPathDisplay';
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [location, setLocation] = useState(null);
+  const [locationPathDisplay, setLocationPathDisplay] = useState('');
   const [quizInfo, setQuizInfo] = useState(null);
   const { categoryId, quizId } = useParams();
   const [questions, setQuestions] = useState(null);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const toast = useToast();
+  const [changeCategoryId, setChangeCategoryId] = useState(null);
+  const [parentCategories, setParentCategories] = useState(null);
+  const [saveLocation, setSaveLocation] = useState(false);
 
   useEffect(() => {
     QuizApi.show({ categoryId, quizId }).then(({ data }) => {
@@ -36,6 +40,31 @@ const QuizEdit = () => {
       setSelectedQuestion(data.data[0]);
     });
   }, []);
+
+  useEffect(() => {
+    if(quizInfo){
+      setChangeCategoryId(quizInfo.category_id);
+      CategoryApi.getParentCategories(quizInfo.category_id)
+        .then(({ data }) => {
+          setParentCategories(data);
+        });
+    }
+  }, [quizInfo]);
+
+  useEffect(() => {
+    if (saveLocation) {
+      setChangeCategoryId(location?.id);
+      setLocation(null);
+    }
+  }, [location, saveLocation]);
+
+  useEffect(() => {
+    parentCategories?.forEach((p, idx) =>
+      idx === 0
+        ? setLocationPathDisplay((path) => path.concat(p.name))
+        : setLocationPathDisplay((path) => path.concat(' > ', p.name))
+    );
+  }, [parentCategories]);
 
   const changeQuestion = (value) => {
     const updateQuestion = questions.map((question) => {
@@ -131,7 +160,7 @@ const QuizEdit = () => {
   const handleSubmit = () => {
     toast('Processing', 'Updating questions...');
 
-    QuestionApi.editQuestion(questions, quizId)
+    QuestionApi.editQuestion(questions, quizId, changeCategoryId)
       .then(({ data }) => {
         setQuestions(data);
         toast('Success', 'Successfully updated questions');
@@ -146,8 +175,7 @@ const QuizEdit = () => {
     <div className={style.cardContainer}>
       <div className={style.quizEditContainer}>
         <h2 className={style.quizTitle}>{quizInfo?.title}</h2>
-        {/* <h3 className={style.quizCategory}>{locationPathDisplay}</h3> */}
-        <h3 className={style.quizCategory}>Location</h3>
+        <h3 className={style.quizCategory}>{locationPathDisplay}</h3>
         {questions === null ? (
           <div className={style.loading}>
             <Spinner animation="border" role="status"></Spinner>
@@ -186,16 +214,8 @@ const QuizEdit = () => {
                     </Fragment>
                   );
                 })}
-              <Button
-                className={style.sidebarButtons}
-                onClick={() => addQuestionFields()}
-              >
-                Add a Question
-              </Button>
-              {/* <Button className={style.sidebarButtons} onClick={handleShow}>
-              Change Category
-            </Button> */}
-              <Button className={style.sidebarButtons}>Change Category</Button>
+              <Button buttonLabel="Add a Question" buttonSize="lg"  onClick={() => addQuestionFields()}/>
+              <Button buttonLabel="Change Category" buttonSize="lg" onClick={handleShow}/>
             </div>
             {questions?.length === 0 ? (
               <div className={style.message}>
@@ -216,19 +236,19 @@ const QuizEdit = () => {
           <Link to={`/admin/quizzes/${quizId}`} className={style.cancelButton}>
             Cancel
           </Link>
-          <Button className={style.saveButton} onClick={handleSubmit}>
-            Save
-          </Button>
+          <Button buttonLabel="Save" buttonSize="def" onClick={handleSubmit}/>
         </div>
       </div>
-      {/* <ChangeLocation
+      <ChangeLocation
         show={show}
         handleClose={handleClose}
         location={location}
         setLocation={setLocation}
         setLocationPathDisplay={setLocationPathDisplay}
         type={TYPE}
-      /> */}
+        isSaved={saveLocation}
+        setIsSaved={setSaveLocation}
+      />
     </div>
   );
 };
