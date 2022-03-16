@@ -65,7 +65,7 @@ const AdminList = () => {
         .catch(() =>
           toast(
             'Error',
-            'There was an error encountered while deleting the quiz.'
+            'There was an error encountered while deleting the admin user.'
           )
         );
     }
