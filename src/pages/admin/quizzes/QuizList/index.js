@@ -9,7 +9,7 @@ import DataTable from '../../../../components/DataTable';
 import AddQuizModal from './components/AddQuizModal';
 import SearchBar from '../../../../components/SearchBar';
 import FilterDropdown from '../../../../components/FilterDropdown';
-
+import ConfirmationModal from '../../../../components/ConfirmationModal';
 import QuizApi from '../../../../api/Quiz';
 import CategoryApi from '../../../../api/Category';
 
@@ -29,10 +29,13 @@ const QuizList = () => {
 
   const [adminQuiz, setAdminQuiz] = useState(null);
   const [categories, setCategories] = useState([]);
-  const [modalShow, setModalShow] = useState(false);
+  const [showAddModal, setAddModalShow] = useState(false);
   const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState(false);
   const [location, setLocation] = useState(null);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [deleteConfirmed, setDeleteConfirmed] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState({});
 
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perPage, setPerPage] = useState(0);
@@ -45,12 +48,19 @@ const QuizList = () => {
     sortDirection
   });
 
+  const tableHeaderNames = [
+    { title: 'ID', canSort: true },
+    { title: 'Action', canSort: false },
+    { title: 'Category', canSort: true },
+    { title: 'Name', canSort: true }
+  ];
+
   const handleOnSubmit = async ({ name, instruction }) => {
     setSubmitStatus(true);
 
     if (location) {
       toast('Processing', 'Adding quiz...');
-      setModalShow(false);
+      setAddModalShow(false);
     }
 
     setErrors('');
@@ -110,16 +120,28 @@ const QuizList = () => {
     setPage(1);
   }, [filter, search]);
 
+  useEffect(() => {
+    if (deleteConfirmed) {
+      toast('Processing', `Deleting ${itemToDelete.title}...`);
+
+      QuizApi.deleteQuiz(itemToDelete.id)
+        .then(({ data }) => {
+          toast('Success', data.message);
+          setDeleteConfirmed(false);
+          load();
+        })
+        .catch(() =>
+          toast(
+            'Error',
+            'There was an error encountered while deleting the quiz.'
+          )
+        );
+    }
+  }, [deleteConfirmed]);
+
   const onPageChange = (selected) => {
     setPage(selected + 1);
   };
-
-  const tableHeaderNames = [
-    { title: 'ID', canSort: true },
-    { title: 'Action', canSort: false },
-    { title: 'Category', canSort: true },
-    { title: 'Name', canSort: true }
-  ];
 
   const renderTableData = () => {
     return adminQuiz?.map((quiz, idx) => {
@@ -129,11 +151,19 @@ const QuizList = () => {
           <td id={style.buttonColumn}>
             <center>
               <Link to={`/admin/quizzes/${quiz.id}`}>
-                <Button buttonLabel="Edit" buttonSize="sm"/>
+                <Button buttonLabel="Edit" buttonSize="sm" />
               </Link>
             </center>
             <center>
-              <Button buttonLabel="Delete" buttonSize="sm" outline={true}/>
+              <Button
+                buttonLabel="Delete"
+                buttonSize="sm"
+                outline={true}
+                onClick={() => {
+                  setItemToDelete(quiz);
+                  setShowConfirmationModal(true);
+                }}
+              />
             </center>
           </td>
           <td id={style.classColumn}>{quiz.name}</td>
@@ -145,12 +175,18 @@ const QuizList = () => {
 
   return (
     <div className={style.cardContainer}>
+      <ConfirmationModal
+        showModal={showConfirmationModal}
+        setShowModal={setShowConfirmationModal}
+        itemToDelete={itemToDelete.title}
+        setDeleteConfirmed={setDeleteConfirmed}
+      />
       <div>
         <div className={style.headerTittleStyle}>
           <p className={style.title}>Quizzes</p>
           <Button
             buttonStyle={style.addButton}
-            onClick={() => setModalShow(true)}
+            onClick={() => setAddModalShow(true)}
             buttonLabel="Add a Quiz"
             buttonSize="def"
           />
@@ -160,7 +196,7 @@ const QuizList = () => {
             <Card.Header className={style.cardHeader}>
               <SearchBar
                 placeholder="Filter by name"
-                search={search} 
+                search={search}
                 setSearch={setSearch}
               />
               <FilterDropdown
@@ -199,8 +235,8 @@ const QuizList = () => {
         <AddQuizModal
           handleOnSubmit={handleOnSubmit}
           submitStatus={submitStatus}
-          modalShow={modalShow}
-          setModalShow={setModalShow}
+          modalShow={showAddModal}
+          setModalShow={setAddModalShow}
           errors={errors}
           location={location}
           setLocation={setLocation}

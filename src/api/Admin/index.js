@@ -59,6 +59,15 @@ const AdminApi = {
       }
     };
     return API.request(options);
+  },
+
+  deleteAdmin: (admin_id) => {
+    const options = {
+      method: 'DELETE',
+      url: `/admin/delete-admin/${admin_id}`
+    };
+
+    return API.request(options);
   }
 };
 
