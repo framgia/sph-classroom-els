@@ -101,7 +101,7 @@ const Registration = () => {
 
                 <Form.Group className="mb-4" controlId="Email">
                   <Form.Label>
-                    <h6 style={{ marginBottom: '0px' }}>Email</h6>
+                    <h6 className="mb-0">Email</h6>
                   </Form.Label>
                   <Controller
                     control={control}
