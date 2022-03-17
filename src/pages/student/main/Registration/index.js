@@ -184,7 +184,7 @@ const Registration = () => {
 
               <div className={style.withAccountMessage}>
                 <p>Already have an Account?</p>
-                <LinkContainer to="/registration" className={style.signInLink}>
+                <LinkContainer to="/login" className={style.signInLink}>
                   <span>Sign In</span>
                 </LinkContainer>
               </div>

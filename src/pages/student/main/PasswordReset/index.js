@@ -83,9 +83,9 @@ const PasswordReset = () => {
               />
 
               <div>
-                <a href="login" className={style.cancel}>
+                <Link to="/login" className={style.cancel}>
                   Cancel
-                </a>
+                </Link>
               </div>
             </div>
           ) : (
