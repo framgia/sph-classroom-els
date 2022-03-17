@@ -1,114 +1,107 @@
 import React, { useState } from 'react';
-import { useToast } from '../../../../hooks/useToast';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Stack from 'react-bootstrap/Stack';
-import Form from 'react-bootstrap/Form';
-import style from './index.module.css';
-import PasswordResetApi from '../../../../api/PasswordReset';
 import { useForm, Controller } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { useToast } from '../../../../hooks/useToast';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Button from '../../../../components/Button';
+import InputField from '../../../../components/InputField';
+import PasswordResetApi from '../../../../api/PasswordReset';
+import style from './index.module.scss';
 
 const PasswordReset = () => {
-  const [successMessage, setSuccessMessage] = useState('');
-  const [status, setStatus] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(false);
-
+  const toast = useToast();
   const { control, handleSubmit } = useForm();
 
+  const [successMessage, setSuccessMessage] = useState('');
+  const [emailSent, setEmailSent] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(false);
   const [error, setError] = useState('');
 
-  const toast = useToast();
-
-  const handleOnSubmit = async ({ email }) => {
+  const handleOnSubmit = ({ email }) => {
     toast('Processing', 'Sending you an email to reset your password...');
     setSubmitStatus(true);
     setError('');
 
-    try {
-      await PasswordResetApi.forgotPassword({ email });
-      toast('Success', 'An email has been successfully sent. Please check your inbox.');
-      setSuccessMessage(
-        'An email has been sent. Please click the link provided in the email sent to proceed with the password reset.'
-      );
-      setStatus(true);
-    } catch (error) {
-      toast('Error', 'Incorrect email address, please try again.');
-      setError(error.response.data.error);
-      setSubmitStatus(false);
-    }
+    PasswordResetApi.forgotPassword({ email })
+      .then(() => {
+        toast(
+          'Success',
+          'An email has been successfully sent. Please check your inbox.'
+        );
+        setSuccessMessage(
+          'An email has been sent. Please click the link provided in the email sent to proceed with the password reset.'
+        );
+        setEmailSent(true);
+      })
+      .catch((error) => {
+        toast('Error', 'Incorrect email address, please try again.');
+        setError(error.response.data.error);
+        setSubmitStatus(false);
+      });
   };
 
   return (
-    <center>
-      <Container>
-        <Stack gap={2} className="col-md-5 mx-auto">
-          <Form onSubmit={handleSubmit(handleOnSubmit)} className={style.contentstyle}>
-            {status === false ? (
-              <div className={style.center} align="start">
-                <center>
-                  <Form.Label>
-                    {' '}
-                    <h4>Password Reset</h4>
-                  </Form.Label>
-                </center>
-                <Form.Group
-                  id={style.Containercentermargin}
-                  className="mb-3"
-                  controlId="Email"
-                >
-                  <Form.Label>
-                    <h6 className="mb-0">Email</h6>
-                  </Form.Label>
-                  <Controller
-                    control={control}
-                    name="email"
-                    defaultValue=""
-                    render={({ field: { onChange, value, ref } }) => (
-                      <Form.Control
-                        onChange={onChange}
-                        value={value}
-                        ref={ref}
-                        className="cntrs"
-                        type="email"
-                        isInvalid={error}
-                        required
-                        maxLength={50}
-                      />
-                    )}
-                  />
-                  <Form.Control.Feedback type="invalid">{error}</Form.Control.Feedback>
-                </Form.Group>
+    <Container>
+      <div className="d-flex justify-content-center align-items-center">
+        <Form onSubmit={handleSubmit(handleOnSubmit)}>
+          {!emailSent ? (
+            <div className={style.formContainer}>
+              <Form.Label>
+                <h4>Password Reset</h4>
+              </Form.Label>
+              <Form.Group className="mb-3" controlId="Email">
+                <Form.Label>
+                  <h6 className="mb-0">Email</h6>
+                </Form.Label>
+                <Controller
+                  control={control}
+                  name="email"
+                  render={({ field: { onChange, value, ref } }) => (
+                    <InputField
+                      ref={ref}
+                      type="email"
+                      value={value}
+                      onChange={onChange}
+                      fieldSize="md"
+                      isInvalid={error}
+                      placeholder="Enter email here..."
+                      maxLength={50}
+                    />
+                  )}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {error}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-                <center>
-                  <Button type="submit" id={style.button} disabled={submitStatus}>
-                    <span className={style.textbutton}>Send Recovery Link</span>
-                  </Button>
-                </center>
+              <Button
+                buttonLabel="Send Recovery Link"
+                buttonSize="lg"
+                type="submit"
+                disabled={submitStatus}
+              />
 
-                <center>
-                  <div>
-                    <a href="login" className={style.cancel}>
-                      Cancel
-                    </a>
-                  </div>
-                </center>
-              </div>
-            ) : (
               <div>
-                <h4 className={style.title}>Password Reset</h4>
-                <div className={style.successMessageContainer}>
-                  <span>{successMessage}</span>
-                </div>
-                <Link to={'/'} className={style.backButton}>
-                  Back
-                </Link>
+                <a href="login" className={style.cancel}>
+                  Cancel
+                </a>
               </div>
-            )}
-          </Form>
-        </Stack>
-      </Container>
-    </center>
+            </div>
+          ) : (
+            <div className={style.formContainer}>
+              <h4 className={style.title}>Password Reset</h4>
+              <div className={style.successMessageContainer}>
+                <span>{successMessage}</span>
+              </div>
+              <Link to="/" className={style.backButton}>
+                Back
+              </Link>
+            </div>
+          )}
+        </Form>
+      </div>
+    </Container>
   );
 };
 export default PasswordReset;

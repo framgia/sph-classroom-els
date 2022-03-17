@@ -27,6 +27,9 @@ import { PropTypes } from 'prop-types';
   > placeholder  : Pass a string value for the placeholder
                    Possible value sentence for EX. "Category Name"
 
+  > required     : (optional) by default this is set to true, so pass a false value if the input field is not required.
+
+  > maxLength    : (optional) pass a number value to limit the number of characters the input field will accept.
 */
 
 import style from './index.module.scss';
@@ -40,12 +43,11 @@ const InputField = ({
   fieldSize,
   isInvalid,
   placeholder,
-    
+  required = true,
+  maxLength
 }) => {
-
   const styleSize = () => {
-        
-    switch(fieldSize) {
+    switch (fieldSize) {
     case 'lg':
       return style.lg;
     case 'md':
@@ -65,6 +67,8 @@ const InputField = ({
       isInvalid={isInvalid}
       className={`${style.defaultInputField} ${styleSize()}`}
       placeholder={placeholder}
+      required={required}
+      maxLength={maxLength}
     />
   );
 };
@@ -77,7 +81,9 @@ InputField.propTypes = {
   onChange: PropTypes.func,
   isInvalid: PropTypes.bool,
   fieldSize: PropTypes.string,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  required: PropTypes.bool,
+  maxLength: PropTypes.number
 };
 
 export default InputField;

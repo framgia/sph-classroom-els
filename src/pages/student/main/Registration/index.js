@@ -1,56 +1,58 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useToast } from '../../../../hooks/useToast';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useForm, Controller } from 'react-hook-form';
-import { Button, Alert } from 'react-bootstrap';
+import { useToast } from '../../../../hooks/useToast';
+import Alert from 'react-bootstrap/Alert';
 import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
 import Form from 'react-bootstrap/Form';
-
+import Button from '../../../../components/Button';
+import InputField from '../../../../components/InputField';
 import AuthApi from '../../../../api/Auth';
-import style from './index.module.css';
+import style from './index.module.scss';
 
 const Registration = () => {
   const { control, handleSubmit } = useForm();
+  const history = useHistory();
+  const toast = useToast();
+
   const [errors, setErrors] = useState({});
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const [submitStatus, setSubmitStatus] = useState(false);
-
-  const history = useHistory();
-  const toast = useToast();
 
   const showAlertDialog = (isShow, message) => {
     setShowAlert(isShow);
     setAlertMessage(message);
   };
 
-  const handleOnSubmit = async ({ name, email, password, password_confirmation }) => {
+  const handleOnSubmit = ({ name, email, password, password_confirmation }) => {
     toast('Processing', 'Creating your account...');
     setSubmitStatus(true);
-    setErrors({});
     setShowAlert(false);
+    setErrors({});
 
-    try {
-      await AuthApi.register({ name, email, password, password_confirmation });
-      toast('Success', 'Successfully Registered.');
-      history.push('/login');
-    } catch (error) {
-      toast('Error', 'Please enter a valid input to successfully register.');
-      setSubmitStatus(false);
-      if (error?.response?.data?.errors) {
-        setErrors(error?.response?.data?.errors);
-      } else if (error?.response?.data?.error) {
-        showAlertDialog(true, error?.response?.data?.error?.message);
-      } else {
-        showAlertDialog(true, 'An error has occurred.');
-      }
-    }
+    AuthApi.register({ name, email, password, password_confirmation })
+      .then(() => {
+        toast('Success', 'Successfully Registered.');
+        history.push('/login');
+      })
+      .catch((error) => {
+        toast('Error', 'Please enter a valid input to successfully register.');
+        setSubmitStatus(false);
+        if (error?.response?.data?.errors) {
+          setErrors(error?.response?.data?.errors);
+        } else if (error?.response?.data?.error) {
+          showAlertDialog(true, error?.response?.data?.error?.message);
+        } else {
+          showAlertDialog(true, 'An error has occurred.');
+        }
+      });
   };
 
   return (
-    <div>
+    <div className="d-flex justify-content-center align-items-center">
       {showAlert && (
         <Alert
           className="mx-4 my-4"
@@ -61,150 +63,135 @@ const Registration = () => {
           {alertMessage}
         </Alert>
       )}
-      <Container style={{ marginTop: '132px' }}>
-        <Stack gap={2} className="col-md-5 mx-auto" id={style.log01}>
-          <div className={style.signintxts}>
-            {' '}
-            <h4> Sign Up </h4>{' '}
-          </div>
-          <Form onSubmit={handleSubmit(handleOnSubmit)}>
+      <div>
+        <Container id={style.container}>
+          <Stack id={style.formCard}>
             <div>
-              <Form.Group className="mb-4" controlId="Name">
-                <Form.Label>
-                  <h6 style={{ marginBottom: '0px' }}>Name</h6>
-                </Form.Label>
-                <Controller
-                  control={control}
-                  name="name"
-                  defaultValue=""
-                  render={({ field: { onChange, value, ref } }) => (
-                    <Form.Control
-                      onChange={onChange}
-                      value={value}
-                      ref={ref}
-                      className="cntrs"
-                      type="text"
-                      placeholder="e.g. jhondoe"
-                      isInvalid={!!errors?.name}
-                      required
-                      maxLength={50}
-                    />
-                  )}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors?.name}
-                </Form.Control.Feedback>
-              </Form.Group>
-
-              <Form.Group className="mb-4" controlId="Email">
-                <Form.Label>
-                  <h6 style={{ marginBottom: '0px' }}>Email</h6>
-                </Form.Label>
-                <Controller
-                  control={control}
-                  name="email"
-                  defaultValue=""
-                  render={({ field: { onChange, value, ref } }) => (
-                    <Form.Control
-                      onChange={onChange}
-                      value={value}
-                      ref={ref}
-                      className="cntrs"
-                      type="email"
-                      placeholder="e.g. jhondoe@gmail.com"
-                      isInvalid={!!errors?.email}
-                      required
-                      maxLength={50}
-                    />
-                  )}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors?.email}
-                </Form.Control.Feedback>
-              </Form.Group>
-
-              <Form.Group className="mb-4" controlId="Password">
-                <Form.Label>
-                  <h6 style={{ marginBottom: '0px' }}>Password</h6>
-                </Form.Label>
-                <Controller
-                  control={control}
-                  name="password"
-                  defaultValue=""
-                  render={({ field: { onChange, value, ref } }) => (
-                    <Form.Control
-                      onChange={onChange}
-                      value={value}
-                      ref={ref}
-                      className="cntrs"
-                      type="password"
-                      name="password"
-                      placeholder="min of 6 characters"
-                      isInvalid={!!errors?.password}
-                      required
-                      maxLength={20}
-                    />
-                  )}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors?.password}
-                </Form.Control.Feedback>
-              </Form.Group>
-
-              <Form.Group className="mb-4" controlId="PasswordConfirmation">
-                <Form.Label>
-                  <h6 style={{ marginBottom: '0px' }}>Confirm Password</h6>
-                </Form.Label>
-                <Controller
-                  control={control}
-                  name="password_confirmation"
-                  defaultValue=""
-                  render={({ field: { onChange, value, ref } }) => (
-                    <Form.Control
-                      onChange={onChange}
-                      value={value}
-                      ref={ref}
-                      className="cntrs"
-                      type="password"
-                      name="password_confirmation"
-                      placeholder="match passwords"
-                      isInvalid={!!errors?.password_confirmation}
-                      required
-                      maxLength={20}
-                    />
-                  )}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors?.password_confirmation}
-                </Form.Control.Feedback>
-              </Form.Group>
-
-              <center>
-                <Button id={style.Btncolor} type="submit" disabled={submitStatus}>
-                  <p style={{ fontSize: '14px' }}>Sign Up</p>
-                </Button>
-              </center>
-
-              <center>
-                <div className="cnb">
-                  <p className={style.sign}>Already have an Account?</p>
-                  <h6 className={style.sign}>
-                    <LinkContainer to="/login">
-                      <a
-                        className={style.fotgotPswrd}
-                        style={{ textDecoration: 'none' }}
-                        href="/#"
-                      >
-                        Sign In
-                      </a>
-                    </LinkContainer>
-                  </h6>
-                </div>
-              </center>
+              <h4>Sign Up</h4>
             </div>
-          </Form>
-        </Stack>
-      </Container>
+            <Form
+              onSubmit={handleSubmit(handleOnSubmit)}
+              className={style.form}
+            >
+              <section>
+                <Form.Group className="mb-4" controlId="Name">
+                  <Form.Label>
+                    <h6 className="mb-0">Name</h6>
+                  </Form.Label>
+                  <Controller
+                    control={control}
+                    name="name"
+                    render={({ field: { onChange, value, ref } }) => (
+                      <InputField
+                        ref={ref}
+                        type="text"
+                        value={value}
+                        onChange={onChange}
+                        fieldSize="md"
+                        isInvalid={!!errors?.name}
+                        placeholder="e.g. John Doe"
+                        maxLength={50}
+                      />
+                    )}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors?.name}
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group className="mb-4" controlId="Email">
+                  <Form.Label>
+                    <h6 style={{ marginBottom: '0px' }}>Email</h6>
+                  </Form.Label>
+                  <Controller
+                    control={control}
+                    name="email"
+                    render={({ field: { onChange, value, ref } }) => (
+                      <InputField
+                        ref={ref}
+                        type="email"
+                        value={value}
+                        onChange={onChange}
+                        fieldSize="md"
+                        isInvalid={!!errors?.email}
+                        placeholder="e.g. jhondoe@gmail.com"
+                        maxLength={50}
+                      />
+                    )}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors?.email}
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group className="mb-4" controlId="Password">
+                  <Form.Label>
+                    <h6 className="mb-0">Password</h6>
+                  </Form.Label>
+                  <Controller
+                    control={control}
+                    name="password"
+                    render={({ field: { onChange, value, ref } }) => (
+                      <InputField
+                        ref={ref}
+                        type="password"
+                        value={value}
+                        onChange={onChange}
+                        fieldSize="md"
+                        isInvalid={!!errors?.password}
+                        placeholder="min of 6 characters"
+                        maxLength={20}
+                      />
+                    )}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors?.password}
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group className="mb-4" controlId="PasswordConfirmation">
+                  <Form.Label>
+                    <h6 className="mb-0">Confirm Password</h6>
+                  </Form.Label>
+                  <Controller
+                    control={control}
+                    name="password_confirmation"
+                    render={({ field: { onChange, value, ref } }) => (
+                      <InputField
+                        ref={ref}
+                        type="password"
+                        value={value}
+                        onChange={onChange}
+                        fieldSize="md"
+                        isInvalid={!!errors?.password_confirmation}
+                        placeholder="match passwords"
+                        maxLength={20}
+                      />
+                    )}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    {errors?.password_confirmation}
+                  </Form.Control.Feedback>
+                </Form.Group>
+              </section>
+
+              <Button
+                buttonLabel="Sign Up"
+                buttonSize="sm"
+                type="submit"
+                disabled={submitStatus}
+              />
+
+              <div className={style.withAccountMessage}>
+                <p>Already have an Account?</p>
+                <LinkContainer to="/registration" className={style.signInLink}>
+                  <span>Sign In</span>
+                </LinkContainer>
+              </div>
+            </Form>
+          </Stack>
+        </Container>
+      </div>
     </div>
   );
 };
