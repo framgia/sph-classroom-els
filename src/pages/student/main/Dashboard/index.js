@@ -44,27 +44,28 @@ function Dashboard() {
                   <td>
                     <p className={style.titleText}>Categories Learned</p>
                   </td>
-                  <td className={style.headText}>
-                    <button className={style.btnView}>View all</button>
-                  </td>
                 </tr>
               </tbody>
             </table>
           </Card.Header>
           <Card.Body>
             <div className={`${style.forContent_box} ${style.forScroll}`}>
-              {categorieslearned?.length > 0 ?
+              {categorieslearned?.length > 0 ? (
                 categorieslearned?.map((categorylearned, idx) => {
                   return (
-                    <CategoryLearned key={idx} categorylearned={categorylearned} />
+                    <CategoryLearned
+                      key={idx}
+                      categorylearned={categorylearned}
+                    />
                   );
-                }) : 
+                })
+              ) : (
                 <div>
                   <center>
                     <span>No Categories Learned</span>
                   </center>
                 </div>
-              }
+              )}
             </div>
           </Card.Body>
         </Card>
@@ -87,8 +88,7 @@ function Dashboard() {
                 key={idx}
               />
             );
-          })
-        }
+          })}
       </Row>
       {recentQuizzes?.length === 0 ? (
         <div className={style.noQuizzesTakenMessageContainer}>
