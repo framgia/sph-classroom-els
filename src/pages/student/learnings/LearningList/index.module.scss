@@ -69,10 +69,13 @@
 }
 
 .tableDataRow {
-  height: 75px;
-  vertical-align: middle;
+  height: auto;
   font-size: $font-size-base;
   color: $color-dark-blue-1;
+
+  &:first-child {
+    padding-top: 100px !important;
+  }
 }
 
 .tableData {
@@ -81,6 +84,14 @@
   &:nth-child(2) {
     text-align: center;
   }
+
+  &:last-child {
+    text-align: justify;
+  }
+}
+
+.tableDataRow > .tableData {
+  padding-top: 30px;
 }
 
 .pagination {
