@@ -1,11 +1,10 @@
-import React, { useEffect, useState, props } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './index.module.css';
 import { FaUserEdit } from 'react-icons/fa';
 import { BsCardChecklist } from 'react-icons/bs';
 import { RiUserAddLine } from 'react-icons/ri';
 import Moment from 'react-moment';
 import Cookies from 'js-cookie';
-import Modal from 'react-bootstrap/Modal';
 
 import StudentApi from '../../../../api/Student';
 import DashboardApi from '../../../../api/Dashboard';
@@ -19,7 +18,6 @@ const ProfileDetail = () => {
   const [overallQuizTaken, setOverallQuizTaken] = useState(0);
   const [friendsActivities, setFriendsActivities] = useState(null);
   const [recentActivities, setRecentActivities] = useState(null);
-  const [modalShow, setModalShow] = useState(null);
 
   useEffect(() => {
     StudentApi.getDetails(loggedInUserId).then(({ data }) => {
@@ -158,59 +156,6 @@ const ProfileDetail = () => {
           </div>
         </div>
       </div>
-      <Modal
-        {...props}
-        size="50"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        show={modalShow}
-        onHide={() => {
-          setModalShow(false);
-        }}
-      >
-        <Modal.Header closeButton className={style.header}>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Upload Your Profile
-          </Modal.Title>
-        </Modal.Header>
-        {/* <Form onSubmit={handleSubmit(handleOnSubmit)}>
-          {status === false ? (
-            <Form.Group controlId="formBasicEmail">
-              <Controller
-                control={control}
-                name="image"
-                defaultValue=""
-                render={({ field }) => (
-                  <Form.Control
-                    onChange={(e) => {
-                      field.onChange(e.target.files[0]);
-                    }}
-                    className={style.controllerstyle}
-                    type="file"
-                    isInvalid={!!error?.image}
-                    required
-                    maxLength={1024}
-                  />
-                )}
-              />
-              <Form.Control.Feedback type="invalid">
-                {error?.image}
-              </Form.Control.Feedback>
-              <Modal.Footer>
-                <Button id={style.Btncolor} type="submit" disabled={submitStatus}>
-                  <p style={{ fontSize: '14px' }}>Upload</p>
-                </Button>
-              </Modal.Footer>
-            </Form.Group>
-          ) : (
-            <center>
-              <div className={style.successMessageContainer}>
-                <span>{successMessage}</span>
-              </div>
-            </center>
-          )}
-        </Form> */}
-      </Modal>
     </center>
   );
 };
