@@ -13,20 +13,7 @@ const ProfileEditApi = {
     };
 
     return API.request(options);
-  },
-
-  uploadImage: (image) => {
-    const options = {
-      method: 'POST',
-      url: '/profileEdituploadImage',
-      data: image,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    };
-
-    return API.request(options);
-  },
+  }
 };
 
 export default ProfileEditApi;
