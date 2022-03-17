@@ -33,7 +33,7 @@ const ConfirmationModal = ({
       centered
     >
       <Modal.Header>
-        <Modal.Title id="contained-modal-title-vcenter">
+        <Modal.Title id="contained-modal-title-vcenter font-weight-bold">
           Confirm Deletion
         </Modal.Title>
       </Modal.Header>
