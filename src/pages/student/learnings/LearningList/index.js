@@ -1,95 +1,101 @@
 import React, { useState, useEffect } from 'react';
-import Card from 'react-bootstrap/Card';
-import { Col, Table } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-
+import { useToast } from '../../../../hooks/useToast';
+import Card from 'react-bootstrap/Card';
 import Pagination from '../../../../components/Pagination';
-import style from './index.module.scss';
+import DataTable from '../../../../components/DataTable';
 import LearningApi from '../../../../api/Learning';
-import CategoryLearned from './component';
+import style from './index.module.scss';
 
 const LearningList = () => {
-  const [learnings, setLearnings] = useState(null);
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
+  const sortBy = queryParams.get('sortBy') || '';
+  const sortDirection = queryParams.get('sortDirection') || '';
+  const history = useHistory();
+  const toast = useToast();
 
-  const history = useHistory  ();
-
+  const [learnings, setLearnings] = useState(null);
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
+  const [sortOptions, setSortOptions] = useState({
+    sortBy,
+    sortDirection
+  });
+
+  const tableHeaderNames = [
+    { title: 'Quizzes Learned', canSort: false },
+    { title: 'Current Score', canSort: false },
+    { title: 'Categories', canSort: false },
+    { title: 'Description', canSort: false }
+  ];
 
   useEffect(() => {
-    history.push(
-      `?page=${page}`
-    );
+    history.push(`?page=${page}`);
 
-    LearningApi.getAll({
-      page: page
-    }).then(({ data }) => {
-      setLearnings(data.data);
-      setPerPage(data.per_page);
-      setTotalItems(data.total);
-      setLastPage(data.last_page);
-    });
-
+    LearningApi.getAll({ page })
+      .then(({ data }) => {
+        setLearnings(data.data);
+        setPerPage(data.per_page);
+        setTotalItems(data.total);
+        setLastPage(data.last_page);
+      })
+      .catch(() =>
+        toast('Error', 'There was an error getting the list of learnings.')
+      );
   }, [page]);
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
+  };
 
-    history.push(
-      `?page=${page}`
-    );
+  const renderTableData = () => {
+    return learnings?.map((learning, idx) => {
+      return (
+        <tr key={idx} className={style.tableDataRow}>
+          <td className={style.tableData}>{learning.title}</td>
+          <td className={style.tableData}>
+            {learning.score}/{learning.questions.length}
+          </td>
+          <td className={style.tableData}>{learning.name}</td>
+          <td className={style.tableData}>{learning.description}</td>
+        </tr>
+      );
+    });
   };
 
   return (
-    <Col>
-      <div className={style.stylePosition}>
-        <Card>
-          <Card.Header className={style.forContainerBar2}>
-            <Table style={{ width: '100%' }}>
-              <tbody>
-                <tr>
-                  <td className={style.tbleData}>Quizzes Learned</td>
-                  <td className={style.tbleData}>Score</td>
-                  <td className={style.tbleData}>Categories</td>
-                  <td className={style.tbleData}>Description</td>
-                </tr>
-              </tbody>
-            </Table>
-          </Card.Header>
+    <div className="container">
+      <div className={style.mainContent}>
+        <h1 className={style.pageTitle}>Learnings</h1>
+        <Card className={style.card}>
+          <Card.Header className={style.cardHeader}></Card.Header>
           <Card.Body className={style.cardBody}>
-            <div className={style.tableScrol}>
-              <Table style={{ width: '100%' }}>
-                <tbody>
-                  {learnings?.length > 0 ?
-                    learnings?.map((learning, idx) => { 
-                      return (
-                        <CategoryLearned learning={learning} key={idx}/>
-                      ); 
-                    }) : 
-                    <div>
-                      <center>
-                        <span>No Quizzes Learned</span>
-                      </center>
-                    </div>
-                  }
-                </tbody>
-              </Table>
-            </div>
+            <DataTable
+              tableHeaderNames={tableHeaderNames}
+              renderTableData={renderTableData}
+              titleHeaderStyle={style.tableHeader}
+              sortOptions={sortOptions}
+              setSortOptions={setSortOptions}
+              data={learnings}
+            />
+          </Card.Body>
+        </Card>
+        <section>
+          <div className={style.pagination}>
             <Pagination
               page={page}
               perPage={perPage}
               totalItems={totalItems}
               pageCount={lastPage}
               onPageChange={onPageChange}
-            ></Pagination>
-          </Card.Body>
-        </Card>
+            />
+          </div>
+        </section>
       </div>
-    </Col>
+    </div>
   );
 };
 
