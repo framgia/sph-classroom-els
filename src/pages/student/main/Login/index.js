@@ -98,7 +98,7 @@ const Login = () => {
                         fieldSize="md"
                         isInvalid={!!error?.email || !!error?.unauthorized}
                         placeholder="Enter email here..."
-                        maxLength={20}
+                        maxLength={50}
                       />
                     )}
                   />
