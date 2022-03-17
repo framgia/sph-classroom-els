@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
 import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
-import Button from '../../../../components/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { VscFilter } from 'react-icons/vsc';
+import ConfirmationModal from '../../../../components/ConfirmationModal';
+import SearchBar from '../../../../components/SearchBar';
 import Pagination from '../../../../components/Pagination';
 import DataTable from '../../../../components/DataTable';
+import Button from '../../../../components/Button';
 import AdminApi from '../../../../api/Admin';
 import style from './index.module.scss';
-import { BiSearch } from 'react-icons/bi';
 
 const AdminList = () => {
   const queryParams = new URLSearchParams(window.location.search);
@@ -22,12 +22,14 @@ const AdminList = () => {
   const toast = useToast();
 
   const [adminAccounts, setAdminAccounts] = useState();
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [deleteConfirmed, setDeleteConfirmed] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState({});
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
   const [search, setSearch] = useState(searchVal ? searchVal : '');
-  const [searchStatus, setSearchStatus] = useState(false);
   const [sortOptions, setSortOptions] = useState({
     sortBy,
     sortDirection
@@ -45,12 +47,31 @@ const AdminList = () => {
       `?page=${page}&search=${search}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`
     );
 
-    setAdminAccounts(null);
-
     load();
-  }, [page, searchStatus, sortOptions]);
+  }, [page, search, sortOptions]);
+
+  useEffect(() => {
+    if (deleteConfirmed) {
+      toast('Processing', `Deleting ${itemToDelete.name}...`);
+
+      AdminApi.deleteAdmin(itemToDelete.id)
+        .then(({ data }) => {
+          toast('Success', data.message);
+          setDeleteConfirmed(false);
+          load();
+        })
+        .catch(() =>
+          toast(
+            'Error',
+            'There was an error encountered while deleting the admin user.'
+          )
+        );
+    }
+  }, [deleteConfirmed]);
 
   const load = () => {
+    setAdminAccounts(null);
+
     AdminApi.getAdminAccounts({
       page,
       search,
@@ -68,22 +89,6 @@ const AdminList = () => {
       );
   };
 
-  const onSearchSubmit = (e) => {
-    e.preventDefault();
-
-    setPage(1);
-    setSearchStatus(!searchStatus);
-  };
-
-  function onChangeData(e) {
-    setSearch(e.target.value);
-
-    if (e.target.value.length === 0) {
-      setPage(1);
-      setSearchStatus(!searchStatus);
-    }
-  }
-
   const onPageChange = (selected) => {
     setPage(selected + 1);
   };
@@ -93,8 +98,16 @@ const AdminList = () => {
       return (
         <tr key={idx} className={style.tableDataRow}>
           <td className={style.tableData}>{admin.id}</td>
-          <td className={`${style.tableData}`}>
-            <Button buttonLabel="Delete" buttonSize="sm" outline={true}/>
+          <td className={style.tableData}>
+            <Button
+              buttonLabel="Delete"
+              buttonSize="sm"
+              outline={true}
+              onClick={() => {
+                setItemToDelete(admin);
+                setShowConfirmationModal(true);
+              }}
+            />
           </td>
           <td className={style.tableData}>{admin.name}</td>
           <td className={style.tableData}>{admin.email}</td>
@@ -105,28 +118,25 @@ const AdminList = () => {
 
   return (
     <div className={style.mainContent}>
-      <div className={style.headerTittleStyle}>
+      <ConfirmationModal
+        showModal={showConfirmationModal}
+        setShowModal={setShowConfirmationModal}
+        itemToDelete={itemToDelete.name}
+        setDeleteConfirmed={setDeleteConfirmed}
+      />
+      <div className={style.header}>
         <h1 className={style.pageTitle}>Admin Accounts</h1>
         <Link to="/admin/create-admin-account">
-          <Button buttonLabel="Add an Admin" buttonSize="def"/> 
+          <Button buttonLabel="Add an Admin" buttonSize="def" />
         </Link>
       </div>
       <Card className={style.card}>
         <Card.Header className={style.cardHeader}>
-          <Form className={style.searchSection} onSubmit={onSearchSubmit}>
-            <div className={style.searchInput}>
-              <Form.Control
-                className={style.searchBar}
-                type="text"
-                aria-label="Search"
-                value={search}
-                onChange={onChangeData}
-                placeholder="Search name or email"
-              />
-              <BiSearch size={17} className={style.searchIcon} />
-            </div>
-            <Button className={style.searchButton} buttonSize="sm" buttonLabel="Search" type="submit" />
-          </Form>
+          <SearchBar
+            placeholder="Search by name or email"
+            search={search}
+            setSearch={setSearch}
+          />
           <Dropdown>
             <Dropdown.Toggle className={style.dropdownButton} bsPrefix="none">
               Filter

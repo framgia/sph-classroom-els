@@ -5,9 +5,6 @@ const QuizApi = {
     const options = {
       method: 'GET',
       url: `/categories/${id}/quizzes?page=${pageNum}`
-      //   params: {
-      //   ...params,
-      // },
     };
 
     return API.request(options);
@@ -49,9 +46,7 @@ const QuizApi = {
   addQuiz: (name, instruction, location) => {
     const options = {
       method: 'POST',
-
       url: '/admin/add-quiz',
-
       data: {
         title: name,
         instruction: instruction,
@@ -62,13 +57,14 @@ const QuizApi = {
     return API.request(options);
   },
 
-  store: () => {},
+  deleteQuiz: (quiz_id) => {
+    const options = {
+      method: 'DELETE',
+      url: `/admin/delete-quiz/${quiz_id}`
+    };
 
-  update: () => {},
-
-  delete: () => {},
-
-  restore: () => {}
+    return API.request(options);
+  }
 };
 
 export default QuizApi;
