@@ -1,0 +1,49 @@
+@use '../../../../styles/variables' as *;
+
+@mixin flex($justify-value, $align-value, $direction, $gap-value) {
+  display: flex;
+  align-items: $align-value;
+  justify-content: $justify-value;
+  flex-direction: $direction;
+  gap: $gap-value;
+}
+
+#container {
+  margin-top: 130px;
+  color: $color-dark-blue-1;
+}
+
+#formCard {
+  background-color: $color-light-blue-1;
+  height: auto;
+  width: 400px;
+  padding: 30px 20px;
+
+  @include flex(center, center, column, 25px);
+}
+
+.form {
+  @include flex(center, center, column, 15px);
+}
+
+.alert {
+  position: fixed;
+  top: 100px;
+  width: 400px;
+}
+
+.withAccountMessage {
+  margin-top: 10px;
+  padding-right: 10px;
+  font-size: $font-size-md;
+  font-weight: $font-weight-light;
+
+  @include flex(none, none, row, 5px);
+}
+
+.signInLink {
+  font-size: $font-size-md;
+  color: $color-dark-blue-3;
+  text-decoration: none;
+  cursor: pointer;
+}

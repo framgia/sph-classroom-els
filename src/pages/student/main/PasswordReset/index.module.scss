@@ -1,0 +1,44 @@
+@use '../../../../styles/variables' as *;
+
+@mixin flex($justify-value, $align-value, $direction, $gap-value) {
+  display: flex;
+  align-items: $align-value;
+  justify-content: $justify-value;
+  flex-direction: $direction;
+  gap: $gap-value;
+}
+
+.formContainer {
+  background-color: $color-light-blue-1;
+  color: $color-dark-blue-1;
+  height: auto;
+  width: 400px;
+  padding: 40px 20px;
+  margin-top: 130px;
+
+  @include flex(center, center, column, 25px);
+}
+
+.cancel {
+  color: $color-dark-blue-1;
+  font-size: $font-size-md;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-dark-blue-3;
+  }
+}
+
+.successMessageContainer {
+  background-color: rgba(255, 255, 255, 0.692);
+  padding: 20px;
+  margin: 0px 15px;
+}
+
+.backButton {
+  color: $color-dark-blue-3;
+
+  &:hover {
+    color: $color-dark-blue-1;
+  }
+}
