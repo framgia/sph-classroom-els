@@ -52,7 +52,7 @@ const QuestionList = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <QuestionsContext.Provider
         value={{ questions, title: quizInfo?.title, quizTakenId }}
       >

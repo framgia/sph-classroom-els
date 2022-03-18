@@ -43,56 +43,30 @@ const ProfileDetail = () => {
   };
 
   return (
-    <center className={style.userProfileContainer}>
+    <div className="container">
       <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          marginTop: '50px',
-          paddingLeft: '10%',
-          marginBottom: '100px',
-        }}
+        className={style.headerProfileStyle}
       >
-        <div style={{ display: 'flex' }}>
-          <div style={{ marginLeft: '40px' }}>
-            <div style={{ marginTop: '33px' }} className={style.userInfo}>
-              <div className={style.userEditText}>
-                <h2 style={{ fontSize: '32px', fontWeight: 'Bold' }}>
-                  {studentDetails?.name}
-                </h2>
-                <a href="/profile/view">
-                  <FaUserEdit size="40px" className={style.userEdit} />
-                </a>
-              </div>
-              <h4
-                style={{
-                  fontSize: '24px',
-                  marginBottom: '20px',
-                  color: '#48535B',
-                }}
-              >
-                {overallQuizTaken} Total Quizzes Taken
-              </h4>
-              <div>
-                <p className={style.followersText}>
-                  {studentDetails?.followers_count} Followers
-                </p>
-                <p className={style.followingText}>
-                  {studentDetails?.followings_count} Following
-                </p>
-              </div>
+        <div className={style.userInfo}>
+          <div className={style.userEditText}>
+            {studentDetails?.name}
+            <a href="/profile/view">
+              <FaUserEdit size="40px" className={style.userEdit} />
+            </a>
+            <p className={style.userEditText}>
+              {overallQuizTaken} Total Quizzes Taken
+            </p>
+            <div className="mt-2 d-flex gap-5">
+              <p className={style.userEditTextFollowes}>{studentDetails?.followers_count} Followers </p>
+              <p className={style.userEditTextFollowes}>{studentDetails?.followings_count} Following</p>
             </div>
           </div>
         </div>
       </div>
-      <div
-        className={style.activitiesTableContainer}
-        style={{ marginTop: '40px' }}
-      >
+      <div className={style.activitiesTableContainer}>
         <div>
           <div className={style.cardHeader}>
-            <p style={{ float: 'left', marginLeft: '12px', marginTop: '10px' }}>
+            <p style={{marginLeft: '12px'}}>
               Recent Activities
             </p>
           </div>
@@ -126,7 +100,7 @@ const ProfileDetail = () => {
         </div>
         <div>
           <div className={style.cardHeader}>
-            <p style={{ float: 'left', marginLeft: '12px', marginTop: '10px' }}>
+            <p style={{marginLeft: '12px'}}>
               Friend’s Activities
             </p>
           </div>
@@ -156,7 +130,7 @@ const ProfileDetail = () => {
           </div>
         </div>
       </div>
-    </center>
+    </div>
   );
 };
 

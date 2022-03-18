@@ -17,22 +17,13 @@
   gap: $gap-value;
 }
 
-.mainContent {
-  height: 100%;
-  width: 100%;
-  padding-top: 33px;
-
-  @include flex(none, none, column, 33px);
-}
-
 .pageTitle {
   font-weight: $font-weight-medium;
   font-size: $font-size-page-title;
-}
-
-.card {
-  width: 100%;
-  height: auto;
+  height: 102px;
+  display: flex;
+  align-items: center;
+  margin: 0px;
 }
 
 .cardHeader {
@@ -50,7 +41,7 @@
 
 .tableHeader {
   font-size: $font-size-lg;
-  font-weight: $font-weight-bold;
+  font-weight: $font-weight-regular;
 
   &:first-child {
     width: 220px;

@@ -58,30 +58,21 @@ const QuestionGrid = ({ quiz }) => {
   };
 
   return (
-    <Card className={style.carddiv}>
-      <Card.Header className={style.card} style={{ cursor: 'pointer' }}>
+    <Card>
+      <Card.Header className={style.card}>
         <div className={style.cardTitle}>
-          <span
-            style={{ fontWeight: 'bold', fontSize: '18px', color: '#48535B' }}
-          >
+          <div>
             {quiz?.title}
-          </span>
-          <span
-            style={{ fontSize: '12px', color: '#48535B', marginTop: '5px' }}
-          >
+          </div>
+          <div className={style.timeStyle}>
             <BsClockHistory
               size="15px"
-              style={{
-                marginTop: '0px',
-                marginRight: '3px',
-                paddingBottom: '3px',
-              }}
             />
             {getTotalTimeLimit()} secs
-          </span>
+          </div>
         </div>
       </Card.Header>
-      <Card.Body className={style.card02} style={{ cursor: 'pointer' }}>
+      <Card.Body className={style.card02}>
         <div className={style.ResultscoreCardText}>
           <div className={style.ResultScore}>
             <p>Attempts</p>

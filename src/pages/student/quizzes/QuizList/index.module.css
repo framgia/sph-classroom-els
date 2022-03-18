@@ -2,15 +2,7 @@
   font-size: 24px;
   font-weight: 500;
   color: #48535b;
-  display: inline-block;
-  margin-left: 10px;
-  margin-top: 37px;
-  position: absolute;
-}
-
-.container {
-  margin: 0px 196px;
-  padding: 0px;
+  margin: 0px;
 }
 
 .backButton {
@@ -66,5 +58,12 @@
   color: #48535b;
   width: 50px;
   height: 50px;
-  margin: 29px 10px 23px 0px;
+}
+
+.headerStyle{
+  display: flex;
+  align-items: center;
+  height: 102px;
+  gap: 10px
+  
 }

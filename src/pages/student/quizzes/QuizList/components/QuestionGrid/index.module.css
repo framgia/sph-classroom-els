@@ -5,31 +5,22 @@
   border-bottom-right-radius: 0px;
   filter: drop-shadow(0 1mm 1mm #48535b8c);
   margin-bottom: 4px;
-  padding: 10px 25px;
 }
 .card02 {
-  /* width: 385px; */
   color: #48535B;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
   height: 140px;
-  padding-bottom: 0px;
+  padding-bottom: 14px 0px 14px 0px;
 
 }
 
 .cardTitle {
   display: flex;
   justify-content: space-between;
+  font-size: 18px;
+  font-weight: 400px;
 }
-
-/* .card.pass {
-  background-color: #c6f3bf;
-}
-
-.card.pass:hover {
-  background-color: #789e98;
-  color: white;
-} */
 
 .card.fail {
   background-color: #fad3d3;
@@ -40,25 +31,10 @@
   color: white;
 }
 
-/* .cardScore {
-  font-size: 16px;
-  font-weight: 300;
-} */
-
-/* .image {
-  margin-right: 10px;
-}
-
-.imageSize {
-  width: 35px;
-  height: 35px;
-  background-color: black;
-} */
-
 .repeatDiv {
   display: flex;
   justify-content: flex-end;
-  padding-right: 25px;
+  padding-right: 15px;
   color: #5D9098;
   margin-bottom: 9px;
   font-weight: bold;
@@ -66,10 +42,7 @@
   font-size: 16px;
 }
 
-
-
 .ResultscoreCardText {
-  padding: 10px 10px 0px 10px;
   margin-bottom: 0px;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
@@ -82,17 +55,11 @@
   margin-bottom: 0px;
   font-size: 16px;
   font-weight: 300;
-  /* width: 255px; */
 }
 
-/* 
-// <Card.Text
-//   className={`${style.cardScore} d-flex justify-content-center`}
-// >
-  {{`${quiz.correctAnswers}/${quiz.totalQuestions}`}}
-{</Card.Text>} */
-
-
-.carddiv{
-  width: 339px;
+.timeStyle{
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  gap: 5px
 }

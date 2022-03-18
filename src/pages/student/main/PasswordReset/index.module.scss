@@ -8,6 +8,11 @@
   gap: $gap-value;
 }
 
+.headerStyle{
+  font-size: $font-size-lg;
+  font-weight: $font-weight-regular;
+}
+
 .formContainer {
   background-color: $color-light-blue-1;
   color: $color-dark-blue-1;

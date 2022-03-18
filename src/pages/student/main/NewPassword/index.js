@@ -76,8 +76,8 @@ const NewPassword = () => {
           onSubmit={handleSubmit(handleOnSubmit)}
           className={style.formCard}
         >
-          <div>
-            <h4>Change Password</h4>
+          <div className={style.headerStyle}>
+            Change Password
           </div>
           <div className={style.suggestion}>
             Create a new password that is at least 6 characters long. A strong

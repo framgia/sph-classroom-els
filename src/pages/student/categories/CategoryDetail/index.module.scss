@@ -8,21 +8,20 @@
   gap: $gap;
 }
 
-.subcategoryContainer {
-  padding: 0px 196px;
-  color: $color-dark-blue-1;
-}
-
 .subTile {
+  height: 145px;
+  margin-bottom: 43px;
+  color: $color-dark-blue-1;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-page-title;
   @include flex(space-between, center, row, none);
 }
 
 .header {
-  padding: 33px 0px;
-  font-weight: $font-weight-medium;
-  font-size: $font-size-page-title;
-
   @include flex(flex-start, center, row, none);
+  font-size: $font-size-lg;
+  font-weight: $font-weight-regular;
+  height: 102px;
 }
 
 .backButton {
@@ -38,11 +37,14 @@
 
 .pageTitleName {
   height: 30px;
+  font-size: $font-size-page-title;
+  font-weight: $font-weight-medium;
 }
 
 .linkToQuizzes {
   color: $color-dark-blue-1;
   font-size: $font-size-page-title;
+  font-weight: $font-weight-medium;
 }
 
 .loading {

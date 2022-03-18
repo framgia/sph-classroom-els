@@ -47,17 +47,19 @@ const QuizList = () => {
   };
 
   return (
-    <div className={style.container}>
-      <a
-        href={
-          category?.category_id
-            ? `/categories/${category?.category_id}/sub`
-            : '/categories'
-        }
-      >
-        <BsFillArrowLeftSquareFill className={style.backArrow} />
-      </a>
-      <p className={style.title}>{category?.name}</p>
+    <div className="container">
+      <div className={style.headerStyle}>
+        <a
+          href={
+            category?.category_id
+              ? `/categories/${category?.category_id}/sub`
+              : '/categories'
+          }
+        >
+          <BsFillArrowLeftSquareFill className={style.backArrow} />
+        </a>
+        <p className={style.title}>{category?.name}</p>
+      </div>
       {quizzes === null ? (
         <div className={style.loading}>
           <Spinner animation="border" role="status"></Spinner>
@@ -69,7 +71,6 @@ const QuizList = () => {
       <div>
         {quizzes && quizzes.length > 0 && (
           <div id={style.GridCard}>
-            {/* <Row xs={1} sm={2} md={3} lg={3}> */}
             {quizzes.map((quiz, index) => {
               return (
                 <Col key={index}>
@@ -81,7 +82,6 @@ const QuizList = () => {
                 </Col>
               );
             })}
-            {/* </Row> */}
           </div>
         )}
       </div>

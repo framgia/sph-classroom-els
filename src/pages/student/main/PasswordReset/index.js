@@ -47,8 +47,8 @@ const PasswordReset = () => {
         <Form onSubmit={handleSubmit(handleOnSubmit)}>
           {!emailSent ? (
             <div className={style.formContainer}>
-              <Form.Label>
-                <h4>Password Reset</h4>
+              <Form.Label className={style.headerStyle}> 
+                Password Reset 
               </Form.Label>
               <Form.Group className="mb-3" controlId="Email">
                 <Form.Label>

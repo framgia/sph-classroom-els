@@ -36,8 +36,8 @@ const FriendsActivities = () => {
   };
 
   return (
-    <Col>
-      <Card className={style.bg}>
+    <Col className="container">
+      <Card>
         <Card.Header className={style.forContainerBar2}>
           <p className={style.titleText}>Friends Activities</p>
         </Card.Header>

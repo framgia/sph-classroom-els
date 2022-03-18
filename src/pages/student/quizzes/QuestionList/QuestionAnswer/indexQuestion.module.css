@@ -182,7 +182,7 @@ input::placeholder {
 .topic {
   color: #48535b;
   justify-content: space-between;
-  font-size: 24px;
+  font-size: 18px;
   width: 548px;
   padding-left: 0px;
   padding-right: 70px;
@@ -190,7 +190,7 @@ input::placeholder {
 
 .topicspan {
   color: #48535b;
-  font-weight: bold;
+  font-weight: 400px;
   width: 600px;
   padding-right: 210px;
 }
@@ -207,7 +207,6 @@ input::placeholder {
 .cardstyle {
   width: 500px;
   margin-top: 150px;
-  /* height: 50px; */
 }
 
 .radiosize::-webkit-input-radio {

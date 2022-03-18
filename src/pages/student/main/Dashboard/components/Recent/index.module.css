@@ -11,6 +11,8 @@
     background-color: #e0eaec;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: #48535B;
+    display: flex;
+    justify-content: space-between;
 }
 
 .titleText {
@@ -27,7 +29,7 @@
 }
 
 .forSeccolum {
-    padding: 10px;
+    padding: 10px 0px 10px 0px;
     color: #48535b;
     font-weight: 300;
     font-size: 14px;
@@ -35,7 +37,7 @@
 }
 
 .forSeccolum2 {
-    padding: 10px 15px;
+    padding: 10px 0px 10px 0px;
     text-align: right;
     margin-top: 30px;
     font-weight: 600;
@@ -46,6 +48,7 @@
     font-size: 16px;
     font-weight: 600;
     color: #5d9098;
+    text-align: end;
 }
 
 #listTable {
@@ -56,7 +59,8 @@
 }
 
 .timerIcon {
-    margin-right: 5px;
+    display: flex;
+    align-items: center;
 }
 Col.Card:nth-child(3){
     display:none;

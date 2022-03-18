@@ -120,7 +120,7 @@ const QuestionAnswer = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       {showResult === false ? (
         <div className="d-flex justify-content-center align-items-center">
           <Card className={style.cardstyle}>

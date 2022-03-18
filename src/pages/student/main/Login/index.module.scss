@@ -8,6 +8,11 @@
   gap: $gap-value;
 }
 
+.headerStyle{
+  font-size: $font-size-lg;
+  font-weight: $font-weight-regular;
+}
+
 #container {
   margin-top: 200px;
   color: $color-dark-blue-1;

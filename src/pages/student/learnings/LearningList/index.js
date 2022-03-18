@@ -68,33 +68,31 @@ const LearningList = () => {
 
   return (
     <div className="container">
-      <div className={style.mainContent}>
-        <h1 className={style.pageTitle}>Learnings</h1>
-        <Card className={style.card}>
-          <Card.Header className={style.cardHeader}></Card.Header>
-          <Card.Body className={style.cardBody}>
-            <DataTable
-              tableHeaderNames={tableHeaderNames}
-              renderTableData={renderTableData}
-              titleHeaderStyle={style.tableHeader}
-              sortOptions={sortOptions}
-              setSortOptions={setSortOptions}
-              data={learnings}
-            />
-          </Card.Body>
-        </Card>
-        <section>
-          <div className={style.pagination}>
-            <Pagination
-              page={page}
-              perPage={perPage}
-              totalItems={totalItems}
-              pageCount={lastPage}
-              onPageChange={onPageChange}
-            />
-          </div>
-        </section>
-      </div>
+      <h1 className={style.pageTitle}>Learnings</h1>
+      <Card>
+        <Card.Header className={style.cardHeader}></Card.Header>
+        <Card.Body className={style.cardBody}>
+          <DataTable
+            tableHeaderNames={tableHeaderNames}
+            renderTableData={renderTableData}
+            titleHeaderStyle={style.tableHeader}
+            sortOptions={sortOptions}
+            setSortOptions={setSortOptions}
+            data={learnings}
+          />
+        </Card.Body>
+      </Card>
+      <section>
+        <div className={style.pagination}>
+          <Pagination
+            page={page}
+            perPage={perPage}
+            totalItems={totalItems}
+            pageCount={lastPage}
+            onPageChange={onPageChange}
+          />
+        </div>
+      </section>
     </div>
   );
 };

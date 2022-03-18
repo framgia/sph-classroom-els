@@ -17,10 +17,10 @@
 }
 
 .HeadingText{
-    margin-left: 100px;
-    margin-bottom: 10px;
-    font-size: 24px;
+    font-size: 18px;
     color: #48535B;
+    display: flex;
+    justify-content: center;
 }
 
 .changepassbutton{

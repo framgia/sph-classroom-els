@@ -51,7 +51,7 @@ const QuizAnswerResult = ({
                 className={style.backarrow1}
               />
               <div className={style.title}>
-                <center className={style.topicspan}>
+                <center >
                   <span>{title}</span>
                 </center>
               </div>

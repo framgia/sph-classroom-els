@@ -107,29 +107,27 @@ function Subcategories() {
   };
 
   return (
-    <div className={style.subcategoryContainer}>
+    <div className="container">
       <div className={style.subTile}>
-        <div>
-          <p className={style.header}>
-            <LinkContainer
-              to={
-                category?.category_id
-                  ? `/categories/${category?.category_id}/sub`
-                  : '/categories'
-              }
-              className={style.backButton}
-            >
-              <BsFillArrowLeftSquareFill size="50" />
-            </LinkContainer>
-            <div className={style.pageTitle}>
-              <span className={style.pageTitleName}>{category?.name}</span>
-              <Breadcrumbs
-                chosenCategoryPathID={chosenCategoryPathID}
-                setChosenCategoryPathID={setChosenCategoryPathID}
-              />
-            </div>
-          </p>
-        </div>
+        <p className={style.header}>
+          <LinkContainer
+            to={
+              category?.category_id
+                ? `/categories/${category?.category_id}/sub`
+                : '/categories'
+            }
+            className={style.backButton}
+          >
+            <BsFillArrowLeftSquareFill size="50" />
+          </LinkContainer>
+          <div className={style.pageTitle}>
+            <span className={style.pageTitleName}>{category?.name}</span>
+            <Breadcrumbs
+              chosenCategoryPathID={chosenCategoryPathID}
+              setChosenCategoryPathID={setChosenCategoryPathID}
+            />
+          </div>
+        </p>
       </div>
 
       { !data ? (

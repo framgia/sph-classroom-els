@@ -117,7 +117,7 @@ function CategoryList() {
   };
 
   return (
-    <div className={style.container}>
+    <div className="container">
       <section className={style.headerSection}>
         <p className={style.title}>Categories</p>
         <Breadcrumbs />

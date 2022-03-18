@@ -1,12 +1,12 @@
-.studentDetailContainer {
-  margin: 20px 130px;
-}
-
 .student {
   display: flex;
   justify-content: space-between;
-  margin: 100px 0px;
-  padding-left: 10%;
+}
+
+.headerStyle{
+  display: flex;
+  height: 250px;
+  align-items: center;
 }
 
 .biUserPosition {
@@ -28,15 +28,25 @@
 }
 
 .studentDetailsPosition {
-  margin-top: 40px;
-  display: inline-block;
+  margin: 0px;
+  display: block;
 }
 
-.studentName {
-  float: left;
-  color: #152536;
+.studentDetailsPosition:nth-child(1)  {
   font-size: 32px;
-  font-weight: bold;
+  font-weight: 500px;
+
+}
+
+.studentDetailsPosition:nth-child(2)  {
+  font-size: 24px;
+  font-weight: 400px;
+}
+
+.studentDetailsPositionFollowers {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 400px;
 }
 
 .totalQuizzesTaken {
@@ -44,24 +54,6 @@
   margin-bottom: 10px;
   color: #48535b;
   margin-top: 55px;
-}
-
-.followersText {
-  font-size: 20px;
-  margin-top: 0px;
-  display: inline-block;
-  font-weight: 300px;
-  color: #48535b;
-}
-
-.followingText {
-  margin-left: 20px;
-  margin-right: 5px;
-  font-size: 20px;
-  margin-top: 0px;
-  display: inline-block;
-  font-weight: 300px;
-  color: #48535b;
 }
 
 .followUnfollowButton {
@@ -82,14 +74,16 @@
 
 .buttonAlignment {
   width: 250px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .activityTables {
   margin-top: 40px;
-  padding: 0px 150px;
   display: flex;
   justify-content: space-between;
   color: #48535b;
+  gap: 5px
 }
 
 .tableHeader {
@@ -106,6 +100,7 @@
 
 .tableTitle {
   margin-left: 15px;
+  font-size: 18px;
 }
 
 .tableBody {
