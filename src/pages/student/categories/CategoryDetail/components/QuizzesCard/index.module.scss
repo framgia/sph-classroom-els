@@ -1,0 +1,90 @@
+@use '../../../../../../styles/variables' as *;
+
+.containerCard {
+    flex: 0;
+    width: auto;
+    padding-right: 0;
+}
+
+.card {
+    color: $color-dark-blue-1;
+    background-color:$color-light-blue-1;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    filter: drop-shadow(0 1mm 1mm #48535b8c);
+    margin-bottom: 4px;
+    padding: 10px 25px;
+    cursor: pointer;
+}
+
+.card02 {
+    color: $color-dark-blue-1;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    height: 140px;
+    padding-bottom: 0px;
+    cursor: pointer;
+}
+
+.cardTitle {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card.fail {
+    background-color: $color-white-5;   
+}
+
+.card.fail:hover {
+    background-color: $color-light-blue-7;
+    color: $color-white;
+}
+
+.repeatDiv {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 25px;
+    color: $color-dark-blue-2;
+    margin-bottom: 9px;
+    font-weight: bold;
+    margin-top: 0px;
+    font-size: $font-size-base;
+}
+
+.ResultscoreCardText {
+    padding: 10px 10px 0px 10px;
+    margin-bottom: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    width: 308px;
+}
+
+.ResultScore {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0px;
+    font-size: $font-size-base;
+    font-weight: $font-weight-light;
+}
+
+.carddiv{
+    width: 339px;
+}
+
+.titleHeader {
+    font-weight: bold;
+    font-size: 18px;
+    color: $color-dark-blue-1;
+}
+
+.clockHeader {
+    font-size: 12px;
+    color: #48535B;
+    margin-top: 5px;
+}
+
+.clockIcon {
+    margin-top: 0px;
+    margin-right: 3px;
+    padding-bottom: 3px;
+}

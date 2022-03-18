@@ -12,6 +12,7 @@
 .card {
     height: 217px;
     width: 343px;
+    min-width: auto;
 }
 
 .cardTitle{
@@ -31,4 +32,10 @@
     font-size: 12px;
     font-weight: 500;
     color: #5D9098;
+}
+
+.containerCard {
+    flex: 0;
+    width: auto;
+    padding-right: 0;
 }

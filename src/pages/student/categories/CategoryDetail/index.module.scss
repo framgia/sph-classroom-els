@@ -57,11 +57,24 @@
 }
 
 .cardList {
-  display: grid;
-  grid-column-gap: 48px;
+  display: flex;
+  grid-column-gap: 34px;
   grid-row-gap: 48px;
-  grid-template-columns: 342px 342px 342px 342px;
-  grid-template-rows: 216px 216px 216px;
-  height: 747px;
   width: 1518px;
+
+  &:nth-child(4) {
+    grid-column-gap: 40px;
+  }
+}
+
+.noResultsMessage {
+  margin: 220px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.message {
+  margin-left: 20px;
+  font-size: 24px;
 }
