@@ -144,103 +144,101 @@ const StudentList = () => {
   };
 
   return (
-    <div className={style.studentListContainer}>
-      <div>
-        <div className={style.studentListHeader}>List of {listInfo}</div>
-        <Card>
-          <Card.Header className={style.cardHeader}>
-            <form onSubmit={onSearchSubmit}>
-              <input
-                className={style.inputStyle}
-                type="search"
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
+    <div className="container">
+      <div className={style.studentListHeader}>List of {listInfo}</div>
+      <Card>
+        <Card.Header className={style.cardHeader}>
+          <form onSubmit={onSearchSubmit}>
+            <input
+              className={style.inputStyle}
+              type="search"
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
 
-                  if (e.target.value.length === 0) {
-                    setPage(1);
-                    setStatus(!status);
-                  }
+                if (e.target.value.length === 0) {
+                  setPage(1);
+                  setStatus(!status);
+                }
+              }}
+              name="search"
+              placeholder="Search"
+            />
+            <Button type="submit" className={style.searchButton}>
+              <BiSearch className={style.searchIcon} />
+            </Button>
+          </form>
+          <Dropdown>
+            <Dropdown.Toggle
+              className={style.dropdownStyle}
+              variant="link"
+              bsPrefix="none"
+            >
+              <span className={style.dropdownLabel}>Filter</span>
+              <VscFilter size="20px" />
+            </Dropdown.Toggle>
+            <Dropdown.Menu className={style.dropdownMenuStyle}>
+              <Dropdown.Item
+                className={style.dropdownItemStyle}
+                onClick={() => {
+                  setFilter('');
+                  setStatus(!status);
+                  setListInfo('All Students');
+                  setPage(1);
                 }}
-                name="search"
-                placeholder="Search"
-              />
-              <Button type="submit" className={style.searchButton}>
-                <BiSearch className={style.searchIcon} />
-              </Button>
-            </form>
-            <Dropdown>
-              <Dropdown.Toggle
-                className={style.dropdownStyle}
-                variant="link"
-                bsPrefix="none"
               >
-                <span className={style.dropdownLabel}>Filter</span>
-                <VscFilter size="20px" />
-              </Dropdown.Toggle>
-              <Dropdown.Menu className={style.dropdownMenuStyle}>
-                <Dropdown.Item
-                  className={style.dropdownItemStyle}
-                  onClick={() => {
-                    setFilter('');
-                    setStatus(!status);
-                    setListInfo('All Students');
-                    setPage(1);
-                  }}
-                >
-                  All
-                </Dropdown.Item>
-                <Dropdown.Item
-                  className={style.dropdownItemStyle}
-                  onClick={() => {
-                    setFilter('followed');
-                    setListInfo('Followed Students');
-                    setPage(1);
-                  }}
-                >
-                  Following
-                </Dropdown.Item>
-                <Dropdown.Item
-                  className={style.dropdownItemStyle}
-                  onClick={() => {
-                    setFilter('followers');
-                    setListInfo('Followers');
-                    setPage(1);
-                  }}
-                >
-                  Followers
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Card.Header>
-          <Card.Body className={style.cardBody}>
-            {students === null ? (
-              <div className={style.loading}>
-                <Spinner animation="border" role="status"></Spinner>
-                <span className={style.loadingWord}>Loading</span>
-              </div>
-            ) : (
-              renderStudList()
-            )}
-            {students?.length <= 0 ? (
-              <div className={style.noResults}>
-                {' '}
-                <p>No Student Found</p>{' '}
-              </div>
-            ) : (
-              <div className={style.pagination}>
-                <Pagination
-                  page={page}
-                  perPage={perPage}
-                  totalItems={totalItems}
-                  pageCount={lastPage}
-                  onPageChange={onPageChange}
-                ></Pagination>
-              </div>
-            )}
-          </Card.Body>
-        </Card>
-      </div>
+                All
+              </Dropdown.Item>
+              <Dropdown.Item
+                className={style.dropdownItemStyle}
+                onClick={() => {
+                  setFilter('followed');
+                  setListInfo('Followed Students');
+                  setPage(1);
+                }}
+              >
+                Following
+              </Dropdown.Item>
+              <Dropdown.Item
+                className={style.dropdownItemStyle}
+                onClick={() => {
+                  setFilter('followers');
+                  setListInfo('Followers');
+                  setPage(1);
+                }}
+              >
+                Followers
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </Card.Header>
+        <Card.Body className={style.cardBody}>
+          {students === null ? (
+            <div className={style.loading}>
+              <Spinner animation="border" role="status"></Spinner>
+              <span className={style.loadingWord}>Loading</span>
+            </div>
+          ) : (
+            renderStudList()
+          )}
+          {students?.length <= 0 ? (
+            <div className={style.noResults}>
+              {' '}
+              <p>No Student Found</p>{' '}
+            </div>
+          ) : (
+            <div className={style.pagination}>
+              <Pagination
+                page={page}
+                perPage={perPage}
+                totalItems={totalItems}
+                pageCount={lastPage}
+                onPageChange={onPageChange}
+              ></Pagination>
+            </div>
+          )}
+        </Card.Body>
+      </Card>
     </div>
   );
 };

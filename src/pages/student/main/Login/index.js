@@ -74,9 +74,7 @@ const Login = () => {
       <div>
         <Container id={style.container}>
           <Stack id={style.formCard}>
-            <div>
-              <h4>Sign In</h4>
-            </div>
+            <div className={style.headerStyle}>Sign In</div>
             <Form
               onSubmit={handleSubmit(handleOnSubmit)}
               className={style.form}

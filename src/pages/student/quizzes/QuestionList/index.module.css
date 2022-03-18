@@ -93,7 +93,7 @@
 .topic {
   color: #48535b;
   justify-content: space-between;
-  font-size: 24px;
+  font-size: 18px;
   width: 548px;
   padding-left: 0px;
   padding-right: 60px;
@@ -180,8 +180,7 @@ input[type='radio'] {
 
 .topicspan {
   color: #48535b;
-  /* margin-left: 30px; */
-  font-weight: bold;
+  font-weight: 400px;
 }
 
 .carsize {

@@ -8,6 +8,11 @@
   gap: $gap-value;
 }
 
+.headerStyle{
+  font-size: $font-size-lg;
+  font-weight: $font-weight-regular;
+}
+
 .formCard {
   background-color: $color-light-blue-1;
   height: auto;

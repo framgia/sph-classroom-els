@@ -38,15 +38,7 @@ function Dashboard() {
       <Col>
         <Card>
           <Card.Header className={style.forContainerBar2}>
-            <table style={{ width: '100%' }}>
-              <tbody>
-                <tr>
-                  <td>
-                    <p className={style.titleText}>Categories Learned</p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <p className={style.titleText}>Categories Learned</p>
           </Card.Header>
           <Card.Body>
             <div className={`${style.forContent_box} ${style.forScroll}`}>
@@ -74,7 +66,7 @@ function Dashboard() {
   };
 
   return (
-    <div style={{ padding: '0px 196px' }}>
+    <div className="container">
       <h2 className={style.h2_style}>Recent</h2>
       <Row className={style.bg}>
         {quizzes &&

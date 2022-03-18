@@ -66,9 +66,7 @@ const Registration = () => {
       <div>
         <Container id={style.container}>
           <Stack id={style.formCard}>
-            <div>
-              <h4>Sign Up</h4>
-            </div>
+            <div className={style.headerStyle}>Sign Up</div>
             <Form
               onSubmit={handleSubmit(handleOnSubmit)}
               className={style.form}

@@ -46,17 +46,11 @@ const Recent = ({ recentQuizzes, quizzes }) => {
     <Col className={style.ConCard}>
       <Card className={style.bg}>
         <Card.Header className={style.forContainerBar}>
-          <table style={{ width: '100%' }}>
-            <tbody>
-              <tr>
-                <td className={style.titleText}>{recentQuizzes.title}</td>
-                <td style={{ textAlign: 'right' }}>
-                  <CgTimer size="15px" className={style.timerIcon} />
-                  {getTotalTimeLimit()} secs
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div className={style.titleText}>{recentQuizzes.title}</div>
+          <div className={style.timerIcon} >
+            <CgTimer size="15px"/>
+            {getTotalTimeLimit()} secs
+          </div>
         </Card.Header>
         <Card.Body>
           <div>

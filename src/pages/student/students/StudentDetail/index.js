@@ -100,9 +100,9 @@ const StudentDetail = () => {
   };
 
   return (
-    <center className={style.studentDetailContainer}>
+    <div className="container">
       <div className={style.student}>
-        <div className="d-flex">
+        <div className={style.headerStyle}>
           <div>
             <img src={
               studentDetails?.avatar 
@@ -117,15 +117,19 @@ const StudentDetail = () => {
 
           <div className={style.studentInfo}>
             <div className={style.studentDetailsPosition}>
-              <div className={style.studentName}>{studentDetails?.name}</div>
-              <div className={style.totalQuizzesTaken}>
+              <p className="mb-0">
+                {studentDetails?.name}
+              </p>
+              <p className={style.studentDetailsPosition}>
                 {overallQuizTaken} Total Quizzes Taken
-              </div>
-              <div className={style.followersText}>
-                {studentDetails?.followers_count} Followers
-              </div>
-              <div className={style.followingText}>
-                {studentDetails?.followings_count} Following
+              </p>
+              <div className="d-flex gap-5">
+                <p className={style.studentDetailsPositionFollowers}>
+                  {studentDetails?.followers_count} Followers
+                </p>
+                <p className={style.studentDetailsPositionFollowers}>
+                  {studentDetails?.followings_count} Following
+                </p>
               </div>
             </div>
           </div>
@@ -203,7 +207,7 @@ const StudentDetail = () => {
           </div>
         </div>
       </div>
-    </center>
+    </div>
   );
 };
 
