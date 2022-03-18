@@ -1,0 +1,101 @@
+@use '../../../../../../styles/variables' as *;
+
+.card {
+    color: $color-dark-blue-1;
+    background-color:$color-light-blue-1;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    filter: drop-shadow(0 1mm 1mm #48535b8c);
+    margin-bottom: 4px;
+    padding: 10px 25px;
+  }
+  .card02 {
+    /* width: 385px; */
+    color: $color-dark-blue-1;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    height: 140px;
+    padding-bottom: 0px;
+  
+  }
+  
+  .cardTitle {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* .card.pass {
+    background-color: #c6f3bf;
+  }
+  
+  .card.pass:hover {
+    background-color: $color-light-blue-7;
+    color: $color-white;
+  } */
+  
+  .card.fail {
+    background-color: $color-white-5;
+  }
+  
+  .card.fail:hover {
+    background-color: $color-light-blue-7;
+    color: $color-white;
+  }
+  
+  /* .cardScore {
+    font-size: $font-size-base;
+    font-weight: $font-weight-light;
+  } */
+  
+  /* .image {
+    margin-right: 10px;
+  }
+  
+  .imageSize {
+    width: 35px;
+    height: 35px;
+    background-color: black;
+  } */
+  
+  .repeatDiv {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 25px;
+    color: $color-dark-blue-2;
+    margin-bottom: 9px;
+    font-weight: bold;
+    margin-top: 0px;
+    font-size: $font-size-base;
+  }
+  
+  
+  
+  .ResultscoreCardText {
+    padding: 10px 10px 0px 10px;
+    margin-bottom: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    width: 308px;
+  }
+  
+  .ResultScore {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0px;
+    font-size: $font-size-base;
+    font-weight: $font-weight-light;
+    /* width: 255px; */
+  }
+  
+  /* 
+  // <Card.Text
+  //   className={`${style.cardScore} d-flex justify-content-center`}
+  // >
+    {{`${quiz.correctAnswers}/${quiz.totalQuestions}`}}
+  {</Card.Text>} */
+  
+  
+  .carddiv{
+    width: 339px;
+  }
+  
