@@ -8,10 +8,23 @@ import Spinner from 'react-bootstrap/Spinner';
 import Breadcrumbs from '../../../../components/Breadcrumbs';
 import CategoryApi from '../../../../api/Category';
 import style from './index.module.scss';
+import ChangeLocation from '../../../../components/ChangeLocation';
 
 const CategoryHierarchy = () => {
   const toast = useToast();
   const history = useHistory();
+  const TYPE = 'withPathDisplay';
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [location, setLocation] = useState(null);
+  const [parentCategories, setParentCategories] = useState(null);
+  const [parentCategoryID, setParentCategoryID] = useState(null);
+  const [locationPathDisplay, setLocationPathDisplay] = useState('');
+  const [isSaved] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState();
+
+  
 
   const queryParams = new URLSearchParams(window.location.search);
   const categoryID = queryParams.get('categoryID');
@@ -33,6 +46,12 @@ const CategoryHierarchy = () => {
     })
       .then(({ data }) => {
         setCategories(data.data);
+        setParentCategoryID(data.data.category_id);
+        if (data.data.category_id) {
+          getParentCategories();
+        } else {
+          setLocationPathDisplay('Root');
+        }
         history.replace({ categoryID });
       })
       .catch(() =>
@@ -46,6 +65,49 @@ const CategoryHierarchy = () => {
     } else {
       toast('Message', 'This category does not have a subcategory.');
     }
+  };
+
+  useEffect(() => {
+    if (isSaved) {
+      console.log(isSaved);
+      setParentCategoryID(location?.id);
+      setLocation(null);
+    }
+  }, [location, isSaved]);
+
+  const getParentCategories = () => {
+    CategoryApi.getParentCategories(chosenCategoryPathID)
+      .then(({ data }) => {
+        setParentCategories(data);
+      })
+      .catch((error) => toast('Error', error));
+  };
+
+  const handleOnSubmit = async ({ name, description }) => {
+    if (selectedCategory) {
+      toast('Processing', 'Updating Category...');
+      CategoryApi.update(selectedCategory.name, selectedCategory.description, parentCategoryID, selectedCategory.id)
+        .then(() => {console.log(parentCategoryID);
+          toast('Success', 'Successfully Updated Category.');
+          load();
+        })
+        .catch(() => {
+          // console.log(error);
+          // toast('Error', error);
+        });
+    }
+  };
+
+  useEffect(() => {
+    parentCategories?.forEach((p, idx) =>
+      !idx
+        ? setLocationPathDisplay((path) => path.concat(p.name))
+        : setLocationPathDisplay((path) => path.concat(' > ', p.name))
+    );
+  }, [parentCategories]);
+
+  const onDropdownClick = (category) => {
+    setSelectedCategory(category);
   };
 
   return (
@@ -74,12 +136,16 @@ const CategoryHierarchy = () => {
                     <span className={style.categoryName}>{category.name}</span>
                   </Link>
                 </div>
-                <Dropdown>
+                <Dropdown
+                  onClick={() => {
+                    onDropdownClick(category);
+                  }}
+                >
                   <Dropdown.Toggle className={style.kebabMenu} bsPrefix="none">
                     <GoKebabVertical />
                   </Dropdown.Toggle>
                   <Dropdown.Menu className={style.kebabMenuList}>
-                    <Dropdown.Item className={style.kebabMenuItems}>
+                    <Dropdown.Item className={style.kebabMenuItems} onClick={handleShow}>
                       Move to...
                     </Dropdown.Item>
                     <Dropdown.Item
@@ -104,6 +170,16 @@ const CategoryHierarchy = () => {
           </div>
         )}
       </ListGroup>
+      <ChangeLocation
+        show={show}
+        handleClose={handleClose}
+        location={location}
+        setLocation={setLocation}
+        setLocationPathDisplay={setLocationPathDisplay}
+        type={TYPE}
+        isSaved={isSaved}
+        setIsSaved={handleOnSubmit}
+      />
     </div>
   );
 };
