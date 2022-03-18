@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import { PropTypes } from 'prop-types';
 import { BsClockHistory } from 'react-icons/bs';
+import Col from 'react-bootstrap/Col';
 
 import style from './index.module.scss';
 import QuizzesTakenReviewApi from '../../../../../../api/QuizTakenReview';
@@ -58,53 +59,51 @@ const QuizzesCard = ({ quiz }) => {
   };
 
   return (
-    <Card className={style.carddiv}>
-      <Card.Header className={style.card} style={{ cursor: 'pointer' }}>
-        <div className={style.cardTitle}>
-          <span
-            style={{ fontWeight: 'bold', fontSize: '18px', color: '#48535B' }}
-          >
-            {quiz?.title}
-          </span>
-          <span
-            style={{ fontSize: '12px', color: '#48535B', marginTop: '5px' }}
-          >
-            <BsClockHistory
-              size="15px"
-              style={{
-                marginTop: '0px',
-                marginRight: '3px',
-                paddingBottom: '3px',
-              }}
-            />
-            {getTotalTimeLimit()} secs
-          </span>
-        </div>
-      </Card.Header>
-      <Card.Body className={style.card02} style={{ cursor: 'pointer' }}>
-        <div className={style.ResultscoreCardText}>
-          <div className={style.ResultScore}>
-            <p>Attempts</p>
-            <p>{QuizzesRecentReview?.length}</p>
+    <Col className={style.containerCard}>
+      <Card className={style.carddiv}>
+        <Card.Header className={style.card}>
+          <div className={style.cardTitle}>
+            <span
+              className={style.titleHeader}
+            >
+              {quiz?.title}
+            </span>
+            <span
+              className={style.clockHeader}
+            >
+              <BsClockHistory
+                size="15px"
+                className={style.clockIcon}
+              />
+              {getTotalTimeLimit()} secs
+            </span>
           </div>
-          <div className={style.ResultScore}>
-            <p>Highest Score</p>
-            <p>
-              {getHighestScore()}/{questions?.length}
-            </p>
+        </Card.Header>
+        <Card.Body className={style.card02} style={{ cursor: 'pointer' }}>
+          <div className={style.ResultscoreCardText}>
+            <div className={style.ResultScore}>
+              <p>Attempts</p>
+              <p>{QuizzesRecentReview?.length}</p>
+            </div>
+            <div className={style.ResultScore}>
+              <p>Highest Score</p>
+              <p>
+                {getHighestScore()}/{questions?.length}
+              </p>
+            </div>
+            <div className={style.ResultScore} style={{ fontWeight: 'bold' }}>
+              <p>Latest Score</p>
+              <p>
+                {getLatestScore() >= 0 ? getLatestScore() : 0}/{questions?.length}
+              </p>
+            </div>
           </div>
-          <div className={style.ResultScore} style={{ fontWeight: 'bold' }}>
-            <p>Latest Score</p>
-            <p>
-              {getLatestScore() >= 0 ? getLatestScore() : 0}/{questions?.length}
-            </p>
-          </div>
-        </div>
-      </Card.Body>
-      {quiz.answerCount === 0 || (
-        <div className={style.repeatDiv}>Take Quiz</div>
-      )}
-    </Card>
+        </Card.Body>
+        {quiz.answerCount === 0 || (
+          <div className={style.repeatDiv}>Take Quiz</div>
+        )}
+      </Card>
+    </Col>
   );
 };
 QuizzesCard.propTypes = {

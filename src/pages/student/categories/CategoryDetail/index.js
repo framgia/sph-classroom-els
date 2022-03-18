@@ -4,6 +4,7 @@ import { useToast } from '../../../../hooks/useToast';
 import { LinkContainer } from 'react-router-bootstrap';
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 import Spinner from 'react-bootstrap/Spinner';
+import Row from 'react-bootstrap/Row';
 
 import Pagination from '../../../../components/Pagination';
 import Breadcrumbs from '../../../../components/Breadcrumbs';
@@ -79,53 +80,6 @@ function Subcategories() {
     setQuizzesPage(selected + 1);
   };
 
-  // function Subcategories() {
-  //   const [categories, setCategories] = useState(null);
-  //   const [quizzes, setQuizzes] = useState(null);
-  //   const [category, setCategory] = useState(null);
-  //   const categoryId = useParams().id;
-  //   const queryParams = new URLSearchParams(window.location.search);
-  //   const pageNum = queryParams.get('page');
-  //   const history = useHistory();
-  //   const [categoryPage, setCategoryPage] = useState(pageNum ? pageNum : 1);
-  //   const [perCategoryPage, setPerCategoryPage] = useState(0);
-  //   const [totalCategoryItems, setTotalCategoryItems] = useState(0);
-  //   const [lastCategoryPage, setLastCategoryPage] = useState(0);
-  //   const [quizzesPage, setQuizzesPage] = useState(pageNum ? pageNum : 1);
-  //   const [perQuizzesPage, setPerQuizzesPage] = useState(0);
-  //   const [totalQuizzesItems, setTotalQuizzesItems] = useState(0);
-  //   const [lastQuizzesPage, setLastQuizzesPage] = useState(0);
-  //   const data = categories && quizzes;
-
-  //   useEffect(() => {
-  //     history.push(`/categories/${categoryId}/sub?page=${categoryPage}&page=${quizzesPage}`);
-
-  //     CategoryApi.show({ categoryId }).then(({ data }) => {
-  //       setCategory(data.data);
-  //       CategoryApi.getAll({ category_id: categoryId }, categoryPage).then(({ data }) => {
-  //         setCategories(data.data);
-  //         setPerCategoryPage(data.per_page);
-  //         setTotalCategoryItems(data.total);
-  //         setLastCategoryPage(data.last_page);
-  //       });
-  //       QuizApi.categoryQuizzes({ category_id: categoryId, quizzesPage }).then(({data}) => {
-  //         setQuizzes(data.data);
-  //         setPerQuizzesPage(data.per_page);
-  //         setTotalQuizzesItems(data.total);
-  //         setLastQuizzesPage(data.last_page);
-  //       });
-  //     });
-    
-  //   }, [categoryId, categoryPage, quizzesPage]);
-
-  // const onCategoryPageChange = (selected) => {
-  //   setCategoryPage(selected + 1);
-  // };
-
-  // const onQuizzesPageChange = (selected) => {
-  //   setQuizzesPage(selected + 1);
-  // };
-
   const renderCatList = () => {
     return categories.map((subcategory, idx) => {
       return (
@@ -142,6 +96,14 @@ function Subcategories() {
     return quizzes.map((quiz, idx) => {
       return <QuizzesCard quiz={quiz} key={idx}/>;
     });
+  };
+
+  const noResultMessage = (messageText) => {
+    return (
+      <div className={style.noResultsMessage}>
+        <p className={style.message}>{messageText}</p>
+      </div>
+    );
   };
 
   return (
@@ -170,18 +132,18 @@ function Subcategories() {
         </div>
       </div>
 
-      {data === null ? (
+      { !data ? (
         <div className={style.loading}>
           <Spinner animation="border" role="status"></Spinner>
           <span className={style.loadingWord}>Loading</span>
         </div>
       ) : (
         <div>
-          <div className={style.cardList}>{renderCatList()}</div>
+          <Row className={style.cardList}>
+            {renderCatList()}
+          </Row>
           {categories?.length <= 0 ? (
-            <div className={style.noResultsMessage}>
-              <p className={style.message}>NO RESULTS FOUND</p>
-            </div>
+            <div>{noResultMessage('NO RESULTS FOUND')}</div>
           ) : (
             <div className="pt-4">
               <Pagination
@@ -194,11 +156,11 @@ function Subcategories() {
             </div>
           )}
           <div className={style.header}>Quizzes</div>
-          <div className={style.cardList}>{renderQuizList()}</div>
+          <Row className={style.cardList}>
+            {renderQuizList()}
+          </Row>
           {quizzes?.length <= 0 ? (
-            <div className={style.noResultsMessage}>
-              <p className={style.message}>NO RELATED QUIZZES FOUND</p>
-            </div>
+            <div>{noResultMessage('NO RELATED QUIZZES FOUND')}</div>
           ) : (
             <div className="pt-4">
               <Pagination
