@@ -100,7 +100,6 @@ const CategoryHierarchy = () => {
       )
         .then(() => {
           toast('Success', 'Successfully Updated Category.');
-          console.log(categories);
           load();
         })
         .catch((error) => {

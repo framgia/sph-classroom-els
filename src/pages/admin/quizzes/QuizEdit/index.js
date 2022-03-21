@@ -30,10 +30,6 @@ const QuizEdit = () => {
   const { categoryId, quizId } = useParams();
   const toast = useToast();
 
-  const modalHeaderTitle = [
-    { title: 'Choose Location'}
-  ];
-
   useEffect(() => {
     QuizApi.show({ categoryId, quizId }).then(({ data }) => {
       setQuizInfo(data.data);
@@ -253,7 +249,6 @@ const QuizEdit = () => {
         type={TYPE}
         isSaved={saveLocation}
         setIsSaved={setSaveLocation}
-        modalHeaderTitle={modalHeaderTitle}
       />
     </div>
   );
