@@ -30,7 +30,9 @@ import { PropTypes } from 'prop-types';
   > required     : (optional) by default this is set to true, so pass a false value if the input field is not required.
 
   > maxLength    : (optional) pass a number value to limit the number of characters the input field will accept.
-*/
+
+  > disabled     : (optional) pass this prop with a value of true if you want to have a disabled input field.
+  */
 
 import style from './index.module.scss';
 
@@ -44,7 +46,8 @@ const InputField = ({
   isInvalid,
   placeholder,
   required = true,
-  maxLength
+  maxLength,
+  disabled = false
 }) => {
   const styleSize = () => {
     switch (fieldSize) {
@@ -69,6 +72,7 @@ const InputField = ({
       placeholder={placeholder}
       required={required}
       maxLength={maxLength}
+      disabled={disabled}
     />
   );
 };
@@ -83,7 +87,8 @@ InputField.propTypes = {
   fieldSize: PropTypes.string,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  maxLength: PropTypes.number
+  maxLength: PropTypes.number,
+  disabled: PropTypes.bool
 };
 
 export default InputField;

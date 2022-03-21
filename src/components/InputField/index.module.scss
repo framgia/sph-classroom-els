@@ -2,20 +2,24 @@
 @use '../../styles/variables' as *;
 
 .defaultInputField {
-    font-weight: $font-weight-regular;
-    border: 2px $color-light-blue-1 solid;
-    font-size: $font-size-md;
-    &.lg {
-      width: 400px;
-      height: 42px;
-      font-size: $font-size-base;
-    }
-    &.md {
-      width: 300px;
-      height: 38px;
-    }
-    &.sm {
-      width: 200px;
-      height: 30px;
-    }
+  font-weight: $font-weight-regular;
+  border: 2px $color-light-blue-1 solid;
+  font-size: $font-size-md;
+  &.lg {
+    width: 400px;
+    height: 42px;
+    font-size: $font-size-base;
+  }
+  &.md {
+    width: 300px;
+    height: 38px;
+  }
+  &.sm {
+    width: 200px;
+    height: 30px;
+  }
+
+  &:disabled {
+    background-color: $color-white;
+  }
 }
