@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import style from './index.module.css';
+import Moment from 'react-moment';
+import Cookies from 'js-cookie';
 import { FaUserEdit } from 'react-icons/fa';
 import { BsCardChecklist } from 'react-icons/bs';
 import { RiUserAddLine } from 'react-icons/ri';
-import Moment from 'react-moment';
-import Cookies from 'js-cookie';
-
 import StudentApi from '../../../../api/Student';
 import DashboardApi from '../../../../api/Dashboard';
+import style from './index.module.scss';
 
 const ProfileDetail = () => {
   const loggedInUserId = Cookies.get('user_id');
@@ -36,7 +35,7 @@ const ProfileDetail = () => {
 
   const activitiesIconDisplay = (activityDetail) => {
     return activityDetail === ACTIVITY_TYPE ? (
-      <BsCardChecklist size="20px"/>
+      <BsCardChecklist size="20px" />
     ) : (
       <RiUserAddLine size="20px" />
     );
@@ -44,21 +43,23 @@ const ProfileDetail = () => {
 
   return (
     <div className="container">
-      <div
-        className={style.headerProfileStyle}
-      >
+      <div className={style.profileHeader}>
         <div className={style.userInfo}>
-          <div className={style.userEditText}>
+          <div className={style.infoLabels}>
             {studentDetails?.name}
             <a href="/profile/view">
-              <FaUserEdit size="40px" className={style.userEdit} />
+              <FaUserEdit size="40px" className={style.editButton} />
             </a>
-            <p className={style.userEditText}>
+            <p className={style.infoLabels}>
               {overallQuizTaken} Total Quizzes Taken
             </p>
             <div className="mt-2 d-flex gap-5">
-              <p className={style.userEditTextFollowes}>{studentDetails?.followers_count} Followers </p>
-              <p className={style.userEditTextFollowes}>{studentDetails?.followings_count} Following</p>
+              <p className={style.followersLabel}>
+                {studentDetails?.followers_count} Followers{' '}
+              </p>
+              <p className={style.followingLabel}>
+                {studentDetails?.followings_count} Following
+              </p>
             </div>
           </div>
         </div>
@@ -66,9 +67,7 @@ const ProfileDetail = () => {
       <div className={style.activitiesTableContainer}>
         <div>
           <div className={style.cardHeader}>
-            <p style={{marginLeft: '12px'}}>
-              Recent Activities
-            </p>
+            <p style={{ marginLeft: '12px' }}>Recent Activities</p>
           </div>
           <div className={style.cardBody}>
             {recentActivities?.length > 0 ? (
@@ -92,7 +91,7 @@ const ProfileDetail = () => {
                 );
               })
             ) : (
-              <div className={style.noQuizzesTakenMessage}>
+              <div className={style.noRecentActivitiesMessage}>
                 <span>No Recent Activities</span>
               </div>
             )}
@@ -100,9 +99,7 @@ const ProfileDetail = () => {
         </div>
         <div>
           <div className={style.cardHeader}>
-            <p style={{marginLeft: '12px'}}>
-              Friend’s Activities
-            </p>
+            <p style={{ marginLeft: '12px' }}>Friend’s Activities</p>
           </div>
           <div className={style.cardBody}>
             {friendsActivities?.length > 0 ? (
@@ -123,7 +120,7 @@ const ProfileDetail = () => {
                 );
               })
             ) : (
-              <div className={style.noQuizzesTakenMessage}>
+              <div className={style.noRecentActivitiesMessage}>
                 <span>No Recent Activities</span>
               </div>
             )}

@@ -1,80 +1,67 @@
-import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import style from './index.module.css';
-import { Card } from 'react-bootstrap';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import Spinner from 'react-bootstrap/Spinner';
-
-import StudentsApi from '../../../../api/Student';
+import React, { useState, useEffect } from 'react';
+import { useToast } from '../../../../hooks/useToast';
+import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
+import Spinner from 'react-bootstrap/Spinner';
+import Button from '../../../../components/Button';
+import InputField from '../../../../components/InputField';
+import StudentsApi from '../../../../api/Student';
+import style from './index.module.scss';
 
 const ProfileView = () => {
-  const [profileName, setprofileName] = useState(null);
+  const toast = useToast();
   const loggedInUserId = Cookies.get('user_id');
+  const [profileName, setprofileName] = useState(null);
 
   useEffect(() => {
-    StudentsApi.getDetails(loggedInUserId).then(({ data }) => {
-      setprofileName(data.details);
-    });
+    StudentsApi.getDetails(loggedInUserId)
+      .then(({ data }) => {
+        setprofileName(data.details);
+      })
+      .catch(() =>
+        toast('Error', 'There was an error getting the user details.')
+      );
   }, []);
 
   return (
-    <div
-      className="d-flex justify-content-center align-items-center text-align-center"
-      style={{ marginTop: '150px' }}
-    >
-      <Card
-        style={{
-          width: '430px',
-          padding: '50px',
-          paddingTop: '20px',
-          backgroundColor: '#E0EAEC',
-        }}
-      >
-        <div className={style.HeadingText}>Account Info</div>
+    <div className={style.formContainer}>
+      <Card className={style.card}>
+        <div className={style.headingText}>Account Info</div>
         {profileName === null ? (
-          <div className={style.loading}>
+          <div className={style.spinner}>
             <Spinner animation="border" role="status"></Spinner>
-            <span className={style.loadingWord}>Loading</span>
+            <span>Loading</span>
           </div>
         ) : (
-          <Form style={{ marginTop: '20px' }}>
-            <Form.Group className={style.marginForForm} controlId="formBasicName">
-              <Form.Label className={style.FormGroupStyle}>
-                Name
-              </Form.Label>
-              <Form.Control
-                style={{ fontSize: '14px' }}
+          <Form className="mt-4">
+            <Form.Group className="mb-4" controlId="formBasicName">
+              <Form.Label className={style.inputLabels}>Name</Form.Label>
+              <InputField
                 value={profileName?.name}
-                disabled="disabled"
-                className={style.formControlstyle}
+                fieldSize="md"
+                disabled={true}
               />
             </Form.Group>
 
-            <Form.Group className={style.marginForForm} controlId="formBasicEmail">
-              <Form.Label
-                className={style.FormGroupStyle}>
-                Email
-              </Form.Label>
-              <Form.Control
-                style={{ fontSize: '14px' }}
+            <Form.Group className="mb-5" controlId="formBasicEmail">
+              <Form.Label className={style.inputLabels}>Email</Form.Label>
+              <InputField
                 value={profileName?.email}
-                disabled="disabled"
-                className={style.formControlstyle}
+                fieldSize="md"
+                disabled={true}
               />
             </Form.Group>
-            <a href="/profile/change-password">
-              <Button className={style.changepassbutton} variant="primary">
-                Change Password
-              </Button>
-            </a>
-            <a href="/profile/edit">
-              <Button className={style.editbutton} variant="primary">
-                Edit
-              </Button>
-            </a>
+
+            <div className="d-flex justify-content-between">
+              <Link to="/profile/change-password">
+                <Button buttonLabel="Change Password" buttonSize="def" />
+              </Link>
+              <Link to="/profile/edit">
+                <Button buttonLabel="Edit" buttonSize="sm" />
+              </Link>
+            </div>
           </Form>
         )}
       </Card>

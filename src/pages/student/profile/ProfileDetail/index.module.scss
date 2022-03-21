@@ -1,0 +1,110 @@
+@use '../../../../styles/variables' as *;
+
+.profileHeader {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  margin: 0px;
+}
+
+.infoLabels {
+  align-items: center;
+  display: block;
+  color: $color-dark-blue-1;
+  font-size: 32px;
+  font-weight: $font-weight-medium;
+  margin: 0px;
+}
+
+.infoLabels:nth-child(2) {
+  font-size: $font-size-page-title;
+  color: $color-dark-blue-1;
+}
+
+.followersLabel,
+.followingLabel {
+  color: $color-dark-blue-1;
+  font-size: $font-size-lg;
+  font-weight: 300px;
+}
+
+.editButton {
+  border: #e0eaec 3px solid;
+  border-radius: 2px;
+  margin-left: 20px;
+  padding: 5px;
+  color: $color-dark-blue-1;
+}
+
+.activitiesTableContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: $color-dark-blue-1;
+  gap: 48px;
+}
+
+.cardHeader {
+  background-color: $color-light-blue-1;
+  border-radius: 2px 2px 0px 0px;
+  width: 650px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 400px;
+  filter: drop-shadow(0 1mm 1mm #48535b8c);
+}
+
+.cardBody {
+  background-color: $color-white;
+  width: 650px;
+  height: 330px;
+  border-radius: 0px 0px 10px 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.biUserPosition {
+  border: black 1px solid;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+#timestamp {
+  float: right;
+  margin-top: 20px;
+  margin-right: 17px;
+  font-size: $font-size-md;
+  margin-left: auto;
+}
+
+.activityDescription {
+  color: $color-dark-blue-1;
+  margin-left: 20px;
+  font-size: $font-size-base;
+}
+
+.tableContainer {
+  display: flex;
+}
+
+.activityInfo {
+  margin-top: 20px;
+  margin-left: 17px;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0px;
+}
+
+.noRecentActivitiesMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}

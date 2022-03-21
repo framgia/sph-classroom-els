@@ -1,0 +1,40 @@
+@use '../../../../styles/variables' as *;
+
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formContainer {
+  margin-top: 150px;
+
+  @extend %flex-center;
+}
+
+.card {
+  padding: 40px;
+  min-width: 380px;
+  min-height: 325px;
+  background-color: $color-light-blue-1;
+}
+
+.headingText {
+  font-size: $font-size-page-title;
+  color: $color-dark-blue-1;
+
+  @extend %flex-center;
+}
+
+.inputLabels {
+  margin-bottom: 0px;
+  color: $color-dark-blue-1;
+  font-size: $font-size-base;
+}
+
+.spinner {
+  margin-top: 90px;
+  gap: 15px;
+
+  @extend %flex-center;
+}
