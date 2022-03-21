@@ -21,9 +21,9 @@ const CategoryHierarchy = () => {
   const [parentCategories, setParentCategories] = useState(null);
   const [parentCategoryID, setParentCategoryID] = useState(null);
   const [locationPathDisplay, setLocationPathDisplay] = useState('');
-  const [isSaved] = useState(false);
+  const [isSaved,setIsSaved] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState();
-
+  // const description = selectedCategory.description
   
 
   const queryParams = new URLSearchParams(window.location.search);
@@ -69,7 +69,6 @@ const CategoryHierarchy = () => {
 
   useEffect(() => {
     if (isSaved) {
-      console.log(isSaved);
       setParentCategoryID(location?.id);
       setLocation(null);
     }
@@ -83,11 +82,19 @@ const CategoryHierarchy = () => {
       .catch((error) => toast('Error', error));
   };
 
-  const handleOnSubmit = async ({ name, description }) => {
+  useEffect(() => {
+    if (parentCategoryID) {
+      // console.log(parentCategoryID);
+      handleOnSubmit();
+    }
+  }, [parentCategoryID])
+
+  const handleOnSubmit = async () => {
+    console.log(parentCategoryID);
     if (selectedCategory) {
       toast('Processing', 'Updating Category...');
       CategoryApi.update(selectedCategory.name, selectedCategory.description, parentCategoryID, selectedCategory.id)
-        .then(() => {console.log(parentCategoryID);
+        .then(() => {
           toast('Success', 'Successfully Updated Category.');
           load();
         })
@@ -178,7 +185,7 @@ const CategoryHierarchy = () => {
         setLocationPathDisplay={setLocationPathDisplay}
         type={TYPE}
         isSaved={isSaved}
-        setIsSaved={handleOnSubmit}
+        setIsSaved={setIsSaved}
       />
     </div>
   );
