@@ -108,8 +108,9 @@ const CategoryList = () => {
                 buttonSize="sm" 
                 outline={true}
                 onClick={() => {
-                  setItemToDelete(category);
-                  setShowConfirmationModal(true);
+                  testMessage(category);
+                  // setItemToDelete(category);
+                  // setShowConfirmationModal(true);
                 }}
               />
             </td>
@@ -123,16 +124,40 @@ const CategoryList = () => {
     });
   };
 
+  const testMessage = (category) => {
+    setItemToDelete(category);
+    setShowConfirmationModal(true);
+    console.log(category.subcategories_count);
+    if (category.subcategories_count > 0) {
+      console.log(showConfirmationModal);
+      return ( 
+        <ConfirmationModal
+          showModal={showConfirmationModal}
+          setShowModal={setShowConfirmationModal}
+          itemToDelete={itemToDelete.name}
+          setDeleteConfirmed={setDeleteConfirmed}
+          headerTitle="Message....."
+          confirmationMessage="You can't DELETE this category."
+          disabled={true}
+        />
+      );
+    } else {
+      return (
+        <ConfirmationModal
+          showModal={showConfirmationModal}
+          setShowModal={setShowConfirmationModal}
+          itemToDelete={itemToDelete.name}
+          setDeleteConfirmed={setDeleteConfirmed}
+          headerTitle="Confirm Deletion"
+          confirmationMessage="Are you sure you want to permanently delete"
+        />
+      );
+    }
+  };
+
   return (
     <div className={style.cardContainer}>
-      <ConfirmationModal
-        showModal={showConfirmationModal}
-        setShowModal={setShowConfirmationModal}
-        itemToDelete={itemToDelete.name}
-        setDeleteConfirmed={setDeleteConfirmed}
-        headerTitle="Message....."
-        confirmationMessage="Are you sure you want to permanently delete"
-      />
+      {/* {categories?.map((category, idx) => {<div>{confirmationMessage(category)}</div>})} */}
       <div>
         <div className={style.header}>
           <p className={style.title}>Categories</p>
