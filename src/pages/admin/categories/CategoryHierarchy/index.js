@@ -30,10 +30,6 @@ const CategoryHierarchy = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const modalHeaderTitle = [
-    { title: 'Move to...'}
-  ];
-
   useEffect(() => {
     setCategories(null);
     chosenCategoryPathID
@@ -104,6 +100,7 @@ const CategoryHierarchy = () => {
       )
         .then(() => {
           toast('Success', 'Successfully Updated Category.');
+          console.log(categories);
           load();
         })
         .catch((error) => {
@@ -178,6 +175,12 @@ const CategoryHierarchy = () => {
             <span>Loading</span>
           </div>
         )}
+
+        {categories?.length === 0 ? (
+          <div className={style.spinner}>
+            <span>No Sub-Category</span>
+          </div>
+        ) : ('')}
       </ListGroup>
       <ChangeLocation
         show={show}
@@ -188,7 +191,7 @@ const CategoryHierarchy = () => {
         type={TYPE}
         isSaved={isSaved}
         setIsSaved={setIsSaved}
-        modalHeaderTitle={modalHeaderTitle}
+        modalHeaderTitle="Move to..."
       />
     </div>
   );
