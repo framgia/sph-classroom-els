@@ -73,16 +73,6 @@
   }
 }
 
-.dropdownButton {
-  @include flex(center, center, row, 10px);
-  @include button-style($color-white, 93px, 38px);
-
-  &:hover {
-    background-color: $color-white;
-    color: $color-dark-blue-1;
-  }
-}
-
 .title {
   padding: 0px 0px 23px;
   font-weight: $font-weight-medium;
@@ -107,12 +97,12 @@
   &:nth-child(3) {
     padding-right: 88px;
     height: 74px;
-    padding-left: 60px
+    padding-left: 60px;
   }
 
   &:nth-child(4) {
     height: 74px;
-    padding-left: 50px
+    padding-left: 50px;
   }
 }
 
@@ -167,14 +157,13 @@
 
   &:nth-child(3) {
     width: 250px;
-    padding-left: 60px
+    padding-left: 60px;
   }
 
   &:nth-child(4) {
     width: 210px;
-    padding-left: 50px
+    padding-left: 50px;
   }
-
 }
 
 .headerTitle {

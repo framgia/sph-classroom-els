@@ -53,16 +53,6 @@
   @include flex(space-between, none, row, 0px);
 }
 
-.dropdownButton {
-  @include flex(center, center, row, 10px);
-  @include button-style($color-white, 93px, 38px);
-
-  &:hover {
-    background-color: $color-white;
-    color: $color-dark-blue-1;
-  }
-}
-
 .cardBody {
   padding: 0px 30px 30px 30px;
   overflow: auto;

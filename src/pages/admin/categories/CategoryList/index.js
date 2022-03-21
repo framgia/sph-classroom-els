@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import Dropdown from 'react-bootstrap/Dropdown';
-import Pagination from '../../../../components/Pagination';
-import { VscFilter } from 'react-icons/vsc';
-import Button from '../../../../components/Button';
-
-import style from './index.module.scss';
-
-import CategoryApi from '../../../../api/Category';
+import FilterDropdown from '../../../../components/FilterDropdown';
 import DataTable from '../../../../components/DataTable';
 import SearchBar from '../../../../components/SearchBar';
+import Pagination from '../../../../components/Pagination';
+import Button from '../../../../components/Button';
+import CategoryApi from '../../../../api/Category';
+import style from './index.module.scss';
 
 const CategoryList = () => {
   const [categories, setCategories] = useState(null);
@@ -63,7 +60,7 @@ const CategoryList = () => {
     { title: 'ID', canSort: true },
     { title: 'Action', canSort: false },
     { title: 'Name', canSort: true },
-    { title: 'Description', canSort: false },
+    { title: 'Description', canSort: false }
   ];
 
   const renderTableData = () => {
@@ -74,11 +71,11 @@ const CategoryList = () => {
           <td id={style.tBodyStyle1}>
             <td>
               <Link to={`/admin/edit-category/${category.id}`}>
-                <Button buttonLabel="Edit" buttonSize="sm"/>
+                <Button buttonLabel="Edit" buttonSize="sm" />
               </Link>
             </td>
             <td>
-              <Button buttonLabel="Delete" buttonSize="sm" outline={true}/>
+              <Button buttonLabel="Delete" buttonSize="sm" outline={true} />
             </td>
           </td>
           <td id={style.tBodyStyle}>{category.name}</td>
@@ -96,7 +93,7 @@ const CategoryList = () => {
         <div className={style.headerTitle}>
           <p className={style.title}>Categories</p>
           <Link to="/admin/add-category" className={style.addButton}>
-            <Button buttonLabel="Add Category" buttonSize="def"/>
+            <Button buttonLabel="Add Category" buttonSize="def" />
           </Link>
         </div>
         <Card className={style.mainCard}>
@@ -106,12 +103,7 @@ const CategoryList = () => {
               search={search}
               setSearch={setSearch}
             />
-            <Dropdown>
-              <Dropdown.Toggle className={style.dropdownButton} bsPrefix="none">
-                Filter
-                <VscFilter size={17} />
-              </Dropdown.Toggle>
-            </Dropdown>
+            <FilterDropdown dropdownLabel="Filter" />
           </Card.Header>
           <Card.Body className={style.cardBodyScroll}>
             <div>
