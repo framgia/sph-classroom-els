@@ -1,38 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useToast } from '../../../../hooks/useToast';
 import Card from 'react-bootstrap/Card';
-import Dropdown from 'react-bootstrap/Dropdown';
-import Pagination from '../../../../components/Pagination';
-import { VscFilter } from 'react-icons/vsc';
-import Button from '../../../../components/Button';
-
-import style from './index.module.scss';
-
-import CategoryApi from '../../../../api/Category';
+import FilterDropdown from '../../../../components/FilterDropdown';
 import DataTable from '../../../../components/DataTable';
 import SearchBar from '../../../../components/SearchBar';
+import Pagination from '../../../../components/Pagination';
+import Button from '../../../../components/Button';
+import CategoryApi from '../../../../api/Category';
+import style from './index.module.scss';
 
 const CategoryList = () => {
-  const [categories, setCategories] = useState(null);
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
   const searchVal = queryParams.get('search');
   const sortBy = queryParams.get('sortBy') || '';
   const sortDirection = queryParams.get('sortDirection') || '';
 
-  const [search, setSearch] = useState(searchVal ? searchVal : '');
-
   const history = useHistory();
+  const toast = useToast();
 
+  const [categories, setCategories] = useState(null);
+  const [search, setSearch] = useState(searchVal ? searchVal : '');
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
-
   const [sortOptions, setSortOptions] = useState({
     sortBy,
     sortDirection
   });
+
+  const tableHeaderNames = [
+    { title: 'ID', canSort: true },
+    { title: 'Action', canSort: false },
+    { title: 'Name', canSort: true },
+    { title: 'Description', canSort: false }
+  ];
 
   useEffect(() => {
     setCategories(null);
@@ -47,42 +51,39 @@ const CategoryList = () => {
       sortBy: sortOptions.sortBy,
       sortDirection: sortOptions.sortDirection,
       listCondition: 'paginated'
-    }).then(({ data }) => {
-      setCategories(data.data);
-      setPerPage(data.per_page);
-      setTotalItems(data.total);
-      setLastPage(data.last_page);
-    });
+    })
+      .then(({ data }) => {
+        setCategories(data.data);
+        setPerPage(data.per_page);
+        setTotalItems(data.total);
+        setLastPage(data.last_page);
+      })
+      .catch(() =>
+        toast('Error', 'There was an error getting the list of categories.')
+      );
   }, [page, search, sortOptions]);
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
   };
 
-  const tableHeaderNames = [
-    { title: 'ID', canSort: true },
-    { title: 'Action', canSort: false },
-    { title: 'Name', canSort: true },
-    { title: 'Description', canSort: false },
-  ];
-
   const renderTableData = () => {
     return categories?.map((category, idx) => {
       return (
         <tr key={idx}>
-          <td id={style.tBodyStyle}>{category.id}</td>
-          <td id={style.tBodyStyle1}>
+          <td id={style.tableData}>{category.id}</td>
+          <td id={style.actionButtonsColumn}>
             <td>
               <Link to={`/admin/edit-category/${category.id}`}>
-                <Button buttonLabel="Edit" buttonSize="sm"/>
+                <Button buttonLabel="Edit" buttonSize="sm" />
               </Link>
             </td>
             <td>
-              <Button buttonLabel="Delete" buttonSize="sm" outline={true}/>
+              <Button buttonLabel="Delete" buttonSize="sm" outline={true} />
             </td>
           </td>
-          <td id={style.tBodyStyle}>{category.name}</td>
-          <td id={style.tBodyStyle} className={`${style.paragraphEllipsis}`}>
+          <td id={style.tableData}>{category.name}</td>
+          <td id={style.tableData} className={`${style.paragraphEllipsis}`}>
             {category.description}
           </td>
         </tr>
@@ -93,10 +94,10 @@ const CategoryList = () => {
   return (
     <div className={style.cardContainer}>
       <div>
-        <div className={style.headerTitle}>
+        <div className={style.header}>
           <p className={style.title}>Categories</p>
           <Link to="/admin/add-category" className={style.addButton}>
-            <Button buttonLabel="Add Category" buttonSize="def"/>
+            <Button buttonLabel="Add Category" buttonSize="def" />
           </Link>
         </div>
         <Card className={style.mainCard}>
@@ -106,19 +107,14 @@ const CategoryList = () => {
               search={search}
               setSearch={setSearch}
             />
-            <Dropdown>
-              <Dropdown.Toggle className={style.dropdownButton} bsPrefix="none">
-                Filter
-                <VscFilter size={17} />
-              </Dropdown.Toggle>
-            </Dropdown>
+            <FilterDropdown dropdownLabel="Filter" />
           </Card.Header>
           <Card.Body className={style.cardBodyScroll}>
             <div>
               <DataTable
                 tableHeaderNames={tableHeaderNames}
                 renderTableData={renderTableData}
-                titleHeaderStyle={style.classCol}
+                titleHeaderStyle={style.tableHeader}
                 sortOptions={sortOptions}
                 setSortOptions={setSortOptions}
                 data={categories}
@@ -127,7 +123,7 @@ const CategoryList = () => {
           </Card.Body>
         </Card>
         <div className="pt-4">
-          <div id={style.paginateStyle}>
+          <div id={style.pagination}>
             <Pagination
               page={page}
               perPage={perPage}

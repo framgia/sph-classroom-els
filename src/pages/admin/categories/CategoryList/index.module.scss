@@ -2,15 +2,6 @@
 
 @use '../../../../styles/global-styles' as *;
 
-@mixin button-style($background-color, $width, $height) {
-  background-color: $background-color;
-  color: $color-dark-blue-1;
-  font-size: $font-size-md;
-  border: none;
-  height: $height;
-  width: $width;
-}
-
 @mixin flex($justify-value, $align-value, $direction, $gap-value) {
   display: flex;
   align-items: $align-value;
@@ -38,56 +29,22 @@
 
 .cardHeader {
   height: auto;
-  background-color: $color-light-blue-1;
   padding: 12px 20px;
   box-shadow: $drop-shadow;
+  background-color: $color-light-blue-1;
 
   @include flex(space-between, none, row, 0px);
 }
 
-.searchSection {
-  @include flex(none, center, row, 10px);
-}
-
-.searchInput {
-  position: relative;
-}
-
-.searchBar {
-  width: 335px;
-  padding-right: 34px;
-}
-
-.searchIcon {
-  position: absolute;
-  left: 92%;
-  top: 28%;
-}
-
-.searchButton {
-  @include button-style($color-light-blue-2, 93px, 38px);
-
-  &:hover {
-    background-color: $color-light-blue-3;
-    color: $color-white;
-  }
-}
-
-.dropdownButton {
-  @include flex(center, center, row, 10px);
-  @include button-style($color-white, 93px, 38px);
-
-  &:hover {
-    background-color: $color-white;
-    color: $color-dark-blue-1;
-  }
+.header {
+  @include flex(space-between, center, row, 0px);
 }
 
 .title {
+  margin: 0px;
   padding: 0px 0px 23px;
   font-weight: $font-weight-medium;
   font-size: $font-size-page-title;
-  margin: 0px;
 }
 
 .addButton {
@@ -100,30 +57,29 @@
   padding: 0px 30px 30px 30px;
 }
 
-#tBodyStyle {
+#tableData {
   @extend %style-table-body;
   color: $color-dark-blue-1;
 
   &:nth-child(3) {
-    padding-right: 88px;
     height: 74px;
-    padding-left: 60px
+    padding-right: 88px;
+    padding-left: 60px;
   }
 
   &:nth-child(4) {
     height: 74px;
-    padding-left: 50px
+    padding-left: 50px;
   }
 }
 
-#tBodyStyle1 {
-  @extend %style-table-body;
-  align-items: center;
-  display: flex;
-  padding-top: 10px;
-  gap: 11px;
+#actionButtonsColumn {
   width: 0px;
+  padding-top: 10px;
   margin-left: 60px;
+
+  @extend %style-table-body;
+  @include flex(none, center, row, 11px);
 }
 
 .firstCol {
@@ -142,17 +98,11 @@
   }
 }
 
-.firstCol1 {
-  @extend %style-table-head;
-  text-align: center;
-  width: 88px;
-}
-
-#paginateStyle {
+#pagination {
   float: right;
 }
 
-.classCol {
+.tableHeader {
   @extend %style-table-head;
 
   &:nth-child(1) {
@@ -167,18 +117,11 @@
 
   &:nth-child(3) {
     width: 250px;
-    padding-left: 60px
+    padding-left: 60px;
   }
 
   &:nth-child(4) {
     width: 210px;
-    padding-left: 50px
+    padding-left: 50px;
   }
-
-}
-
-.headerTitle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }

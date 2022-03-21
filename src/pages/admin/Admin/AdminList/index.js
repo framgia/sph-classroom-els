@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
 import Card from 'react-bootstrap/Card';
-import Dropdown from 'react-bootstrap/Dropdown';
-import { VscFilter } from 'react-icons/vsc';
 import ConfirmationModal from '../../../../components/ConfirmationModal';
+import FilterDropdown from '../../../../components/FilterDropdown';
 import SearchBar from '../../../../components/SearchBar';
 import Pagination from '../../../../components/Pagination';
 import DataTable from '../../../../components/DataTable';
@@ -18,6 +17,7 @@ const AdminList = () => {
   const sortBy = queryParams.get('sortBy') || '';
   const searchVal = queryParams.get('search');
   const sortDirection = queryParams.get('sortDirection') || '';
+
   const history = useHistory();
   const toast = useToast();
 
@@ -137,12 +137,7 @@ const AdminList = () => {
             search={search}
             setSearch={setSearch}
           />
-          <Dropdown>
-            <Dropdown.Toggle className={style.dropdownButton} bsPrefix="none">
-              Filter
-              <VscFilter size={17} />
-            </Dropdown.Toggle>
-          </Dropdown>
+          <FilterDropdown dropdownLabel="Filter" />
         </Card.Header>
         <Card.Body className={style.cardBody}>
           <DataTable
@@ -156,7 +151,7 @@ const AdminList = () => {
         </Card.Body>
       </Card>
       <section>
-        <div id={style.pagPosition}>
+        <div id={style.pagination}>
           <Pagination
             page={page}
             perPage={perPage}

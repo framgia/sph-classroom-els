@@ -53,7 +53,7 @@
   padding: 12px 20px;
   box-shadow: $drop-shadow;
 
-  @include flex(space-between, none, row, 0px);
+  @include flex(space-between, center, row, 0px);
 }
 
 .title {
@@ -62,10 +62,10 @@
   margin: 0px;
 }
 
-.headerTittleStyle{
-  display: flex;
-  justify-content: space-between;
+.header {
   padding-top: 10px;
+
+  @include flex(space-between, center, row, 0px);
 }
 
 .addButton {
@@ -94,31 +94,30 @@
   padding: 0px 30px 30px 30px;
 }
 
-#classColumn {
+#tableData {
   @extend %style-table-body;
   color: $color-dark-blue-1;
 
   &:nth-child(3) {
     height: 74px;
-    padding-left: 60px
+    padding-left: 60px;
   }
 
   &:nth-child(4) {
-    padding-left: 50px
+    padding-left: 50px;
   }
 }
 
 #buttonColumn {
-  @extend %style-table-body;
-  align-items: center;
-  display: flex;
-  padding-top: 10px;
-  gap: 11px;
   width: 0px;
+  padding-top: 10px;
   margin-left: 60px;
+
+  @extend %style-table-body;
+  @include flex(none, center, row, 11px);
 }
 
-#paginateStyle {
+#pagination {
   float: right;
 }
 
@@ -198,7 +197,7 @@
   color: $color-dark-blue-1;
 }
 
-.classCol {
+.tableHeader {
   @extend %style-table-head;
 
   &:nth-child(1) {
@@ -213,11 +212,11 @@
 
   &:nth-child(3) {
     width: 250px;
-    padding-left: 60px
+    padding-left: 60px;
   }
 
   &:nth-child(4) {
     width: 210px;
-    padding-left: 50px
+    padding-left: 50px;
   }
 }
