@@ -45,8 +45,10 @@ const Location = ({
   }, [chosenCategoryPathID]);
 
   useEffect(() => {
-    if (type === 'withPathDisplay' || 
-      (type === 'quizWithPathDisplay' && isSaved)) {
+    if (
+      (type === 'withPathDisplay' && isSaved) || 
+      (type === 'quizWithPathDisplay' && isSaved)
+    ) {
       setLocationPathDisplay(pathDisplay);
     }
   });

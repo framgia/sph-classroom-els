@@ -5,31 +5,30 @@ import { GoKebabVertical } from 'react-icons/go';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Spinner from 'react-bootstrap/Spinner';
+import ChangeLocation from '../../../../components/ChangeLocation';
 import Breadcrumbs from '../../../../components/Breadcrumbs';
 import CategoryApi from '../../../../api/Category';
 import style from './index.module.scss';
-import ChangeLocation from '../../../../components/ChangeLocation';
 
 const CategoryHierarchy = () => {
-  const toast = useToast();
-  const history = useHistory();
-  const TYPE = 'withPathDisplay';
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const [location, setLocation] = useState(null);
-  const [parentCategories, setParentCategories] = useState(null);
-  const [parentCategoryID, setParentCategoryID] = useState(null);
-  const [locationPathDisplay, setLocationPathDisplay] = useState('');
-  const [isSaved,setIsSaved] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState();
-  // const description = selectedCategory.description
-  
-
   const queryParams = new URLSearchParams(window.location.search);
   const categoryID = queryParams.get('categoryID');
+
+  const TYPE = 'withPathDisplay';
+  const history = useHistory();
+  const toast = useToast();
+
+  const [show, setShow] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+  const [isMoved, setIsMoved] = useState(false);
+  const [location, setLocation] = useState(null);
   const [categories, setCategories] = useState();
+  const [selectedCategory, setSelectedCategory] = useState();
+  const [parentCategoryID, setParentCategoryID] = useState(null);
   const [chosenCategoryPathID, setChosenCategoryPathID] = useState(categoryID);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     setCategories(null);
@@ -46,12 +45,6 @@ const CategoryHierarchy = () => {
     })
       .then(({ data }) => {
         setCategories(data.data);
-        setParentCategoryID(data.data.category_id);
-        if (data.data.category_id) {
-          getParentCategories();
-        } else {
-          setLocationPathDisplay('Root');
-        }
         history.replace({ categoryID });
       })
       .catch(() =>
@@ -68,50 +61,52 @@ const CategoryHierarchy = () => {
   };
 
   useEffect(() => {
+    if (show && selectedCategory?.id === location?.id) {
+      toast(
+        'Error',
+        'Cannot move to your own category. Please choose another.'
+      );
+    }
+
     if (isSaved) {
-      setParentCategoryID(location?.id);
+      location ? setParentCategoryID(location?.id) : setParentCategoryID(null);
+      setIsMoved(true);
       setLocation(null);
     }
   }, [location, isSaved]);
 
-  const getParentCategories = () => {
-    CategoryApi.getParentCategories(chosenCategoryPathID)
-      .then(({ data }) => {
-        setParentCategories(data);
-      })
-      .catch((error) => toast('Error', error));
-  };
-
   useEffect(() => {
-    if (parentCategoryID) {
-      // console.log(parentCategoryID);
-      handleOnSubmit();
+    if (isMoved) {
+      if (selectedCategory?.id !== parentCategoryID) {
+        handleOnSubmit();
+      } else {
+        toast(
+          'Error',
+          'Cannot move to your own category. Please choose another.'
+        );
+      }
+      setIsMoved(false);
     }
-  }, [parentCategoryID])
+  }, [isMoved]);
 
   const handleOnSubmit = async () => {
-    console.log(parentCategoryID);
     if (selectedCategory) {
       toast('Processing', 'Updating Category...');
-      CategoryApi.update(selectedCategory.name, selectedCategory.description, parentCategoryID, selectedCategory.id)
+      CategoryApi.update(
+        selectedCategory.name,
+        selectedCategory.description,
+        parentCategoryID,
+        selectedCategory.id
+      )
         .then(() => {
           toast('Success', 'Successfully Updated Category.');
           load();
         })
-        .catch(() => {
-          // console.log(error);
-          // toast('Error', error);
+        .catch((error) => {
+          toast('Error', error);
         });
     }
   };
-
-  useEffect(() => {
-    parentCategories?.forEach((p, idx) =>
-      !idx
-        ? setLocationPathDisplay((path) => path.concat(p.name))
-        : setLocationPathDisplay((path) => path.concat(' > ', p.name))
-    );
-  }, [parentCategories]);
 
   const onDropdownClick = (category) => {
     setSelectedCategory(category);
@@ -152,7 +147,10 @@ const CategoryHierarchy = () => {
                     <GoKebabVertical />
                   </Dropdown.Toggle>
                   <Dropdown.Menu className={style.kebabMenuList}>
-                    <Dropdown.Item className={style.kebabMenuItems} onClick={handleShow}>
+                    <Dropdown.Item
+                      className={style.kebabMenuItems}
+                      onClick={handleShow}
+                    >
                       Move to...
                     </Dropdown.Item>
                     <Dropdown.Item
@@ -182,7 +180,7 @@ const CategoryHierarchy = () => {
         handleClose={handleClose}
         location={location}
         setLocation={setLocation}
-        setLocationPathDisplay={setLocationPathDisplay}
+        setLocationPathDisplay={() => {}}
         type={TYPE}
         isSaved={isSaved}
         setIsSaved={setIsSaved}
