@@ -66,17 +66,6 @@
   cursor: pointer;
 }
 
-.inputField {
-  max-width: 400px;
-  cursor: pointer;
-
-  @extend %input-field-style;
-
-  &:focus {
-    background-color: $color-white-2;
-  }
-}
-
 .spaceForIconArea {
   padding-right: 38px;
 }

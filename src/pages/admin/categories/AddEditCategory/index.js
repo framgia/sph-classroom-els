@@ -6,6 +6,7 @@ import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 import { CgMenuCake } from 'react-icons/cg';
 import { useToast } from '../../../../hooks/useToast';
 import Spinner from 'react-bootstrap/Spinner';
+import InputField from '../../../../components/InputField';
 
 import style from './index.module.scss';
 
@@ -168,13 +169,13 @@ const AddEditCategory = () => {
                     name="name"
                     defaultValue={category?.name}
                     render={({ field: { onChange, value, ref } }) => (
-                      <Form.Control
-                        className={style.inputField}
-                        onChange={onChange}
-                        value={value}
-                        ref={ref}
-                        type="title"
+                      <InputField
+                        fieldSize="lg"
                         placeholder="Category Name"
+                        type="text"
+                        value={value}
+                        onChange={onChange}
+                        ref={ref}
                         isInvalid={!!errors?.name}
                         maxLength={50}
                       />
@@ -189,9 +190,9 @@ const AddEditCategory = () => {
                   controlId="lacation"
                 >
                   <Form.Label className={style.inputLabel}>Location</Form.Label>
-                  <Form.Control
-                    className={`${style.inputField} ${style.spaceForIconArea}`}
+                  <InputField
                     readOnly="readonly"
+                    fieldSize="lg"
                     type="text"
                     value={locationPathDisplay}
                     onClick={handleShow}
@@ -207,8 +208,8 @@ const AddEditCategory = () => {
                     name="description"
                     defaultValue={category?.description}
                     render={({ field: { onChange, value, ref } }) => (
-                      <Form.Control
-                        className={style.inputFieldDescription}
+                      <InputField
+                        inputStyle={style.inputFieldDescription}
                         onChange={onChange}
                         value={value}
                         ref={ref}

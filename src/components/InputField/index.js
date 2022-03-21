@@ -47,7 +47,10 @@ const InputField = ({
   placeholder,
   required = true,
   maxLength,
-  disabled = false
+  disabled = false,
+  readOnly,
+  onClick,
+  inputStyle
 }) => {
   const styleSize = () => {
     switch (fieldSize) {
@@ -68,11 +71,13 @@ const InputField = ({
       value={value}
       onChange={onChange}
       isInvalid={isInvalid}
-      className={`${style.defaultInputField} ${styleSize()}`}
+      className={`${style.defaultInputField} ${styleSize()} ${inputStyle}`}
       placeholder={placeholder}
       required={required}
       maxLength={maxLength}
       disabled={disabled}
+      readOnly={readOnly}
+      onClick={onClick}
     />
   );
 };
@@ -88,7 +93,10 @@ InputField.propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   maxLength: PropTypes.number,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  readOnly: PropTypes.string,
+  onClick: PropTypes.func,
+  inputStyle: PropTypes.any
 };
 
 export default InputField;
