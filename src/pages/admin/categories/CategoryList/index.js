@@ -30,6 +30,7 @@ const CategoryList = () => {
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
   const [perPage, setPerPage] = useState(0);
+  const [canDelete, setCanDelete] = useState(false);
 
   const [sortOptions, setSortOptions] = useState({
     sortBy,
@@ -108,9 +109,11 @@ const CategoryList = () => {
                 buttonSize="sm" 
                 outline={true}
                 onClick={() => {
-                  testMessage(category);
-                  // setItemToDelete(category);
-                  // setShowConfirmationModal(true);
+                  if (category.subcategories_count > 0) {
+                    setCanDelete(true);
+                    setItemToDelete(category);
+                  }
+                  setShowConfirmationModal(true);
                 }}
               />
             </td>
@@ -124,40 +127,29 @@ const CategoryList = () => {
     });
   };
 
-  const testMessage = (category) => {
-    setItemToDelete(category);
-    setShowConfirmationModal(true);
-    console.log(category.subcategories_count);
-    if (category.subcategories_count > 0) {
-      console.log(showConfirmationModal);
-      return ( 
-        <ConfirmationModal
-          showModal={showConfirmationModal}
-          setShowModal={setShowConfirmationModal}
-          itemToDelete={itemToDelete.name}
-          setDeleteConfirmed={setDeleteConfirmed}
-          headerTitle="Message....."
-          confirmationMessage="You can't DELETE this category."
-          disabled={true}
-        />
-      );
-    } else {
-      return (
-        <ConfirmationModal
-          showModal={showConfirmationModal}
-          setShowModal={setShowConfirmationModal}
-          itemToDelete={itemToDelete.name}
-          setDeleteConfirmed={setDeleteConfirmed}
-          headerTitle="Confirm Deletion"
-          confirmationMessage="Are you sure you want to permanently delete"
-        />
-      );
-    }
-  };
-
   return (
     <div className={style.cardContainer}>
       {/* {categories?.map((category, idx) => {<div>{confirmationMessage(category)}</div>})} */}
+      {canDelete ? (<ConfirmationModal
+        showModal={showConfirmationModal}
+        setShowModal={setShowConfirmationModal}
+        itemToDelete={itemToDelete.name}
+        setDeleteConfirmed={setDeleteConfirmed}
+        headerTitle="Confirm Deletion"
+        confirmationMessage="Are you sure you want to permanently delete"
+      />)
+        :
+        (
+          <ConfirmationModal
+            showModal={showConfirmationModal}
+            setShowModal={setShowConfirmationModal}
+            itemToDelete={itemToDelete.name}
+            setDeleteConfirmed={setDeleteConfirmed}
+            headerTitle="Message....."
+            confirmationMessage="You can't DELETE this category."
+            disabled={true}
+          />
+        )}
       <div>
         <div className={style.header}>
           <p className={style.title}>Categories</p>
