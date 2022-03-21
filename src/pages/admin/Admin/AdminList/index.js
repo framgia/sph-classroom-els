@@ -17,6 +17,7 @@ const AdminList = () => {
   const sortBy = queryParams.get('sortBy') || '';
   const searchVal = queryParams.get('search');
   const sortDirection = queryParams.get('sortDirection') || '';
+
   const history = useHistory();
   const toast = useToast();
 
@@ -150,7 +151,7 @@ const AdminList = () => {
         </Card.Body>
       </Card>
       <section>
-        <div id={style.pagPosition}>
+        <div id={style.pagination}>
           <Pagination
             page={page}
             perPage={perPage}

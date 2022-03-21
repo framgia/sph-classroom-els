@@ -147,7 +147,7 @@ const QuizList = () => {
     return adminQuiz?.map((quiz, idx) => {
       return (
         <tr key={idx}>
-          <td id={style.classColumn}>{quiz.id}</td>
+          <td id={style.tableData}>{quiz.id}</td>
           <td id={style.buttonColumn}>
             <center>
               <Link to={`/admin/quizzes/${quiz.id}`}>
@@ -166,8 +166,8 @@ const QuizList = () => {
               />
             </center>
           </td>
-          <td id={style.classColumn}>{quiz.name}</td>
-          <td id={style.classColumn}>{quiz.title}</td>
+          <td id={style.tableData}>{quiz.name}</td>
+          <td id={style.tableData}>{quiz.title}</td>
         </tr>
       );
     });
@@ -182,7 +182,7 @@ const QuizList = () => {
         setDeleteConfirmed={setDeleteConfirmed}
       />
       <div>
-        <div className={style.headerTittleStyle}>
+        <div className={style.header}>
           <p className={style.title}>Quizzes</p>
           <Button
             buttonStyle={style.addButton}
@@ -212,7 +212,7 @@ const QuizList = () => {
                 <DataTable
                   tableHeaderNames={tableHeaderNames}
                   renderTableData={renderTableData}
-                  titleHeaderStyle={style.classCol}
+                  titleHeaderStyle={style.tableHeader}
                   sortOptions={sortOptions}
                   setSortOptions={setSortOptions}
                   data={adminQuiz}
@@ -223,7 +223,7 @@ const QuizList = () => {
         </Col>
       </div>
       <div className="pt-4">
-        <div id={style.paginateStyle}>
+        <div id={style.pagination}>
           <Pagination
             page={page}
             perPage={perPage}
