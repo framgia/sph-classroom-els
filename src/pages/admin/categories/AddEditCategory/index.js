@@ -35,6 +35,10 @@ const AddEditCategory = () => {
   const history = useHistory();
   const toast = useToast();
 
+  const modalHeaderTitle = [
+    { title: 'Choose Location'}
+  ];
+
   useEffect(() => {
     if (isSaved) {
       setParentCategoryID(location?.id);
@@ -250,6 +254,7 @@ const AddEditCategory = () => {
             type={TYPE}
             isSaved={isSaved}
             setIsSaved={setIsSaved}
+            modalHeaderTitle={modalHeaderTitle}
           />
         </div>
       </Card>

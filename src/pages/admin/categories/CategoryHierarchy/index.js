@@ -30,6 +30,10 @@ const CategoryHierarchy = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const modalHeaderTitle = [
+    { title: 'Move to...'}
+  ];
+
   useEffect(() => {
     setCategories(null);
     chosenCategoryPathID
@@ -184,6 +188,7 @@ const CategoryHierarchy = () => {
         type={TYPE}
         isSaved={isSaved}
         setIsSaved={setIsSaved}
+        modalHeaderTitle={modalHeaderTitle}
       />
     </div>
   );
