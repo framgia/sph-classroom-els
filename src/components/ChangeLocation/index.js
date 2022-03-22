@@ -13,6 +13,7 @@ const ChangeLocation = ({
   location,
   setLocation,
   setLocationPathDisplay,
+  modalHeaderTitle='Choose Location',
   type,
   isSaved,
   setIsSaved
@@ -38,7 +39,7 @@ const ChangeLocation = ({
       >
         <Modal.Header className={style.modalHeader}>
           <Modal.Title className={style.modalTitle}>
-            Choose Location
+            {modalHeaderTitle}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className={style.modalBody}>
@@ -98,7 +99,8 @@ ChangeLocation.propTypes = {
   setLocationPathDisplay: PropTypes.func,
   type: PropTypes.string,
   isSaved: PropTypes.bool,
-  setIsSaved: PropTypes.func
+  setIsSaved: PropTypes.func,
+  modalHeaderTitle: PropTypes.string
 };
 
 export default ChangeLocation;
