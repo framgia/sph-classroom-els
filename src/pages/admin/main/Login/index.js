@@ -74,8 +74,8 @@ const AdminLogin = () => {
             <Form id={style.loginForm} onSubmit={handleSubmit(handleOnSubmit)}>
               <h4 className={style.formTitle}>Sign In</h4>
               <Form.Group controlId="email">
-                <Form.Label>
-                  <h6 className="mb-0">Email Address</h6>
+                <Form.Label className={style.inputLabels}>
+                  Email Address
                 </Form.Label>
                 <Controller
                   control={control}
@@ -100,9 +100,7 @@ const AdminLogin = () => {
               </Form.Group>
 
               <Form.Group controlId="password">
-                <Form.Label>
-                  <h6 className="mb-0">Password</h6>
-                </Form.Label>
+                <Form.Label className={style.inputLabels}>Password</Form.Label>
                 <Controller
                   control={control}
                   name="password"

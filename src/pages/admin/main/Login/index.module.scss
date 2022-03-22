@@ -22,6 +22,11 @@
   font-size: $font-size-page-title;
 }
 
+.inputLabels {
+  font-weight: $font-weight-regular;
+  font-size: $font-size-base;
+}
+
 .alert {
   position: fixed;
   top: 100px;
