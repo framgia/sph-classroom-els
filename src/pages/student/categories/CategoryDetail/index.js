@@ -41,7 +41,9 @@ function Subcategories() {
     if (!chosenCategoryPathID) {
       history.push('/categories');
     } else {
-      history.push(`/categories/${chosenCategoryPathID}/sub?page=${categoryPage}&page=${quizzesPage}`);
+      history.push(
+        `/categories/${chosenCategoryPathID}/sub?page=${categoryPage}&page=${quizzesPage}`
+      );
 
       load();
     }
@@ -51,20 +53,22 @@ function Subcategories() {
     CategoryApi.show({ categoryId: chosenCategoryPathID })
       .then(({ data }) => {
         setCategory(data.data);
-        CategoryApi.getAll({ category_id: chosenCategoryPathID }, categoryPage).then(
+        CategoryApi.getAll(
+          { category_id: chosenCategoryPathID },
+          categoryPage
+        ).then(({ data }) => {
+          setCategories(data.data);
+          setPerCategoryPage(data.per_page);
+          setTotalCategoryItems(data.total);
+          setLastCategoryPage(data.last_page);
+        });
+        QuizApi.categoryQuizzes({ category_id: categoryId, quizzesPage }).then(
           ({ data }) => {
-            setCategories(data.data);
-            setPerCategoryPage(data.per_page);
-            setTotalCategoryItems(data.total);
-            setLastCategoryPage(data.last_page);
+            setQuizzes(data.data);
+            setPerQuizzesPage(data.per_page);
+            setTotalQuizzesItems(data.total);
+            setLastQuizzesPage(data.last_page);
           }
-        );
-        QuizApi.categoryQuizzes({ category_id: categoryId, quizzesPage }).then(({data}) => {
-          setQuizzes(data.data);
-          setPerQuizzesPage(data.per_page);
-          setTotalQuizzesItems(data.total);
-          setLastQuizzesPage(data.last_page);
-        }
         );
       })
       .catch(() =>
@@ -94,7 +98,7 @@ function Subcategories() {
 
   const renderQuizList = () => {
     return quizzes.map((quiz, idx) => {
-      return <QuizzesCard quiz={quiz} key={idx}/>;
+      return <QuizzesCard category_id={categoryId} quiz={quiz} key={idx} />;
     });
   };
 
@@ -130,16 +134,14 @@ function Subcategories() {
         </p>
       </div>
 
-      { !data ? (
+      {!data ? (
         <div className={style.loading}>
           <Spinner animation="border" role="status"></Spinner>
           <span className={style.loadingWord}>Loading</span>
         </div>
       ) : (
         <div>
-          <Row className={style.cardList}>
-            {renderCatList()}
-          </Row>
+          <Row className={style.cardList}>{renderCatList()}</Row>
           {categories?.length <= 0 ? (
             <div>{noResultMessage('NO RESULTS FOUND')}</div>
           ) : (
@@ -154,9 +156,7 @@ function Subcategories() {
             </div>
           )}
           <div className={style.header}>Quizzes</div>
-          <Row className={style.cardList}>
-            {renderQuizList()}
-          </Row>
+          <Row className={style.cardList}>{renderQuizList()}</Row>
           {quizzes?.length <= 0 ? (
             <div>{noResultMessage('NO RELATED QUIZZES FOUND')}</div>
           ) : (
