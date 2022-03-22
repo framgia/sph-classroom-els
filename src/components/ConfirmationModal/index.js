@@ -52,12 +52,13 @@ const ConfirmationModal = ({
         )}
       </Modal.Body>
       <Modal.Footer>
-        <Button
-          buttonLabel="Cancel"
-          buttonSize="sm"
-          outline={true}
-          onClick={() => setShowModal(false)}
-        />
+        {canDelete ? (
+          <Button
+            buttonLabel="Cancel"
+            buttonSize="sm"
+            outline={true}
+            onClick={() => { setShowModal(false);}}
+          />) : ('')}
         <Button
           buttonLabel={canDelete ? 'Yes' : 'Close'}
           buttonSize="sm"

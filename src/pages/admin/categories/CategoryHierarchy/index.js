@@ -196,6 +196,8 @@ const CategoryHierarchy = () => {
                       onClick={() => {
                         if (category.subcategories_count <= 0) {
                           setCanDelete(true);
+                        } else {
+                          setCanDelete(false);
                         }
                         setItemToDelete(category);
                         setShowConfirmationModal(true);
