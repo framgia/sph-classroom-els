@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useParams, useHistory } from 'react-router-dom';
-import { Card, Button, Form } from 'react-bootstrap';
+import { Card, Form } from 'react-bootstrap';
 import { useForm, Controller } from 'react-hook-form';
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 import { CgMenuCake } from 'react-icons/cg';
 import { useToast } from '../../../../hooks/useToast';
 import Spinner from 'react-bootstrap/Spinner';
 import InputField from '../../../../components/InputField';
+import Button from '../../../../components/Button';
 
 import style from './index.module.scss';
 
@@ -225,14 +226,14 @@ const AddEditCategory = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Button
-                  className={style.button}
+                  buttonStyle={style.button}
                   type="submit"
                   disabled={submitStatus}
-                >
-                  {loc.pathname === '/admin/add-category'
+                  buttonSize="def"
+                  buttonLabel={loc.pathname === '/admin/add-category'
                     ? 'Add Category'
                     : 'Save Category'}
-                </Button>
+                />
               </Form>
             ) : (
               <div className={style.loading}>

@@ -82,25 +82,12 @@
 }
 
 .button {
-  background-color: $color-light-blue-2;
-  border: $color-light-blue-2;
-  color: $color-dark-blue-1;
-  font-size: $font-size-base;
   display: flex;
   float: right;
-  height: 38px;
-  width: 140px;
   justify-content: center;
   align-items: center;
   margin-top: 3rem;
   margin-bottom: 2rem;
-
-  &:hover,
-  &:focus {
-    background-color: $color-dark-blue-2 !important;
-    border: $color-light-blue-2 !important;
-    color: $color-white !important;
-  }
 }
 
 .loading {
