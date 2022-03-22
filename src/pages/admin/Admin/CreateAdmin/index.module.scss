@@ -1,22 +1,25 @@
 @use '../../../../styles/variables' as *;
 
-%button-style {
-  font-size: $font-size-md;
-  color: $color-dark-blue-1;
-}
-
 .formTitle {
   font-weight: $font-weight-regular;
   font-size: $font-size-page-title;
 }
 
-.formContainer {
+.container {
   position: absolute;
-  left: 885px;
-  top: 230px;
-  width: 450px;
+  height: 100%;
+  width: calc(100% - 300px);
+  left: 300px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  width: 400px;
   height: auto;
-  padding: 40px 30px;
+  padding: 30px 30px;
 
   display: flex;
   flex-direction: column;
@@ -33,35 +36,13 @@
   font-size: $font-size-base;
 }
 
-.inputField {
-  width: 335px;
-}
-
 .validationMessage {
-  width: 335px;
-}
-
-.createButton {
-  background-color: $color-light-blue-2;
-  border: none;
-  width: 85px;
-  height: 35px;
-
-  @extend %button-style;
-
-  &:hover,
-  &:focus {
-    background-color: $color-dark-blue-3;
-  }
-
-  &:disabled {
-    background-color: $color-dark-blue-3;
-    opacity: 0.5;
-  }
+  width: 300px;
 }
 
 .cancelButton {
-  @extend %button-style;
+  font-size: $font-size-md;
+  color: $color-dark-blue-1;
 
   &:hover,
   &:focus {

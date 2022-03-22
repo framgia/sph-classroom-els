@@ -1,149 +1,49 @@
 @use '../../../../styles/variables' as *;
 
-.editbuttonone {
-  width: 20px;
-  height: 20px;
-  color: $color-black;
-  float: right;
-  position: absolute;
-  left: 345px;
-  top: 120px;
-}
-
-.control1 {
-  width: 334px;
-  height: 38px;
-  font-size: 14px;
-  margin-bottom: 0px;
-  color: $color-dark-blue-1;
-}
-
-.HeadingText{
-  margin-left: 100px;
-  margin-bottom: 10px;
-  font-size: 24px;
-  color: $color-dark-blue-1;
-}
-
-.changepassbutton{
-  float: left;
-  height: 32px;
-  font-size: 14px;
-  background-color: $color-light-blue-2;
-  border-color: $color-light-blue-2;
-  color: $color-dark-blue-1;
-}
-.changepassbutton:hover{
-  background-color: $color-light-blue-3;
-  border-color: $color-light-blue-3;
-  color:$color-white;
-}
-
-.editbutton{
-  float: right;
-  height: 32px;
-  width: 95px;
-  font-size: 14px;
-  background-color: $color-light-blue-2;
-  border-color: $color-light-blue-2;
-  color: $color-dark-blue-1;
-}
-
-.editbutton:hover{
-  background-color: $color-light-blue-3;
-  border-color: $color-light-blue-3;
-  color:$color-white;
-}
-
-.noResults,
-.loading {
-display: flex;
-justify-content: center;
-align-items: center;
-}
-
-.loadingWord {
-margin-left: 10px;
-}
-
-.formControlstyle:disabled{
-  background: $color-white;
-}
-
-.FormGroupStyle{
-  margin-bottom: 0px;
-  color: $color-dark-blue-1;
-  font-size: 16px,
-}
-
-.marginForForm{
-  margin-bottom: 20px;
-}
-
-.biUserPosition1 {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  position: absolute;
-  margin-top: -106px;
-  margin-left: 118px;
-  z-index: 1;
-}
-
-.biUserPosition {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  position: absolute;
-  margin-top: -106px;
-  margin-left: 118px;
-  z-index: 1;
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .mainBody {
   position: absolute;
+  height: 100%;
+  width: calc(100% - 300px);
+  left: 300px;
+
+  @extend %flex-center;
 }
 
-.buttonEditIcon {
-  position: absolute;
-  margin-left: 278px;
-  margin-top: 8px;
-  stroke-width: 0px;
-  background-color: $color-white;;
-  cursor: pointer;
-  z-index: 1;
+.formContainer {
+  margin-top: 150px;
+
+  @extend %flex-center;
 }
 
-#Btncolor {
-  background-color: $color-light-blue-2;
-  border-color: $color-light-blue-2;
-  width: 85px;
-  height: 32px;
-  font-size: 14px;
-  color: $color-dark-blue-1;
-  margin-top: 10px;
-}
-
-#Btncolor:hover {
-  background-color: $color-light-blue-3;
-  border: 0px;
-  color: $color-white;
-  cursor: pointer;
-}
-
-#mainModal {
-  margin-right: 576px;
-}
-
-.bodyCard {
-  width: 430px;
-  height: 340px;
-  align-items: center;
-  justify-content: center;
+.card {
+  padding: 40px;
+  min-width: 380px;
+  min-height: 325px;
   background-color: $color-light-blue-1;
 }
 
-.successMessageContainer {
-  background-color: rgba(255, 255, 255, 0.692);
-  padding: 25px;
+.headingText {
+  font-size: $font-size-page-title;
+  color: $color-dark-blue-1;
+
+  @extend %flex-center;
+}
+
+.inputLabels {
+  margin-bottom: 0px;
+  color: $color-dark-blue-1;
+  font-size: $font-size-base;
+}
+
+.spinner {
+  margin-top: 90px;
+  gap: 15px;
+
+  @extend %flex-center;
 }
