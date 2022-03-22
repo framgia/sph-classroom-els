@@ -17,13 +17,17 @@ import Button from '../Button';
 
     itemToDelete         :    pass a string value such as the Quiz Name, Admin Name or Category Name of the item to be deleted to display in the modal.
     setDeleteConfirmed   :    pass the setter function of the state holding the boolean value to determine whether to confirm deletion.
+    headerTitle          :    pass a string value 
+    confirmationMessage  :    pass a string value like 
 */
 
 const ConfirmationModal = ({
   showModal,
   setShowModal,
   itemToDelete,
-  setDeleteConfirmed
+  setDeleteConfirmed,
+  headerTitle,
+  confirmationMessage
 }) => {
   return (
     <Modal
@@ -34,12 +38,12 @@ const ConfirmationModal = ({
     >
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
-          <b>Confirm Deletion</b>
+          <b>{headerTitle}</b>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="p-4">
         <p>
-          Are you sure you want to permanently delete{' '}
+          {confirmationMessage}{' '}
           <strong>{itemToDelete}</strong>?
         </p>
       </Modal.Body>
@@ -67,7 +71,9 @@ ConfirmationModal.propTypes = {
   showModal: PropTypes.bool,
   setShowModal: PropTypes.func,
   itemToDelete: PropTypes.string,
-  setDeleteConfirmed: PropTypes.func
+  setDeleteConfirmed: PropTypes.func,
+  headerTitle: PropTypes.array,
+  confirmationMessage: PropTypes.array
 };
 
 export default ConfirmationModal;

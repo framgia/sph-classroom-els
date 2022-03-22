@@ -9,6 +9,7 @@ import Pagination from '../../../../components/Pagination';
 import Button from '../../../../components/Button';
 import CategoryApi from '../../../../api/Category';
 import style from './index.module.scss';
+import ConfirmationModal from '../../../../components/ConfirmationModal';
 
 const CategoryList = () => {
   const queryParams = new URLSearchParams(window.location.search);
@@ -20,12 +21,16 @@ const CategoryList = () => {
   const history = useHistory();
   const toast = useToast();
 
-  const [categories, setCategories] = useState(null);
-  const [search, setSearch] = useState(searchVal ? searchVal : '');
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
-  const [perPage, setPerPage] = useState(0);
+  const [search, setSearch] = useState(searchVal ? searchVal : '');
+  const [deleteConfirmed, setDeleteConfirmed] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState({});
+  const [categories, setCategories] = useState(null);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
+  const [perPage, setPerPage] = useState(0);
+
   const [sortOptions, setSortOptions] = useState({
     sortBy,
     sortDirection
@@ -45,23 +50,42 @@ const CategoryList = () => {
       `?page=${page}&search=${search}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`
     );
 
+    load();
+  }, [page, search, sortOptions]);
+
+  const load = () => {
     CategoryApi.listOfCategories({
       page: page,
       search,
       sortBy: sortOptions.sortBy,
       sortDirection: sortOptions.sortDirection,
       listCondition: 'paginated'
-    })
-      .then(({ data }) => {
-        setCategories(data.data);
-        setPerPage(data.per_page);
-        setTotalItems(data.total);
-        setLastPage(data.last_page);
-      })
-      .catch(() =>
-        toast('Error', 'There was an error getting the list of categories.')
-      );
-  }, [page, search, sortOptions]);
+    }).then(({ data }) => {
+      setCategories(data.data);
+      setPerPage(data.per_page);
+      setTotalItems(data.total);
+      setLastPage(data.last_page);
+    });
+  };
+
+  useEffect(() => {
+    if (deleteConfirmed) {
+      toast('Processing', `Deleting ${itemToDelete.name}...`);
+
+      CategoryApi.deleteCategory(itemToDelete.id) 
+        .then(({ data }) => {
+          toast('Success', data.message);
+          setDeleteConfirmed(false);
+          load();
+        })
+        .catch(() =>
+          toast(
+            'Error',
+            'There was an error encountered while deleting the admin user.'
+          )
+        );
+    }
+  }, [deleteConfirmed]);
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
@@ -79,7 +103,15 @@ const CategoryList = () => {
               </Link>
             </td>
             <td>
-              <Button buttonLabel="Delete" buttonSize="sm" outline={true} />
+              <Button 
+                buttonLabel="Delete" 
+                buttonSize="sm" 
+                outline={true}
+                onClick={() => {
+                  setItemToDelete(category);
+                  setShowConfirmationModal(true);
+                }}
+              />
             </td>
           </td>
           <td id={style.tableData}>{category.name}</td>
@@ -93,6 +125,14 @@ const CategoryList = () => {
 
   return (
     <div className={style.cardContainer}>
+      <ConfirmationModal
+        showModal={showConfirmationModal}
+        setShowModal={setShowConfirmationModal}
+        itemToDelete={itemToDelete.name}
+        setDeleteConfirmed={setDeleteConfirmed}
+        headerTitle="Message....."
+        confirmationMessage="Are you sure you want to permanently delete"
+      />
       <div>
         <div className={style.header}>
           <p className={style.title}>Categories</p>

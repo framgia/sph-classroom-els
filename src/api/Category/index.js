@@ -86,7 +86,14 @@ const CategoryApi = {
     return API.request(options);
   },
 
-  delete: () => {},
+  deleteCategory: (id) => {
+    const options = {
+      method: 'DELETE',
+      url: `/admin/delete-category/${id}`
+    };
+
+    return API.request(options);
+  },
 
   restore: () => {}
 };
