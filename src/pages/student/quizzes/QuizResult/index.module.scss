@@ -4,8 +4,21 @@
   margin: 52px 0px 20px 0px;
 }
 
-.relatedQuizzesText {
-  padding: 33px 0px;
+.resultTopic {
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+  justify-content: center;
+  filter: drop-shadow(0 1mm 1mm #48535b8c);
+  font-size: 24px;
+  font-weight: 600;
+  padding: 10px;
+  z-index: 1;
+  background-color: $color-light-blue-1;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 674px;
+  height: 50px;
+  color: $color-dark-blue-1;
 }
 
 .resultWholeBodyCard {
@@ -60,45 +73,6 @@
   font-size: 72px;
 }
 
-.friendsTitle {
-  padding: 0px;
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  border-bottom: none;
-  font-size: $font-size-lg;
-  background-color: $color-white;
-}
-
-.divider {
-  width: 200px;
-  margin-bottom: 0px;
-  margin-top: 10px;
-}
-
-.friendsScore {
-  margin-left: auto;
-  font-size: 16px;
-  color: $color-dark-blue-1;
-}
-
-.friendsName {
-  padding: 10px 10px 10px 5px;
-  font-size: 16px;
-  color: $color-dark-blue-1;
-}
-
-.friendsName:hover {
-  color: $color-black;
-}
-
-.friendsScoreCard {
-  border: 1px solid rgba(0, 0, 0, 0.164);
-  width: 225px;
-  height: 272px;
-  border-radius: 5px;
-}
-
 .pass {
   color: $color-correct;
 }
@@ -107,21 +81,48 @@
   color: $color-error;
 }
 
-.resultTopic {
-  margin: 0;
-  padding: 10px;
+.friendsScoreCard {
+  border: 1px solid rgba(0, 0, 0, 0.164);
+  width: 225px;
+  height: 272px;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.friendsScoreHeader {
+  padding: 0px;
+  margin: auto;
+  border-bottom: none;
   text-align: center;
-  justify-content: center;
-  filter: drop-shadow(0 1mm 1mm #48535b8c);
-  font-size: 24px;
-  font-weight: 600;
-  padding: 10px;
-  z-index: 1;
-  background-color: $color-light-blue-1;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  width: 674px;
-  height: 50px;
+  font-size: $font-size-lg;
+  background-color: $color-white;
+}
+
+.friendScoreText {
+  margin: 8px 0px;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-medium;
+}
+
+.divider {
+  width: 180px;
+  margin: 0px;
+}
+
+.friendsScoreCardBody {
+  padding: 0px 15px;
+}
+
+.friendsScore {
+  margin-left: auto;
+  font-size: 16px;
   color: $color-dark-blue-1;
+}
+
+.friendsScoreInfo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .friendsAvatar {
@@ -131,18 +132,18 @@
   margin-right: 10px;
 }
 
-.friendsScoreCardBody {
-  padding: 0px 15px;
+.friendsName {
+  padding: 10px 10px 10px 5px;
+  font-size: 16px;
+  color: $color-dark-blue-1;
+
+  &:hover {
+    color: $color-black;
+  }
 }
 
-.friendsScoreText {
-  margin-left: 45px;
-}
-
-.friendsScoreInfo {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+.relatedQuizzesText {
+  padding: 33px 0px;
 }
 
 .relatedQuizzes {

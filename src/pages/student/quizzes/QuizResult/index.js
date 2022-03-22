@@ -91,8 +91,8 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                   </div>
                   {friendsScore?.length > 0 ? (
                     <Card className={style.friendsScoreCard}>
-                      <Card.Header className={style.friendsTitle}>
-                        <div className={style.friendsScoreText}>
+                      <Card.Header className={style.friendsScoreHeader}>
+                        <div className={style.friendScoreText}>
                           Friend&apos;s Score
                         </div>
                         <hr className={style.divider} />
