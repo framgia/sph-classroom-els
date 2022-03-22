@@ -27,10 +27,10 @@ const CategoryList = () => {
   const [deleteConfirmed, setDeleteConfirmed] = useState(false);
   const [itemToDelete, setItemToDelete] = useState({});
   const [categories, setCategories] = useState(null);
+  const [canDelete, setCanDelete] = useState(false);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
   const [perPage, setPerPage] = useState(0);
-  const [canDelete, setCanDelete] = useState(false);
 
   const [sortOptions, setSortOptions] = useState({
     sortBy,
@@ -73,7 +73,7 @@ const CategoryList = () => {
     if (deleteConfirmed) {
       toast('Processing', `Deleting ${itemToDelete.name}...`);
 
-      CategoryApi.deleteCategory(itemToDelete.id) 
+      CategoryApi.deleteCategory(itemToDelete.id)
         .then(({ data }) => {
           toast('Success', data.message);
           setDeleteConfirmed(false);
@@ -82,7 +82,7 @@ const CategoryList = () => {
         .catch(() =>
           toast(
             'Error',
-            'There was an error encountered while deleting the admin user.'
+            'There was an error encountered while deleting the category.'
           )
         );
     }
@@ -104,15 +104,15 @@ const CategoryList = () => {
               </Link>
             </td>
             <td>
-              <Button 
-                buttonLabel="Delete" 
-                buttonSize="sm" 
+              <Button
+                buttonLabel="Delete"
+                buttonSize="sm"
                 outline={true}
                 onClick={() => {
-                  if (category.subcategories_count > 0) {
+                  if (category.subcategories_count <= 0) {
                     setCanDelete(true);
-                    setItemToDelete(category);
                   }
+                  setItemToDelete(category);
                   setShowConfirmationModal(true);
                 }}
               />
@@ -129,27 +129,13 @@ const CategoryList = () => {
 
   return (
     <div className={style.cardContainer}>
-      {/* {categories?.map((category, idx) => {<div>{confirmationMessage(category)}</div>})} */}
-      {canDelete ? (<ConfirmationModal
+      <ConfirmationModal
         showModal={showConfirmationModal}
         setShowModal={setShowConfirmationModal}
         itemToDelete={itemToDelete.name}
         setDeleteConfirmed={setDeleteConfirmed}
-        headerTitle="Confirm Deletion"
-        confirmationMessage="Are you sure you want to permanently delete"
-      />)
-        :
-        (
-          <ConfirmationModal
-            showModal={showConfirmationModal}
-            setShowModal={setShowConfirmationModal}
-            itemToDelete={itemToDelete.name}
-            setDeleteConfirmed={setDeleteConfirmed}
-            headerTitle="Message....."
-            confirmationMessage="You can't DELETE this category."
-            disabled={true}
-          />
-        )}
+        canDelete={canDelete}
+      />
       <div>
         <div className={style.header}>
           <p className={style.title}>Categories</p>

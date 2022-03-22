@@ -17,8 +17,7 @@ import Button from '../Button';
 
     itemToDelete         :    pass a string value such as the Quiz Name, Admin Name or Category Name of the item to be deleted to display in the modal.
     setDeleteConfirmed   :    pass the setter function of the state holding the boolean value to determine whether to confirm deletion.
-    headerTitle          :    pass a string value such as Conform Delete
-    confirmationMessage  :    pass a string value such as
+    canDelete            :    pass boolean such as true or false.
 */
 
 const ConfirmationModal = ({
@@ -26,8 +25,7 @@ const ConfirmationModal = ({
   setShowModal,
   itemToDelete,
   setDeleteConfirmed,
-  headerTitle,
-  confirmationMessage
+  canDelete = true
 }) => {
   return (
     <Modal
@@ -38,14 +36,20 @@ const ConfirmationModal = ({
     >
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
-          <b>{headerTitle}</b>
+          <b>{canDelete ? 'Confirmation Modal' : 'Message'}</b>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="p-4">
-        <p>
-          {confirmationMessage}{' '}
-          <strong>{itemToDelete}</strong>?
-        </p>
+        {canDelete ? (
+          <p>
+            Are you sure you want to permanently delete{' '}
+            <strong>{itemToDelete}</strong>?
+          </p>
+        ) : (
+          <p>
+            Cannot delete <strong>{itemToDelete}</strong>
+          </p>
+        )}
       </Modal.Body>
       <Modal.Footer>
         <Button
@@ -55,13 +59,15 @@ const ConfirmationModal = ({
           onClick={() => setShowModal(false)}
         />
         <Button
-          buttonLabel="Yes"
+          buttonLabel={canDelete ? 'Yes' : 'Close'}
           buttonSize="sm"
           onClick={() => {
-            setDeleteConfirmed(true);
+            if (canDelete) {
+              setDeleteConfirmed(true);
+            }
+
             setShowModal(false);
           }}
-          disabled={false}
         />
       </Modal.Footer>
     </Modal>
@@ -73,8 +79,8 @@ ConfirmationModal.propTypes = {
   setShowModal: PropTypes.func,
   itemToDelete: PropTypes.string,
   setDeleteConfirmed: PropTypes.func,
-  headerTitle: PropTypes.string,
-  confirmationMessage: PropTypes.string,
+  message: PropTypes.string,
+  canDelete: PropTypes.bool
 };
 
 export default ConfirmationModal;

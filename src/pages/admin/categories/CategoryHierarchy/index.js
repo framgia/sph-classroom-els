@@ -9,6 +9,7 @@ import ChangeLocation from '../../../../components/ChangeLocation';
 import Breadcrumbs from '../../../../components/Breadcrumbs';
 import CategoryApi from '../../../../api/Category';
 import style from './index.module.scss';
+import ConfirmationModal from '../../../../components/ConfirmationModal';
 
 const CategoryHierarchy = () => {
   const queryParams = new URLSearchParams(window.location.search);
@@ -26,6 +27,10 @@ const CategoryHierarchy = () => {
   const [selectedCategory, setSelectedCategory] = useState();
   const [parentCategoryID, setParentCategoryID] = useState(null);
   const [chosenCategoryPathID, setChosenCategoryPathID] = useState(categoryID);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [deleteConfirmed, setDeleteConfirmed] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState({});
+  const [canDelete, setCanDelete] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -112,8 +117,34 @@ const CategoryHierarchy = () => {
     setSelectedCategory(category);
   };
 
+  useEffect(() => {
+    if (deleteConfirmed) {
+      toast('Processing', `Deleting ${itemToDelete.name}...`);
+
+      CategoryApi.deleteCategory(itemToDelete.id)
+        .then(({ data }) => {
+          toast('Success', data.message);
+          setDeleteConfirmed(false);
+          load();
+        })
+        .catch(() =>
+          toast(
+            'Error',
+            'There was an error encountered while deleting the category.'
+          )
+        );
+    }
+  }, [deleteConfirmed]);
+
   return (
     <div className={style.mainContent}>
+      <ConfirmationModal
+        showModal={showConfirmationModal}
+        setShowModal={setShowConfirmationModal}
+        itemToDelete={itemToDelete.name}
+        setDeleteConfirmed={setDeleteConfirmed}
+        canDelete={canDelete}
+      />
       <section className={style.headerSection}>
         <span className={style.pageTitle}>Category Hierarchy</span>
         <Breadcrumbs
@@ -160,7 +191,16 @@ const CategoryHierarchy = () => {
                     >
                       Add child
                     </Dropdown.Item>
-                    <Dropdown.Item className={style.kebabMenuItems}>
+                    <Dropdown.Item 
+                      className={style.kebabMenuItems}
+                      onClick={() => {
+                        if (category.subcategories_count <= 0) {
+                          setCanDelete(true);
+                        }
+                        setItemToDelete(category);
+                        setShowConfirmationModal(true);
+                      }}
+                    >
                       Delete
                     </Dropdown.Item>
                   </Dropdown.Menu>

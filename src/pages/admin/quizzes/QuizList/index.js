@@ -180,8 +180,6 @@ const QuizList = () => {
         setShowModal={setShowConfirmationModal}
         itemToDelete={itemToDelete.title}
         setDeleteConfirmed={setDeleteConfirmed}
-        headerTitle="Confirm Deletion"
-        confirmationMessage="Are you sure you want to permanently delete"
       />
       <div>
         <div className={style.header}>

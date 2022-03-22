@@ -123,8 +123,6 @@ const AdminList = () => {
         setShowModal={setShowConfirmationModal}
         itemToDelete={itemToDelete.name}
         setDeleteConfirmed={setDeleteConfirmed}
-        headerTitle="Confirm Deletion"
-        confirmationMessage="Are you sure you want to permanently delete"
       />
       <div className={style.header}>
         <h1 className={style.pageTitle}>Admin Accounts</h1>
