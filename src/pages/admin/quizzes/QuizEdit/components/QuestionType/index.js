@@ -83,7 +83,7 @@ const QuestionType = ({ question, onGetData, onChangeTimeLimit, onChangeQuestion
     }
   };
 
-  const functionToCallSetQuestionType = (value) => {
+  const obtainTheQuestionType = (value) => {
     setQuestionType(value.value);
   };
 
@@ -101,7 +101,7 @@ const QuestionType = ({ question, onGetData, onChangeTimeLimit, onChangeQuestion
             onDataNeeded={false}
             onAll={false}
             filter={choice(questionType)}
-            onSetFilter={functionToCallSetQuestionType}
+            onSetFilter={obtainTheQuestionType}
           />
         </Form>
         <div className={style.formSpacing}>
