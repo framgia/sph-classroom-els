@@ -106,7 +106,7 @@ const FilterDropdown = ({
                 }
                 onClick={() => {
                   setActiveItem(item.name);
-                  {onDataNeeded ? setFilter(item.name) : onSetFilter(item.value);}
+                  {onDataNeeded ? setFilter(item.name) : onSetFilter(item);}
                   setIsClicked(false);
                 }}
               >
