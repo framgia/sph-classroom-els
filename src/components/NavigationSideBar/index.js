@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useToast } from '../../hooks/useToast';
 import Navbar from 'react-bootstrap/Navbar';
 import { Nav, Container } from 'react-bootstrap';
@@ -8,12 +8,21 @@ import { BiCategory, BiLogOutCircle, BiShieldQuarter } from 'react-icons/bi';
 import { BsCardChecklist } from 'react-icons/bs';
 import { IoIosPeople } from 'react-icons/io';
 import Cookies from 'js-cookie';
+import AdminApi from '../../api/Admin';
 
 import style from './index.module.css';
 import AuthApi from '../../api/Auth';
 
 const NavigationSideBar = () => {
   const toast = useToast();
+  const [profileName, setprofileName] = useState(null);
+  const loggedInUserId = Cookies.get('admin_id');
+
+  useEffect(() => {
+    AdminApi.getAllUsers(loggedInUserId).then(({ data }) => {
+      setprofileName(data[0]);
+    });
+  }, []);
 
   const onLogout = async () => {
     toast('Processing', 'Logging out...');
@@ -41,7 +50,7 @@ const NavigationSideBar = () => {
               alt="Profile Icon"
             />
           </div>
-          <p className={style.username}>John Doe</p>
+          <p className={style.username}>{profileName?.name}</p>
           <p className={style.userRole}>Admin</p>
         </div>
       </div>
