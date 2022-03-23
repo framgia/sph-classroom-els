@@ -1,22 +1,24 @@
+@use '../../../../styles/variables' as *;
+
 .title {
-  font-size: 24px;
-  font-weight: 500;
-  color: #48535b;
+  font-size: $font-size-page-title-lg;
+  font-weight: $font-weight-medium;
+  color: $color-dark-blue-1;
   margin: 0px;
 }
 
 .backButton {
   width: 171px;
   height: 59px;
-  background-color: #789e98;
-  border-color: #789e98;
-  font-size: 30px;
+  background-color: $color-light-blue-7;
+  border-color: $color-light-blue-7;
+  font-size: $font-size-page-title-base;
   border-radius: 7px;
 }
 
 .backButton:hover {
-  background-color: #002037;
-  color: white;
+  background-color: $color-dark-blue-4;
+  color: $color-white;
 }
 
 #GridCard {
@@ -38,8 +40,8 @@
 
 .loadingWord {
   margin-left: 20px;
-  color: black;
-  font-size: 36px;
+  color: $color-black;
+  font-size: $font-size-page-title-xl;
 }
 
 .noResultsMessage {
@@ -51,11 +53,11 @@
 
 .message {
   margin-left: 20px;
-  font-size: 24px;
+  font-size: $font-size-page-title;
 }
 
 .backArrow {
-  color: #48535b;
+  color: $color-dark-blue-1;
   width: 50px;
   height: 50px;
 }
@@ -65,5 +67,4 @@
   align-items: center;
   height: 102px;
   gap: 10px
-  
 }

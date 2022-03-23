@@ -7,7 +7,7 @@ import { PropTypes } from 'prop-types';
 
 import QuestionApi from '../../../../../../api/Question';
 
-import style from './index.module.css';
+import style from './index.module.scss';
 
 const Recent = ({ recentQuizzes, quizzes }) => {
   const [questions, setQuestions] = useState(null);
@@ -43,7 +43,7 @@ const Recent = ({ recentQuizzes, quizzes }) => {
   };
 
   return (
-    <Col className={style.ConCard}>
+    <Col>
       <Card className={style.bg}>
         <Card.Header className={style.forContainerBar}>
           <div className={style.titleText}>{recentQuizzes.title}</div>

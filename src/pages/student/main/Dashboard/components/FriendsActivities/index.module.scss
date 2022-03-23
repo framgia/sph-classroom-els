@@ -1,0 +1,47 @@
+@use '../../../../../../styles/variables' as *;
+
+.forContainerBar2{
+    position: relative;
+    z-index: 1;
+    background-color: $color-light-blue-1;
+    box-shadow: $drop-shadow;
+    height: 47px;
+    color: $color-dark-blue-1;
+    display: flex;
+    align-items: center;
+}
+
+.titleText{
+    display: inline-block;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-lg;
+}
+
+.forSeccolum {
+  color: $color-dark-blue-1;
+  font-size: $font-size-md;
+  display: flex;
+  align-items: center;
+}
+
+.listTable {
+  color: $color-dark-blue-1;
+  font-weight: $font-weight-regular;
+  font-size: $font-size-base;
+  padding: 10px;
+}
+
+.tableIcon {
+  margin: 0px 17px 5px 0px;
+  width: 20px;
+  height: 20px;
+}
+
+.bodyForTheFriendsAct{
+  display: flex;
+  justify-content: space-between;
+}
+
+#colStyle{
+  margin-bottom: 40px;
+}

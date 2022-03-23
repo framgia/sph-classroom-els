@@ -1,23 +1,26 @@
+@use '../../../../styles/variables' as *;
+
 .student {
   display: flex;
   justify-content: space-between;
+  height: 400px;
+  align-items: center;
 }
 
 .headerStyle{
   display: flex;
-  height: 250px;
   align-items: center;
 }
 
 .biUserPosition {
-  border: black 1px solid;
+  border: $border-color-black;
   width: 200px;
   height: 200px;
   border-radius: 50%;
 }
 
 .biUserPosition1 {
-  border: black 1px solid;
+  border: $border-color-black;
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -33,66 +36,57 @@
 }
 
 .studentDetailsPosition:nth-child(1)  {
-  font-size: 32px;
-  font-weight: 500px;
+  font-size: $font-size-page-title-lg;
+  font-weight: $font-weight-medium;
 
 }
 
 .studentDetailsPosition:nth-child(2)  {
-  font-size: 24px;
-  font-weight: 400px;
+  font-size: $font-size-page-title;
+  font-weight: $font-weight-regular;
 }
 
 .studentDetailsPositionFollowers {
   display: inline-block;
-  font-size: 18px;
-  font-weight: 400px;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-regular;
 }
 
 .totalQuizzesTaken {
-  font-size: 24px;
+  font-size: $font-size-page-title;
   margin-bottom: 10px;
-  color: #48535b;
+  color: $color-dark-blue-1;
   margin-top: 55px;
 }
 
 .followUnfollowButton {
   width: 92px;
   height: 37px;
-  margin-top: 90px;
-  float: left;
-  background-color: #c0d5d8;
+  background-color: $color-light-blue-2;
   border: none;
-  color: #48535b;
+  color: $color-dark-blue-1;
   border-radius: 4px;
 }
 
 .followUnfollowButton:hover {
-  color: white;
-  background-color: #9abec1;
-}
-
-.buttonAlignment {
-  width: 250px;
-  display: flex;
-  justify-content: flex-end;
+  color: $color-white;
+  background-color: $color-light-blue-3;
 }
 
 .activityTables {
-  margin-top: 40px;
   display: flex;
   justify-content: space-between;
-  color: #48535b;
+  color: $color-dark-blue-1;
   gap: 5px
 }
 
 .tableHeader {
-  background-color: #e0eaec;
-  width: 650px;
+  background-color: $color-light-blue-1;
+  width: 630px;
   height: 40px;
   border-radius: 2px 2px 0px 0px;
-  font-size: 18px;
-  filter: drop-shadow(0 1mm 1mm #48535b8c);
+  font-size: $font-size-lg;
+  filter: drop-shadow($drop-shadow);
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -100,16 +94,14 @@
 
 .tableTitle {
   margin-left: 15px;
-  font-size: 18px;
+  font-size: $font-size-lg;
 }
 
 .tableBody {
-  background-color: white;
-  width: 650px;
-  height: 330px;
-  border-radius: 0px 0px 10px 10px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  background-color: $color-white;
+  width: 630px;
+  border-radius: 0px 0px 10px 10px; 
+  margin-bottom: 40px;
 }
 
 .activityInfoAlignment {
@@ -117,9 +109,9 @@
 }
 
 .activityDescription {
-  color: #48535b;
+  color: $color-dark-blue-1;
   margin-left: 20px;
-  font-size: 16px;
+  font-size: $font-size-base;
 }
 
 .activityInfo {
@@ -130,11 +122,14 @@
 #timestamp {
   margin-top: 20px;
   margin-right: 17px;
-  font-size: 14px;
+  font-size: $font-size-md;
   order: 2;
   margin-left: auto;
 }
 
 .noActivityMessage {
-  margin-top: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 360px;
 }

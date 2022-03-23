@@ -160,7 +160,7 @@ const EditProfile = () => {
                     maxLength={20}
                     onChange={onChange}
                     isInvalid={!!errors?.password}
-                    placeholder="Enter current password here..."
+                    placeholder="Enter password here..."
                   />
                 )}
               />

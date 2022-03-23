@@ -5,7 +5,7 @@ import Pagination from '../../../../components/Pagination';
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 
 import QuestionGrid from './components/QuestionGrid';
-import style from './index.module.css';
+import style from './index.module.scss';
 
 import QuizApi from '../../../../api/Quiz';
 import CategoryApi from '../../../../api/Category';

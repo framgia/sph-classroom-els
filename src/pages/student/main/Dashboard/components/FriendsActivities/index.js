@@ -4,7 +4,7 @@ import Moment from 'react-moment';
 import DashboardApi from '../../../../../../api/Dashboard';
 import { Col } from 'react-bootstrap';
 
-import style from './index.module.css';
+import style from './index.module.scss';
 
 const FriendsActivities = () => {
   const [friendsActivities, setFriendsActivites] = useState(null);
@@ -36,39 +36,29 @@ const FriendsActivities = () => {
   };
 
   return (
-    <Col className="container">
+    <Col id={style.colStyle}>
       <Card>
         <Card.Header className={style.forContainerBar2}>
           <p className={style.titleText}>Friends Activities</p>
         </Card.Header>
         <Card.Body>
-          <div className={`${style.forContent_box} ${style.forScroll}`}>
-            <table style={{ width: '100%' }}>
-              <tbody>
-                {friendsActivities?.length > 0 ? (
-                  friendsActivities.map((friendActivity, idx) => {
-                    return (
-                      <tr key={idx}>
-                        <td className={style.listTable}>
-                          {iconDisplay(friendActivity.subject_type)}
-                          {friendActivity.description}
-                        </td>
-                        <td className={style.forSeccolum}>
-                          <Moment fromNow>{friendActivity.created_at}</Moment>
-                        </td>
-                      </tr>
-                    );
-                  })
-                ) : (
-                  <tr>
-                    <td>
-                      <center>No Friend Activities</center>
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+          {friendsActivities?.length ? (
+            friendsActivities.map((friendActivity, idx) => {
+              return (
+                <div key={idx} className={style.bodyForTheFriendsAct}>
+                  <td className={style.listTable}>
+                    {iconDisplay(friendActivity.subject_type)}
+                    {friendActivity.description}
+                  </td>
+                  <td className={style.forSeccolum}>
+                    <Moment fromNow>{friendActivity.created_at}</Moment>
+                  </td>
+                </div>
+              );
+            })
+          ) : (
+            <div><center>No Friend Activities</center></div>
+          )}
         </Card.Body>
       </Card>
     </Col>

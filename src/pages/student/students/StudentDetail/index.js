@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
-import style from './index.module.css';
+import style from './index.module.scss';
 import Button from '@restart/ui/esm/Button';
 import Moment from 'react-moment';
 
@@ -123,7 +123,7 @@ const StudentDetail = () => {
               <p className={style.studentDetailsPosition}>
                 {overallQuizTaken} Total Quizzes Taken
               </p>
-              <div className="d-flex gap-5">
+              <div className="d-flex gap-5 mt-2">
                 <p className={style.studentDetailsPositionFollowers}>
                   {studentDetails?.followers_count} Followers
                 </p>
@@ -134,7 +134,7 @@ const StudentDetail = () => {
             </div>
           </div>
         </div>
-        <div className={style.buttonAlignment}>
+        <div>
           {displayFollowUnfollowButton(
             studentDetails?.has_followed,
             studentDetails?.id,

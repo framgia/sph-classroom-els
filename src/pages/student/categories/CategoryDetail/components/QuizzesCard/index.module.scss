@@ -56,7 +56,7 @@
     margin-bottom: 0px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-    width: 308px;
+    width: 265px;
 }
 
 .ResultScore {
@@ -68,11 +68,11 @@
 }
 
 .carddiv{
-    width: 339px;
+    width: 295px;
 }
 
 .titleHeader {
-    font-weight: bold;
+    font-weight: $font-weight-medium;
     font-size: 18px;
     color: $color-dark-blue-1;
 }
