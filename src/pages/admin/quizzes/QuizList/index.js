@@ -23,7 +23,7 @@ const QuizList = () => {
   const sortBy = queryParams.get('sortBy') || '';
   const sortDirection = queryParams.get('sortDirection') || '';
 
-  const TYPE = 'withoutPathDisplay';
+  const TYPE = 'withoutPathDisplay'; 
   const history = useHistory();
   const toast = useToast();
 

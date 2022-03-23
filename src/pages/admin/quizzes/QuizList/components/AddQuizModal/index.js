@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useForm, Controller } from 'react-hook-form';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import { PropTypes } from 'prop-types';
 
 import style from '../../index.module.scss';
 
 import Location from '../../../../../../components/ChangeLocation/component/Location';
+import InputField from '../../../../../../components/InputField';
+import Button from '../../../../../../components/Button';
 
 const AddQuizModal = ({
   handleOnSubmit,
@@ -58,7 +59,7 @@ const AddQuizModal = ({
               name="name"
               defaultValue=""
               render={({ field: { onChange, value, ref } }) => (
-                <Form.Control
+                <InputField
                   onChange={onChange}
                   value={value}
                   ref={ref}
@@ -84,12 +85,12 @@ const AddQuizModal = ({
               name="instruction"
               defaultValue=""
               render={({ field: { onChange, value, ref } }) => (
-                <Form.Control
+                <InputField
                   onChange={onChange}
                   value={value}
                   ref={ref}
                   as="textarea"
-                  style={{ height: '100px', resize: 'none' }}
+                  inputStyle={style.textAreaStyle}
                   placeholder="Instruction"
                   isInvalid={!!errors?.instruction}
                   required
@@ -118,11 +119,10 @@ const AddQuizModal = ({
             ''
           ) : (
             <Button
-              className={style.modalButton}
+              buttonSize="def"
+              buttonLabel="Go Back"
               onClick={() => setBackButtonClicked(true)}
-            >
-              Go Back
-            </Button>
+            />
           )}
           <div className={style.primaryButtons}>
             <a
@@ -134,12 +134,11 @@ const AddQuizModal = ({
               Cancel
             </a>
             <Button
-              className={style.modalButton}
+              buttonSize="def"
+              buttonLabel="Add Quiz"
               type="submit"
               disabled={submitStatus}
-            >
-              Add Quiz
-            </Button>
+            />
           </div>
         </Modal.Footer>
       </Form>

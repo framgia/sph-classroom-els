@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import style from '../../index.module.scss';
 import { PropTypes } from 'prop-types';
 import { Controller, useForm } from 'react-hook-form';
+import InputField from '../../../../../../components/InputField';
 
 const IdentificationType = ({ question, getData }) => {
   const { control } = useForm();
@@ -52,9 +53,9 @@ const IdentificationType = ({ question, getData }) => {
             name="question"
             defaultValue={question.question}
             render={({ field: { ref } }) => (
-              <Form.Control
+              <InputField
                 type="text"
-                className={style.inputWidth}
+                inputStyle={style.inputWidth}
                 onChange ={handleChangeQuestion}
                 value={questionOnChange.question}
                 ref={ref}
@@ -70,9 +71,9 @@ const IdentificationType = ({ question, getData }) => {
           name="text_answer"
           defaultValue={question.text_answer}
           render={({ field: { ref } }) => (
-            <Form.Control 
+            <InputField 
               as="textarea" 
-              className={style.inputHeight} 
+              inputStyle={style.inputHeight} 
               onChange ={handleChangeAnswer}
               value={questionOnChange.answer}
               ref={ref}

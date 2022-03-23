@@ -32,6 +32,8 @@ import { PropTypes } from 'prop-types';
   > maxLength    : (optional) pass a number value to limit the number of characters the input field will accept.
 
   > disabled     : (optional) pass this prop with a value of true if you want to have a disabled input field.
+
+  > inputStyle  : (optional) pass this prop with value of scss 
   */
 
 import style from './index.module.scss';
@@ -96,7 +98,7 @@ InputField.propTypes = {
   disabled: PropTypes.bool,
   readOnly: PropTypes.string,
   onClick: PropTypes.func,
-  inputStyle: PropTypes.any
+  inputStyle: PropTypes.any,
 };
 
 export default InputField;

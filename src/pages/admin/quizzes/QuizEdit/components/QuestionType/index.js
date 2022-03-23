@@ -1,17 +1,16 @@
 import React, { useState, Fragment, useEffect } from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
-import { RiArrowDropDownLine } from 'react-icons/ri';
 import MultipleChoiceType from '../MultipleChoiceType';
 import IdentificationType from '../IdentificationType';
 import PropTypes from 'prop-types';
 
 import style from '../../index.module.scss';
+import FilterDropdown from '../../../../../../components/FilterDropdown';
 
 const QuestionType = ({ question, onGetData, onChangeTimeLimit, onChangeQuestionType, onChangeChoices }) => {
   const [questionType, setQuestionType] = useState('multiple_choice');
   const [timeLimit, setTimeLimit] = useState(0);
-  const timeOptions = [5, 10, 20, 30, 60];
+  const timeOptions = [{name: 5}, {name: 10}, {name: 20}, {name: 30}, {name: 60}];
   const question_type_id = [
     {
       name: 'Multiple Choice',
@@ -22,7 +21,7 @@ const QuestionType = ({ question, onGetData, onChangeTimeLimit, onChangeQuestion
       value: '2',
     },
   ];
-
+  
   useEffect(() => {
     if (question) {
       setQuestionType(question?.question_type_id?.toString());
@@ -63,7 +62,7 @@ const QuestionType = ({ question, onGetData, onChangeTimeLimit, onChangeQuestion
   };
 
   const question_type = (choice) => {
-    switch (choice) {
+    switch (choice) {  
     case '1':
       return <MultipleChoiceType question={question} getData={handleChangeQuestionType} onUpdateChoices={updateChoices}/>;
     case '2':
@@ -84,57 +83,41 @@ const QuestionType = ({ question, onGetData, onChangeTimeLimit, onChangeQuestion
     }
   };
 
+  const obtainTheQuestionType = (value) => {
+    setQuestionType(value.value);
+  };
+
   return (
     <Fragment>
       <div  className={style.questionTypestyle}>{question_type(questionType)}</div>
       <div className={style.formGap}>
-        <Dropdown onSelect={onSelectQuestionType}>
-          <Form>
-            <Form.Label className={style.inputTitle}>Question Type</Form.Label>
-          </Form>
-          <Dropdown.Toggle
-            variant="link"
-            id="dropdown-basic"
-            bsPrefix="none"
-            className={style.dropdownStyle}
-          >
-            {choice(questionType)}
-            <RiArrowDropDownLine className={style.iconSize} />
-          </Dropdown.Toggle>
-          <Dropdown.Menu className={style.dropdownMenuStyle}>
-            {question_type_id.map((type, idx) => {
-              return (
-                <Dropdown.Item key={idx} eventKey={type.value}>
-                  {type.name}
-                </Dropdown.Item>
-              );
-            })}
-          </Dropdown.Menu>
-        </Dropdown>
+        <Form>
+          <Form.Label className={style.inputTitle}>Question Type</Form.Label>
+          <FilterDropdown
+            onSelect={onSelectQuestionType}
+            onHardStyle={style.dropdownButtonStyle}
+            onHardCodeStyle={style.dropdownMenuStyle}
+            dropdownItems={question_type_id}
+            onDataNeeded={false}
+            onAll={false}
+            filter={choice(questionType)}
+            onSetFilter={obtainTheQuestionType}
+          />
+        </Form>
         <div className={style.formSpacing}>
-          <Dropdown onSelect={time}>
-            <Form>
-              <Form.Label className={style.inputTitle}>Time Limit</Form.Label>
-            </Form>
-            <Dropdown.Toggle
-              variant="link"
-              id="dropdown-basic"
-              bsPrefix="none"
-              className={style.dropdownStyle}
-            >
-              {timeLimit} seconds
-              <RiArrowDropDownLine className={style.iconSize} />
-            </Dropdown.Toggle>
-            <Dropdown.Menu className={style.dropdownMenuStyle}>
-              {timeOptions.map((time, idx) => {
-                return (
-                  <Dropdown.Item key={idx} eventKey={time}>
-                    {time} seconds
-                  </Dropdown.Item>
-                );
-              })}
-            </Dropdown.Menu>
-          </Dropdown>
+          <Form>
+            <Form.Label className={style.inputTitle}>Time Limit</Form.Label>
+            <FilterDropdown
+              onSelect={time}
+              onHardStyle={style.dropdownButtonStyle}
+              onHardCodeStyle={style.dropdownMenuStyle}
+              dropdownItems={timeOptions}
+              valueLabel="seconds"
+              onAll={false}
+              filter={timeLimit}
+              setFilter={setTimeLimit}
+            />
+          </Form>
         </div>
       </div>
     </Fragment>
