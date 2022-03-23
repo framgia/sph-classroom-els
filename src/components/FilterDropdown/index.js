@@ -27,7 +27,8 @@ const FilterDropdown = ({
   dropdownItems,
   isScrollable = false,
   filter,
-  setFilter
+  setFilter,
+  eventKey
 }) => {
   const [activeItem, setActiveItem] = useState(filter || 'All');
   const [isClicked, setIsClicked] = useState(false);
@@ -83,6 +84,7 @@ const FilterDropdown = ({
             return (
               <Dropdown.Item
                 key={idx}
+                eventKey={eventKey}
                 className={
                   activeItem === item.name
                     ? style.activeItem

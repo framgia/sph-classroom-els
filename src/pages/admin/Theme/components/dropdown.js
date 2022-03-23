@@ -25,7 +25,7 @@ export const renderDropdown = () => {
         <u>Dropdown Menu</u>
       </h3>
       <div className="d-flex gap-5">
-        <FilterDropdown
+        <FilterDropdown 
           dropdownLabel="Scrollable Dropdown"
           dropdownItems={dropdownOptions}
           isScrollable={true}

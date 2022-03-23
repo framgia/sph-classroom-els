@@ -5,6 +5,7 @@ import { GrAddCircle } from 'react-icons/gr';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { PropTypes } from 'prop-types';
 import { Controller, useForm } from 'react-hook-form';
+import InputField from '../../../../../../components/InputField';
 
 const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
   const { control } = useForm();
@@ -154,8 +155,8 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
               name="choice"
               defaultValue={choice.choice}
               render={({ field: { ref } }) => (
-                <Form.Control
-                  className={style.choicesAlignment}
+                <InputField
+                  onHardStyle={style.choicesAlignment}
                   onChange={(e) => handleChangeChoices(e, choice.id)}
                   type="text"
                   value={choice.choice}

@@ -7,6 +7,7 @@ import IdentificationType from '../IdentificationType';
 import PropTypes from 'prop-types';
 
 import style from '../../index.module.scss';
+import FilterDropdown from '../../../../../../components/FilterDropdown';
 
 const QuestionType = ({ question, onGetData, onChangeTimeLimit, onChangeQuestionType, onChangeChoices }) => {
   const [questionType, setQuestionType] = useState('multiple_choice');
@@ -59,6 +60,7 @@ const QuestionType = ({ question, onGetData, onChangeTimeLimit, onChangeQuestion
   };
 
   const updateChoices = (choices, questionId) => {
+    console.log(choice(), questionId);
     onChangeChoices(choices, questionId);
   };
 
@@ -83,11 +85,21 @@ const QuestionType = ({ question, onGetData, onChangeTimeLimit, onChangeQuestion
       break;
     }
   };
-
   return (
     <Fragment>
       <div  className={style.questionTypestyle}>{question_type(questionType)}</div>
       <div className={style.formGap}>
+        <Form>
+          <Form.Label className={style.inputTitle}>Question Type</Form.Label>
+          <FilterDropdown
+            onSelect={onSelectQuestionType}
+            dropdownLabel={choice(questionType)}
+            dropdownItems={question_type_id}
+            eventKey={question_type_id.value}
+            filter={questionType}
+            setFilter={setQuestionType}
+          />
+        </Form>
         <Dropdown onSelect={onSelectQuestionType}>
           <Form>
             <Form.Label className={style.inputTitle}>Question Type</Form.Label>
@@ -112,6 +124,17 @@ const QuestionType = ({ question, onGetData, onChangeTimeLimit, onChangeQuestion
           </Dropdown.Menu>
         </Dropdown>
         <div className={style.formSpacing}>
+          {/* <Form>
+            <Form.Label className={style.inputTitle}>Time Limit</Form.Label>
+            <FilterDropdown
+              onSelect={time}
+              dropdownLabel={timeLimit}
+              dropdownItems={timeOptions}
+              eventKey={time}
+              filter={timeLimit}
+              setFilter={setTimeLimit}
+            />
+          </Form> */}
           <Dropdown onSelect={time}>
             <Form>
               <Form.Label className={style.inputTitle}>Time Limit</Form.Label>

@@ -73,20 +73,10 @@
   margin: 0px 0px 30px;
 }
 
-.modalButton {
-  @include button-style($color-light-blue-2, 172px, 38px);
-
-  &:hover {
-    background-color: $color-light-blue-3;
-    border-color: $color-light-blue-3;
-    color: $color-white;
-  }
-
-  &:focus {
-    background-color: $color-light-blue-3;
-    border-color: $color-light-blue-3;
-    color: $color-white;
-  }
+.primaryButtons {
+  display: flex;
+  align-items: center;
+  margin-left: 54px;
 }
 
 .cardBodyScroll {
@@ -185,6 +175,7 @@
   font-size: 14px;
   padding: 5px 3px;
   margin-right: 15px;
+  display: inline;
 
   &:hover {
     color: $color-black;
@@ -219,4 +210,9 @@
     width: 210px;
     padding-left: 50px;
   }
+}
+
+.textAreaStyle {
+  height: 100px;
+  resize: none;
 }
