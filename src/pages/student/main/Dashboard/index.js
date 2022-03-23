@@ -13,7 +13,7 @@ function Dashboard() {
 
   const [quizzes, setQuizzes] = useState(null);
   const [recentQuizzes, setRecentQuizzes] = useState(null);
-  const [categorieslearned, setCategoriesLearned] = useState(null);
+  const [categoriesLearned, setCategoriesLearned] = useState(null);
 
   useEffect(() => {
     DashboardApi.getAll(userId).then(({ data }) => {
@@ -39,10 +39,10 @@ function Dashboard() {
           <p className={style.cardTitle}>Categories Learned</p>
         </Card.Header>
         <Card.Body>
-          {categorieslearned?.length ? (
-            categorieslearned?.map((categorylearned, idx) => {
+          {categoriesLearned?.length ? (
+            categoriesLearned?.map((categoryLearned, idx) => {
               return (
-                <CategoryLearned key={idx} categorylearned={categorylearned} />
+                <CategoryLearned key={idx} categoryLearned={categoryLearned} />
               );
             })
           ) : (

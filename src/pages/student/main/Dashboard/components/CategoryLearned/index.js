@@ -4,18 +4,18 @@ import { PropTypes } from 'prop-types';
 
 import style from './index.module.css';
 
-const CategoryLearned = ({ categorylearned }) => {
+const CategoryLearned = ({ categoryLearned }) => {
   return (
     <table style={{ width: '100%' }}>
       <tbody>
         <tr>
           <td className={style.listTable}>
             <BiBookAlt size="20px" style={{ margin: '0px 17px 5px 0px' }} />
-            {categorylearned.name}
+            {categoryLearned.name}
           </td>
           <td className={style.forSeccolum}>
-            {categorylearned.quizzes.length} out of{' '}
-            {categorylearned.quizzes_count} Quizzes Taken
+            {categoryLearned.quizzes.length} out of{' '}
+            {categoryLearned.quizzes_count} Quizzes Taken
           </td>
         </tr>
       </tbody>
@@ -24,7 +24,7 @@ const CategoryLearned = ({ categorylearned }) => {
 };
 
 CategoryLearned.propTypes = {
-  categorylearned: PropTypes.object
+  categoryLearned: PropTypes.object
 };
 
 export default CategoryLearned;
