@@ -1,9 +1,6 @@
 .bg {
-  display: inline-flex;
-  grid-column-gap: 22px;
-}
-.bg2 {
-  column-gap: 48px;
+  display: flex;
+  gap: 20px
 }
 
 .h2_style {
@@ -11,7 +8,7 @@
   display: flex;
   align-items: center;
   margin: 0px;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 500px;
 }
 
@@ -38,19 +35,14 @@
   text-align: right;
 }
 
-.forContent_box {
-  height: 366px;
-  background-color: #ffffff;
-}
-
-.forScroll {
-  overflow: auto;
-}
-
 .noQuizzesTakenMessageContainer {
   background-color: white;
   border: 1px rgba(0, 0, 0, 0.185) solid;
   border-radius: 5px;
   margin: 20px 0px 70px 0px;
   padding: 50px;
+}
+
+#colStyle{
+  margin-bottom: 40px;
 }

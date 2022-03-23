@@ -1,33 +1,42 @@
-.studentListHeader {
-  height: 102px;
-  display: flex;
-  align-items: center;
-  font-size : 24px;
-  font-weight: 500px;
+@use '../../../../styles/variables' as *;
 
+.studentListContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 33px;
+}
+
+.studentListHeader {
+  margin-bottom: 20px;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-page-title-lg;
 }
 
 .cardHeader {
-  background-color: #e0eaec;
-  filter: drop-shadow(0 1mm 1mm #48535b8c);
+  background-color: $color-light-blue-1;
+  filter: drop-shadow($drop-shadow);
   display: flex;
+  align-items: center;
+  gap: 25px
 }
 
 .dropdownStyle {
-  margin-left: 45px;
-  background: white;
+  background: $color-white;
   border-radius: 2px;
-  border: 1px solid #0000002d;
-  height: 28px;
-  width: 80px;
-  margin-top: 0px;
+  border: $border-color-black-1;
+  height: 30px;
+  width: 90px;
+  padding: 0px;
   text-decoration: none;
-  color: black;
-  padding-bottom: 25px;
+  color: $color-black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px
 }
 
 .dropdownStyle:hover {
-  color: black;
+  color: $color-black;
 }
 
 .dropdownMenuStyle {
@@ -37,27 +46,27 @@
 .dropdownItemStyle {
   padding: 5px 0px 2px 11px;
   width: 82px;
-  background-color: white;
+  background-color: $color-white;
 }
 
 .dropdownItemStyle:focus {
-  background-color: silver;
+  background-color: $color-white-4;
 }
 
 .dropdownLabel {
-  color: #48535b;
+  color: $color-dark-blue-1;
 }
 
 .inputStyle {
   height: 32px;
   width: 400px;
   border-radius: 4px;
-  border: 2px solid #ced4da;
+  border: $border-color-light;
   padding-left: 10px;
 }
 
 .inputStyle:focus {
-  outline-color: #adb8c4;
+  outline-color: $color-white-3;
 }
 
 .inputStyle::placeholder {
@@ -71,7 +80,7 @@
 
 .searchButton {
   border: none;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: transparent;
   display: hidden;
   position: absolute;
   left: 380px;
@@ -79,7 +88,7 @@
 }
 
 .cardBody {
-  background-color: white;
+  background-color: $color-white;
   height: 640px;
   padding-top: 25px;
   overflow-y: scroll;
@@ -103,16 +112,16 @@
 }
 
 .studentName {
-  color: #48535b;
+  color: $color-dark-blue-1;
   margin-left: 10px;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
   cursor: pointer;
 }
 
 #followCount {
   display: flex;
-  font-size: 14px;
+  font-size: $font-size-md;
   gap: 20px;
   text-indent: 10px;
 }
@@ -124,15 +133,15 @@
   margin-top: 13px;
   width: 80px;
   height: 28px;
-  border: 1px solid rgba(0, 0, 0, 0.158);
-  background-color: #c0d5d8;
+  border: $color-black;
+  background-color: $color-light-blue-2;
   border-radius: 2px;
-  color: #48535b;
+  color: $color-dark-blue-1;
 }
 
 .button:hover {
-  background-color: #9abec1;
-  color: white;
+  background-color: $color-light-blue-3;
+  color: $color-white;
 }
 
 .noResults,

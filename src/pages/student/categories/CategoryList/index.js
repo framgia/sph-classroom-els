@@ -123,11 +123,10 @@ function CategoryList() {
         <Breadcrumbs />
       </section>
       <div className={style.categoryConditionsStyle}>
-        <Form className="d-flex" onSubmit={onSearchSubmit}>
+        <Form className={style.searchBar} onSubmit={onSearchSubmit}>
           <FormControl
             type="search"
             placeholder="Search"
-            className={style.searchBar}
             aria-label="Search"
             value={search}
             onChange={(e) => {

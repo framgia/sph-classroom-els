@@ -77,7 +77,7 @@ const UsersEdit = () => {
                 maxLength={20}
                 onChange={onChange}
                 isInvalid=""
-                placeholder="match with new password"
+                placeholder="Match with new password"
               />
             )}
           />

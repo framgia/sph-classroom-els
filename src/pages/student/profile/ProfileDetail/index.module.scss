@@ -1,7 +1,7 @@
 @use '../../../../styles/variables' as *;
 
 .profileHeader {
-  height: 300px;
+  height: 350px;
   display: flex;
   align-items: center;
   margin: 0px;
@@ -11,7 +11,7 @@
   align-items: center;
   display: block;
   color: $color-dark-blue-1;
-  font-size: 32px;
+  font-size: $font-size-page-title-lg;
   font-weight: $font-weight-medium;
   margin: 0px;
 }
@@ -25,7 +25,7 @@
 .followingLabel {
   color: $color-dark-blue-1;
   font-size: $font-size-lg;
-  font-weight: 300px;
+  font-weight: $font-weight-light;
 }
 
 .editButton {
@@ -47,22 +47,20 @@
 .cardHeader {
   background-color: $color-light-blue-1;
   border-radius: 2px 2px 0px 0px;
-  width: 650px;
+  width: 630px;
   height: 40px;
   display: flex;
   align-items: center;
-  font-size: 18px;
-  font-weight: 400px;
-  filter: drop-shadow(0 1mm 1mm #48535b8c);
+  font-size: $font-size-lg;
+  font-weight: $font-weight-regular;
+  filter: drop-shadow($drop-shadow);
 }
 
 .cardBody {
   background-color: $color-white;
-  width: 650px;
-  height: 330px;
+  width: 630px;
   border-radius: 0px 0px 10px 10px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  margin-bottom: 40px
 }
 
 .biUserPosition {
@@ -106,5 +104,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px;
+  height: 360px;
 }

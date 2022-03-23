@@ -19,8 +19,9 @@
 
 .header {
   @include flex(flex-start, center, row, none);
-  font-size: $font-size-lg;
+  font-size: $font-size-page-title-lg;
   font-weight: $font-weight-regular;
+  color: $color-dark-blue-1;
   height: 102px;
 }
 
@@ -37,13 +38,13 @@
 
 .pageTitleName {
   height: 30px;
-  font-size: $font-size-page-title;
+  font-size: $font-size-page-title-lg;
   font-weight: $font-weight-medium;
 }
 
 .linkToQuizzes {
   color: $color-dark-blue-1;
-  font-size: $font-size-page-title;
+  font-size: $font-size-page-title-lg;
   font-weight: $font-weight-medium;
 }
 
@@ -60,17 +61,17 @@
 
 .cardList {
   display: flex;
-  grid-column-gap: 34px;
+  grid-column-gap: 22px;
   grid-row-gap: 48px;
   width: 1518px;
 
   &:nth-child(4) {
-    grid-column-gap: 40px;
+    grid-column-gap: 29px;
   }
 }
 
 .noResultsMessage {
-  margin: 220px 0px;
+  margin: 50px 0px;
   display: flex;
   justify-content: center;
   align-items: center;

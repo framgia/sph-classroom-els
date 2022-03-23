@@ -9,7 +9,7 @@ import Button from '@restart/ui/esm/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import Pagination from '../../../../components/Pagination';
 
-import style from './index.module.css';
+import style from './index.module.scss';
 
 import StudentApi from '../../../../api/Student';
 
@@ -31,13 +31,6 @@ const StudentList = () => {
   const [search, setSearch] = useState(searchVal ? searchVal : '');
   const [status, setStatus] = useState(false);
   const [filter, setFilter] = useState(filterVal ? filterVal : '');
-  const [listInfo, setListInfo] = useState(
-    filterVal === 'followed'
-      ? 'Followed Students'
-      : filterVal === 'followers'
-        ? 'Followers'
-        : 'All Students'
-  );
 
   useEffect(() => {
     history.push(`?page=${page}&filter=${filter}&search=${search}`);
@@ -143,102 +136,127 @@ const StudentList = () => {
     });
   };
 
-  return (
-    <div className="container">
-      <div className={style.studentListHeader}>List of {listInfo}</div>
-      <Card>
-        <Card.Header className={style.cardHeader}>
-          <form onSubmit={onSearchSubmit}>
-            <input
-              className={style.inputStyle}
-              type="search"
-              value={search}
-              onChange={(e) => {
-                setSearch(e.target.value);
+  const studentFilter = [
+    {
+      name: 'All',
+      value: '',
+    },
+    {
+      name: 'Following',
+      value: 'followed',
+    },
+    {
+      name: 'Followers',
+      value: 'followers',
+    },
+  ];
 
-                if (e.target.value.length === 0) {
-                  setPage(1);
-                  setStatus(!status);
-                }
-              }}
-              name="search"
-              placeholder="Search"
-            />
-            <Button type="submit" className={style.searchButton}>
-              <BiSearch className={style.searchIcon} />
-            </Button>
-          </form>
-          <Dropdown>
-            <Dropdown.Toggle
-              className={style.dropdownStyle}
-              variant="link"
-              bsPrefix="none"
-            >
-              <span className={style.dropdownLabel}>Filter</span>
-              <VscFilter size="20px" />
-            </Dropdown.Toggle>
-            <Dropdown.Menu className={style.dropdownMenuStyle}>
-              <Dropdown.Item
-                className={style.dropdownItemStyle}
-                onClick={() => {
-                  setFilter('');
-                  setStatus(!status);
-                  setListInfo('All Students');
-                  setPage(1);
+  const onSelectFilterStudent = (e) => {
+    setFilter(e);
+    setPage(1);
+  };
+
+  const choice = (option) => {
+    switch (option) {
+    case '':
+      return 'All';
+    case 'followed':
+      return 'Following';
+    case 'followers':
+      return 'Followers';
+    default:
+      break;
+    }
+  };
+
+
+  const listInfoFilter = (option) => {
+    switch (option) {
+    case '':
+      return 'All Students';
+    case 'followed':
+      return 'Followed Students';
+    case 'followers':
+      return 'Followers';
+    default:
+      break;
+    }
+  };
+
+  return (
+    <div className={style.studentListContainer}>
+      <div>
+        <div className={style.studentListHeader}>List of {listInfoFilter(filter)}</div>
+        <Card>
+          <Card.Header className={style.cardHeader}>
+            <form onSubmit={onSearchSubmit}>
+              <input
+                className={style.inputStyle}
+                type="search"
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+
+                  if (!e.target.value.length) {
+                    setPage(1);
+                    setStatus(!status);
+                  }
                 }}
+                name="search"
+                placeholder="Search"
+              />
+              <Button type="submit" className={style.searchButton}>
+                <BiSearch className={style.searchIcon} />
+              </Button>
+            </form>
+            <Dropdown onSelect={onSelectFilterStudent}>
+              <Dropdown.Toggle
+                className={style.dropdownStyle}
+                variant="link"
+                bsPrefix="none"
               >
-                All
-              </Dropdown.Item>
-              <Dropdown.Item
-                className={style.dropdownItemStyle}
-                onClick={() => {
-                  setFilter('followed');
-                  setListInfo('Followed Students');
-                  setPage(1);
-                }}
-              >
-                Following
-              </Dropdown.Item>
-              <Dropdown.Item
-                className={style.dropdownItemStyle}
-                onClick={() => {
-                  setFilter('followers');
-                  setListInfo('Followers');
-                  setPage(1);
-                }}
-              >
-                Followers
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Card.Header>
-        <Card.Body className={style.cardBody}>
-          {students === null ? (
-            <div className={style.loading}>
-              <Spinner animation="border" role="status"></Spinner>
-              <span className={style.loadingWord}>Loading</span>
-            </div>
-          ) : (
-            renderStudList()
-          )}
-          {students?.length <= 0 ? (
-            <div className={style.noResults}>
-              {' '}
-              <p>No Student Found</p>{' '}
-            </div>
-          ) : (
-            <div className={style.pagination}>
-              <Pagination
-                page={page}
-                perPage={perPage}
-                totalItems={totalItems}
-                pageCount={lastPage}
-                onPageChange={onPageChange}
-              ></Pagination>
-            </div>
-          )}
-        </Card.Body>
-      </Card>
+                <span className={style.dropdownLabel}>{choice(filter)}</span>
+                <VscFilter size="20px" />
+              </Dropdown.Toggle>
+              <Dropdown.Menu className={style.dropdownMenuStyle}>
+                {studentFilter.map((type, idx) => {
+                  return (
+                    <Dropdown.Item key={idx} eventKey={type.value}>
+                      {type.name}
+                    </Dropdown.Item>
+                  );
+                })}
+              </Dropdown.Menu>
+            </Dropdown>
+          </Card.Header>
+          <Card.Body className={style.cardBody}>
+            {!students ? (
+              <div className={style.loading}>
+                <Spinner animation="border" role="status"></Spinner>
+                <span className={style.loadingWord}>Loading</span>
+              </div>
+            ) : (
+              renderStudList()
+            )}
+            {students?.length <= 0 ? (
+              <div className={style.noResults}>
+                {' '}
+                <p>No Student Found</p>{' '}
+              </div>
+            ) : (
+              <div className={style.pagination}>
+                <Pagination
+                  page={page}
+                  perPage={perPage}
+                  totalItems={totalItems}
+                  pageCount={lastPage}
+                  onPageChange={onPageChange}
+                ></Pagination>
+              </div>
+            )}
+          </Card.Body>
+        </Card>
+      </div>
     </div>
   );
 };

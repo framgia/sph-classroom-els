@@ -35,30 +35,28 @@ function Dashboard() {
 
   const renderDashList = () => {
     return (
-      <Col>
+      <Col id={style.colStyle}>
         <Card>
           <Card.Header className={style.forContainerBar2}>
             <p className={style.titleText}>Categories Learned</p>
           </Card.Header>
           <Card.Body>
-            <div className={`${style.forContent_box} ${style.forScroll}`}>
-              {categorieslearned?.length > 0 ? (
-                categorieslearned?.map((categorylearned, idx) => {
-                  return (
-                    <CategoryLearned
-                      key={idx}
-                      categorylearned={categorylearned}
-                    />
-                  );
-                })
-              ) : (
-                <div>
-                  <center>
-                    <span>No Categories Learned</span>
-                  </center>
-                </div>
-              )}
-            </div>
+            {categorieslearned?.length ? (
+              categorieslearned?.map((categorylearned, idx) => {
+                return (
+                  <CategoryLearned
+                    key={idx}
+                    categorylearned={categorylearned}
+                  />
+                );
+              })
+            ) : (
+              <div>
+                <center>
+                  <span>No Categories Learned</span>
+                </center>
+              </div>
+            )}
           </Card.Body>
         </Card>
       </Col>
@@ -67,8 +65,8 @@ function Dashboard() {
 
   return (
     <div className="container">
-      <h2 className={style.h2_style}>Recent</h2>
-      <Row className={style.bg}>
+      <div className={style.h2_style}>Recent</div>
+      <div className={style.bg}>
         {quizzes &&
           recentQuizzes?.map((recentQuizzes, idx) => {
             return (
@@ -81,7 +79,7 @@ function Dashboard() {
               />
             );
           })}
-      </Row>
+      </div>
       {recentQuizzes?.length === 0 ? (
         <div className={style.noQuizzesTakenMessageContainer}>
           <center>
@@ -91,7 +89,7 @@ function Dashboard() {
       ) : (
         ''
       )}
-      <Row className={style.bg2}>
+      <Row>
         {renderDashList()}
         <FriendsActivities />
       </Row>
