@@ -28,6 +28,7 @@ const QuizEdit = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { categoryId, quizId } = useParams();
+  const [saved, setSaved] = useState(false);
   const toast = useToast();
 
   useEffect(() => {
@@ -42,7 +43,7 @@ const QuizEdit = () => {
   }, []);
 
   useEffect(() => {
-    if(quizInfo){
+    if (quizInfo) {
       setChangeCategoryId(quizInfo.category_id);
       CategoryApi.getParentCategories(quizInfo.category_id)
         .then(({ data }) => {
@@ -130,7 +131,10 @@ const QuizEdit = () => {
   };
 
   const addQuestionFields = () => {
-    const questionIds = questions && questions.length > 0 ? questions.map((question) => question.id) : [0];
+    const questionIds =
+      questions && questions.length > 0
+        ? questions.map((question) => question.id)
+        : [0];
     const maxId = Math.max(...questionIds) + 1;
     let newQuestions = [...questions];
     newQuestions.push({
@@ -151,7 +155,7 @@ const QuizEdit = () => {
     newQuestions.splice(idx, 1);
     setQuestions(newQuestions);
 
-    if(idx < newQuestions.length){
+    if (idx < newQuestions.length) {
       setSelectedQuestion(newQuestions[idx]);
     } else {
       setSelectedQuestion(newQuestions[idx - 1]);
@@ -160,9 +164,11 @@ const QuizEdit = () => {
 
   const handleSubmit = () => {
     toast('Processing', 'Updating questions...');
+    setSaved(true);
 
     QuestionApi.editQuestion(questions, quizId, changeCategoryId)
       .then(({ data }) => {
+        setSaved(false);
         setQuestions(data);
         toast('Success', 'Successfully updated questions');
         window.location = `/admin/quizzes/${quizId}`;
@@ -192,10 +198,17 @@ const QuizEdit = () => {
                       <Nav className="flex-column">
                         <Nav.Link
                           eventKey={question.id}
-                          className={selectedQuestion?.id === question.id ? style.currentNavLinkItem : style.navLinkItem}
+                          className={
+                            selectedQuestion?.id === question.id
+                              ? style.currentNavLinkItem
+                              : style.navLinkItem
+                          }
                           active
                         >
-                          <div className={style.questionDetails} onClick={() => onSelectQuestion(idx)}>
+                          <div
+                            className={style.questionDetails}
+                            onClick={() => onSelectQuestion(idx)}
+                          >
                             <span className={style.questionNumber}>
                               Question # {idx + 1}
                             </span>
@@ -207,7 +220,7 @@ const QuizEdit = () => {
                             size={25}
                             className={style.removeQuestionIcon}
                             onClick={() => {
-                              onRemoveQuestion(idx); 
+                              onRemoveQuestion(idx);
                             }}
                           />
                         </Nav.Link>
@@ -215,8 +228,16 @@ const QuizEdit = () => {
                     </Fragment>
                   );
                 })}
-              <Button buttonLabel="Add a Question" buttonSize="lg"  onClick={() => addQuestionFields()}/>
-              <Button buttonLabel="Change Category" buttonSize="lg" onClick={handleShow}/>
+              <Button
+                buttonLabel="Add a Question"
+                buttonSize="lg"
+                onClick={() => addQuestionFields()}
+              />
+              <Button
+                buttonLabel="Change Category"
+                buttonSize="lg"
+                onClick={handleShow}
+              />
             </div>
             {questions?.length === 0 ? (
               <div className={style.message}>
@@ -237,7 +258,12 @@ const QuizEdit = () => {
           <Link to={`/admin/quizzes/${quizId}`} className={style.cancelButton}>
             Cancel
           </Link>
-          <Button buttonLabel="Save" buttonSize="def" onClick={handleSubmit}/>
+          <Button
+            buttonLabel="Save"
+            buttonSize="def"
+            onClick={handleSubmit}
+            disabled={saved}
+          />
         </div>
       </div>
       <ChangeLocation
