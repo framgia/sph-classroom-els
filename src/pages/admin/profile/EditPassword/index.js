@@ -3,11 +3,10 @@ import { useHistory, Link } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { useToast } from '../../../../hooks/useToast';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-
-import style from './index.module.scss';
-
+import InputField from '../../../../components/InputField';
+import Button from '../../../../components/Button';
 import AdminApi from '../../../../api/Admin';
+import style from './index.module.scss';
 
 const EditPassword = () => {
   const { control, handleSubmit, reset } = useForm();
@@ -55,108 +54,95 @@ const EditPassword = () => {
   };
 
   return (
-    <div className="d-inline-flex">
-      <Form onSubmit={handleSubmit(handleOnSubmit)} className={style.form}>
-        <h3 className={style.formTitle}>Change Password</h3>
-        <div>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label className={style.inputLabel}>
-              Current Password
-            </Form.Label>
-            <Controller
-              control={control}
-              name="password"
-              render={({ field: { onChange, value, ref } }) => (
-                <Form.Control
-                  className={style.inputField}
-                  type="password"
-                  placeholder="enter current password"
-                  onChange={onChange}
-                  value={value}
-                  ref={ref}
-                  isInvalid={!!errors?.password}
-                  maxLength={20}
-                  autocomplete="on"
-                  required
-                />
-              )}
-            />
-            <Form.Control.Feedback
-              className={style.validationMessage}
-              type="invalid"
-            >
-              {errors?.password}
-            </Form.Control.Feedback>
-          </Form.Group>
+    <div className={style.formContainer}>
+      <Form className={style.card} onSubmit={handleSubmit(handleOnSubmit)}>
+        <div className={style.headingText}>Change Password</div>
+        <Form.Group className="mb-4 mt-4" controlId="currentPassword">
+          <Form.Label className={style.inputLabels}>
+            Current Password
+          </Form.Label>
+          <Controller
+            control={control}
+            name="password"
+            render={({ field: { onChange, value, ref } }) => (
+              <InputField
+                ref={ref}
+                type="password"
+                value={value}
+                fieldSize="md"
+                maxLength={20}
+                onChange={onChange}
+                isInvalid={!!errors?.password}
+                placeholder="Enter current password here..."
+              />
+            )}
+          />
+          <Form.Control.Feedback type="invalid">
+            {errors?.password}
+          </Form.Control.Feedback>
+        </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicNewPassword">
-            <Form.Label className={style.inputLabel}>New Password</Form.Label>
-            <Controller
-              control={control}
-              name="new_password"
-              render={({ field: { onChange, value, ref } }) => (
-                <Form.Control
-                  className={style.inputField}
-                  type="password"
-                  placeholder="min. of 6 characters"
-                  onChange={onChange}
-                  value={value}
-                  ref={ref}
-                  isInvalid={!!errors?.new_password}
-                  maxLength={20}
-                  autocomplete="on"
-                  required
-                />
-              )}
-            />
-            <Form.Control.Feedback
-              className={style.validationMessage}
-              type="invalid"
-            >
-              {errors?.new_password}
-            </Form.Control.Feedback>
-          </Form.Group>
+        <Form.Group className="mb-4" controlId="newPassword">
+          <Form.Label className={style.inputLabels}>New Password</Form.Label>
+          <Controller
+            control={control}
+            name="new_password"
+            render={({ field: { onChange, value, ref } }) => (
+              <InputField
+                ref={ref}
+                type="password"
+                value={value}
+                fieldSize="md"
+                maxLength={20}
+                onChange={onChange}
+                isInvalid={!!errors?.new_password}
+                placeholder="min. of 6 characters"
+              />
+            )}
+          />
+          <Form.Control.Feedback type="invalid">
+            {errors?.new_password}
+          </Form.Control.Feedback>
+        </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
-            <Form.Label className={style.inputLabel}>
-              Confirm Password
-            </Form.Label>
-            <Controller
-              control={control}
-              name="password_confirmation"
-              render={({ field: { onChange, value, ref } }) => (
-                <Form.Control
-                  className={style.inputField}
-                  type="password"
-                  placeholder="match new password"
-                  onChange={onChange}
-                  value={value}
-                  ref={ref}
-                  isInvalid={!!errors?.password_confirmation}
-                  maxLength={20}
-                  autocomplete="on"
-                  required
-                />
-              )}
-            />
-            <Form.Control.Feedback
-              className={style.validationMessage}
-              type="invalid"
-            >
-              {errors?.password_confirmation}
-            </Form.Control.Feedback>
-          </Form.Group>
+        <Form.Group className="mb-4" controlId="confirmPassword">
+          <Form.Label className={style.inputLabels}>
+            Confirm Password
+          </Form.Label>
+          <Controller
+            control={control}
+            name="password_confirmation"
+            render={({ field: { onChange, value, ref } }) => (
+              <InputField
+                ref={ref}
+                type="password"
+                value={value}
+                fieldSize="md"
+                maxLength={20}
+                onChange={onChange}
+                isInvalid={!!errors?.password_confirmation}
+                placeholder="match with new password"
+              />
+            )}
+          />
+          <Form.Control.Feedback style={{ width: '300px' }} type="invalid">
+            {errors?.password_confirmation}
+          </Form.Control.Feedback>
+        </Form.Group>
+
+        <div className={style.formButtons}>
+          <div>
+            <Link to="/admin/profile" className={style.cancel}>
+              Cancel
+            </Link>
+          </div>
+          <Button
+            buttonLabel="Change"
+            buttonSize="sm"
+            type="submit"
+            disabled={submitStatus}
+          />
         </div>
-        <Button
-          className={style.changeButton}
-          type="submit"
-          disabled={submitStatus}
-        >
-          Change
-        </Button>
-        <Link to="/admin/profile" className={style.cancelButton}>
-          Cancel
-        </Link>
       </Form>
     </div>
   );

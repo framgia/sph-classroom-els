@@ -1,0 +1,35 @@
+@use '../../../../styles/variables' as *;
+
+.loginContainer {
+  margin-top: 200px;
+}
+
+#loginForm {
+  background-color: $color-light-blue-1;
+  color: $color-dark-blue-1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 30px;
+  border-radius: 2px;
+  height: auto;
+  width: 400px;
+  gap: 25px;
+}
+
+.formTitle {
+  font-size: $font-size-page-title;
+}
+
+.inputLabels {
+  font-weight: $font-weight-regular;
+  font-size: $font-size-base;
+}
+
+.alert {
+  position: fixed;
+  top: 100px;
+  width: 400px;
+  color: $color-dark-blue-1;
+}

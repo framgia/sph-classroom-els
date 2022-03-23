@@ -17,7 +17,7 @@
 }
 
 .form {
-  width: 450px;
+  width: 400px;
   height: auto;
   padding: 40px 30px;
 
@@ -36,29 +36,6 @@
   font-size: $font-size-base;
 }
 
-.inputField {
-  width: 335px;
-}
-
 .validationMessage {
-  width: 335px;
-}
-
-.changeButton {
-  background-color: $color-light-blue-2;
-  border: none;
-  width: 85px;
-  height: 35px;
-
-  @extend %button-style;
-
-  &:hover,
-  &:focus {
-    background-color: $color-dark-blue-3;
-  }
-
-  &:disabled {
-    background-color: $color-dark-blue-3;
-    opacity: 0.5;
-  }
+  width: 300px;
 }

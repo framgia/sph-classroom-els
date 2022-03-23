@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { useToast } from '../../../../hooks/useToast';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-
+import Button from '../../../../components/Button';
+import InputField from '../../../../components/InputField';
+import AdminApi from '../../../../api/Admin';
 import style from './index.module.scss';
 
-import AdminApi from '../../../../api/Admin';
-
 const CreateAdmin = () => {
+  const toast = useToast();
+  const history = useHistory();
   const { control, handleSubmit, reset } = useForm();
+
   const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState(false);
-
-  const toast = useToast();
 
   const handleOnSubmit = async ({ name, email }) => {
     setSubmitStatus(true);
@@ -29,6 +29,7 @@ const CreateAdmin = () => {
           name: '',
           email: ''
         });
+        history.push('/admin/users');
       })
       .catch((error) => {
         setSubmitStatus(false);
@@ -38,11 +39,8 @@ const CreateAdmin = () => {
   };
 
   return (
-    <div className="d-inline-flex">
-      <Form
-        onSubmit={handleSubmit(handleOnSubmit)}
-        className={style.formContainer}
-      >
+    <div className={style.container}>
+      <Form onSubmit={handleSubmit(handleOnSubmit)} className={style.form}>
         <h3 className={style.formTitle}>Create Admin</h3>
         <div>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -51,16 +49,15 @@ const CreateAdmin = () => {
               control={control}
               name="name"
               render={({ field: { onChange, value, ref } }) => (
-                <Form.Control
-                  className={style.inputField}
-                  type="text"
-                  placeholder="e.g. John Doe"
-                  onChange={onChange}
-                  value={value}
+                <InputField
                   ref={ref}
+                  type="text"
+                  value={value}
+                  onChange={onChange}
+                  fieldSize="md"
                   isInvalid={!!errors?.name}
+                  placeholder="e.g. John Doe"
                   maxLength={50}
-                  required
                 />
               )}
             />
@@ -78,16 +75,15 @@ const CreateAdmin = () => {
               control={control}
               name="email"
               render={({ field: { onChange, value, ref } }) => (
-                <Form.Control
-                  className={style.inputField}
-                  type="email"
-                  placeholder="e.g. johndoe@gmail.com"
-                  onChange={onChange}
-                  value={value}
+                <InputField
                   ref={ref}
+                  type="email"
+                  value={value}
+                  onChange={onChange}
+                  fieldSize="md"
                   isInvalid={!!errors?.email}
+                  placeholder="e.g. johndoe@gmail.com"
                   maxLength={50}
-                  required
                 />
               )}
             />
@@ -100,12 +96,11 @@ const CreateAdmin = () => {
           </Form.Group>
         </div>
         <Button
-          className={style.createButton}
+          buttonLabel="Create"
+          buttonSize="sm"
           type="submit"
           disabled={submitStatus}
-        >
-          Create
-        </Button>
+        />
         <Link to="/admin/admin-accounts" className={style.cancelButton}>
           Cancel
         </Link>

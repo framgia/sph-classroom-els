@@ -1,68 +1,54 @@
 @use '../../../../styles/variables' as *;
 
-%button-style {
-  font-size: $font-size-md;
-  color: $color-dark-blue-1;
-}
-
-.formTitle {
-  font-weight: $font-weight-regular;
-  font-size: $font-size-page-title;
-}
-
-.form {
-  position: absolute;
-  left: 880px;
-  top: 230px;
-
-  width: 450px;
-  height: auto;
-  padding: 40px 30px;
-
+%flex-center {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 25px;
-
-  background-color: $color-light-blue-1;
-  color: $color-dark-blue-1;
 }
 
-.inputLabel {
-  font-weight: $font-weight-regular;
+.formContainer {
+  position: absolute;
+  height: 100%;
+  width: calc(100% - 300px);
+  left: 300px;
+
+  @extend %flex-center;
+}
+
+.card {
+  min-width: 380px;
+  min-height: 400px;
+  padding: 40px;
+  background-color: $color-light-blue-1;
+}
+
+.headingText {
+  font-size: $font-size-page-title;
+  color: $color-dark-blue-1;
+
+  @extend %flex-center;
+}
+
+.inputLabels {
+  margin-bottom: 0px;
+  color: $color-dark-blue-1;
   font-size: $font-size-base;
 }
 
-.inputField,
-.validationMessage {
-  width: 335px;
+.formButtons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
 }
 
-.changeButton {
-  background-color: $color-light-blue-2;
-  border: none;
-  width: 85px;
-  height: 35px;
+.cancel {
+  text-decoration: none;
+  vertical-align: middle;
+  color: $color-dark-blue-1;
+  font-size: $font-size-md;
 
-  @extend %button-style;
-
-  &:hover,
-  &:focus {
-    background-color: $color-dark-blue-3;
-  }
-
-  &:disabled {
-    background-color: $color-dark-blue-3;
-    opacity: 0.5;
-  }
-}
-
-.cancelButton {
-  @extend %button-style;
-
-  &:hover,
-  &:focus {
-    color: $color-black;
+  &:hover {
+    color: $color-dark-blue-3;
   }
 }

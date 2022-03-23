@@ -3,22 +3,20 @@ import { useHistory } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { useToast } from '../../../../hooks/useToast';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-
-import style from './index.module.scss';
-
+import Button from '../../../../components/Button';
+import InputField from '../../../../components/InputField';
 import AdminApi from '../../../../api/Admin';
+import style from './index.module.scss';
 
 const SetAdminPassword = () => {
   const queryParams = new URLSearchParams(window.location.search);
   const email = queryParams.get('email');
+  const history = useHistory();
+  const toast = useToast();
 
   const { control, handleSubmit, reset } = useForm();
   const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState(false);
-
-  const history = useHistory();
-  const toast = useToast();
 
   const handleOnSubmit = async ({ password, password_confirmation }) => {
     setSubmitStatus(true);
@@ -53,16 +51,15 @@ const SetAdminPassword = () => {
               control={control}
               name="password"
               render={({ field: { onChange, value, ref } }) => (
-                <Form.Control
-                  className={style.inputField}
-                  type="password"
-                  placeholder="min. of 6 characters"
-                  onChange={onChange}
-                  value={value}
+                <InputField
                   ref={ref}
-                  isInvalid={!!errors?.password}
+                  type="password"
+                  value={value}
+                  fieldSize="md"
                   maxLength={20}
-                  required
+                  onChange={onChange}
+                  isInvalid={!!errors?.password}
+                  placeholder="min. of 6 characters"
                 />
               )}
             />
@@ -74,7 +71,7 @@ const SetAdminPassword = () => {
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Group className="mb-3 mt-4" controlId="formBasicPassword">
             <Form.Label className={style.inputLabel}>
               Confirm Password
             </Form.Label>
@@ -82,16 +79,15 @@ const SetAdminPassword = () => {
               control={control}
               name="password_confirmation"
               render={({ field: { onChange, value, ref } }) => (
-                <Form.Control
-                  className={style.inputField}
-                  type="password"
-                  placeholder="match passwords"
-                  onChange={onChange}
-                  value={value}
+                <InputField
                   ref={ref}
-                  isInvalid={!!errors?.password_confirmation}
+                  type="password"
+                  value={value}
+                  fieldSize="md"
                   maxLength={20}
-                  required
+                  onChange={onChange}
+                  isInvalid={!!errors?.password_confirmation}
+                  placeholder="match with new password"
                 />
               )}
             />
@@ -104,12 +100,11 @@ const SetAdminPassword = () => {
           </Form.Group>
         </div>
         <Button
-          className={style.changeButton}
+          buttonLabel="Change"
+          buttonSize="sm"
           type="submit"
           disabled={submitStatus}
-        >
-          Change
-        </Button>
+        />
       </Form>
     </div>
   );
