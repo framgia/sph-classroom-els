@@ -2,18 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from '@restart/ui/esm/Button';
-import Dropdown from 'react-bootstrap/Dropdown';
-import { BsSortAlphaDown, BsSortAlphaDownAlt } from 'react-icons/bs';
-import { VscFilter } from 'react-icons/vsc';
-import { RiArrowDropDownLine } from 'react-icons/ri';
-import { BiSearch } from 'react-icons/bi';
 import Pagination from '../../../../components/Pagination';
 import Breadcrumbs from '../../../../components/Breadcrumbs';
 import CategoryApi from '../../../../api/Category';
 import style from './index.module.scss';
+import SearchBar from '../../../../components/SearchBar';
+import FilterDropdown from '../../../../components/FilterDropdown';
 
 function CategoryList() {
   const queryParams = new URLSearchParams(window.location.search);
@@ -29,12 +23,10 @@ function CategoryList() {
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
-  const [sortBy, setSortBy] = useState(sortVal ? sortVal : 'asc');
+  const [sortByText, setSortByText] = useState(sortVal ? sortVal : '');
+  const [sortBy, setSortBy] = useState(sortVal ? sortVal : 'Ascending');
   const [filter, setFilter] = useState(filterVal ? filterVal : '');
   const [search, setSearch] = useState(searchVal ? searchVal : '');
-  const [searchStatus, setSearchStatus] = useState(false);
-
-  const sortOptions = ['asc', 'desc'];
 
   useEffect(() => {
     setCategories(null);
@@ -54,14 +46,7 @@ function CategoryList() {
       setTotalItems(data.total);
       setLastPage(data.last_page);
     });
-  }, [page, sortBy, filter, searchStatus]);
-
-  const onSearchSubmit = (e) => {
-    e.preventDefault();
-
-    setPage(1);
-    setSearchStatus(!searchStatus);
-  };
+  }, [page, sortBy, filter, search]);
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
@@ -98,23 +83,27 @@ function CategoryList() {
     });
   };
 
-  const renderSort = (sortPos) => {
-    if (sortPos === 'asc') {
-      return (
-        <div className="d-flex">
-          Ascending
-          <BsSortAlphaDown size="20px" />
-        </div>
-      );
-    } else {
-      return (
-        <div className="d-flex">
-          Descending
-          <BsSortAlphaDownAlt size="20px" />
-        </div>
-      );
+  const dropdownOptions = [
+    { name: 'Ascending' },
+    { name: 'Descending' },
+  ];
+
+  useEffect(() => {
+    if (sortBy) {
+      if (sortBy === 'Ascending') {
+        setSortBy('asc');
+        setSortByText('Ascending');
+      } else if (sortBy === 'Descending') {
+        setSortBy('desc');
+        setSortByText('Descending');
+      }
     }
-  };
+  }, [sortBy]);
+
+  const filterTaken = [
+    { name: 'Taken' },
+    { name: 'Not Taken' },
+  ];
 
   return (
     <div className="container">
@@ -123,110 +112,24 @@ function CategoryList() {
         <Breadcrumbs />
       </section>
       <div className={style.categoryConditionsStyle}>
-        <Form className={style.searchBar} onSubmit={onSearchSubmit}>
-          <FormControl
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
+        <SearchBar
+          placeholder="Search"
+          search={search}
+          setSearch={setSearch}
+        />
 
-              if (e.target.value.length === 0) {
-                setPage(1);
-                setSearchStatus(!searchStatus);
-              }
-            }}
-          />
-          <Button type="submit" className={style.searchButton}>
-            <BiSearch className={style.searchIcon} />
-          </Button>
-        </Form>
+        <FilterDropdown
+          dropdownItems={dropdownOptions}
+          filter={sortByText}
+          setFilter={setSortBy}
+        />
 
-        <Dropdown>
-          <Dropdown.Toggle
-            className={style.dropdownStyle}
-            variant="link"
-            bsPrefix="none"
-          >
-            <span className={style.dropdownText}> {renderSort(sortBy)} </span>
-            <RiArrowDropDownLine size="20px" />
-          </Dropdown.Toggle>
-          <Dropdown.Menu className={style.dropdownMenu}>
-            {sortOptions.map((option, key) => {
-              return (
-                <Dropdown.Item
-                  key={key}
-                  className={
-                    sortBy === option
-                      ? `${style.dropdownItemStyle} ${style.dropdownFocus}`
-                      : style.dropdownItemStyle
-                  }
-                  onClick={() => {
-                    setPage(1);
-                    setSortBy(option);
-                  }}
-                >
-                  {renderSort(option)}
-                </Dropdown.Item>
-              );
-            })}
-          </Dropdown.Menu>
-        </Dropdown>
-
-        <Dropdown>
-          <Dropdown.Toggle
-            className={style.dropdownStyle}
-            variant="link"
-            bsPrefix="none"
-          >
-            <span className={style.dropdownText}>
-              {filter === '' ? 'Filter' : filter}
-            </span>
-            <VscFilter size="20px" />
-          </Dropdown.Toggle>
-          <Dropdown.Menu className={style.Dropdownmenustyle}>
-            <Dropdown.Item
-              className={
-                filter === ''
-                  ? `${style.dropdownItemStyle} ${style.dropdownFocus}`
-                  : style.dropdownItemStyle
-              }
-              onClick={() => {
-                setFilter('');
-                setPage(1);
-              }}
-            >
-              All
-            </Dropdown.Item>
-            <Dropdown.Item
-              className={
-                filter === 'Taken'
-                  ? `${style.dropdownItemStyle} ${style.dropdownFocus}`
-                  : style.dropdownItemStyle
-              }
-              onClick={() => {
-                setFilter('Taken');
-                setPage(1);
-              }}
-            >
-              Taken
-            </Dropdown.Item>
-            <Dropdown.Item
-              className={
-                filter === 'Not Taken'
-                  ? `${style.dropdownItemStyle} ${style.dropdownFocus}`
-                  : style.dropdownItemStyle
-              }
-              onClick={() => {
-                setFilter('Not Taken');
-                setPage(1);
-              }}
-            >
-              Not Taken
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <FilterDropdown
+          dropdownLabel="Filter"
+          dropdownItems={filterTaken}
+          filter={filter}
+          setFilter={setFilter}
+        />
       </div>
 
       {categories === null ? (
