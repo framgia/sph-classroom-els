@@ -35,7 +35,7 @@ const PasswordReset = () => {
         setEmailSent(true);
       })
       .catch((error) => {
-        toast('Error', 'Incorrect email address, please try again.');
+        toast('Error', error.response.data.error);
         setError(error.response.data.error);
         setSubmitStatus(false);
       });
@@ -47,8 +47,8 @@ const PasswordReset = () => {
         <Form onSubmit={handleSubmit(handleOnSubmit)}>
           {!emailSent ? (
             <div className={style.formContainer}>
-              <Form.Label className={style.headerStyle}> 
-                Password Reset 
+              <Form.Label className={style.headerStyle}>
+                Password Reset
               </Form.Label>
               <Form.Group className="mb-3" controlId="Email">
                 <Form.Label>
