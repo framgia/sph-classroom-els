@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useParams, useHistory } from 'react-router-dom';
-import { Card, Button, Form } from 'react-bootstrap';
+import { Card, Form } from 'react-bootstrap';
 import { useForm, Controller } from 'react-hook-form';
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 import { CgMenuCake } from 'react-icons/cg';
 import { useToast } from '../../../../hooks/useToast';
 import Spinner from 'react-bootstrap/Spinner';
+import InputField from '../../../../components/InputField';
+import Button from '../../../../components/Button';
 
 import style from './index.module.scss';
 
@@ -137,6 +139,11 @@ const AddEditCategory = () => {
     }
   };
 
+  const buttonLabel = (loc.pathname === '/admin/add-category'
+    ? 'Add Category'
+    : 'Save Category'
+  );
+
   return (
     <div className={style.cardContainer}>
       <Card className={style.card}>
@@ -168,13 +175,13 @@ const AddEditCategory = () => {
                     name="name"
                     defaultValue={category?.name}
                     render={({ field: { onChange, value, ref } }) => (
-                      <Form.Control
-                        className={style.inputField}
-                        onChange={onChange}
-                        value={value}
-                        ref={ref}
-                        type="title"
+                      <InputField
+                        fieldSize="lg"
                         placeholder="Category Name"
+                        type="text"
+                        value={value}
+                        onChange={onChange}
+                        ref={ref}
                         isInvalid={!!errors?.name}
                         maxLength={50}
                       />
@@ -189,9 +196,9 @@ const AddEditCategory = () => {
                   controlId="lacation"
                 >
                   <Form.Label className={style.inputLabel}>Location</Form.Label>
-                  <Form.Control
-                    className={`${style.inputField} ${style.spaceForIconArea}`}
+                  <InputField
                     readOnly="readonly"
+                    fieldSize="lg"
                     type="text"
                     value={locationPathDisplay}
                     onClick={handleShow}
@@ -207,8 +214,8 @@ const AddEditCategory = () => {
                     name="description"
                     defaultValue={category?.description}
                     render={({ field: { onChange, value, ref } }) => (
-                      <Form.Control
-                        className={style.inputFieldDescription}
+                      <InputField
+                        inputStyle={style.inputFieldDescription}
                         onChange={onChange}
                         value={value}
                         ref={ref}
@@ -224,14 +231,12 @@ const AddEditCategory = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Button
-                  className={style.button}
+                  buttonStyle={style.button}
                   type="submit"
                   disabled={submitStatus}
-                >
-                  {loc.pathname === '/admin/add-category'
-                    ? 'Add Category'
-                    : 'Save Category'}
-                </Button>
+                  buttonSize="def"
+                  buttonLabel = {buttonLabel}
+                />
               </Form>
             ) : (
               <div className={style.loading}>
