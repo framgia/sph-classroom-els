@@ -136,6 +136,14 @@ const CategoryHierarchy = () => {
     }
   }, [deleteConfirmed]);
 
+  const onCategoryChecker = (category) => {
+    if (category.subcategories_count <= 0) {
+      setCanDelete(true);
+    } else {
+      setCanDelete(false);
+    }
+  };
+
   return (
     <div className={style.mainContent}>
       <ConfirmationModal
@@ -194,11 +202,7 @@ const CategoryHierarchy = () => {
                     <Dropdown.Item 
                       className={style.kebabMenuItems}
                       onClick={() => {
-                        if (category.subcategories_count <= 0) {
-                          setCanDelete(true);
-                        } else {
-                          setCanDelete(false);
-                        }
+                        onCategoryChecker(category);
                         setItemToDelete(category);
                         setShowConfirmationModal(true);
                       }}

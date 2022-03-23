@@ -92,6 +92,14 @@ const CategoryList = () => {
     setPage(selected + 1);
   };
 
+  const onCategoryChecker = (category) => {
+    if (category.subcategories_count <= 0) {
+      setCanDelete(true);
+    } else {
+      setCanDelete(false);
+    }
+  };
+
   const renderTableData = () => {
     return categories?.map((category, idx) => {
       return (
@@ -109,11 +117,7 @@ const CategoryList = () => {
                 buttonSize="sm"
                 outline={true}
                 onClick={() => {
-                  if (category.subcategories_count <= 0) {
-                    setCanDelete(true);
-                  } else {
-                    setCanDelete(false);
-                  }
+                  onCategoryChecker(category);
                   setItemToDelete(category);
                   setShowConfirmationModal(true);
                 }}
