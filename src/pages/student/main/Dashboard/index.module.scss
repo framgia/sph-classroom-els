@@ -1,5 +1,12 @@
 @use '../../../../styles/variables' as *;
 
+%style-table-head {
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  color: $color-dark-blue-1;
+  border-bottom-width: 0px !important;
+}
+
 .recentQuizzesContainer {
   display: flex;
   flex-wrap: wrap;
@@ -42,4 +49,16 @@
   margin: 20px 0px 70px 0px;
   background-color: $color-white;
   border: 1px rgba(0, 0, 0, 0.185) solid;
+}
+
+.listTable{
+  @extend %style-table-head;
+  text-align: left;
+
+  &:nth-child(2) {
+    padding: 10px;
+    font-size: $font-size-md;
+    font-weight: $font-weight-light;
+    text-align: right;
+  }
 }
