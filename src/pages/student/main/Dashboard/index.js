@@ -1,20 +1,19 @@
 import { React, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-
-import { Row, Col } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
-import style from './index.module.css';
 import Recent from './components/Recent';
 import CategoryLearned from './components/CategoryLearned';
 import FriendsActivities from './components/FriendsActivities';
 import DashboardApi from '../../../../api/Dashboard';
 import QuizTaken from '../../../../api/QuizTaken';
+import style from './index.module.scss';
 
 function Dashboard() {
-  const [categorieslearned, setCategoriesLearned] = useState(null);
   const userId = Cookies.get('user_id');
-  const [recentQuizzes, setRecentQuizzes] = useState(null);
+
   const [quizzes, setQuizzes] = useState(null);
+  const [recentQuizzes, setRecentQuizzes] = useState(null);
+  const [categorieslearned, setCategoriesLearned] = useState(null);
 
   useEffect(() => {
     DashboardApi.getAll(userId).then(({ data }) => {
@@ -35,38 +34,33 @@ function Dashboard() {
 
   const renderDashList = () => {
     return (
-      <Col id={style.colStyle}>
-        <Card>
-          <Card.Header className={style.forContainerBar2}>
-            <p className={style.titleText}>Categories Learned</p>
-          </Card.Header>
-          <Card.Body>
-            {categorieslearned?.length ? (
-              categorieslearned?.map((categorylearned, idx) => {
-                return (
-                  <CategoryLearned
-                    key={idx}
-                    categorylearned={categorylearned}
-                  />
-                );
-              })
-            ) : (
-              <div>
-                <center>
-                  <span>No Categories Learned</span>
-                </center>
-              </div>
-            )}
-          </Card.Body>
-        </Card>
-      </Col>
+      <Card className={style.card}>
+        <Card.Header className={style.cardHeader}>
+          <p className={style.cardTitle}>Categories Learned</p>
+        </Card.Header>
+        <Card.Body>
+          {categorieslearned?.length ? (
+            categorieslearned?.map((categorylearned, idx) => {
+              return (
+                <CategoryLearned key={idx} categorylearned={categorylearned} />
+              );
+            })
+          ) : (
+            <div>
+              <center>
+                <span>No Categories Learned</span>
+              </center>
+            </div>
+          )}
+        </Card.Body>
+      </Card>
     );
   };
 
   return (
     <div className="container">
-      <div className={style.h2_style}>Recent</div>
-      <div className={style.bg}>
+      <div className={style.pageTitle}>Recent</div>
+      <div className={style.recentQuizzesContainer}>
         {quizzes &&
           recentQuizzes?.map((recentQuizzes, idx) => {
             return (
@@ -89,10 +83,10 @@ function Dashboard() {
       ) : (
         ''
       )}
-      <Row>
+      <div className="d-flex flex-wrap gap-4">
         {renderDashList()}
         <FriendsActivities />
-      </Row>
+      </div>
     </div>
   );
 }

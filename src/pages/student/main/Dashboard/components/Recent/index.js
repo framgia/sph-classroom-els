@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import { Col } from 'react-bootstrap';
 import { CgTimer } from 'react-icons/cg';
 import { PropTypes } from 'prop-types';
 
@@ -16,7 +15,7 @@ const Recent = ({ recentQuizzes, quizzes }) => {
     QuestionApi.getAll(recentQuizzes.quiz_id).then(({ data }) => {
       setQuestions(data.data);
     });
-  }, []); 
+  }, []);
 
   const getTotalTimeLimit = () => {
     if (questions != null) {
@@ -43,57 +42,55 @@ const Recent = ({ recentQuizzes, quizzes }) => {
   };
 
   return (
-    <Col>
-      <Card className={style.bg}>
-        <Card.Header className={style.forContainerBar}>
-          <div className={style.titleText}>{recentQuizzes.title}</div>
-          <div className={style.timerIcon} >
-            <CgTimer size="15px"/>
-            {getTotalTimeLimit()} secs
-          </div>
-        </Card.Header>
-        <Card.Body>
-          <div>
-            <table style={{ width: '100%' }}>
-              <tbody>
-                <tr>
-                  <td className={style.listTable}>Attempts</td>
-                  <td className={style.forSeccolum}>{quizzes?.length}</td>
-                </tr>
-                <tr>
-                  <td className={style.listTable}>Highest Score</td>
-                  <td className={style.forSeccolum}>
-                    {getHighestScore()}/{questions?.length}
-                  </td>
-                </tr>
-                <tr>
-                  <td id={style.listTable}>Latest Score</td>
-                  <td className={style.forSeccolum2}>
-                    {recentQuizzes.score}/{questions?.length}
-                  </td>
-                </tr>
-                <tr>
-                  <td id={style.listTable}></td>
-                  <td>
-                    <Link
-                      to={`/categories/${recentQuizzes.category_id}/quizzes/${recentQuizzes.quiz_id}/questions`}
-                    >
-                      <p className={style.retake}>Retake Quiz</p>
-                    </Link>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </Card.Body>
-      </Card>
-    </Col>
+    <Card className={style.card}>
+      <Card.Header className={style.cardHeader}>
+        <div className={style.titleText}>{recentQuizzes.title}</div>
+        <div className={style.timerIcon}>
+          <CgTimer size="15px" />
+          {getTotalTimeLimit()} secs
+        </div>
+      </Card.Header>
+      <Card.Body>
+        <div>
+          <table className="w-100">
+            <tbody>
+              <tr>
+                <td className={style.quizInfoLabel}>Attempts</td>
+                <td className={style.quizInfo}>{quizzes?.length}</td>
+              </tr>
+              <tr>
+                <td className={style.quizInfoLabel}>Highest Score</td>
+                <td className={style.quizInfo}>
+                  {getHighestScore()}/{questions?.length}
+                </td>
+              </tr>
+              <tr>
+                <td id={style.quizInfoLabel}>Latest Score</td>
+                <td className={style.latestQuizInfo}>
+                  {recentQuizzes.score}/{questions?.length}
+                </td>
+              </tr>
+              <tr>
+                <td id={style.listTable}></td>
+                <td>
+                  <Link
+                    to={`/categories/${recentQuizzes.category_id}/quizzes/${recentQuizzes.quiz_id}/questions`}
+                  >
+                    <p className={style.retake}>Retake Quiz</p>
+                  </Link>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </Card.Body>
+    </Card>
   );
 };
 
 Recent.propTypes = {
   recentQuizzes: PropTypes.object,
-  quizzes: PropTypes.array,
+  quizzes: PropTypes.array
 };
 
 export default Recent;

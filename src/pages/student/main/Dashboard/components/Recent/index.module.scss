@@ -1,64 +1,66 @@
 @use '../../../../../../styles/variables' as *;
 
-.bg {
-    margin-bottom: 40px;
+.card {
+  margin-bottom: 25px;
+  width: 310px;
 }
 
-.forContainerBar {
-    background-color: $color-light-blue-1;
-    box-shadow: $drop-shadow;
-    color: $color-dark-blue-1;
-    display: flex;
-    justify-content: space-between;
+.cardHeader {
+  background-color: $color-light-blue-1;
+  box-shadow: $drop-shadow;
+  color: $color-dark-blue-1;
+  display: flex;
+  justify-content: space-between;
 }
 
 .titleText {
-    display: inline-block;
-    font-weight: $font-weight-medium;
-    font-size: $font-size-lg;
+  display: inline-block;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-lg;
 }
 
-.listTable {
-    text-align: left;
-    color: $color-dark-blue-1;
-    font-weight: $font-weight-regular;
-    font-size: $font-size-base;
+.quizInfoLabel {
+  text-align: left;
+  color: $color-dark-blue-1;
+  font-weight: $font-weight-regular;
+  font-size: $font-size-base;
 }
 
-.forSeccolum {
-    padding: 10px 0px 10px 0px;
-    color: $color-dark-blue-1;
-    font-weight: $font-weight-light;
-    font-size: $font-size-md;
-    text-align: right;
+.quizInfo {
+  padding: 10px 0px 10px 0px;
+  color: $color-dark-blue-1;
+  font-weight: $font-weight-light;
+  font-size: $font-size-md;
+  text-align: right;
 }
 
-.forSeccolum2 {
-    padding: 10px 0px 10px 0px;
-    text-align: right;
-    margin-top: 30px;
-    font-weight: $font-weight-semibold;
-    font-size: $font-size-base;
+.latestQuizInfo {
+  padding: 10px 0px 10px 0px;
+  text-align: right;
+  margin-top: 30px;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-base;
 }
 
 .retake {
-    font-size: $font-size-base;
-    font-weight: $font-weight-semibold;
-    color: $color-dark-blue-2;
-    text-align: end;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  color: $color-dark-blue-2;
+  text-align: end;
 }
 
 #listTable {
-    color: $color-dark-blue-1;
-    font-weight: $font-weight-semibold;
-    font-size: $font-size-base;
-    text-align: left;
+  color: $color-dark-blue-1;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-base;
+  text-align: left;
 }
 
 .timerIcon {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
-Col.Card:nth-child(3){
-    display:none;
- }
+
+Col.Card:nth-child(3) {
+  display: none;
+}
