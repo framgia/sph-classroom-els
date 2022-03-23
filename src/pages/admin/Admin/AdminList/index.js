@@ -54,7 +54,7 @@ const AdminList = () => {
     if (deleteConfirmed) {
       toast('Processing', `Deleting ${itemToDelete.name}...`);
 
-      AdminApi.deleteAdmin(itemToDelete.id)
+      AdminApi.deleteAdmin(itemToDelete.id) 
         .then(({ data }) => {
           toast('Success', data.message);
           setDeleteConfirmed(false);
