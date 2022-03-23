@@ -1,0 +1,45 @@
+@use '../../../../styles/variables' as *;
+
+.recentQuizzesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.pageTitle {
+  margin: 0px;
+  font-size: 32px;
+  height: 102px;
+  display: flex;
+  align-items: center;
+  font-weight: $font-weight-medium;
+}
+
+.card {
+  width: 639px;
+  height: 475px;
+}
+
+.cardHeader {
+  z-index: 1;
+  height: 47px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: $color-dark-blue-1;
+  background-color: $color-light-blue-1;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cardTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-medium;
+}
+
+.noQuizzesTakenMessageContainer {
+  padding: 50px;
+  border-radius: 5px;
+  margin: 20px 0px 70px 0px;
+  background-color: $color-white;
+  border: 1px rgba(0, 0, 0, 0.185) solid;
+}
