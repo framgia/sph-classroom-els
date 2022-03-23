@@ -20,6 +20,14 @@ import style from './index.module.scss';
     > fillter      : Pass the filter value
     
     > setFilter    : Pass your setter function to set the filter value.
+
+    > onSetFilter  : (Optional) Pass your setter function to set a different value need to filter.
+
+    > onDataNeeded and onAll : (Optional) Pass a boolean such as true or false this will view or not view all or pass different value
+
+    > valueLabel  : (Optional) Pass a string value if you want additional data.
+
+    > onHardStyle and onHardCodeStyle  : (Optional) Pass a hard coded style.
 */
 
 const FilterDropdown = ({
@@ -28,7 +36,12 @@ const FilterDropdown = ({
   isScrollable = false,
   filter,
   setFilter,
-  eventKey
+  onDataNeeded = true,
+  onAll = true,
+  onSetFilter,
+  onHardStyle,
+  valueLabel,
+  onHardCodeStyle
 }) => {
   const [activeItem, setActiveItem] = useState(filter || 'All');
   const [isClicked, setIsClicked] = useState(false);
@@ -55,8 +68,8 @@ const FilterDropdown = ({
           setIsClicked(!isClicked);
         }}
       >
-        <Dropdown.Toggle className={style.dropdownButton} bsPrefix="none">
-          {filter || dropdownLabel}
+        <Dropdown.Toggle className={`${style.dropdownButton} ${onHardStyle}`} bsPrefix="none">
+          {filter || dropdownLabel} {valueLabel}
           {isClicked ? (
             <IoIosArrowUp size={17} />
           ) : (
@@ -66,10 +79,11 @@ const FilterDropdown = ({
 
         <Dropdown.Menu
           className={
-            isScrollable ? style.dropdownMenuScrollable : style.dropdownMenu
+            `${onHardCodeStyle}
+            ${isScrollable ? style.dropdownMenuScrollable : style.dropdownMenu}`
           }
         >
-          <Dropdown.Item
+          {onAll ? ( <Dropdown.Item
             className={
               activeItem === 'All' ? style.activeItem : style.dropdownItems
             }
@@ -80,23 +94,23 @@ const FilterDropdown = ({
           >
             All
           </Dropdown.Item>
+          ) : ''}
           {dropdownItems?.map((item, idx) => {
             return (
               <Dropdown.Item
                 key={idx}
-                eventKey={eventKey}
-                className={
-                  activeItem === item.name
-                    ? style.activeItem
-                    : style.dropdownItems
+                className={`${onHardCodeStyle}
+                ${activeItem === item.name
+                  ? style.activeItem
+                  : style.dropdownItems}`
                 }
                 onClick={() => {
                   setActiveItem(item.name);
-                  setFilter(item.name);
+                  {onDataNeeded ? setFilter(item.name) : onSetFilter(item.value);}
                   setIsClicked(false);
                 }}
               >
-                {item.name}
+                {item.name} {valueLabel}
               </Dropdown.Item>
             );
           })}
@@ -111,7 +125,13 @@ FilterDropdown.propTypes = {
   dropdownItems: PropTypes.array,
   isScrollable: PropTypes.bool,
   filter: PropTypes.string,
-  setFilter: PropTypes.func
+  setFilter: PropTypes.func,
+  onSetFilter: PropTypes.func,
+  valueLabel: PropTypes.string,
+  onAll: PropTypes.bool,
+  onDataNeeded: PropTypes.bool,
+  onHardStyle: PropTypes.any,
+  onHardCodeStyle: PropTypes.any
 };
 
 export default FilterDropdown;

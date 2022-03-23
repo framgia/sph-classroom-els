@@ -53,9 +53,9 @@ const IdentificationType = ({ question, getData }) => {
             name="question"
             defaultValue={question.question}
             render={({ field: { ref } }) => (
-              <Form.Control
+              <InputField
                 type="text"
-                className={style.inputWidth}
+                inputStyle={style.inputWidth}
                 onChange ={handleChangeQuestion}
                 value={questionOnChange.question}
                 ref={ref}
@@ -73,7 +73,7 @@ const IdentificationType = ({ question, getData }) => {
           render={({ field: { ref } }) => (
             <InputField 
               as="textarea" 
-              onHardStyle={style.inputHeight} 
+              inputStyle={style.inputHeight} 
               onChange ={handleChangeAnswer}
               value={questionOnChange.answer}
               ref={ref}

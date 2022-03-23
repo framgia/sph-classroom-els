@@ -90,7 +90,7 @@ const AddQuizModal = ({
                   value={value}
                   ref={ref}
                   as="textarea"
-                  onHardStyle={style.textAreaStyle}
+                  inputStyle={style.textAreaStyle}
                   placeholder="Instruction"
                   isInvalid={!!errors?.instruction}
                   required

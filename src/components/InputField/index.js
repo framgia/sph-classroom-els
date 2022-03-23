@@ -32,7 +32,8 @@ import { PropTypes } from 'prop-types';
   > maxLength    : (optional) pass a number value to limit the number of characters the input field will accept.
 
   > disabled     : (optional) pass this prop with a value of true if you want to have a disabled input field.
-  > onHardStyle  : (optional) pass this prop with value of scss 
+
+  > inputStyle  : (optional) pass this prop with value of scss 
   */
 
 import style from './index.module.scss';
@@ -51,8 +52,7 @@ const InputField = ({
   disabled = false,
   readOnly,
   onClick,
-  inputStyle,
-  onHardStyle
+  inputStyle
 }) => {
   const styleSize = () => {
     switch (fieldSize) {
@@ -73,7 +73,7 @@ const InputField = ({
       value={value}
       onChange={onChange}
       isInvalid={isInvalid}
-      className={`${style.defaultInputField} ${styleSize()} ${inputStyle} ${onHardStyle}`}
+      className={`${style.defaultInputField} ${styleSize()} ${inputStyle}`}
       placeholder={placeholder}
       required={required}
       maxLength={maxLength}
@@ -99,8 +99,6 @@ InputField.propTypes = {
   readOnly: PropTypes.string,
   onClick: PropTypes.func,
   inputStyle: PropTypes.any,
-  onTextArea: PropTypes.string,
-  onHardStyle: PropTypes.any
 };
 
 export default InputField;

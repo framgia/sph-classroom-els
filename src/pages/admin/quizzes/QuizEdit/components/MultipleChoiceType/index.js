@@ -119,10 +119,10 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
               name="question"
               defaultValue={question.question}
               render={({ field: { ref } }) => (
-                <Form.Control
+                <InputField
                   onChange={handleChangeQuestion}
                   type="text"
-                  className={style.inputWidth}
+                  inputStyle={style.inputWidth}
                   value={questionOnChange.question}
                   ref={ref}
                 />
@@ -156,7 +156,7 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
               defaultValue={choice.choice}
               render={({ field: { ref } }) => (
                 <InputField
-                  onHardStyle={style.choicesAlignment}
+                  inputStyle={style.choicesAlignment}
                   onChange={(e) => handleChangeChoices(e, choice.id)}
                   type="text"
                   value={choice.choice}
