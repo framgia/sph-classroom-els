@@ -1,12 +1,13 @@
 import { React, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import { BiBookAlt } from 'react-icons/bi';
 import Card from 'react-bootstrap/Card';
 import Recent from './components/Recent';
-import CategoryLearned from './components/CategoryLearned';
 import FriendsActivities from './components/FriendsActivities';
 import DashboardApi from '../../../../api/Dashboard';
 import QuizTaken from '../../../../api/QuizTaken';
 import style from './index.module.scss';
+import DataTable from '../../../../components/DataTable';
 
 function Dashboard() {
   const userId = Cookies.get('user_id');
@@ -14,6 +15,9 @@ function Dashboard() {
   const [quizzes, setQuizzes] = useState(null);
   const [recentQuizzes, setRecentQuizzes] = useState(null);
   const [categoriesLearned, setCategoriesLearned] = useState(null);
+  const [sortOptions, setSortOptions] = useState({});
+
+  const tableHeaderNames = [];
 
   useEffect(() => {
     DashboardApi.getAll(userId).then(({ data }) => {
@@ -32,6 +36,23 @@ function Dashboard() {
     return quizzesList;
   };
 
+  const renderTableData = () => {
+    return categoriesLearned?.map((categorylearned, idx) => {
+      return (
+        <tr key={idx}>
+          <td className={style.listTable}>
+            <BiBookAlt size="20px" style={{ margin: '0px 17px 5px 0px' }} />
+            {categorylearned.name}
+          </td>
+          <td className={style.listTable}>
+            {categorylearned.quizzes.length} out of{' '}
+            {categorylearned.quizzes_count} Quizzes Taken
+          </td>
+        </tr>
+      );
+    });
+  };
+
   const renderDashList = () => {
     return (
       <Card className={style.card}>
@@ -39,19 +60,15 @@ function Dashboard() {
           <p className={style.cardTitle}>Categories Learned</p>
         </Card.Header>
         <Card.Body>
-          {categoriesLearned?.length ? (
-            categoriesLearned?.map((categoryLearned, idx) => {
-              return (
-                <CategoryLearned key={idx} categoryLearned={categoryLearned} />
-              );
-            })
-          ) : (
-            <div>
-              <center>
-                <span>No Categories Learned</span>
-              </center>
-            </div>
-          )}
+          <DataTable
+            data={categoriesLearned}
+            tableHeaderNames={tableHeaderNames}
+            renderTableData={renderTableData}
+            sortOptions={sortOptions}
+            setSortOptions={setSortOptions}
+            headerStyle={false}
+            onSpinner={false}
+          />
         </Card.Body>
       </Card>
     );

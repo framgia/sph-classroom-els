@@ -26,6 +26,7 @@ import { useEffect } from 'react';
     > sortOptions      : to get the initial value.
     > setSortOptions   : To get the value of the sortBy and sortDescsription, to determine how to sort the list.
     > data             : This is the data you want to load inside the table, this is only to determine if the data is still being loaded or not.
+    > headerStyle and onSpinner     : Pass a boolean to checnge the syle. 
   */
 
 const DataTable = ({
@@ -34,7 +35,9 @@ const DataTable = ({
   titleHeaderStyle,
   sortOptions,
   setSortOptions,
-  data
+  headerStyle = true,
+  data,
+  onSpinner = true
 }) => {
   const [sortBy, setSortBy] = useState(sortOptions.sortBy);
   const [sortDirection, setSortDirection] = useState(sortOptions.sortDirection);
@@ -66,7 +69,7 @@ const DataTable = ({
   };
 
   return (
-    <Table className={style.formatTable}>
+    <Table className={headerStyle ? style.formatTable : style.tableConvention}>
       <thead>
         <tr>
           {tableHeaderNames.map((header, idx) => {
@@ -94,11 +97,11 @@ const DataTable = ({
           {data.length > 0 ? (
             renderTableData()
           ) : (
-            <span className={style.noResultsFound}>No Results Found</span>
+            <span className={onSpinner ? style.noResultsFound : style.noAspects}>No Results Found</span>
           )}
         </tbody>
       ) : (
-        <Button className={style.spinner} disabled>
+        <Button className={onSpinner ? style.spinner : style.noAspects} disabled>
           <Spinner animation="border" />
           <span>Loading</span>
         </Button>
@@ -113,7 +116,9 @@ DataTable.propTypes = {
   titleHeaderStyle: PropTypes.any,
   sortOptions: PropTypes.object,
   setSortOptions: PropTypes.func,
-  data: PropTypes.array
+  data: PropTypes.array,
+  onSpinner: PropTypes.bool,
+  headerStyle: PropTypes.bool
 };
 
 export default DataTable;
