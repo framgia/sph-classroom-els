@@ -139,6 +139,11 @@ const AddEditCategory = () => {
     }
   };
 
+  const buttonLabel = (loc.pathname === '/admin/add-category'
+    ? 'Add Category'
+    : 'Save Category'
+  );
+
   return (
     <div className={style.cardContainer}>
       <Card className={style.card}>
@@ -230,9 +235,7 @@ const AddEditCategory = () => {
                   type="submit"
                   disabled={submitStatus}
                   buttonSize="def"
-                  buttonLabel={loc.pathname === '/admin/add-category'
-                    ? 'Add Category'
-                    : 'Save Category'}
+                  buttonLabel = {buttonLabel}
                 />
               </Form>
             ) : (

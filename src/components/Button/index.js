@@ -6,7 +6,7 @@ import style from './index.module.scss';
 /*
     To use this component, pass the following props:
     
-    > buttonLabel : Pass a string value or a function for the button label .
+    > buttonLabel : Pass a string value for the button label .
     
     > buttonSize : Pass the size's of the input field by lg, def, and sm
 
@@ -61,7 +61,7 @@ const ButtonComponent = ({
 };
 
 ButtonComponent.propTypes = {
-  buttonLabel: PropTypes.any,
+  buttonLabel: PropTypes.string,
   buttonSize: PropTypes.string,
   disabled: PropTypes.bool,
   outline: PropTypes.bool,
