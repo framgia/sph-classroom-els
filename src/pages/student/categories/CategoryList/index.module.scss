@@ -102,26 +102,8 @@
 .categoryConditionsStyle {
   display: flex;
   gap: 50px;
-}
-
-.searchBar {
-  height: 30px;
-  width: 340.5px;
-  margin-bottom: 30px;
-  display: flex;
   align-items: center;
-  justify-content: end;
-}
-
-.searchButton {
-  position: absolute;
-  border: none;
-  background-color: transparent;
-}
-
-.searchIcon {
-  width: 20px;
-  height: 20px;
+  margin-bottom: 45px;
 }
 
 .dropdownStyle {
