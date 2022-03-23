@@ -10,27 +10,29 @@ const FillInTheBlankType = ({ question, getAnswer, answer, getPoint }) => {
     getPoint(point);
   }, [point]);
 
+  const getQuestionPoints = (e) => {
+    if (e.nativeEvent.data != ' ') {
+      if (e.target.value === question.text_answer) {
+        setPoint(1);
+      } else {
+        setPoint(0);
+      }
+    }
+
+    getAnswer(e.target.value);
+  };
+
   return (
     <Fragment>
       <div className={style.question}>
-        <p>{`${question.question}`}</p>
+        <p>{question.question}</p>
         <div className="mt-5">
           <InputField
             type="text"
             value={answer}
             fieldSize="lg"
             placeholder="Enter your answer here"
-            onChange={(e) => {
-              if (e.nativeEvent.data != ' ') {
-                if (e.target.value === question.text_answer) {
-                  setPoint(1);
-                } else {
-                  setPoint(0);
-                }
-              }
-
-              getAnswer(e.target.value);
-            }}
+            onChange={getQuestionPoints}
           />
         </div>
       </div>
