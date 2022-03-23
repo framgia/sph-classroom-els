@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import style from '../../indexQuestion.module.css';
 import { PropTypes } from 'prop-types';
+import InputField from '../../../../../../../components/InputField';
+import style from '../../indexQuestion.module.scss';
 
 const FillInTheBlankType = ({ question, getAnswer, answer, getPoint }) => {
   const [point, setPoint] = useState(0);
@@ -9,34 +10,31 @@ const FillInTheBlankType = ({ question, getAnswer, answer, getPoint }) => {
     getPoint(point);
   }, [point]);
 
+  const getQuestionPoints = (e) => {
+    if (e.nativeEvent.data != ' ') {
+      if (e.target.value === question.text_answer) {
+        setPoint(1);
+      } else {
+        setPoint(0);
+      }
+    }
+
+    getAnswer(e.target.value);
+  };
+
   return (
     <Fragment>
       <div className={style.question}>
-        <p className={style.paragraph}>{`${question.question}`}</p>
-        {/* <p className={style.paragraph}>Note: Do not use acronyms</p> */}
-        {/* <img
-          className={style.sizeOfAvatarInQuestion}
-          alt='avatar'
-          src='https://freeiconshop.com/wp-content/uploads/edd/image-solid.png'
-        /> */}
-        <input
-          className={style.cardbody2}
-          type="text"
-          name="answer"
-          value={answer}
-          placeholder="Type your answer here"
-          onChange={(e) => {
-            if (e.nativeEvent.data != ' ') {
-              if (e.target.value === question.text_answer) {
-                setPoint(1);
-              } else {
-                setPoint(0);
-              }
-            }
-
-            getAnswer(e.target.value);
-          }}
-        />
+        <p>{question.question}</p>
+        <div className="mt-5">
+          <InputField
+            type="text"
+            value={answer}
+            fieldSize="lg"
+            placeholder="Enter your answer here"
+            onChange={getQuestionPoints}
+          />
+        </div>
       </div>
     </Fragment>
   );
@@ -47,7 +45,7 @@ FillInTheBlankType.propTypes = {
   page: PropTypes.number,
   getAnswer: PropTypes.any,
   answer: PropTypes.string,
-  getPoint: PropTypes.any,
+  getPoint: PropTypes.any
 };
 
 export default FillInTheBlankType;

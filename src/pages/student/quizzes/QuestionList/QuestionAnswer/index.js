@@ -1,22 +1,23 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import Card from 'react-bootstrap/Card';
-import style from './indexQuestion.module.css';
+import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
+import Button from '../../../../../components/Button';
 import MultipleChoiceType from './components/MultipleChoiceType';
 import FillInTheBlankType from './components/FillInTheBlankType';
 import QuizResult from '../../QuizResult';
-import { QuestionsContext } from '..';
-import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
-
 import AnswerApi from '../../../../../api/Answer';
 import QuizTaken from '../../../../../api/QuizTaken';
+import style from './indexQuestion.module.scss';
+
+import { QuestionsContext } from '..';
 
 const QuestionAnswer = () => {
-  const [page, setPage] = useState(1);
   const { categoryId, quizId } = useParams();
   const { questions, title, quizTakenId } = useContext(QuestionsContext);
+
+  const [page, setPage] = useState(1);
   const [time, setTime] = useState(questions[page - 1]?.time_limit);
   const [question, setQuestion] = useState(questions[page - 1]);
   const [timeOutId, setTimeOutId] = useState(null);
@@ -88,15 +89,11 @@ const QuestionAnswer = () => {
       const timer = window.setTimeout(() => {
         setTime(time - 1);
       }, 1000);
-
       setTimeOutId(timer);
     }
-
     setRemainingTime(time);
-
     if (time === 0) {
       window.clearTimeout(timeOutId);
-
       if (page < questions?.length) {
         setTime(questions[page - 1]?.time_limit);
         setPage(page + 1);
@@ -123,21 +120,20 @@ const QuestionAnswer = () => {
     <div className="container">
       {showResult === false ? (
         <div className="d-flex justify-content-center align-items-center">
-          <Card className={style.cardstyle}>
-            <Card.Header id={style.topicbg}>
+          <Card className={style.card}>
+            <Card.Header id={style.cardHeader}>
               <a href={`/categories/${categoryId}/quizzes/${quizId}/questions`}>
-                <BsFillArrowLeftSquareFill className={style.backarrow} />
-              </a>{' '}
+                <BsFillArrowLeftSquareFill className={style.backButton} />
+              </a>
               <div className={style.topic}>
-                {' '}
-                <center className={style.topicspan}> {title} </center>
+                <center>{title}</center>
               </div>
             </Card.Header>
-            <Card.Body className={style.wholeBodyCard}>
-              <Badge bg="light" className={style.tml}>
-                <Card.Text className={style.time}>
-                  <span className={style.timeleftspace}>Time Left: </span>
-                  <b className={style.timer}> {time} </b>
+            <Card.Body className={style.cardBody}>
+              <Badge bg="light" className={style.timer}>
+                <Card.Text className={style.timeLimit}>
+                  <span>Time Left: </span>
+                  <b className={style.time}>{time}</b>
                 </Card.Text>
               </Badge>
               {question &&
@@ -158,26 +154,29 @@ const QuestionAnswer = () => {
                   ></FillInTheBlankType>
                 )}
               <hr className={style.spacing} />
-              <div className={style.bottomBodyCard}>
+              <div className={style.cardFooter}>
                 <p className={style.numItems}>
                   {page} out of {questions?.length}
                 </p>
                 {page === questions?.length ? (
                   <Button
-                    id={style.nextBtn}
+                    buttonLabel="Submit"
+                    buttonSize="sm"
                     onClick={() => {
-                      submitStatus || timesUp ? '' : storeLastAnswerAndGetTotalScore();
+                      submitStatus || timesUp
+                        ? ''
+                        : storeLastAnswerAndGetTotalScore();
 
                       setSubmitStatus(true);
                     }}
-                  >
-                    {' '}
-                    <span className={style.buttontext}>Submit</span>
-                  </Button>
+                    disabled={submitStatus}
+                  />
                 ) : (
-                  <Button id={style.nextBtn} onClick={handleNextButtonClick}>
-                    <a className={style.buttontext}>Next</a>
-                  </Button>
+                  <Button
+                    buttonLabel="Next"
+                    buttonSize="sm"
+                    onClick={handleNextButtonClick}
+                  />
                 )}
               </div>
             </Card.Body>

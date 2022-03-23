@@ -1,0 +1,48 @@
+@use '../../../../styles/variables' as *;
+
+.card {
+  width: 548px;
+  height: 350px;
+  margin-top: 150px;
+}
+
+#cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $color-light-blue-1;
+  filter: drop-shadow(0 1mm 1mm #48535b8c);
+}
+
+.backButton {
+  color: #48535b;
+  width: 40px;
+  height: 40px;
+  display: inline;
+}
+
+.topic {
+  color: $color-dark-blue-1;
+  font-size: $font-size-page-title;
+  font-weight: $font-weight-semibold;
+  width: 100%;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 40px 40px;
+  gap: 50px;
+}
+
+#overview {
+  width: 100%;
+  font-size: $font-size-page-title;
+  color: $color-dark-blue-1;
+}
+
+.startButton {
+  float: right;
+}

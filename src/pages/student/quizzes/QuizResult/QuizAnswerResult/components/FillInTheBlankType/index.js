@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Card from 'react-bootstrap/Card';
-import style from '../../indexAnswer.module.css';
+import style from '../../indexAnswer.module.scss';
 import { PropTypes } from 'prop-types';
 import { MdCancel } from 'react-icons/md';
 import { FcOk } from 'react-icons/fc';
@@ -8,22 +8,21 @@ import { FcOk } from 'react-icons/fc';
 const FillInTheBlankType = ({ question, answer }) => {
   return (
     <Fragment>
-      <div className={style.question1}>
-        <p className={style.questionstyleresult}>{question.question}</p>
+      <div className={style.question}>
+        <p className="mb-5">{question.question}</p>
         {answer.text_answer != question.text_answer ? (
-          <div className={style.correctanswermargin}>
-            Correct Answer:
-            <span> {question.text_answer}</span>
+          <div className={style.correctAnswerPreview}>
+            Correct Answer: {question.text_answer}
           </div>
         ) : (
           ''
         )}
-        <Card className={style.cardbody2}>
-          <span className={style.spanAnswer2}>
+        <Card>
+          <span className={style.answerField}>
             {answer.text_answer ? (
               answer.text_answer
             ) : (
-              <span className={style.wrongAnswer}>
+              <span className={style.noAnswerMessage}>
                 You did not provide an answer
               </span>
             )}

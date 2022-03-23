@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import style from './index.module.css';
-import QuestionAnswer from './QuestionAnswer';
 import Cookies from 'js-cookie';
+import Card from 'react-bootstrap/Card';
+import QuestionAnswer from './QuestionAnswer';
+import Button from '../../../../components/Button';
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
-
 import QuizApi from '../../../../api/Quiz';
 import QuestionApi from '../../../../api/Question';
 import QuizTaken from '../../../../api/QuizTaken';
+import style from './index.module.scss';
 
 export const QuestionsContext = React.createContext();
 
 const QuestionList = () => {
+  const userId = Cookies.get('user_id');
+  const { categoryId, quizId } = useParams();
+
   const [quizInfo, setQuizInfo] = useState(null);
   const [questions, setQuestions] = useState(null);
-  const [showQuestionnaire, setShowQuestionnaire] = useState(false);
-  const { categoryId, quizId } = useParams();
   const [quizTakenId, setQuizTakenId] = useState(null);
-  const userId = Cookies.get('user_id');
+  const [showQuestionnaire, setShowQuestionnaire] = useState(false);
 
   useEffect(() => {
     QuizApi.show({ categoryId, quizId }).then(({ data }) => {
@@ -60,31 +60,37 @@ const QuestionList = () => {
           ''
         ) : (
           <div className="d-flex justify-content-center align-items-center">
-            <Card className={style.carsize}>
-              <Card.Header id={style.topicbg}>
+            <Card className={style.card}>
+              <Card.Header id={style.cardHeader}>
                 <a href={`/categories/${categoryId}/quizzes`}>
-                  <BsFillArrowLeftSquareFill className={style.backarrow} />
-                </a>{' '}
+                  <BsFillArrowLeftSquareFill className={style.backButton} />
+                </a>
                 <div className={style.topic}>
-                  <center className={style.topicspan}> {quizInfo?.title} </center>
+                  <center>{quizInfo?.title}</center>
                 </div>
               </Card.Header>
-              <Card.Body className={style.wholebodycard}>
+              <Card.Body className={style.cardBody}>
                 <div align="center" id={style.overview}>
                   <p>This quiz consist of {questions?.length} items</p>
                   <hr />
                   <p> Overall Time: {getTotalTimeLimit()} seconds </p>
                 </div>
-                <div className={style.bottombodycard}>
-                  <Button onClick={startQuiz} className={style.button}>
-                    Start Quiz
-                  </Button>
+                <div className={style.startButton}>
+                  <Button
+                    buttonLabel="Start Quiz"
+                    buttonSize="sm"
+                    onClick={startQuiz}
+                  />
                 </div>
               </Card.Body>
-            </Card>{' '}
+            </Card>
           </div>
         )}
-        {quizTakenId && questions && showQuestionnaire ? <QuestionAnswer /> : ''}
+        {quizTakenId && questions && showQuestionnaire ? (
+          <QuestionAnswer />
+        ) : (
+          ''
+        )}
       </QuestionsContext.Provider>
     </div>
   );

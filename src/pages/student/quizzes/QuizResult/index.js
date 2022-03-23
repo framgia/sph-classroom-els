@@ -1,16 +1,17 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import style from './index.module.css';
-import { PropTypes } from 'prop-types';
+import Button from '../../../../components/Button';
 import QuizAnswerResult from './QuizAnswerResult';
 import Recent from '../QuizResult/Recent/index';
-import { QuestionsContext } from '../QuestionList';
-import AnswerApi from '../../../../api/Answer';
 import FriendsScoreApi from '../../../../api/FriendsScore';
+import AnswerApi from '../../../../api/Answer';
 import QuizApi from '../../../../api/Quiz';
+import style from './index.module.scss';
+
+import { QuestionsContext } from '../QuestionList';
 
 const QuizResult = ({ score, total, quizId, categoryId }) => {
   const [viewResults, setViewResults] = useState(false);
@@ -39,7 +40,7 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
   const viewResultsPage = () => {
     setViewResults(!viewResults);
   };
-  console.log(quizId);
+
   const getAllQuizzesTakenForEveryRecentQuiz = (quiz_id) => {
     const quizzesList = quizzes?.filter((quiz) => quiz.quiz_id === quiz_id);
 
@@ -62,16 +63,21 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                           <div className={style.resultQuizPraise}>
                             Better Luck Next Time!
                           </div>
-                          <div className={style.resultQuizRemarks}>You Failed</div>
+                          <div className={style.resultQuizRemarks}>
+                            You Failed
+                          </div>
                         </>
                       ) : (
                         <>
-                          <div className={style.resultQuizPraise}>Great Job!</div>
-                          <div className={style.resultQuizRemarks}>You Passed</div>
+                          <div className={style.resultQuizPraise}>
+                            Great Job!
+                          </div>
+                          <div className={style.resultQuizRemarks}>
+                            You Passed
+                          </div>
                         </>
                       )}
                       <Card.Text className={style.resultScore}>
-                        {' '}
                         <span
                           className={
                             score < passing ? `${style.fail}` : `${style.pass}`
@@ -79,14 +85,14 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                         >
                           <b>{score}</b>
                         </span>
-                        <b>/{total}</b>{' '}
+                        <b>/{total}</b>
                       </Card.Text>
                     </div>
                   </div>
                   {friendsScore?.length > 0 ? (
                     <Card className={style.friendsScoreCard}>
-                      <Card.Header className={style.friendsTitle}>
-                        <div className={style.friendsScoreText}>
+                      <Card.Header className={style.friendsScoreHeader}>
+                        <div className={style.friendScoreText}>
                           Friend&apos;s Score
                         </div>
                         <hr className={style.divider} />
@@ -128,42 +134,40 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                     ''
                   )}
                 </div>
-                <hr className={style.resultsCardDivider} />
+                <hr />
                 <div className={style.resultsButtons}>
                   <Button
+                    buttonLabel="View Result"
+                    buttonSize="def"
                     onClick={() => viewResultsPage()}
-                    id={style.viewResultsButton}
+                  />
+                  <a
+                    href={`/categories/${categoryId}/quizzes/${quizId}/questions`}
                   >
-                    View Result
-                  </Button>
-                  <a href={`/categories/${categoryId}/quizzes/${quizId}/questions`}>
-                    <Button id={style.retakeButton}>Retake Quiz</Button>
+                    <Button buttonLabel="Retake Quiz" buttonSize="def" />
                   </a>
                 </div>
               </Card.Body>
             </Card>
           </div>
-          <div>
-            <footer>
-              <div>
-                <h2 className={style.relatedQuizzesText}>Related Quizzes</h2>
-                <div className={style.relatedQuizzes}>
-                  {quizzes &&
-                    quizRelated?.map((relatedQuiz, idx) => {
-                      return (
-                        <Recent
-                          relatedQuiz={relatedQuiz}
-                          quizzes={getAllQuizzesTakenForEveryRecentQuiz(
-                            relatedQuiz.quiz_id
-                          )}
-                          key={idx}
-                        />
-                      );
-                    })}
-                </div>
-              </div>
-            </footer>
-          </div>
+          <footer>
+            <h2 className={style.relatedQuizzesText}>Related Quizzes</h2>
+            <div className={style.relatedQuizzes}>
+              {quizzes &&
+                quizRelated?.map((relatedQuiz, idx) => {
+                  return (
+                    <Recent
+                      relatedQuiz={relatedQuiz}
+                      quizzes={getAllQuizzesTakenForEveryRecentQuiz(
+                        relatedQuiz.quiz_id
+                      )}
+                      key={idx}
+                    />
+                  );
+                })}
+            </div>
+          </footer>
+
           {quizRelated?.length === 0 ? (
             <div className={style.noRelatedQuizzesMessageContainer}>
               <center>
