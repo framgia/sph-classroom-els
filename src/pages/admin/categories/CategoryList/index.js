@@ -26,6 +26,7 @@ const CategoryList = () => {
   const [deleteConfirmed, setDeleteConfirmed] = useState(false);
   const [itemToDelete, setItemToDelete] = useState({});
   const [categories, setCategories] = useState(null);
+  const [changeList, setChangeList] = useState(false);
   const [canDelete, setCanDelete] = useState(false);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
@@ -33,14 +34,14 @@ const CategoryList = () => {
 
   const [sortOptions, setSortOptions] = useState({
     sortBy,
-    sortDirection,
+    sortDirection
   });
 
   const tableHeaderNames = [
     { title: 'ID', canSort: true },
     { title: 'Action', canSort: false },
     { title: 'Name', canSort: true },
-    { title: 'Description', canSort: false },
+    { title: 'Description', canSort: false }
   ];
 
   useEffect(() => {
@@ -51,7 +52,14 @@ const CategoryList = () => {
     );
 
     load();
-  }, [page, search, sortOptions]);
+  }, [changeList]);
+
+  useEffect(() => {
+    if (search || sortOptions.sortBy) {
+      setPage(1);
+      setChangeList(!changeList);
+    }
+  }, [search, sortOptions]);
 
   const load = () => {
     CategoryApi.listOfCategories({
@@ -59,7 +67,7 @@ const CategoryList = () => {
       search,
       sortBy: sortOptions.sortBy,
       sortDirection: sortOptions.sortDirection,
-      listCondition: 'paginated',
+      listCondition: 'paginated'
     }).then(({ data }) => {
       setCategories(data.data);
       setPerPage(data.per_page);
@@ -89,6 +97,7 @@ const CategoryList = () => {
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
+    setChangeList(!changeList);
   };
 
   const onCategoryChecker = (category) => {

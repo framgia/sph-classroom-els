@@ -29,16 +29,17 @@ const AdminList = () => {
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
   const [search, setSearch] = useState(searchVal ? searchVal : '');
+  const [changeList, setChangeList] = useState(false);
   const [sortOptions, setSortOptions] = useState({
     sortBy,
-    sortDirection,
+    sortDirection
   });
 
   const tableHeaderNames = [
     { title: 'ID', canSort: true },
     { title: 'Action', canSort: false },
     { title: 'Name', canSort: true },
-    { title: 'Email', canSort: true },
+    { title: 'Email', canSort: true }
   ];
 
   useEffect(() => {
@@ -47,7 +48,14 @@ const AdminList = () => {
     );
 
     load();
-  }, [page, search, sortOptions]);
+  }, [changeList]);
+
+  useEffect(() => {
+    if (search || sortOptions.sortBy) {
+      setPage(1);
+      setChangeList(!changeList);
+    }
+  }, [search, sortOptions]);
 
   useEffect(() => {
     if (deleteConfirmed) {
@@ -75,7 +83,7 @@ const AdminList = () => {
       page,
       search,
       sortBy: sortOptions.sortBy,
-      sortDirection: sortOptions.sortDirection,
+      sortDirection: sortOptions.sortDirection
     })
       .then(({ data }) => {
         setAdminAccounts(data.data);
@@ -90,6 +98,7 @@ const AdminList = () => {
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
+    setChangeList(!changeList);
   };
 
   const renderTableData = () => {
