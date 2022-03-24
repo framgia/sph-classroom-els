@@ -65,7 +65,13 @@ const AdminList = () => {
         .then(({ data }) => {
           toast('Success', data.message);
           setDeleteConfirmed(false);
-          load();
+
+          if (adminAccounts?.length === 1) {
+            setPage(page === 1 ? page : page - 1);
+            setChangeList(!changeList);
+          } else {
+            load();
+          }
         })
         .catch(() =>
           toast(
