@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Link, useHistory } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
@@ -8,6 +8,7 @@ import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
+import { AdminContext } from '../../../../context/adminContext';
 import Button from '../../../../components/Button';
 import InputField from '../../../../components/InputField';
 import ProfileEditApi from '../../../../api/ProfileEdit';
@@ -19,6 +20,7 @@ const AdminEditProfile = () => {
   const history = useHistory();
   const loggedInUserId = Cookies.get('admin_id');
   const { control, handleSubmit } = useForm();
+  const { setName } = useContext(AdminContext);
 
   const [errors, setErrors] = useState({});
   const [showAlert, setShowAlert] = useState(false);
@@ -49,6 +51,7 @@ const AdminEditProfile = () => {
 
     await ProfileEditApi.profileEdit({ name, email, password })
       .then(() => {
+        setName(name);
         history.push('/admin/profile');
         toast('Success', 'Successfully Changed Your Account Information.');
       })

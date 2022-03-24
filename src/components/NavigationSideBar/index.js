@@ -1,27 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useToast } from '../../hooks/useToast';
-import Navbar from 'react-bootstrap/Navbar';
-import { Nav, Container } from 'react-bootstrap';
+import { Nav, Navbar, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { ImUser } from 'react-icons/im';
 import { BiCategory, BiLogOutCircle, BiShieldQuarter } from 'react-icons/bi';
 import { BsCardChecklist } from 'react-icons/bs';
-import Cookies from 'js-cookie';
-import AdminApi from '../../api/Admin';
-
-import style from './index.module.css';
+import { AdminContext } from '../../context/adminContext';
 import AuthApi from '../../api/Auth';
+import Cookies from 'js-cookie';
+import style from './index.module.css';
 
 const NavigationSideBar = () => {
   const toast = useToast();
-  const [profileName, setprofileName] = useState(null);
-  const loggedInUserId = Cookies.get('admin_id');
-
-  useEffect(() => {
-    AdminApi.getAllUsers(loggedInUserId).then(({ data }) => {
-      setprofileName(data[0]);
-    });
-  }, []);
+  const { name } = useContext(AdminContext);
 
   const onLogout = async () => {
     toast('Processing', 'Logging out...');
@@ -42,7 +33,7 @@ const NavigationSideBar = () => {
       </Navbar.Brand>
       <div>
         <div className={`${style.displayFlexColumn} ${style.adminInfo}`}>
-          <p className={style.username}>{profileName?.name}</p>
+          <p className={style.username}>{name}</p>
           <p className={style.userRole}>Admin</p>
         </div>
       </div>

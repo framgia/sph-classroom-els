@@ -1,13 +1,14 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
+import { AdminProvider } from '../../../context/adminContext';
 import AuthService from '../../../services/AuthService';
 import Navbar from '../../../components/NavigationSideBar';
 import { PropTypes } from 'prop-types';
 
 const AdminRoute = ({ sidebar = true, component: Component, ...rest }) => {
   return (
-    <Fragment>
+    <AdminProvider>
       {/* Navigation Side Bar */}
       {sidebar ? <Navbar /> : ''}
 
@@ -31,7 +32,7 @@ const AdminRoute = ({ sidebar = true, component: Component, ...rest }) => {
           );
         }}
       ></Route>
-    </Fragment>
+    </AdminProvider>
   );
 };
 
