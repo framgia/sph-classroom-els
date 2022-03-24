@@ -109,16 +109,6 @@ const StudentList = () => {
       return (
         <div key={idx}>
           <div className={style.studentInfo}>
-            <img
-              alt="avatar"
-              src={
-                student.avatar
-                  ? student.avatar_url
-                  : 'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png'
-              }
-              className={style.avatar}
-            />
-
             <div>
               <Link to={`/students/${student.id}`}>
                 <span className={style.studentName}>{student.name}</span>
@@ -139,16 +129,16 @@ const StudentList = () => {
   const studentFilter = [
     {
       name: 'All',
-      value: '',
+      value: ''
     },
     {
       name: 'Following',
-      value: 'followed',
+      value: 'followed'
     },
     {
       name: 'Followers',
-      value: 'followers',
-    },
+      value: 'followers'
+    }
   ];
 
   const onSelectFilterStudent = (e) => {
@@ -169,7 +159,6 @@ const StudentList = () => {
     }
   };
 
-
   const listInfoFilter = (option) => {
     switch (option) {
     case '':
@@ -186,7 +175,9 @@ const StudentList = () => {
   return (
     <div className={style.studentListContainer}>
       <div>
-        <div className={style.studentListHeader}>List of {listInfoFilter(filter)}</div>
+        <div className={style.studentListHeader}>
+          List of {listInfoFilter(filter)}
+        </div>
         <Card>
           <Card.Header className={style.cardHeader}>
             <form onSubmit={onSearchSubmit}>
