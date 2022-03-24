@@ -45,8 +45,6 @@ const CategoryList = () => {
   ];
 
   useEffect(() => {
-    setCategories(null);
-
     history.push(
       `?page=${page}&search=${search}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`
     );
@@ -62,6 +60,8 @@ const CategoryList = () => {
   }, [search, sortOptions]);
 
   const load = () => {
+    setCategories(null);
+
     CategoryApi.listOfCategories({
       page: page,
       search,
@@ -84,7 +84,13 @@ const CategoryList = () => {
         .then(({ data }) => {
           toast('Success', data.message);
           setDeleteConfirmed(false);
-          load();
+
+          if (categories?.length === 1 && page != 1) {
+            setPage(page - 1);
+            setChangeList(!changeList);
+          } else {
+            load();
+          }
         })
         .catch(() =>
           toast(

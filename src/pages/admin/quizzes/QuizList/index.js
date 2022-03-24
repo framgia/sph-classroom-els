@@ -132,7 +132,13 @@ const QuizList = () => {
         .then(({ data }) => {
           toast('Success', data.message);
           setDeleteConfirmed(false);
-          load();
+
+          if (adminQuiz?.length === 1 && page != 1) {
+            setPage(page - 1);
+            setChangeList(!changeList);
+          } else {
+            load();
+          }
         })
         .catch(() =>
           toast(
