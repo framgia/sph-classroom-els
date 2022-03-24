@@ -37,9 +37,12 @@ const AdminLogin = () => {
         password,
         loginType: 'Admin'
       });
+
       Cookies.set('access_token', response.data.token);
       Cookies.set('admin_id', response.data.user.id);
+      Cookies.set('admin_name', response.data.user.name);
       Cookies.set('user_type', 'admin');
+
       window.location = '/admin/categories';
     } catch (error) {
       toast('Error', 'Incorrect Credentials, please try again.');
