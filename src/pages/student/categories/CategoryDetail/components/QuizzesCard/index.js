@@ -72,17 +72,17 @@ const QuizzesCard = ({ category_id, quiz }) => {
         <Card.Body className={style.cardBody}>
           <div className={style.quizInfo}>
             <div className={style.quizResult}>
-              <p>Attempts</p>
+              <p className="mb-0">Attempts</p>
               <p>{QuizzesRecentReview?.length}</p>
             </div>
             <div className={style.quizResult}>
-              <p>Highest Score</p>
+              <p className="mb-0">Highest Score</p>
               <p>
                 {getHighestScore()}/{questions?.length}
               </p>
             </div>
             <div className={style.quizResult} style={{ fontWeight: 'bold' }}>
-              <p>Latest Score</p>
+              <p className="mb-0">Latest Score</p>
               <p>
                 {getLatestScore() >= 0 ? getLatestScore() : 0}/
                 {questions?.length}
