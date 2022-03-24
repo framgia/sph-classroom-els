@@ -95,7 +95,7 @@ const NavigationSideBar = () => {
           </Nav.Link>
         </LinkContainer>
         <LinkContainer
-          to="/admin"
+          to="#"
           className={`${style.displayFlexRow} ${style.navItemInfo}`}
         >
           <Nav.Link href="#" className={style.navItem}>
@@ -117,7 +117,8 @@ const NavigationSideBar = () => {
           className={`${style.logoutPosition} ${style.navLogout}`}
           onClick={onLogout}
         >
-          <BiLogOutCircle className={style.icon} /> <span>Logout</span>
+          <BiLogOutCircle className={style.icon} />{' '}
+          <span className={style.alignContent}>Logout</span>
         </Nav.Link>
       </Container>
     </Navbar>

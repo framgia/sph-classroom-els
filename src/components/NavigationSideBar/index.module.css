@@ -124,7 +124,7 @@
   width: 20px;
   position: absolute;
   left: 0;
-  margin-left: 75px;
+  margin-left: 40px;
 }
 
 .logoutPosition {
@@ -133,7 +133,7 @@
 }
 
 .alignContent {
-  margin-left: 120px;
+  margin-left: 85px;
   position: absolute;
   left: 0;
 }
