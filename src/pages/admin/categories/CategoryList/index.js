@@ -33,14 +33,14 @@ const CategoryList = () => {
 
   const [sortOptions, setSortOptions] = useState({
     sortBy,
-    sortDirection,
+    sortDirection
   });
 
   const tableHeaderNames = [
     { title: 'ID', canSort: true },
     { title: 'Action', canSort: false },
     { title: 'Name', canSort: true },
-    { title: 'Description', canSort: false },
+    { title: 'Description', canSort: false }
   ];
 
   useEffect(() => {
@@ -53,13 +53,17 @@ const CategoryList = () => {
     load();
   }, [page, search, sortOptions]);
 
+  useEffect(() => {
+    setPage(1);
+  }, [search, sortOptions]);
+
   const load = () => {
     CategoryApi.listOfCategories({
       page: page,
       search,
       sortBy: sortOptions.sortBy,
       sortDirection: sortOptions.sortDirection,
-      listCondition: 'paginated',
+      listCondition: 'paginated'
     }).then(({ data }) => {
       setCategories(data.data);
       setPerPage(data.per_page);

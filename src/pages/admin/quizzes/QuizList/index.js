@@ -23,7 +23,7 @@ const QuizList = () => {
   const sortBy = queryParams.get('sortBy') || '';
   const sortDirection = queryParams.get('sortDirection') || '';
 
-  const TYPE = 'withoutPathDisplay'; 
+  const TYPE = 'withoutPathDisplay';
   const history = useHistory();
   const toast = useToast();
 
@@ -118,7 +118,7 @@ const QuizList = () => {
 
   useEffect(() => {
     setPage(1);
-  }, [filter, search]);
+  }, [filter, search, sortOptions]);
 
   useEffect(() => {
     if (deleteConfirmed) {

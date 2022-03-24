@@ -31,14 +31,14 @@ const AdminList = () => {
   const [search, setSearch] = useState(searchVal ? searchVal : '');
   const [sortOptions, setSortOptions] = useState({
     sortBy,
-    sortDirection,
+    sortDirection
   });
 
   const tableHeaderNames = [
     { title: 'ID', canSort: true },
     { title: 'Action', canSort: false },
     { title: 'Name', canSort: true },
-    { title: 'Email', canSort: true },
+    { title: 'Email', canSort: true }
   ];
 
   useEffect(() => {
@@ -48,6 +48,10 @@ const AdminList = () => {
 
     load();
   }, [page, search, sortOptions]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [search, sortOptions]);
 
   useEffect(() => {
     if (deleteConfirmed) {
@@ -75,7 +79,7 @@ const AdminList = () => {
       page,
       search,
       sortBy: sortOptions.sortBy,
-      sortDirection: sortOptions.sortDirection,
+      sortDirection: sortOptions.sortDirection
     })
       .then(({ data }) => {
         setAdminAccounts(data.data);
