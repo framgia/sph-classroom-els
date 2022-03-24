@@ -66,8 +66,8 @@ const AdminList = () => {
           toast('Success', data.message);
           setDeleteConfirmed(false);
 
-          if (adminAccounts?.length === 1) {
-            setPage(page === 1 ? page : page - 1);
+          if (adminAccounts?.length === 1 && page != 1) {
+            setPage(page - 1);
             setChangeList(!changeList);
           } else {
             load();

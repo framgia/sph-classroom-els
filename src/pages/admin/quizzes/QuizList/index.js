@@ -133,8 +133,8 @@ const QuizList = () => {
           toast('Success', data.message);
           setDeleteConfirmed(false);
 
-          if (adminQuiz?.length === 1) {
-            setPage(page === 1 ? page : page - 1);
+          if (adminQuiz?.length === 1 && page != 1) {
+            setPage(page - 1);
             setChangeList(!changeList);
           } else {
             load();
