@@ -124,7 +124,15 @@
   width: 20px;
   position: absolute;
   left: 0;
-  margin-left: 75px;
+  margin-left: 40px;
+}
+
+.iconLogout {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  left: 0;
+  margin-left: 70px;
 }
 
 .logoutPosition {
@@ -133,7 +141,7 @@
 }
 
 .alignContent {
-  margin-left: 125px;
+  margin-left: 85px;
   position: absolute;
   left: 0;
 }

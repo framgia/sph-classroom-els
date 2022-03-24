@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
 import Card from 'react-bootstrap/Card';
-import FilterDropdown from '../../../../components/FilterDropdown';
 import DataTable from '../../../../components/DataTable';
 import SearchBar from '../../../../components/SearchBar';
 import Pagination from '../../../../components/Pagination';
@@ -34,14 +33,14 @@ const CategoryList = () => {
 
   const [sortOptions, setSortOptions] = useState({
     sortBy,
-    sortDirection
+    sortDirection,
   });
 
   const tableHeaderNames = [
     { title: 'ID', canSort: true },
     { title: 'Action', canSort: false },
     { title: 'Name', canSort: true },
-    { title: 'Description', canSort: false }
+    { title: 'Description', canSort: false },
   ];
 
   useEffect(() => {
@@ -60,7 +59,7 @@ const CategoryList = () => {
       search,
       sortBy: sortOptions.sortBy,
       sortDirection: sortOptions.sortDirection,
-      listCondition: 'paginated'
+      listCondition: 'paginated',
     }).then(({ data }) => {
       setCategories(data.data);
       setPerPage(data.per_page);
@@ -156,7 +155,6 @@ const CategoryList = () => {
               search={search}
               setSearch={setSearch}
             />
-            <FilterDropdown dropdownLabel="Filter" />
           </Card.Header>
           <Card.Body className={style.cardBodyScroll}>
             <div>
