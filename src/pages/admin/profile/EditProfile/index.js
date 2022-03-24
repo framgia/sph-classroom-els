@@ -51,6 +51,7 @@ const AdminEditProfile = () => {
 
     await ProfileEditApi.profileEdit({ name, email, password })
       .then(() => {
+        Cookies.set('admin_name', name);
         setName(name);
         history.push('/admin/profile');
         toast('Success', 'Successfully Changed Your Account Information.');
