@@ -34,14 +34,14 @@
 }
 
 .titleHeader {
-  font-weight: bold;
-  font-size: 18px;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-lg;
   color: $color-dark-blue-1;
 }
 
 .clockHeader {
-  font-size: 12px;
-  color: #48535b;
+  font-size: $font-size-sm;
+  color: $color-dark-blue-1;
   margin-top: 5px;
 }
 
@@ -54,7 +54,7 @@
 .titleHeader {
   font-weight: $font-weight-medium;
   color: $color-dark-blue-1;
-  font-size: 18px;
+  font-size: $font-size-lg;
 
   display: -webkit-box;
   max-width: 295px;
@@ -83,11 +83,10 @@
 
 .quizLink {
   width: auto;
+  margin: 20px;
   display: flex;
   justify-content: flex-end;
-  margin: 20px;
-  font-weight: bold;
-
+  font-weight: $font-weight-bold;
   font-size: $font-size-base;
   color: $color-dark-blue-2;
 
