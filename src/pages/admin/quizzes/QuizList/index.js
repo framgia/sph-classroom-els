@@ -43,6 +43,7 @@ const QuizList = () => {
   const [lastPage, setLastPage] = useState(0);
   const [filter, setFilter] = useState(filterVal ? filterVal : '');
   const [search, setSearch] = useState(searchVal ? searchVal : '');
+  const [changeList, setChangeList] = useState(false);
   const [sortOptions, setSortOptions] = useState({
     sortBy,
     sortDirection
@@ -114,10 +115,13 @@ const QuizList = () => {
     );
 
     load();
-  }, [page, sortOptions, search, filter]);
+  }, [changeList]);
 
   useEffect(() => {
-    setPage(1);
+    if (filter || search || sortOptions.sortBy) {
+      setPage(1);
+      setChangeList(!changeList);
+    }
   }, [filter, search, sortOptions]);
 
   useEffect(() => {
@@ -141,6 +145,7 @@ const QuizList = () => {
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
+    setChangeList(!changeList);
   };
 
   const renderTableData = () => {

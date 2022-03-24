@@ -30,7 +30,7 @@ const SearchBar = ({ placeholder, search, setSearch }) => {
     setSearchValue(e.target.value);
 
     if (e.target.value.length === 0) {
-      setSearch('');
+      setSearch(' ');
     }
   };
 

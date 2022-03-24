@@ -26,6 +26,7 @@ const CategoryList = () => {
   const [deleteConfirmed, setDeleteConfirmed] = useState(false);
   const [itemToDelete, setItemToDelete] = useState({});
   const [categories, setCategories] = useState(null);
+  const [changeList, setChangeList] = useState(false);
   const [canDelete, setCanDelete] = useState(false);
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
@@ -51,10 +52,13 @@ const CategoryList = () => {
     );
 
     load();
-  }, [page, search, sortOptions]);
+  }, [changeList]);
 
   useEffect(() => {
-    setPage(1);
+    if (search || sortOptions.sortBy) {
+      setPage(1);
+      setChangeList(!changeList);
+    }
   }, [search, sortOptions]);
 
   const load = () => {
@@ -93,6 +97,7 @@ const CategoryList = () => {
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
+    setChangeList(!changeList);
   };
 
   const onCategoryChecker = (category) => {

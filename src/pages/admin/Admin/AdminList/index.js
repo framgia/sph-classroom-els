@@ -29,6 +29,7 @@ const AdminList = () => {
   const [totalItems, setTotalItems] = useState(0);
   const [lastPage, setLastPage] = useState(0);
   const [search, setSearch] = useState(searchVal ? searchVal : '');
+  const [changeList, setChangeList] = useState(false);
   const [sortOptions, setSortOptions] = useState({
     sortBy,
     sortDirection
@@ -47,10 +48,13 @@ const AdminList = () => {
     );
 
     load();
-  }, [page, search, sortOptions]);
+  }, [changeList]);
 
   useEffect(() => {
-    setPage(1);
+    if (search || sortOptions.sortBy) {
+      setPage(1);
+      setChangeList(!changeList);
+    }
   }, [search, sortOptions]);
 
   useEffect(() => {
@@ -94,6 +98,7 @@ const AdminList = () => {
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
+    setChangeList(!changeList);
   };
 
   const renderTableData = () => {
