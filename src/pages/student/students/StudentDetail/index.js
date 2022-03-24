@@ -17,7 +17,6 @@ const StudentDetail = () => {
   const [quizzesTaken, setQuizzesTaken] = useState(null);
   const [recentActivities, setRecentActivities] = useState(null);
   const [status, setStatus] = useState(false);
-  const [avatar, setAvatar] = useState([]);
 
   const toast = useToast();
 
@@ -25,7 +24,6 @@ const StudentDetail = () => {
     StudentApi.getDetails(id).then(({ data }) => {
       setStudentDetails(data.details);
       setOverallQuizTaken(data.quizzesTaken);
-      setAvatar(data.avatar);
     });
 
     StudentApi.getRecentActivities(id).then(({ data }) => {
@@ -104,22 +102,8 @@ const StudentDetail = () => {
       <div className={style.student}>
         <div className={style.headerStyle}>
           <div>
-            <img src={
-              studentDetails?.avatar 
-                ? avatar 
-                : 'https://www.pngall.com/wp-content/uploads/5/Profile-Avatar-PNG.png' 
-            } 
-            className={
-              studentDetails?.avatar 
-                ? style.biUserPosition 
-                : style.biUserPosition1} />
-          </div>
-
-          <div className={style.studentInfo}>
             <div className={style.studentDetailsPosition}>
-              <p className="mb-0">
-                {studentDetails?.name}
-              </p>
+              <p className="mb-0">{studentDetails?.name}</p>
               <p className={style.studentDetailsPosition}>
                 {overallQuizTaken} Total Quizzes Taken
               </p>

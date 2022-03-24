@@ -17,7 +17,7 @@
   filter: drop-shadow($drop-shadow);
   display: flex;
   align-items: center;
-  gap: 25px
+  gap: 25px;
 }
 
 .dropdownStyle {
@@ -32,7 +32,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px
+  gap: 5px;
 }
 
 .dropdownStyle:hover {
@@ -100,7 +100,7 @@
   align-items: center;
   margin-top: 13px;
   margin-bottom: 55px;
-  margin-left: 17px;
+  margin-left: 5px;
   height: 20px;
 }
 
@@ -113,17 +113,20 @@
 
 .studentName {
   color: $color-dark-blue-1;
-  margin-left: 10px;
   font-size: $font-size-base;
-  font-weight: $font-weight-medium;
+  font-weight: $font-weight-light;
   cursor: pointer;
+
+  &:hover {
+    color: $color-black;
+    font-weight: $font-weight-medium;
+  }
 }
 
 #followCount {
   display: flex;
   font-size: $font-size-md;
   gap: 20px;
-  text-indent: 10px;
 }
 
 .button {
