@@ -95,7 +95,7 @@ const NavigationSideBar = () => {
           </Nav.Link>
         </LinkContainer>
         <LinkContainer
-          to="/#"
+          to="/admin"
           className={`${style.displayFlexRow} ${style.navItemInfo}`}
         >
           <Nav.Link href="#" className={style.navItem}>
