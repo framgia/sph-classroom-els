@@ -1,27 +1,40 @@
 import React, { useState, Fragment, useEffect } from 'react';
+import { PropTypes } from 'prop-types';
 import Form from 'react-bootstrap/Form';
+
+import FilterDropdown from '../../../../../../components/FilterDropdown';
 import MultipleChoiceType from '../MultipleChoiceType';
 import IdentificationType from '../IdentificationType';
-import PropTypes from 'prop-types';
 
 import style from '../../index.module.scss';
-import FilterDropdown from '../../../../../../components/FilterDropdown';
 
-const QuestionType = ({ question, onGetData, onChangeTimeLimit, onChangeQuestionType, onChangeChoices }) => {
+const QuestionType = ({
+  question,
+  onGetData,
+  onChangeTimeLimit,
+  onChangeQuestionType,
+  onChangeChoices
+}) => {
   const [questionType, setQuestionType] = useState('multiple_choice');
   const [timeLimit, setTimeLimit] = useState(0);
-  const timeOptions = [{name: 5}, {name: 10}, {name: 20}, {name: 30}, {name: 60}];
+  const timeOptions = [
+    { name: 5 },
+    { name: 10 },
+    { name: 20 },
+    { name: 30 },
+    { name: 60 }
+  ];
   const question_type_id = [
     {
       name: 'Multiple Choice',
-      value: '1',
+      value: '1'
     },
     {
       name: 'Identification',
-      value: '2',
-    },
+      value: '2'
+    }
   ];
-  
+
   useEffect(() => {
     if (question) {
       setQuestionType(question?.question_type_id?.toString());
@@ -40,7 +53,7 @@ const QuestionType = ({ question, onGetData, onChangeTimeLimit, onChangeQuestion
   // Watches changes in the questionType variable
   // If questionType is changed, call function and pass new questionType value and question id
   useEffect(() => {
-    if (question){
+    if (question) {
       onChangeQuestionType(questionType, question.id);
     }
   }, [questionType]);
@@ -62,11 +75,22 @@ const QuestionType = ({ question, onGetData, onChangeTimeLimit, onChangeQuestion
   };
 
   const question_type = (choice) => {
-    switch (choice) {  
+    switch (choice) {
     case '1':
-      return <MultipleChoiceType question={question} getData={handleChangeQuestionType} onUpdateChoices={updateChoices}/>;
+      return (
+        <MultipleChoiceType
+          question={question}
+          getData={handleChangeQuestionType}
+          onUpdateChoices={updateChoices}
+        />
+      );
     case '2':
-      return <IdentificationType question={question} getData = {handleChangeQuestionType} />;
+      return (
+        <IdentificationType
+          question={question}
+          getData={handleChangeQuestionType}
+        />
+      );
     default:
       break;
     }
@@ -89,7 +113,9 @@ const QuestionType = ({ question, onGetData, onChangeTimeLimit, onChangeQuestion
 
   return (
     <Fragment>
-      <div  className={style.questionTypestyle}>{question_type(questionType)}</div>
+      <div className={style.questionTypestyle}>
+        {question_type(questionType)}
+      </div>
       <div className={style.formGap}>
         <Form>
           <Form.Label className={style.inputTitle}>Question Type</Form.Label>

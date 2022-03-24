@@ -1,12 +1,11 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
-import Button from '../../../../components/Button';
 import Nav from 'react-bootstrap/Nav';
 import Spinner from 'react-bootstrap/Spinner';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 
-import style from './index.module.scss';
+import Button from '../../../../components/Button';
 import QuestionType from './components/QuestionType';
 import ChangeLocation from '../../../../components/ChangeLocation';
 
@@ -14,22 +13,26 @@ import QuizApi from '../../../../api/Quiz';
 import QuestionApi from '../../../../api/Question';
 import CategoryApi from '../../../../api/Category';
 
+import style from './index.module.scss';
+
 const QuizEdit = () => {
+  const { categoryId, quizId } = useParams();
   const TYPE = 'quizWithPathDisplay';
-  const [locationPathDisplay, setLocationPathDisplay] = useState('');
-  const [location, setLocation] = useState(null);
-  const [quizInfo, setQuizInfo] = useState(null);
-  const [questions, setQuestions] = useState(null);
+  const toast = useToast();
+
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [changeCategoryId, setChangeCategoryId] = useState(null);
   const [parentCategories, setParentCategories] = useState(null);
+  const [locationPathDisplay, setLocationPathDisplay] = useState('');
   const [saveLocation, setSaveLocation] = useState(false);
+  const [questions, setQuestions] = useState(null);
+  const [location, setLocation] = useState(null);
+  const [quizInfo, setQuizInfo] = useState(null);
+  const [saved, setSaved] = useState(false);
   const [show, setShow] = useState(false);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const { categoryId, quizId } = useParams();
-  const [saved, setSaved] = useState(false);
-  const toast = useToast();
 
   useEffect(() => {
     QuizApi.show({ categoryId, quizId }).then(({ data }) => {
