@@ -1,43 +1,41 @@
 @use '../../../../../../styles/variables' as *;
 
 #cardHeader {
-    background-color: $color-light-blue-1;
-    width: 298px;
-    height: 167px;
-    box-shadow: $drop-shadow;
-    position: relative;
-    z-index: 1;
-    padding: 15px;
-    font-size: $font-size-lg;
+  background-color: $color-light-blue-1;
+  box-shadow: $drop-shadow;
+  font-size: $font-size-lg;
+  position: relative;
+  height: 200px;
+  padding: 20px;
+  z-index: 1;
 }
 
 .card {
-    height: 217px;
-    width: 300px;
-    min-width: auto;
+  height: 217px;
+  width: 400px;
 }
 
-.cardTitle{
-    font-size: $font-size-lg;
-    font-weight: $font-weight-regular;
-    line-height: 21px;
+.cardTitle {
+  font-weight: $font-weight-regular;
+  font-size: $font-size-lg;
+  line-height: 21px;
 }
 
-.cardSubtitle{
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 16px;
-    text-align: justify;
+.cardSubtitle {
+  font-size: $font-size-md;
+  font-weight: $font-weight-light;
+  line-height: 16px;
+  text-align: justify;
 }
 
-#Subtitle{
-    font-size: 12px;
-    font-weight: $font-weight-regular;
-    color: $color-dark-blue-2;
+#Subtitle {
+  font-weight: $font-weight-regular;
+  color: $color-dark-blue-2;
+  font-size: $font-size-sm;
 }
 
 .containerCard {
-    flex: 0;
-    width: auto;
-    padding-right: 0;
+  flex: 0;
+  width: auto;
+  padding-right: 0;
 }

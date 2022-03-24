@@ -14,15 +14,17 @@
   color: $color-dark-blue-1;
   font-weight: $font-weight-medium;
   font-size: $font-size-page-title;
+
   @include flex(space-between, center, row, none);
 }
 
 .header {
-  @include flex(flex-start, center, row, none);
   font-size: $font-size-page-title-lg;
   font-weight: $font-weight-regular;
   color: $color-dark-blue-1;
   height: 102px;
+
+  @include flex(flex-start, center, row, none);
 }
 
 .backButton {
@@ -60,14 +62,10 @@
 }
 
 .cardList {
-  display: flex;
-  grid-column-gap: 22px;
+  display: grid;
+  grid-column-gap: 48px;
   grid-row-gap: 48px;
-  width: 1518px;
-
-  &:nth-child(4) {
-    grid-column-gap: 29px;
-  }
+  grid-template-columns: 400px 400px 400px;
 }
 
 .noResultsMessage {

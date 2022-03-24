@@ -2,7 +2,7 @@
 
 .card {
   margin-bottom: 25px;
-  width: 310px;
+  width: 400px;
 }
 
 .cardHeader {
@@ -17,6 +17,12 @@
   display: inline-block;
   font-weight: $font-weight-medium;
   font-size: $font-size-lg;
+
+  display: -webkit-box;
+  max-width: 295px;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .quizInfoLabel {
