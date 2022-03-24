@@ -77,6 +77,15 @@ const NavigationSideBar = () => {
           </Nav.Link>
         </LinkContainer>
         <LinkContainer
+          to="/admin/category-hierarchy"
+          className={`${style.displayFlexRow} ${style.navItemInfo}`}
+        >
+          <Nav.Link href="#" className={style.navItem}>
+            <BiCategory className={style.icon} />
+            <span className={style.alignContent}>Category Hierarchy</span>
+          </Nav.Link>
+        </LinkContainer>
+        <LinkContainer
           to="/admin/quizzes"
           className={`${style.displayFlexRow} ${style.navItemInfo}`}
         >
@@ -86,7 +95,7 @@ const NavigationSideBar = () => {
           </Nav.Link>
         </LinkContainer>
         <LinkContainer
-          to="/admin"
+          to="/#"
           className={`${style.displayFlexRow} ${style.navItemInfo}`}
         >
           <Nav.Link href="#" className={style.navItem}>
