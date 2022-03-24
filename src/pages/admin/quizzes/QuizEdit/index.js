@@ -1,12 +1,11 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
-import Button from '../../../../components/Button';
 import Nav from 'react-bootstrap/Nav';
 import Spinner from 'react-bootstrap/Spinner';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 
-import style from './index.module.scss';
+import Button from '../../../../components/Button';
 import QuestionType from './components/QuestionType';
 import ChangeLocation from '../../../../components/ChangeLocation';
 
@@ -14,21 +13,26 @@ import QuizApi from '../../../../api/Quiz';
 import QuestionApi from '../../../../api/Question';
 import CategoryApi from '../../../../api/Category';
 
+import style from './index.module.scss';
+
 const QuizEdit = () => {
+  const { categoryId, quizId } = useParams();
   const TYPE = 'quizWithPathDisplay';
-  const [locationPathDisplay, setLocationPathDisplay] = useState('');
-  const [location, setLocation] = useState(null);
-  const [quizInfo, setQuizInfo] = useState(null);
-  const [questions, setQuestions] = useState(null);
+  const toast = useToast();
+
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [changeCategoryId, setChangeCategoryId] = useState(null);
   const [parentCategories, setParentCategories] = useState(null);
+  const [locationPathDisplay, setLocationPathDisplay] = useState('');
   const [saveLocation, setSaveLocation] = useState(false);
+  const [questions, setQuestions] = useState(null);
+  const [location, setLocation] = useState(null);
+  const [quizInfo, setQuizInfo] = useState(null);
+  const [saved, setSaved] = useState(false);
   const [show, setShow] = useState(false);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const { categoryId, quizId } = useParams();
-  const toast = useToast();
 
   useEffect(() => {
     QuizApi.show({ categoryId, quizId }).then(({ data }) => {
@@ -42,7 +46,7 @@ const QuizEdit = () => {
   }, []);
 
   useEffect(() => {
-    if(quizInfo){
+    if (quizInfo) {
       setChangeCategoryId(quizInfo.category_id);
       CategoryApi.getParentCategories(quizInfo.category_id)
         .then(({ data }) => {
@@ -130,7 +134,10 @@ const QuizEdit = () => {
   };
 
   const addQuestionFields = () => {
-    const questionIds = questions && questions.length > 0 ? questions.map((question) => question.id) : [0];
+    const questionIds =
+      questions && questions.length > 0
+        ? questions.map((question) => question.id)
+        : [0];
     const maxId = Math.max(...questionIds) + 1;
     let newQuestions = [...questions];
     newQuestions.push({
@@ -151,7 +158,7 @@ const QuizEdit = () => {
     newQuestions.splice(idx, 1);
     setQuestions(newQuestions);
 
-    if(idx < newQuestions.length){
+    if (idx < newQuestions.length) {
       setSelectedQuestion(newQuestions[idx]);
     } else {
       setSelectedQuestion(newQuestions[idx - 1]);
@@ -160,9 +167,11 @@ const QuizEdit = () => {
 
   const handleSubmit = () => {
     toast('Processing', 'Updating questions...');
+    setSaved(true);
 
     QuestionApi.editQuestion(questions, quizId, changeCategoryId)
       .then(({ data }) => {
+        setSaved(false);
         setQuestions(data);
         toast('Success', 'Successfully updated questions');
         window.location = `/admin/quizzes/${quizId}`;
@@ -192,10 +201,17 @@ const QuizEdit = () => {
                       <Nav className="flex-column">
                         <Nav.Link
                           eventKey={question.id}
-                          className={selectedQuestion?.id === question.id ? style.currentNavLinkItem : style.navLinkItem}
+                          className={
+                            selectedQuestion?.id === question.id
+                              ? style.currentNavLinkItem
+                              : style.navLinkItem
+                          }
                           active
                         >
-                          <div className={style.questionDetails} onClick={() => onSelectQuestion(idx)}>
+                          <div
+                            className={style.questionDetails}
+                            onClick={() => onSelectQuestion(idx)}
+                          >
                             <span className={style.questionNumber}>
                               Question # {idx + 1}
                             </span>
@@ -207,7 +223,7 @@ const QuizEdit = () => {
                             size={25}
                             className={style.removeQuestionIcon}
                             onClick={() => {
-                              onRemoveQuestion(idx); 
+                              onRemoveQuestion(idx);
                             }}
                           />
                         </Nav.Link>
@@ -215,8 +231,16 @@ const QuizEdit = () => {
                     </Fragment>
                   );
                 })}
-              <Button buttonLabel="Add a Question" buttonSize="lg"  onClick={() => addQuestionFields()}/>
-              <Button buttonLabel="Change Category" buttonSize="lg" onClick={handleShow}/>
+              <Button
+                buttonLabel="Add a Question"
+                buttonSize="lg"
+                onClick={() => addQuestionFields()}
+              />
+              <Button
+                buttonLabel="Change Category"
+                buttonSize="lg"
+                onClick={handleShow}
+              />
             </div>
             {questions?.length === 0 ? (
               <div className={style.message}>
@@ -237,7 +261,12 @@ const QuizEdit = () => {
           <Link to={`/admin/quizzes/${quizId}`} className={style.cancelButton}>
             Cancel
           </Link>
-          <Button buttonLabel="Save" buttonSize="def" onClick={handleSubmit}/>
+          <Button
+            buttonLabel="Save"
+            buttonSize="def"
+            onClick={handleSubmit}
+            disabled={saved}
+          />
         </div>
       </div>
       <ChangeLocation

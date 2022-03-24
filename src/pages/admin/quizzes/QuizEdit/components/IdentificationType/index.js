@@ -1,16 +1,18 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import Form from 'react-bootstrap/Form';
-import style from '../../index.module.scss';
-import { PropTypes } from 'prop-types';
 import { Controller, useForm } from 'react-hook-form';
+import { PropTypes } from 'prop-types';
+import Form from 'react-bootstrap/Form';
 import InputField from '../../../../../../components/InputField';
+
+import style from '../../index.module.scss';
 
 const IdentificationType = ({ question, getData }) => {
   const { control } = useForm();
-  const [questionOnChange, setQuestionOnChange ] = useState({
-    question : question.question,
+  const [questionUpdated, setQuestionUpdated] = useState(false);
+  const [questionOnChange, setQuestionOnChange] = useState({
+    question: question.question,
     answer: question.text_answer,
-    questionId: question.id,
+    questionId: question.id
   });
 
   useEffect(() => {
@@ -27,22 +29,24 @@ const IdentificationType = ({ question, getData }) => {
       ...questionOnChange,
       question: e.target.value
     });
+    setQuestionUpdated(true);
   };
-  
+
   useEffect(() => {
-    if(questionOnChange){
+    if (questionUpdated) {
       getData(questionOnChange);
+      setQuestionUpdated(false);
     }
-  }, [questionOnChange]);
+  }, [questionUpdated]);
 
   const handleChangeAnswer = (e) => {
     setQuestionOnChange({
       ...questionOnChange,
       answer: e.target.value
     });
-    getData(questionOnChange);
+    setQuestionUpdated(true);
   };
-  
+
   return (
     <Fragment>
       <div>
@@ -56,7 +60,7 @@ const IdentificationType = ({ question, getData }) => {
               <InputField
                 type="text"
                 inputStyle={style.inputWidth}
-                onChange ={handleChangeQuestion}
+                onChange={handleChangeQuestion}
                 value={questionOnChange.question}
                 ref={ref}
               />
@@ -71,10 +75,10 @@ const IdentificationType = ({ question, getData }) => {
           name="text_answer"
           defaultValue={question.text_answer}
           render={({ field: { ref } }) => (
-            <InputField 
-              as="textarea" 
-              inputStyle={style.inputHeight} 
-              onChange ={handleChangeAnswer}
+            <InputField
+              as="textarea"
+              inputStyle={style.inputHeight}
+              onChange={handleChangeAnswer}
               value={questionOnChange.answer}
               ref={ref}
             />
@@ -87,7 +91,7 @@ const IdentificationType = ({ question, getData }) => {
 
 IdentificationType.propTypes = {
   question: PropTypes.object,
-  getData: PropTypes.func,
+  getData: PropTypes.func
 };
 
 export default IdentificationType;
