@@ -101,7 +101,7 @@ const CreateAdmin = () => {
           type="submit"
           disabled={submitStatus}
         />
-        <Link to="/admin/admin-accounts" className={style.cancelButton}>
+        <Link to="/admin/users" className={style.cancelButton}>
           Cancel
         </Link>
       </Form>
