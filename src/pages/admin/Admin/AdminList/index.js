@@ -3,7 +3,6 @@ import { Link, useHistory } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
 import Card from 'react-bootstrap/Card';
 import ConfirmationModal from '../../../../components/ConfirmationModal';
-import FilterDropdown from '../../../../components/FilterDropdown';
 import SearchBar from '../../../../components/SearchBar';
 import Pagination from '../../../../components/Pagination';
 import DataTable from '../../../../components/DataTable';
@@ -32,14 +31,14 @@ const AdminList = () => {
   const [search, setSearch] = useState(searchVal ? searchVal : '');
   const [sortOptions, setSortOptions] = useState({
     sortBy,
-    sortDirection
+    sortDirection,
   });
 
   const tableHeaderNames = [
     { title: 'ID', canSort: true },
     { title: 'Action', canSort: false },
     { title: 'Name', canSort: true },
-    { title: 'Email', canSort: true }
+    { title: 'Email', canSort: true },
   ];
 
   useEffect(() => {
@@ -54,7 +53,7 @@ const AdminList = () => {
     if (deleteConfirmed) {
       toast('Processing', `Deleting ${itemToDelete.name}...`);
 
-      AdminApi.deleteAdmin(itemToDelete.id) 
+      AdminApi.deleteAdmin(itemToDelete.id)
         .then(({ data }) => {
           toast('Success', data.message);
           setDeleteConfirmed(false);
@@ -76,7 +75,7 @@ const AdminList = () => {
       page,
       search,
       sortBy: sortOptions.sortBy,
-      sortDirection: sortOptions.sortDirection
+      sortDirection: sortOptions.sortDirection,
     })
       .then(({ data }) => {
         setAdminAccounts(data.data);
@@ -137,7 +136,6 @@ const AdminList = () => {
             search={search}
             setSearch={setSearch}
           />
-          <FilterDropdown dropdownLabel="Filter" />
         </Card.Header>
         <Card.Body className={style.cardBody}>
           <DataTable

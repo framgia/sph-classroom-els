@@ -127,8 +127,16 @@
   margin-left: 40px;
 }
 
+.iconLogout {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  left: 0;
+  margin-left: 70px;
+}
+
 .logoutPosition {
-  margin-top: 10rem;
+  margin-top: 13rem;
   margin-bottom: 1.4rem;
 }
 

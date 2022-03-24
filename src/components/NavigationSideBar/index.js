@@ -6,7 +6,6 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { ImUser } from 'react-icons/im';
 import { BiCategory, BiLogOutCircle, BiShieldQuarter } from 'react-icons/bi';
 import { BsCardChecklist } from 'react-icons/bs';
-import { IoIosPeople } from 'react-icons/io';
 import Cookies from 'js-cookie';
 import AdminApi from '../../api/Admin';
 
@@ -95,15 +94,6 @@ const NavigationSideBar = () => {
           </Nav.Link>
         </LinkContainer>
         <LinkContainer
-          to="#"
-          className={`${style.displayFlexRow} ${style.navItemInfo}`}
-        >
-          <Nav.Link href="#" className={style.navItem}>
-            <IoIosPeople className={style.icon} />
-            <span className={style.alignContent}>Students</span>
-          </Nav.Link>
-        </LinkContainer>
-        <LinkContainer
           to="/admin/users"
           className={`${style.displayFlexRow} ${style.navItemInfo}`}
         >
@@ -117,8 +107,7 @@ const NavigationSideBar = () => {
           className={`${style.logoutPosition} ${style.navLogout}`}
           onClick={onLogout}
         >
-          <BiLogOutCircle className={style.icon} />{' '}
-          <span className={style.alignContent}>Logout</span>
+          <BiLogOutCircle className={style.iconLogout} /> <span>Logout</span>
         </Nav.Link>
       </Container>
     </Navbar>
