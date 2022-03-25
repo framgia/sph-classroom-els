@@ -86,14 +86,14 @@ const NavigationSideBar = () => {
             <span className={style.alignContent}>Admins</span>
           </Nav.Link>
         </LinkContainer>
-        <Nav.Link
-          href="#"
-          className={`${style.logoutPosition} ${style.navLogout}`}
-          onClick={onLogout}
-        >
-          <BiLogOutCircle className={style.iconLogout} /> <span>Logout</span>
-        </Nav.Link>
       </Container>
+      <Nav.Link
+        href="#"
+        className={`${style.logoutPosition} ${style.navLogout}`}
+        onClick={onLogout}
+      >
+        <BiLogOutCircle className={style.iconLogout} /> <span>Logout</span>
+      </Nav.Link>
     </Navbar>
   );
 };
