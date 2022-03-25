@@ -68,7 +68,13 @@
   }
 
   &:nth-child(4) {
-    height: 74px;
+    line-height: 2rem;
+    max-height: 8rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden !important;
+    // text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
     padding-left: 50px;
   }
 }
