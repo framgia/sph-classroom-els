@@ -26,11 +26,11 @@ const FillInTheBlankType = ({ question, getAnswer, answer, getPoint }) => {
     <Fragment>
       <div className={style.question}>
         <p>{question.question}</p>
-        <div className="mt-5">
+        <div className="mt-5" style={{height: '42px'}}>
           <InputField
+            inputStyle={style.answerInput}
             type="text"
             value={answer}
-            fieldSize="lg"
             placeholder="Enter your answer here"
             onChange={getQuestionPoints}
           />

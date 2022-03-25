@@ -1,7 +1,7 @@
 @use '../../../../../styles/variables' as *;
 
 .card {
-  width: 500px;
+  width: 800px;
   margin-top: 130px;
 }
 
@@ -31,7 +31,7 @@
 
 .cardBody {
   padding: 30px 50px;
-  width: 500px;
+  width: 800px;
 }
 
 .timer {
@@ -97,9 +97,17 @@
   margin: 70px 0px 20px;
 }
 
+.answerInput {
+  height: 42px;
+}
+
 .choices {
-  color: #48535b;
+  color: $color-dark-blue-1;
   font-size: $font-size-base;
   font-weight: $font-weight-light;
   margin-left: 20px;
+  white-space: nowrap;
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  width: 619px;
 }
