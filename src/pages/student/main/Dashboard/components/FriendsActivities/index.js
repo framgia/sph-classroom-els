@@ -41,12 +41,12 @@ const FriendsActivities = () => {
   const renderTableData = () => {
     return friendsActivities.map((friendActivity, idx) => {
       return (
-        <tr key={idx} className={style.bodyForTheFriendsAct}>
-          <td className={style.listTable}>
+        <tr key={idx}>
+          <td>
             {iconDisplay(friendActivity.subject_type)}
             {friendActivity.description}
           </td>
-          <td className={style.forSeccolum}>
+          <td>
             <Moment fromNow>{friendActivity.created_at}</Moment>
           </td>
         </tr>
