@@ -59,7 +59,8 @@
 .cardBody {
   background-color: $color-white;
   width: 630px;
-  border-radius: 0px 0px 10px 10px;
+  min-height: 475px;
+  border-radius: 0px 0px 5px 5px;
   margin-bottom: 40px
 }
 
