@@ -19,7 +19,6 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
   const [answers, setAnswers] = useState(null);
   const [friendsScore, setFriendsScore] = useState(null);
   const [quizRelated, setQuizRelated] = useState(null);
-  const [quizzes, setQuizzes] = useState(null);
   const passing = total / 2;
 
   useEffect(() => {
@@ -33,18 +32,11 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
 
     QuizApi.getRelatedQuizzes(categoryId, quizId).then(({ data }) => {
       setQuizRelated(data.relatedQuizzes);
-      setQuizzes(data.attempts);
     });
   }, []);
 
   const viewResultsPage = () => {
     setViewResults(!viewResults);
-  };
-
-  const getAllQuizzesTakenForEveryRecentQuiz = (quiz_id) => {
-    const quizzesList = quizzes?.filter((quiz) => quiz.quiz_id === quiz_id);
-
-    return quizzesList;
   };
 
   return (
@@ -152,31 +144,25 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
           </div>
           <footer>
             <h2 className={style.relatedQuizzesText}>Related Quizzes</h2>
-            <div className={style.relatedQuizzes}>
-              {quizzes &&
-                quizRelated?.map((relatedQuiz, idx) => {
+            {quizRelated?.length === 0 ? (
+              <div className={style.noRelatedQuizzesMessageContainer}>
+                <center>
+                  <span>No Related Quizzes</span>
+                </center>
+              </div>
+            ) : (
+              <div className={style.relatedQuizzes}>
+                {quizRelated?.map((relatedQuiz, idx) => {
                   return (
                     <Recent
                       relatedQuiz={relatedQuiz}
-                      quizzes={getAllQuizzesTakenForEveryRecentQuiz(
-                        relatedQuiz.quiz_id
-                      )}
                       key={idx}
                     />
                   );
                 })}
-            </div>
+              </div>
+            )}
           </footer>
-
-          {quizRelated?.length === 0 ? (
-            <div className={style.noRelatedQuizzesMessageContainer}>
-              <center>
-                <span>No Related Quizzes</span>
-              </center>
-            </div>
-          ) : (
-            ''
-          )}
         </Container>
       ) : answers ? (
         <QuizAnswerResult

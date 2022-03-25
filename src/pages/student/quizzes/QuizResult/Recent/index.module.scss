@@ -1,4 +1,4 @@
-@use '../../../../../../styles/variables' as *;
+@use '../../../../../styles/variables' as *;
 
 .cardContainer {
   flex: 0;
@@ -7,7 +7,7 @@
 }
 
 .card {
-  width: 400px;
+  width: 295px;
 }
 
 .cardHeader {
@@ -17,15 +17,15 @@
   border-bottom-right-radius: 0px;
   filter: drop-shadow(0 1mm 1mm #48535b8c);
   margin-bottom: 4px;
-  padding: 10px 20px;
+  padding: 10px 25px;
 }
 
 .cardBody {
   color: $color-dark-blue-1;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
-  height: 130px;
-  padding: 20px;
+  height: 140px;
+  padding-bottom: 0px;
 }
 
 .cardTitle {
@@ -34,14 +34,14 @@
 }
 
 .titleHeader {
-  font-weight: $font-weight-bold;
-  font-size: $font-size-lg;
+  font-weight: bold;
+  font-size: 18px;
   color: $color-dark-blue-1;
 }
 
 .clockHeader {
-  font-size: $font-size-sm;
-  color: $color-dark-blue-1;
+  font-size: 12px;
+  color: #48535b;
   margin-top: 5px;
 }
 
@@ -53,29 +53,21 @@
 
 .titleHeader {
   font-weight: $font-weight-medium;
+  font-size: 18px;
   color: $color-dark-blue-1;
-  font-size: $font-size-lg;
-
-  display: -webkit-box;
-  max-width: 295px;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 .quizInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  padding: 10px 10px 0px 10px;
   margin-bottom: 0px;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
+  width: 265px;
 }
 
 .quizResult {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 0px;
   font-size: $font-size-base;
   font-weight: $font-weight-light;
@@ -83,28 +75,16 @@
 
 .quizLink {
   width: auto;
-  margin: 20px;
   display: flex;
   justify-content: flex-end;
-  font-weight: $font-weight-bold;
-  font-size: $font-size-base;
+  padding-right: 25px;
   color: $color-dark-blue-2;
+  margin-bottom: 9px;
+  font-weight: bold;
+  margin-top: 0px;
+  font-size: $font-size-base;
 
   &:hover {
     color: $color-dark-blue-3;
   }
-}
-
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color : $color-black;
-  gap: 10px;
-  width: 295px;
-}
-
-.loadingWord {
-  color: $color-black;
-  font-size: $font-size-base;
 }
