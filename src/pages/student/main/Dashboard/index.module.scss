@@ -24,7 +24,8 @@
 
 .card {
   width: 639px;
-  height: 475px;
+  min-height: 475px;
+  margin-bottom: 40px;
 }
 
 .cardHeader {
