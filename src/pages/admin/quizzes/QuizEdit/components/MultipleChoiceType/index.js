@@ -16,7 +16,7 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
   const [questionOnChange, setQuestionOnChange] = useState({
     question: question.question,
     questionId: question.id,
-    choices: question.choices
+    choices: question.choices,
   });
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
       ...questionOnChange,
       question: question.question,
       questionId: question.id,
-      choices: question.choices
+      choices: question.choices,
     });
   }, [question]);
 
@@ -42,7 +42,7 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
   const handleChangeQuestion = (e) => {
     setQuestionOnChange({
       ...questionOnChange,
-      question: e.target.value
+      question: e.target.value,
     });
     setQuestionUpdated(true);
   };
@@ -67,8 +67,8 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
         id: maxId,
         question_id: question.id,
         choice: '',
-        is_correct: false
-      }
+        is_correct: false,
+      },
     ]);
     setChoiceUpdated(true);
   };
@@ -85,7 +85,7 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
       if (choice.id === choiceId) {
         return {
           ...choice,
-          choice: e.target.value
+          choice: e.target.value,
         };
       }
       return choice;
@@ -100,13 +100,13 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
         // Only one is true
         return {
           ...choice,
-          is_correct: true
+          is_correct: true,
         };
       }
       // Other choices are returned false
       return {
         ...choice,
-        is_correct: false
+        is_correct: false,
       };
     });
     setChoices(updateCorrectAnswer);
@@ -167,6 +167,7 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
                     type="text"
                     value={choice.choice}
                     ref={ref}
+                    maxLength={230}
                   />
                 )}
               />
@@ -184,7 +185,7 @@ const MultipleChoiceType = ({ question, getData, onUpdateChoices }) => {
 MultipleChoiceType.propTypes = {
   question: PropTypes.object,
   getData: PropTypes.func,
-  onUpdateChoices: PropTypes.func
+  onUpdateChoices: PropTypes.func,
 };
 
 export default MultipleChoiceType;
