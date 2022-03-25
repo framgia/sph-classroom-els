@@ -1,13 +1,15 @@
+@use '../../../../../../styles/variables' as *;
+
 .card {
-  color: #48535B;
-  background-color:#E0EAEC;
+  color: $color-dark-blue-1;
+  background-color:$color-light-blue-1;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-  filter: drop-shadow(0 1mm 1mm #48535b8c);
+  filter: drop-shadow($drop-shadow);
   margin-bottom: 4px;
 }
 .card02 {
-  color: #48535B;
+  color: $color-dark-blue-1;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
   height: 140px;
@@ -18,28 +20,28 @@
 .cardTitle {
   display: flex;
   justify-content: space-between;
-  font-size: 18px;
-  font-weight: 400px;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-regular;
 }
 
 .card.fail {
-  background-color: #fad3d3;
+  background-color: $color-white-5;
 }
 
 .card.fail:hover {
-  background-color: #789e98;
-  color: white;
+  background-color: $color-light-blue-7;
+  color: $color-white;
 }
 
 .repeatDiv {
   display: flex;
   justify-content: flex-end;
   padding-right: 15px;
-  color: #5D9098;
+  color: $color-dark-blue-2;
   margin-bottom: 9px;
-  font-weight: bold;
+  font-weight: $font-weight-medium;
   margin-top: 0px;
-  font-size: 16px;
+  font-size: $font-size-base;
 }
 
 .ResultscoreCardText {
@@ -53,13 +55,26 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 0px;
-  font-size: 16px;
-  font-weight: 300;
+  font-size: $font-size-base;
+  font-weight: $font-weight-light;
 }
 
 .timeStyle{
   display: flex;
   align-items: center;
-  font-size: 12px;
+  font-size: $font-size-sm;
   gap: 5px
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color : $color-black;
+  gap: 10px
+}
+
+.loadingWord {
+  color: $color-black;
+  font-size: $font-size-base;
 }

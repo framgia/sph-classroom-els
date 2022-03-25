@@ -1,35 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import { CgTimer } from 'react-icons/cg';
+import { BsClockHistory } from 'react-icons/bs';
 import { PropTypes } from 'prop-types';
+import Col from 'react-bootstrap/Col';
+import Spinner from 'react-bootstrap/Spinner';
 
 import QuestionApi from '../../../../../api/Question';
+import QuizzesTakenReviewApi from '../../../../../api/QuizTakenReview';
 
-import style from './index.module.css';
+import style from './index.module.scss';
 
-const Recent = ({ relatedQuiz, quizzes }) => {
+const Recent = ({ relatedQuiz }) => {
+  const [QuizzesRecentReview, setQuizzesRecentReview] = useState(null);
   const [questions, setQuestions] = useState(null);
 
   useEffect(() => {
+    QuizzesTakenReviewApi.getAll(relatedQuiz.id).then(({ data }) => {
+      setQuizzesRecentReview(data.recentQuizzesTaken);
+    });
+
     QuestionApi.getAll(relatedQuiz.id).then(({ data }) => {
       setQuestions(data.data);
     });
   }, []);
 
-  const getTotalTimeLimit = () => {
-    if (questions != null) {
-      const timeLimit = questions.reduce((prev, current) => {
-        return prev.time_limit + current.time_limit;
-      });
-
-      return timeLimit;
-    }
-  };
-
   const getHighestScore = () => {
-    if (quizzes?.length > 0) {
-      const highestScore = quizzes?.reduce((prev, current) => {
+    if (QuizzesRecentReview?.length > 0) {
+      const highestScore = QuizzesRecentReview.reduce((prev, current) => {
         return prev.score > current.score ? prev : current;
       });
 
@@ -39,70 +36,91 @@ const Recent = ({ relatedQuiz, quizzes }) => {
     return 0;
   };
 
-  const getLatestScore = (quizId) => {
-    if (quizzes?.length > 0) {
-      const latestQuiz = quizzes.find((quiz) => {
-        return quiz.id === quizId;
+  const getLatestScore = () => {
+    let score = -1;
+    if (QuizzesRecentReview?.length > 0) {
+      QuizzesRecentReview?.forEach((QuizRecent) => {
+        if (relatedQuiz.id === QuizRecent.quiz_id && score === -1) {
+          score = QuizRecent.score;
+        }
       });
 
-      return latestQuiz.score;
+      return score;
     }
+  };
 
-    return 0;
+  const getTotalTimeLimit = () => {
+    if (questions != null) {
+
+      const totalTimeLimit = questions.reduce((total, questions) => {
+        return (total += questions.time_limit);
+      }, 0);
+      return totalTimeLimit;
+      
+    }
   };
 
   return (
-    <Card>
-      <Card.Header className={style.forContainerBar}>
-        <table style={{ width: '100%' }}>
-          <tbody>
-            <tr>
-              <td className={style.titleText}>{relatedQuiz.title}</td>
-              <td style={{ textAlign: 'right' }}>
-                <CgTimer size="15px" />
-                {getTotalTimeLimit()} secs
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </Card.Header>
-      <Card.Body>
-        <div>
-          <table style={{ width: '100%' }}>
-            <tbody>
-              <tr>
-                <td className={style.listTable}>Attempt</td>
-                <td className={style.forSeccolum}>{quizzes?.length}</td>
-              </tr>
-              <tr>
-                <td className={style.listTable}>Highest Score</td>
-                <td className={style.forSeccolum}>
-                  {getHighestScore()}/{questions?.length}
-                </td>
-              </tr>
-              <tr>
-                <td id={style.listTable}>Latest Score</td>
-                <td className={style.forSeccolum2}>
-                  {' '}
-                  {getLatestScore(relatedQuiz.id)}/{questions?.length}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <Link
-            to={`/categories/${relatedQuiz.category_id}/quizzes/${relatedQuiz.id}/questions`}
-          >
-            <p className={style.retake}>Take Quiz</p>
-          </Link>
+    <Col className={style.cardContainer}>
+      {questions === null ? (
+        <div className={style.loading}>
+          <Spinner animation="border" role="status"></Spinner>
+          <span className={style.loadingWord}>Loading</span>
         </div>
-      </Card.Body>
-    </Card>
+      ) : (
+        <>
+          {getTotalTimeLimit() === 0 ? (
+            ''
+          ) : (
+            <Card className={style.card}>
+              <Card.Header className={style.cardHeader}>
+                <div className={style.cardTitle}>
+                  <span className={style.titleHeader}>{relatedQuiz.title}</span>
+                  <span className={style.clockHeader}>
+                    <BsClockHistory size="15px" className={style.clockIcon} />
+                    {getTotalTimeLimit()} secs
+                  </span>
+                </div>
+              </Card.Header>
+              <Card.Body className={style.cardBody}>
+                <div className={style.quizInfo}>
+                  <div className={style.quizResult}>
+                    <p>Attempts</p>
+                    <p>{QuizzesRecentReview?.length}</p>
+                  </div>
+                  <div className={style.quizResult}>
+                    <p>Highest Score</p>
+                    <p>
+                      {getHighestScore()}/{questions?.length}
+                    </p>
+                  </div>
+                  <div className={style.quizResult} style={{ fontWeight: 'bold' }}>
+                    <p>Latest Score</p>
+                    <p>
+                      {getLatestScore() >= 0 ? getLatestScore() : 0}/
+                      {questions?.length}
+                    </p>
+                  </div>
+                </div>
+              </Card.Body>
+
+              <a 
+                href={`/categories/${relatedQuiz.category_id}/quizzes/${relatedQuiz.id}/questions`}
+                className={style.quizLink}
+              >
+                <div>Take Quiz</div>
+              </a>
+            </Card>
+          )}
+        </>
+      )}
+    </Col>
   );
 };
 
 Recent.propTypes = {
   relatedQuiz: PropTypes.object,
-  quizzes: PropTypes.array
 };
+
 
 export default Recent;

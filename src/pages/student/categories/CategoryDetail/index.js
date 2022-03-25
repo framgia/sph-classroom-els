@@ -156,7 +156,7 @@ function Subcategories() {
             </div>
           )}
           <div className={style.header}>Quizzes</div>
-          <Row className={style.cardList}>{renderQuizList()}</Row>
+          <div className={style.cardList}>{renderQuizList()}</div>
           {quizzes?.length <= 0 ? (
             <div>{noResultMessage('NO RELATED QUIZZES FOUND')}</div>
           ) : (
