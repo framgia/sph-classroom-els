@@ -62,14 +62,12 @@ function Subcategories() {
           setTotalCategoryItems(data.total);
           setLastCategoryPage(data.last_page);
         });
-        QuizApi.categoryQuizzes({ category_id: categoryId, quizzesPage }).then(
-          ({ data }) => {
-            setQuizzes(data.data);
-            setPerQuizzesPage(data.per_page);
-            setTotalQuizzesItems(data.total);
-            setLastQuizzesPage(data.last_page);
-          }
-        );
+        QuizApi.getAll(categoryId, quizzesPage).then(({ data }) => {
+          setQuizzes(data.data);
+          setPerQuizzesPage(data.per_page);
+          setTotalQuizzesItems(data.total);
+          setLastQuizzesPage(data.last_page);
+        });
       })
       .catch(() =>
         toast('Error', 'There was an error getting the list of subcategories.')
