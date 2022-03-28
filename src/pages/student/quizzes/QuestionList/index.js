@@ -66,7 +66,7 @@ const QuestionList = () => {
                   <BsFillArrowLeftSquareFill className={style.backButton} />
                 </a>
                 <div className={style.topic}>
-                  <center>{quizInfo?.title}</center>
+                  <center className={style.toTruncate}>{quizInfo?.title}</center>
                 </div>
               </Card.Header>
               <Card.Body className={style.cardBody}>
