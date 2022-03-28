@@ -121,6 +121,7 @@ function CategoryList() {
         <FilterDropdown
           dropdownItems={dropdownOptions}
           filter={sortByText}
+          onAll={false}
           setFilter={setSortBy}
         />
 
