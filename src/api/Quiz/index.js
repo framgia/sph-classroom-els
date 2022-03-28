@@ -66,23 +66,11 @@ const QuizApi = {
     return API.request(options);
   },
 
-  categoryQuizzes: ({categoryId, ...params}) => {
-    const options = {
-      method: 'GET',
-      url: `/categories/${categoryId}/categoryQuizzes`,
-      params: {
-        ...params
-      }
-    };
-
-    return API.request(options);
-  },
-
   store: () => {},
 
   update: () => {},
 
-  delete: () => {},
+  delete: () => {}
 };
 
 export default QuizApi;
