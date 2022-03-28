@@ -46,7 +46,7 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
           <div className="d-flex justify-content-center align-items-center">
             <Card>
               <div className={style.resultTopic}>
-              <center className={style.toTruncate}>{title}</center>
+                <center className={style.toTruncate}>{title}</center>
               </div>
               <Card.Body className={style.resultWholeBodyCard}>
                 <div className={style.resultUpperBodyCard}>
