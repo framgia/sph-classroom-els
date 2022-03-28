@@ -151,3 +151,11 @@
   column-gap: 50px;
   margin-bottom: 33px;
 }
+
+.messageContainer {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-white;
+}
