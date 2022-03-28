@@ -1,3 +1,5 @@
+@use '../../styles/variables' as *;
+
 .displayFlexColumn {
   display: flex;
   flex-direction: column;
@@ -10,7 +12,7 @@
 }
 
 .navbar {
-  background-color: #002037;
+  background-color: $color-dark-blue-4;
   position: fixed;
   height: 100%;
   width: 300px;
@@ -20,20 +22,14 @@
 }
 
 .title {
-  background: linear-gradient(
-    184.52deg,
-    #ffffff 3.66%,
-    rgba(198, 236, 234, 0.552072) 84.58%,
-    rgba(128, 214, 208, 0) 170.68%,
-    rgba(70, 206, 198, 0.266022) 170.7%
-  );
+  background: $color-logo;
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
   font-weight: 600;
-  font-size: 40px;
+  font-size: $font-size-logo;
   line-height: 47px;
   margin-top: 3rem;
   margin-left: 1rem;
@@ -45,8 +41,8 @@
 }
 
 .iconBackground {
-  background-color: #ffffff !important;
-  color: #ffffff !important;
+  background-color: $color-white !important;
+  color: $color-white !important;
   border-radius: 63px;
   justify-content: center;
   width: 90px;
@@ -59,14 +55,21 @@
 }
 
 .username {
-  color: white;
-  font-size: 30px;
+  color: $color-white;
+  font-size: $font-size-page-title-base;
   margin: 0px;
+  text-align: center;
+
+  display: -webkit-box;
+  max-width: 60%;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .userRole {
-  font-size: 20px;
-  color: white;
+  font-size: $font-size-xlg;
+  color: $color-white;
 }
 
 .navItemsContainer {
@@ -81,26 +84,26 @@
 
 .navItem {
   margin-top: 1rem;
-  color: white;
-  font-size: 20px;
+  color: $color-white;
+  font-size: $font-size-xlg;
   height: 50px;
   padding: 0;
   width: 100%;
 }
 
 .navItem:hover {
-  background-color: #e0eaec;
-  color: #48535b;
+  background-color: $color-light-blue-1;
+  color: $color-dark-blue-1;
 }
 
 .navItem:focus {
-  background-color: #e0eaec;
-  color: #48535b;
+  background-color: $color-light-blue-1;
+  color: $color-dark-blue-1;
 }
 
 .navLogout {
-  color: white;
-  font-size: 20px;
+  color: $color-white;
+  font-size: $font-size-xlg;
   height: 50px;
   width: 100%;
   padding: 0;
@@ -110,13 +113,13 @@
 }
 
 .navLogout:hover {
-  background-color: #e0eaec;
-  color: #48535b;
+  background-color: $color-light-blue-1;
+  color: $color-dark-blue-1;
 }
 
 .navLogout:focus {
-  background-color: #e0eaec;
-  color: #48535b;
+  background-color: $color-light-blue-1;
+  color: $color-dark-blue-1;
 }
 
 .icon {
