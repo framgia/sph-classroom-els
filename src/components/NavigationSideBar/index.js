@@ -8,7 +8,7 @@ import { BsCardChecklist } from 'react-icons/bs';
 import { AdminContext } from '../../context/adminContext';
 import AuthApi from '../../api/Auth';
 import Cookies from 'js-cookie';
-import style from './index.module.css';
+import style from './index.module.scss';
 
 const NavigationSideBar = () => {
   const toast = useToast();

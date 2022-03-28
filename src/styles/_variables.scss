@@ -24,16 +24,26 @@ $color-dark-blue-4: #002037;
 $color-dark-blue-5: #152536;
 $color-dark-blue-6: #658286;
 
+$color-logo: linear-gradient(
+    184.52deg,
+    #ffffff 3.66%,
+    rgba(198, 236, 234, 0.552072) 84.58%,
+    rgba(128, 214, 208, 0) 170.68%,
+    rgba(70, 206, 198, 0.266022) 170.7%
+  );
+
 $color-error: #e74c3c;
 
 $font-size-sm: 12px;
 $font-size-md: 14px;
 $font-size-base: 16px;
 $font-size-lg: 18px;
+$font-size-xlg: 20px;
 $font-size-page-title: 24px;
-$font-size-page-title-base:30;
+$font-size-page-title-base:30px;
 $font-size-page-title-lg: 32px;
 $font-size-page-title-xl: 36px;
+$font-size-logo: 40px;
 
 $font-weight-light: 300;
 $font-weight-regular: 400;
