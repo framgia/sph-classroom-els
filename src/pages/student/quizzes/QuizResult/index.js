@@ -145,7 +145,7 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
           <footer>
             <h2 className={style.relatedQuizzesText}>Related Quizzes</h2>
             {quizRelated?.length === 0 ? (
-              <div className={style.noRelatedQuizzesMessageContainer}>
+              <div className={style.messageContainer}>
                 <center>
                   <span>No Related Quizzes</span>
                 </center>
@@ -153,12 +153,7 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
             ) : (
               <div className={style.relatedQuizzes}>
                 {quizRelated?.map((relatedQuiz, idx) => {
-                  return (
-                    <Recent
-                      relatedQuiz={relatedQuiz}
-                      key={idx}
-                    />
-                  );
+                  return <Recent relatedQuiz={relatedQuiz} key={idx} />;
                 })}
               </div>
             )}
