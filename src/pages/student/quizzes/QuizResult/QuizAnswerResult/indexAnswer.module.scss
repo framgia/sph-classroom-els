@@ -1,5 +1,7 @@
 @use '../../../../../styles/variables' as *;
 
+@use '../../../../../styles/global-styles' as *;
+
 .card {
   width: 500px;
   margin-top: 130px;
@@ -11,6 +13,12 @@
   align-items: center;
   background-color: $color-light-blue-1;
   box-shadow: $drop-shadow;
+}
+
+.toTruncate {
+  @extend %to-truncated-title;
+  width: 287px;
+  margin-left: 75px;
 }
 
 .backButton {
@@ -26,7 +34,7 @@
   color: #48535b;
   font-size: $font-size-page-title;
   font-weight: $font-weight-semibold;
-  text-align: center;
+  display: inline-flex;
   width: 100%;
 }
 

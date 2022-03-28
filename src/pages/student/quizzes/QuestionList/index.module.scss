@@ -1,5 +1,7 @@
 @use '../../../../styles/variables' as *;
 
+@use '../../../../styles/global-styles' as *;
+
 .card {
   width: 548px;
   height: 350px;
@@ -45,4 +47,10 @@
 
 .startButton {
   float: right;
+}
+
+.toTruncate {
+  @extend %to-truncated-title;
+  width: 287px;
+  margin-left: 99px;
 }

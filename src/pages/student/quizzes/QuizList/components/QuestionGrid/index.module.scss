@@ -1,5 +1,7 @@
 @use '../../../../../../styles/variables' as *;
 
+@use '../../../../../../styles/global-styles' as *;
+
 .card {
   color: $color-dark-blue-1;
   background-color:$color-light-blue-1;
@@ -22,6 +24,11 @@
   justify-content: space-between;
   font-size: $font-size-lg;
   font-weight: $font-weight-regular;
+}
+
+.toTruncate {
+  @extend %to-truncated-title;
+  width: 214px;
 }
 
 .card.fail {

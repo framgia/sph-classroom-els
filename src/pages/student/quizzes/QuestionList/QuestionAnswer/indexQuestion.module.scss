@@ -1,5 +1,7 @@
 @use '../../../../../styles/variables' as *;
 
+@use '../../../../../styles/global-styles' as *;
+
 .card {
   width: 800px;
   margin-top: 130px;
@@ -106,8 +108,12 @@
   font-size: $font-size-base;
   font-weight: $font-weight-light;
   margin-left: 20px;
-  white-space: nowrap;
-  text-overflow: ellipsis !important;
-  overflow: hidden !important;
+  @extend %to-truncated-title;
   width: 619px;
+}
+
+.toTruncate {
+  @extend %to-truncated-title;
+  width: 287px;
+  margin-left: 215px;
 }

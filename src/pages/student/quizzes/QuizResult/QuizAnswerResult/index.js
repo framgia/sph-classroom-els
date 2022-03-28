@@ -48,7 +48,7 @@ const QuizAnswerResult = ({
           className={style.backButton}
         />
         <div className={style.title}>
-          <span>{title}</span>
+          <span className={style.toTruncate}>{title}</span>
         </div>
       </Card.Header>
       <Card.Body className={style.cardBody}>

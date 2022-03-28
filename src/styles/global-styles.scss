@@ -1,3 +1,9 @@
+
+%to-truncated-title {
+  white-space: nowrap;
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+}
 .cardContainer {
   position: absolute;
   height: 100%;

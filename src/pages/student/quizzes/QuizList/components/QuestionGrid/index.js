@@ -73,7 +73,7 @@ const QuestionGrid = ({ quiz }) => {
             <Card>
               <Card.Header className={style.card}>
                 <div className={style.cardTitle}>
-                  <div>
+                  <div className={style.toTruncate}>
                     {quiz?.title}
                   </div>
                   <div className={style.timeStyle}>

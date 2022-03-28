@@ -1,9 +1,13 @@
 @use '../../../../styles/variables' as *;
 
+@use '../../../../styles/global-styles' as *;
+
 .title {
+  @extend %to-truncated-title;
   font-size: $font-size-page-title-lg;
   font-weight: $font-weight-medium;
   color: $color-dark-blue-1;
+  width: 353px;
   margin: 0px;
 }
 
