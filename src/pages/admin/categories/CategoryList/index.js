@@ -120,12 +120,10 @@ const CategoryList = () => {
         <tr key={idx}>
           <td id={style.tableData}>{category.id}</td>
           <td id={style.actionButtonsColumn}>
-            <td>
+            <div className={style.actionButtons}>
               <Link to={`/admin/edit-category/${category.id}`}>
                 <Button buttonLabel="Edit" buttonSize="sm" />
               </Link>
-            </td>
-            <td>
               <Button
                 buttonLabel="Delete"
                 buttonSize="sm"
@@ -136,7 +134,7 @@ const CategoryList = () => {
                   setShowConfirmationModal(true);
                 }}
               />
-            </td>
+            </div>
           </td>
           <td id={style.tableData}>{category.name}</td>
           <td id={style.tableData} className={`${style.paragraphEllipsis}`}>

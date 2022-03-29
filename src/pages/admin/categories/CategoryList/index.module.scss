@@ -63,12 +63,10 @@
 
   &:nth-child(3) {
     height: 74px;
-    padding-right: 88px;
     padding-left: 60px;
   }
 
   &:nth-child(4) {
-    line-height: 2rem;
     max-height: 8rem;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -84,7 +82,10 @@
   margin-left: 60px;
 
   @extend %style-table-body;
-  @include flex(none, center, row, 11px);
+}
+
+.actionButtons {
+  @include flex(none, center, none, 20px);
 }
 
 .firstCol {
@@ -111,22 +112,21 @@
   @extend %style-table-head;
 
   &:nth-child(1) {
-    width: 77.2px;
+    width: 950px;
   }
 
   &:nth-child(2) {
-    width: 10px;
+    width: 394px;
     text-align: center;
-    padding-right: 225px;
   }
 
   &:nth-child(3) {
-    width: 250px;
+    width: 859px;
     padding-left: 60px;
   }
 
   &:nth-child(4) {
-    width: 210px;
+    width: 1000vh;
     padding-left: 50px;
   }
 }

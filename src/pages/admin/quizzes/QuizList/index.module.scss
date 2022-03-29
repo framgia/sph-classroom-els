@@ -98,13 +98,16 @@
   }
 }
 
-#buttonColumn {
+#actionButtonsColumn {
   width: 0px;
   padding-top: 10px;
   margin-left: 60px;
 
   @extend %style-table-body;
-  @include flex(none, center, row, 11px);
+}
+
+.actionButtons {
+  @include flex(none, center, none, 20px);
 }
 
 #pagination {
@@ -192,22 +195,21 @@
   @extend %style-table-head;
 
   &:nth-child(1) {
-    width: 77.2px;
+    width: 185vh;
   }
 
   &:nth-child(2) {
-    width: 10px;
+    width: 394px;
     text-align: center;
-    padding-right: 225px;
   }
 
   &:nth-child(3) {
-    width: 250px;
+    width: 117vh;
     padding-left: 60px;
   }
 
   &:nth-child(4) {
-    width: 210px;
+    width: 1000vh;
     padding-left: 50px;
   }
 }
