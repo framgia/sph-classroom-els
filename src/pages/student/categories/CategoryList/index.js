@@ -115,6 +115,7 @@ function CategoryList() {
         <SearchBar
           placeholder="Search"
           search={search}
+          inputSize="lg"
           setSearch={setSearch}
         />
 

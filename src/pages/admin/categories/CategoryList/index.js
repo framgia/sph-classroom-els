@@ -75,7 +75,7 @@ const CategoryList = () => {
       setLastPage(data.last_page);
     });
   };
-
+ 
   useEffect(() => {
     if (deleteConfirmed) {
       toast('Processing', `Deleting ${itemToDelete.name}...`);
@@ -168,6 +168,7 @@ const CategoryList = () => {
             <SearchBar
               placeholder="Search by Category name"
               search={search}
+              inputSize="lg"
               setSearch={setSearch}
             />
           </Card.Header>
