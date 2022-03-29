@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+import Button from '../Button';
 
 import style from './index.module.scss';
 
@@ -16,7 +16,8 @@ const ChangeLocation = ({
   modalHeaderTitle='Choose Location',
   type,
   isSaved,
-  setIsSaved
+  setIsSaved,
+  buttonLabel
 }) => {
   const [isRootCategory, setIsRootCategory] = useState(true);
   const [backButtonClicked, setBackButtonClicked] = useState(false);
@@ -65,25 +66,24 @@ const ChangeLocation = ({
               Go Back
             </Button>
           )}
-          <div>
+          <div className={style.ButtonStyle}>
             <Button
-              className={style.cancelButton}
               onClick={() => {
                 setLocation(null);
                 handleClose();
               }}
-            >
-              Cancel
-            </Button>
+              buttonLabel="Cancel"
+              buttonSize="sm"
+              outline={true}
+            />
             <Button
-              className={style.saveButton}
               onClick={() => {
                 setIsSaved(true);
                 handleClose();
               }}
-            >
-              Save
-            </Button>
+              buttonLabel={buttonLabel}
+              buttonSize="sm"
+            />
           </div>
         </Modal.Footer>
       </Modal>
@@ -100,7 +100,8 @@ ChangeLocation.propTypes = {
   type: PropTypes.string,
   isSaved: PropTypes.bool,
   setIsSaved: PropTypes.func,
-  modalHeaderTitle: PropTypes.string
+  modalHeaderTitle: PropTypes.string,
+  buttonLabel: PropTypes.string
 };
 
 export default ChangeLocation;

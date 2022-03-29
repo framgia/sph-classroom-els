@@ -237,6 +237,7 @@ const CategoryHierarchy = () => {
         isSaved={isSaved}
         setIsSaved={setIsSaved}
         modalHeaderTitle="Move to..."
+        buttonLabel="Save"
       />
     </div>
   );

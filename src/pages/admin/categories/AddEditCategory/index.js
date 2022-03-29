@@ -144,6 +144,11 @@ const AddEditCategory = () => {
     : 'Save Category'
   );
 
+  const locationLabel = (categoryViewType === 'Hierarchy'
+    ? 'Save'
+    : 'Apply'
+  );
+
   return (
     <div className={style.cardContainer}>
       <Card className={style.card}>
@@ -255,6 +260,7 @@ const AddEditCategory = () => {
             type={TYPE}
             isSaved={isSaved}
             setIsSaved={setIsSaved}
+            buttonLabel={locationLabel}
           />
         </div>
       </Card>
