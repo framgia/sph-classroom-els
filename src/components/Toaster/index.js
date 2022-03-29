@@ -25,7 +25,7 @@ const Toaster = () => {
   };
 
   return (
-    <ToastContainer position="bottom-end" className="mb-5 me-5">
+    <ToastContainer position="bottom-end" className="mb-5 me-5" style={{zIndex: '2000'}}>
       {toasts &&
         toasts.map((toast, idx) => {
           return (
