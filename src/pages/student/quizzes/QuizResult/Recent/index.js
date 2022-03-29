@@ -61,45 +61,49 @@ const Recent = ({ relatedQuiz }) => {
 
   return (
     <Col className={style.cardContainer}>
-      <Card className={style.card}>
-        <Card.Header className={style.cardHeader}>
-          <div className={style.cardTitle}>
-            <span className={style.titleHeader}>{relatedQuiz.title}</span>
-            <span className={style.clockHeader}>
-              <BsClockHistory size="15px" className={style.clockIcon} />
-              {getTotalTimeLimit()} secs
-            </span>
-          </div>
-        </Card.Header>
-        <Card.Body className={style.cardBody}>
-          <div className={style.quizInfo}>
-            <div className={style.quizResult}>
-              <p>Attempts</p>
-              <p>{QuizzesRecentReview?.length}</p>
+      {!getTotalTimeLimit() ? (
+        ''
+      ) : (
+        <Card className={style.card}>
+          <Card.Header className={style.cardHeader}>
+            <div className={style.cardTitle}>
+              <span className={style.titleHeader}>{relatedQuiz.title}</span>
+              <span className={style.clockHeader}>
+                <BsClockHistory size="15px" className={style.clockIcon} />
+                {getTotalTimeLimit()} secs
+              </span>
             </div>
-            <div className={style.quizResult}>
-              <p>Highest Score</p>
-              <p>
-                {getHighestScore()}/{questions?.length}
-              </p>
+          </Card.Header>
+          <Card.Body className={style.cardBody}>
+            <div className={style.quizInfo}>
+              <div className={style.quizResult}>
+                <p>Attempts</p>
+                <p>{QuizzesRecentReview?.length}</p>
+              </div>
+              <div className={style.quizResult}>
+                <p>Highest Score</p>
+                <p>
+                  {getHighestScore()}/{questions?.length}
+                </p>
+              </div>
+              <div className={style.quizResult} style={{ fontWeight: 'bold' }}>
+                <p>Latest Score</p>
+                <p>
+                  {getLatestScore() >= 0 ? getLatestScore() : 0}/
+                  {questions?.length}
+                </p>
+              </div>
             </div>
-            <div className={style.quizResult} style={{ fontWeight: 'bold' }}>
-              <p>Latest Score</p>
-              <p>
-                {getLatestScore() >= 0 ? getLatestScore() : 0}/
-                {questions?.length}
-              </p>
-            </div>
-          </div>
-        </Card.Body>
+          </Card.Body>
 
-        <a 
-          href={`/categories/${relatedQuiz.category_id}/quizzes/${relatedQuiz.id}/questions`}
-          className={style.quizLink}
-        >
-          <div>Take Quiz</div>
-        </a>
-      </Card>
+          <a 
+            href={`/categories/${relatedQuiz.category_id}/quizzes/${relatedQuiz.id}/questions`}
+            className={style.quizLink}
+          >
+            <div>Take Quiz</div>
+          </a>
+        </Card>
+      )}
     </Col>
   );
 };

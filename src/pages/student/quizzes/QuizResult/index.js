@@ -154,7 +154,7 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                 </center>
               </div>
             ) : (
-              quizRelated === null ? (
+              !quizRelated ? (
                 <div className={style.spinner}>
                   <Spinner animation="border" role="status"></Spinner>
                   <span>Loading</span>
