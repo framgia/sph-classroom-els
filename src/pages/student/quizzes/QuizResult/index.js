@@ -10,6 +10,7 @@ import FriendsScoreApi from '../../../../api/FriendsScore';
 import AnswerApi from '../../../../api/Answer';
 import QuizApi from '../../../../api/Quiz';
 import style from './index.module.scss';
+import Spinner from 'react-bootstrap/Spinner';
 
 import { QuestionsContext } from '../QuestionList';
 
@@ -153,12 +154,18 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                 </center>
               </div>
             ) : (
-              <div className={style.relatedQuizzes}>
-                {quizRelated?.map((relatedQuiz, idx) => {
-                  return <Recent relatedQuiz={relatedQuiz} key={idx} />;
-                })}
-              </div>
-            )}
+              !quizRelated ? (
+                <div className={style.spinner}>
+                  <Spinner animation="border" role="status"></Spinner>
+                  <span>Loading</span>
+                </div>
+              ) : (
+                <div className={style.relatedQuizzes}>
+                  {quizRelated?.map((relatedQuiz, idx) => {
+                    return <Recent relatedQuiz={relatedQuiz} key={idx} />;
+                  })}
+                </div>
+              ))}
           </footer>
         </Container>
       ) : answers ? (
