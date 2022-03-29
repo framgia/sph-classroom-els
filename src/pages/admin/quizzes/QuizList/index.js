@@ -159,13 +159,11 @@ const QuizList = () => {
       return (
         <tr key={idx}>
           <td id={style.tableData}>{quiz.id}</td>
-          <td id={style.buttonColumn}>
-            <center>
+          <td id={style.actionButtonsColumn}>
+            <div className={style.actionButtons}>
               <Link to={`/admin/quizzes/${quiz.id}`}>
                 <Button buttonLabel="Edit" buttonSize="sm" />
               </Link>
-            </center>
-            <center>
               <Button
                 buttonLabel="Delete"
                 buttonSize="sm"
@@ -175,7 +173,7 @@ const QuizList = () => {
                   setShowConfirmationModal(true);
                 }}
               />
-            </center>
+            </div>
           </td>
           <td id={style.tableData}>{quiz.name}</td>
           <td id={style.tableData}>{quiz.title}</td>

@@ -74,17 +74,16 @@
   font-weight: $font-weight-bold;
 
   &:first-child {
-    width: 247px;
+    width: 128px;
   }
 
   &:nth-child(2) {
-    width: 400px;
-    padding-right: 394px;
+    width: 210px;
     padding-left: 10px;
   }
 
   &:nth-child(3) {
-    width: 432px;
+    width: 245px;
   }
 }
 
