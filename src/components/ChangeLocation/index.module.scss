@@ -72,12 +72,7 @@
   }
 }
 
-.backButton {
-  margin-right: auto;
-
-  @extend %button-style;
-}
-
-.saveButton {
-  @extend %button-style;
+.ButtonStyle{
+  display: flex;
+  gap: 10px
 }
