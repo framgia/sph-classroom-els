@@ -163,7 +163,7 @@ const StudentList = () => {
     }
   };
 
-  const obtainTheQuestionType = (value) => {
+  const obtainFilteredData = (value) => {
     setFilter(value.value);
   };
 
@@ -190,7 +190,7 @@ const StudentList = () => {
               onDataNeeded={false}
               onAll={false}
               filter={choice(filter)}
-              onSetFilter={obtainTheQuestionType}
+              onSetFilter={obtainFilteredData}
             />
           </Card.Header>
           <Card.Body className={style.cardBody}>
