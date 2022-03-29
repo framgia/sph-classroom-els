@@ -146,7 +146,7 @@ const AddEditCategory = () => {
 
   const locationLabel = (categoryViewType === 'Hierarchy'
     ? 'Save'
-    : ''
+    : 'Apply'
   );
 
   return (
@@ -260,7 +260,7 @@ const AddEditCategory = () => {
             type={TYPE}
             isSaved={isSaved}
             setIsSaved={setIsSaved}
-            buttonType = {locationLabel}
+            buttonLabel = {locationLabel}
           />
         </div>
       </Card>

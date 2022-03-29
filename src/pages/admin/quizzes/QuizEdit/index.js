@@ -278,6 +278,7 @@ const QuizEdit = () => {
         type={TYPE}
         isSaved={saveLocation}
         setIsSaved={setSaveLocation}
+        buttonLabel="Apply"
       />
     </div>
   );

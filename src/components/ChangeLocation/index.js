@@ -17,7 +17,7 @@ const ChangeLocation = ({
   type,
   isSaved,
   setIsSaved,
-  buttonType
+  buttonLabel
 }) => {
   const [isRootCategory, setIsRootCategory] = useState(true);
   const [backButtonClicked, setBackButtonClicked] = useState(false);
@@ -28,11 +28,6 @@ const ChangeLocation = ({
       setIsSaved(false);
     }
   }, [show]);
-
-  const buttonLabel = (buttonType === 'Save'
-    ? 'Save'
-    : 'Apply'
-  );
 
   return (
     <Fragment>
@@ -106,7 +101,7 @@ ChangeLocation.propTypes = {
   isSaved: PropTypes.bool,
   setIsSaved: PropTypes.func,
   modalHeaderTitle: PropTypes.string,
-  buttonType: PropTypes.string
+  buttonLabel: PropTypes.string
 };
 
 export default ChangeLocation;
