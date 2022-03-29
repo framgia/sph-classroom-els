@@ -3,7 +3,6 @@ import Card from 'react-bootstrap/Card';
 import { BsClockHistory } from 'react-icons/bs';
 import { PropTypes } from 'prop-types';
 import Col from 'react-bootstrap/Col';
-import Spinner from 'react-bootstrap/Spinner';
 
 import QuestionApi from '../../../../../api/Question';
 import QuizzesTakenReviewApi from '../../../../../api/QuizTakenReview';
@@ -62,58 +61,45 @@ const Recent = ({ relatedQuiz }) => {
 
   return (
     <Col className={style.cardContainer}>
-      {questions === null ? (
-        <div className={style.loading}>
-          <Spinner animation="border" role="status"></Spinner>
-          <span className={style.loadingWord}>Loading</span>
-        </div>
-      ) : (
-        <>
-          {getTotalTimeLimit() === 0 ? (
-            ''
-          ) : (
-            <Card className={style.card}>
-              <Card.Header className={style.cardHeader}>
-                <div className={style.cardTitle}>
-                  <span className={style.titleHeader}>{relatedQuiz.title}</span>
-                  <span className={style.clockHeader}>
-                    <BsClockHistory size="15px" className={style.clockIcon} />
-                    {getTotalTimeLimit()} secs
-                  </span>
-                </div>
-              </Card.Header>
-              <Card.Body className={style.cardBody}>
-                <div className={style.quizInfo}>
-                  <div className={style.quizResult}>
-                    <p>Attempts</p>
-                    <p>{QuizzesRecentReview?.length}</p>
-                  </div>
-                  <div className={style.quizResult}>
-                    <p>Highest Score</p>
-                    <p>
-                      {getHighestScore()}/{questions?.length}
-                    </p>
-                  </div>
-                  <div className={style.quizResult} style={{ fontWeight: 'bold' }}>
-                    <p>Latest Score</p>
-                    <p>
-                      {getLatestScore() >= 0 ? getLatestScore() : 0}/
-                      {questions?.length}
-                    </p>
-                  </div>
-                </div>
-              </Card.Body>
+      <Card className={style.card}>
+        <Card.Header className={style.cardHeader}>
+          <div className={style.cardTitle}>
+            <span className={style.titleHeader}>{relatedQuiz.title}</span>
+            <span className={style.clockHeader}>
+              <BsClockHistory size="15px" className={style.clockIcon} />
+              {getTotalTimeLimit()} secs
+            </span>
+          </div>
+        </Card.Header>
+        <Card.Body className={style.cardBody}>
+          <div className={style.quizInfo}>
+            <div className={style.quizResult}>
+              <p>Attempts</p>
+              <p>{QuizzesRecentReview?.length}</p>
+            </div>
+            <div className={style.quizResult}>
+              <p>Highest Score</p>
+              <p>
+                {getHighestScore()}/{questions?.length}
+              </p>
+            </div>
+            <div className={style.quizResult} style={{ fontWeight: 'bold' }}>
+              <p>Latest Score</p>
+              <p>
+                {getLatestScore() >= 0 ? getLatestScore() : 0}/
+                {questions?.length}
+              </p>
+            </div>
+          </div>
+        </Card.Body>
 
-              <a 
-                href={`/categories/${relatedQuiz.category_id}/quizzes/${relatedQuiz.id}/questions`}
-                className={style.quizLink}
-              >
-                <div>Take Quiz</div>
-              </a>
-            </Card>
-          )}
-        </>
-      )}
+        <a 
+          href={`/categories/${relatedQuiz.category_id}/quizzes/${relatedQuiz.id}/questions`}
+          className={style.quizLink}
+        >
+          <div>Take Quiz</div>
+        </a>
+      </Card>
     </Col>
   );
 };

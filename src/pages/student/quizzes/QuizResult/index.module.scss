@@ -167,3 +167,12 @@
   @extend %to-truncated-title;
   width: 287px;
 }
+
+.spinner{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  margin-top: 50px;
+  gap: 10px
+}
