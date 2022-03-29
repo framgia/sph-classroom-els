@@ -16,14 +16,14 @@ import { QuestionsContext } from '../QuestionList';
 
 const QuizResult = ({ score, total, quizId, categoryId }) => {
   const [viewResults, setViewResults] = useState(false);
-  const { quizTakenId, title } = useContext(QuestionsContext);
+  const quizInfo = useContext(QuestionsContext);
   const [answers, setAnswers] = useState(null);
   const [friendsScore, setFriendsScore] = useState(null);
   const [quizRelated, setQuizRelated] = useState(null);
   const passing = total / 2;
 
   useEffect(() => {
-    AnswerApi.getAll(quizTakenId).then(({ data }) => {
+    AnswerApi.getAll(quizInfo?.quizTakenId).then(({ data }) => {
       setAnswers(data.data);
     });
 
@@ -47,7 +47,7 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
           <div className="d-flex justify-content-center align-items-center">
             <Card>
               <div className={style.resultTopic}>
-                <center className={style.toTruncate}>{title}</center>
+                <center className={style.toTruncate}>{quizInfo?.title}</center>
               </div>
               <Card.Body className={style.resultWholeBodyCard}>
                 <div className={style.resultUpperBodyCard}>

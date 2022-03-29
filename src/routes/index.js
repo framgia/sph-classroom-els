@@ -192,7 +192,7 @@ const Routes = () => {
         component={QuestionAnswer}
       ></StudentRoute>
       <StudentRoute
-        path="/categories/:id/quizzes/:id/results"
+        path="/categories/:categoryID/quizzes/:quizID/results/:quizTakenID"
         exact
         component={QuizResult}
       ></StudentRoute>
