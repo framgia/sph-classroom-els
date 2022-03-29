@@ -260,7 +260,7 @@ const AddEditCategory = () => {
             type={TYPE}
             isSaved={isSaved}
             setIsSaved={setIsSaved}
-            buttonLabel = {locationLabel}
+            buttonLabel={locationLabel}
           />
         </div>
       </Card>
