@@ -53,7 +53,17 @@ const QuizzesCard = ({ category_id, quiz }) => {
       const totalTimeLimit = questions.reduce((total, questions) => {
         return (total += questions.time_limit);
       }, 0);
-      return totalTimeLimit;
+
+      if (totalTimeLimit >= 60) {
+        const mins = totalTimeLimit / 60;
+        const secs = totalTimeLimit % 60;
+
+        return secs > 0
+          ? `${parseInt(mins)} min/s and ${secs} secs`
+          : `${parseInt(mins)} min/s`;
+      } else {
+        return `${totalTimeLimit} secs`;
+      }
     }
   };
 
@@ -65,7 +75,7 @@ const QuizzesCard = ({ category_id, quiz }) => {
             <span className={style.titleHeader}>{quiz?.title}</span>
             <span className={style.clockHeader}>
               <BsClockHistory size="15px" className={style.clockIcon} />
-              {getTotalTimeLimit()} secs
+              {getTotalTimeLimit()}
             </span>
           </div>
         </Card.Header>

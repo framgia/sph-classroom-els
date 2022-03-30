@@ -57,7 +57,7 @@
   font-size: $font-size-lg;
 
   display: -webkit-box;
-  max-width: 278px;
+  max-width: 220px;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -99,7 +99,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color : $color-black;
+  color: $color-black;
   gap: 10px;
   width: 295px;
 }
