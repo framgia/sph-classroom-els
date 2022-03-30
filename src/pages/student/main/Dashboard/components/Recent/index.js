@@ -10,6 +10,7 @@ import style from './index.module.scss';
 
 const Recent = ({ recentQuizzes, quizzes }) => {
   const [questions, setQuestions] = useState(null);
+  const passing = questions?.length / 2;
 
   useEffect(() => {
     QuestionApi.getAll(recentQuizzes.quiz_id).then(({ data }) => {
@@ -73,11 +74,15 @@ const Recent = ({ recentQuizzes, quizzes }) => {
               <tr>
                 <td id={style.listTable}></td>
                 <td>
-                  <Link
-                    to={`/categories/${recentQuizzes.category_id}/quizzes/${recentQuizzes.quiz_id}/questions`}
-                  >
-                    <p className={style.retake}>Retake Quiz</p>
-                  </Link>
+                  {recentQuizzes.score < passing ? (
+                    <Link
+                      to={`/categories/${recentQuizzes.category_id}/quizzes/${recentQuizzes.quiz_id}/questions`}
+                    >
+                      <p className={style.retake}>Retake Quiz</p>
+                    </Link>
+                  ) : (
+                    ''
+                  )}
                 </td>
               </tr>
             </tbody>
@@ -90,7 +95,7 @@ const Recent = ({ recentQuizzes, quizzes }) => {
 
 Recent.propTypes = {
   recentQuizzes: PropTypes.object,
-  quizzes: PropTypes.array
+  quizzes: PropTypes.array,
 };
 
 export default Recent;

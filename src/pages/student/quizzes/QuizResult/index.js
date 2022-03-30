@@ -136,11 +136,15 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                     buttonSize="def"
                     onClick={() => viewResultsPage()}
                   />
-                  <a
-                    href={`/categories/${categoryId}/quizzes/${quizId}/questions`}
-                  >
-                    <Button buttonLabel="Retake Quiz" buttonSize="def" />
-                  </a>
+                  {score < passing ? (
+                    <a
+                      href={`/categories/${categoryId}/quizzes/${quizId}/questions`}
+                    >
+                      <Button buttonLabel="Retake Quiz" buttonSize="def" />
+                    </a>
+                  ) : (
+                    ''
+                  )}
                 </div>
               </Card.Body>
             </Card>
@@ -153,19 +157,18 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                   <span>No Related Quizzes</span>
                 </center>
               </div>
+            ) : !quizRelated ? (
+              <div className={style.spinner}>
+                <Spinner animation="border" role="status"></Spinner>
+                <span>Loading</span>
+              </div>
             ) : (
-              !quizRelated ? (
-                <div className={style.spinner}>
-                  <Spinner animation="border" role="status"></Spinner>
-                  <span>Loading</span>
-                </div>
-              ) : (
-                <div className={style.relatedQuizzes}>
-                  {quizRelated?.map((relatedQuiz, idx) => {
-                    return <Recent relatedQuiz={relatedQuiz} key={idx} />;
-                  })}
-                </div>
-              ))}
+              <div className={style.relatedQuizzes}>
+                {quizRelated?.map((relatedQuiz, idx) => {
+                  return <Recent relatedQuiz={relatedQuiz} key={idx} />;
+                })}
+              </div>
+            )}
           </footer>
         </Container>
       ) : answers ? (
@@ -188,7 +191,7 @@ QuizResult.propTypes = {
   score: PropTypes.number,
   total: PropTypes.number,
   quizId: PropTypes.number,
-  categoryId: PropTypes.number
+  categoryId: PropTypes.number,
 };
 
 export default QuizResult;
