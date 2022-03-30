@@ -38,9 +38,11 @@ const AddEditCategory = () => {
   const toast = useToast();
 
   useEffect(() => {
-    if (isSaved) {
+    if (isSaved && location) {
       setParentCategoryID(location?.id);
       setLocation(null);
+    } else {
+      setParentCategoryID(null);
     }
   }, [location, isSaved]);
 
