@@ -149,7 +149,6 @@ const AdminList = () => {
           <SearchBar
             placeholder="Search by name or email"
             search={search}
-            inputSize="lg"
             setSearch={setSearch}
           />
         </Card.Header>

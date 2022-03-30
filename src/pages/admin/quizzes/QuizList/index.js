@@ -208,7 +208,6 @@ const QuizList = () => {
               <SearchBar
                 placeholder="Filter by name"
                 search={search}
-                inputSize="lg"
                 setSearch={setSearch}
               />
               <FilterDropdown

@@ -137,7 +137,6 @@ const StudentList = () => {
   };
 
   const choice = (option) => {
-    // console.log(filter);
     switch (option) {
     case '':
       return 'All';

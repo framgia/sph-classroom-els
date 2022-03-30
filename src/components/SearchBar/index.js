@@ -21,7 +21,7 @@ import style from './index.module.scss';
     > inputSize     : Put a value such as lg, md, and sm.
 */
 
-const SearchBar = ({ placeholder, search, setSearch, inputSize, sourceDesign}) => {
+const SearchBar = ({ placeholder, search, setSearch, inputSize = 'lg', sourceDesign}) => {
   const [searchValue, setSearchValue] = useState(search);
 
   const onSearchSubmit = (e) => {
@@ -60,8 +60,8 @@ SearchBar.propTypes = {
   placeholder: PropTypes.string,
   search: PropTypes.string,
   setSearch: PropTypes.func,
-  inputSize: PropTypes.any,
-  sourceDesign: PropTypes.any
+  inputSize: PropTypes.string,
+  sourceDesign: PropTypes.string
 };
 
 export default SearchBar;

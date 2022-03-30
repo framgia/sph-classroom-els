@@ -168,7 +168,6 @@ const CategoryList = () => {
             <SearchBar
               placeholder="Search by Category name"
               search={search}
-              inputSize="lg"
               setSearch={setSearch}
             />
           </Card.Header>
