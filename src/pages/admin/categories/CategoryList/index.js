@@ -153,6 +153,7 @@ const CategoryList = () => {
         itemToDelete={itemToDelete.name}
         setDeleteConfirmed={setDeleteConfirmed}
         canDelete={canDelete}
+        deleteMessage="because it has subcategory"
       />
       <div>
         <div className={style.header}>

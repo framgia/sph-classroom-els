@@ -152,6 +152,7 @@ const CategoryHierarchy = () => {
         itemToDelete={itemToDelete.name}
         setDeleteConfirmed={setDeleteConfirmed}
         canDelete={canDelete}
+        deleteMessage="because it has subcategory"
       />
       <section className={style.headerSection}>
         <span className={style.pageTitle}>Category Hierarchy</span>

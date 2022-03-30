@@ -32,7 +32,7 @@ const NavigationSideBar = () => {
         E-LEARNING
       </Navbar.Brand>
       <div>
-        <div className={`${style.displayFlexColumn} ${style.adminInfo}`}>
+        <div className={style.adminInfo}>
           <p className={style.username}>{name}</p>
           <p className={style.userRole}>Admin</p>
         </div>

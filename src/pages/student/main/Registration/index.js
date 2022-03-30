@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useForm, Controller } from 'react-hook-form';
 import { useToast } from '../../../../hooks/useToast';
-import Alert from 'react-bootstrap/Alert';
 import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
 import Form from 'react-bootstrap/Form';
@@ -18,19 +17,11 @@ const Registration = () => {
   const toast = useToast();
 
   const [errors, setErrors] = useState({});
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
   const [submitStatus, setSubmitStatus] = useState(false);
-
-  const showAlertDialog = (isShow, message) => {
-    setShowAlert(isShow);
-    setAlertMessage(message);
-  };
 
   const handleOnSubmit = ({ name, email, password, password_confirmation }) => {
     toast('Processing', 'Creating your account...');
     setSubmitStatus(true);
-    setShowAlert(false);
     setErrors({});
 
     AuthApi.register({ name, email, password, password_confirmation })
@@ -43,26 +34,12 @@ const Registration = () => {
         setSubmitStatus(false);
         if (error?.response?.data?.errors) {
           setErrors(error?.response?.data?.errors);
-        } else if (error?.response?.data?.error) {
-          showAlertDialog(true, error?.response?.data?.error?.message);
-        } else {
-          showAlertDialog(true, 'An error has occurred.');
         }
       });
   };
 
   return (
     <div className="d-flex justify-content-center align-items-center">
-      {showAlert && (
-        <Alert
-          className="mx-4 my-4"
-          variant="danger"
-          onClose={() => setShowAlert(false)}
-          dismissible
-        >
-          {alertMessage}
-        </Alert>
-      )}
       <div>
         <Container id={style.container}>
           <Stack id={style.formCard}>

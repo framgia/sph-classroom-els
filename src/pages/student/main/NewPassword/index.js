@@ -3,7 +3,6 @@ import { useForm, Controller } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
 import Container from 'react-bootstrap/Container';
-import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form';
 import Button from '../../../../components/Button';
 import InputField from '../../../../components/InputField';
@@ -18,19 +17,11 @@ const NewPassword = () => {
   const toast = useToast();
 
   const [errors, setErrors] = useState({});
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
   const [submitStatus, setSubmitStatus] = useState(false);
-
-  const showAlertDialog = (isShow, message) => {
-    setShowAlert(isShow);
-    setAlertMessage(message);
-  };
 
   const handleOnSubmit = ({ email, password, password_confirmation }) => {
     toast('Processing', 'Changing your password...');
     setSubmitStatus(true);
-    setShowAlert(false);
     setErrors({});
 
     const values = {
@@ -53,24 +44,12 @@ const NewPassword = () => {
         setSubmitStatus(false);
         if (error?.response?.data?.errors) {
           setErrors(error?.response?.data?.errors);
-        } else {
-          showAlertDialog(true, 'Incorrect Email.');
         }
       });
   };
 
   return (
     <Container>
-      {showAlert && (
-        <Alert
-          className={style.alert}
-          variant="danger"
-          onClose={() => setShowAlert(false)}
-          dismissible
-        >
-          {alertMessage}
-        </Alert>
-      )}
       <div className="d-flex justify-content-center align-items-center">
         <Form
           onSubmit={handleSubmit(handleOnSubmit)}
