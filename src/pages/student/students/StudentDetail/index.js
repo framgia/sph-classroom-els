@@ -143,10 +143,12 @@ const StudentDetail = () => {
                         width="20px"
                         height="20px"
                       />
-                      <span className={style.activityDescription}>
-                        {' '}
-                        Answered {quizTaken.title} Quiz{' '}
-                      </span>{' '}
+                      <span
+                        title={quizTaken.title}
+                        className={style.activityDescription}
+                      >
+                        Answered {quizTaken.title}
+                      </span>
                     </h6>
                     <div id={style.timestamp}>
                       <Moment fromNow>{quizTaken.created_at}</Moment>
@@ -172,13 +174,15 @@ const StudentDetail = () => {
                   <div className={style.activityInfoAlignment} key={idx}>
                     <h6 className={style.activityInfo}>
                       {iconDisplay(recentActivity.subject_type)}
-                      <span className={style.activityDescription}>
-                        {' '}
-                        {recentActivity.description}{' '}
-                      </span>{' '}
+                      <span
+                        title={recentActivity.properties.quiz?.title}
+                        className={style.activityDescription}
+                      >
+                        {recentActivity.description}
+                      </span>
                     </h6>
                     <div id={style.timestamp}>
-                      <Moment fromNow>{recentActivity.created_at}</Moment>{' '}
+                      <Moment fromNow>{recentActivity.created_at}</Moment>
                     </div>
                   </div>
                 );

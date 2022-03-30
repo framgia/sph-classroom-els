@@ -11,17 +11,21 @@ import style from './indexAnswer.module.scss';
 import { QuestionsContext } from '../../QuestionList';
 
 const QuizAnswerResult = ({
+  quizQuestions = null,
+  title = null,
   answers,
   score,
   total,
   categoryId,
   viewResultsPage
 }) => {
+  const quizInfo = useContext(QuestionsContext);
+  const questions = quizQuestions || quizInfo.questions;
+  const passingScore = total / 2;
+
   const [page, setPage] = useState(1);
-  const { questions, title } = useContext(QuestionsContext);
   const [question, setQuestion] = useState(questions[page - 1]);
   const [answer, setAnswer] = useState(answers[page - 1]);
-  const passingScore = total / 2;
 
   const handlePrevButtonClick = () => {
     if (page <= 1) return;
@@ -48,7 +52,7 @@ const QuizAnswerResult = ({
           className={style.backButton}
         />
         <div className={style.title}>
-          <span className={style.toTruncate}>{title}</span>
+          <span className={style.toTruncate}>{title || quizInfo.title}</span>
         </div>
       </Card.Header>
       <Card.Body className={style.cardBody}>
@@ -108,6 +112,8 @@ const QuizAnswerResult = ({
 
 QuizAnswerResult.propTypes = {
   viewResultsPage: PropTypes.any,
+  quizQuestions: PropTypes.array,
+  title: PropTypes.string,
   answers: PropTypes.array,
   score: PropTypes.number,
   total: PropTypes.number,

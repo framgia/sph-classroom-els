@@ -104,6 +104,16 @@
   overflow: hidden;
 }
 
+.activitySubject {
+  color: $color-dark-blue-1;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-black;
+    font-weight: $font-weight-medium;
+  }
+}
+
 .userInfo {
   display: flex;
   flex-direction: column;

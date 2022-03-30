@@ -95,6 +95,7 @@
 .tableBody {
   background-color: $color-white;
   width: 630px;
+  min-height: 475px;
   border-radius: 0px 0px 10px 10px;
   margin-bottom: 40px;
 }
@@ -112,14 +113,21 @@
 .activityInfo {
   margin-top: 20px;
   margin-left: 17px;
+  cursor: default;
+
+  display: -webkit-box;
+  max-width: 450px;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 #timestamp {
+  order: 2;
   margin-top: 20px;
+  margin-left: auto;
   margin-right: 17px;
   font-size: $font-size-md;
-  order: 2;
-  margin-left: auto;
 }
 
 .noActivityMessage {

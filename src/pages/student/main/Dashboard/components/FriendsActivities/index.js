@@ -7,6 +7,8 @@ import style from './index.module.scss';
 import DataTable from '../../../../../../components/DataTable';
 
 const FriendsActivities = () => {
+  const ACTIVITY_TYPE = 'App\\Models\\Quiz';
+
   const [friendsActivities, setFriendsActivites] = useState(null);
   const [sortOptions, setSortOptions] = useState({});
 
@@ -19,7 +21,7 @@ const FriendsActivities = () => {
   }, []);
 
   const iconDisplay = (activityDetail) => {
-    if (activityDetail === 'App\\Models\\Quiz') {
+    if (activityDetail === ACTIVITY_TYPE) {
       return (
         <img
           className={style.activityIcon}
@@ -42,11 +44,14 @@ const FriendsActivities = () => {
     return friendsActivities.map((friendActivity, idx) => {
       return (
         <tr key={idx}>
-          <td>
+          <td
+            title={friendActivity.properties.quiz?.title}
+            className={style.activityDescription}
+          >
             {iconDisplay(friendActivity.subject_type)}
             {friendActivity.description}
           </td>
-          <td>
+          <td className={style.timestamp}>
             <Moment fromNow>{friendActivity.created_at}</Moment>
           </td>
         </tr>

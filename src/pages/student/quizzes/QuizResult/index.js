@@ -14,7 +14,15 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import { QuestionsContext } from '../QuestionList';
 
-const QuizResult = ({ score, total, quizId, categoryId }) => {
+const QuizResult = ({
+  quizTakenID = null,
+  title = null,
+  questions,
+  score,
+  total,
+  quizId,
+  categoryId
+}) => {
   const [viewResults, setViewResults] = useState(false);
   const quizInfo = useContext(QuestionsContext);
   const [answers, setAnswers] = useState(null);
@@ -23,7 +31,7 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
   const passing = total / 2;
 
   useEffect(() => {
-    AnswerApi.getAll(quizInfo?.quizTakenId).then(({ data }) => {
+    AnswerApi.getAll(quizTakenID || quizInfo.quizTakenId).then(({ data }) => {
       setAnswers(data.data);
     });
 
@@ -47,7 +55,9 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
           <div className="d-flex justify-content-center align-items-center">
             <Card>
               <div className={style.resultTopic}>
-                <center className={style.toTruncate}>{quizInfo?.title}</center>
+                <center className={style.toTruncate}>
+                  {title || quizInfo.title}
+                </center>
               </div>
               <Card.Body className={style.resultWholeBodyCard}>
                 <div className={style.resultUpperBodyCard}>
@@ -171,6 +181,8 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
       ) : answers ? (
         <QuizAnswerResult
           viewResultsPage={viewResultsPage}
+          title={title}
+          quizQuestions={questions}
           answers={answers}
           score={score}
           total={total}
@@ -185,6 +197,9 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
 };
 
 QuizResult.propTypes = {
+  quizTakenID: PropTypes.number,
+  title: PropTypes.string,
+  questions: PropTypes.array,
   score: PropTypes.number,
   total: PropTypes.number,
   quizId: PropTypes.number,
