@@ -18,6 +18,7 @@ import Button from '../Button';
     itemToDelete         :    pass a string value such as the Quiz Name, Admin Name or Category Name of the item to be deleted to display in the modal.
     setDeleteConfirmed   :    pass the setter function of the state holding the boolean value to determine whether to confirm deletion.
     canDelete            :    pass boolean such as true or false.
+    deleteMessage        :    pass a string to customize your delete message
 */
 
 const ConfirmationModal = ({
@@ -25,7 +26,8 @@ const ConfirmationModal = ({
   setShowModal,
   itemToDelete,
   setDeleteConfirmed,
-  canDelete = true
+  canDelete = true,
+  deleteMessage
 }) => {
   return (
     <Modal
@@ -47,7 +49,7 @@ const ConfirmationModal = ({
           </p>
         ) : (
           <p>
-            Cannot delete <strong>{itemToDelete}</strong>
+            Cannot delete <strong>{deleteMessage}</strong>
           </p>
         )}
       </Modal.Body>
@@ -81,7 +83,8 @@ ConfirmationModal.propTypes = {
   itemToDelete: PropTypes.string,
   setDeleteConfirmed: PropTypes.func,
   message: PropTypes.string,
-  canDelete: PropTypes.bool
+  canDelete: PropTypes.bool,
+  deleteMessage: PropTypes.string
 };
 
 export default ConfirmationModal;

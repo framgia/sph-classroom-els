@@ -166,14 +166,14 @@ const QuizEdit = () => {
   };
 
   const handleSubmit = () => {
-    toast('Processing', 'Updating questions...');
+    toast('Processing', 'Updating quiz...');
     setSaved(true);
 
     QuestionApi.editQuestion(questions, quizId, changeCategoryId)
       .then(({ data }) => {
         setSaved(false);
         setQuestions(data);
-        toast('Success', 'Successfully updated questions');
+        toast('Success', 'Successfully updated quiz');
         window.location = `/admin/quizzes/${quizId}`;
       })
       .catch((error) => {

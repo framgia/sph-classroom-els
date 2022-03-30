@@ -4,7 +4,6 @@ import { useToast } from '../../../../hooks/useToast';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useForm, Controller } from 'react-hook-form';
 import Container from 'react-bootstrap/Container';
-import Alert from 'react-bootstrap/Alert';
 import Stack from 'react-bootstrap/Stack';
 import Form from 'react-bootstrap/Form';
 import InputField from '../../../../components/InputField';
@@ -17,19 +16,11 @@ const Login = () => {
   const { control, handleSubmit } = useForm();
 
   const [error, setError] = useState({});
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
   const [submitStatus, setSubmitStatus] = useState(false);
-
-  const showAlertDialog = (isShow, message) => {
-    setShowAlert(isShow);
-    setAlertMessage(message);
-  };
 
   const handleOnSubmit = ({ email, password }) => {
     toast('Processing', 'Logging in...');
     setSubmitStatus(true);
-    setShowAlert(false);
     setError('');
 
     AuthApi.login({
@@ -48,29 +39,12 @@ const Login = () => {
         setSubmitStatus(false);
         if (error?.response?.data?.error) {
           setError(error?.response?.data?.error);
-          showAlertDialog(
-            true,
-            error?.response?.data?.error?.unauthorized ||
-              'Incorrect Credentials'
-          );
-        } else {
-          showAlertDialog(true, 'An error has occurred.');
         }
       });
   };
 
   return (
     <div className="d-flex justify-content-center align-items-center">
-      {showAlert && (
-        <Alert
-          className={style.alert}
-          variant="danger"
-          onClose={() => setShowAlert(false)}
-          dismissible
-        >
-          {alertMessage}
-        </Alert>
-      )}
       <div>
         <Container id={style.container}>
           <Stack id={style.formCard}>
