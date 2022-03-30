@@ -61,7 +61,7 @@ const StudentsApi = {
   updatePassword: ({ password, new_password, password_confirmation }) => {
     const options = {
       method: 'PATCH',
-      url: '/admin/password-edit',
+      url: '/edit/password',
       data: {
         password: password,
         new_password: new_password,
