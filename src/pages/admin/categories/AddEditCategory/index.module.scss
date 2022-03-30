@@ -3,8 +3,6 @@
 @use '../../../../styles/global-styles' as *;
 
 %input-field-style {
-  border: 0;
-  background-color: $color-white-2;
   font-size: $font-size-base;
 }
 
@@ -26,9 +24,9 @@
 }
 
 .headerText {
-  display: flex;
-  justify-content: center;
-  width: 100%;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 500;
 }
 
 .backArrow {
@@ -75,10 +73,6 @@
   resize: none;
 
   @extend %input-field-style;
-
-  &:focus {
-    background-color: $color-white-2;
-  }
 }
 
 .button {

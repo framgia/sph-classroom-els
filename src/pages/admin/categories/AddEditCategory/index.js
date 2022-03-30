@@ -139,31 +139,26 @@ const AddEditCategory = () => {
     }
   };
 
-  const buttonLabel = (loc.pathname === '/admin/add-category'
-    ? 'Add Category'
-    : 'Save Category'
-  );
+  const buttonLabel =
+    loc.pathname === '/admin/add-category' ? 'Add Category' : 'Save Category';
 
-  const locationLabel = (categoryViewType === 'Hierarchy'
-    ? 'Save'
-    : 'Apply'
-  );
+  const locationLabel = categoryViewType === 'Hierarchy' ? 'Save' : 'Apply';
 
   return (
     <div className={style.cardContainer}>
+      <div className={style.headerText}>
+        <span>
+          {loc.pathname === '/admin/add-category'
+            ? 'Add a Category'
+            : 'Edit Category'}
+        </span>
+      </div>
       <Card className={style.card}>
         <Card.Header className={style.header}>
           <div>
             <a href="/admin/categories">
               <BsFillArrowLeftSquareFill className={style.backArrow} />
             </a>
-          </div>
-          <div className={style.headerText}>
-            <span>
-              {loc.pathname === '/admin/add-category'
-                ? 'Add a Category'
-                : 'Edit Category'}
-            </span>
           </div>
         </Card.Header>
         <Card.Body className={style.cardBody}>
@@ -240,7 +235,7 @@ const AddEditCategory = () => {
                   type="submit"
                   disabled={submitStatus}
                   buttonSize="def"
-                  buttonLabel = {buttonLabel}
+                  buttonLabel={buttonLabel}
                 />
               </Form>
             ) : (
