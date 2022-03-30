@@ -6,9 +6,9 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 
 import style from './index.module.scss';
-import AdminApi from '../../../../api/Admin';
 import Button from '../../../../components/Button';
 import InputField from '../../../../components/InputField';
+import StudentsApi from '../../../../api/Student';
 
 const UsersEdit = () => {
   const { control, handleSubmit, reset } = useForm();
@@ -27,7 +27,7 @@ const UsersEdit = () => {
     toast('Processing', 'Updating your current password...');
     setErrors({});
 
-    await AdminApi.updatePassword({
+    await StudentsApi.updatePassword({
       password,
       new_password,
       password_confirmation
