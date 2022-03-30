@@ -39,8 +39,12 @@ const AddEditCategory = () => {
 
   useEffect(() => {
     if (isSaved) {
-      setParentCategoryID(location?.id);
-      setLocation(null);
+      if (location) {
+        setParentCategoryID(location?.id);
+        setLocation(null);
+      } else {
+        setParentCategoryID(null);
+      }
     }
   }, [location, isSaved]);
 
