@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
+import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 import Button from '../../../../components/Button';
 import QuizAnswerResult from './QuizAnswerResult';
 import Recent from '../QuizResult/Recent/index';
@@ -15,6 +16,8 @@ import Spinner from 'react-bootstrap/Spinner';
 import { QuestionsContext } from '../QuestionList';
 
 const QuizResult = ({
+  hideQuizResult = null,
+  forProfile = false,
   quizTakenID = null,
   title = null,
   questions,
@@ -55,6 +58,14 @@ const QuizResult = ({
           <div className="d-flex justify-content-center align-items-center">
             <Card>
               <div className={style.resultTopic}>
+                {forProfile ? (
+                  <BsFillArrowLeftSquareFill
+                    onClick={hideQuizResult}
+                    className={style.backButton}
+                  />
+                ) : (
+                  ''
+                )}
                 <center className={style.toTruncate}>
                   {title || quizInfo.title}
                 </center>
@@ -197,6 +208,8 @@ const QuizResult = ({
 };
 
 QuizResult.propTypes = {
+  hideQuizResult: PropTypes.func,
+  forProfile: PropTypes.bool,
   quizTakenID: PropTypes.number,
   title: PropTypes.string,
   questions: PropTypes.array,

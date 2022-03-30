@@ -195,6 +195,7 @@ const ProfileDetail = () => {
         </Fragment>
       ) : (
         <QuizResult
+          hideQuizResult={() => setShowQuizResult(false)}
           quizTakenID={parseInt(quizInfo.quizTakenID)}
           categoryId={parseInt(quizInfo.category_id)}
           quizId={parseInt(quizInfo.quiz_id)}
@@ -202,6 +203,7 @@ const ProfileDetail = () => {
           title={quizInfo.title}
           score={quizInfo.score}
           total={quizInfo.total}
+          forProfile={true}
         />
       )}
     </div>
