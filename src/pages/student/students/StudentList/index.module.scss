@@ -130,16 +130,9 @@
 }
 
 .button {
-  float: right;
   margin-right: 5px;
-  margin-left: auto;
+  margin-left: 267px;
   margin-top: 13px;
-  width: 80px;
-  height: 28px;
-  border: $color-black;
-  background-color: $color-light-blue-2;
-  border-radius: 2px;
-  color: $color-dark-blue-1;
 }
 
 .button:hover {
@@ -165,4 +158,16 @@
   margin: 15px 0px;
   position: absolute;
   top: 700px;
+}
+
+.inputHieght {
+  height: 42px;
+}
+
+.dropdownButtonStyle {
+  width: 117px;
+}
+
+.dropdownMenuStyle {
+  width: 117px;
 }

@@ -75,7 +75,7 @@ const CategoryList = () => {
       setLastPage(data.last_page);
     });
   };
-
+ 
   useEffect(() => {
     if (deleteConfirmed) {
       toast('Processing', `Deleting ${itemToDelete.name}...`);

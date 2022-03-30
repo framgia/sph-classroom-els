@@ -2,24 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useToast } from '../../../../hooks/useToast';
 import { Card } from 'react-bootstrap';
-import { Dropdown } from 'react-bootstrap';
-import { VscFilter } from 'react-icons/vsc';
-import { BiSearch } from 'react-icons/bi';
-import Button from '@restart/ui/esm/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import Pagination from '../../../../components/Pagination';
 
 import style from './index.module.scss';
 
 import StudentApi from '../../../../api/Student';
+import SearchBar from '../../../../components/SearchBar';
+import FilterDropdown from '../../../../components/FilterDropdown';
+import Button from '../../../../components/Button';
 
 const StudentList = () => {
   const queryParams = new URLSearchParams(window.location.search);
   const pageNum = queryParams.get('page');
   const filterVal = queryParams.get('filter');
   const searchVal = queryParams.get('search');
-  const history = useHistory();
 
+  const history = useHistory();
   const toast = useToast();
 
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
@@ -43,19 +42,12 @@ const StudentList = () => {
         setLastPage(data.last_page);
       }
     );
-  }, [status, page, filter]);
+  }, [status, page, filter, search]);
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
 
     history.push(`?page=${selected + 1}&filter=${filter}&search=${search}`);
-  };
-
-  const onSearchSubmit = (e) => {
-    e.preventDefault();
-
-    setStatus(!status);
-    setPage(1);
   };
 
   const onFollowClick = (userid, name) => {
@@ -80,26 +72,24 @@ const StudentList = () => {
     if (status) {
       return (
         <Button
-          className={style.button}
-          variant="primary"
+          buttonLabel="Unfollow"
+          buttonStyle={style.button}
+          buttonSize="sm"
           onClick={() => {
             onUnfollowClick(userid, name);
           }}
-        >
-          Unfollow
-        </Button>
+        />
       );
     } else {
       return (
         <Button
-          className={style.button}
-          variant="primary"
+          buttonLabel="Follow"
+          buttonStyle={style.button}
+          buttonSize="sm"
           onClick={() => {
             onFollowClick(userid, name);
           }}
-        >
-          Follow
-        </Button>
+        />
       );
     }
   };
@@ -172,6 +162,10 @@ const StudentList = () => {
     }
   };
 
+  const obtainFilteredData = (value) => {
+    setFilter(value.value);
+  };
+
   return (
     <div className={style.studentListContainer}>
       <div>
@@ -180,45 +174,23 @@ const StudentList = () => {
         </div>
         <Card>
           <Card.Header className={style.cardHeader}>
-            <form onSubmit={onSearchSubmit}>
-              <input
-                className={style.inputStyle}
-                type="search"
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-
-                  if (!e.target.value.length) {
-                    setPage(1);
-                    setStatus(!status);
-                  }
-                }}
-                name="search"
-                placeholder="Search"
-              />
-              <Button type="submit" className={style.searchButton}>
-                <BiSearch className={style.searchIcon} />
-              </Button>
-            </form>
-            <Dropdown onSelect={onSelectFilterStudent}>
-              <Dropdown.Toggle
-                className={style.dropdownStyle}
-                variant="link"
-                bsPrefix="none"
-              >
-                <span className={style.dropdownLabel}>{choice(filter)}</span>
-                <VscFilter size="20px" />
-              </Dropdown.Toggle>
-              <Dropdown.Menu className={style.dropdownMenuStyle}>
-                {studentFilter.map((type, idx) => {
-                  return (
-                    <Dropdown.Item key={idx} eventKey={type.value}>
-                      {type.name}
-                    </Dropdown.Item>
-                  );
-                })}
-              </Dropdown.Menu>
-            </Dropdown>
+            <SearchBar
+              placeholder="Search"
+              search={search}
+              inputSize="md"
+              sourceDesign={style.inputHieght}
+              setSearch={setSearch}
+            />
+            <FilterDropdown
+              onSelect={onSelectFilterStudent}
+              onHardStyle={style.dropdownButtonStyle}
+              onHardCodeStyle={style.dropdownMenuStyle}
+              dropdownItems={studentFilter}
+              onDataNeeded={false}
+              onAll={false}
+              filter={choice(filter)}
+              onSetFilter={obtainFilteredData}
+            />
           </Card.Header>
           <Card.Body className={style.cardBody}>
             {!students ? (
