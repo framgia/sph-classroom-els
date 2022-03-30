@@ -50,12 +50,20 @@ const Recent = ({ relatedQuiz }) => {
 
   const getTotalTimeLimit = () => {
     if (questions != null) {
-
       const totalTimeLimit = questions.reduce((total, questions) => {
         return (total += questions.time_limit);
       }, 0);
-      return totalTimeLimit;
-      
+
+      if (totalTimeLimit >= 60) {
+        const mins = totalTimeLimit / 60;
+        const secs = totalTimeLimit % 60;
+
+        return secs > 0
+          ? `${parseInt(mins)} min/s and ${secs} secs`
+          : `${parseInt(mins)} min/s`;
+      } else {
+        return `${totalTimeLimit} secs`;
+      }
     }
   };
 
@@ -70,7 +78,7 @@ const Recent = ({ relatedQuiz }) => {
               <span className={style.titleHeader}>{relatedQuiz.title}</span>
               <span className={style.clockHeader}>
                 <BsClockHistory size="15px" className={style.clockIcon} />
-                {getTotalTimeLimit()} secs
+                {getTotalTimeLimit()}
               </span>
             </div>
           </Card.Header>
@@ -96,7 +104,7 @@ const Recent = ({ relatedQuiz }) => {
             </div>
           </Card.Body>
 
-          <a 
+          <a
             href={`/categories/${relatedQuiz.category_id}/quizzes/${relatedQuiz.id}/questions`}
             className={style.quizLink}
           >
@@ -109,8 +117,7 @@ const Recent = ({ relatedQuiz }) => {
 };
 
 Recent.propTypes = {
-  relatedQuiz: PropTypes.object,
+  relatedQuiz: PropTypes.object
 };
-
 
 export default Recent;

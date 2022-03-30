@@ -4,19 +4,20 @@
 
 .card {
   color: $color-dark-blue-1;
-  background-color:$color-light-blue-1;
+  background-color: $color-light-blue-1;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
   filter: drop-shadow($drop-shadow);
   margin-bottom: 4px;
 }
+
 .card02 {
   color: $color-dark-blue-1;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
   height: 140px;
+  width: 100%;
   padding-bottom: 14px 0px 14px 0px;
-
 }
 
 .cardTitle {
@@ -55,7 +56,7 @@
   margin-bottom: 0px;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
-  width: 308px;
+  width: 100%;
 }
 
 .ResultScore {
@@ -66,19 +67,19 @@
   font-weight: $font-weight-light;
 }
 
-.timeStyle{
+.timeStyle {
   display: flex;
   align-items: center;
   font-size: $font-size-sm;
-  gap: 5px
+  gap: 5px;
 }
 
 .loading {
   display: flex;
   justify-content: center;
   align-items: center;
-  color : $color-black;
-  gap: 10px
+  color: $color-black;
+  gap: 10px;
 }
 
 .loadingWord {

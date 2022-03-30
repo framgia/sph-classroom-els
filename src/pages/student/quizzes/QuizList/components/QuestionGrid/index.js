@@ -48,12 +48,20 @@ const QuestionGrid = ({ quiz }) => {
 
   const getTotalTimeLimit = () => {
     if (questions != null) {
-
       const totalTimeLimit = questions.reduce((total, questions) => {
         return (total += questions.time_limit);
       }, 0);
-      return totalTimeLimit;
-      
+
+      if (totalTimeLimit >= 60) {
+        const mins = totalTimeLimit / 60;
+        const secs = totalTimeLimit % 60;
+
+        return secs > 0
+          ? `${parseInt(mins)} min/s and ${secs} secs`
+          : `${parseInt(mins)} min/s`;
+      } else {
+        return `${totalTimeLimit} secs`;
+      }
     }
   };
 
@@ -61,14 +69,10 @@ const QuestionGrid = ({ quiz }) => {
     <Card>
       <Card.Header className={style.card}>
         <div className={style.cardTitle}>
-          <div className={style.toTruncate}>
-            {quiz?.title}
-          </div>
+          <div className={style.toTruncate}>{quiz?.title}</div>
           <div className={style.timeStyle}>
-            <BsClockHistory
-              size="15px"
-            />
-            {getTotalTimeLimit()} secs
+            <BsClockHistory size="15px" />
+            {getTotalTimeLimit()}
           </div>
         </div>
       </Card.Header>
@@ -100,7 +104,7 @@ const QuestionGrid = ({ quiz }) => {
 };
 
 QuestionGrid.propTypes = {
-  quiz: PropTypes.object,
+  quiz: PropTypes.object
 };
 
 export default QuestionGrid;

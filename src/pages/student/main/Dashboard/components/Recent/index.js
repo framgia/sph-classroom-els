@@ -19,13 +19,20 @@ const Recent = ({ recentQuizzes, quizzes }) => {
 
   const getTotalTimeLimit = () => {
     if (questions != null) {
-      let total = 0;
+      const totalTimeLimit = questions.reduce((total, questions) => {
+        return (total += questions.time_limit);
+      }, 0);
 
-      for (let x = 0; x < questions.length; x++) {
-        total += questions[x].time_limit;
+      if (totalTimeLimit >= 60) {
+        const mins = totalTimeLimit / 60;
+        const secs = totalTimeLimit % 60;
+
+        return secs > 0
+          ? `${parseInt(mins)} min/s and ${secs} secs`
+          : `${parseInt(mins)} min/s`;
+      } else {
+        return `${totalTimeLimit} secs`;
       }
-
-      return total;
     }
   };
 
@@ -47,7 +54,7 @@ const Recent = ({ recentQuizzes, quizzes }) => {
         <div className={style.titleText}>{recentQuizzes.title}</div>
         <div className={style.timerIcon}>
           <CgTimer size="15px" />
-          {getTotalTimeLimit()} secs
+          {getTotalTimeLimit()}
         </div>
       </Card.Header>
       <Card.Body>
