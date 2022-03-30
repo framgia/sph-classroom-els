@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
+import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 import Button from '../../../../components/Button';
 import QuizAnswerResult from './QuizAnswerResult';
 import Recent from '../QuizResult/Recent/index';
@@ -14,16 +15,26 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import { QuestionsContext } from '../QuestionList';
 
-const QuizResult = ({ score, total, quizId, categoryId }) => {
+const QuizResult = ({
+  hideQuizResult = null,
+  forProfile = false,
+  quizTakenID = null,
+  title = null,
+  questions,
+  score,
+  total,
+  quizId,
+  categoryId
+}) => {
   const [viewResults, setViewResults] = useState(false);
-  const { quizTakenId, title } = useContext(QuestionsContext);
+  const quizInfo = useContext(QuestionsContext);
   const [answers, setAnswers] = useState(null);
   const [friendsScore, setFriendsScore] = useState(null);
   const [quizRelated, setQuizRelated] = useState(null);
   const passing = total / 2;
 
   useEffect(() => {
-    AnswerApi.getAll(quizTakenId).then(({ data }) => {
+    AnswerApi.getAll(quizTakenID || quizInfo.quizTakenId).then(({ data }) => {
       setAnswers(data.data);
     });
 
@@ -47,7 +58,17 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
           <div className="d-flex justify-content-center align-items-center">
             <Card>
               <div className={style.resultTopic}>
-                <center className={style.toTruncate}>{title}</center>
+                {forProfile ? (
+                  <BsFillArrowLeftSquareFill
+                    onClick={hideQuizResult}
+                    className={style.backButton}
+                  />
+                ) : (
+                  ''
+                )}
+                <center className={style.toTruncate}>
+                  {title || quizInfo.title}
+                </center>
               </div>
               <Card.Body className={style.resultWholeBodyCard}>
                 <div className={style.resultUpperBodyCard}>
@@ -171,6 +192,8 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
       ) : answers ? (
         <QuizAnswerResult
           viewResultsPage={viewResultsPage}
+          title={title}
+          quizQuestions={questions}
           answers={answers}
           score={score}
           total={total}
@@ -185,6 +208,11 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
 };
 
 QuizResult.propTypes = {
+  hideQuizResult: PropTypes.func,
+  forProfile: PropTypes.bool,
+  quizTakenID: PropTypes.number,
+  title: PropTypes.string,
+  questions: PropTypes.array,
   score: PropTypes.number,
   total: PropTypes.number,
   quizId: PropTypes.number,

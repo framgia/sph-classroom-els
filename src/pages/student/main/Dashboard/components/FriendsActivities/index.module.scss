@@ -41,13 +41,22 @@
 .friendActivity {
   color: $color-dark-blue-1;
   font-weight: $font-weight-regular;
-  font-size: $font-size-base;
-  padding: 10px;
 }
 
-.friendActivityTimestamp {
+.activityDescription {
+  height: 35px;
+  cursor: default;
+  font-size: $font-size-base;
+
+  display: -webkit-box;
+  max-width: 470px;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.timestamp {
   color: $color-dark-blue-1;
   font-size: $font-size-md;
-  display: flex;
-  align-items: center;
+  text-align: end;
 }

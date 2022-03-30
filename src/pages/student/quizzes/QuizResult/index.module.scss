@@ -7,21 +7,15 @@
 }
 
 .resultTopic {
-  display: flex;
-  margin: 0;
   padding: 10px;
-  text-align: center;
-  justify-content: center;
-  filter: drop-shadow(0 1mm 1mm #48535b8c);
-  font-size: 24px;
-  font-weight: 600;
-  padding: 10px;
-  z-index: 1;
-  background-color: $color-light-blue-1;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  width: 674px;
   height: 50px;
+  display: flex;
+  justify-content: center;
   color: $color-dark-blue-1;
+  font-size: $font-size-page-title;
+  font-weight: $font-weight-semibold;
+  background-color: $color-light-blue-1;
+  filter: drop-shadow(0 1mm 1mm #48535b8c);
 }
 
 .resultWholeBodyCard {
@@ -62,7 +56,7 @@
 .resultQuizPraise {
   font-size: $font-size-page-title;
   margin-bottom: 20px;
-  color: #48535b;
+  color: $color-dark-blue-1;
 }
 
 .resultQuizRemarks {
@@ -168,11 +162,21 @@
   width: 287px;
 }
 
-.spinner{
+.spinner {
   display: flex;
   align-items: center;
   width: 100%;
   justify-content: center;
   margin-top: 50px;
-  gap: 10px
+  gap: 10px;
+}
+
+.backButton {
+  position: absolute;
+  cursor: pointer;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  color: $color-dark-blue-1;
 }
