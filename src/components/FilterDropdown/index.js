@@ -61,6 +61,12 @@ const FilterDropdown = ({
     };
   }, [isClicked]);
 
+  useEffect(() => {
+    if(filter){
+      setActiveItem(filter);
+    }
+  }, [filter]);
+
   return (
     <div ref={ref}>
       <Dropdown
