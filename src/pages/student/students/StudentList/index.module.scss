@@ -98,6 +98,7 @@
 .studentInfo {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-top: 13px;
   margin-bottom: 55px;
   margin-left: 5px;
@@ -127,17 +128,6 @@
   display: flex;
   font-size: $font-size-md;
   gap: 20px;
-}
-
-.button {
-  margin-right: 5px;
-  margin-left: 267px;
-  margin-top: 13px;
-}
-
-.button:hover {
-  background-color: $color-light-blue-3;
-  color: $color-white;
 }
 
 .noResults,

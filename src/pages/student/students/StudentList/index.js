@@ -73,7 +73,6 @@ const StudentList = () => {
       return (
         <Button
           buttonLabel="Unfollow"
-          buttonStyle={style.button}
           buttonSize="sm"
           onClick={() => {
             onUnfollowClick(userid, name);
@@ -84,7 +83,6 @@ const StudentList = () => {
       return (
         <Button
           buttonLabel="Follow"
-          buttonStyle={style.button}
           buttonSize="sm"
           onClick={() => {
             onFollowClick(userid, name);
