@@ -13,7 +13,7 @@ const ChangeLocation = ({
   location,
   setLocation,
   setLocationPathDisplay,
-  modalHeaderTitle = 'Choose Location',
+  modalHeaderTitle='Choose Location',
   type,
   isSaved,
   setIsSaved,
