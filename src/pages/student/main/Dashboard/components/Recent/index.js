@@ -42,6 +42,18 @@ const Recent = ({ recentQuizzes, quizzes }) => {
     return 0;
   };
 
+  const retakeButton = () => {
+    if (recentQuizzes.score < passing) {
+      return (
+        <Link
+          to={`/categories/${recentQuizzes.category_id}/quizzes/${recentQuizzes.quiz_id}/questions`}
+        >
+          <p className={style.retake}>Retake Quiz</p>
+        </Link>
+      );
+    }
+  };
+
   return (
     <Card className={style.card}>
       <Card.Header className={style.cardHeader}>
@@ -73,17 +85,7 @@ const Recent = ({ recentQuizzes, quizzes }) => {
               </tr>
               <tr>
                 <td id={style.listTable}></td>
-                <td>
-                  {recentQuizzes.score < passing ? (
-                    <Link
-                      to={`/categories/${recentQuizzes.category_id}/quizzes/${recentQuizzes.quiz_id}/questions`}
-                    >
-                      <p className={style.retake}>Retake Quiz</p>
-                    </Link>
-                  ) : (
-                    ''
-                  )}
-                </td>
+                <td>{retakeButton()}</td>
               </tr>
             </tbody>
           </table>

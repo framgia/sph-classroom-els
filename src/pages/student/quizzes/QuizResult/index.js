@@ -40,6 +40,16 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
     setViewResults(!viewResults);
   };
 
+  const retakeButton = () => {
+    if (score < passing) {
+      return (
+        <a href={`/categories/${categoryId}/quizzes/${quizId}/questions`}>
+          <Button buttonLabel="Retake Quiz" buttonSize="def" />
+        </a>
+      );
+    }
+  };
+
   return (
     <div className="d-flex justify-content-center align-items-center">
       {viewResults == false ? (
@@ -136,15 +146,7 @@ const QuizResult = ({ score, total, quizId, categoryId }) => {
                     buttonSize="def"
                     onClick={() => viewResultsPage()}
                   />
-                  {score < passing ? (
-                    <a
-                      href={`/categories/${categoryId}/quizzes/${quizId}/questions`}
-                    >
-                      <Button buttonLabel="Retake Quiz" buttonSize="def" />
-                    </a>
-                  ) : (
-                    ''
-                  )}
+                  {retakeButton()}
                 </div>
               </Card.Body>
             </Card>
