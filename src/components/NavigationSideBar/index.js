@@ -15,7 +15,7 @@ const NavigationSideBar = () => {
   const { name } = useContext(AdminContext);
 
   const [activeLink, setActiveLink] = useState(
-    parseInt(window.localStorage.getItem('active-link')) || 0
+    parseInt(window.localStorage.getItem('active-link')) || 1
   );
 
   useEffect(() => {
