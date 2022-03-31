@@ -16,6 +16,7 @@ const LearningList = () => {
   const toast = useToast();
 
   const [learnings, setLearnings] = useState(null);
+  const [changeList, setChangeList] = useState(false);
   const [page, setPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perPage, setPerPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
@@ -26,16 +27,24 @@ const LearningList = () => {
   });
 
   const tableHeaderNames = [
-    { title: 'Quizzes Learned', canSort: false },
+    { title: 'Quizzes Learned', canSort: true },
     { title: 'Current Score', canSort: false },
-    { title: 'Categories', canSort: false },
+    { title: 'Categories', canSort: true },
     { title: 'Description', canSort: false }
   ];
 
   useEffect(() => {
-    history.push(`?page=${page}`);
+    history.push(
+      `?page=${page}&sortBy=${sortOptions.sortBy}&sortDirection=${sortOptions.sortDirection}`
+    );
 
-    LearningApi.getAll({ page })
+    setLearnings(null);
+
+    LearningApi.getAll({
+      page,
+      sortBy: sortOptions.sortBy,
+      sortDirection: sortOptions.sortDirection
+    })
       .then(({ data }) => {
         setLearnings(data.data);
         setPerPage(data.per_page);
@@ -45,10 +54,18 @@ const LearningList = () => {
       .catch(() =>
         toast('Error', 'There was an error getting the list of learnings.')
       );
-  }, [page]);
+  }, [changeList]);
+
+  useEffect(() => {
+    if (sortOptions.sortBy) {
+      setPage(1);
+      setChangeList(!changeList);
+    }
+  }, [sortOptions]);
 
   const onPageChange = (selected) => {
     setPage(selected + 1);
+    setChangeList(!changeList);
   };
 
   const renderTableData = () => {

@@ -63,8 +63,8 @@ const DataTable = ({
     } else if (sortDirection === 'asc') {
       setSortDirection('desc');
     } else {
-      setSortBy('');
-      setSortDirection('');
+      setSortBy(' ');
+      setSortDirection(' ');
     }
   };
 
@@ -97,11 +97,18 @@ const DataTable = ({
           {data.length > 0 ? (
             renderTableData()
           ) : (
-            <span className={onSpinner ? style.noResultsFound : style.noAspects}>No Results Found</span>
+            <span
+              className={onSpinner ? style.noResultsFound : style.noAspects}
+            >
+              No Results Found
+            </span>
           )}
         </tbody>
       ) : (
-        <Button className={onSpinner ? style.spinner : style.noAspects} disabled>
+        <Button
+          className={onSpinner ? style.spinner : style.noAspects}
+          disabled
+        >
           <Spinner animation="border" />
           <span>Loading</span>
         </Button>
