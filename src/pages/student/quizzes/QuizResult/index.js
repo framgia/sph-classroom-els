@@ -51,6 +51,16 @@ const QuizResult = ({
     setViewResults(!viewResults);
   };
 
+  const retakeButton = () => {
+    if (score < passing) {
+      return (
+        <a href={`/categories/${categoryId}/quizzes/${quizId}/questions`}>
+          <Button buttonLabel="Retake Quiz" buttonSize="def" />
+        </a>
+      );
+    }
+  };
+
   return (
     <div className="d-flex justify-content-center align-items-center">
       {viewResults == false ? (
@@ -157,11 +167,7 @@ const QuizResult = ({
                     buttonSize="def"
                     onClick={() => viewResultsPage()}
                   />
-                  <a
-                    href={`/categories/${categoryId}/quizzes/${quizId}/questions`}
-                  >
-                    <Button buttonLabel="Retake Quiz" buttonSize="def" />
-                  </a>
+                  {retakeButton()}
                 </div>
               </Card.Body>
             </Card>
@@ -174,19 +180,18 @@ const QuizResult = ({
                   <span>No Related Quizzes</span>
                 </center>
               </div>
+            ) : !quizRelated ? (
+              <div className={style.spinner}>
+                <Spinner animation="border" role="status"></Spinner>
+                <span>Loading</span>
+              </div>
             ) : (
-              !quizRelated ? (
-                <div className={style.spinner}>
-                  <Spinner animation="border" role="status"></Spinner>
-                  <span>Loading</span>
-                </div>
-              ) : (
-                <div className={style.relatedQuizzes}>
-                  {quizRelated?.map((relatedQuiz, idx) => {
-                    return <Recent relatedQuiz={relatedQuiz} key={idx} />;
-                  })}
-                </div>
-              ))}
+              <div className={style.relatedQuizzes}>
+                {quizRelated?.map((relatedQuiz, idx) => {
+                  return <Recent relatedQuiz={relatedQuiz} key={idx} />;
+                })}
+              </div>
+            )}
           </footer>
         </Container>
       ) : answers ? (
@@ -216,7 +221,7 @@ QuizResult.propTypes = {
   score: PropTypes.number,
   total: PropTypes.number,
   quizId: PropTypes.number,
-  categoryId: PropTypes.number
+  categoryId: PropTypes.number,
 };
 
 export default QuizResult;

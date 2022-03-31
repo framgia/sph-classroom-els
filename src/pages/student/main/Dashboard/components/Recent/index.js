@@ -10,6 +10,7 @@ import style from './index.module.scss';
 
 const Recent = ({ recentQuizzes, quizzes }) => {
   const [questions, setQuestions] = useState(null);
+  const passing = questions?.length / 2;
 
   useEffect(() => {
     QuestionApi.getAll(recentQuizzes.quiz_id).then(({ data }) => {
@@ -48,6 +49,18 @@ const Recent = ({ recentQuizzes, quizzes }) => {
     return 0;
   };
 
+  const retakeButton = () => {
+    if (recentQuizzes.score < passing) {
+      return (
+        <Link
+          to={`/categories/${recentQuizzes.category_id}/quizzes/${recentQuizzes.quiz_id}/questions`}
+        >
+          <p className={style.retake}>Retake Quiz</p>
+        </Link>
+      );
+    }
+  };
+
   return (
     <Card className={style.card}>
       <Card.Header className={style.cardHeader}>
@@ -79,13 +92,7 @@ const Recent = ({ recentQuizzes, quizzes }) => {
               </tr>
               <tr>
                 <td id={style.listTable}></td>
-                <td>
-                  <Link
-                    to={`/categories/${recentQuizzes.category_id}/quizzes/${recentQuizzes.quiz_id}/questions`}
-                  >
-                    <p className={style.retake}>Retake Quiz</p>
-                  </Link>
-                </td>
+                <td>{retakeButton()}</td>
               </tr>
             </tbody>
           </table>
@@ -97,7 +104,7 @@ const Recent = ({ recentQuizzes, quizzes }) => {
 
 Recent.propTypes = {
   recentQuizzes: PropTypes.object,
-  quizzes: PropTypes.array
+  quizzes: PropTypes.array,
 };
 
 export default Recent;
