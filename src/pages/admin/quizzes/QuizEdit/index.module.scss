@@ -35,13 +35,15 @@
 .quizCategory {
   color: rgb(129, 139, 144);
   font-size: $font-size-md;
-  margin-bottom: 50px;
+  margin: 10px 0px 50px;
 }
 
 .quizEditSidebar {
   gap: 28px;
   width: 314px;
   height: 80%;
+  align-items: center;
+  padding-right: 50px;
   margin-right: 20px;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 
@@ -84,14 +86,14 @@
 }
 
 .navLinkItem {
- @extend %nav-link-style;
+  @extend %nav-link-style;
 }
 
 .currentNavLinkItem {
   @extend %nav-link-style;
 
   box-shadow: inset 0px 3px 4px rgba(0, 0, 0, 0.25);
-} 
+}
 
 .questionDetails {
   width: 100%;

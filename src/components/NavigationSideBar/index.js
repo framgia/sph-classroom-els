@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useToast } from '../../hooks/useToast';
 import { Nav, Navbar, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -13,6 +13,42 @@ import style from './index.module.scss';
 const NavigationSideBar = () => {
   const toast = useToast();
   const { name } = useContext(AdminContext);
+
+  const [activeLink, setActiveLink] = useState(
+    parseInt(window.localStorage.getItem('active-link')) || 1
+  );
+
+  useEffect(() => {
+    window.localStorage.setItem('active-link', activeLink);
+  }, [activeLink]);
+
+  const navLinks = [
+    {
+      name: 'Profile',
+      path: '/admin/profile',
+      icon: <ImUser className={style.icon} />
+    },
+    {
+      name: 'Categories',
+      path: '/admin/categories',
+      icon: <BiCategory className={style.icon} />
+    },
+    {
+      name: 'Category Hierarchy',
+      path: '/admin/category-hierarchy',
+      icon: <BiCategory className={style.icon} />
+    },
+    {
+      name: 'Quizzes',
+      path: '/admin/quizzes',
+      icon: <BsCardChecklist className={style.icon} />
+    },
+    {
+      name: 'Admins',
+      path: '/admin/users',
+      icon: <BiShieldQuarter className={style.icon} />
+    }
+  ];
 
   const onLogout = async () => {
     toast('Processing', 'Logging out...');
@@ -41,51 +77,26 @@ const NavigationSideBar = () => {
         fluid
         className={`${style.navItemsContainer} ${style.displayFlexColumn}`}
       >
-        <LinkContainer
-          to="/admin/profile"
-          className={`${style.displayFlexRow} ${style.navItemInfo}`}
-        >
-          <Nav.Link href="#" className={style.navItem}>
-            <ImUser className={style.icon} />
-            <span className={style.alignContent}>Profile</span>
-          </Nav.Link>
-        </LinkContainer>
-        <LinkContainer
-          to="/admin/categories"
-          className={`${style.displayFlexRow} ${style.navItemInfo}`}
-        >
-          <Nav.Link href="#" className={style.navItem}>
-            <BiCategory className={style.icon} />
-            <span className={style.alignContent}>Categories</span>
-          </Nav.Link>
-        </LinkContainer>
-        <LinkContainer
-          to="/admin/category-hierarchy"
-          className={`${style.displayFlexRow} ${style.navItemInfo}`}
-        >
-          <Nav.Link href="#" className={style.navItem}>
-            <BiCategory className={style.icon} />
-            <span className={style.alignContent}>Category Hierarchy</span>
-          </Nav.Link>
-        </LinkContainer>
-        <LinkContainer
-          to="/admin/quizzes"
-          className={`${style.displayFlexRow} ${style.navItemInfo}`}
-        >
-          <Nav.Link href="#" className={style.navItem}>
-            <BsCardChecklist className={style.icon} />
-            <span className={style.alignContent}>Quizzes</span>
-          </Nav.Link>
-        </LinkContainer>
-        <LinkContainer
-          to="/admin/users"
-          className={`${style.displayFlexRow} ${style.navItemInfo}`}
-        >
-          <Nav.Link href="#" className={style.navItem}>
-            <BiShieldQuarter className={style.icon} />
-            <span className={style.alignContent}>Admins</span>
-          </Nav.Link>
-        </LinkContainer>
+        {navLinks.map((navLink, idx) => {
+          return (
+            <LinkContainer
+              key={idx}
+              to={navLink.path}
+              onClick={() => setActiveLink(idx)}
+              className={`${style.displayFlexRow} ${style.navItemInfo}`}
+            >
+              <Nav.Link
+                href="#"
+                className={
+                  activeLink === idx ? style.activeNavItem : style.navItem
+                }
+              >
+                {navLink.icon}
+                <span className={style.alignContent}>{navLink.name}</span>
+              </Nav.Link>
+            </LinkContainer>
+          );
+        })}
       </Container>
       <Nav.Link
         href="#"

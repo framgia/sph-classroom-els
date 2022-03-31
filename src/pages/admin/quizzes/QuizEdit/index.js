@@ -7,6 +7,7 @@ import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 import Button from '../../../../components/Button';
 import QuestionType from './components/QuestionType';
+import InputField from '../../../../components/InputField';
 import ChangeLocation from '../../../../components/ChangeLocation';
 
 import QuizApi from '../../../../api/Quiz';
@@ -28,6 +29,7 @@ const QuizEdit = () => {
   const [questions, setQuestions] = useState(null);
   const [location, setLocation] = useState(null);
   const [quizInfo, setQuizInfo] = useState(null);
+  const [quizTitle, setQuizTitle] = useState(null);
   const [saved, setSaved] = useState(false);
   const [show, setShow] = useState(false);
 
@@ -37,6 +39,7 @@ const QuizEdit = () => {
   useEffect(() => {
     QuizApi.show({ categoryId, quizId }).then(({ data }) => {
       setQuizInfo(data.data);
+      setQuizTitle(data.data.title);
     });
 
     QuestionApi.getAll(quizId).then(({ data }) => {
@@ -169,7 +172,7 @@ const QuizEdit = () => {
     toast('Processing', 'Updating quiz...');
     setSaved(true);
 
-    QuestionApi.editQuestion(questions, quizId, changeCategoryId)
+    QuestionApi.editQuestion(quizTitle, questions, quizId, changeCategoryId)
       .then(({ data }) => {
         setSaved(false);
         setQuestions(data);
@@ -184,7 +187,18 @@ const QuizEdit = () => {
   return (
     <div className={style.cardContainer}>
       <div className={style.quizEditContainer}>
-        <h2 className={style.quizTitle}>{quizInfo?.title}</h2>
+        <label htmlFor="quizTitle" className={`${style.inputTitle} my-2`}>
+          Quiz Title
+        </label>
+        <InputField
+          id="quizTitle"
+          type="text"
+          value={quizTitle}
+          fieldSize="lg"
+          onChange={(e) => {
+            setQuizTitle(e.target.value);
+          }}
+        />
         <h3 className={style.quizCategory}>{locationPathDisplay}</h3>
         {questions === null ? (
           <div className={style.loading}>
