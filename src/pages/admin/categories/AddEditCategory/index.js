@@ -197,7 +197,7 @@ const AddEditCategory = () => {
                 </Form.Group>
                 <Form.Group
                   className={style.inputFieldContainer}
-                  controlId="lacation"
+                  controlId="location"
                 >
                   <Form.Label className={style.inputLabel}>Location</Form.Label>
                   <InputField

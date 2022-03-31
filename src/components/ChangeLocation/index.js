@@ -13,11 +13,11 @@ const ChangeLocation = ({
   location,
   setLocation,
   setLocationPathDisplay,
-  modalHeaderTitle='Choose Location',
+  modalHeaderTitle = 'Choose Location',
   type,
   isSaved,
   setIsSaved,
-  buttonLabel
+  buttonLabel,
 }) => {
   const [isRootCategory, setIsRootCategory] = useState(true);
   const [backButtonClicked, setBackButtonClicked] = useState(false);
@@ -62,9 +62,9 @@ const ChangeLocation = ({
             <Button
               onClick={() => setBackButtonClicked(true)}
               className={style.backButton}
-            >
-              Go Back
-            </Button>
+              buttonLabel="Go Back"
+              buttonSize="sm"
+            />
           )}
           <div className={style.ButtonStyle}>
             <Button
@@ -101,7 +101,7 @@ ChangeLocation.propTypes = {
   isSaved: PropTypes.bool,
   setIsSaved: PropTypes.func,
   modalHeaderTitle: PropTypes.string,
-  buttonLabel: PropTypes.string
+  buttonLabel: PropTypes.string,
 };
 
 export default ChangeLocation;
