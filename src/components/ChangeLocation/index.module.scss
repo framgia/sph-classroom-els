@@ -72,7 +72,14 @@
   }
 }
 
-.ButtonStyle{
+.backButton {
+  margin-right: auto;
+
+  @extend %button-style;
+}
+
+.ButtonStyle {
+  margin-left: auto;
   display: flex;
-  gap: 10px
+  gap: 10px;
 }
