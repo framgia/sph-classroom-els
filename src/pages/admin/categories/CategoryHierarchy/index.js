@@ -46,7 +46,7 @@ const CategoryHierarchy = () => {
 
   const load = () => {
     CategoryApi.getCategories({
-      category_id: chosenCategoryPathID
+      category_id: chosenCategoryPathID,
     })
       .then(({ data }) => {
         setCategories(data.data);
@@ -174,6 +174,9 @@ const CategoryHierarchy = () => {
                 >
                   <Link
                     to={`/admin/edit-category/${category.id}?categoryViewType=Hierarchy`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
                   >
                     <span className={style.categoryName}>{category.name}</span>
                   </Link>
@@ -200,7 +203,7 @@ const CategoryHierarchy = () => {
                     >
                       Add child
                     </Dropdown.Item>
-                    <Dropdown.Item 
+                    <Dropdown.Item
                       className={style.kebabMenuItems}
                       onClick={() => {
                         onCategoryChecker(category);
@@ -226,7 +229,9 @@ const CategoryHierarchy = () => {
           <div className={style.spinner}>
             <span>No Sub-Category</span>
           </div>
-        ) : ('')}
+        ) : (
+          ''
+        )}
       </ListGroup>
       <ChangeLocation
         show={show}
