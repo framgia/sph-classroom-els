@@ -5,6 +5,11 @@ import style from '../../indexQuestion.module.scss';
 
 const MultipleChoiceType = ({ question, getAnswer, getPoint }) => {
   const [point, setPoint] = useState(0);
+  const [selected, setSelected] = useState(null);
+
+  useEffect(() => {
+    setSelected(null);
+  }, [question]);
 
   useEffect(() => {
     getPoint(point);
@@ -22,6 +27,8 @@ const MultipleChoiceType = ({ question, getAnswer, getPoint }) => {
                 value={choice.id}
                 name="choice"
                 onClick={(e) => {
+                  setSelected(choice.id);
+
                   if (choice.is_correct) {
                     setPoint(1);
                   } else {
@@ -30,7 +37,9 @@ const MultipleChoiceType = ({ question, getAnswer, getPoint }) => {
 
                   getAnswer(e.target.value);
                 }}
+                checked={selected === choice.id}
               />
+
               <span className={style.choices}>{choice.choice}</span>
             </div>
           </Card>
