@@ -29,7 +29,7 @@ function Subcategories() {
   const [perCategoryPage, setPerCategoryPage] = useState(0);
   const [totalCategoryItems, setTotalCategoryItems] = useState(0);
   const [lastCategoryPage, setLastCategoryPage] = useState(0);
-  const [quizzesPage, setQuizzesPage] = useState(pageNum ? pageNum : 1);
+  const [quizzesPage, setQuizzesPage] = useState(pageNum ? parseInt(pageNum) : 1);
   const [perQuizzesPage, setPerQuizzesPage] = useState(0);
   const [totalQuizzesItems, setTotalQuizzesItems] = useState(0);
   const [lastQuizzesPage, setLastQuizzesPage] = useState(0);
@@ -54,8 +54,9 @@ function Subcategories() {
       .then(({ data }) => {
         setCategory(data.data);
         CategoryApi.getAll(
-          { category_id: chosenCategoryPathID },
-          categoryPage
+          { category_id: chosenCategoryPathID,
+            page: categoryPage,
+          },
         ).then(({ data }) => {
           setCategories(data.data);
           setPerCategoryPage(data.per_page);
