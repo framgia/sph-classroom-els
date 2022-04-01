@@ -55,6 +55,10 @@
   font-weight: $font-weight-medium;
   font-size: 18px;
   color: $color-dark-blue-1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 161px;
 }
 
 .quizInfo {
